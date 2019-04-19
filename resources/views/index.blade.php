@@ -15,6 +15,8 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <!-- Nucleo Icons -->
     <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+    <!-- Mystyle -->
+    <link href="css/mystyle.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link href="assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -23,9 +25,10 @@
 
 <body>
     <div class="sidebar-mini" id="app">
-        <app-container></app-container>
+        <app-index></app-index>
     </div>
   <!--   Core JS Files   -->
+  <script src="../js/myscript.js"></script>
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../js/app.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>

@@ -1,0 +1,326 @@
+.button {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    box-shadow: 0px 0px 0 0px rgba(0, 0, 0, 0);
+    border-radius: 50px;
+    width: 10rem;
+    padding: 0rem 0;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #adb5bd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button .icons {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2.3rem 0 0;
+    width: 1.25rem;
+    height: 1.3rem;
+}
+
+.button .icons i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+.button .icons .icon-default {
+    transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
+}
+
+.button .icons .icon-hover {
+    transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
+    -webkit-transform: rotate(-180deg) scale(0.5);
+    transform: rotate(-180deg) scale(0.5);
+    opacity: 0;
+    color: #ffff;
+}
+
+.button:hover {
+    box-shadow: 4px 3px #ba54f5;
+}
+
+.button:hover .icon-hover {
+    -webkit-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+}
+
+.button:hover .icon-default {
+    -webkit-transform: rotate(180deg) scale(0.5);
+    transform: rotate(180deg) scale(0.5);
+    opacity: 0;
+}
+
+.bg-none {
+    background-color: #fff !important;
+}
+
+.text-aside {
+    font-size: 1rem;
+}
+
+.nav-aside:hover {
+    box-shadow: 0 5px 35px 0px rgba(0, 0, 0, .1);
+}
+
+.text-title {
+    text-align: center;
+    text-transform: capitalize !important;
+    background: -webkit-linear-gradient(#b650e6, #d54ac4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.carousel {
+    overflow: hidden;
+}
+
+.carousel .carousel-inner {
+    height: 100vh;
+    background-color: #474747;
+}
+
+.carousel .carousel-inner .item {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-transition: opacity 1s, transform 5s linear 0s;
+    -moz-transition: opacity 1s, transform 5s linear 0s;
+    -ms-transition: opacity 1s, transform 5s linear 0s;
+    -o-transition: opacity 1s, transform 5s linear 0s;
+    transition: opacity 1s, transform 5s linear 0s;
+}
+
+.carousel .carousel-inner .item .carousel-caption {
+    position: absolute;
+    display: block;
+    top: 50%;
+    bottom: auto;
+    padding-bottom: 0px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 35%;
+    right: 35%;
+    z-index: 1;
+}
+
+.carousel .carousel-inner .item .carousel-caption>h1,
+.carousel .carousel-inner .item .carousel-caption>.h1,
+.carousel .carousel-inner .item .carousel-caption>h2,
+.carousel .carousel-inner .item .carousel-caption>.h2,
+.carousel .carousel-inner .item .carousel-caption>h3,
+.carousel .carousel-inner .item .carousel-caption>.h3 {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    line-height: 36px;
+    letter-spacing: 0.9px;
+    font-size: 32px;
+    font-weight: normal;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.carousel .carousel-inner .item .carousel-caption>p,
+.carousel .carousel-inner .item .carousel-caption>span {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding-top: 35px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-top: 1px solid #ffffff;
+    font-size: 18px;
+}
+
+.carousel .carousel-inner .item .carousel-caption>.btn,
+.carousel .carousel-inner .item .carousel-caption>button {
+    display: inline-block;
+    margin-top: 30px;
+    color: #ffffff;
+    background: none;
+    border: 2px solid #ffffff;
+}
+
+.carousel .carousel-inner .item,
+.carousel .carousel-inner .active.left,
+.carousel .carousel-inner .active.right {
+    opacity: 0;
+}
+
+.carousel .carousel-inner .active,
+.carousel .carousel-inner .next.left,
+.carousel .carousel-inner .prev.right {
+    opacity: 1;
+}
+
+.carousel .carousel-inner .next,
+.carousel .carousel-inner .prev,
+.carousel .carousel-inner .active.left,
+.carousel .carousel-inner .active.right {
+    left: 0;
+    bottom: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.carousel .carousel-inner:before {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    content: "";
+    margin-top: 0px;
+    margin-left: -20px;
+    width: 40px;
+    height: 40px;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    border-right: 2px solid transparent;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-animation: spinner 1.6s linear infinite;
+    -moz-animation: spinner 1.6s linear infinite;
+    animation: spinner 1.6s linear infinite;
+    z-index: 0;
+}
+
+@-moz-keyframes spinner {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spinner {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.carousel .carousel-control.left .fa,
+.carousel .carousel-control.right .fa {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.carousel .carousel-indicators li {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 6px;
+    padding-left: 3px;
+    padding-right: 3px;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.carousel .carousel-indicators li+li {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.carousel .carousel-indicators li.active {
+    width: 44px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.5);
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.carousel .carousel-indicators li.active::before {
+    position: absolute;
+    display: inline-block;
+    height: 6px;
+    background: #ffffff;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    -webkit-animation: progress 5s linear 0s;
+    -moz-animation: progress 5s linear 0s;
+    -ms-animation: progress 5s linear 0s;
+    -o-animation: progress 5s linear 0s;
+    animation: progress 5s linear 0s;
+}
+
+.carousel .carousel-indicators li.active~li {
+    background: none;
+}
+
+@-moz-keyframes progress {
+    100% {
+        right: 0px;
+    }
+}
+
+@-webkit-keyframes progress {
+    100% {
+        right: 0px;
+    }
+}
+
+@-ms-keyframes progress {
+    100% {
+        right: 0px;
+    }
+}
+
+@-o-keyframes progress {
+    100% {
+        right: 0px;
+    }
+}
+
+@keyframes progress {
+    100% {
+        right: 0px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .button {
+        color: white;
+    }
+}
