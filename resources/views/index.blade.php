@@ -21,15 +21,10 @@
     <link href="assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="assets/demo/demo.css" rel="stylesheet" />
-
-    <!-- Start WOWSlider.com HEAD section -->
-<link rel="stylesheet" type="text/css" href="engine1/style.css" />
-<script type="text/javascript" src="engine1/jquery.js"></script>
-<!-- End WOWSlider.com HEAD section -->
 </head>
 
-<body>
-    <div class="sidebar-mini" id="app">
+<body class="sidebar-mini">
+    <div id="app">
         <app-index></app-index>
     </div>
   <!--   Core JS Files   -->
@@ -197,9 +192,6 @@
 
     });
   </script>
-<script type="text/javascript" src="engine1/wowslider.js"></script>
-<script type="text/javascript" src="engine1/script.js"></script>
-<!-- End WOWSlider.com BODY section -->
 </body>
 
 </html>

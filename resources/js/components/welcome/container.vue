@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="wrapper">
+  <div class="wrapper">
     <div class="navbar-minimize-fixed">
       <button class="minimize-sidebar btn btn-link btn-just-icon">
         <i class="tim-icons icon-align-center visible-on-sidebar-regular text-muted"></i>
@@ -11,7 +11,7 @@
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"
     -->
-      <div class="sidebar-wrapper"> 
+      <div class="sidebar-wrapper">
         <div class="logo">
           <a href="javascript:void(0)" class="simple-text logo-mini">
             CT
@@ -710,8 +710,8 @@
                 </div>
               </div>
             </div>
-          </div> 
-          <div class="col-lg-7"> 
+          </div>
+          <div class="col-lg-7">
             <div class="card">
               <div class="card-header">
                 <div class="tools float-right">
@@ -723,7 +723,7 @@
                       <a class="dropdown-item" href="#pablo">Action</a>
                       <a class="dropdown-item" href="#pablo">Another action</a>
                       <a class="dropdown-item" href="#pablo">Something else</a>
-                      <a class="dropdown-item text-danger" href="#pablo">Remove DataTERST</a>
+                      <a class="dropdown-item text-danger" href="#pablo">Remove Data</a>
                     </div>
                   </div>
                 </div>
@@ -1093,7 +1093,7 @@
       </footer>
     </div>
   </div>
-          <div class="fixed-plugin">
+  <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
       <a href="#" data-toggle="dropdown">
         <i class="fa fa-cog fa-2x"> </i>
@@ -1128,7 +1128,7 @@
           </div>
         </li>
         <li class="button-container mt-4">
-          <a href="../docs/1.0/getting-started/introduction.html" class="btn btn-default btn-block btn-round">
+          <a href="docs/1.0/getting-started/introduction.html" class="btn btn-default btn-block btn-round">
             Documentation
           </a>
         </li>
@@ -1146,13 +1146,7 @@
   </div>
 </template>
 <script>
-import navbars from './navbar';
-import footers from './footer'
     export default {
-        components:{
-            navbars,
-            footers
-        }
     }
 </script>
 <style scoped>

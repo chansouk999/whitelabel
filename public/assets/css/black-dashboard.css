@@ -6537,13 +6537,15 @@ button.close {
 .carousel-indicators li {
     position: relative;
     flex: 0 1 auto;
-    width: 30px;
-    height: 3px;
     margin-right: 3px;
     margin-left: 3px;
     text-indent: -999px;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: #ffffff;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
 }
 
 .carousel-indicators li::before {
@@ -6567,7 +6569,7 @@ button.close {
 }
 
 .carousel-indicators .active {
-    background-color: #ffffff;
+    background-color: rgb(197, 82, 233);
 }
 
 .carousel-caption {
@@ -14041,7 +14043,7 @@ fieldset[disabled] .btn-link.active {
     display: block;
     opacity: 0;
     filter: alpha(opacity=0);
-    top: 100% !important;
+    /* top: 100% !important; */
 }
 
 .dropdown-menu.bootstrap-datetimepicker-widget.top {
@@ -18778,14 +18780,15 @@ table.tablesorter thead tr .headerSortDown {
 }
 
 .fixed-plugin {
+    top: 130px;
     position: fixed;
     right: 0;
-    width: 64px;
+    width: 30px;
     background: rgba(0, 0, 0, 0.3);
     z-index: 1031;
     border-radius: 8px 0 0 8px;
-    text-align: center;
-    top: 130px;
+    text-align: -webkit-right;
+    height: 77px;
 }
 
 .fixed-plugin li>a,
@@ -18803,7 +18806,7 @@ table.tablesorter thead tr .headerSortDown {
 }
 
 .fixed-plugin .dropdown-menu {
-    right: 80px;
+    right: 36px;
     left: auto !important;
     top: -52px !important;
     width: 290px;
@@ -19691,7 +19694,7 @@ table.tablesorter thead tr .headerSortDown {
 
 .main-panel>.content {
     padding: 80px 30px 30px 280px;
-    min-height: calc(100vh - 70px);
+    /* min-height: calc(100vh - 70px); */
 }
 
 .main-panel>.navbar {

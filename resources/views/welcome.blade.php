@@ -21,14 +21,15 @@
     <link href="assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body>
-    <div class="sidebar-mini" id="app">
+<body class="sidebar-mini">
+    <div  id="app">
         <app-container></app-container>
     </div>
+  <script src="../js/app.js"></script>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
-  <script src="../js/app.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <script src="../assets/js/plugins/moment.min.js"></script>
   <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
@@ -68,7 +69,6 @@
   <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
   <!-- Black Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -189,7 +189,6 @@
 
     });
   </script>
-
 </body>
 
 </html>
