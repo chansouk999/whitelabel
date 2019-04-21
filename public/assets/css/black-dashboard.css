@@ -19125,8 +19125,8 @@ table.tablesorter thead tr .headerSortDown {
     background: -o-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
     background: -moz-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
     background: linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
-    height:calc(100vh - 333px);
-    width: 230px;
+    height:calc(100vh - 270px);
+    width: 200px;
     position: fixed;
     top: 0;
     left: calc(44vw - 523px);
@@ -19895,7 +19895,7 @@ table.tablesorter thead tr .headerSortDown {
         display: inline-block !important;
     }
     .sidebar-mini .sidebar {
-        width: 80px;
+        width: 66px;
     }
     .sidebar-mini .sidebar .sidebar-wrapper {
         width: 100% !important;

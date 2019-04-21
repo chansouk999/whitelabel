@@ -97,7 +97,7 @@
 }
 
 .cid-ro6uJJ0VM8 {
-    padding-top: 30px;
+    /* padding-top: 30px; */
     padding-bottom: 30px;
     background-color: #1e1d25;
 }
@@ -224,12 +224,12 @@
 /* Declare heights because of positioning of img element */
 
 .carousel-item {
-    height: calc(100vh - 333px);
+    height: calc(100vh - 270px);
     background-color: #777;
 }
 @media only screen and (min-width:770px){
     .carousel-item {
-        height: calc(100vh - 333px);
+        height: calc(100vh - 270px);
         background-color: #777;
     } 
     .main-panel>.content {
