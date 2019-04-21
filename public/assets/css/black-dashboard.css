@@ -19125,11 +19125,11 @@ table.tablesorter thead tr .headerSortDown {
     background: -o-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
     background: -moz-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
     background: linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
-    height: calc(100vh - 90px);
+    height:calc(100vh - 333px);
     width: 230px;
     position: fixed;
     top: 0;
-    left: 0;
+    left: calc(44vw - 523px);
     z-index: 1;
     background-size: cover;
     background-position: center center;
@@ -19137,7 +19137,7 @@ table.tablesorter thead tr .headerSortDown {
     box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.6);
     margin-top: 82px;
     margin-left: 20px;
-    border-radius: 5px;
+    border-radius:6px;
 }
 
 .sidebar .sidebar-wrapper,
@@ -19693,7 +19693,7 @@ table.tablesorter thead tr .headerSortDown {
 }
 
 .main-panel>.content {
-    padding: 80px 30px 30px 280px;
+    padding: 55px 30px 30px 280px;
     /* min-height: calc(100vh - 70px); */
 }
 
@@ -20387,8 +20387,8 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .modal.show .modal-dialog {
-    -webkit-transform: translate(0, 30%);
-    transform: translate(0, 30%);
+    -webkit-transform: translate(0, 7%);
+    transform: translate(0, 7%);
 }
 
 code {

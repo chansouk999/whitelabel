@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="wrapper">
+    <div class="wrapper container">
       <asides></asides>
 
       <div class="main-panel">
         <navbars></navbars>
 
-        <div class="content pr-0">
+        <div class="content">
           <div class="row">
             <div class="col-12 p-0">
                <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -87,7 +87,7 @@
     <div class="fixed-plugin">
       <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
-          <i class="fa fa-cog " data-toggle="tooltip" data-placement="bottom" title="Setting your page"></i><span class="carousel-text">Setting</span>
+          <i class="fa fa-cog "></i><span class="carousel-text">Setting</span>
         </a>
         <ul class="dropdown-menu">
           <li class="header-title">Sidebar Background</li>
@@ -161,7 +161,7 @@
     <div class="fixed-plugin-cutome">
       <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
-          <i class="tim-icons icon-chart-bar-32 fa-2x" data-toggle="tooltip" data-placement="bottom" title="Setting your page"></i>
+          <i class="tim-icons icon-chart-bar-32 fa-2x"></i>
         </a>
         <ul class="dropdown-menu">
           <li class="header-title">Sidebar Background</li>
