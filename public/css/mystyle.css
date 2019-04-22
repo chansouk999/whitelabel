@@ -224,20 +224,21 @@
 /* Declare heights because of positioning of img element */
 
 .carousel-item {
-    height: calc(100vh - 270px);
+    height: calc(85vh - 270px);
     background-color: #777;
 }
-@media only screen and (min-width:770px){
+
+@media only screen and (min-width:770px) {
     .carousel-item {
         height: calc(100vh - 270px);
         background-color: #777;
-    } 
+    }
     .main-panel>.content {
         padding: 80px 30px 30px 280px;
         /* min-height: calc(100vh - 70px); */
     }
-    
 }
+
 .carousel-item>img {
     position: absolute;
     top: 0;
@@ -753,8 +754,10 @@
     color: #ffffff;
     text-align: center;
 }
-@media (min-width: 1250px){
-.container {
-    max-width: 1280px;
-}
+
+@media (min-width: 1024px) {
+    .wrapper {
+        min-width: 1280px;
+        max-width: 1920px;
+    }
 }

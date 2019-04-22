@@ -96,7 +96,8 @@ body {
     font-weight: 400;
     line-height: 1.5;
     color: #525f7f;
-    text-align: left;
+    text-align: -webkit-center;
+    /* text-align: center; */
     background-color: #1e1e2f;
 }
 
@@ -19125,11 +19126,11 @@ table.tablesorter thead tr .headerSortDown {
     background: -o-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
     background: -moz-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
     background: linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
-    height:calc(100vh - 270px);
-    width: 200px;
-    position: fixed;
+    height: calc(100vh - 270px);
+    width: 230px;
+    position: absolute;
     top: 0;
-    left: calc(44vw - 523px);
+    left: 0;
     z-index: 1;
     background-size: cover;
     background-position: center center;
@@ -19137,7 +19138,7 @@ table.tablesorter thead tr .headerSortDown {
     box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.6);
     margin-top: 82px;
     margin-left: 20px;
-    border-radius:6px;
+    border-radius: 5px;
 }
 
 .sidebar .sidebar-wrapper,
@@ -19707,7 +19708,7 @@ table.tablesorter thead tr .headerSortDown {
 
 .perfect-scrollbar-on .sidebar,
 .perfect-scrollbar-on .main-panel {
-    height: 100%;
+    /* height: 100%; */
     max-height: 100%;
 }
 
