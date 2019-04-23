@@ -2,13 +2,13 @@
     <section once="footers" class="cid-ro6uJJ0VM8" id="footer7-1">
       <div class="container">
         <div class="media-container-row align-center mbr-white">
-          <div class="row row-links">
+          <div class="row row-links row-copirayt">
             <ul class="foot-menu">
                <li class="foot-menu-item mbr-fonts-style display-7">
                 <ul class="nav">
                   <li class="animated_link3">
                     <a href="#">
-                      <span data-title="About us">About us</span>
+                      <p data-title="About us">About us</p>
                     </a>
                   </li>
                    </ul>
@@ -17,7 +17,7 @@
                 <ul class="nav">
                   <li class="animated_link3">
                     <a href="#">
-                      <span data-title="Services">Services</span>
+                      <p data-title="Services">Services</p>
                     </a>
                   </li>
                    </ul>
@@ -26,7 +26,7 @@
                 <ul class="nav">
                   <li class="animated_link3">
                     <a href="#">
-                      <span data-title="Get In Touch">Get In Touch</span>
+                      <p data-title="Get In Touch">Get In Touch</p>
                     </a>
                   </li>
                    </ul>
@@ -35,7 +35,7 @@
                 <ul class="nav">
                   <li class="animated_link3">
                     <a href="#">
-                      <span data-title="Careers">Careers</span>
+                      <p data-title="Careers">Careers</p>
                     </a>
                   </li>
                    </ul>
@@ -44,7 +44,7 @@
                 <ul class="nav">
                   <li class="animated_link3">
                     <a href="#">
-                      <span data-title="Work">Work</span>
+                      <p data-title="Work">Work</p>
                     </a>
                   </li>
                    </ul>

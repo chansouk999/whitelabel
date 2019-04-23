@@ -99,7 +99,7 @@
 .cid-ro6uJJ0VM8 {
     /* padding-top: 30px; */
     padding-bottom: 30px;
-    background-color: #1e1d25;
+    background-color: transparent;
 }
 
 .cid-ro6uJJ0VM8 .row-links {
@@ -230,7 +230,7 @@
 
 @media only screen and (min-width:770px) {
     .carousel-item {
-        height: calc(100vh - 270px);
+        height: calc(66vh - 21px);
         background-color: #777;
     }
     .main-panel>.content {
@@ -326,7 +326,7 @@
     text-decoration: none;
 }
 
-.animated_link3 span {
+.animated_link3 p {
     display: block;
     position: relative;
     padding: 0 2px;
@@ -343,11 +343,11 @@
     -moz-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    color: #fff;
+    /* color: #fff; */
     /* font-size: 16px; */
 }
 
-.animated_link3:hover span {
+.animated_link3:hover p {
     background: #00929c;
     -webkit-transform: translate3d(0px, 0px, -30px) rotateX(90deg);
     -moz-transform: translate3d(0px, 0px, -30px) rotateX(90deg);
@@ -355,7 +355,7 @@
     transform: translate3d(0px, 0px, -30px) rotateX(90deg);
 }
 
-.animated_link3 span:after {
+.animated_link3 p:after {
     content: attr(data-title);
     display: block;
     position: absolute;
@@ -377,15 +377,16 @@
 }
 
 .icon-cutome {
-    padding: 4px;
+    padding: 15px;
     border: 1px solid #ffff;
     border-radius: 69px;
-    width: 25px;
-    height: 25px;
+    width: 50px;
+    height: 50px;
     text-align: center;
-    color: #ffff;
+    border-color: #ba54f5;
     font-weight: bold;
-    /* background-color: #ba54f5; */
+    background-color: #ba54f5;
+    font-size: 1rem;
 }
 
 .row-links {
@@ -753,6 +754,58 @@
     box-shadow: none;
     color: #ffffff;
     text-align: center;
+}
+
+.change-background {
+    background-color: #1e1d26;
+}
+
+.slide__item {
+    position: relative;
+}
+
+.slide-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    font-family: 'Roboto';
+}
+
+.slide-caption__title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.slide-caption__title:before {
+    content: '';
+    width: 20%;
+    border-bottom: 2px solid #fff;
+    display: block;
+    margin: 0 auto;
+}
+
+.owl-item.active .slide-caption__title {
+    animation: 1s .2s fadeInUp both;
+}
+
+.owl-item.active .slide-caption__desc {
+    animation: 1s .6s fadeInUp both;
+}
+
+.owl-item.active .btn {
+    animation: 1s .9s flipInX both;
+}
+
+.slide-caption__desc {
+    font-size: .8rem;
+    font-weight: 300;
+    margin-top: 0;
+    text-transform: uppercase;
 }
 
 @media (min-width: 1024px) {

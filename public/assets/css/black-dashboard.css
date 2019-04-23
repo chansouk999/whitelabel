@@ -98,7 +98,7 @@ body {
     color: #525f7f;
     text-align: -webkit-center;
     /* text-align: center; */
-    background-color: #1e1e2f;
+    background-color: #f5f6fa;
 }
 
 [tabindex="-1"]:focus {
@@ -28067,7 +28067,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content {
-    background: #f5f6fa;
+    background: #fbfbfb;
 }
 
 .white-content .navbar.navbar-transparent .navbar-brand {
@@ -28111,7 +28111,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content .main-panel {
-    background: #f5f6fa;
+    background: #fbfbfb;
 }
 
 .white-content h1,

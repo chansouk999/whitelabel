@@ -23,7 +23,7 @@
         <link href="css/mystyle.css" rel="stylesheet" />
 </head>
 
-<body class="sidebar-mini">
+<body class="white-content">
     <div id="app">
         <app-index></app-index>
     </div>
@@ -75,6 +75,7 @@
   <script>
     $(document).ready(function() {
       $().ready(function() {
+         $('body').addClass('white-content');
         $sidebar = $('.sidebar');
         $navbar = $('.navbar');
         $main_panel = $('.main-panel');
@@ -82,8 +83,8 @@
         $full_page = $('.full-page');
 
         $sidebar_responsive = $('body > .navbar-collapse');
-        sidebar_mini_active = true;
-        white_color = false;
+        sidebar_mini_active = false;
+        white_color = true;
 
         window_width = $(window).width();
 
@@ -157,6 +158,7 @@
             setTimeout(function() {
               $('body').removeClass('change-background');
               $('body').removeClass('white-content');
+              $('body').addClass('change-background');
             }, 900);
             white_color = false;
           } else {
