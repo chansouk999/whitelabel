@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
     <title>AG亚游集团官网（Asia Gaming）---只為非同凡享 Powered TNK.COM</title>
-
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -19,17 +19,19 @@
     <link href="assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="assets/demo/demo.css" rel="stylesheet" />
+        <!-- Mystyle -->
+        <link href="css/mystyle.css" rel="stylesheet" />
 </head>
 
-<body class="sidebar-mini">
-    <div  id="app">
+<body class="white-content">
+    <div id="app">
         <app-container></app-container>
     </div>
-  <script src="../js/app.js"></script>
   <!--   Core JS Files   -->
+  <script src="../js/myscript.js"></script>
   <script src="../assets/js/core/jquery.min.js"></script>
+  <script src="../js/app.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <script src="../assets/js/plugins/moment.min.js"></script>
   <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
@@ -69,9 +71,11 @@
   <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
   <!-- Black Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {
+         $('body').addClass('white-content');
         $sidebar = $('.sidebar');
         $navbar = $('.navbar');
         $main_panel = $('.main-panel');
@@ -79,8 +83,8 @@
         $full_page = $('.full-page');
 
         $sidebar_responsive = $('body > .navbar-collapse');
-        sidebar_mini_active = true;
-        white_color = false;
+        sidebar_mini_active = false;
+        white_color = true;
 
         window_width = $(window).width();
 
@@ -154,6 +158,7 @@
             setTimeout(function() {
               $('body').removeClass('change-background');
               $('body').removeClass('white-content');
+              $('body').addClass('change-background');
             }, 900);
             white_color = false;
           } else {

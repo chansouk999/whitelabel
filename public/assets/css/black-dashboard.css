@@ -18782,14 +18782,15 @@ table.tablesorter thead tr .headerSortDown {
 
 .fixed-plugin {
     top: 130px;
-    position: fixed;
-    right: 0;
+    position: absolute;
+    right: 15px;
     width: 30px;
-    background: rgba(0, 0, 0, 0.3);
+    /* background: rgb(199, 82, 231); */
     z-index: 1031;
     border-radius: 8px 0 0 8px;
     text-align: -webkit-right;
     height: 77px;
+    color: #fff !important;
 }
 
 .fixed-plugin li>a,
@@ -19094,7 +19095,7 @@ table.tablesorter thead tr .headerSortDown {
 
 @media (max-width: 575.98px) {
     .fixed-plugin {
-        top: 100px;
+        top: 88px;
     }
     .fixed-plugin .dropdown-menu {
         width: 225px;

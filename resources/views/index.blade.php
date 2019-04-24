@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
     <title>AG亚游集团官网（Asia Gaming）---只為非同凡享 Powered TNK.COM</title>
-
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />

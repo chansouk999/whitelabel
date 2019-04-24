@@ -37,7 +37,10 @@
           <li class="nav-aside">
             <a href="examples/dashboard.html">
               <i class="tim-icons icon-chart-pie-36"></i>
-              <p class="text-aside">电子游戏<span class="badge badge-default text-danger">NEWS</span></p>
+              <p class="text-aside">
+                电子游戏
+                <span class="badge badge-default text-danger">NEWS</span>
+              </p>
             </a>
           </li>
           <li class="nav-aside">
@@ -46,37 +49,41 @@
               <p class="text-aside">彩票游戏</p>
             </a>
           </li>
-         <li class="nav-aside">
+          <li class="nav-aside">
             <a href="examples/calendar.html">
-            <i class="icon-fish"></i>
+              <i class="icon-fish"></i>
               <p class="text-aside">AG捕鱼王</p>
             </a>
           </li>
-         <li class="nav-aside">
+          <li class="nav-aside">
             <a href="examples/calendar.html">
               <i class="tim-icons icon-video-66"></i>
               <p class="text-aside">AS电玩城</p>
             </a>
           </li>
-         <li class="nav-aside">
+          <li class="nav-aside">
             <a href="examples/calendar.html">
-           <i class="tim-icons icon-user-run"></i>
+              <i class="tim-icons icon-user-run"></i>
               <p class="text-aside">体育投注</p>
             </a>
           </li>
-         <li class="nav-aside">
+          <li class="nav-aside">
             <a href="examples/calendar.html">
               <i class="tim-icons icon-money-coins"></i>
               <p class="text-aside">最新优惠</p>
             </a>
           </li>
-            <li class="nav-aside">
-           <div class="display">
-	<a class="HOVER FLASH">
-  <span></span>
-    <text>Don't Hover Me!</text>
-  </a>
-</div>
+          <li class="nav-aside">
+            <div class="qr-wrap">
+              <div class="ocrloader">
+                <em></em>
+                <div>
+                  <img src="/assets/img/qrcode.png" width="127px">
+                </div>
+                <span></span>
+              </div>
+            </div>
+              <p>扫一扫 下载手机亚游</p>
           </li>
         </ul>
       </div>
