@@ -1754,6 +1754,414 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/index.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/index.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _welcome_navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./welcome/navbar */ "./resources/js/components/welcome/navbar.vue");
+/* harmony import */ var _welcome_asides__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./welcome/asides */ "./resources/js/components/welcome/asides.vue");
+/* harmony import */ var _welcome_footers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./welcome/footers */ "./resources/js/components/welcome/footers.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    navbars: _welcome_navbar__WEBPACK_IMPORTED_MODULE_0__["default"],
+    asides: _welcome_asides__WEBPACK_IMPORTED_MODULE_1__["default"],
+    footers: _welcome_footers__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/welcome/asides.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/welcome/asides.vue?vue&type=script&lang=js& ***!
@@ -1859,10 +2267,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/welcome/containerindex.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/welcome/containerindex.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/welcome/containerwelcome.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/welcome/containerwelcome.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2208,12 +2616,6 @@ __webpack_require__.r(__webpack_exports__);
     footers: _footers__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   mounted: function mounted() {}
-});
-$(".carousel-indicators  li").on("mouseover", function () {
-  $(this).trigger("click");
-});
-$(document).ready(function () {
-  $("#loginModal").modal('show');
 });
 
 /***/ }),
@@ -2792,27 +3194,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      ismenu: false
+      ismenu: false,
+      messages: "index",
+      welcome: "/"
     };
   }
 });
@@ -38093,6 +38480,24 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/index.vue?vue&type=template&id=2ac2c897&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/index.vue?vue&type=template&id=2ac2c897&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"wrapper container-whitelabel"},[_c('asides'),_vm._v(" "),_c('div',{staticClass:"main-panel"},[_c('navbars'),_vm._v(" "),_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_vm._m(2),_vm._v(" "),_vm._m(3),_vm._v(" "),_c('footers')],1)],1)])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"content"},[_c('hr'),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-12 p-0 home-wrap"},[_c('div',{staticClass:"container-wrap main-container u-wrap"},[_c('div',{staticClass:"u-menu"},[_c('div',{staticClass:"umenu-wrap"},[_c('dl',[_c('dt',[_c('i',{staticClass:"icon-user"}),_vm._v("我的户口\n                    ")]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_account"}},[_c('a',{staticClass:"nav-link active",attrs:{"data-toggle":"tab","href":"#link2","role":"tablist","aria-expanded":"true"}},[_vm._v("我的账户")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_friend"}},[_c('a',{attrs:{"href":"/ucenter/recommend/statis"}},[_vm._v("好友推荐")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_transaction"}},[_c('a',{attrs:{"href":"/ucenter/transaction/view"}},[_vm._v("交易记录")])])]),_vm._v(" "),_c('dl',[_c('dt',[_c('i',{staticClass:"icon-yuan"}),_vm._v("财务中心\n                    ")]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_pay"}},[_c('a',{attrs:{"href":"/ucenter/pay/payIndex"}},[_vm._v("立即充值")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_withdraw"}},[_c('a',{attrs:{"href":"/ucenter/withdraw/withdrawIndex"}},[_vm._v("申请提现")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_self_rebate"}},[_c('a',{attrs:{"href":"/ucenter/rebate/view"}},[_vm._v("自助洗码")])])]),_vm._v(" "),_c('dl',{attrs:{"id":"u-menu-mission"}},[_c('dt',[_c('i',{staticClass:"icon-task"}),_vm._v("我的任务\n                    ")]),_vm._v(" "),_c('dd',{staticClass:"newcomer-dd",attrs:{"data-sidebar":"u_mission_newcomer"}},[_c('a',{attrs:{"href":"/ucenter/mission/newcomer"}},[_vm._v("新手任务")])]),_vm._v(" "),_c('dd',{staticClass:"daily-dd",attrs:{"data-sidebar":"u_mission_daily"}},[_c('a',{attrs:{"href":"/ucenter/mission/daily"}},[_vm._v("日常任务")])]),_vm._v(" "),_c('dd',{staticClass:"achieve-dd",attrs:{"data-sidebar":"u_mission_achieve"}},[_c('a',{attrs:{"href":"/ucenter/mission/achieve"}},[_vm._v("成就任务")])])]),_vm._v(" "),_c('dl',[_c('dt',[_c('i',{staticClass:"icon-records"}),_vm._v("客户资料\n                    ")]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_person_pwdIndex"}},[_c('a',{attrs:{"href":"/ucenter/person/pwdIndex"}},[_vm._v("修改密码")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_bank"}},[_c('a',{attrs:{"href":"/ucenter/bank/bankIndex"}},[_vm._v("银行资料")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_person_phoneIndex"}},[_c('a',{attrs:{"href":"/ucenter/security/phone"}},[_vm._v("修改电话")])])]),_vm._v(" "),_c('dl',{staticClass:"border-0"},[_c('dt',{staticClass:"active"},[_c('i',{staticClass:"icon-msg"}),_vm._v("信息服务\n                    ")]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_sms_subscribeIndex"}},[_c('a',{attrs:{"href":"/ucenter/subscribe"}},[_vm._v("短信订阅")])]),_vm._v(" "),_c('dd',{staticClass:"active",attrs:{"data-sidebar":"u_station_letter"}},[_c('a',{attrs:{"onclick":"_hmt.push(['_trackEvent','AG8','消息','我的消息','我的消息']);","id":"eid_s_letter","href":"/ucenter/letters"}},[_vm._v("\n                        我的消息\n                        "),_vm._v(" "),_c('em',{staticClass:"badge letter"},[_vm._v("2")])])])])])]),_vm._v(" "),_c('div',{staticClass:"u-main"},[_c('div',{staticClass:"u-title"},[_vm._v("我的消息")]),_vm._v(" "),_c('div',{staticClass:"u-content"},[_c('div',{staticClass:"u-letter u-inner"},[_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading"},[_c('input',{staticClass:"ctr-male btn-select-all",attrs:{"type":"checkbox","id":"male"}}),_vm._v(" "),_c('label',{staticClass:"btn-select-all",attrs:{"for":"male","data-check":"true"}},[_vm._v("全选")]),_vm._v(" "),_c('div',{staticClass:"dropdown",staticStyle:{"display":"inline-block"}},[_c('button',{staticClass:"btn btn-default dropdown-toggle",attrs:{"type":"button","id":"dropdownMenu1","onclick":"_hmt.push(['_trackEvent','AG8','我的消息','消息状态','消息状态']);","data-toggle":"dropdown","aria-haspopup":"true","aria-expanded":"true"}},[_vm._v("\n                            消息状态\n                            "),_c('span',{staticClass:"caret"})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu",attrs:{"aria-labelledby":"dropdownMenu1"}},[_c('li',[_c('a',{attrs:{"href":"#","data-href":"ALL"}},[_vm._v("全部")])]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"#","data-href":"READ"}},[_vm._v("已读")])]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"#","data-href":"UNREAD"}},[_vm._v("未读")])])])]),_vm._v(" "),_c('a',{staticClass:"btn btn-default btn-cancel",attrs:{"onclick":"_hmt.push(['_trackEvent','AG8','我的消息','标为已读','标为已读']);"}},[_vm._v("标为已读")]),_vm._v(" "),_c('a',{staticClass:"btn btn-default btn-del",attrs:{"onclick":"_hmt.push(['_trackEvent','AG8','我的消息','删除所选','删除所选']);"}},[_vm._v("删除所选")])]),_vm._v(" "),_c('ul',{staticClass:"nav nav-tabs yh-tabs"},[_c('li',{staticClass:"active"},[_c('a',{attrs:{"data-toggle":"tab","aria-expanded":"false","data-value":"0","onclick":"_hmt.push(['_trackEvent','AG8','我的消息','优惠通知','优惠通知']);"}},[_vm._v("优惠通知")]),_vm._v(" "),_c('em',{staticClass:"badge"},[_vm._v("2")])]),_vm._v(" "),_c('li',{},[_c('a',{attrs:{"data-toggle":"tab","aria-expanded":"true","data-value":"1","onclick":"_hmt.push(['_trackEvent','AG8','我的消息','系统公告','系统公告']);"}},[_vm._v("系统公告")])])]),_vm._v(" "),_c('ul',{staticClass:"list-group letter-list",attrs:{"data-init":"1"}},[_c('li',[_c('input',{staticClass:"form-control",attrs:{"type":"checkbox","value":"132922"}}),_vm._v(" "),_c('a',{staticClass:"trun-right",attrs:{"href":"/ucenter/letter/details/index.html?id=132922&msgType=0"}},[_c('h3',{staticClass:"not-read"},[_vm._v("\n                              【优惠通知】亚游电台第九期大奖活动！\n                              "),_c('span',{staticClass:"s-right"},[_vm._v("2019-04-19 11:28")])]),_vm._v(" "),_c('p',[_vm._v("\n                              亚游电台第九期，全新的互动奖励，彩券、刮刮卡、礼金邀您来抢！更多详情\n                              点我\n                            ")])])]),_vm._v(" "),_c('li',[_c('input',{staticClass:"form-control",attrs:{"type":"checkbox","value":"125129"}}),_vm._v(" "),_c('a',{staticClass:"trun-right",attrs:{"href":"/ucenter/letter/details/index.html?id=125129&msgType=0"}},[_c('h3',{staticClass:"not-read"},[_vm._v("\n                              PP玩转锦标赛，红包领不停\n                              "),_c('span',{staticClass:"s-right"},[_vm._v("2019-04-12 17:35")])]),_vm._v(" "),_c('p',[_vm._v("PP电子玩转锦标赛，红包领不停！每周四18:00至周一18:00，投注指定PP电子游戏，即有机会赢取奖池！更有机会领取红...")])])])])]),_vm._v(" "),_c('nav',{staticClass:"d-flex justify-content-center",attrs:{"aria-label":"..."}},[_c('ul',{staticClass:"pagination"},[_c('li',{staticClass:"page-item disabled"},[_c('a',{staticClass:"page-link",attrs:{"href":"#","tabindex":"-1"}},[_vm._v("Previous")])]),_vm._v(" "),_c('li',{staticClass:"page-item"},[_c('a',{staticClass:"page-link",attrs:{"href":"#"}},[_vm._v("1")])]),_vm._v(" "),_c('li',{staticClass:"page-item active"},[_c('a',{staticClass:"page-link",attrs:{"href":"#"}},[_vm._v("\n                                2\n                                "),_c('span',{staticClass:"sr-only"},[_vm._v("(current)")])])]),_vm._v(" "),_c('li',{staticClass:"page-item"},[_c('a',{staticClass:"page-link",attrs:{"href":"#"}},[_vm._v("3")])]),_vm._v(" "),_c('li',{staticClass:"page-item"},[_c('a',{staticClass:"page-link",attrs:{"href":"#"}},[_vm._v("Next")])])])])])])])]),_vm._v(" "),_c('hr')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fixed-plugin"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"assets/img/q-btn.png"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"header-title"},[_vm._v("Sidebar Background")]),_vm._v(" "),_c('li',{staticClass:"adjustments-line"},[_c('a',{staticClass:"switch-trigger background-color",attrs:{"href":"javascript:void(0)"}},[_c('div',{staticClass:"badge-colors text-center"},[_c('span',{staticClass:"badge filter badge-primary active",attrs:{"data-color":"primary"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-info",attrs:{"data-color":"blue"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-success",attrs:{"data-color":"green"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-warning",attrs:{"data-color":"orange"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-danger",attrs:{"data-color":"red"}})]),_vm._v(" "),_c('div',{staticClass:"clearfix"})])]),_vm._v(" "),_c('li',{staticClass:"header-title"},[_vm._v("Sidebar Mini")]),_vm._v(" "),_c('li',{staticClass:"adjustments-line"},[_c('div',{staticClass:"togglebutton switch-sidebar-mini"},[_c('span',{staticClass:"label-switch"},[_vm._v("OFF")]),_vm._v(" "),_c('input',{staticClass:"bootstrap-switch",attrs:{"type":"checkbox","name":"checkbox","checked":"","data-on-label":"","data-off-label":""}}),_vm._v(" "),_c('span',{staticClass:"label-switch label-right"},[_vm._v("ON")])]),_vm._v(" "),_c('div',{staticClass:"togglebutton switch-change-color mt-3"},[_c('span',{staticClass:"label-switch"},[_vm._v("LIGHT MODE")]),_vm._v(" "),_c('input',{staticClass:"bootstrap-switch",attrs:{"type":"checkbox","name":"checkbox","data-on-label":"","data-off-label":""}}),_vm._v(" "),_c('span',{staticClass:"label-switch label-right"},[_vm._v("DARK MODE")])])]),_vm._v(" "),_c('li',{staticClass:"button-container mt-4"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("Documentation")])]),_vm._v(" "),_c('li',{staticClass:"header-title"},[_vm._v("Thank you for 95 shares!")]),_vm._v(" "),_c('li',{staticClass:"button-container text-center"},[_c('button',{staticClass:"btn btn-round btn-info",attrs:{"id":"twitter"}},[_c('i',{staticClass:"fab fa-twitter"}),_vm._v(" · 45\n              ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-round btn-info",attrs:{"id":"facebook"}},[_c('i',{staticClass:"fab fa-facebook-f"}),_vm._v(" · 50\n              ")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('a',{staticClass:"github-button",attrs:{"href":"https://github.com/creativetimofficial/ct-black-dashboard-pro","data-icon":"octicon-star","data-size":"large","data-show-count":"true","aria-label":"Star ntkme/github-buttons on GitHub"}},[_vm._v("Star")])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fixed-plugin-cutome"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"assets/img/chat-btn.gif"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"button-container mt-4 pb-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("在线咨询")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("电话回拨")])]),_vm._v(" "),_c('li',{staticClass:"button-container bg-call"},[_c('p',{staticClass:"home_custom"},[_c('i',{staticClass:"fas fa-phone-volume"}),_vm._v("服务热线\n              ")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("香港热线(0.49元/分)")]),_vm._v(" "),_c('p',{staticClass:"hongKong1"},[_vm._v("\n                +852-3841-5777\n                "),_c('br')]),_vm._v(" "),_c('p',{staticClass:"hongKong2"},[_vm._v("+852-3008-3777")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("菲律宾热线(0.99元/分)")]),_vm._v(" "),_c('p',[_vm._v("+63-2-949-8222")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"})])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fixed-plugin-tools"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"/assets/img/tools-btn.png"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"button-container mt-4 pb-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("在线咨询")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("电话回拨")])]),_vm._v(" "),_c('li',{staticClass:"button-container bg-call"},[_c('p',{staticClass:"home_custom"},[_c('i',{staticClass:"fas fa-phone-volume"}),_vm._v("服务热线\n              ")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("香港热线(0.49元/分)")]),_vm._v(" "),_c('p',{staticClass:"hongKong1"},[_vm._v("\n                +852-3841-5777\n                "),_c('br')]),_vm._v(" "),_c('p',{staticClass:"hongKong2"},[_vm._v("+852-3008-3777")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("菲律宾热线(0.99元/分)")]),_vm._v(" "),_c('p',[_vm._v("+63-2-949-8222")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"})])])])}]
+render._withStripped = true
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/welcome/asides.vue?vue&type=template&id=5862beda&scoped=true&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/welcome/asides.vue?vue&type=template&id=5862beda&scoped=true& ***!
@@ -38111,10 +38516,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/welcome/containerindex.vue?vue&type=template&id=01c88f6e&scoped=true&":
-/*!*************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/welcome/containerindex.vue?vue&type=template&id=01c88f6e&scoped=true& ***!
-  \*************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/welcome/containerwelcome.vue?vue&type=template&id=d49331ce&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/welcome/containerwelcome.vue?vue&type=template&id=d49331ce&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38123,7 +38528,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"wrapper container-whitelabel"},[_c('asides'),_vm._v(" "),_c('div',{staticClass:"main-panel"},[_c('navbars'),_vm._v(" "),_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_vm._m(2),_vm._v(" "),_vm._m(3),_vm._v(" "),_c('footers')],1)],1)])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"content"},[_c('hr'),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-12 p-0 home-wrap"},[_c('div',{staticClass:"container-wrap"},[_c('div',{staticClass:"carousel slide",attrs:{"id":"myCarousel","data-ride":"carousel"}},[_c('ol',{staticClass:"carousel-indicators"},[_c('li',{staticClass:"active",attrs:{"data-target":"#myCarousel","code-ds":"AG8040","data-slide-to":"0"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190328cfa9d94907ba431db6505bb707b0c58c.jpg"}})]),_vm._v(" "),_c('li',{attrs:{"data-target":"#myCarousel","code-ds":"AG8041","data-slide-to":"1"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190326961759629a51491e8f00c2ff2e753aff.jpg"}})]),_vm._v(" "),_c('li',{attrs:{"data-target":"#myCarousel","code-ds":"AG8042","data-slide-to":"2"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190409d5dfebd2223a4eb58427dd4f3325d3f1.jpg"}})]),_vm._v(" "),_c('li',{attrs:{"data-target":"#myCarousel","code-ds":"AG8043","data-slide-to":"3"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190418108f63a2f4454f9dba0199230447bcbf.jpg"}})]),_vm._v(" "),_c('li',{attrs:{"data-target":"#myCarousel","code-ds":"AG8044","data-slide-to":"4"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/2019042247954d584b7547a59733bbc2c3a28880.jpg"}})])]),_vm._v(" "),_c('div',{staticClass:"carousel-inner"},[_c('div',{staticClass:"carousel-item active"},[_c('img',{staticClass:"first-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/201903287c512df06b914cefb2b3a96d20d3fdbd.jpg","alt":"First\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-caption"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])]),_vm._v(" "),_c('div',{staticClass:"carousel-item"},[_c('img',{staticClass:"second-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190423b2ae4cfc35c14da4b2da530f147887c5.jpg","alt":"Second\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-captiontwo"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])]),_vm._v(" "),_c('div',{staticClass:"carousel-item"},[_c('img',{staticClass:"third-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190409837ef9651b994dde86cbf299a2d5a599.jpg","alt":"Third\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-captionthree"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])]),_vm._v(" "),_c('div',{staticClass:"carousel-item"},[_c('img',{staticClass:"fourd-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/201904188594c2980f2e4ffa8a7120ff2406d97a.jpg","alt":"Third\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-captionfour"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])]),_vm._v(" "),_c('div',{staticClass:"carousel-item"},[_c('img',{staticClass:"five-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/2019042254cc8ec48bfe4d89b4b377df2fbbcc26.jpg","alt":"Five\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-captionfive"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])])]),_vm._v(" "),_c('a',{staticClass:"carousel-control-prev",attrs:{"href":"#myCarousel","role":"button","data-slide":"prev"}},[_c('img',{attrs:{"src":"assets/img/arrow-left.png"}}),_vm._v(" "),_c('span',{staticClass:"sr-only"},[_vm._v("Previous")])]),_vm._v(" "),_c('a',{staticClass:"carousel-control-next",attrs:{"href":"#myCarousel","role":"button","data-slide":"next"}},[_c('img',{attrs:{"src":"assets/img/arrow-right.png"}}),_vm._v(" "),_c('span',{staticClass:"sr-only"},[_vm._v("Next")])])])]),_vm._v(" "),_c('hr')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fixed-plugin"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"assets/img/q-btn.png"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"header-title"},[_vm._v("Sidebar Background")]),_vm._v(" "),_c('li',{staticClass:"adjustments-line"},[_c('a',{staticClass:"switch-trigger background-color",attrs:{"href":"javascript:void(0)"}},[_c('div',{staticClass:"badge-colors text-center"},[_c('span',{staticClass:"badge filter badge-primary active",attrs:{"data-color":"primary"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-info",attrs:{"data-color":"blue"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-success",attrs:{"data-color":"green"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-warning",attrs:{"data-color":"orange"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-danger",attrs:{"data-color":"red"}})]),_vm._v(" "),_c('div',{staticClass:"clearfix"})])]),_vm._v(" "),_c('li',{staticClass:"header-title"},[_vm._v("Sidebar Mini")]),_vm._v(" "),_c('li',{staticClass:"adjustments-line"},[_c('div',{staticClass:"togglebutton switch-sidebar-mini"},[_c('span',{staticClass:"label-switch"},[_vm._v("OFF")]),_vm._v(" "),_c('input',{staticClass:"bootstrap-switch",attrs:{"type":"checkbox","name":"checkbox","checked":"","data-on-label":"","data-off-label":""}}),_vm._v(" "),_c('span',{staticClass:"label-switch label-right"},[_vm._v("ON")])]),_vm._v(" "),_c('div',{staticClass:"togglebutton switch-change-color mt-3"},[_c('span',{staticClass:"label-switch"},[_vm._v("LIGHT MODE")]),_vm._v(" "),_c('input',{staticClass:"bootstrap-switch",attrs:{"type":"checkbox","name":"checkbox","data-on-label":"","data-off-label":""}}),_vm._v(" "),_c('span',{staticClass:"label-switch label-right"},[_vm._v("DARK MODE")])])]),_vm._v(" "),_c('li',{staticClass:"button-container mt-4"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("Documentation")])]),_vm._v(" "),_c('li',{staticClass:"header-title"},[_vm._v("Thank you for 95 shares!")]),_vm._v(" "),_c('li',{staticClass:"button-container text-center"},[_c('button',{staticClass:"btn btn-round btn-info",attrs:{"id":"twitter"}},[_c('i',{staticClass:"fab fa-twitter"}),_vm._v(" · 45\n              ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-round btn-info",attrs:{"id":"facebook"}},[_c('i',{staticClass:"fab fa-facebook-f"}),_vm._v(" · 50\n              ")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('a',{staticClass:"github-button",attrs:{"href":"https://github.com/creativetimofficial/ct-black-dashboard-pro","data-icon":"octicon-star","data-size":"large","data-show-count":"true","aria-label":"Star ntkme/github-buttons on GitHub"}},[_vm._v("Star")])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fixed-plugin-cutome"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"assets/img/chat-btn.gif"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"button-container mt-4 pb-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("在线咨询")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("电话回拨")])]),_vm._v(" "),_c('li',{staticClass:"button-container bg-call"},[_c('p',{staticClass:"home_custom"},[_c('i',{staticClass:"fas fa-phone-volume"}),_vm._v("服务热线\n              ")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("香港热线(0.49元/分)")]),_vm._v(" "),_c('p',{staticClass:"hongKong1"},[_vm._v("\n                +852-3841-5777\n                "),_c('br')]),_vm._v(" "),_c('p',{staticClass:"hongKong2"},[_vm._v("+852-3008-3777")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("菲律宾热线(0.99元/分)")]),_vm._v(" "),_c('p',[_vm._v("+63-2-949-8222")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"})])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fixed-plugin-tools"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"/assets/img/tools-btn.png"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"button-container mt-4 pb-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("在线咨询")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("电话回拨")])]),_vm._v(" "),_c('li',{staticClass:"button-container bg-call"},[_c('p',{staticClass:"home_custom"},[_c('i',{staticClass:"fas fa-phone-volume"}),_vm._v("服务热线\n              ")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("香港热线(0.49元/分)")]),_vm._v(" "),_c('p',{staticClass:"hongKong1"},[_vm._v("\n                +852-3841-5777\n                "),_c('br')]),_vm._v(" "),_c('p',{staticClass:"hongKong2"},[_vm._v("+852-3008-3777")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("菲律宾热线(0.99元/分)")]),_vm._v(" "),_c('p',[_vm._v("+63-2-949-8222")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"})])])])}]
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"content"},[_c('hr'),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-12 p-0 home-wrap"},[_c('div',{staticClass:"container-wrap"},[_c('div',{staticClass:"carousel slide",attrs:{"id":"myCarousel","data-ride":"carousel"}},[_c('ol',{staticClass:"carousel-indicators"},[_c('li',{staticClass:"active",attrs:{"data-target":"#myCarousel","data-slide-to":"0"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190328cfa9d94907ba431db6505bb707b0c58c.jpg"}})]),_vm._v(" "),_c('li',{attrs:{"data-target":"#myCarousel","data-slide-to":"1"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190326961759629a51491e8f00c2ff2e753aff.jpg"}})]),_vm._v(" "),_c('li',{attrs:{"data-target":"#myCarousel","data-slide-to":"2"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190409d5dfebd2223a4eb58427dd4f3325d3f1.jpg"}})]),_vm._v(" "),_c('li',{attrs:{"data-target":"#myCarousel","data-slide-to":"3"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190418108f63a2f4454f9dba0199230447bcbf.jpg"}})]),_vm._v(" "),_c('li',{attrs:{"data-target":"#myCarousel","data-slide-to":"4"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/2019042247954d584b7547a59733bbc2c3a28880.jpg"}})])]),_vm._v(" "),_c('div',{staticClass:"carousel-inner"},[_c('div',{staticClass:"carousel-item active"},[_c('img',{staticClass:"first-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/201903287c512df06b914cefb2b3a96d20d3fdbd.jpg","alt":"First\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-caption"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])]),_vm._v(" "),_c('div',{staticClass:"carousel-item"},[_c('img',{staticClass:"second-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190423b2ae4cfc35c14da4b2da530f147887c5.jpg","alt":"Second\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-captiontwo"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])]),_vm._v(" "),_c('div',{staticClass:"carousel-item"},[_c('img',{staticClass:"third-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190409837ef9651b994dde86cbf299a2d5a599.jpg","alt":"Third\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-captionthree"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])]),_vm._v(" "),_c('div',{staticClass:"carousel-item"},[_c('img',{staticClass:"fourd-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/201904188594c2980f2e4ffa8a7120ff2406d97a.jpg","alt":"Third\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-captionfour"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])]),_vm._v(" "),_c('div',{staticClass:"carousel-item"},[_c('img',{staticClass:"five-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/2019042254cc8ec48bfe4d89b4b377df2fbbcc26.jpg","alt":"Five\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-captionfive"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])])]),_vm._v(" "),_c('a',{staticClass:"carousel-control-prev",attrs:{"href":"#myCarousel","role":"button","data-slide":"prev"}},[_c('img',{attrs:{"src":"assets/img/arrow-left.png"}}),_vm._v(" "),_c('span',{staticClass:"sr-only"},[_vm._v("Previous")])]),_vm._v(" "),_c('a',{staticClass:"carousel-control-next",attrs:{"href":"#myCarousel","role":"button","data-slide":"next"}},[_c('img',{attrs:{"src":"assets/img/arrow-right.png"}}),_vm._v(" "),_c('span',{staticClass:"sr-only"},[_vm._v("Next")])])])]),_vm._v(" "),_c('hr')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fixed-plugin"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"assets/img/q-btn.png"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"header-title"},[_vm._v("Sidebar Background")]),_vm._v(" "),_c('li',{staticClass:"adjustments-line"},[_c('a',{staticClass:"switch-trigger background-color",attrs:{"href":"javascript:void(0)"}},[_c('div',{staticClass:"badge-colors text-center"},[_c('span',{staticClass:"badge filter badge-primary active",attrs:{"data-color":"primary"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-info",attrs:{"data-color":"blue"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-success",attrs:{"data-color":"green"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-warning",attrs:{"data-color":"orange"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-danger",attrs:{"data-color":"red"}})]),_vm._v(" "),_c('div',{staticClass:"clearfix"})])]),_vm._v(" "),_c('li',{staticClass:"header-title"},[_vm._v("Sidebar Mini")]),_vm._v(" "),_c('li',{staticClass:"adjustments-line"},[_c('div',{staticClass:"togglebutton switch-sidebar-mini"},[_c('span',{staticClass:"label-switch"},[_vm._v("OFF")]),_vm._v(" "),_c('input',{staticClass:"bootstrap-switch",attrs:{"type":"checkbox","name":"checkbox","checked":"","data-on-label":"","data-off-label":""}}),_vm._v(" "),_c('span',{staticClass:"label-switch label-right"},[_vm._v("ON")])]),_vm._v(" "),_c('div',{staticClass:"togglebutton switch-change-color mt-3"},[_c('span',{staticClass:"label-switch"},[_vm._v("LIGHT MODE")]),_vm._v(" "),_c('input',{staticClass:"bootstrap-switch",attrs:{"type":"checkbox","name":"checkbox","data-on-label":"","data-off-label":""}}),_vm._v(" "),_c('span',{staticClass:"label-switch label-right"},[_vm._v("DARK MODE")])])]),_vm._v(" "),_c('li',{staticClass:"button-container mt-4"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("Documentation")])]),_vm._v(" "),_c('li',{staticClass:"header-title"},[_vm._v("Thank you for 95 shares!")]),_vm._v(" "),_c('li',{staticClass:"button-container text-center"},[_c('button',{staticClass:"btn btn-round btn-info",attrs:{"id":"twitter"}},[_c('i',{staticClass:"fab fa-twitter"}),_vm._v(" · 45\n              ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-round btn-info",attrs:{"id":"facebook"}},[_c('i',{staticClass:"fab fa-facebook-f"}),_vm._v(" · 50\n              ")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('a',{staticClass:"github-button",attrs:{"href":"https://github.com/creativetimofficial/ct-black-dashboard-pro","data-icon":"octicon-star","data-size":"large","data-show-count":"true","aria-label":"Star ntkme/github-buttons on GitHub"}},[_vm._v("Star")])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fixed-plugin-cutome"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"assets/img/chat-btn.gif"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"button-container mt-4 pb-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("在线咨询")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("电话回拨")])]),_vm._v(" "),_c('li',{staticClass:"button-container bg-call"},[_c('p',{staticClass:"home_custom"},[_c('i',{staticClass:"fas fa-phone-volume"}),_vm._v("服务热线\n              ")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("香港热线(0.49元/分)")]),_vm._v(" "),_c('p',{staticClass:"hongKong1"},[_vm._v("\n                +852-3841-5777\n                "),_c('br')]),_vm._v(" "),_c('p',{staticClass:"hongKong2"},[_vm._v("+852-3008-3777")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("菲律宾热线(0.99元/分)")]),_vm._v(" "),_c('p',[_vm._v("+63-2-949-8222")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"})])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fixed-plugin-tools"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"/assets/img/tools-btn.png"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"button-container mt-4 pb-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("在线咨询")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("电话回拨")])]),_vm._v(" "),_c('li',{staticClass:"button-container bg-call"},[_c('p',{staticClass:"home_custom"},[_c('i',{staticClass:"fas fa-phone-volume"}),_vm._v("服务热线\n              ")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("香港热线(0.49元/分)")]),_vm._v(" "),_c('p',{staticClass:"hongKong1"},[_vm._v("\n                +852-3841-5777\n                "),_c('br')]),_vm._v(" "),_c('p',{staticClass:"hongKong2"},[_vm._v("+852-3008-3777")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("菲律宾热线(0.99元/分)")]),_vm._v(" "),_c('p',[_vm._v("+63-2-949-8222")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"})])])])}]
 render._withStripped = true
 
 
@@ -38158,8 +38563,8 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('nav',{staticClass:"navbar navbar-expand-lg navbar-absolute navbar-transparent"},[_c('div',{staticClass:"container-fluid"},[_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('div',{staticClass:"collapse navbar-collapse",attrs:{"id":"navigation"}},[_vm._m(2),_vm._v(" "),(!_vm.ismenu)?_c('span',[_vm._m(3)]):_c('span',[_vm._m(4)])])])]),_vm._v(" "),_c('div',{staticClass:"modal fade",attrs:{"id":"loginModal"}},[_c('div',{staticClass:"modal-dialog modal-lg"},[_c('div',{staticClass:"modal-content"},[_vm._m(5),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"col-lg-12 col-md-12"},[_c('form',{staticClass:"form"},[_c('div',{staticClass:"card card-login card-white"},[_vm._m(6),_vm._v(" "),_vm._m(7),_vm._v(" "),_c('div',{staticClass:"card-footer"},[_c('a',{staticClass:"btn btn-primary btn-lg btn-block mb-3",attrs:{"href":"#pablo"},on:{"click":function($event){_vm.ismenu=!_vm.ismenu}}},[_vm._v("登录")]),_vm._v(" "),_vm._m(8)])])])])])])])]),_vm._v(" "),_vm._m(9),_vm._v(" "),_vm._m(10),_vm._v(" "),_vm._m(11)])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"navbar-wrapper"},[_c('div',{staticClass:"navbar-minimize d-inline"},[_c('button',{staticClass:"minimize-sidebar btn btn-link btn-just-icon",attrs:{"rel":"tooltip","data-original-title":"Sidebar toggle","data-placement":"right"}},[_c('i',{staticClass:"tim-icons icon-align-center visible-on-sidebar-regular"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-bullet-list-67 visible-on-sidebar-mini"})])]),_vm._v(" "),_c('div',{staticClass:"navbar-toggle d-inline"},[_c('button',{staticClass:"navbar-toggler",attrs:{"type":"button"}},[_c('span',{staticClass:"navbar-toggler-bar bar1"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar bar2"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar bar3"})])]),_vm._v(" "),_c('a',{staticClass:"navbar-brand",attrs:{"href":"javascript:void(0)"}},[_vm._v("TNK")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"navbar-toggler",attrs:{"type":"button","data-toggle":"collapse","data-target":"#navigation","aria-expanded":"false","aria-label":"Toggle navigation"}},[_c('span',{staticClass:"navbar-toggler-bar navbar-kebab"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar navbar-kebab"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar navbar-kebab"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"navbar-nav mr-auto"},[_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-chat-33 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-world icon-hover"})]),_vm._v("Asia Tour Forum\n            ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-bulb-63 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-badge icon-hover"})]),_vm._v("Aisan style\n            ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-coins icon-hover"})]),_vm._v("Recommend friends\n            ")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"navbar-nav ml-auto"},[_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#loginModal"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-lock-circle icon-hover"})]),_vm._v("Login\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":".register"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"fas fa-user-plus icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-badge icon-hover"})]),_vm._v("Register\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#freetrial"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-controller icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-credit-card icon-hover"})]),_vm._v("Free Trial\n              ")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"navbar-nav ml-auto"},[_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#loginModal"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-chat-33 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-chat-33 icon-hover"})]),_vm._v("Message\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":".register"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-single-02 icon-hover"})]),_vm._v("My Account\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#freetrial"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-trophy icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-trophy icon-hover"})]),_vm._v("My Privilege\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#loginModal"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-controller icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-controller icon-hover"})]),_vm._v("Game Lobby\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":".register"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-coins icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-coins icon-hover"})]),_vm._v("Recharge\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#freetrial"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-money-coins icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-cart icon-hover"})]),_vm._v("WithDraw\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex fixed-logout",attrs:{"href":"#"}},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-bullet-list-67 icon-hover"})])]),_vm._v(" "),_c('div',{staticClass:"dropdown-menu"},[_c('div',{staticClass:"row p-4"},[_c('div',{staticClass:"col-6"},[_c('img',{attrs:{"src":"assets/img/user.png","alt":""}})]),_vm._v(" "),_c('div',{staticClass:"col-6"},[_c('em',{staticClass:"header-user-name"},[_vm._v("aghq186496")]),_c('br'),_vm._v(" "),_c('span',{staticClass:"header-user-level level-0"},[_vm._v("新会员")])]),_vm._v(" "),_c('small',{staticClass:"header-before-login-date"},[_vm._v("最近登录时间：2019-04-24 14:25:40")])]),_vm._v(" "),_c('div',{staticClass:"menu-body"},[_c('div',{attrs:{"id":"header-balance"}},[_vm._v("\n                              总余额\n                              "),_c('h2',{staticClass:"eid_total_credit m-0 p-0"},[_vm._v("0.00")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('p',{staticClass:"text-desss"},[_vm._v(" 本地余额 "),_c('span',{attrs:{"id":"eid_local_credit"}},[_vm._v("0.00")])]),_vm._v(" "),_c('p',{staticClass:"text-balance"},[_vm._v("游戏余额 "),_c('span',{attrs:{"id":"eid_game_credit"}},[_vm._v("0.00")])])])]),_vm._v(" "),_c('a',{staticClass:"btn-logout",attrs:{"href":"javascript:;"}},[_c('i',{staticClass:"fa fa-power-off"}),_vm._v("安全退出\n                          ")])])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal-header"},[_c('h4',{staticClass:"modal-title"},[_vm._v("Login Page")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("×")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card-header"},[_c('img',{attrs:{"src":"assets/img/card-primary.png","alt":""}}),_vm._v(" "),_c('h1',{staticClass:"card-title"},[_vm._v("Log in")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card-body"},[_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-email-85"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Email"}})]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-lock-circle"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Password"}})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"d-flex justify-content-between"},[_c('a',{staticClass:"link footer-link",attrs:{"href":"javascript:void(0)"}},[_vm._v("忘记密码？")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('p',{staticClass:"link footer-link"},[_vm._v("没有账号？")]),_vm._v(" "),_c('a',{staticClass:"link footer-link",attrs:{"href":"javascript:void(0)"}},[_vm._v("在此注册")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade register"},[_c('div',{staticClass:"modal-dialog modal-lg"},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('h4',{staticClass:"modal-title"},[_vm._v("Register Page")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("×")])]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"container"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-5 ml-auto"},[_c('div',{staticClass:"info-area info-horizontal mt-5"},[_c('div',{staticClass:"icon icon-warning"},[_c('i',{staticClass:"tim-icons icon-wifi"})]),_vm._v(" "),_c('div',{staticClass:"description"},[_c('h3',{staticClass:"info-title text-dark m-0"},[_vm._v("Marketing")]),_vm._v(" "),_c('p',{staticClass:"description"},[_vm._v("We've created the marketing campaign of the website. It was a very interesting collaboration.")])])]),_vm._v(" "),_c('div',{staticClass:"info-area info-horizontal"},[_c('div',{staticClass:"icon icon-primary"},[_c('i',{staticClass:"tim-icons icon-triangle-right-17"})]),_vm._v(" "),_c('div',{staticClass:"description"},[_c('h3',{staticClass:"info-title text-dark m-0"},[_vm._v("Fully Coded in HTML5")]),_vm._v(" "),_c('p',{staticClass:"description"},[_vm._v("We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.")])])]),_vm._v(" "),_c('div',{staticClass:"info-area info-horizontal"},[_c('div',{staticClass:"icon icon-info"},[_c('i',{staticClass:"tim-icons icon-trophy"})]),_vm._v(" "),_c('div',{staticClass:"description"},[_c('h3',{staticClass:"info-title text-dark m-0"},[_vm._v("Built Audience")]),_vm._v(" "),_c('p',{staticClass:"description"},[_vm._v("There is also a Fully Customizable CMS Admin Dashboard for this product.")])])])]),_vm._v(" "),_c('div',{staticClass:"col-md-7 mr-auto"},[_c('div',{staticClass:"card card-register card-white"},[_c('div',{staticClass:"card-header"},[_c('img',{staticClass:"card-img",attrs:{"src":"assets/img/card-primary.png","alt":"Card image"}}),_vm._v(" "),_c('h4',{staticClass:"card-title"},[_vm._v("Register")])]),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('form',{staticClass:"form"},[_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-single-02"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Full Name"}})]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-email-85"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Email"}})]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-lock-circle"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Password"}})]),_vm._v(" "),_c('div',{staticClass:"form-check text-left"},[_c('label',{staticClass:"form-check-label"},[_c('input',{staticClass:"form-check-input",attrs:{"type":"checkbox"}}),_vm._v(" "),_c('span',{staticClass:"form-check-sign"}),_vm._v("\n                          I agree to the\n                          "),_c('a',{attrs:{"href":"javascript:void(0)"}},[_vm._v("terms and conditions")]),_vm._v(".\n                        ")])])])]),_vm._v(" "),_c('div',{staticClass:"card-footer"},[_c('a',{staticClass:"btn btn-primary btn-round btn-lg",attrs:{"href":"javascript:void(0)"}},[_vm._v("注册")])])])])])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade",attrs:{"id":"freetrial"}},[_c('div',{staticClass:"modal-dialog modal-lg"},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('h4',{staticClass:"modal-title text-capitalize"},[_vm._v("Free trial")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("×")])]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"container"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-12 mr-auto"},[_c('div',{staticClass:"card card-register card-white"},[_c('div',{staticClass:"card-header"},[_c('img',{staticClass:"card-img",attrs:{"src":"assets/img/card-primary.png","alt":"Card image"}}),_vm._v(" "),_c('h4',{staticClass:"card-title text-title"},[_vm._v("12150")])]),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('form',{staticClass:"form"},[_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-single-02"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Full Name"}})]),_vm._v(" "),_c('div',{staticClass:"form-check text-left"},[_c('label',{staticClass:"form-check-label"},[_c('input',{staticClass:"form-check-input",attrs:{"type":"checkbox"}}),_vm._v(" "),_c('span',{staticClass:"form-check-sign"}),_vm._v("\n                          I agree to the\n                          "),_c('a',{attrs:{"href":"javascript:void(0)"}},[_vm._v("terms and conditions")]),_vm._v(".\n                        ")])])])]),_vm._v(" "),_c('div',{staticClass:"card-footer"},[_c('a',{staticClass:"btn btn-primary btn-round btn-lg",attrs:{"href":"javascript:void(0)"}},[_vm._v("开始试玩")])])])])])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal modal-search fade",attrs:{"id":"searchModal","tabindex":"-1","role":"dialog","aria-labelledby":"searchModal","aria-hidden":"true"}},[_c('div',{staticClass:"modal-dialog",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('input',{staticClass:"form-control",attrs:{"type":"text","id":"inlineFormInputGroup","placeholder":"SEARCH"}}),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal","aria-label":"Close"}},[_c('i',{staticClass:"tim-icons icon-simple-remove"})])])])])])}]
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('nav',{staticClass:"navbar navbar-expand-lg navbar-absolute navbar-transparent"},[_c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"navbar-wrapper"},[_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('a',{staticClass:"navbar-brand",attrs:{"href":_vm.welcome}},[_vm._v("TNK")])]),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('div',{staticClass:"collapse navbar-collapse",attrs:{"id":"navigation"}},[_vm._m(3),_vm._v(" "),(!_vm.ismenu)?_c('span',[_vm._m(4)]):_c('span',[_c('ul',{staticClass:"navbar-nav ml-auto"},[_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":_vm.messages}},[_vm._m(5),_vm._v("Message\n              ")])]),_vm._v(" "),_vm._m(6),_vm._v(" "),_vm._m(7),_vm._v(" "),_vm._m(8),_vm._v(" "),_vm._m(9),_vm._v(" "),_vm._m(10),_vm._v(" "),_vm._m(11)])])])])]),_vm._v(" "),_c('div',{staticClass:"modal fade",attrs:{"id":"loginModal"}},[_c('div',{staticClass:"modal-dialog modal-lg"},[_c('div',{staticClass:"modal-content"},[_vm._m(12),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"col-lg-12 col-md-12"},[_c('form',{staticClass:"form"},[_c('div',{staticClass:"card card-login card-white"},[_vm._m(13),_vm._v(" "),_vm._m(14),_vm._v(" "),_c('div',{staticClass:"card-footer"},[_c('a',{staticClass:"btn btn-primary btn-lg btn-block mb-3",attrs:{"href":"#login"},on:{"click":function($event){_vm.ismenu=!_vm.ismenu}}},[_vm._v("登录")]),_vm._v(" "),_vm._m(15)])])])])])])])]),_vm._v(" "),_vm._m(16),_vm._v(" "),_vm._m(17),_vm._v(" "),_vm._m(18)])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"navbar-minimize d-inline"},[_c('button',{staticClass:"minimize-sidebar btn btn-link btn-just-icon",attrs:{"rel":"tooltip","data-original-title":"Sidebar toggle","data-placement":"right"}},[_c('i',{staticClass:"tim-icons icon-align-center visible-on-sidebar-regular"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-bullet-list-67 visible-on-sidebar-mini"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"navbar-toggle d-inline"},[_c('button',{staticClass:"navbar-toggler",attrs:{"type":"button"}},[_c('span',{staticClass:"navbar-toggler-bar bar1"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar bar2"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar bar3"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"navbar-toggler",attrs:{"type":"button","data-toggle":"collapse","data-target":"#navigation","aria-expanded":"false","aria-label":"Toggle navigation"}},[_c('span',{staticClass:"navbar-toggler-bar navbar-kebab"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar navbar-kebab"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar navbar-kebab"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"navbar-nav mr-auto"},[_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-coins icon-hover"})]),_vm._v("Recommend friends\n            ")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"navbar-nav ml-auto"},[_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#loginModal"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-lock-circle icon-hover"})]),_vm._v("Login\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":".register"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"fas fa-user-plus icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-badge icon-hover"})]),_vm._v("Register\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#freetrial"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-controller icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-credit-card icon-hover"})]),_vm._v("Free Trial\n              ")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-chat-33 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-chat-33 icon-hover"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":".register"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-single-02 icon-hover"})]),_vm._v("My Account\n              ")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#freetrial"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-trophy icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-trophy icon-hover"})]),_vm._v("My Privilege\n              ")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#loginModal"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-controller icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-controller icon-hover"})]),_vm._v("Game Lobby\n              ")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":".register"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-coins icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-coins icon-hover"})]),_vm._v("Recharge\n              ")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#freetrial"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-money-coins icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-cart icon-hover"})]),_vm._v("WithDraw\n              ")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex fixed-logout",attrs:{"href":"#"}},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-bullet-list-67 icon-hover"})])]),_vm._v(" "),_c('div',{staticClass:"dropdown-menu"},[_c('div',{staticClass:"row p-4"},[_c('div',{staticClass:"col-6"},[_c('img',{attrs:{"src":"assets/img/user.png","alt":""}})]),_vm._v(" "),_c('div',{staticClass:"col-6"},[_c('em',{staticClass:"header-user-name"},[_vm._v("aghq186496")]),_c('br'),_vm._v(" "),_c('span',{staticClass:"header-user-level level-0"},[_vm._v("新会员")])]),_vm._v(" "),_c('small',{staticClass:"header-before-login-date"},[_vm._v("最近登录时间：2019-04-24 14:25:40")])]),_vm._v(" "),_c('div',{staticClass:"menu-body"},[_c('div',{attrs:{"id":"header-balance"}},[_vm._v("\n                              总余额\n                              "),_c('h2',{staticClass:"eid_total_credit m-0 p-0"},[_vm._v("0.00")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('p',{staticClass:"text-desss"},[_vm._v(" 本地余额 "),_c('span',{attrs:{"id":"eid_local_credit"}},[_vm._v("0.00")])]),_vm._v(" "),_c('p',{staticClass:"text-balance"},[_vm._v("游戏余额 "),_c('span',{attrs:{"id":"eid_game_credit"}},[_vm._v("0.00")])])])]),_vm._v(" "),_c('a',{staticClass:"btn-logout",attrs:{"href":"javascript:;"}},[_c('i',{staticClass:"fa fa-power-off"}),_vm._v("安全退出\n                          ")])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal-header"},[_c('h4',{staticClass:"modal-title"},[_vm._v("Login Page")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("×")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card-header"},[_c('img',{attrs:{"src":"assets/img/card-primary.png","alt":""}}),_vm._v(" "),_c('h1',{staticClass:"card-title"},[_vm._v("Log in")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card-body"},[_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-email-85"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Email"}})]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-lock-circle"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Password"}})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"d-flex justify-content-between"},[_c('a',{staticClass:"link footer-link",attrs:{"href":"javascript:void(0)"}},[_vm._v("忘记密码？")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('p',{staticClass:"link footer-link"},[_vm._v("没有账号？")]),_vm._v(" "),_c('a',{staticClass:"link footer-link",attrs:{"href":"javascript:void(0)"}},[_vm._v("在此注册")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade register"},[_c('div',{staticClass:"modal-dialog modal-lg"},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('h4',{staticClass:"modal-title"},[_vm._v("Register Page")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("×")])]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"container"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-5 ml-auto"},[_c('div',{staticClass:"info-area info-horizontal mt-5"},[_c('div',{staticClass:"icon icon-warning"},[_c('i',{staticClass:"tim-icons icon-wifi"})]),_vm._v(" "),_c('div',{staticClass:"description"},[_c('h3',{staticClass:"info-title text-dark m-0"},[_vm._v("Marketing")]),_vm._v(" "),_c('p',{staticClass:"description"},[_vm._v("We've created the marketing campaign of the website. It was a very interesting collaboration.")])])]),_vm._v(" "),_c('div',{staticClass:"info-area info-horizontal"},[_c('div',{staticClass:"icon icon-primary"},[_c('i',{staticClass:"tim-icons icon-triangle-right-17"})]),_vm._v(" "),_c('div',{staticClass:"description"},[_c('h3',{staticClass:"info-title text-dark m-0"},[_vm._v("Fully Coded in HTML5")]),_vm._v(" "),_c('p',{staticClass:"description"},[_vm._v("We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.")])])]),_vm._v(" "),_c('div',{staticClass:"info-area info-horizontal"},[_c('div',{staticClass:"icon icon-info"},[_c('i',{staticClass:"tim-icons icon-trophy"})]),_vm._v(" "),_c('div',{staticClass:"description"},[_c('h3',{staticClass:"info-title text-dark m-0"},[_vm._v("Built Audience")]),_vm._v(" "),_c('p',{staticClass:"description"},[_vm._v("There is also a Fully Customizable CMS Admin Dashboard for this product.")])])])]),_vm._v(" "),_c('div',{staticClass:"col-md-7 mr-auto"},[_c('div',{staticClass:"card card-register card-white"},[_c('div',{staticClass:"card-header"},[_c('img',{staticClass:"card-img",attrs:{"src":"assets/img/card-primary.png","alt":"Card image"}}),_vm._v(" "),_c('h4',{staticClass:"card-title"},[_vm._v("Register")])]),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('form',{staticClass:"form"},[_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-single-02"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Full Name"}})]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-email-85"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Email"}})]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-lock-circle"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Password"}})]),_vm._v(" "),_c('div',{staticClass:"form-check text-left"},[_c('label',{staticClass:"form-check-label"},[_c('input',{staticClass:"form-check-input",attrs:{"type":"checkbox"}}),_vm._v(" "),_c('span',{staticClass:"form-check-sign"}),_vm._v("\n                          I agree to the\n                          "),_c('a',{attrs:{"href":"javascript:void(0)"}},[_vm._v("terms and conditions")]),_vm._v(".\n                        ")])])])]),_vm._v(" "),_c('div',{staticClass:"card-footer"},[_c('a',{staticClass:"btn btn-primary btn-round btn-lg",attrs:{"href":"javascript:void(0)"}},[_vm._v("注册")])])])])])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade",attrs:{"id":"freetrial"}},[_c('div',{staticClass:"modal-dialog modal-lg"},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('h4',{staticClass:"modal-title text-capitalize"},[_vm._v("Free trial")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("×")])]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"container"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-12 mr-auto"},[_c('div',{staticClass:"card card-register card-white"},[_c('div',{staticClass:"card-header"},[_c('img',{staticClass:"card-img",attrs:{"src":"assets/img/card-primary.png","alt":"Card image"}}),_vm._v(" "),_c('h4',{staticClass:"card-title text-title"},[_vm._v("12150")])]),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('form',{staticClass:"form"},[_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-single-02"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Full Name"}})]),_vm._v(" "),_c('div',{staticClass:"form-check text-left"},[_c('label',{staticClass:"form-check-label"},[_c('input',{staticClass:"form-check-input",attrs:{"type":"checkbox"}}),_vm._v(" "),_c('span',{staticClass:"form-check-sign"}),_vm._v("\n                          I agree to the\n                          "),_c('a',{attrs:{"href":"javascript:void(0)"}},[_vm._v("terms and conditions")]),_vm._v(".\n                        ")])])])]),_vm._v(" "),_c('div',{staticClass:"card-footer"},[_c('a',{staticClass:"btn btn-primary btn-round btn-lg",attrs:{"href":"javascript:void(0)"}},[_vm._v("开始试玩")])])])])])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal modal-search fade",attrs:{"id":"searchModal","tabindex":"-1","role":"dialog","aria-labelledby":"searchModal","aria-hidden":"true"}},[_c('div',{staticClass:"modal-dialog",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('input',{staticClass:"form-control",attrs:{"type":"text","id":"inlineFormInputGroup","placeholder":"SEARCH"}}),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal","aria-label":"Close"}},[_c('i',{staticClass:"tim-icons icon-simple-remove"})])])])])])}]
 render._withStripped = true
 
 
@@ -50326,7 +50731,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('app-container', __webpack_require__(/*! ./components/welcome/containerindex.vue */ "./resources/js/components/welcome/containerindex.vue")["default"]);
+Vue.component('app-container', __webpack_require__(/*! ./components/welcome/containerwelcome.vue */ "./resources/js/components/welcome/containerwelcome.vue")["default"]);
+Vue.component('app-index', __webpack_require__(/*! ./components/index.vue */ "./resources/js/components/index.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50394,6 +50800,75 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/index.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/components/index.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_vue_vue_type_template_id_2ac2c897_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=2ac2c897&scoped=true& */ "./resources/js/components/index.vue?vue&type=template&id=2ac2c897&scoped=true&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/js/components/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _index_vue_vue_type_template_id_2ac2c897_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _index_vue_vue_type_template_id_2ac2c897_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "2ac2c897",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/index.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/index.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/index.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/index.vue?vue&type=template&id=2ac2c897&scoped=true&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/index.vue?vue&type=template&id=2ac2c897&scoped=true& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_2ac2c897_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=2ac2c897&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/index.vue?vue&type=template&id=2ac2c897&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_2ac2c897_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_2ac2c897_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -50466,17 +50941,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/welcome/containerindex.vue":
-/*!************************************************************!*\
-  !*** ./resources/js/components/welcome/containerindex.vue ***!
-  \************************************************************/
+/***/ "./resources/js/components/welcome/containerwelcome.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/welcome/containerwelcome.vue ***!
+  \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _containerindex_vue_vue_type_template_id_01c88f6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./containerindex.vue?vue&type=template&id=01c88f6e&scoped=true& */ "./resources/js/components/welcome/containerindex.vue?vue&type=template&id=01c88f6e&scoped=true&");
-/* harmony import */ var _containerindex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./containerindex.vue?vue&type=script&lang=js& */ "./resources/js/components/welcome/containerindex.vue?vue&type=script&lang=js&");
+/* harmony import */ var _containerwelcome_vue_vue_type_template_id_d49331ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./containerwelcome.vue?vue&type=template&id=d49331ce&scoped=true& */ "./resources/js/components/welcome/containerwelcome.vue?vue&type=template&id=d49331ce&scoped=true&");
+/* harmony import */ var _containerwelcome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./containerwelcome.vue?vue&type=script&lang=js& */ "./resources/js/components/welcome/containerwelcome.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -50486,50 +50961,50 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _containerindex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _containerindex_vue_vue_type_template_id_01c88f6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _containerindex_vue_vue_type_template_id_01c88f6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _containerwelcome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _containerwelcome_vue_vue_type_template_id_d49331ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _containerwelcome_vue_vue_type_template_id_d49331ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "01c88f6e",
+  "d49331ce",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/welcome/containerindex.vue"
+component.options.__file = "resources/js/components/welcome/containerwelcome.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/welcome/containerindex.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/welcome/containerindex.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************/
+/***/ "./resources/js/components/welcome/containerwelcome.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/welcome/containerwelcome.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_containerindex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./containerindex.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/welcome/containerindex.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_containerindex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_containerwelcome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./containerwelcome.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/welcome/containerwelcome.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_containerwelcome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/welcome/containerindex.vue?vue&type=template&id=01c88f6e&scoped=true&":
-/*!*******************************************************************************************************!*\
-  !*** ./resources/js/components/welcome/containerindex.vue?vue&type=template&id=01c88f6e&scoped=true& ***!
-  \*******************************************************************************************************/
+/***/ "./resources/js/components/welcome/containerwelcome.vue?vue&type=template&id=d49331ce&scoped=true&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/welcome/containerwelcome.vue?vue&type=template&id=d49331ce&scoped=true& ***!
+  \*********************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_containerindex_vue_vue_type_template_id_01c88f6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./containerindex.vue?vue&type=template&id=01c88f6e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/welcome/containerindex.vue?vue&type=template&id=01c88f6e&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_containerindex_vue_vue_type_template_id_01c88f6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_containerwelcome_vue_vue_type_template_id_d49331ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./containerwelcome.vue?vue&type=template&id=d49331ce&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/welcome/containerwelcome.vue?vue&type=template&id=d49331ce&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_containerwelcome_vue_vue_type_template_id_d49331ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_containerindex_vue_vue_type_template_id_01c88f6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_containerwelcome_vue_vue_type_template_id_d49331ce_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

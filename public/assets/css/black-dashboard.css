@@ -5044,7 +5044,7 @@ input[type="button"].btn-block {
     padding: 0 0.6875rem;
     margin-left: -0.0625rem;
     line-height: 1.25;
-    color: #ffffff;
+    /* color: #ffffff; */
     background-color: transparent;
     border: 0.0625rem solid #e3e3e3;
 }
@@ -17368,11 +17368,12 @@ textarea.form-control:active {
 .nav-tabs>.nav-item>.nav-link {
     color: #ffffff;
     margin: 0;
-    margin-right: 5px;
+    /* margin-right: 5px; */
     background-color: transparent;
     border-radius: 30px;
-    padding: 11px 23px;
+    padding: 4px 2px;
     line-height: 1.5;
+    font-size: .6rem;
 }
 
 .nav-tabs>.nav-item>.nav-link:hover {
@@ -17382,8 +17383,9 @@ textarea.form-control:active {
 }
 
 .nav-tabs>.nav-item>.nav-link.active {
-    border: 1px solid #ffffff;
+    border: 0px solid #ffffff;
     border-radius: 30px;
+    background: #8b6d57;
 }
 
 .nav-tabs>.nav-item>.nav-link i.tim-icons {

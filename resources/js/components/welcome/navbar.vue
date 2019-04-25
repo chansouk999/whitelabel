@@ -22,7 +22,7 @@
               <span class="navbar-toggler-bar bar3"></span>
             </button>
           </div>
-          <a class="navbar-brand" href="javascript:void(0)">TNK</a>
+          <a class="navbar-brand" :href="welcome">TNK</a>
         </div>
         <button
           class="navbar-toggler"
@@ -38,22 +38,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a href="#" class="button nav-link d-flex">
-                <div class="icons">
-                  <i class="tim-icons icon-chat-33 icon-default"></i>
-                  <i class="tim-icons icon-world icon-hover"></i>
-                </div>Asia Tour Forum
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="button nav-link d-flex">
-                <div class="icons">
-                  <i class="tim-icons icon-bulb-63 icon-default"></i>
-                  <i class="tim-icons icon-badge icon-hover"></i>
-                </div>Aisan style
-              </a>
-            </li>
+
             <li class="nav-item">
               <a href="#" class="button nav-link d-flex">
                 <div class="icons">
@@ -113,10 +98,8 @@
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a
-                  href="#"
+                  :href="messages"
                   class="button nav-link d-flex"
-                  data-toggle="modal"
-                  data-target="#loginModal"
                 >
                   <div class="icons">
                     <i class="tim-icons icon-chat-33 icon-default"></i>
@@ -269,7 +252,7 @@
                   </div>
                   <div class="card-footer">
                     <a
-                      href="#pablo"
+                      href="#login"
                       class="btn btn-primary btn-lg btn-block mb-3"
                       @click="ismenu=!ismenu"
                     >登录</a>
@@ -474,7 +457,9 @@
 export default {
   data() {
     return {
-      ismenu: false
+      ismenu: false,
+      messages:"index",
+      welcome:"/"
     };
   }
 };

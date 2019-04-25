@@ -11,27 +11,27 @@
               <div class="container-wrap">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" code-ds="AG8040" data-slide-to="0" class="active">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active">
                       <img
                         src="https://static-pc.swcqlz.com/cms/cms_pic/20190328cfa9d94907ba431db6505bb707b0c58c.jpg"
                       >
                     </li>
-                    <li data-target="#myCarousel" code-ds="AG8041" data-slide-to="1" class>
+                    <li data-target="#myCarousel"  data-slide-to="1" class="">
                       <img
                         src="https://static-pc.swcqlz.com/cms/cms_pic/20190326961759629a51491e8f00c2ff2e753aff.jpg"
                       >
                     </li>
-                    <li data-target="#myCarousel" code-ds="AG8042" data-slide-to="2" class>
+                    <li data-target="#myCarousel"  data-slide-to="2"  class="">
                       <img
                         src="https://static-pc.swcqlz.com/cms/cms_pic/20190409d5dfebd2223a4eb58427dd4f3325d3f1.jpg"
                       >
                     </li>
-                    <li data-target="#myCarousel" code-ds="AG8043" data-slide-to="3" class>
+                    <li data-target="#myCarousel"  data-slide-to="3"  class="">
                       <img
                         src="https://static-pc.swcqlz.com/cms/cms_pic/20190418108f63a2f4454f9dba0199230447bcbf.jpg"
                       >
                     </li>
-                    <li data-target="#myCarousel" code-ds="AG8044" data-slide-to="4" class>
+                    <li data-target="#myCarousel"  data-slide-to="4"  class="">
                       <img
                         src="https://static-pc.swcqlz.com/cms/cms_pic/2019042247954d584b7547a59733bbc2c3a28880.jpg"
                       >
@@ -52,10 +52,10 @@
                           <p
                             class="slide-caption__desc"
                           >Mé faiz elementum girarzis, nisi eros vermeio.</p>
-                         <div class="d-flex">
+                          <div class="d-flex">
                             <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                          <a href="#" class="btn btn-danger btn-simple">Learn More</a>
-                         </div>
+                            <a href="#" class="btn btn-danger btn-simple">Learn More</a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -72,10 +72,10 @@
                           <p
                             class="slide-caption__desc"
                           >Mé faiz elementum girarzis, nisi eros vermeio.</p>
-                        <div class="d-flex">
+                          <div class="d-flex">
                             <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                          <a href="#" class="btn btn-danger btn-simple">Learn More</a>
-                         </div>
+                            <a href="#" class="btn btn-danger btn-simple">Learn More</a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -92,10 +92,10 @@
                           <p
                             class="slide-caption__desc"
                           >Mé faiz elementum girarzis, nisi eros vermeio.</p>
-                           <div class="d-flex">
+                          <div class="d-flex">
                             <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                          <a href="#" class="btn btn-danger btn-simple">Learn More</a>
-                         </div>
+                            <a href="#" class="btn btn-danger btn-simple">Learn More</a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -112,10 +112,10 @@
                           <p
                             class="slide-caption__desc"
                           >Mé faiz elementum girarzis, nisi eros vermeio.</p>
-                         <div class="d-flex">
+                          <div class="d-flex">
                             <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                          <a href="#" class="btn btn-danger btn-simple">Learn More</a>
-                         </div>
+                            <a href="#" class="btn btn-danger btn-simple">Learn More</a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -132,10 +132,10 @@
                           <p
                             class="slide-caption__desc"
                           >Mé faiz elementum girarzis, nisi eros vermeio.</p>
-                        <div class="d-flex">
+                          <div class="d-flex">
                             <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                          <a href="#" class="btn btn-danger btn-simple">Learn More</a>
-                         </div>
+                            <a href="#" class="btn btn-danger btn-simple">Learn More</a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -170,7 +170,7 @@
             <a href="#" data-toggle="dropdown">
               <img src="assets/img/q-btn.png">
               <!-- <i class="fa fa-cog"></i>
-              <span class="carousel-text text-white">Setting</span> -->
+              <span class="carousel-text text-white">Setting</span>-->
             </a>
             <ul class="dropdown-menu">
               <li class="header-title">Sidebar Background</li>
@@ -244,7 +244,7 @@
         <div class="fixed-plugin-cutome">
           <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
-               <img src="assets/img/chat-btn.gif">
+              <img src="assets/img/chat-btn.gif">
             </a>
             <ul class="dropdown-menu">
               <li class="button-container mt-4 pb-0">
@@ -280,11 +280,11 @@
             </ul>
           </div>
         </div>
-        
+
         <div class="fixed-plugin-tools">
           <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
-               <img src="/assets/img/tools-btn.png">
+              <img src="/assets/img/tools-btn.png">
             </a>
             <ul class="dropdown-menu">
               <li class="button-container mt-4 pb-0">
@@ -335,16 +335,9 @@ export default {
     asides,
     footers
   },
-  mounted() {
-
-    },
+  mounted() {}
 };
-    $(".carousel-indicators  li").on("mouseover", function() {
-      $(this).trigger("click");
-    });
-  	$(document).ready(function(){
-		$("#loginModal").modal('show');
-  })
+
 </script>
 <style scoped>
 </style>
