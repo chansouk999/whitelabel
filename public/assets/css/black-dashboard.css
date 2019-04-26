@@ -17368,12 +17368,11 @@ textarea.form-control:active {
 .nav-tabs>.nav-item>.nav-link {
     color: #ffffff;
     margin: 0;
-    /* margin-right: 5px; */
+    margin-right: 0px;
     background-color: transparent;
     border-radius: 30px;
-    padding: 4px 2px;
+    padding: 7px 10px;
     line-height: 1.5;
-    font-size: .6rem;
 }
 
 .nav-tabs>.nav-item>.nav-link:hover {
@@ -17383,9 +17382,8 @@ textarea.form-control:active {
 }
 
 .nav-tabs>.nav-item>.nav-link.active {
-    border: 0px solid #ffffff;
+    border: 1px solid #ffffff;
     border-radius: 30px;
-    background: #8b6d57;
 }
 
 .nav-tabs>.nav-item>.nav-link i.tim-icons {
@@ -19124,11 +19122,11 @@ table.tablesorter thead tr .headerSortDown {
 
 .sidebar,
 .off-canvas-sidebar {
-    background: #ba54f5;
-    background: -webkit-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
-    background: -o-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
-    background: -moz-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
-    background: linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
+    background: #3358f4;
+    background: -webkit-linear-gradient(0deg, #3358f4 0%, #1d8cf8 100%);
+    background: -o-linear-gradient(0deg, #3358f4 0%, #1d8cf8 100%);
+    background: -moz-linear-gradient(0deg, #3358f4 0%, #1d8cf8 100%);
+    background: linear-gradient(0deg, #0031ff73 0%, #0855a7d4 100%);
     height: calc(100vh - 270px);
     width: 230px;
     position: absolute;
@@ -19639,7 +19637,7 @@ table.tablesorter thead tr .headerSortDown {
     position: absolute;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 5px solid #e14eca;
+    border-bottom: 5px solid #0554a6;
     top: -5px;
     left: 40px;
     transform: translate(-50%);
