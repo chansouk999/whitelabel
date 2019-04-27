@@ -55,35 +55,21 @@
           <div class="row social-row">
             <div class="social-list align-right pb-2">
               <div class="soc-item">
-                <a href="https://twitter.com/mobirise" target="_blank">
-                  <i class="fab fa-twitter size-icon"></i>
+                <a href="#" target="_blank">
+            <i class="icon-wechat"></i>
                 </a>
               </div>
               <div class="soc-item">
-                <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
-                  <i class="fab fa-facebook size-icon"></i>
+                <a href="#" target="_blank">
+                  <i class="icon-alipay"></i>
                 </a>
               </div>
               <div class="soc-item">
-                <a href="https://www.youtube.com/c/mobirise" target="_blank">
-                  <i class="fab fa-youtube size-icon"></i>
+                <a href="#" target="_blank">
+              <i class="icon-unionpay"></i>
                 </a>
               </div>
-              <div class="soc-item">
-                <a href="https://instagram.com/mobirise" target="_blank">
-                  <i class="fab fa-instagram size-icon"></i>
-                </a>
-              </div>
-              <div class="soc-item">
-                <a href="https://plus.google.com/u/0/+Mobirise" target="_blank">
-                  <i class="fab fa-google-plus size-icon"></i>
-                </a>
-              </div>
-              <div class="soc-item">
-                <a href="https://www.behance.net/Mobirise" target="_blank">
-                  <i class="fab fa-behance size-icon"></i>
-                </a>
-              </div>
+             
             </div>
           </div>
           <div class="row row-copirayt">

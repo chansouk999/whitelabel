@@ -20,7 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('app-container', require('./components/welcome/containerwelcome.vue').default);
-Vue.component('app-index', require('./components/index.vue').default);
+Vue.component('app-index', require('./components/index/index.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

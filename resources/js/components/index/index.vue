@@ -20,11 +20,11 @@
   </div>
 </template>
 <script>
-import navbars from "./welcome/navbar";
-import asides from "./welcome/asides";
-import footers from "./welcome/footers";
-import navbarindex from './navbarindex';
-import alertsidebar from './alertsidebar';
+import navbars from "../welcome/navbar";
+import asides from "../welcome/asides";
+import footers from "../welcome/footers";
+import navbarindex from '../index/navbarindex';
+import alertsidebar from '../alertsidebar';
 export default {
   components: {
     navbars,

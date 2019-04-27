@@ -458,7 +458,7 @@ export default {
   data() {
     return {
       ismenu: false,
-      messages:"index",
+      messages:"./index",
       welcome:"/"
     };
   }
