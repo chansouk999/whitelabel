@@ -13,7 +13,7 @@
       <div class="sidebar-wrapper">
         <div class="logo">
           <a href="javascript:void(0)" class="simple-text logo-mini">TNK</a>
-          <a href="javascript:void(0)" class="simple-text logo-normal">Creative Tim</a>
+          <a href="javascript:void(0)" class="simple-text logo-normal">Stock List</a>
         </div>
         <ul class="nav">
           <li class="nav-aside active">
