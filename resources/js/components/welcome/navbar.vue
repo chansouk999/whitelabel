@@ -454,7 +454,8 @@ export default {
   },
   methods: {
     myaccount() {
-      this.$refs.myaccount_link.clicked();
+      console.log($("#myaccountlink")[0].click())
+      // .trigger("click");
       console.log("myaccount.......");
     }
   }
