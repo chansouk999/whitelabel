@@ -8777,7 +8777,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     myaccount: function myaccount() {
-      this.$refs.myaccount_link.clicked();
+      console.log($("#myaccountlink")[0].click()); // .trigger("click");
+
       console.log("myaccount.......");
     }
   }
@@ -13270,7 +13271,7 @@ function isSlowBuffer (obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery JavaScript Library v3.4.0
+ * jQuery JavaScript Library v3.4.1
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -13280,7 +13281,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2019-04-10T19:48Z
+ * Date: 2019-05-01T21:04Z
  */
 ( function( global, factory ) {
 
@@ -13413,7 +13414,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.4.0",
+	version = "3.4.1",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -17769,8 +17770,12 @@ var documentElement = document.documentElement;
 		},
 		composed = { composed: true };
 
+	// Support: IE 9 - 11+, Edge 12 - 18+, iOS 10.0 - 10.2 only
 	// Check attachment across shadow DOM boundaries when possible (gh-3504)
-	if ( documentElement.attachShadow ) {
+	// Support: iOS 10.0-10.2 only
+	// Early iOS 10 versions support `attachShadow` but not `getRootNode`,
+	// leading to errors. We need to check for `getRootNode`.
+	if ( documentElement.getRootNode ) {
 		isAttached = function( elem ) {
 			return jQuery.contains( elem.ownerDocument, elem ) ||
 				elem.getRootNode( composed ) === elem.ownerDocument;
@@ -18630,8 +18635,7 @@ jQuery.event = {
 
 				// Claim the first handler
 				if ( rcheckableType.test( el.type ) &&
-					el.click && nodeName( el, "input" ) &&
-					dataPriv.get( el, "click" ) === undefined ) {
+					el.click && nodeName( el, "input" ) ) {
 
 					// dataPriv.set( el, "click", ... )
 					leverageNative( el, "click", returnTrue );
@@ -18648,8 +18652,7 @@ jQuery.event = {
 
 				// Force setup before triggering a click
 				if ( rcheckableType.test( el.type ) &&
-					el.click && nodeName( el, "input" ) &&
-					dataPriv.get( el, "click" ) === undefined ) {
+					el.click && nodeName( el, "input" ) ) {
 
 					leverageNative( el, "click" );
 				}
@@ -18690,7 +18693,9 @@ function leverageNative( el, type, expectSync ) {
 
 	// Missing expectSync indicates a trigger call, which must force setup through jQuery.event.add
 	if ( !expectSync ) {
-		jQuery.event.add( el, type, returnTrue );
+		if ( dataPriv.get( el, type ) === undefined ) {
+			jQuery.event.add( el, type, returnTrue );
+		}
 		return;
 	}
 
@@ -18705,9 +18710,13 @@ function leverageNative( el, type, expectSync ) {
 			if ( ( event.isTrigger & 1 ) && this[ type ] ) {
 
 				// Interrupt processing of the outer synthetic .trigger()ed event
-				if ( !saved ) {
+				// Saved data should be false in such cases, but might be a leftover capture object
+				// from an async native handler (gh-4350)
+				if ( !saved.length ) {
 
 					// Store arguments for use when handling the inner native event
+					// There will always be at least one argument (an event object), so this array
+					// will not be confused with a leftover capture object.
 					saved = slice.call( arguments );
 					dataPriv.set( this, type, saved );
 
@@ -18720,14 +18729,14 @@ function leverageNative( el, type, expectSync ) {
 					if ( saved !== result || notAsync ) {
 						dataPriv.set( this, type, false );
 					} else {
-						result = undefined;
+						result = {};
 					}
 					if ( saved !== result ) {
 
 						// Cancel the outer synthetic event
 						event.stopImmediatePropagation();
 						event.preventDefault();
-						return result;
+						return result.value;
 					}
 
 				// If this is an inner synthetic event for an event with a bubbling surrogate
@@ -18742,17 +18751,19 @@ function leverageNative( el, type, expectSync ) {
 
 			// If this is a native event triggered above, everything is now in order
 			// Fire an inner synthetic event with the original arguments
-			} else if ( saved ) {
+			} else if ( saved.length ) {
 
 				// ...and capture the result
-				dataPriv.set( this, type, jQuery.event.trigger(
+				dataPriv.set( this, type, {
+					value: jQuery.event.trigger(
 
-					// Support: IE <=9 - 11+
-					// Extend with the prototype to reset the above stopImmediatePropagation()
-					jQuery.extend( saved.shift(), jQuery.Event.prototype ),
-					saved,
-					this
-				) );
+						// Support: IE <=9 - 11+
+						// Extend with the prototype to reset the above stopImmediatePropagation()
+						jQuery.extend( saved[ 0 ], jQuery.Event.prototype ),
+						saved.slice( 1 ),
+						this
+					)
+				} );
 
 				// Abort handling of the native event
 				event.stopImmediatePropagation();
@@ -44070,9 +44081,20 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wrapper container-whitelabel"},[_c('navbar'),_vm._v(" "),_c('promote'),_vm._v(" "),_c('alertsidebar')],1)}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "wrapper container-whitelabel" },
+    [_c("navbar"), _vm._v(" "), _c("promote"), _vm._v(" "), _c("alertsidebar")],
+    1
+  )
+}
 var staticRenderFns = []
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44088,9 +44110,317 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('nav',{staticClass:"navbar navbar-expand-lg navbar-absolute navbar-transparent"},[_c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"navbar-wrapper"},[_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('a',{staticClass:"navbar-brand",attrs:{"href":_vm.welcome}},[_vm._v("TNK")])]),_vm._v(" "),_vm._m(2),_vm._v(" "),_vm._m(3)])]),_vm._v(" "),_c('div')])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"navbar-minimize d-inline"},[_c('button',{staticClass:"minimize-sidebar btn btn-link btn-just-icon",attrs:{"rel":"tooltip","data-original-title":"Sidebar toggle","data-placement":"right"}},[_c('i',{staticClass:"tim-icons icon-align-center visible-on-sidebar-regular"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-bullet-list-67 visible-on-sidebar-mini"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"navbar-toggle d-inline"},[_c('button',{staticClass:"navbar-toggler",attrs:{"type":"button"}},[_c('span',{staticClass:"navbar-toggler-bar bar1"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar bar2"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar bar3"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"navbar-toggler",attrs:{"type":"button","data-toggle":"collapse","data-target":"#navigation","aria-expanded":"false","aria-label":"Toggle navigation"}},[_c('span',{staticClass:"navbar-toggler-bar navbar-kebab"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar navbar-kebab"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar navbar-kebab"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"collapse navbar-collapse",attrs:{"id":"navigation"}},[_c('ul',{staticClass:"navbar-nav mr-auto"},[_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-coins icon-hover"})]),_vm._v("Recommend friends\n            ")])])]),_vm._v(" "),_c('ul',{staticClass:"navbar-nav ml-auto"},[_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#loginModal"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-lock-circle icon-hover"})]),_vm._v("Message\n            ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":".register"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"fas fa-user-plus icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-badge icon-hover"})]),_vm._v("My Account\n            ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#freetrial"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-controller icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-credit-card icon-hover"})]),_vm._v("Recharge\n            ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex fixed-logout",attrs:{"href":"#"}},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-bullet-list-67 icon-hover"})])]),_vm._v(" "),_c('div',{staticClass:"dropdown-menu"},[_c('div',{staticClass:"row p-4"},[_c('div',{staticClass:"col-6"},[_c('img',{attrs:{"src":"assets/img/user.png","alt":""}})]),_vm._v(" "),_c('div',{staticClass:"col-6"},[_c('em',{staticClass:"header-user-name"},[_vm._v("aghq186496")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('span',{staticClass:"header-user-level level-0"},[_vm._v("新会员")])]),_vm._v(" "),_c('small',{staticClass:"header-before-login-date"},[_vm._v("最近登录时间：2019-04-24 14:25:40")])]),_vm._v(" "),_c('div',{staticClass:"menu-body"},[_c('div',{attrs:{"id":"header-balance"}},[_vm._v("\n                      总余额\n                      "),_c('h2',{staticClass:"eid_total_credit m-0 p-0"},[_vm._v("0.00")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('p',{staticClass:"text-desss"},[_vm._v("\n                          本地余额\n                          "),_c('span',{attrs:{"id":"eid_local_credit"}},[_vm._v("0.00")])]),_vm._v(" "),_c('p',{staticClass:"text-balance"},[_vm._v("\n                          游戏余额\n                          "),_c('span',{attrs:{"id":"eid_game_credit"}},[_vm._v("0.00")])])])]),_vm._v(" "),_c('a',{staticClass:"btn-logout",attrs:{"href":"javascript:;"}},[_c('i',{staticClass:"fa fa-power-off"}),_vm._v("安全退出\n                    ")])])])])])])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "nav",
+      {
+        staticClass:
+          "navbar navbar-expand-lg navbar-absolute navbar-transparent"
+      },
+      [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "navbar-wrapper" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "a",
+              { staticClass: "navbar-brand", attrs: { href: _vm.welcome } },
+              [_vm._v("TNK")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _vm._m(3)
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div")
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "navbar-minimize d-inline" }, [
+      _c(
+        "button",
+        {
+          staticClass: "minimize-sidebar btn btn-link btn-just-icon",
+          attrs: {
+            rel: "tooltip",
+            "data-original-title": "Sidebar toggle",
+            "data-placement": "right"
+          }
+        },
+        [
+          _c("i", {
+            staticClass:
+              "tim-icons icon-align-center visible-on-sidebar-regular"
+          }),
+          _vm._v(" "),
+          _c("i", {
+            staticClass: "tim-icons icon-bullet-list-67 visible-on-sidebar-mini"
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "navbar-toggle d-inline" }, [
+      _c(
+        "button",
+        { staticClass: "navbar-toggler", attrs: { type: "button" } },
+        [
+          _c("span", { staticClass: "navbar-toggler-bar bar1" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "navbar-toggler-bar bar2" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "navbar-toggler-bar bar3" })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navigation",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation"
+        }
+      },
+      [
+        _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "collapse navbar-collapse", attrs: { id: "navigation" } },
+      [
+        _c("ul", { staticClass: "navbar-nav mr-auto" }, [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              { staticClass: "button nav-link d-flex", attrs: { href: "#" } },
+              [
+                _c("div", { staticClass: "icons" }, [
+                  _c("i", {
+                    staticClass: "tim-icons icon-single-02 icon-default"
+                  }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "tim-icons icon-coins icon-hover" })
+                ]),
+                _vm._v("Recommend friends\n            ")
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "button nav-link d-flex",
+                attrs: {
+                  href: "#",
+                  "data-toggle": "modal",
+                  "data-target": "#loginModal"
+                }
+              },
+              [
+                _c("div", { staticClass: "icons" }, [
+                  _c("i", {
+                    staticClass: "tim-icons icon-single-02 icon-default"
+                  }),
+                  _vm._v(" "),
+                  _c("i", {
+                    staticClass: "tim-icons icon-lock-circle icon-hover"
+                  })
+                ]),
+                _vm._v("Message\n            ")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "button nav-link d-flex",
+                attrs: {
+                  href: "#",
+                  "data-toggle": "modal",
+                  "data-target": ".register"
+                }
+              },
+              [
+                _c("div", { staticClass: "icons" }, [
+                  _c("i", { staticClass: "fas fa-user-plus icon-default" }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "tim-icons icon-badge icon-hover" })
+                ]),
+                _vm._v("My Account\n            ")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "button nav-link d-flex",
+                attrs: {
+                  href: "#",
+                  "data-toggle": "modal",
+                  "data-target": "#freetrial"
+                }
+              },
+              [
+                _c("div", { staticClass: "icons" }, [
+                  _c("i", {
+                    staticClass: "tim-icons icon-controller icon-default"
+                  }),
+                  _vm._v(" "),
+                  _c("i", {
+                    staticClass: "tim-icons icon-credit-card icon-hover"
+                  })
+                ]),
+                _vm._v("Recharge\n            ")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "button nav-link d-flex fixed-logout",
+                attrs: { href: "#" }
+              },
+              [
+                _c("div", { staticClass: "dropdown show-dropdown" }, [
+                  _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
+                    _c("div", { staticClass: "icons" }, [
+                      _c("i", {
+                        staticClass: "tim-icons icon-single-02 icon-default"
+                      }),
+                      _vm._v(" "),
+                      _c("i", {
+                        staticClass: "tim-icons icon-bullet-list-67 icon-hover"
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "dropdown-menu" }, [
+                    _c("div", { staticClass: "row p-4" }, [
+                      _c("div", { staticClass: "col-6" }, [
+                        _c("img", {
+                          attrs: { src: "assets/img/user.png", alt: "" }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-6" }, [
+                        _c("em", { staticClass: "header-user-name" }, [
+                          _vm._v("aghq186496")
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          { staticClass: "header-user-level level-0" },
+                          [_vm._v("新会员")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("small", { staticClass: "header-before-login-date" }, [
+                        _vm._v("最近登录时间：2019-04-24 14:25:40")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "menu-body" }, [
+                      _c("div", { attrs: { id: "header-balance" } }, [
+                        _vm._v(
+                          "\n                      总余额\n                      "
+                        ),
+                        _c("h2", { staticClass: "eid_total_credit m-0 p-0" }, [
+                          _vm._v("0.00")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "d-flex" }, [
+                          _c("p", { staticClass: "text-desss" }, [
+                            _vm._v(
+                              "\n                          本地余额\n                          "
+                            ),
+                            _c("span", { attrs: { id: "eid_local_credit" } }, [
+                              _vm._v("0.00")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "text-balance" }, [
+                            _vm._v(
+                              "\n                          游戏余额\n                          "
+                            ),
+                            _c("span", { attrs: { id: "eid_game_credit" } }, [
+                              _vm._v("0.00")
+                            ])
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn-logout",
+                          attrs: { href: "javascript:;" }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-power-off" }),
+                          _vm._v("安全退出\n                    ")
+                        ]
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44106,9 +44436,3097 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('navbar'),_vm._v(" "),_c('div',{staticClass:"main-container vip_club"},[_c('div',{staticClass:"sections"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"section content-area1"},[_vm._m(1),_vm._v(" "),_c('div',{staticClass:"carousel slide showcase-container wow fadeInUp",attrs:{"id":"myCarousel","data-ride":"carousel"}},[_vm._m(2),_vm._v(" "),_c('div',{staticClass:"carousel-inner hcbg"},[_c('div',{staticClass:"item slideflip active",attrs:{"id":"s1"}},[_c('a',{staticClass:"btn",attrs:{"href":"https://brand.ag855.com/activity/vipPrivilege/","target":"_blank"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("understand more")])],1)],1)]),_vm._v(" "),_c('div',{staticClass:"item slideflip",attrs:{"id":"s2"}},[_c('a',{staticClass:"btn",attrs:{"href":"https://brand.ag855.com/activity/vipPrivilege/","target":"_blank"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Open now")])],1)],1)]),_vm._v(" "),_c('div',{staticClass:"item slideflip",attrs:{"id":"s3"}},[_c('a',{staticClass:"btn",attrs:{"href":"https://brand.ag855.com/activity/vipPrivilege/","target":"_blank"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("understand more")])],1)],1)]),_vm._v(" "),_c('div',{staticClass:"item slideflip",attrs:{"id":"s4"}},[_c('a',{staticClass:"btn",attrs:{"href":"https://brand.ag855.com/activity/vipPrivilege/","target":"_blank"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("understand more")])],1)],1)])])]),_vm._v(" "),_vm._m(3),_vm._v(" "),_c('div',{staticClass:"container-wrap wow fadeInDown"},[_c('div',{staticClass:"table-section"},[_c('table',{staticClass:"table table-striped sel sel0"},[_c('thead',[_c('tr',{staticStyle:{"background-color":"rgb(144, 129, 107)"}},[_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Member benefits")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("One star")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Two stars")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Three Star")])],1)],1),_vm._v(" "),_c('th',[_c('img',{attrs:{"src":"/assets/img/blcrown.png"}}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP 4")])],1)],1),_vm._v(" "),_c('th',[_c('img',{attrs:{"src":"/assets/img/scrown.png"}}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP 5")])],1)],1),_vm._v(" "),_c('th',[_c('img',{attrs:{"src":"/assets/img/gcrown.png"}}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP 6")])],1)],1)])]),_vm._v(" "),_c('tbody',[_c('tr',{staticStyle:{"background-color":"rgb(154, 139, 116)"}},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Washing ratio")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.60%")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.60%")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.60%")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.70%")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.80%")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.90%")])],1)],1)]),_vm._v(" "),_c('tr',{staticStyle:{"background-color":"rgb(144, 129, 107)"}},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Anniversary gift")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("588 yuan")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("888 yuan")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("1888 yuan")])],1)],1)]),_vm._v(" "),_c('tr',{staticStyle:{"background-color":"rgb(154, 139, 116)"}},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Holiday gift")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("√")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("√")])],1)],1)]),_vm._v(" "),_c('tr',{staticStyle:{"background-color":"rgb(144, 129, 107)"}},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Business secretary")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("√")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("√")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("√")])],1)],1)]),_vm._v(" "),_c('tr',{staticStyle:{"background-color":"rgb(154, 139, 116)"}},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Overseas travel")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("√")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("√")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("√")])],1)],1)]),_vm._v(" "),_c('tr',{staticStyle:{"background-color":"rgb(144, 129, 107)"}},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("customer service")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("General customer service")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("General customer service")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("General customer service")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("General customer service")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("account Manager")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("account Manager")])],1)],1)]),_vm._v(" "),_c('tr',{staticStyle:{"background-color":"rgb(154, 139, 116)"}},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Game channel")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Ordinary line")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Ordinary line")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Ordinary line")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Ordinary line")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP line")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP line")])],1)],1)])])])])])]),_vm._v(" "),_c('div',{staticClass:"section content-area2",staticStyle:{"height":"678px"}},[_vm._m(4),_vm._v(" "),_c('div',{staticClass:"container-wrap wow fadeInDown"},[_c('div',{staticClass:"table-section"},[_c('table',{staticClass:"table table-striped"},[_c('thead',[_c('tr',{staticStyle:{"background-color":"rgb(144, 129, 107)"}},[_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Member star")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Promotion requirements")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Promotion gift")])],1)],1)])]),_vm._v(" "),_c('tbody',[_c('tr',{staticStyle:{"background-color":"rgb(154, 139, 116)"}},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("One star")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Complete the first recharge")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("×")])],1)],1)]),_vm._v(" "),_c('tr',{staticStyle:{"background-color":"rgb(144, 129, 107)"}},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Two stars")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Weekly effective bet amount reaches 100,000")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("120 yuan")])],1)],1)]),_vm._v(" "),_c('tr',{staticStyle:{"background-color":"rgb(154, 139, 116)"}},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Three Star")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Weekly effective bet amount reaches 500,000")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("400 yuan")])],1)],1)]),_vm._v(" "),_c('tr',{staticStyle:{"background-color":"rgb(144, 129, 107)"}},[_c('td',[_c('img',{attrs:{"src":"/assets/img/blcrown.png"}}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP 4")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Weekly effective bet amount reaches 1 million")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("600 yuan")])],1)],1)]),_vm._v(" "),_c('tr',{staticStyle:{"background-color":"rgb(154, 139, 116)"}},[_c('td',[_c('img',{attrs:{"src":"/assets/img/scrown.png"}}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP 5")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Weekly effective bet amount reaches 3 million")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("2000 dollars")])],1)],1)]),_vm._v(" "),_c('tr',{staticStyle:{"background-color":"rgb(144, 129, 107)"}},[_c('td',[_c('img',{attrs:{"src":"/assets/img/gcrown.png"}}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP 6")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Weekly effective bet amount reaches 6 million")])],1)],1),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("4,000 yuan")])],1)],1)])])])]),_vm._v(" "),_c('div',{staticClass:"rebate-level"},[_c('div',{staticClass:"level-line"},[_c('div',{staticClass:"pbc",staticStyle:{"display":"none"}},[_c('div',{staticClass:"pb-p"},[_c('ul',[_c('li',[_c('div',{staticClass:"upb"},[_c('div',{staticClass:"upbd vp1"},[_c('p',{staticClass:"zbpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("One star")])],1)],1)])]),_vm._v(" "),_c('p',{staticClass:"adpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0")])],1)],1)]),_vm._v(" "),_c('li',[_c('div',{staticClass:"upb"},[_c('div',{staticClass:"upbd vp2"},[_c('p',{staticClass:"zbpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Two stars")])],1)],1)])]),_vm._v(" "),_c('p',{staticClass:"adpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("100,000")])],1)],1)]),_vm._v(" "),_c('li',[_c('div',{staticClass:"upb"},[_c('div',{staticClass:"upbd vp3"},[_c('p',{staticClass:"zbpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Three Star")])],1)],1)])]),_vm._v(" "),_c('p',{staticClass:"adpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("500000")])],1)],1)]),_vm._v(" "),_c('li',[_c('div',{staticClass:"upb"},[_c('div',{staticClass:"upbd vp4"},[_c('p',{staticClass:"zbpb"},[_c('img',{attrs:{"src":"/assets/img/bcrown.png"}}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP 4")])],1)],1)])]),_vm._v(" "),_c('p',{staticClass:"adpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("1000000")])],1)],1)]),_vm._v(" "),_c('li',[_vm._m(5),_vm._v(" "),_c('p',{staticClass:"adpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("3000000")])],1)],1)]),_vm._v(" "),_c('li',[_vm._m(6),_vm._v(" "),_c('p',{staticClass:"adpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("6000000")])],1)],1)])])]),_vm._v(" "),_c('div',{staticClass:"pbbg"}),_vm._v(" "),_c('div',{staticClass:"pbcf"},[_c('div',{staticClass:"pbcf-p"}),_vm._v(" "),_c('div',{staticClass:"pbcf-pd",staticStyle:{"display":"none"}},[_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Effective bet amount this week")])],1),_vm._v(" "),_c('span',{staticClass:"amount"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0")])],1)],1)],1)])]),_vm._v(" "),_c('div',{staticClass:"pbpd",staticStyle:{"left":"15px"}},[_c('div',{staticClass:"pdp"}),_vm._v(" "),_c('div',{staticClass:"pbpd-pbb"},[_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Effective bet amount this week")])],1),_vm._v(" "),_c('span',{staticClass:"amount"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0")])],1)],1)],1)])]),_vm._v(" "),_vm._m(7)])])])])]),_vm._v(" "),_c('div',{staticClass:"section content-area3"},[_vm._m(8),_vm._v(" "),_c('div',{staticClass:"container-wrap wow fadeInDown"},[_c('ul',[_c('li',[_c('i',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("01")])],1)],1),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("The promotion bet amount is calculated based on the valid bet amount from 00:00:00 on Monday to 23:59:59 on Sunday.")])],1)],1)]),_vm._v(" "),_c('li',[_c('i',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("02")])],1)],1),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Promotion star time: As long as you meet the promotion star rating within the week, you can automatically promote the star in 1 hour and immediately enjoy the star rating after promotion.")])],1)],1)]),_vm._v(" "),_c('li',[_c('i',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("03")])],1)],1),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("After successfully promoting the star rating, you can enjoy the star-rated rights after promotion and never relegate.")])],1)],1)]),_vm._v(" "),_c('li',[_c('i',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("04")])],1)],1),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Promotion bonus time: After successful promotion of the star rating, the bonus will be automatically distributed. Please click the collection after receiving the bonus distribution notice (the bonus period is valid for")])],1),_vm._v(" "),_c('br'),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("30 days, expired).")])],1)],1)]),_vm._v(" "),_c('li',[_c('i',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("05")])],1)],1),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("The promotion bonus can be withdrawn only by 1 time (effective bet amount).")])],1)],1)]),_vm._v(" "),_c('li',[_c('i',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("06")])],1)],1),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("According to the fair and orderly rules of the Gaming Association, any user or group betting in an abnormal manner, such as risk-free betting, gambling, or deception,")])],1),_vm._v(" "),_c('br'),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("AG A-Yu reserves the right to freeze or close without notice. Related accounts, no refunds, users will be blacklisted.")])],1)],1)])])])])])])],1)}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"section banner"},[_c('div',{staticClass:"dangles"},[_c('div',{staticClass:"d1 swing slide-in-blurred-top"}),_vm._v(" "),_c('div',{staticClass:"d2 swing slide-in-blurred-top"}),_vm._v(" "),_c('div',{staticClass:"d3 swing slide-in-blurred-top"}),_vm._v(" "),_c('div',{staticClass:"d4 swing slide-in-blurred-top"})]),_vm._v(" "),_c('div',{staticClass:"glows"},[_c('div',{staticClass:"g1"}),_vm._v(" "),_c('div',{staticClass:"g2"}),_vm._v(" "),_c('div',{staticClass:"g3"}),_vm._v(" "),_c('div',{staticClass:"g4"}),_vm._v(" "),_c('div',{staticClass:"g5"}),_vm._v(" "),_c('div',{staticClass:"g6"}),_vm._v(" "),_c('div',{staticClass:"g7"}),_vm._v(" "),_c('div',{staticClass:"g8"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"title wow fadeInDown"},[_c('img',{attrs:{"src":"/assets/img/title1.png"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"hibg"},[_c('div',{staticClass:"carousel-indicators"},[_c('div',{staticClass:"flip-container active",attrs:{"data-target":"#myCarousel","data-slide-to":"0"}},[_c('div',{staticClass:"circlet"}),_vm._v(" "),_c('div',{staticClass:"flipper"},[_c('div',{staticClass:"front"},[_c('div',{staticClass:"icon icon1"})]),_vm._v(" "),_c('div',{staticClass:"back"},[_c('div',{staticClass:"icon icon1-active"})])])]),_vm._v(" "),_c('div',{staticClass:"flip-container",attrs:{"data-target":"#myCarousel","data-slide-to":"1"}},[_c('div',{staticClass:"circlet"}),_vm._v(" "),_c('div',{staticClass:"flipper"},[_c('div',{staticClass:"front"},[_c('div',{staticClass:"icon icon2"})]),_vm._v(" "),_c('div',{staticClass:"back"},[_c('div',{staticClass:"icon icon2-active"})])])]),_vm._v(" "),_c('div',{staticClass:"flip-container",attrs:{"data-target":"#myCarousel","data-slide-to":"2"}},[_c('div',{staticClass:"circlet"}),_vm._v(" "),_c('div',{staticClass:"flipper"},[_c('div',{staticClass:"front"},[_c('div',{staticClass:"icon icon3"})]),_vm._v(" "),_c('div',{staticClass:"back"},[_c('div',{staticClass:"icon icon3-active"})])])]),_vm._v(" "),_c('div',{staticClass:"flip-container",attrs:{"data-target":"#myCarousel","data-slide-to":"3"}},[_c('div',{staticClass:"circlet"}),_vm._v(" "),_c('div',{staticClass:"flipper"},[_c('div',{staticClass:"front"},[_c('div',{staticClass:"icon icon4"})]),_vm._v(" "),_c('div',{staticClass:"back"},[_c('div',{staticClass:"icon icon4-active"})])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"title wow fadeInUp"},[_c('img',{attrs:{"src":"/assets/img/title2.png"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"title wow fadeInUp"},[_c('img',{attrs:{"src":"/assets/img/title3.png"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"upb"},[_c('div',{staticClass:"upbd vp5"},[_c('img',{attrs:{"src":"/assets/img/vip5.png"}})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"upb"},[_c('div',{staticClass:"upbd vp6"},[_c('img',{attrs:{"src":"/assets/img/vip6.png"}})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"pbdd",staticStyle:{"left":"15px"}},[_c('i',{staticClass:"arrow"}),_vm._v(" "),_c('p',[_c('span',{staticClass:"bgc"},[_vm._v("\n                      您当前为\n                      "),_c('i',{staticClass:"st"},[_vm._v("一星级")])]),_vm._v("成为\n                    "),_c('i',{staticClass:"sa"},[_vm._v("二星级")]),_vm._v(" 只需再投注\n                    "),_c('i',{staticClass:"aa"},[_vm._v("0")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"title wow fadeInUp"},[_c('img',{attrs:{"src":"/assets/img/title4.png"}})])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("navbar"),
+      _vm._v(" "),
+      _c("div", { staticClass: "main-container vip_club" }, [
+        _c("div", { staticClass: "sections" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "section content-area1" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "carousel slide showcase-container wow fadeInUp",
+                attrs: { id: "myCarousel", "data-ride": "carousel" }
+              },
+              [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div", { staticClass: "carousel-inner hcbg" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "item slideflip active",
+                      attrs: { id: "s1" }
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn",
+                          attrs: {
+                            href:
+                              "https://brand.ag855.com/activity/vipPrivilege/",
+                            target: "_blank"
+                          }
+                        },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("understand more")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "item slideflip", attrs: { id: "s2" } },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn",
+                          attrs: {
+                            href:
+                              "https://brand.ag855.com/activity/vipPrivilege/",
+                            target: "_blank"
+                          }
+                        },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("Open now")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "item slideflip", attrs: { id: "s3" } },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn",
+                          attrs: {
+                            href:
+                              "https://brand.ag855.com/activity/vipPrivilege/",
+                            target: "_blank"
+                          }
+                        },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("understand more")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "item slideflip", attrs: { id: "s4" } },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn",
+                          attrs: {
+                            href:
+                              "https://brand.ag855.com/activity/vipPrivilege/",
+                            target: "_blank"
+                          }
+                        },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("understand more")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "container-wrap wow fadeInDown" }, [
+              _c("div", { staticClass: "table-section" }, [
+                _c("table", { staticClass: "table table-striped sel sel0" }, [
+                  _c("thead", [
+                    _c(
+                      "tr",
+                      {
+                        staticStyle: {
+                          "background-color": "rgb(144, 129, 107)"
+                        }
+                      },
+                      [
+                        _c(
+                          "th",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Member benefits")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("One star")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Two stars")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Three Star")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          [
+                            _c("img", {
+                              attrs: { src: "/assets/img/blcrown.png" }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("VIP 4")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          [
+                            _c("img", {
+                              attrs: { src: "/assets/img/scrown.png" }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("VIP 5")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          [
+                            _c("img", {
+                              attrs: { src: "/assets/img/gcrown.png" }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("VIP 6")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _c(
+                      "tr",
+                      {
+                        staticStyle: {
+                          "background-color": "rgb(154, 139, 116)"
+                        }
+                      },
+                      [
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Washing ratio")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("0.60%")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("0.60%")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("0.60%")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("0.70%")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("0.80%")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("0.90%")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "tr",
+                      {
+                        staticStyle: {
+                          "background-color": "rgb(144, 129, 107)"
+                        }
+                      },
+                      [
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Anniversary gift")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("588 yuan")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("888 yuan")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("1888 yuan")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "tr",
+                      {
+                        staticStyle: {
+                          "background-color": "rgb(154, 139, 116)"
+                        }
+                      },
+                      [
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Holiday gift")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("√")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("√")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "tr",
+                      {
+                        staticStyle: {
+                          "background-color": "rgb(144, 129, 107)"
+                        }
+                      },
+                      [
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Business secretary")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("√")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("√")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("√")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "tr",
+                      {
+                        staticStyle: {
+                          "background-color": "rgb(154, 139, 116)"
+                        }
+                      },
+                      [
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Overseas travel")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("×")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("√")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("√")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("√")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "tr",
+                      {
+                        staticStyle: {
+                          "background-color": "rgb(144, 129, 107)"
+                        }
+                      },
+                      [
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("customer service")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("General customer service")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("General customer service")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("General customer service")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("General customer service")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("account Manager")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("account Manager")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "tr",
+                      {
+                        staticStyle: {
+                          "background-color": "rgb(154, 139, 116)"
+                        }
+                      },
+                      [
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Game channel")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Ordinary line")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Ordinary line")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Ordinary line")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Ordinary line")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("VIP line")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("VIP line")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "section content-area2",
+              staticStyle: { height: "678px" }
+            },
+            [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("div", { staticClass: "container-wrap wow fadeInDown" }, [
+                _c("div", { staticClass: "table-section" }, [
+                  _c("table", { staticClass: "table table-striped" }, [
+                    _c("thead", [
+                      _c(
+                        "tr",
+                        {
+                          staticStyle: {
+                            "background-color": "rgb(144, 129, 107)"
+                          }
+                        },
+                        [
+                          _c(
+                            "th",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Member star")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Promotion requirements")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Promotion gift")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("tbody", [
+                      _c(
+                        "tr",
+                        {
+                          staticStyle: {
+                            "background-color": "rgb(154, 139, 116)"
+                          }
+                        },
+                        [
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("One star")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Complete the first recharge")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("×")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "tr",
+                        {
+                          staticStyle: {
+                            "background-color": "rgb(144, 129, 107)"
+                          }
+                        },
+                        [
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Two stars")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Weekly effective bet amount reaches 100,000"
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("120 yuan")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "tr",
+                        {
+                          staticStyle: {
+                            "background-color": "rgb(154, 139, 116)"
+                          }
+                        },
+                        [
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Three Star")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Weekly effective bet amount reaches 500,000"
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("400 yuan")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "tr",
+                        {
+                          staticStyle: {
+                            "background-color": "rgb(144, 129, 107)"
+                          }
+                        },
+                        [
+                          _c(
+                            "td",
+                            [
+                              _c("img", {
+                                attrs: { src: "/assets/img/blcrown.png" }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("VIP 4")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Weekly effective bet amount reaches 1 million"
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("600 yuan")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "tr",
+                        {
+                          staticStyle: {
+                            "background-color": "rgb(154, 139, 116)"
+                          }
+                        },
+                        [
+                          _c(
+                            "td",
+                            [
+                              _c("img", {
+                                attrs: { src: "/assets/img/scrown.png" }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("VIP 5")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Weekly effective bet amount reaches 3 million"
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("2000 dollars")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "tr",
+                        {
+                          staticStyle: {
+                            "background-color": "rgb(144, 129, 107)"
+                          }
+                        },
+                        [
+                          _c(
+                            "td",
+                            [
+                              _c("img", {
+                                attrs: { src: "/assets/img/gcrown.png" }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("VIP 6")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Weekly effective bet amount reaches 6 million"
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("4,000 yuan")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "rebate-level" }, [
+                  _c("div", { staticClass: "level-line" }, [
+                    _c(
+                      "div",
+                      { staticClass: "pbc", staticStyle: { display: "none" } },
+                      [
+                        _c("div", { staticClass: "pb-p" }, [
+                          _c("ul", [
+                            _c("li", [
+                              _c("div", { staticClass: "upb" }, [
+                                _c("div", { staticClass: "upbd vp1" }, [
+                                  _c(
+                                    "p",
+                                    { staticClass: "zbpb" },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("One star")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                { staticClass: "adpb" },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("0")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("div", { staticClass: "upb" }, [
+                                _c("div", { staticClass: "upbd vp2" }, [
+                                  _c(
+                                    "p",
+                                    { staticClass: "zbpb" },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("Two stars")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                { staticClass: "adpb" },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("100,000")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("div", { staticClass: "upb" }, [
+                                _c("div", { staticClass: "upbd vp3" }, [
+                                  _c(
+                                    "p",
+                                    { staticClass: "zbpb" },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("Three Star")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                { staticClass: "adpb" },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("500000")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("div", { staticClass: "upb" }, [
+                                _c("div", { staticClass: "upbd vp4" }, [
+                                  _c(
+                                    "p",
+                                    { staticClass: "zbpb" },
+                                    [
+                                      _c("img", {
+                                        attrs: { src: "/assets/img/bcrown.png" }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("VIP 4")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                { staticClass: "adpb" },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("1000000")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _vm._m(5),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                { staticClass: "adpb" },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("3000000")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _vm._m(6),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                { staticClass: "adpb" },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("6000000")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "pbbg" }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "pbcf" }, [
+                          _c("div", { staticClass: "pbcf-p" }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "pbcf-pd",
+                              staticStyle: { display: "none" }
+                            },
+                            [
+                              _c(
+                                "p",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "Effective bet amount this week"
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    { staticClass: "amount" },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("0")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "pbpd",
+                            staticStyle: { left: "15px" }
+                          },
+                          [
+                            _c("div", { staticClass: "pdp" }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "pbpd-pbb" }, [
+                              _c(
+                                "p",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "Effective bet amount this week"
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    { staticClass: "amount" },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("0")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(7)
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "section content-area3" }, [
+            _vm._m(8),
+            _vm._v(" "),
+            _c("div", { staticClass: "container-wrap wow fadeInDown" }, [
+              _c("ul", [
+                _c("li", [
+                  _c(
+                    "i",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("01")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _vm._v(
+                                "The promotion bet amount is calculated based on the valid bet amount from 00:00:00 on Monday to 23:59:59 on Sunday."
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "i",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("02")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _vm._v(
+                                "Promotion star time: As long as you meet the promotion star rating within the week, you can automatically promote the star in 1 hour and immediately enjoy the star rating after promotion."
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "i",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("03")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _vm._v(
+                                "After successfully promoting the star rating, you can enjoy the star-rated rights after promotion and never relegate."
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "i",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("04")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _vm._v(
+                                "Promotion bonus time: After successful promotion of the star rating, the bonus will be automatically distributed. Please click the collection after receiving the bonus distribution notice (the bonus period is valid for"
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("30 days, expired).")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "i",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("05")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _vm._v(
+                                "The promotion bonus can be withdrawn only by 1 time (effective bet amount)."
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "i",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("06")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _vm._v(
+                                "According to the fair and orderly rules of the Gaming Association, any user or group betting in an abnormal manner, such as risk-free betting, gambling, or deception,"
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _vm._v(
+                                "AG A-Yu reserves the right to freeze or close without notice. Related accounts, no refunds, users will be blacklisted."
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section banner" }, [
+      _c("div", { staticClass: "dangles" }, [
+        _c("div", { staticClass: "d1 swing slide-in-blurred-top" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "d2 swing slide-in-blurred-top" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "d3 swing slide-in-blurred-top" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "d4 swing slide-in-blurred-top" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "glows" }, [
+        _c("div", { staticClass: "g1" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "g2" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "g3" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "g4" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "g5" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "g6" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "g7" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "g8" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "title wow fadeInDown" }, [
+      _c("img", { attrs: { src: "/assets/img/title1.png" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hibg" }, [
+      _c("div", { staticClass: "carousel-indicators" }, [
+        _c(
+          "div",
+          {
+            staticClass: "flip-container active",
+            attrs: { "data-target": "#myCarousel", "data-slide-to": "0" }
+          },
+          [
+            _c("div", { staticClass: "circlet" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "flipper" }, [
+              _c("div", { staticClass: "front" }, [
+                _c("div", { staticClass: "icon icon1" })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "back" }, [
+                _c("div", { staticClass: "icon icon1-active" })
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "flip-container",
+            attrs: { "data-target": "#myCarousel", "data-slide-to": "1" }
+          },
+          [
+            _c("div", { staticClass: "circlet" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "flipper" }, [
+              _c("div", { staticClass: "front" }, [
+                _c("div", { staticClass: "icon icon2" })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "back" }, [
+                _c("div", { staticClass: "icon icon2-active" })
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "flip-container",
+            attrs: { "data-target": "#myCarousel", "data-slide-to": "2" }
+          },
+          [
+            _c("div", { staticClass: "circlet" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "flipper" }, [
+              _c("div", { staticClass: "front" }, [
+                _c("div", { staticClass: "icon icon3" })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "back" }, [
+                _c("div", { staticClass: "icon icon3-active" })
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "flip-container",
+            attrs: { "data-target": "#myCarousel", "data-slide-to": "3" }
+          },
+          [
+            _c("div", { staticClass: "circlet" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "flipper" }, [
+              _c("div", { staticClass: "front" }, [
+                _c("div", { staticClass: "icon icon4" })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "back" }, [
+                _c("div", { staticClass: "icon icon4-active" })
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "title wow fadeInUp" }, [
+      _c("img", { attrs: { src: "/assets/img/title2.png" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "title wow fadeInUp" }, [
+      _c("img", { attrs: { src: "/assets/img/title3.png" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "upb" }, [
+      _c("div", { staticClass: "upbd vp5" }, [
+        _c("img", { attrs: { src: "/assets/img/vip5.png" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "upb" }, [
+      _c("div", { staticClass: "upbd vp6" }, [
+        _c("img", { attrs: { src: "/assets/img/vip6.png" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "pbdd", staticStyle: { left: "15px" } }, [
+      _c("i", { staticClass: "arrow" }),
+      _vm._v(" "),
+      _c("p", [
+        _c("span", { staticClass: "bgc" }, [
+          _vm._v("\n                      您当前为\n                      "),
+          _c("i", { staticClass: "st" }, [_vm._v("一星级")])
+        ]),
+        _vm._v("成为\n                    "),
+        _c("i", { staticClass: "sa" }, [_vm._v("二星级")]),
+        _vm._v(" 只需再投注\n                    "),
+        _c("i", { staticClass: "aa" }, [_vm._v("0")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "title wow fadeInUp" }, [
+      _c("img", { attrs: { src: "/assets/img/title4.png" } })
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44124,9 +47542,310 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"fixed-plugin"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"assets/img/q-btn.png"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"header-title"},[_vm._v("Sidebar Background")]),_vm._v(" "),_c('li',{staticClass:"adjustments-line"},[_c('a',{staticClass:"switch-trigger background-color",attrs:{"href":"javascript:void(0)"}},[_c('div',{staticClass:"badge-colors text-center"},[_c('span',{staticClass:"badge filter badge-primary active",attrs:{"data-color":"primary"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-info",attrs:{"data-color":"blue"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-success",attrs:{"data-color":"green"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-warning",attrs:{"data-color":"orange"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-danger",attrs:{"data-color":"red"}})]),_vm._v(" "),_c('div',{staticClass:"clearfix"})])]),_vm._v(" "),_c('li',{staticClass:"header-title"},[_vm._v("Sidebar Mini")]),_vm._v(" "),_c('li',{staticClass:"adjustments-line"},[_c('div',{staticClass:"togglebutton switch-sidebar-mini"},[_c('span',{staticClass:"label-switch"},[_vm._v("OFF")]),_vm._v(" "),_c('input',{staticClass:"bootstrap-switch",attrs:{"type":"checkbox","name":"checkbox","checked":"","data-on-label":"","data-off-label":""}}),_vm._v(" "),_c('span',{staticClass:"label-switch label-right"},[_vm._v("ON")])]),_vm._v(" "),_c('div',{staticClass:"togglebutton switch-change-color mt-3"},[_c('span',{staticClass:"label-switch"},[_vm._v("LIGHT MODE")]),_vm._v(" "),_c('input',{staticClass:"bootstrap-switch",attrs:{"type":"checkbox","name":"checkbox","data-on-label":"","data-off-label":""}}),_vm._v(" "),_c('span',{staticClass:"label-switch label-right"},[_vm._v("DARK MODE")])])]),_vm._v(" "),_c('li',{staticClass:"button-container mt-4"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("Documentation")])]),_vm._v(" "),_c('li',{staticClass:"header-title"},[_vm._v("Thank you for 95 shares!")]),_vm._v(" "),_c('li',{staticClass:"button-container text-center"},[_c('button',{staticClass:"btn btn-round btn-info",attrs:{"id":"twitter"}},[_c('i',{staticClass:"fab fa-twitter"}),_vm._v(" · 45\n           ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-round btn-info",attrs:{"id":"facebook"}},[_c('i',{staticClass:"fab fa-facebook-f"}),_vm._v(" · 50\n           ")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('a',{staticClass:"github-button",attrs:{"href":"https://github.com/creativetimofficial/ct-black-dashboard-pro","data-icon":"octicon-star","data-size":"large","data-show-count":"true","aria-label":"Star ntkme/github-buttons on GitHub"}},[_vm._v("Star")])])])])]),_vm._v(" "),_c('div',{staticClass:"fixed-plugin-cutome"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"assets/img/chat-btn.gif"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"button-container mt-4 pb-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("在线咨询")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("电话回拨")])]),_vm._v(" "),_c('li',{staticClass:"button-container bg-call"},[_c('p',{staticClass:"home_custom"},[_c('i',{staticClass:"fas fa-phone-volume"}),_vm._v("服务热线\n           ")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("香港热线(0.49元/分)")]),_vm._v(" "),_c('p',{staticClass:"hongKong1"},[_vm._v("\n             +852-3841-5777\n             "),_c('br')]),_vm._v(" "),_c('p',{staticClass:"hongKong2"},[_vm._v("+852-3008-3777")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("菲律宾热线(0.99元/分)")]),_vm._v(" "),_c('p',[_vm._v("+63-2-949-8222")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"})])])]),_vm._v(" "),_c('div',{staticClass:"fixed-plugin-tools"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"/assets/img/tools-btn.png"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"button-container mt-4 pb-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("在线咨询")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("电话回拨")])]),_vm._v(" "),_c('li',{staticClass:"button-container bg-call"},[_c('p',{staticClass:"home_custom"},[_c('i',{staticClass:"fas fa-phone-volume"}),_vm._v("服务热线\n           ")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("香港热线(0.49元/分)")]),_vm._v(" "),_c('p',{staticClass:"hongKong1"},[_vm._v("\n             +852-3841-5777\n             "),_c('br')]),_vm._v(" "),_c('p',{staticClass:"hongKong2"},[_vm._v("+852-3008-3777")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("菲律宾热线(0.99元/分)")]),_vm._v(" "),_c('p',[_vm._v("+63-2-949-8222")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"})])])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "fixed-plugin" }, [
+        _c("div", { staticClass: "dropdown show-dropdown" }, [
+          _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
+            _c("img", { attrs: { src: "assets/img/q-btn.png" } })
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "dropdown-menu" }, [
+            _c("li", { staticClass: "header-title" }, [
+              _vm._v("Sidebar Background")
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "adjustments-line" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "switch-trigger background-color",
+                  attrs: { href: "javascript:void(0)" }
+                },
+                [
+                  _c("div", { staticClass: "badge-colors text-center" }, [
+                    _c("span", {
+                      staticClass: "badge filter badge-primary active",
+                      attrs: { "data-color": "primary" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", {
+                      staticClass: "badge filter badge-info",
+                      attrs: { "data-color": "blue" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", {
+                      staticClass: "badge filter badge-success",
+                      attrs: { "data-color": "green" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", {
+                      staticClass: "badge filter badge-warning",
+                      attrs: { "data-color": "orange" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", {
+                      staticClass: "badge filter badge-danger",
+                      attrs: { "data-color": "red" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "clearfix" })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "header-title" }, [_vm._v("Sidebar Mini")]),
+            _vm._v(" "),
+            _c("li", { staticClass: "adjustments-line" }, [
+              _c("div", { staticClass: "togglebutton switch-sidebar-mini" }, [
+                _c("span", { staticClass: "label-switch" }, [_vm._v("OFF")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "bootstrap-switch",
+                  attrs: {
+                    type: "checkbox",
+                    name: "checkbox",
+                    checked: "",
+                    "data-on-label": "",
+                    "data-off-label": ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "label-switch label-right" }, [
+                  _vm._v("ON")
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "togglebutton switch-change-color mt-3" },
+                [
+                  _c("span", { staticClass: "label-switch" }, [
+                    _vm._v("LIGHT MODE")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "bootstrap-switch",
+                    attrs: {
+                      type: "checkbox",
+                      name: "checkbox",
+                      "data-on-label": "",
+                      "data-off-label": ""
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "label-switch label-right" }, [
+                    _vm._v("DARK MODE")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "button-container mt-4" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-default btn-block btn-round",
+                  attrs: {
+                    href: "../docs/1.0/getting-started/introduction.html"
+                  }
+                },
+                [_vm._v("Documentation")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "header-title" }, [
+              _vm._v("Thank you for 95 shares!")
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "button-container text-center" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-round btn-info",
+                  attrs: { id: "twitter" }
+                },
+                [
+                  _c("i", { staticClass: "fab fa-twitter" }),
+                  _vm._v(" · 45\n           ")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-round btn-info",
+                  attrs: { id: "facebook" }
+                },
+                [
+                  _c("i", { staticClass: "fab fa-facebook-f" }),
+                  _vm._v(" · 50\n           ")
+                ]
+              ),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "github-button",
+                  attrs: {
+                    href:
+                      "https://github.com/creativetimofficial/ct-black-dashboard-pro",
+                    "data-icon": "octicon-star",
+                    "data-size": "large",
+                    "data-show-count": "true",
+                    "aria-label": "Star ntkme/github-buttons on GitHub"
+                  }
+                },
+                [_vm._v("Star")]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "fixed-plugin-cutome" }, [
+        _c("div", { staticClass: "dropdown show-dropdown" }, [
+          _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
+            _c("img", { attrs: { src: "assets/img/chat-btn.gif" } })
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "dropdown-menu" }, [
+            _c("li", { staticClass: "button-container mt-4 pb-0" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-default btn-block btn-round",
+                  attrs: {
+                    href: "../docs/1.0/getting-started/introduction.html"
+                  }
+                },
+                [_vm._v("在线咨询")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "button-container pt-0" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-default btn-block btn-round",
+                  attrs: {
+                    href: "../docs/1.0/getting-started/introduction.html"
+                  }
+                },
+                [_vm._v("电话回拨")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "button-container bg-call" }, [
+              _c("p", { staticClass: "home_custom" }, [
+                _c("i", { staticClass: "fas fa-phone-volume" }),
+                _vm._v("服务热线\n           ")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "button-container pt-0" }, [
+              _c("p", [_vm._v("香港热线(0.49元/分)")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "hongKong1" }, [
+                _vm._v("\n             +852-3841-5777\n             "),
+                _c("br")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "hongKong2" }, [_vm._v("+852-3008-3777")])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "button-container pt-0" }, [
+              _c("p", [_vm._v("菲律宾热线(0.99元/分)")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("+63-2-949-8222")])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "button-container pt-0" })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "fixed-plugin-tools" }, [
+        _c("div", { staticClass: "dropdown show-dropdown" }, [
+          _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
+            _c("img", { attrs: { src: "/assets/img/tools-btn.png" } })
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "dropdown-menu" }, [
+            _c("li", { staticClass: "button-container mt-4 pb-0" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-default btn-block btn-round",
+                  attrs: {
+                    href: "../docs/1.0/getting-started/introduction.html"
+                  }
+                },
+                [_vm._v("在线咨询")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "button-container pt-0" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-default btn-block btn-round",
+                  attrs: {
+                    href: "../docs/1.0/getting-started/introduction.html"
+                  }
+                },
+                [_vm._v("电话回拨")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "button-container bg-call" }, [
+              _c("p", { staticClass: "home_custom" }, [
+                _c("i", { staticClass: "fas fa-phone-volume" }),
+                _vm._v("服务热线\n           ")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "button-container pt-0" }, [
+              _c("p", [_vm._v("香港热线(0.49元/分)")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "hongKong1" }, [
+                _vm._v("\n             +852-3841-5777\n             "),
+                _c("br")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "hongKong2" }, [_vm._v("+852-3008-3777")])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "button-container pt-0" }, [
+              _c("p", [_vm._v("菲律宾热线(0.99元/分)")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("+63-2-949-8222")])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "button-container pt-0" })
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44142,9 +47861,531 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-content u-subscribe"},[_c('div',{staticClass:"mobile-wrap"},[_c('div',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Mobile number:")])],1),_vm._v(" "),_c('span',{staticClass:"js-show-phone"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("186*******2")])],1)],1),_vm._v(" "),_c('a',{staticClass:"btn-link",attrs:{"href":"/ucenter/security/phone"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("modification")])],1)],1)],1),_vm._v(" "),_c('form',{staticClass:"js-verify-notation",attrs:{"id":"verifyPhoneForm","novalidate":"novalidate"}},[_c('div',{staticClass:"form-inline"},[_c('a',{staticClass:"btn-resend pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("obtain SMS verification code")])],1)],1),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"id":"captcha","name":"captcha","type":"text","maxlength":"6","placeholder":"请输入短信验证码"}}),_vm._v(" "),_c('a',{staticClass:"btn-submit pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("confirm at once")])],1)],1),_vm._v(" "),_c('span',{staticClass:"error-msg"})]),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Tips: Please enter the SMS verification code to open the SMS subscription function.")])],1)],1)])]),_vm._v(" "),_c('table',{staticClass:"js-table-subscribe table table-bordered loading-portion"},[_c('thead',[_c('tr',[_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1)])]),_vm._v(" "),_c('tbody',[_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Login prompt")])],1)],1),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Offer added")])],1)],1),_vm._v(" "),_vm._m(1)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Contact phone modification")])],1)],1),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Bank data modification")])],1)],1),_vm._v(" "),_vm._m(3)]),_vm._v(" "),_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recharge prompt")])],1)],1),_vm._v(" "),_vm._m(4),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Name modification")])],1)],1),_vm._v(" "),_vm._m(5)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Cash withdrawal prompt")])],1)],1),_vm._v(" "),_vm._m(6),_vm._v(" "),_c('td'),_vm._v(" "),_c('td')])]),_vm._v(" "),_c('div',{staticClass:"transparent-base64 loading-js loading-portion-content"})])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"login","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"promotions","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyPhone","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyBankingData","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"deposit","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyAccountName","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"withdrawal","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-content u-subscribe" }, [
+      _c("div", { staticClass: "mobile-wrap" }, [
+        _c(
+          "div",
+          [
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("Mobile number:")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              { staticClass: "js-show-phone" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("186*******2")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn-link",
+                attrs: { href: "/ucenter/security/phone" }
+              },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("modification")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "js-verify-notation",
+            attrs: { id: "verifyPhoneForm", novalidate: "novalidate" }
+          },
+          [
+            _c("div", { staticClass: "form-inline" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn-resend pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("obtain SMS verification code")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  id: "captcha",
+                  name: "captcha",
+                  type: "text",
+                  maxlength: "6",
+                  placeholder: "请输入短信验证码"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn-submit pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("confirm at once")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "error-msg" })
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _vm._v(
+                          "Tips: Please enter the SMS verification code to open the SMS subscription function."
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "js-table-subscribe table table-bordered loading-portion"
+        },
+        [
+          _c("thead", [
+            _c("tr", [
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Login prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Offer added")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Contact phone modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Bank data modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(3)
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Recharge prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Name modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(5)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Cash withdrawal prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "transparent-base64 loading-js loading-portion-content"
+          })
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "login", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "promotions", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyPhone", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyBankingData", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "deposit", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyAccountName", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "withdrawal", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44160,9 +48401,531 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-content u-subscribe"},[_c('div',{staticClass:"mobile-wrap"},[_c('div',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Mobile number:")])],1),_vm._v(" "),_c('span',{staticClass:"js-show-phone"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("186*******2")])],1)],1),_vm._v(" "),_c('a',{staticClass:"btn-link",attrs:{"href":"/ucenter/security/phone"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("modification")])],1)],1)],1),_vm._v(" "),_c('form',{staticClass:"js-verify-notation",attrs:{"id":"verifyPhoneForm","novalidate":"novalidate"}},[_c('div',{staticClass:"form-inline"},[_c('a',{staticClass:"btn-resend pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("obtain SMS verification code")])],1)],1),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"id":"captcha","name":"captcha","type":"text","maxlength":"6","placeholder":"请输入短信验证码"}}),_vm._v(" "),_c('a',{staticClass:"btn-submit pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("confirm at once")])],1)],1),_vm._v(" "),_c('span',{staticClass:"error-msg"})]),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Tips: Please enter the SMS verification code to open the SMS subscription function.")])],1)],1)])]),_vm._v(" "),_c('table',{staticClass:"js-table-subscribe table table-bordered loading-portion"},[_c('thead',[_c('tr',[_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1)])]),_vm._v(" "),_c('tbody',[_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Login prompt")])],1)],1),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Offer added")])],1)],1),_vm._v(" "),_vm._m(1)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Contact phone modification")])],1)],1),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Bank data modification")])],1)],1),_vm._v(" "),_vm._m(3)]),_vm._v(" "),_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recharge prompt")])],1)],1),_vm._v(" "),_vm._m(4),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Name modification")])],1)],1),_vm._v(" "),_vm._m(5)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Cash withdrawal prompt")])],1)],1),_vm._v(" "),_vm._m(6),_vm._v(" "),_c('td'),_vm._v(" "),_c('td')])]),_vm._v(" "),_c('div',{staticClass:"transparent-base64 loading-js loading-portion-content"})])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"login","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"promotions","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyPhone","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyBankingData","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"deposit","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyAccountName","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"withdrawal","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-content u-subscribe" }, [
+      _c("div", { staticClass: "mobile-wrap" }, [
+        _c(
+          "div",
+          [
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("Mobile number:")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              { staticClass: "js-show-phone" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("186*******2")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn-link",
+                attrs: { href: "/ucenter/security/phone" }
+              },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("modification")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "js-verify-notation",
+            attrs: { id: "verifyPhoneForm", novalidate: "novalidate" }
+          },
+          [
+            _c("div", { staticClass: "form-inline" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn-resend pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("obtain SMS verification code")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  id: "captcha",
+                  name: "captcha",
+                  type: "text",
+                  maxlength: "6",
+                  placeholder: "请输入短信验证码"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn-submit pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("confirm at once")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "error-msg" })
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _vm._v(
+                          "Tips: Please enter the SMS verification code to open the SMS subscription function."
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "js-table-subscribe table table-bordered loading-portion"
+        },
+        [
+          _c("thead", [
+            _c("tr", [
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Login prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Offer added")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Contact phone modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Bank data modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(3)
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Recharge prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Name modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(5)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Cash withdrawal prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "transparent-base64 loading-js loading-portion-content"
+          })
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "login", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "promotions", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyPhone", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyBankingData", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "deposit", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyAccountName", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "withdrawal", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44178,9 +48941,531 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-content u-subscribe"},[_c('div',{staticClass:"mobile-wrap"},[_c('div',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Mobile number:")])],1),_vm._v(" "),_c('span',{staticClass:"js-show-phone"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("186*******2")])],1)],1),_vm._v(" "),_c('a',{staticClass:"btn-link",attrs:{"href":"/ucenter/security/phone"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("modification")])],1)],1)],1),_vm._v(" "),_c('form',{staticClass:"js-verify-notation",attrs:{"id":"verifyPhoneForm","novalidate":"novalidate"}},[_c('div',{staticClass:"form-inline"},[_c('a',{staticClass:"btn-resend pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("obtain SMS verification code")])],1)],1),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"id":"captcha","name":"captcha","type":"text","maxlength":"6","placeholder":"请输入短信验证码"}}),_vm._v(" "),_c('a',{staticClass:"btn-submit pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("confirm at once")])],1)],1),_vm._v(" "),_c('span',{staticClass:"error-msg"})]),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Tips: Please enter the SMS verification code to open the SMS subscription function.")])],1)],1)])]),_vm._v(" "),_c('table',{staticClass:"js-table-subscribe table table-bordered loading-portion"},[_c('thead',[_c('tr',[_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1)])]),_vm._v(" "),_c('tbody',[_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Login prompt")])],1)],1),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Offer added")])],1)],1),_vm._v(" "),_vm._m(1)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Contact phone modification")])],1)],1),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Bank data modification")])],1)],1),_vm._v(" "),_vm._m(3)]),_vm._v(" "),_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recharge prompt")])],1)],1),_vm._v(" "),_vm._m(4),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Name modification")])],1)],1),_vm._v(" "),_vm._m(5)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Cash withdrawal prompt")])],1)],1),_vm._v(" "),_vm._m(6),_vm._v(" "),_c('td'),_vm._v(" "),_c('td')])]),_vm._v(" "),_c('div',{staticClass:"transparent-base64 loading-js loading-portion-content"})])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"login","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"promotions","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyPhone","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyBankingData","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"deposit","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyAccountName","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"withdrawal","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-content u-subscribe" }, [
+      _c("div", { staticClass: "mobile-wrap" }, [
+        _c(
+          "div",
+          [
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("Mobile number:")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              { staticClass: "js-show-phone" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("186*******2")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn-link",
+                attrs: { href: "/ucenter/security/phone" }
+              },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("modification")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "js-verify-notation",
+            attrs: { id: "verifyPhoneForm", novalidate: "novalidate" }
+          },
+          [
+            _c("div", { staticClass: "form-inline" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn-resend pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("obtain SMS verification code")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  id: "captcha",
+                  name: "captcha",
+                  type: "text",
+                  maxlength: "6",
+                  placeholder: "请输入短信验证码"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn-submit pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("confirm at once")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "error-msg" })
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _vm._v(
+                          "Tips: Please enter the SMS verification code to open the SMS subscription function."
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "js-table-subscribe table table-bordered loading-portion"
+        },
+        [
+          _c("thead", [
+            _c("tr", [
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Login prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Offer added")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Contact phone modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Bank data modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(3)
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Recharge prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Name modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(5)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Cash withdrawal prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "transparent-base64 loading-js loading-portion-content"
+          })
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "login", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "promotions", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyPhone", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyBankingData", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "deposit", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyAccountName", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "withdrawal", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44196,9 +49481,531 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-content u-subscribe"},[_c('div',{staticClass:"mobile-wrap"},[_c('div',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Mobile number:")])],1),_vm._v(" "),_c('span',{staticClass:"js-show-phone"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("186*******2")])],1)],1),_vm._v(" "),_c('a',{staticClass:"btn-link",attrs:{"href":"/ucenter/security/phone"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("modification")])],1)],1)],1),_vm._v(" "),_c('form',{staticClass:"js-verify-notation",attrs:{"id":"verifyPhoneForm","novalidate":"novalidate"}},[_c('div',{staticClass:"form-inline"},[_c('a',{staticClass:"btn-resend pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("obtain SMS verification code")])],1)],1),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"id":"captcha","name":"captcha","type":"text","maxlength":"6","placeholder":"请输入短信验证码"}}),_vm._v(" "),_c('a',{staticClass:"btn-submit pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("confirm at once")])],1)],1),_vm._v(" "),_c('span',{staticClass:"error-msg"})]),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Tips: Please enter the SMS verification code to open the SMS subscription function.")])],1)],1)])]),_vm._v(" "),_c('table',{staticClass:"js-table-subscribe table table-bordered loading-portion"},[_c('thead',[_c('tr',[_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1)])]),_vm._v(" "),_c('tbody',[_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Login prompt")])],1)],1),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Offer added")])],1)],1),_vm._v(" "),_vm._m(1)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Contact phone modification")])],1)],1),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Bank data modification")])],1)],1),_vm._v(" "),_vm._m(3)]),_vm._v(" "),_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recharge prompt")])],1)],1),_vm._v(" "),_vm._m(4),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Name modification")])],1)],1),_vm._v(" "),_vm._m(5)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Cash withdrawal prompt")])],1)],1),_vm._v(" "),_vm._m(6),_vm._v(" "),_c('td'),_vm._v(" "),_c('td')])]),_vm._v(" "),_c('div',{staticClass:"transparent-base64 loading-js loading-portion-content"})])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"login","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"promotions","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyPhone","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyBankingData","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"deposit","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyAccountName","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"withdrawal","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-content u-subscribe" }, [
+      _c("div", { staticClass: "mobile-wrap" }, [
+        _c(
+          "div",
+          [
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("Mobile number:")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              { staticClass: "js-show-phone" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("186*******2")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn-link",
+                attrs: { href: "/ucenter/security/phone" }
+              },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("modification")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "js-verify-notation",
+            attrs: { id: "verifyPhoneForm", novalidate: "novalidate" }
+          },
+          [
+            _c("div", { staticClass: "form-inline" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn-resend pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("obtain SMS verification code")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  id: "captcha",
+                  name: "captcha",
+                  type: "text",
+                  maxlength: "6",
+                  placeholder: "请输入短信验证码"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn-submit pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("confirm at once")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "error-msg" })
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _vm._v(
+                          "Tips: Please enter the SMS verification code to open the SMS subscription function."
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "js-table-subscribe table table-bordered loading-portion"
+        },
+        [
+          _c("thead", [
+            _c("tr", [
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Login prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Offer added")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Contact phone modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Bank data modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(3)
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Recharge prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Name modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(5)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Cash withdrawal prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "transparent-base64 loading-js loading-portion-content"
+          })
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "login", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "promotions", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyPhone", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyBankingData", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "deposit", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyAccountName", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "withdrawal", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44214,9 +50021,531 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-content u-subscribe"},[_c('div',{staticClass:"mobile-wrap"},[_c('div',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Mobile number:")])],1),_vm._v(" "),_c('span',{staticClass:"js-show-phone"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("186*******2")])],1)],1),_vm._v(" "),_c('a',{staticClass:"btn-link",attrs:{"href":"/ucenter/security/phone"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("modification")])],1)],1)],1),_vm._v(" "),_c('form',{staticClass:"js-verify-notation",attrs:{"id":"verifyPhoneForm","novalidate":"novalidate"}},[_c('div',{staticClass:"form-inline"},[_c('a',{staticClass:"btn-resend pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("obtain SMS verification code")])],1)],1),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"id":"captcha","name":"captcha","type":"text","maxlength":"6","placeholder":"请输入短信验证码"}}),_vm._v(" "),_c('a',{staticClass:"btn-submit pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("confirm at once")])],1)],1),_vm._v(" "),_c('span',{staticClass:"error-msg"})]),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Tips: Please enter the SMS verification code to open the SMS subscription function.")])],1)],1)])]),_vm._v(" "),_c('table',{staticClass:"js-table-subscribe table table-bordered loading-portion"},[_c('thead',[_c('tr',[_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1)])]),_vm._v(" "),_c('tbody',[_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Login prompt")])],1)],1),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Offer added")])],1)],1),_vm._v(" "),_vm._m(1)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Contact phone modification")])],1)],1),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Bank data modification")])],1)],1),_vm._v(" "),_vm._m(3)]),_vm._v(" "),_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recharge prompt")])],1)],1),_vm._v(" "),_vm._m(4),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Name modification")])],1)],1),_vm._v(" "),_vm._m(5)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Cash withdrawal prompt")])],1)],1),_vm._v(" "),_vm._m(6),_vm._v(" "),_c('td'),_vm._v(" "),_c('td')])]),_vm._v(" "),_c('div',{staticClass:"transparent-base64 loading-js loading-portion-content"})])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"login","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"promotions","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyPhone","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyBankingData","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"deposit","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyAccountName","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"withdrawal","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-content u-subscribe" }, [
+      _c("div", { staticClass: "mobile-wrap" }, [
+        _c(
+          "div",
+          [
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("Mobile number:")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              { staticClass: "js-show-phone" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("186*******2")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn-link",
+                attrs: { href: "/ucenter/security/phone" }
+              },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("modification")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "js-verify-notation",
+            attrs: { id: "verifyPhoneForm", novalidate: "novalidate" }
+          },
+          [
+            _c("div", { staticClass: "form-inline" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn-resend pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("obtain SMS verification code")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  id: "captcha",
+                  name: "captcha",
+                  type: "text",
+                  maxlength: "6",
+                  placeholder: "请输入短信验证码"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn-submit pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("confirm at once")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "error-msg" })
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _vm._v(
+                          "Tips: Please enter the SMS verification code to open the SMS subscription function."
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "js-table-subscribe table table-bordered loading-portion"
+        },
+        [
+          _c("thead", [
+            _c("tr", [
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Login prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Offer added")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Contact phone modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Bank data modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(3)
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Recharge prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Name modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(5)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Cash withdrawal prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "transparent-base64 loading-js loading-portion-content"
+          })
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "login", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "promotions", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyPhone", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyBankingData", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "deposit", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyAccountName", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "withdrawal", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44232,9 +50561,50 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"wrapper container-whitelabel"},[_c('asides'),_vm._v(" "),_c('div',{staticClass:"main-panel"},[_c('navbars'),_vm._v(" "),_c('div',{staticClass:"content"},[_c('hr'),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-12 p-0 home-wrap"},[_c('navbarindex'),_vm._v(" "),_c('hr')],1)])]),_vm._v(" "),_c('alertsidebar'),_vm._v(" "),_c('footers')],1)],1)])}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "wrapper container-whitelabel" },
+      [
+        _c("asides"),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "main-panel" },
+          [
+            _c("navbars"),
+            _vm._v(" "),
+            _c("div", { staticClass: "content" }, [
+              _c("hr"),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-12 p-0 home-wrap" },
+                  [_c("navbarindex"), _vm._v(" "), _c("hr")],
+                  1
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("alertsidebar"),
+            _vm._v(" "),
+            _c("footers")
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
+}
 var staticRenderFns = []
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44250,9 +50620,531 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-content u-subscribe"},[_c('div',{staticClass:"mobile-wrap"},[_c('div',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Mobile number:")])],1),_vm._v(" "),_c('span',{staticClass:"js-show-phone"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("186*******2")])],1)],1),_vm._v(" "),_c('a',{staticClass:"btn-link",attrs:{"href":"/ucenter/security/phone"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("modification")])],1)],1)],1),_vm._v(" "),_c('form',{staticClass:"js-verify-notation",attrs:{"id":"verifyPhoneForm","novalidate":"novalidate"}},[_c('div',{staticClass:"form-inline"},[_c('a',{staticClass:"btn-resend pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("obtain SMS verification code")])],1)],1),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"id":"captcha","name":"captcha","type":"text","maxlength":"6","placeholder":"请输入短信验证码"}}),_vm._v(" "),_c('a',{staticClass:"btn-submit pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("confirm at once")])],1)],1),_vm._v(" "),_c('span',{staticClass:"error-msg"})]),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Tips: Please enter the SMS verification code to open the SMS subscription function.")])],1)],1)])]),_vm._v(" "),_c('table',{staticClass:"js-table-subscribe table table-bordered loading-portion"},[_c('thead',[_c('tr',[_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1)])]),_vm._v(" "),_c('tbody',[_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Login prompt")])],1)],1),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Offer added")])],1)],1),_vm._v(" "),_vm._m(1)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Contact phone modification")])],1)],1),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Bank data modification")])],1)],1),_vm._v(" "),_vm._m(3)]),_vm._v(" "),_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recharge prompt")])],1)],1),_vm._v(" "),_vm._m(4),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Name modification")])],1)],1),_vm._v(" "),_vm._m(5)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Cash withdrawal prompt")])],1)],1),_vm._v(" "),_vm._m(6),_vm._v(" "),_c('td'),_vm._v(" "),_c('td')])]),_vm._v(" "),_c('div',{staticClass:"transparent-base64 loading-js loading-portion-content"})])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"login","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"promotions","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyPhone","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyBankingData","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"deposit","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyAccountName","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"withdrawal","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-content u-subscribe" }, [
+      _c("div", { staticClass: "mobile-wrap" }, [
+        _c(
+          "div",
+          [
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("Mobile number:")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              { staticClass: "js-show-phone" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("186*******2")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn-link",
+                attrs: { href: "/ucenter/security/phone" }
+              },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("modification")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "js-verify-notation",
+            attrs: { id: "verifyPhoneForm", novalidate: "novalidate" }
+          },
+          [
+            _c("div", { staticClass: "form-inline" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn-resend pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("obtain SMS verification code")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  id: "captcha",
+                  name: "captcha",
+                  type: "text",
+                  maxlength: "6",
+                  placeholder: "请输入短信验证码"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn-submit pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("confirm at once")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "error-msg" })
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _vm._v(
+                          "Tips: Please enter the SMS verification code to open the SMS subscription function."
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "js-table-subscribe table table-bordered loading-portion"
+        },
+        [
+          _c("thead", [
+            _c("tr", [
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Login prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Offer added")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Contact phone modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Bank data modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(3)
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Recharge prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Name modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(5)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Cash withdrawal prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "transparent-base64 loading-js loading-portion-content"
+          })
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "login", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "promotions", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyPhone", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyBankingData", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "deposit", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyAccountName", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "withdrawal", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44268,9 +51160,282 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-letter u-inner"},[_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading"},[_c('input',{staticClass:"ctr-male btn-select-all",attrs:{"type":"checkbox","id":"male"}}),_vm._v(" "),_c('label',{staticClass:"btn-select-all",attrs:{"for":"male","data-check":"true"}},[_vm._v("全选")]),_vm._v(" "),_c('div',{staticClass:"dropdown",staticStyle:{"display":"inline-block"}},[_c('button',{staticClass:"btn btn-default dropdown-toggle",attrs:{"type":"button","id":"dropdownMenu1","onclick":"_hmt.push(['_trackEvent','AG8','我的消息','消息状态','消息状态']);","data-toggle":"dropdown","aria-haspopup":"true","aria-expanded":"true"}},[_vm._v("\n              消息状态\n              "),_c('span',{staticClass:"caret"})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu",attrs:{"aria-labelledby":"dropdownMenu1"}},[_c('li',[_c('a',{attrs:{"href":"#","data-href":"ALL"}},[_vm._v("全部")])]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"#","data-href":"READ"}},[_vm._v("已读")])]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"#","data-href":"UNREAD"}},[_vm._v("未读")])])])]),_vm._v(" "),_c('a',{staticClass:"btn btn-default btn-cancel",attrs:{"onclick":"_hmt.push(['_trackEvent','AG8','我的消息','标为已读','标为已读']);"}},[_vm._v("标为已读")]),_vm._v(" "),_c('a',{staticClass:"btn btn-default btn-del",attrs:{"onclick":"_hmt.push(['_trackEvent','AG8','我的消息','删除所选','删除所选']);"}},[_vm._v("删除所选")])]),_vm._v(" "),_c('ul',{staticClass:"nav nav-tabs yh-tabs"},[_c('li',{staticClass:"active"},[_c('a',{attrs:{"data-toggle":"tab","aria-expanded":"false","data-value":"0","onclick":"_hmt.push(['_trackEvent','AG8','我的消息','优惠通知','优惠通知']);"}},[_vm._v("优惠通知")]),_vm._v(" "),_c('em',{staticClass:"badge"},[_vm._v("2")])]),_vm._v(" "),_c('li',{},[_c('a',{attrs:{"data-toggle":"tab","aria-expanded":"true","data-value":"1","onclick":"_hmt.push(['_trackEvent','AG8','我的消息','系统公告','系统公告']);"}},[_vm._v("系统公告")])])]),_vm._v(" "),_c('ul',{staticClass:"list-group letter-list",attrs:{"data-init":"1"}},[_c('li',[_c('input',{staticClass:"form-control",attrs:{"type":"checkbox","value":"132922"}}),_vm._v(" "),_c('a',{staticClass:"trun-right",attrs:{"href":"/ucenter/letter/details/index.html?id=132922&msgType=0"}},[_c('h3',{staticClass:"not-read"},[_vm._v("\n                【优惠通知】亚游电台第九期大奖活动！\n                "),_c('span',{staticClass:"s-right"},[_vm._v("2019-04-19 11:28")])]),_vm._v(" "),_c('p',[_vm._v("\n                亚游电台第九期，全新的互动奖励，彩券、刮刮卡、礼金邀您来抢！更多详情\n                点我\n              ")])])]),_vm._v(" "),_c('li',[_c('input',{staticClass:"form-control",attrs:{"type":"checkbox","value":"125129"}}),_vm._v(" "),_c('a',{staticClass:"trun-right",attrs:{"href":"/ucenter/letter/details/index.html?id=125129&msgType=0"}},[_c('h3',{staticClass:"not-read"},[_vm._v("\n                PP玩转锦标赛，红包领不停\n                "),_c('span',{staticClass:"s-right"},[_vm._v("2019-04-12 17:35")])]),_vm._v(" "),_c('p',[_vm._v("PP电子玩转锦标赛，红包领不停！每周四18:00至周一18:00，投注指定PP电子游戏，即有机会赢取奖池！更有机会领取红...")])])])])]),_vm._v(" "),_c('nav',{staticClass:"d-flex justify-content-center",attrs:{"aria-label":"..."}},[_c('ul',{staticClass:"pagination"},[_c('li',{staticClass:"page-item disabled"},[_c('a',{staticClass:"page-link",attrs:{"href":"#","tabindex":"-1"}},[_vm._v("Previous")])]),_vm._v(" "),_c('li',{staticClass:"page-item"},[_c('a',{staticClass:"page-link",attrs:{"href":"#"}},[_vm._v("1")])]),_vm._v(" "),_c('li',{staticClass:"page-item active"},[_c('a',{staticClass:"page-link",attrs:{"href":"#"}},[_vm._v("\n              2\n              "),_c('span',{staticClass:"sr-only"},[_vm._v("(current)")])])]),_vm._v(" "),_c('li',{staticClass:"page-item"},[_c('a',{staticClass:"page-link",attrs:{"href":"#"}},[_vm._v("3")])]),_vm._v(" "),_c('li',{staticClass:"page-item"},[_c('a',{staticClass:"page-link",attrs:{"href":"#"}},[_vm._v("Next")])])])])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "u-letter u-inner" }, [
+        _c("div", { staticClass: "panel panel-default" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _c("input", {
+              staticClass: "ctr-male btn-select-all",
+              attrs: { type: "checkbox", id: "male" }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "btn-select-all",
+                attrs: { for: "male", "data-check": "true" }
+              },
+              [_vm._v("全选")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dropdown",
+                staticStyle: { display: "inline-block" }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default dropdown-toggle",
+                    attrs: {
+                      type: "button",
+                      id: "dropdownMenu1",
+                      onclick:
+                        "_hmt.push(['_trackEvent','AG8','我的消息','消息状态','消息状态']);",
+                      "data-toggle": "dropdown",
+                      "aria-haspopup": "true",
+                      "aria-expanded": "true"
+                    }
+                  },
+                  [
+                    _vm._v("\n              消息状态\n              "),
+                    _c("span", { staticClass: "caret" })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  {
+                    staticClass: "dropdown-menu",
+                    attrs: { "aria-labelledby": "dropdownMenu1" }
+                  },
+                  [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#", "data-href": "ALL" } }, [
+                        _vm._v("全部")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "#", "data-href": "READ" } }, [
+                        _vm._v("已读")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c("a", { attrs: { href: "#", "data-href": "UNREAD" } }, [
+                        _vm._v("未读")
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-default btn-cancel",
+                attrs: {
+                  onclick:
+                    "_hmt.push(['_trackEvent','AG8','我的消息','标为已读','标为已读']);"
+                }
+              },
+              [_vm._v("标为已读")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-default btn-del",
+                attrs: {
+                  onclick:
+                    "_hmt.push(['_trackEvent','AG8','我的消息','删除所选','删除所选']);"
+                }
+              },
+              [_vm._v("删除所选")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "nav nav-tabs yh-tabs" }, [
+            _c("li", { staticClass: "active" }, [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    "data-toggle": "tab",
+                    "aria-expanded": "false",
+                    "data-value": "0",
+                    onclick:
+                      "_hmt.push(['_trackEvent','AG8','我的消息','优惠通知','优惠通知']);"
+                  }
+                },
+                [_vm._v("优惠通知")]
+              ),
+              _vm._v(" "),
+              _c("em", { staticClass: "badge" }, [_vm._v("2")])
+            ]),
+            _vm._v(" "),
+            _c("li", {}, [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    "data-toggle": "tab",
+                    "aria-expanded": "true",
+                    "data-value": "1",
+                    onclick:
+                      "_hmt.push(['_trackEvent','AG8','我的消息','系统公告','系统公告']);"
+                  }
+                },
+                [_vm._v("系统公告")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            {
+              staticClass: "list-group letter-list",
+              attrs: { "data-init": "1" }
+            },
+            [
+              _c("li", [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: { type: "checkbox", value: "132922" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "trun-right",
+                    attrs: {
+                      href:
+                        "/ucenter/letter/details/index.html?id=132922&msgType=0"
+                    }
+                  },
+                  [
+                    _c("h3", { staticClass: "not-read" }, [
+                      _vm._v(
+                        "\n                【优惠通知】亚游电台第九期大奖活动！\n                "
+                      ),
+                      _c("span", { staticClass: "s-right" }, [
+                        _vm._v("2019-04-19 11:28")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                亚游电台第九期，全新的互动奖励，彩券、刮刮卡、礼金邀您来抢！更多详情\n                点我\n              "
+                      )
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: { type: "checkbox", value: "125129" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "trun-right",
+                    attrs: {
+                      href:
+                        "/ucenter/letter/details/index.html?id=125129&msgType=0"
+                    }
+                  },
+                  [
+                    _c("h3", { staticClass: "not-read" }, [
+                      _vm._v(
+                        "\n                PP玩转锦标赛，红包领不停\n                "
+                      ),
+                      _c("span", { staticClass: "s-right" }, [
+                        _vm._v("2019-04-12 17:35")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "PP电子玩转锦标赛，红包领不停！每周四18:00至周一18:00，投注指定PP电子游戏，即有机会赢取奖池！更有机会领取红..."
+                      )
+                    ])
+                  ]
+                )
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "nav",
+          {
+            staticClass: "d-flex justify-content-center",
+            attrs: { "aria-label": "..." }
+          },
+          [
+            _c("ul", { staticClass: "pagination" }, [
+              _c("li", { staticClass: "page-item disabled" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#", tabindex: "-1" }
+                  },
+                  [_vm._v("Previous")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "page-item" }, [
+                _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                  _vm._v("1")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "page-item active" }, [
+                _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                  _vm._v("\n              2\n              "),
+                  _c("span", { staticClass: "sr-only" }, [_vm._v("(current)")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "page-item" }, [
+                _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                  _vm._v("3")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "page-item" }, [
+                _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                  _vm._v("Next")
+                ])
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44286,9 +51451,636 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-content u-update-phone"},[_c('div',{staticClass:"u-task"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"sections"},[_c('div',{staticClass:"section-1 section-area"},[_c('div',{staticClass:"content-details"},[_c('form',{attrs:{"id":"verifyPhoneForm","novalidate":"novalidate"}},[_c('div',{staticClass:"col-2"},[_c('div',{staticClass:"col label-item"},[_c('label',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Original mobile number:")])],1)],1)]),_vm._v(" "),_c('div',{staticClass:"col form-item"},[_c('div',{staticClass:"form-box"},[_c('div',{staticClass:"forms-input"},[_c('span',{staticClass:"phone-prefixes"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("186")])],1)],1),_vm._v(" "),_vm._m(1),_vm._v(" "),_vm._m(2),_vm._v(" "),_vm._m(3),_vm._v(" "),_vm._m(4),_vm._v(" "),_vm._m(5),_vm._v(" "),_vm._m(6),_vm._v(" "),_vm._m(7),_vm._v(" "),_c('span',{staticClass:"phone-suffix"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("2")])],1)],1)])])])]),_vm._v(" "),_vm._m(8),_vm._v(" "),_c('input',{attrs:{"id":"originalPhone","name":"originalPhone","type":"hidden","value":""}}),_vm._v(" "),_c('div',{staticClass:"col-2"},[_c('div',{staticClass:"col label-item"},[_c('label',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Mobile phone verification code:")])],1)],1)]),_vm._v(" "),_c('div',{staticClass:"col form-item"},[_c('div',{staticClass:"form-box security large-input"},[_c('i'),_vm._v(" "),_vm._m(9),_vm._v(" "),_c('div',{staticClass:"controls"},[_c('a',{staticClass:"send-verification btn-resend"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Send the verification code")])],1)],1),_vm._v(" "),_c('a',{staticClass:"sent hidden"},[_vm._v("发送成功")])])])])]),_vm._v(" "),_vm._m(10),_vm._v(" "),_c('div',{staticClass:"col-2"},[_c('div',{staticClass:"col label-item"}),_vm._v(" "),_c('div',{staticClass:"col form-item"},[_c('div',{staticClass:"form-box submit"},[_c('a',{staticClass:"invalid js-verify-submit"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Next step")])],1)],1)]),_vm._v(" "),_c('p',{staticClass:"text-center"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Have you encountered a problem?")]),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Contact")])],1),_vm._v(" "),_c('a',{staticClass:"as-cs",attrs:{"href":"javascript:;"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("online customer service")])],1)],1)],1)])])]),_vm._v(" "),_vm._m(11)])]),_vm._v(" "),_vm._m(12),_vm._v(" "),_vm._m(13)])])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"top-section"},[_c('div',{staticClass:"progress-details"},[_c('div',{staticClass:"progress-bg"},[_c('div',{staticClass:"progress-section"})]),_vm._v(" "),_c('div',{staticClass:"arrow"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',[_c('input',{staticClass:"form-input num first-num",attrs:{"type":"text","maxlength":"1"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',[_c('input',{staticClass:"form-input num",attrs:{"type":"text","disabled":"disabled","maxlength":"1"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',[_c('input',{staticClass:"form-input num",attrs:{"type":"text","disabled":"disabled","maxlength":"1"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',[_c('input',{staticClass:"form-input num",attrs:{"type":"text","disabled":"disabled","maxlength":"1"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',[_c('input',{staticClass:"form-input num",attrs:{"type":"text","disabled":"disabled","maxlength":"1"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',[_c('input',{staticClass:"form-input num",attrs:{"type":"text","disabled":"disabled","maxlength":"1"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',[_c('input',{staticClass:"form-input num",attrs:{"type":"text","disabled":"disabled","maxlength":"1"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"col-2"},[_c('div',{staticClass:"col label-item"},[_c('label')]),_vm._v(" "),_c('div',{staticClass:"col form-item"},[_c('div',{staticClass:"reminder"},[_c('span',{staticClass:"success js-phone-msg"})])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"forms-input"},[_c('input',{attrs:{"type":"text","maxlength":"7","id":"code","name":"code","placeholder":"请输入6位数验证码"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"col-2"},[_c('div',{staticClass:"col label-item"},[_c('label')]),_vm._v(" "),_c('div',{staticClass:"col form-item"},[_c('div',{staticClass:"reminder"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"haveProgress",staticStyle:{"display":"none"}},[_c('p',{staticClass:"text-center"},[_vm._v("\n                我的手机号码：\n                "),_c('span',{staticClass:"js-show-phone"})]),_vm._v(" "),_c('p',{staticClass:"js-tips text-center text-orange"},[_vm._v("\n                您存在未审批的电话修改申请！请联系您的\n                "),_c('a',{staticClass:"as-cs pointer-link",staticStyle:{"color":"#337ab7"}},[_vm._v("在线客服")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"section-2 section-area",staticStyle:{"display":"none"}},[_c('div',{staticClass:"content-details"},[_c('form',{attrs:{"id":"updatePhoneForm","novalidate":"novalidate"}},[_c('div',{staticClass:"col-2"},[_c('div',{staticClass:"col label-item"},[_c('label',[_vm._v("新手机号码：")])]),_vm._v(" "),_c('div',{staticClass:"col form-item"},[_c('div',{staticClass:"form-box large-input"},[_c('i'),_vm._v(" "),_c('div',{staticClass:"forms-input"},[_c('input',{attrs:{"id":"newPhone","name":"phone","type":"text","maxlength":"11","placeholder":"请输入新手机号码"}})])])])]),_vm._v(" "),_c('div',{staticClass:"col-2"},[_c('div',{staticClass:"col label-item"},[_c('label')]),_vm._v(" "),_c('div',{staticClass:"col form-item"},[_c('div',{staticClass:"reminder"})])]),_vm._v(" "),_c('div',{staticClass:"col-2"},[_c('div',{staticClass:"col label-item"},[_c('label',[_vm._v("手机验证码：")])]),_vm._v(" "),_c('div',{staticClass:"col form-item"},[_c('div',{staticClass:"form-box security large-input"},[_c('i'),_vm._v(" "),_c('div',{staticClass:"forms-input"},[_c('input',{attrs:{"type":"text","name":"code","maxlength":"7","placeholder":"请输入6位数验证码"}})]),_vm._v(" "),_c('div',{staticClass:"controls"},[_c('a',{staticClass:"send-verification btn-resend"},[_vm._v("发送验证码")]),_vm._v(" "),_c('a',{staticClass:"sent hidden"},[_vm._v("发送成功")])])])])]),_vm._v(" "),_c('div',{staticClass:"col-2"},[_c('div',{staticClass:"col label-item"},[_c('label')]),_vm._v(" "),_c('div',{staticClass:"col form-item"},[_c('div',{staticClass:"reminder"})])]),_vm._v(" "),_c('div',{staticClass:"col-2"},[_c('div',{staticClass:"col label-item"}),_vm._v(" "),_c('div',{staticClass:"col form-item"},[_c('div',{staticClass:"form-box submit"},[_c('a',{staticClass:"invalid js-verify-submit"},[_vm._v("修改")])]),_vm._v(" "),_c('p',{staticClass:"text-center"},[_vm._v("\n                    遇到问题了吗？联系\n                    "),_c('a',{staticClass:"as-cs",attrs:{"href":"javascript:;"}},[_vm._v("在线客服")])])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"section-3 section-area",staticStyle:{"display":"none"}},[_c('div',{staticClass:"content-details"},[_c('div',{staticClass:"col-2"},[_c('div',{staticClass:"col form-item"},[_c('div',{staticClass:"form-box large-input image-cont"},[_c('img',{attrs:{"src":"/assets/images/user/u_task/complete.png"}})])])]),_vm._v(" "),_c('div',{staticClass:"col-2"},[_c('div',{staticClass:"label-item"},[_c('label',[_vm._v("新手机号码：")])]),_vm._v(" "),_c('div',{staticClass:"form-item"},[_c('div',{staticClass:"form-box large-input"},[_c('div',{staticClass:"forms-input"},[_c('p',[_vm._v("1** **** ****")])])])])]),_vm._v(" "),_c('div',{staticClass:"col-2"},[_c('div',{staticClass:"col form-item"},[_c('div',{staticClass:"form-box submit"},[_c('a',{attrs:{"href":"/ucenter/account"}},[_vm._v("确定")])])])])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-content u-update-phone" }, [
+      _c("div", { staticClass: "u-task" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "sections" }, [
+          _c("div", { staticClass: "section-1 section-area" }, [
+            _c("div", { staticClass: "content-details" }, [
+              _c(
+                "form",
+                { attrs: { id: "verifyPhoneForm", novalidate: "novalidate" } },
+                [
+                  _c("div", { staticClass: "col-2" }, [
+                    _c("div", { staticClass: "col label-item" }, [
+                      _c(
+                        "label",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("Original mobile number:")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col form-item" }, [
+                      _c("div", { staticClass: "form-box" }, [
+                        _c("div", { staticClass: "forms-input" }, [
+                          _c(
+                            "span",
+                            { staticClass: "phone-prefixes" },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("186")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _vm._m(4),
+                          _vm._v(" "),
+                          _vm._m(5),
+                          _vm._v(" "),
+                          _vm._m(6),
+                          _vm._v(" "),
+                          _vm._m(7),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            { staticClass: "phone-suffix" },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("2")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(8),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      id: "originalPhone",
+                      name: "originalPhone",
+                      type: "hidden",
+                      value: ""
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-2" }, [
+                    _c("div", { staticClass: "col label-item" }, [
+                      _c(
+                        "label",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("Mobile phone verification code:")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col form-item" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-box security large-input" },
+                        [
+                          _c("i"),
+                          _vm._v(" "),
+                          _vm._m(9),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "controls" }, [
+                            _c(
+                              "a",
+                              { staticClass: "send-verification btn-resend" },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [
+                                    _c(
+                                      "font",
+                                      {
+                                        staticStyle: {
+                                          "vertical-align": "inherit"
+                                        }
+                                      },
+                                      [_vm._v("Send the verification code")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("a", { staticClass: "sent hidden" }, [
+                              _vm._v("发送成功")
+                            ])
+                          ])
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(10),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-2" }, [
+                    _c("div", { staticClass: "col label-item" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col form-item" }, [
+                      _c("div", { staticClass: "form-box submit" }, [
+                        _c(
+                          "a",
+                          { staticClass: "invalid js-verify-submit" },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("Next step")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        { staticClass: "text-center" },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("Have you encountered a problem?")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("Contact")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "as-cs",
+                              attrs: { href: "javascript:;" }
+                            },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("online customer service")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(11)
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(12),
+          _vm._v(" "),
+          _vm._m(13)
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "top-section" }, [
+      _c("div", { staticClass: "progress-details" }, [
+        _c("div", { staticClass: "progress-bg" }, [
+          _c("div", { staticClass: "progress-section" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "arrow" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("input", {
+        staticClass: "form-input num first-num",
+        attrs: { type: "text", maxlength: "1" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("input", {
+        staticClass: "form-input num",
+        attrs: { type: "text", disabled: "disabled", maxlength: "1" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("input", {
+        staticClass: "form-input num",
+        attrs: { type: "text", disabled: "disabled", maxlength: "1" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("input", {
+        staticClass: "form-input num",
+        attrs: { type: "text", disabled: "disabled", maxlength: "1" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("input", {
+        staticClass: "form-input num",
+        attrs: { type: "text", disabled: "disabled", maxlength: "1" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("input", {
+        staticClass: "form-input num",
+        attrs: { type: "text", disabled: "disabled", maxlength: "1" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("input", {
+        staticClass: "form-input num",
+        attrs: { type: "text", disabled: "disabled", maxlength: "1" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-2" }, [
+      _c("div", { staticClass: "col label-item" }, [_c("label")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col form-item" }, [
+        _c("div", { staticClass: "reminder" }, [
+          _c("span", { staticClass: "success js-phone-msg" })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "forms-input" }, [
+      _c("input", {
+        attrs: {
+          type: "text",
+          maxlength: "7",
+          id: "code",
+          name: "code",
+          placeholder: "请输入6位数验证码"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-2" }, [
+      _c("div", { staticClass: "col label-item" }, [_c("label")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col form-item" }, [
+        _c("div", { staticClass: "reminder" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      { staticClass: "haveProgress", staticStyle: { display: "none" } },
+      [
+        _c("p", { staticClass: "text-center" }, [
+          _vm._v("\n                我的手机号码：\n                "),
+          _c("span", { staticClass: "js-show-phone" })
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "js-tips text-center text-orange" }, [
+          _vm._v(
+            "\n                您存在未审批的电话修改申请！请联系您的\n                "
+          ),
+          _c(
+            "a",
+            {
+              staticClass: "as-cs pointer-link",
+              staticStyle: { color: "#337ab7" }
+            },
+            [_vm._v("在线客服")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "section-2 section-area",
+        staticStyle: { display: "none" }
+      },
+      [
+        _c("div", { staticClass: "content-details" }, [
+          _c(
+            "form",
+            { attrs: { id: "updatePhoneForm", novalidate: "novalidate" } },
+            [
+              _c("div", { staticClass: "col-2" }, [
+                _c("div", { staticClass: "col label-item" }, [
+                  _c("label", [_vm._v("新手机号码：")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col form-item" }, [
+                  _c("div", { staticClass: "form-box large-input" }, [
+                    _c("i"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "forms-input" }, [
+                      _c("input", {
+                        attrs: {
+                          id: "newPhone",
+                          name: "phone",
+                          type: "text",
+                          maxlength: "11",
+                          placeholder: "请输入新手机号码"
+                        }
+                      })
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-2" }, [
+                _c("div", { staticClass: "col label-item" }, [_c("label")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col form-item" }, [
+                  _c("div", { staticClass: "reminder" })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-2" }, [
+                _c("div", { staticClass: "col label-item" }, [
+                  _c("label", [_vm._v("手机验证码：")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col form-item" }, [
+                  _c("div", { staticClass: "form-box security large-input" }, [
+                    _c("i"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "forms-input" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "text",
+                          name: "code",
+                          maxlength: "7",
+                          placeholder: "请输入6位数验证码"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "controls" }, [
+                      _c("a", { staticClass: "send-verification btn-resend" }, [
+                        _vm._v("发送验证码")
+                      ]),
+                      _vm._v(" "),
+                      _c("a", { staticClass: "sent hidden" }, [
+                        _vm._v("发送成功")
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-2" }, [
+                _c("div", { staticClass: "col label-item" }, [_c("label")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col form-item" }, [
+                  _c("div", { staticClass: "reminder" })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-2" }, [
+                _c("div", { staticClass: "col label-item" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "col form-item" }, [
+                  _c("div", { staticClass: "form-box submit" }, [
+                    _c("a", { staticClass: "invalid js-verify-submit" }, [
+                      _vm._v("修改")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center" }, [
+                    _vm._v(
+                      "\n                    遇到问题了吗？联系\n                    "
+                    ),
+                    _c(
+                      "a",
+                      { staticClass: "as-cs", attrs: { href: "javascript:;" } },
+                      [_vm._v("在线客服")]
+                    )
+                  ])
+                ])
+              ])
+            ]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "section-3 section-area",
+        staticStyle: { display: "none" }
+      },
+      [
+        _c("div", { staticClass: "content-details" }, [
+          _c("div", { staticClass: "col-2" }, [
+            _c("div", { staticClass: "col form-item" }, [
+              _c("div", { staticClass: "form-box large-input image-cont" }, [
+                _c("img", {
+                  attrs: { src: "/assets/images/user/u_task/complete.png" }
+                })
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-2" }, [
+            _c("div", { staticClass: "label-item" }, [
+              _c("label", [_vm._v("新手机号码：")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-item" }, [
+              _c("div", { staticClass: "form-box large-input" }, [
+                _c("div", { staticClass: "forms-input" }, [
+                  _c("p", [_vm._v("1** **** ****")])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-2" }, [
+            _c("div", { staticClass: "col form-item" }, [
+              _c("div", { staticClass: "form-box submit" }, [
+                _c("a", { attrs: { href: "/ucenter/account" } }, [
+                  _vm._v("确定")
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44304,9 +52096,1795 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-content u-account"},[_c('div',{staticClass:"section-1 clearfix"},[_c('div',{staticClass:"pull-left info"},[_c('div',{staticClass:"media"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"media-body"},[_c('em',{attrs:{"id":"account-user-name"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Aghq186496")])],1)],1),_vm._v(" "),_c('span',{staticClass:"level-0",attrs:{"id":"account-user-level"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("New member")])],1)],1),_vm._v(" "),_c('small',{attrs:{"id":"account-before-login-date"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Last login:")])],1),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("2019-04-27 10:53:43")])],1)],1)])]),_vm._v(" "),_c('ul',{staticClass:"list-inline d-flex"},[_c('li',[_c('a',{attrs:{"href":"#","id":"phone-status"}},[_c('i',{staticClass:"icon-mobile"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Verify phone")])],1)],1)]),_vm._v(" "),_c('li',[_c('a',{staticClass:"pointer-link login-setting-js"},[_c('i',{staticClass:"icon-setting"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Login settings")])],1)],1)]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"/ucenter/bank/bankIndex"}},[_c('i',{staticClass:"icon-card"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Manage bank card")])],1)],1)])])]),_vm._v(" "),_c('div',{staticClass:"pull-left stats"},[_c('div',{staticClass:"canvas-wrap",attrs:{"data-result":"56"}},[_c('canvas',{attrs:{"id":"canvas","width":"70","height":"70"}}),_vm._v(" "),_c('span',{attrs:{"id":"procent"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0")])],1)],1)]),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Your weekly valid bet amount has exceeded")])],1),_vm._v(" "),_c('span',{attrs:{"id":"procent-value"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0")])],1)],1),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("users")])],1)],1),_vm._v(" "),_c('div',{staticClass:"pull-left balance"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("The total balance")])],1),_vm._v(" "),_c('span',{attrs:{"id":"eid_c_total_credit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("¥0.00")])],1)],1),_vm._v(" "),_c('a',{staticClass:"btn btn-sm btn-default",attrs:{"id":"refresh_total_credit","href":"javascript:;"}},[_c('i',{staticClass:"fa fa-refresh"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Refresh quota")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"pull-left two-btns"},[_c('a',{staticClass:"btn btn-deposit link-loding-gobut",attrs:{"href":"/ucenter/pay/payIndex"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Immediately recharge")])],1),_vm._v(" "),_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Deposit Now to")])],1)],1)],1),_vm._v(" "),_c('a',{staticClass:"btn link-loding-gobut",attrs:{"href":"/ucenter/withdraw/withdrawIndex"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("apply for withdrawal with")])],1),_vm._v(" "),_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Withdraw Now")])],1)],1)],1)])]),_vm._v(" "),_c('div',{staticClass:"section-2"},[_c('p',[_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("My member star rating")])],1)],1),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("(join the VIP ranks, enjoy the star courtesy, super privilege, let you enjoy the endless surprise offer)")])],1)],1),_vm._v(" "),_c('div',{staticClass:"unit-wrap clearfix"},[_c('div',{staticClass:"chart-wrap clearfix"},[_c('div',{staticClass:"btns rebate-switch-js"},[_c('a',{staticClass:"active pointer-link",attrs:{"data-game-kind":"VIDEO"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Live video video")])],1)],1),_vm._v(" "),_c('a',{staticClass:"pointer-link",attrs:{"data-game-kind":"SLOT"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("game")])],1)],1),_vm._v(" "),_c('a',{staticClass:"pointer-link",attrs:{"data-game-kind":"FISHING"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("fishing game")])],1)],1),_vm._v(" "),_c('a',{staticClass:"pointer-link",attrs:{"data-game-kind":"SPORT"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("sports game")])],1)],1)]),_vm._v(" "),_c('ul',{staticClass:"amount pull-left"},[_c('li',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("6000000")])],1)],1),_vm._v(" "),_c('li',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("3000000")])],1)],1),_vm._v(" "),_c('li',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("1000000")])],1)],1),_vm._v(" "),_c('li',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("500000")])],1)],1),_vm._v(" "),_c('li',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("100,000")])],1)],1),_vm._v(" "),_c('li',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Open an account and place a bet")])],1)],1)]),_vm._v(" "),_c('ul',{staticClass:"pull-left bars"},[_vm._m(1),_vm._v(" "),_c('li',[_c('em',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.60%")])],1)],1),_vm._v(" "),_c('span',{staticClass:"tip-message"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("can enjoy the wash code")])],1)],1),_vm._v(" "),_c('span',{staticClass:"bar null",staticStyle:{"height":"30px"}}),_vm._v(" "),_c('span',{staticClass:"level"},[_c('i',{staticClass:"crown crown-1"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("One star")])],1)],1)]),_vm._v(" "),_c('li',[_c('em',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.60%")])],1)],1),_vm._v(" "),_c('span',{staticClass:"tip-message"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("can enjoy the wash code")])],1)],1),_vm._v(" "),_c('span',{staticClass:"bar null",staticStyle:{"height":"60px"}}),_vm._v(" "),_c('span',{staticClass:"level"},[_c('i',{staticClass:"crown crown-2"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Two stars")])],1)],1)]),_vm._v(" "),_c('li',[_c('em',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.60%")])],1)],1),_vm._v(" "),_c('span',{staticClass:"tip-message"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("can enjoy the wash code")])],1)],1),_vm._v(" "),_c('span',{staticClass:"bar null",staticStyle:{"height":"90px"}}),_vm._v(" "),_c('span',{staticClass:"level"},[_c('i',{staticClass:"crown"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Three Star")])],1)],1)]),_vm._v(" "),_c('li',[_c('em',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.70%")])],1)],1),_vm._v(" "),_c('span',{staticClass:"tip-message"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("can enjoy the wash code")])],1)],1),_vm._v(" "),_c('span',{staticClass:"bar null",staticStyle:{"height":"120px"}}),_vm._v(" "),_c('span',{staticClass:"level"},[_c('i',{staticClass:"crown"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP4")])],1)],1)]),_vm._v(" "),_c('li',[_c('em',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.80%")])],1)],1),_vm._v(" "),_c('span',{staticClass:"tip-message"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("can enjoy the wash code")])],1)],1),_vm._v(" "),_c('span',{staticClass:"bar null",staticStyle:{"height":"150px"}}),_vm._v(" "),_c('span',{staticClass:"level"},[_c('i',{staticClass:"crown"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP5")])],1)],1)]),_vm._v(" "),_c('li',[_c('em',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.90%")])],1)],1),_vm._v(" "),_c('span',{staticClass:"tip-message"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("can enjoy the wash code")])],1)],1),_vm._v(" "),_c('span',{staticClass:"bar null",staticStyle:{"height":"180px"}}),_vm._v(" "),_c('span',{staticClass:"level"},[_c('i',{staticClass:"crown"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP6")])],1)],1)])])]),_vm._v(" "),_c('div',{staticClass:"u-balance"},[_c('div',{staticClass:"unit"},[_c('img',{staticClass:"diamond",attrs:{"src":"assets/img/diamond.png","alt":""}}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Effective bet amount this week")])],1),_vm._v(" "),_c('h3',{attrs:{"id":"weeks_betamount"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"unit"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recharge can be promoted to")]),_vm._v(" "),_c('a',{staticClass:"btn btn-sm link-loding-gobut next-level-link-js",attrs:{"href":"/ucenter/pay/payIndex"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("immediately recharge")])],1)],1),_vm._v(" "),_c('span',{staticClass:"next-level-js"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("One star")])],1)],1),_vm._v(" "),_c('br'),_vm._v(" "),_c('a',{staticClass:"btn btn-sm link-loding-gobut next-level-link-js",attrs:{"href":"/ucenter/pay/payIndex"}})],1),_vm._v(" "),_c('div',{staticClass:"vip-header next-level-group-div"},[_c('i',{staticClass:"icon-gift"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("If you reach")])],1),_vm._v(" "),_c('span',{staticClass:"next-level-js"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("One star")])],1)],1),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("you can enjoy")])],1)],1),_vm._v(" "),_c('ul',{staticClass:"list-inline next-level-group-div d-flex"},[_c('li',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Wash code ratio")])],1),_vm._v(" "),_c('span',{staticClass:"next-level-rate-js"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.60%")])],1)],1)],1),_vm._v(" "),_c('li',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Promotion Gifts")])],1),_vm._v(" "),_c('span',{staticClass:"next-level-bonus-js"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0")])],1)],1)],1),_vm._v(" "),_c('li',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP deposit")])],1),_vm._v(" "),_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("priority privilege")])],1)],1)],1)])])]),_vm._v(" "),_c('div',{staticClass:"tips"},[_c('i',{staticClass:"icon-exclamation-circle"}),_vm._v(" "),_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Promotional star betting amount statistics period: Beijing time Monday 00:00:00 to Sunday 23:59:59")])],1),_vm._v(" "),_c('br'),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("promotion bonus time: After successful promotion of the star rating, the bonus will be automatically distributed, please click after receiving the bonus distribution notice You can receive it (the bonus is valid for 30 days and expires)")])],1)],1)])]),_vm._v(" "),_c('div',{staticClass:"section-3"},[_c('p',[_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Friend recommendation")])],1)],1),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("(invite friends to share the recommendation code and earn a free bonus)")])],1)],1),_vm._v(" "),_c('div',{staticClass:"media"},[_c('div',{staticClass:"media-left",attrs:{"id":"account-recommend"}},[_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("1343296")])],1)],1)]),_vm._v(" "),_c('div',{staticClass:"media-body"},[_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Referring friends can enjoy a bonus of 0.1% of the effective bet amount of the friend, that is, the delivery is sent, the top is not capped.")])],1)],1),_vm._v(" "),_c('a',{staticClass:"hide",attrs:{"href":"/publicity/recommend","target":"_blank"}},[_vm._v("查看详情")]),_vm._v(" "),_c('dl',{staticClass:"dl-horizontal"},[_c('dt',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recommended method:")])],1)],1),_vm._v(" "),_c('dd',[_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("1. Let your friends fill in the digital recommendation code on the left when registering an account.")])],1)],1)]),_vm._v(" "),_c('dd',{staticClass:"nested"},[_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("2. Click on the link on the right to copy, send referral link to your friends registered account")])],1)],1),_vm._v(" "),_c('a',{staticClass:"btn-copy",staticStyle:{"cursor":"pointer","margin-left":"-21px"},attrs:{"id":"copy_link_button","data-clipboard-text":"https://ag9.com/register?recommendcode=1343296","title":"copy Link"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Copy Link")])],1)],1)])])])])]),_vm._v(" "),_vm._m(2)])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"media-left"},[_c('img',{attrs:{"alt":"","src":"assets/img/u_account_icon.png"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{staticClass:"new",staticStyle:{"display":"none"}},[_c('span',{staticClass:"level"},[_vm._v("新会员")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal",attrs:{"id":"user-phone","tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content account-phone-wrap"},[_c('div',{staticClass:"modal-header"},[_c('h4',{staticClass:"modal-title"},[_vm._v("验证电话")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal","aria-hidden":"true"}},[_vm._v("×")])]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"sections"},[_c('div',{staticClass:"msection-1 section-area"},[_c('div',{staticClass:"content-details"},[_c('form',{staticClass:"form-horizontal form-template",attrs:{"id":"verifyPhoneForm"}},[_c('p',{staticClass:"text-center"},[_vm._v("\n                      我的手机号码：\n                      "),_c('span',{staticClass:"js-phone"})]),_vm._v(" "),_c('p',{staticClass:"text-center text-orange"},[_vm._v("系统发送短信验证码至已绑定手机号码，输入并立即验证")]),_vm._v(" "),_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label col-xs-3"},[_c('span',{staticClass:"required"},[_vm._v("*")]),_vm._v("验证码：\n                      ")]),_vm._v(" "),_c('div',{staticClass:"col-xs-9"},[_c('div',{staticClass:"col-xs-6"},[_c('input',{staticClass:"form-control",attrs:{"id":"captcha","name":"captcha","type":"text","maxlength":"6","placeholder":"请输入手机验证码"}})]),_vm._v(" "),_c('a',{staticClass:"btn-resend btn-offset col-xs-5 col-xs-push-1 pointer-link",attrs:{"verify-type":"bound"}},[_vm._v("发送手机验证码")])]),_vm._v(" "),_c('p',{staticClass:"error-msg"})]),_vm._v(" "),_c('div',{staticClass:"form-group"},[_c('div',{staticClass:"col-xs-9 col-xs-push-3 submit"},[_c('a',{staticClass:"btn-submit btn-block",attrs:{"data-selection":"msection-2"}},[_vm._v("立即验证")])])])])])]),_vm._v(" "),_c('div',{staticClass:"msection-2 section-area",staticStyle:{"display":"none"}},[_c('div',{staticClass:"content-details"},[_c('table',{staticClass:"table table-bordered"},[_c('tbody',[_c('tr',[_c('th',[_vm._v("登录方式")]),_vm._v(" "),_c('th',[_vm._v(" ")])]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("密码登录")]),_vm._v(" "),_c('td',[_c('em',[_vm._v("账号密码登录")]),_vm._v(" "),_c('label',{staticClass:"switcher"},[_c('input',{attrs:{"name":"passwordLogin","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_vm._v("动态密码登录")]),_vm._v(" "),_c('td',[_c('em',[_vm._v("绑定手机接收动态密码短信")]),_vm._v(" "),_c('label',{staticClass:"switcher"},[_c('input',{attrs:{"name":"smsLogin","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])])])])])])])])])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-content u-account" }, [
+      _c("div", { staticClass: "section-1 clearfix" }, [
+        _c("div", { staticClass: "pull-left info" }, [
+          _c("div", { staticClass: "media" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "media-body" }, [
+              _c(
+                "em",
+                { attrs: { id: "account-user-name" } },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Aghq186496")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "level-0", attrs: { id: "account-user-level" } },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("New member")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "small",
+                { attrs: { id: "account-before-login-date" } },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Last login:")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("2019-04-27 10:53:43")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "list-inline d-flex" }, [
+            _c("li", [
+              _c(
+                "a",
+                { attrs: { href: "#", id: "phone-status" } },
+                [
+                  _c("i", { staticClass: "icon-mobile" }),
+                  _vm._v(" "),
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Verify phone")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "a",
+                { staticClass: "pointer-link login-setting-js" },
+                [
+                  _c("i", { staticClass: "icon-setting" }),
+                  _vm._v(" "),
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Login settings")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "a",
+                { attrs: { href: "/ucenter/bank/bankIndex" } },
+                [
+                  _c("i", { staticClass: "icon-card" }),
+                  _vm._v(" "),
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Manage bank card")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "pull-left stats" },
+          [
+            _c(
+              "div",
+              { staticClass: "canvas-wrap", attrs: { "data-result": "56" } },
+              [
+                _c("canvas", {
+                  attrs: { id: "canvas", width: "70", height: "70" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { attrs: { id: "procent" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("0")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("Your weekly valid bet amount has exceeded")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              { attrs: { id: "procent-value" } },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("users")
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "pull-left balance" },
+          [
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("The total balance")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              { attrs: { id: "eid_c_total_credit" } },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("¥0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-sm btn-default",
+                attrs: { id: "refresh_total_credit", href: "javascript:;" }
+              },
+              [
+                _c("i", { staticClass: "fa fa-refresh" }),
+                _vm._v(" "),
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("Refresh quota")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "pull-left two-btns" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-deposit link-loding-gobut",
+              attrs: { href: "/ucenter/pay/payIndex" }
+            },
+            [
+              _c(
+                "font",
+                { staticStyle: { "vertical-align": "inherit" } },
+                [
+                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                    _vm._v("Immediately recharge")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Deposit Now to")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn link-loding-gobut",
+              attrs: { href: "/ucenter/withdraw/withdrawIndex" }
+            },
+            [
+              _c(
+                "font",
+                { staticStyle: { "vertical-align": "inherit" } },
+                [
+                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                    _vm._v("apply for withdrawal with")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Withdraw Now")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "section-2" }, [
+        _c(
+          "p",
+          [
+            _c(
+              "span",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("My member star rating")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v(
+                    "(join the VIP ranks, enjoy the star courtesy, super privilege, let you enjoy the endless surprise offer)"
+                  )
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "unit-wrap clearfix" }, [
+          _c("div", { staticClass: "chart-wrap clearfix" }, [
+            _c("div", { staticClass: "btns rebate-switch-js" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "active pointer-link",
+                  attrs: { "data-game-kind": "VIDEO" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Live video video")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "pointer-link",
+                  attrs: { "data-game-kind": "SLOT" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("game")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "pointer-link",
+                  attrs: { "data-game-kind": "FISHING" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("fishing game")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "pointer-link",
+                  attrs: { "data-game-kind": "SPORT" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("sports game")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "amount pull-left" }, [
+              _c(
+                "li",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("6000000")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("3000000")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("1000000")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("500000")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("100,000")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Open an account and place a bet")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "pull-left bars" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "em",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("0.60%")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "tip-message" },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("can enjoy the wash code")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass: "bar null",
+                  staticStyle: { height: "30px" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "level" },
+                  [
+                    _c("i", { staticClass: "crown crown-1" }),
+                    _vm._v(" "),
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("One star")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "em",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("0.60%")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "tip-message" },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("can enjoy the wash code")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass: "bar null",
+                  staticStyle: { height: "60px" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "level" },
+                  [
+                    _c("i", { staticClass: "crown crown-2" }),
+                    _vm._v(" "),
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Two stars")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "em",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("0.60%")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "tip-message" },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("can enjoy the wash code")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass: "bar null",
+                  staticStyle: { height: "90px" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "level" },
+                  [
+                    _c("i", { staticClass: "crown" }),
+                    _vm._v(" "),
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Three Star")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "em",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("0.70%")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "tip-message" },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("can enjoy the wash code")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass: "bar null",
+                  staticStyle: { height: "120px" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "level" },
+                  [
+                    _c("i", { staticClass: "crown" }),
+                    _vm._v(" "),
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("VIP4")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "em",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("0.80%")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "tip-message" },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("can enjoy the wash code")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass: "bar null",
+                  staticStyle: { height: "150px" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "level" },
+                  [
+                    _c("i", { staticClass: "crown" }),
+                    _vm._v(" "),
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("VIP5")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "em",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("0.90%")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "tip-message" },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("can enjoy the wash code")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass: "bar null",
+                  staticStyle: { height: "180px" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "level" },
+                  [
+                    _c("i", { staticClass: "crown" }),
+                    _vm._v(" "),
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("VIP6")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "u-balance" }, [
+            _c(
+              "div",
+              { staticClass: "unit" },
+              [
+                _c("img", {
+                  staticClass: "diamond",
+                  attrs: { src: "assets/img/diamond.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("Effective bet amount this week")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "h3",
+                  { attrs: { id: "weeks_betamount" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("0.00")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "unit" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("Recharge can be promoted to")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "btn btn-sm link-loding-gobut next-level-link-js",
+                        attrs: { href: "/ucenter/pay/payIndex" }
+                      },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("immediately recharge")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "next-level-js" },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("One star")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("a", {
+                  staticClass:
+                    "btn btn-sm link-loding-gobut next-level-link-js",
+                  attrs: { href: "/ucenter/pay/payIndex" }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "vip-header next-level-group-div" },
+              [
+                _c("i", { staticClass: "icon-gift" }),
+                _vm._v(" "),
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("If you reach")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "next-level-js" },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("One star")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("you can enjoy")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "list-inline next-level-group-div d-flex" },
+              [
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Wash code ratio")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "next-level-rate-js" },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("0.60%")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Promotion Gifts")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "next-level-bonus-js" },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("0")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("VIP deposit")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("priority privilege")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "tips" }, [
+          _c("i", { staticClass: "icon-exclamation-circle" }),
+          _vm._v(" "),
+          _c(
+            "span",
+            [
+              _c(
+                "font",
+                { staticStyle: { "vertical-align": "inherit" } },
+                [
+                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                    _vm._v(
+                      "Promotional star betting amount statistics period: Beijing time Monday 00:00:00 to Sunday 23:59:59"
+                    )
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "font",
+                { staticStyle: { "vertical-align": "inherit" } },
+                [
+                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                    _vm._v(
+                      "promotion bonus time: After successful promotion of the star rating, the bonus will be automatically distributed, please click after receiving the bonus distribution notice You can receive it (the bonus is valid for 30 days and expires)"
+                    )
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "section-3" }, [
+        _c(
+          "p",
+          [
+            _c(
+              "span",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("Friend recommendation")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v(
+                    "(invite friends to share the recommendation code and earn a free bonus)"
+                  )
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "media" }, [
+          _c(
+            "div",
+            { staticClass: "media-left", attrs: { id: "account-recommend" } },
+            [
+              _c(
+                "span",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("1343296")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "media-body" }, [
+            _c(
+              "p",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _vm._v(
+                          "Referring friends can enjoy a bonus of 0.1% of the effective bet amount of the friend, that is, the delivery is sent, the top is not capped."
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "hide",
+                attrs: { href: "/publicity/recommend", target: "_blank" }
+              },
+              [_vm._v("查看详情")]
+            ),
+            _vm._v(" "),
+            _c("dl", { staticClass: "dl-horizontal" }, [
+              _c(
+                "dt",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Recommended method:")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("dd", [
+                _c(
+                  "span",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _vm._v(
+                              "1. Let your friends fill in the digital recommendation code on the left when registering an account."
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("dd", { staticClass: "nested" }, [
+                _c(
+                  "span",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _vm._v(
+                              "2. Click on the link on the right to copy, send referral link to your friends registered account"
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn-copy",
+                    staticStyle: { cursor: "pointer", "margin-left": "-21px" },
+                    attrs: {
+                      id: "copy_link_button",
+                      "data-clipboard-text":
+                        "https://ag9.com/register?recommendcode=1343296",
+                      title: "copy Link"
+                    }
+                  },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Copy Link")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(2)
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-left" }, [
+      _c("img", { attrs: { alt: "", src: "assets/img/u_account_icon.png" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "new", staticStyle: { display: "none" } }, [
+      _c("span", { staticClass: "level" }, [_vm._v("新会员")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal",
+        attrs: { id: "user-phone", tabindex: "-1", role: "dialog" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content account-phone-wrap" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h4", { staticClass: "modal-title" }, [_vm._v("验证电话")]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-hidden": "true"
+                    }
+                  },
+                  [_vm._v("×")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "sections" }, [
+                  _c("div", { staticClass: "msection-1 section-area" }, [
+                    _c("div", { staticClass: "content-details" }, [
+                      _c(
+                        "form",
+                        {
+                          staticClass: "form-horizontal form-template",
+                          attrs: { id: "verifyPhoneForm" }
+                        },
+                        [
+                          _c("p", { staticClass: "text-center" }, [
+                            _vm._v(
+                              "\n                      我的手机号码：\n                      "
+                            ),
+                            _c("span", { staticClass: "js-phone" })
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "text-center text-orange" }, [
+                            _vm._v(
+                              "系统发送短信验证码至已绑定手机号码，输入并立即验证"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "label",
+                              { staticClass: "control-label col-xs-3" },
+                              [
+                                _c("span", { staticClass: "required" }, [
+                                  _vm._v("*")
+                                ]),
+                                _vm._v("验证码：\n                      ")
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-xs-9" }, [
+                              _c("div", { staticClass: "col-xs-6" }, [
+                                _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    id: "captcha",
+                                    name: "captcha",
+                                    type: "text",
+                                    maxlength: "6",
+                                    placeholder: "请输入手机验证码"
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass:
+                                    "btn-resend btn-offset col-xs-5 col-xs-push-1 pointer-link",
+                                  attrs: { "verify-type": "bound" }
+                                },
+                                [_vm._v("发送手机验证码")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "error-msg" })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-xs-9 col-xs-push-3 submit" },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn-submit btn-block",
+                                    attrs: { "data-selection": "msection-2" }
+                                  },
+                                  [_vm._v("立即验证")]
+                                )
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "msection-2 section-area",
+                      staticStyle: { display: "none" }
+                    },
+                    [
+                      _c("div", { staticClass: "content-details" }, [
+                        _c("table", { staticClass: "table table-bordered" }, [
+                          _c("tbody", [
+                            _c("tr", [
+                              _c("th", [_vm._v("登录方式")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v(" ")])
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", [
+                              _c("td", [_vm._v("密码登录")]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("em", [_vm._v("账号密码登录")]),
+                                _vm._v(" "),
+                                _c("label", { staticClass: "switcher" }, [
+                                  _c("input", {
+                                    attrs: {
+                                      name: "passwordLogin",
+                                      type: "checkbox"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", [_c("i")])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("tr", { staticClass: "highlight" }, [
+                              _c("td", [_vm._v("动态密码登录")]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("em", [_vm._v("绑定手机接收动态密码短信")]),
+                                _vm._v(" "),
+                                _c("label", { staticClass: "switcher" }, [
+                                  _c("input", {
+                                    attrs: {
+                                      name: "smsLogin",
+                                      type: "checkbox"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", [_c("i")])
+                                ])
+                              ])
+                            ])
+                          ])
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44322,9 +53900,396 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-wrap main-container u-wrap"},[_c('div',{staticClass:"u-menu"},[_c('div',{staticClass:"umenu-wrap"},[_c('dl',[_vm._m(0),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_account"}},[_c('a',{ref:"myaccount_link",attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('myaccount',$event)}}},[_vm._v("My account")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_friend"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('recommedndedfriends',$event)}}},[_vm._v("Recommended Friends")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_transaction"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('transactionrecord',$event)}}},[_vm._v("Transaction Record")])])]),_vm._v(" "),_c('dl',[_vm._m(1),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_pay"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('instantrecharge',$event)}}},[_vm._v("Instant recharge")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_withdraw"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('applyforwithdrawal',$event)}}},[_vm._v("Apply for withdrawal")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_self_rebate"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('selfservicewashing',$event)}}},[_vm._v("Self-service washing")])])]),_vm._v(" "),_c('dl',{attrs:{"id":"u-menu-mission"}},[_vm._m(2),_vm._v(" "),_c('dd',{staticClass:"newcomer-dd",attrs:{"data-sidebar":"u_mission_newcomer"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('novicetask',$event)}}},[_vm._v("Novice task")])]),_vm._v(" "),_c('dd',{staticClass:"daily-dd",attrs:{"data-sidebar":"u_mission_daily"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('dailytask',$event)}}},[_vm._v("Daily task")])]),_vm._v(" "),_c('dd',{staticClass:"achieve-dd",attrs:{"data-sidebar":"u_mission_achieve"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('achievementtask',$event)}}},[_vm._v("Achievement task")])])]),_vm._v(" "),_c('dl',[_vm._m(3),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_person_pwdIndex"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('changepassword',$event)}}},[_vm._v("change Password")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_bank"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('bankinfo',$event)}}},[_vm._v("Bank info")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_person_phoneIndex"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('modifyphone',$event)}}},[_vm._v("Modify phone")])])]),_vm._v(" "),_c('dl',{staticClass:"border-0"},[_vm._m(4),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_sms_subscribeIndex"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('subscription',$event)}}},[_vm._v("SMS subscription")])]),_vm._v(" "),_c('dd',{staticClass:"active",attrs:{"data-sidebar":"u_station_letter"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('message',$event)}}},[_vm._v("\n            My message\n            "),_vm._v(" "),_c('em',{staticClass:"badge letter"},[_vm._v("2")])])])])])]),_vm._v(" "),_c('div',{staticClass:"u-main"},[_c('div',{staticClass:"u-title"},[_vm._v(_vm._s(_vm.navShowName))]),_vm._v(" "),(_vm.navShowName ==='myaccount')?_c('div',{staticClass:"u-content"},[_c('myaccount')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='recommedndedfriends')?_c('div',{staticClass:"u-content"},[_c('recommedndedfriends')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='transactionrecord')?_c('div',{staticClass:"u-content"},[_c('transactionrecord')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='instantrecharge')?_c('div',{staticClass:"u-content"},[_c('instantrecharge')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='applyforwithdrawal')?_c('div',{staticClass:"u-content"},[_c('applyforwithdrawal')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='selfservicewashing')?_c('div',{staticClass:"u-content"},[_c('selfservicewashing')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='novicetask')?_c('div',{staticClass:"u-content"},[_c('novicetask')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='dailytask')?_c('div',{staticClass:"u-content"},[_c('dailytask')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='achievementtask')?_c('div',{staticClass:"u-content"},[_c('achievementtask')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='changepassword')?_c('div',{staticClass:"u-content"},[_c('changepassword')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='bankinfo')?_c('div',{staticClass:"u-content"},[_c('bankinfo')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='modifyphone')?_c('div',{staticClass:"u-content"},[_c('modifyphone')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='bankinfo')?_c('div',{staticClass:"u-content"},[_c('bankinfo')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='subscription')?_c('div',{staticClass:"u-content"},[_c('subscription')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='message')?_c('div',{staticClass:"u-content"},[_c('message')],1):_vm._e()])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dt',[_c('i',{staticClass:"icon-user"}),_vm._v("My account\n        ")])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dt',[_c('i',{staticClass:"icon-yuan"}),_vm._v("Financial Center\n        ")])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dt',[_c('i',{staticClass:"icon-task"}),_vm._v("About\n        ")])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dt',[_c('i',{staticClass:"icon-records"}),_vm._v("Customer information\n        ")])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dt',{staticClass:"active"},[_c('i',{staticClass:"icon-msg"}),_vm._v("Customer Care\n        ")])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-wrap main-container u-wrap" }, [
+    _c("div", { staticClass: "u-menu" }, [
+      _c("div", { staticClass: "umenu-wrap" }, [
+        _c("dl", [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("dd", { attrs: { "data-sidebar": "u_account" } }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#", id: "myaccountlink" },
+                on: {
+                  click: function($event) {
+                    return _vm.setNavShowName("myaccount", $event)
+                  }
+                }
+              },
+              [_vm._v("My account")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("dd", { attrs: { "data-sidebar": "u_friend" } }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.setNavShowName("recommedndedfriends", $event)
+                  }
+                }
+              },
+              [_vm._v("Recommended Friends")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("dd", { attrs: { "data-sidebar": "u_transaction" } }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.setNavShowName("transactionrecord", $event)
+                  }
+                }
+              },
+              [_vm._v("Transaction Record")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("dl", [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("dd", { attrs: { "data-sidebar": "u_pay" } }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.setNavShowName("instantrecharge", $event)
+                  }
+                }
+              },
+              [_vm._v("Instant recharge")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("dd", { attrs: { "data-sidebar": "u_withdraw" } }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.setNavShowName("applyforwithdrawal", $event)
+                  }
+                }
+              },
+              [_vm._v("Apply for withdrawal")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("dd", { attrs: { "data-sidebar": "u_self_rebate" } }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.setNavShowName("selfservicewashing", $event)
+                  }
+                }
+              },
+              [_vm._v("Self-service washing")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("dl", { attrs: { id: "u-menu-mission" } }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "dd",
+            {
+              staticClass: "newcomer-dd",
+              attrs: { "data-sidebar": "u_mission_newcomer" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.setNavShowName("novicetask", $event)
+                    }
+                  }
+                },
+                [_vm._v("Novice task")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "dd",
+            {
+              staticClass: "daily-dd",
+              attrs: { "data-sidebar": "u_mission_daily" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.setNavShowName("dailytask", $event)
+                    }
+                  }
+                },
+                [_vm._v("Daily task")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "dd",
+            {
+              staticClass: "achieve-dd",
+              attrs: { "data-sidebar": "u_mission_achieve" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.setNavShowName("achievementtask", $event)
+                    }
+                  }
+                },
+                [_vm._v("Achievement task")]
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("dl", [
+          _vm._m(3),
+          _vm._v(" "),
+          _c("dd", { attrs: { "data-sidebar": "u_person_pwdIndex" } }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.setNavShowName("changepassword", $event)
+                  }
+                }
+              },
+              [_vm._v("change Password")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("dd", { attrs: { "data-sidebar": "u_bank" } }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.setNavShowName("bankinfo", $event)
+                  }
+                }
+              },
+              [_vm._v("Bank info")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("dd", { attrs: { "data-sidebar": "u_person_phoneIndex" } }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.setNavShowName("modifyphone", $event)
+                  }
+                }
+              },
+              [_vm._v("Modify phone")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("dl", { staticClass: "border-0" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("dd", { attrs: { "data-sidebar": "u_sms_subscribeIndex" } }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.setNavShowName("subscription", $event)
+                  }
+                }
+              },
+              [_vm._v("SMS subscription")]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "dd",
+            {
+              staticClass: "active",
+              attrs: { "data-sidebar": "u_station_letter" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.setNavShowName("message", $event)
+                    }
+                  }
+                },
+                [
+                  _vm._v("\n            My message\n            "),
+                  _vm._v(" "),
+                  _c("em", { staticClass: "badge letter" }, [_vm._v("2")])
+                ]
+              )
+            ]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "u-main" }, [
+      _c("div", { staticClass: "u-title" }, [_vm._v(_vm._s(_vm.navShowName))]),
+      _vm._v(" "),
+      _vm.navShowName === "myaccount"
+        ? _c("div", { staticClass: "u-content" }, [_c("myaccount")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "recommedndedfriends"
+        ? _c(
+            "div",
+            { staticClass: "u-content" },
+            [_c("recommedndedfriends")],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "transactionrecord"
+        ? _c("div", { staticClass: "u-content" }, [_c("transactionrecord")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "instantrecharge"
+        ? _c("div", { staticClass: "u-content" }, [_c("instantrecharge")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "applyforwithdrawal"
+        ? _c("div", { staticClass: "u-content" }, [_c("applyforwithdrawal")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "selfservicewashing"
+        ? _c("div", { staticClass: "u-content" }, [_c("selfservicewashing")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "novicetask"
+        ? _c("div", { staticClass: "u-content" }, [_c("novicetask")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "dailytask"
+        ? _c("div", { staticClass: "u-content" }, [_c("dailytask")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "achievementtask"
+        ? _c("div", { staticClass: "u-content" }, [_c("achievementtask")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "changepassword"
+        ? _c("div", { staticClass: "u-content" }, [_c("changepassword")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "bankinfo"
+        ? _c("div", { staticClass: "u-content" }, [_c("bankinfo")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "modifyphone"
+        ? _c("div", { staticClass: "u-content" }, [_c("modifyphone")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "bankinfo"
+        ? _c("div", { staticClass: "u-content" }, [_c("bankinfo")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "subscription"
+        ? _c("div", { staticClass: "u-content" }, [_c("subscription")], 1)
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.navShowName === "message"
+        ? _c("div", { staticClass: "u-content" }, [_c("message")], 1)
+        : _vm._e()
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("dt", [
+      _c("i", { staticClass: "icon-user" }),
+      _vm._v("My account\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("dt", [
+      _c("i", { staticClass: "icon-yuan" }),
+      _vm._v("Financial Center\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("dt", [
+      _c("i", { staticClass: "icon-task" }),
+      _vm._v("About\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("dt", [
+      _c("i", { staticClass: "icon-records" }),
+      _vm._v("Customer information\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("dt", { staticClass: "active" }, [
+      _c("i", { staticClass: "icon-msg" }),
+      _vm._v("Customer Care\n        ")
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44340,9 +54305,531 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-content u-subscribe"},[_c('div',{staticClass:"mobile-wrap"},[_c('div',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Mobile number:")])],1),_vm._v(" "),_c('span',{staticClass:"js-show-phone"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("186*******2")])],1)],1),_vm._v(" "),_c('a',{staticClass:"btn-link",attrs:{"href":"/ucenter/security/phone"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("modification")])],1)],1)],1),_vm._v(" "),_c('form',{staticClass:"js-verify-notation",attrs:{"id":"verifyPhoneForm","novalidate":"novalidate"}},[_c('div',{staticClass:"form-inline"},[_c('a',{staticClass:"btn-resend pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("obtain SMS verification code")])],1)],1),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"id":"captcha","name":"captcha","type":"text","maxlength":"6","placeholder":"请输入短信验证码"}}),_vm._v(" "),_c('a',{staticClass:"btn-submit pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("confirm at once")])],1)],1),_vm._v(" "),_c('span',{staticClass:"error-msg"})]),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Tips: Please enter the SMS verification code to open the SMS subscription function.")])],1)],1)])]),_vm._v(" "),_c('table',{staticClass:"js-table-subscribe table table-bordered loading-portion"},[_c('thead',[_c('tr',[_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1)])]),_vm._v(" "),_c('tbody',[_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Login prompt")])],1)],1),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Offer added")])],1)],1),_vm._v(" "),_vm._m(1)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Contact phone modification")])],1)],1),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Bank data modification")])],1)],1),_vm._v(" "),_vm._m(3)]),_vm._v(" "),_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recharge prompt")])],1)],1),_vm._v(" "),_vm._m(4),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Name modification")])],1)],1),_vm._v(" "),_vm._m(5)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Cash withdrawal prompt")])],1)],1),_vm._v(" "),_vm._m(6),_vm._v(" "),_c('td'),_vm._v(" "),_c('td')])]),_vm._v(" "),_c('div',{staticClass:"transparent-base64 loading-js loading-portion-content"})])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"login","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"promotions","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyPhone","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyBankingData","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"deposit","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyAccountName","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"withdrawal","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-content u-subscribe" }, [
+      _c("div", { staticClass: "mobile-wrap" }, [
+        _c(
+          "div",
+          [
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("Mobile number:")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              { staticClass: "js-show-phone" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("186*******2")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn-link",
+                attrs: { href: "/ucenter/security/phone" }
+              },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("modification")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "js-verify-notation",
+            attrs: { id: "verifyPhoneForm", novalidate: "novalidate" }
+          },
+          [
+            _c("div", { staticClass: "form-inline" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn-resend pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("obtain SMS verification code")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  id: "captcha",
+                  name: "captcha",
+                  type: "text",
+                  maxlength: "6",
+                  placeholder: "请输入短信验证码"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn-submit pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("confirm at once")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "error-msg" })
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _vm._v(
+                          "Tips: Please enter the SMS verification code to open the SMS subscription function."
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "js-table-subscribe table table-bordered loading-portion"
+        },
+        [
+          _c("thead", [
+            _c("tr", [
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Login prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Offer added")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Contact phone modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Bank data modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(3)
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Recharge prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Name modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(5)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Cash withdrawal prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "transparent-base64 loading-js loading-portion-content"
+          })
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "login", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "promotions", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyPhone", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyBankingData", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "deposit", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyAccountName", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "withdrawal", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44358,9 +54845,1234 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-content u-friend"},[_c('div',{staticClass:"top-group clearfix"},[_c('ul',{staticClass:"recommand-list"},[_c('li',{staticClass:"recommand-item"},[_c('div',{staticClass:"data-box"},[_c('div',{staticClass:"week-bonus"},[_c('h4',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("This week bonus")])],1)],1),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("¥ ")])],1),_vm._v(" "),_c('span',{attrs:{"id":"recommendCommission"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1)],1)]),_vm._v(" "),_c('ol',{staticClass:"about-friends"},[_c('li',{staticClass:"friends-item"},[_c('h4',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Effectively recommend friends")])],1)],1),_vm._v(" "),_c('p',[_c('span',{attrs:{"id":"totalValidCustomers"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0")])],1)],1)])]),_vm._v(" "),_c('li',{staticClass:"friends-item separator-line"}),_vm._v(" "),_c('li',{staticClass:"friends-item"},[_c('h4',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Friend's valid bet amount this week")])],1)],1),_vm._v(" "),_c('p',[_c('span',{attrs:{"id":"validTurnover"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1)])])]),_vm._v(" "),_c('div',{staticClass:"total-bonus"},[_c('h4',[_c('span',{attrs:{"id":"year_friend"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("2019")])],1)],1),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Annual bonus total")])],1)],1),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("¥ ")])],1),_vm._v(" "),_c('span',{staticClass:"total-bet-year-js"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1)],1)])])]),_vm._v(" "),_c('li',{staticClass:"recommand-item"},[_c('div',{staticClass:"data-box"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"recommand-qrcode"},[_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recommended QR code")])],1),_vm._v(" "),_vm._m(1)],1),_vm._v(" "),_vm._m(2)])])]),_vm._v(" "),_c('li',{staticClass:"recommand-item"},[_c('div',{staticClass:"data-box"},[_c('div',{staticClass:"recommand-link"},[_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recommended link")])],1),_vm._v(" "),_vm._m(3)],1),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"id":"recommend-link","type":"text","data-text":"value","readonly":""}}),_vm._v(" "),_c('a',{staticClass:"btn zeroclipboard-is-hover",attrs:{"id":"btnCopy","data-clipboard-text":"","title":"Copy recommended link"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Copy recommended link")])],1)],1)])])]),_vm._v(" "),_c('li',{staticClass:"recommand-item"},[_c('div',{staticClass:"data-box"},[_c('div',{staticClass:"recommand-numcode"},[_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recommendation code")])],1),_vm._v(" "),_vm._m(4)],1),_vm._v(" "),_c('h4',[_c('span',{attrs:{"id":"codetext"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("1343296")])],1)],1),_vm._v(" "),_c('a',{staticClass:"btn",staticStyle:{"display":"none"},attrs:{"id":"recommended-code-js","href":"/ucenter/recommend/code/create?redirect=/ucenter/recommend/statis"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Click to get the recommendation code")])],1)],1)])])])])])]),_vm._v(" "),_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading"},[_c('form',{staticClass:"form-inline",attrs:{"action":""}},[_c('label',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Date range")])],1)],1),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('p',{staticClass:"form-control-static",attrs:{"id":"startDateTime"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("2019-04-22")])],1)],1)]),_vm._v(" "),_c('label',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("To")])],1)],1),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('p',{staticClass:"form-control-static",attrs:{"id":"endDateTime"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("2019-04-28")])],1)],1)]),_vm._v(" "),_c('div',{staticClass:"input-group pull-right"},[_c('p',{staticClass:"tip"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Billing cycle: Every Monday from 00:00 to Sunday 23:59:59.")]),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Added to the account before 24 o'clock every Monday.")])],1)],1)])])]),_vm._v(" "),_c('div',{staticClass:"table panel-body jsgrid",staticStyle:{"position":"static","height":"auto","width":"100%"},attrs:{"id":"tab_grid"}},[_c('div',{staticClass:"jsgrid-grid-header jsgrid-header-scrollbar"},[_c('table',{staticClass:"jsgrid-table"},[_c('tbody',[_c('tr',{staticClass:"jsgrid-header-row"},[_c('th',{staticClass:"jsgrid-header-cell jsgrid-align-center",staticStyle:{"width":"70px"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Referee")])],1)],1),_vm._v(" "),_c('th',{staticClass:"jsgrid-header-cell jsgrid-align-center",staticStyle:{"width":"70px"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recommended status")])],1),_vm._v(" "),_vm._m(5)],1),_vm._v(" "),_c('th',{staticClass:"jsgrid-header-cell jsgrid-align-center",staticStyle:{"width":"60px"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Effective bet amount")])],1)],1),_vm._v(" "),_c('th',{staticClass:"jsgrid-header-cell jsgrid-align-center",staticStyle:{"width":"60px"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Bonus amount")])],1)],1)]),_vm._v(" "),_vm._m(6),_vm._v(" "),_vm._m(7)])])]),_vm._v(" "),_c('div',{staticClass:"jsgrid-grid-body"},[_c('table',{staticClass:"jsgrid-table"},[_c('tbody',[_c('tr',{staticClass:"jsgrid-nodata-row"},[_c('td',{staticClass:"jsgrid-cell",attrs:{"colspan":"4"}},[_c('div',{staticClass:"no-data"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("No data!")])],1)],1)])])])])]),_vm._v(" "),_c('div',{staticClass:"jsgrid-load-shader",staticStyle:{"display":"none","position":"absolute","top":"0px","right":"0px","bottom":"0px","left":"0px","z-index":"1000"}}),_vm._v(" "),_c('div',{staticClass:"jsgrid-load-panel",staticStyle:{"display":"none","position":"absolute","top":"50%","left":"50%","z-index":"1000"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Please, wait...")])],1)],1)]),_vm._v(" "),_c('div',{staticStyle:{"display":"none"}},[_c('div',{staticClass:"jsgrid-pager-container",staticStyle:{"display":"none"},attrs:{"id":"tab_paging"}},[_c('div',{staticClass:"jsgrid-pager"},[_c('span',{staticClass:"jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"},[_c('a',{attrs:{"href":"javascript:void(0);"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("<<")])],1)],1)]),_vm._v(" "),_c('span',{staticClass:"jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"},[_c('a',{attrs:{"href":"javascript:void(0);"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("<")])],1)],1)]),_vm._v(" "),_c('span',{staticClass:"jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"},[_c('a',{attrs:{"href":"javascript:void(0);"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v(">")])],1)],1)]),_vm._v(" "),_c('span',{staticClass:"jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"},[_c('a',{attrs:{"href":"javascript:void(0);"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v(">>")])],1)],1)])])])]),_vm._v(" "),_c('table',{staticClass:"table table-striped col6",attrs:{"id":"paging-4-grid"}},[_c('tbody',[_c('tr',{staticClass:"last"},[_c('td',{staticClass:"text-right",attrs:{"colspan":"6"}},[_c('div',{staticClass:"pull-left form-inline",attrs:{"action":""}},[_vm._m(8),_vm._v(" "),_c('div',{staticClass:"form-group"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("First")])],1),_vm._v(" "),_c('input',{staticClass:"form-control page-no",attrs:{"type":"text","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"total_page_pl"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Total 0 pages")])],1)],1)],1),_vm._v(" "),_vm._m(9),_vm._v(" "),_vm._m(10)]),_vm._v(" "),_c('span',{staticClass:"page_angle"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Display 0 to 0, total 0 records")])],1)],1)])])])])])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"hidden",attrs:{"id":"recommend-qr-code"}},[_c('canvas',{attrs:{"width":"124","height":"124"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"btn-link",attrs:{"type":"button","data-toggle":"tooltip","data-placement":"top","title":"","data-original-title":"将二维码提供给您的朋友，请您朋友扫描二维码打开网站进行注册"}},[_c('i',{staticClass:"icon-ask"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ag_qrcode qrcode"},[_c('img',{attrs:{"src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHwAAAB8CAYAAACrHtS+AAAMEklEQVR4Xu2d4XbjSgiD2/d/6N6T0006GYP0gZ297Zb+bOwxg0AI7Djvb29vH2/Nv4+Pz1Pf39/TFSrH3Be5rxede//ffizZgjt3/3zd225LZV/EP9l+lE1kz/sxN6QG8D9e+VWAR5vNIqiTgZX1D1G5MEiWpSrj6LXXTMzOIdmq/LPvzTEHCUKS6XebHhlOnaJo7vaZA4QYN4B/lcmXA96J4AjEPcpVzXXBRmzK6n/FNnXs/TNla2YnqcMZQxHAiX/SDK+cTDbvhFLECirDM0ocwGPu3APpQOkD+LPjdn+QIHdBGXU2PyrDldjJBMzqOEf/hNY6Ga70RCam1DnZPqJyRssY2XslSS/J8AH8E9IB3AxlMiFUaftIZqsMWDO2Q9dRxleGMhljqOA50/b9tQwn9JmBV+mPiSLObPmVgJM+mWSga1Giz11dU2JHZTqlWqIrKv4hQe78dLat3P3yssGL28gAru9DELYhCZICTiI3azciynXqvHNOJIzcdb7jOTeb6EhV+amD2eU3T67YiGqJHMARfX+3c/5XwD8qvABCKhtUENUJlj/M6sk5V9RwNyugat+pclL3yZ7T6wzgcf/sWGGvjf8E4C6qKy1QR4S4zCT1OVL2ZzKkso+M7YhNhHidMI6u864yfAA/hsYAvvmERN3uxk5gZX23Em1nMvt+7j8NeFanyOgwc250bubEbq++U5m7RUtAzFrS9f+07itKP3PTBgUlEW1OeVcyZwD/9JZjQqJfXEJGuBxqeGbI7WSS2bQPJ0FyVYbvkX9FJl7dPhGAyTFpO/bnucAB3NzWVAngyhYJ6kyLhNn5BzSi4DOddJi0dW4gVJzSMVY5jkQ9LUnENjJAciy3smWLljfgiU2P6+zPpQ/gOi+Jc7814HfRRjZSobCsTkZrZCr6rMCjtVupW7cPlSDu3NUXrpMgrFBS6QP48Zn6VU1ngvXHAV75qtGVUUgynQiXThZ1VDqZFZCgyESaGsNWz1GaqnR7dAA/huDq3B8BuKrhVN1GtchFbOSorJUg7Y0KRje9UuNYl9kRpWfaQdVs1z93fBCWpAGc3R7NgnEAT74zTjJwMlyXDJflERsd9Mo+SydDFHKzoUOFnRronKA+7wRhJqDW65zxIRGhrkSpPZdGq6jPM+M/Ui9d/V9r0wAet5OpJri3ZWrIUWljqPgg/SsJsErGncoM8VqTbM+VUW1njU5iyG+euBEh2dAOSASiozFyHTI4GsDf3iSlO0d3nHwV4K5OVhhEMUm2R3f9KGOJoq8w1n4NxdKPdZVoG8Dzb4T+M4BHkek2RyJX0XZHnVe6AJc10f5eGewu+6OBieoCMv/dztk/k0+tZvU3o5JIPTsdEBnVoVgHqnLirwKc3A/vqGWnOjtOJlFOGMqxw7qGE3qK/VTmUZ8SPykttfsDPfFCjYsynAiLyvpE9R82ubVUA/jiIVKPs+wdwJ898y0znDym7DJGBUClhmfXIUFYaRFJve/s2QGsWkWy946mOqw7gLPRpOtUlPiMSparuySAnU4K9Qx5pq2TEZVzMmeSce/uTCJyMtvIuWScWdm7Ykf3WWaLCs5HW+Yibq3PrkddDa2sSwSe69kJaL8a8E5bdoZulCKvZI+rZ1FQOiaJAlXZu4tUlwhnW7jMlkpStdqyAfwrNFYQfwTgZJZOIshlXEbXe5asx5GbAURNO/Uc1UrXXSgGccBHe97PIUmVnaNqP7pbNoDnb12q6pUsMb4V4C6LSES7NW6fuzFmp8ZWzlGCj7RlpGPIsu8KH5KuBmW4A+sKYwfw+k/PkLbscLdsf8TpbEaoWp21di57yKQta7W69TIrY/v/lWgjXYdab02CzHfq/9Fn8tWbzmAH1G7wAH7M4gE8KHKT4Z9OoayjhCR6bZeS+RmFk/qSiRzSRpFjKnZHbOToMtM2rqXLrhVS8MVPyw7gC2pX9dY/AnDSkmRqnEybiNi5ot9Xme/sV6WDMhllFdeCnrknoGw43DxZD3ZG7cq4S1X0OqqDyMpDtB9HxZGy/9WAk2yNgiFzPlH7O6Bu/SjKHdV2xKHKpsrok2iSiv2Zf1oZPoDrX1TuBOdfB5xkjKuBK6VX6nF2bSWiMoqNMs7Z4j6PKP4q2zKGeHkNH8D1o05uCKXq/tWjZ6JB0kAijzhdUWOVMHM9u3LYGSAUS5B1Tzkefq2aqn4nTu/7QY84DeC1Bx1JRrsyUvE5KW8PwNVru5zhzmjVRrm1s3Od8u2sW+nd1Z4dK1RAJKyW+ULpC/naLue8Afw5twbwxR/OGapWqUneFev+ygwnm84oyTGBEx5uXdKiEKp1bWU0eCH98d53X0Hdao3OAObRhal3vNCNDOCfnqoERzacqbTH2QBM1n/yVaNOrVZtmBs2KGHm1o1sdW2fcr5zqio3jtnUQEfto8NUj0AawL9gUerW0eia4QToLJPJvOIU4OqZNkcvEYV16L3CIM5RkbNdhleAdlS8Zm3FF87GaF9k/X1d9HPSFVFFjNiNH8CPN2OIHiC+PgBOXq7rFiaKMgM5EjsdWstq7VmqdfRJMq8S0JV9dNaVo1W64AD+DHtlAubYjswgXEKuZQa9xUllZ5ZBLlhUb62i3LWKRFeQ9V2tJn1/RbyRY12HQtYYwMWvBKpy8E8CnilHl/Ek0pQy3s+vTMCU2KlkCGUBso/KMeS6ak7hGLf0mHJHwGTgEydEtOocMoDrX2cawJOIdIGlajxhRtd3k8CtzCTu15Ovz86oVW3IbcSJIVcOOmJQlYhVwaoWi4DoFPf6uZttOD+otWQJJDdPqDKOnJdFKmklok0P4EevkAR84FB5pq1Sw92kKIpCwiiZ8LpCNRNxqASTC2LVU+/0fKa9VL4tPdM2gB8FEQExqrXOly8HXBnl6g2ZtJEMJG1TJqaIyLmiHJwVa05oKbHo2A11NZW3OBHKdceodmwAP34HPGIQ10HI0kTuhzvFSMakao2sLqqa6LK1oog77EP2Q5S9YyyqxjN7dhtao9Ws/Vj/70RbdGwmXDpqfQD/9MABcPJz0g48p06d813rpoQR7ftvNpCScabGZuWM6CNan6PgJ0z4sGEAj8nQBZJLgjXABvDNx5PhOfuoDkh1DBlTtUar2WIqqiu0UykRmZ5Q3YAToRXaJC1pxV9EH2VAR+LzIAo7o9XKBoiaJmqWgkQUN11LCUvlAwcIWffM+u22rNLvVTJtV4906hSpzgw8NV5011MZTubWFZteJdYyG9DtUVdjo8VdZpORpKIol6UDeCJG1S8iOKdWPidUWxnAdAKqMuSoMhZhHxWERIDtNN/xl/xFhAqg7tgB/PnGSyb2iGDNfEl8jH4/3AkIKRK2V1sQVUsM3zOCrEsz5HacG9KcvZ4DjeiISqm9X28AXzwb6YozwKgAO7NuR0wfAHeUvEY9OdYNDCp3zaI2xlFi9HlW81T9POPc3U+Erh2bRjhU2lr5yo9XGZwFj3NuRLWZjQN4otI7t0cVMG7GTCZgag2XJY5ZFDt1WIfsJ2KQLCtJ0Gd7QPYP4F/uQw4DP03tyk3Uwp0ZwJRK0gA+gBNN9nRMpV5GdN0RUxUjK0Map1sI5ZKBiFPpxE9E4O37efkTL1lrErVA2QZc3XbgD+BfHiqpdBf9a20iUZ4BRQYvThxGa19ZJys2uoBUn5PZQMWWAdx8Xdi1fUTofUvAK7TpKDLKdBKFpN1wbVenpXNrRv1/px1T13E6JptdKFaNugH0Up9D4Tevfh7Anz1Gys//BjiJwquy1dVwQoXEUWSdLINIT+0SQnUxji0J+6j9HfzTecRpAGe/nkDKy48EvMMKlchdo7RynsvsTLWv51UAcdQd7cPZ0PFtZP+j5b0iwztGVYAbwOPQdcGCRFsHPNpHOhXusik6302sqMJ2eiLrYkifXLH7kYnBb4529MoeFK3n0ivAkEwmkVoFpAuEE2DZ59XAcj5UQk8FxW7fAL48vuRqvOtxd8qsBO63AfwKJyjRcP9MDXr26K4cG9lP6Dhry/Zs6tjixFx07Sgg9v+1Wkby+uwqzQ3gzx77loCTzM7qAwF4z2xVYyssQLOXZBGpm0RUZZlIxtcqi2nJkIMe8nVhp64H8E8PZIC4eh35L2KFKwD/DxxlAaBHABmuAAAAAElFTkSuQmCC"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"btn-link",attrs:{"type":"button","data-toggle":"tooltip","data-placement":"top","title":"","data-original-title":"将推荐链接提供给您的朋友，请您朋友通过该链接进行注册"}},[_c('i',{staticClass:"icon-ask"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"btn-link",attrs:{"type":"button","data-toggle":"tooltip","data-placement":"top","title":"","data-original-title":"将推荐码提供给您的朋友，请您朋友在注册的时候输入推荐码"}},[_c('i',{staticClass:"icon-ask"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"btn-link",attrs:{"type":"button","data-toggle":"tooltip","data-placement":"top","title":"","data-original-title":"1星级及以上的被推荐人，将视为有效活跃会员。如果您朋友是无效会员，请让您的好友进行充值，充值成功后即可自动成为有效会员。"}},[_c('i',{staticClass:"fa fa-question-circle"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',{staticClass:"jsgrid-filter-row",staticStyle:{"display":"none"}},[_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"70px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"70px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"60px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"60px"}},[_c('input',{attrs:{"type":"text"}})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',{staticClass:"jsgrid-insert-row",staticStyle:{"display":"none"}},[_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"70px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"70px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"60px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"60px"}},[_c('input',{attrs:{"type":"text"}})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default step-backward"},[_c('i',{staticClass:"fa fa-step-backward"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-default backward"},[_c('i',{staticClass:"fa fa-backward"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default forward"},[_c('i',{staticClass:"fa fa-forward"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-default step-forward"},[_c('i',{staticClass:"fa fa-step-forward"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default refresh"},[_c('i',{staticClass:"fa fa-refresh"})])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-content u-friend" }, [
+      _c("div", { staticClass: "top-group clearfix" }, [
+        _c("ul", { staticClass: "recommand-list" }, [
+          _c("li", { staticClass: "recommand-item" }, [
+            _c("div", { staticClass: "data-box" }, [
+              _c("div", { staticClass: "week-bonus" }, [
+                _c(
+                  "h4",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("This week bonus")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("¥ ")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { attrs: { id: "recommendCommission" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("0.00")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("ol", { staticClass: "about-friends" }, [
+                _c("li", { staticClass: "friends-item" }, [
+                  _c(
+                    "h4",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("Effectively recommend friends")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c(
+                      "span",
+                      { attrs: { id: "totalValidCustomers" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("0")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "friends-item separator-line" }),
+                _vm._v(" "),
+                _c("li", { staticClass: "friends-item" }, [
+                  _c(
+                    "h4",
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("Friend's valid bet amount this week")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c(
+                      "span",
+                      { attrs: { id: "validTurnover" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("0.00")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "total-bonus" }, [
+                _c(
+                  "h4",
+                  [
+                    _c(
+                      "span",
+                      { attrs: { id: "year_friend" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("2019")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Annual bonus total")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("¥ ")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "total-bet-year-js" },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("0.00")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "recommand-item" }, [
+            _c("div", { staticClass: "data-box" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "recommand-qrcode" }, [
+                _c(
+                  "p",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Recommended QR code")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(2)
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "recommand-item" }, [
+            _c("div", { staticClass: "data-box" }, [
+              _c("div", { staticClass: "recommand-link" }, [
+                _c(
+                  "p",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Recommended link")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm._m(3)
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "recommend-link",
+                    type: "text",
+                    "data-text": "value",
+                    readonly: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn zeroclipboard-is-hover",
+                    attrs: {
+                      id: "btnCopy",
+                      "data-clipboard-text": "",
+                      title: "Copy recommended link"
+                    }
+                  },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Copy recommended link")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "recommand-item" }, [
+            _c("div", { staticClass: "data-box" }, [
+              _c("div", { staticClass: "recommand-numcode" }, [
+                _c(
+                  "p",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Recommendation code")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm._m(4)
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("h4", [
+                  _c(
+                    "span",
+                    { attrs: { id: "codetext" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("1343296")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn",
+                      staticStyle: { display: "none" },
+                      attrs: {
+                        id: "recommended-code-js",
+                        href:
+                          "/ucenter/recommend/code/create?redirect=/ucenter/recommend/statis"
+                      }
+                    },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("Click to get the recommendation code")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel panel-default" }, [
+        _c("div", { staticClass: "panel-heading" }, [
+          _c("form", { staticClass: "form-inline", attrs: { action: "" } }, [
+            _c(
+              "label",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("Date range")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group" }, [
+              _c(
+                "p",
+                {
+                  staticClass: "form-control-static",
+                  attrs: { id: "startDateTime" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("2019-04-22")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "label",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("To")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group" }, [
+              _c(
+                "p",
+                {
+                  staticClass: "form-control-static",
+                  attrs: { id: "endDateTime" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("2019-04-28")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group pull-right" }, [
+              _c(
+                "p",
+                { staticClass: "tip" },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _vm._v(
+                            "Billing cycle: Every Monday from 00:00 to Sunday 23:59:59."
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _vm._v(
+                            "Added to the account before 24 o'clock every Monday."
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "table panel-body jsgrid",
+            staticStyle: { position: "static", height: "auto", width: "100%" },
+            attrs: { id: "tab_grid" }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "jsgrid-grid-header jsgrid-header-scrollbar" },
+              [
+                _c("table", { staticClass: "jsgrid-table" }, [
+                  _c("tbody", [
+                    _c("tr", { staticClass: "jsgrid-header-row" }, [
+                      _c(
+                        "th",
+                        {
+                          staticClass: "jsgrid-header-cell jsgrid-align-center",
+                          staticStyle: { width: "70px" }
+                        },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("Referee")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "th",
+                        {
+                          staticClass: "jsgrid-header-cell jsgrid-align-center",
+                          staticStyle: { width: "70px" }
+                        },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("Recommended status")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _vm._m(5)
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "th",
+                        {
+                          staticClass: "jsgrid-header-cell jsgrid-align-center",
+                          staticStyle: { width: "60px" }
+                        },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("Effective bet amount")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "th",
+                        {
+                          staticClass: "jsgrid-header-cell jsgrid-align-center",
+                          staticStyle: { width: "60px" }
+                        },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("Bonus amount")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(6),
+                    _vm._v(" "),
+                    _vm._m(7)
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "jsgrid-grid-body" }, [
+              _c("table", { staticClass: "jsgrid-table" }, [
+                _c("tbody", [
+                  _c("tr", { staticClass: "jsgrid-nodata-row" }, [
+                    _c(
+                      "td",
+                      { staticClass: "jsgrid-cell", attrs: { colspan: "4" } },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "no-data" },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("No data!")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "jsgrid-load-shader",
+              staticStyle: {
+                display: "none",
+                position: "absolute",
+                top: "0px",
+                right: "0px",
+                bottom: "0px",
+                left: "0px",
+                "z-index": "1000"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "jsgrid-load-panel",
+                staticStyle: {
+                  display: "none",
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  "z-index": "1000"
+                }
+              },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("Please, wait...")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticStyle: { display: "none" } }, [
+          _c(
+            "div",
+            {
+              staticClass: "jsgrid-pager-container",
+              staticStyle: { display: "none" },
+              attrs: { id: "tab_paging" }
+            },
+            [
+              _c("div", { staticClass: "jsgrid-pager" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"
+                  },
+                  [
+                    _c(
+                      "a",
+                      { attrs: { href: "javascript:void(0);" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("<<")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"
+                  },
+                  [
+                    _c(
+                      "a",
+                      { attrs: { href: "javascript:void(0);" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("<")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"
+                  },
+                  [
+                    _c(
+                      "a",
+                      { attrs: { href: "javascript:void(0);" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v(">")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"
+                  },
+                  [
+                    _c(
+                      "a",
+                      { attrs: { href: "javascript:void(0);" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v(">>")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                )
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "table",
+          {
+            staticClass: "table table-striped col6",
+            attrs: { id: "paging-4-grid" }
+          },
+          [
+            _c("tbody", [
+              _c("tr", { staticClass: "last" }, [
+                _c(
+                  "td",
+                  { staticClass: "text-right", attrs: { colspan: "6" } },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "pull-left form-inline",
+                        attrs: { action: "" }
+                      },
+                      [
+                        _vm._m(8),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("First")]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control page-no",
+                              attrs: { type: "text", readonly: "" }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "total_page_pl" },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [
+                                    _c(
+                                      "font",
+                                      {
+                                        staticStyle: {
+                                          "vertical-align": "inherit"
+                                        }
+                                      },
+                                      [_vm._v("Total 0 pages")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _vm._m(9),
+                        _vm._v(" "),
+                        _vm._m(10)
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "page_angle" },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("Display 0 to 0, total 0 records")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "hidden", attrs: { id: "recommend-qr-code" } },
+      [_c("canvas", { attrs: { width: "124", height: "124" } })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass: "btn-link",
+        attrs: {
+          type: "button",
+          "data-toggle": "tooltip",
+          "data-placement": "top",
+          title: "",
+          "data-original-title":
+            "将二维码提供给您的朋友，请您朋友扫描二维码打开网站进行注册"
+        }
+      },
+      [_c("i", { staticClass: "icon-ask" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ag_qrcode qrcode" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHwAAAB8CAYAAACrHtS+AAAMEklEQVR4Xu2d4XbjSgiD2/d/6N6T0006GYP0gZ297Zb+bOwxg0AI7Djvb29vH2/Nv4+Pz1Pf39/TFSrH3Be5rxede//ffizZgjt3/3zd225LZV/EP9l+lE1kz/sxN6QG8D9e+VWAR5vNIqiTgZX1D1G5MEiWpSrj6LXXTMzOIdmq/LPvzTEHCUKS6XebHhlOnaJo7vaZA4QYN4B/lcmXA96J4AjEPcpVzXXBRmzK6n/FNnXs/TNla2YnqcMZQxHAiX/SDK+cTDbvhFLECirDM0ocwGPu3APpQOkD+LPjdn+QIHdBGXU2PyrDldjJBMzqOEf/hNY6Ga70RCam1DnZPqJyRssY2XslSS/J8AH8E9IB3AxlMiFUaftIZqsMWDO2Q9dRxleGMhljqOA50/b9tQwn9JmBV+mPiSLObPmVgJM+mWSga1Giz11dU2JHZTqlWqIrKv4hQe78dLat3P3yssGL28gAru9DELYhCZICTiI3azciynXqvHNOJIzcdb7jOTeb6EhV+amD2eU3T67YiGqJHMARfX+3c/5XwD8qvABCKhtUENUJlj/M6sk5V9RwNyugat+pclL3yZ7T6wzgcf/sWGGvjf8E4C6qKy1QR4S4zCT1OVL2ZzKkso+M7YhNhHidMI6u864yfAA/hsYAvvmERN3uxk5gZX23Em1nMvt+7j8NeFanyOgwc250bubEbq++U5m7RUtAzFrS9f+07itKP3PTBgUlEW1OeVcyZwD/9JZjQqJfXEJGuBxqeGbI7WSS2bQPJ0FyVYbvkX9FJl7dPhGAyTFpO/bnucAB3NzWVAngyhYJ6kyLhNn5BzSi4DOddJi0dW4gVJzSMVY5jkQ9LUnENjJAciy3smWLljfgiU2P6+zPpQ/gOi+Jc7814HfRRjZSobCsTkZrZCr6rMCjtVupW7cPlSDu3NUXrpMgrFBS6QP48Zn6VU1ngvXHAV75qtGVUUgynQiXThZ1VDqZFZCgyESaGsNWz1GaqnR7dAA/huDq3B8BuKrhVN1GtchFbOSorJUg7Y0KRje9UuNYl9kRpWfaQdVs1z93fBCWpAGc3R7NgnEAT74zTjJwMlyXDJflERsd9Mo+SydDFHKzoUOFnRronKA+7wRhJqDW65zxIRGhrkSpPZdGq6jPM+M/Ui9d/V9r0wAet5OpJri3ZWrIUWljqPgg/SsJsErGncoM8VqTbM+VUW1njU5iyG+euBEh2dAOSASiozFyHTI4GsDf3iSlO0d3nHwV4K5OVhhEMUm2R3f9KGOJoq8w1n4NxdKPdZVoG8Dzb4T+M4BHkek2RyJX0XZHnVe6AJc10f5eGewu+6OBieoCMv/dztk/k0+tZvU3o5JIPTsdEBnVoVgHqnLirwKc3A/vqGWnOjtOJlFOGMqxw7qGE3qK/VTmUZ8SPykttfsDPfFCjYsynAiLyvpE9R82ubVUA/jiIVKPs+wdwJ898y0znDym7DJGBUClhmfXIUFYaRFJve/s2QGsWkWy946mOqw7gLPRpOtUlPiMSparuySAnU4K9Qx5pq2TEZVzMmeSce/uTCJyMtvIuWScWdm7Ykf3WWaLCs5HW+Yibq3PrkddDa2sSwSe69kJaL8a8E5bdoZulCKvZI+rZ1FQOiaJAlXZu4tUlwhnW7jMlkpStdqyAfwrNFYQfwTgZJZOIshlXEbXe5asx5GbAURNO/Uc1UrXXSgGccBHe97PIUmVnaNqP7pbNoDnb12q6pUsMb4V4C6LSES7NW6fuzFmp8ZWzlGCj7RlpGPIsu8KH5KuBmW4A+sKYwfw+k/PkLbscLdsf8TpbEaoWp21di57yKQta7W69TIrY/v/lWgjXYdab02CzHfq/9Fn8tWbzmAH1G7wAH7M4gE8KHKT4Z9OoayjhCR6bZeS+RmFk/qSiRzSRpFjKnZHbOToMtM2rqXLrhVS8MVPyw7gC2pX9dY/AnDSkmRqnEybiNi5ot9Xme/sV6WDMhllFdeCnrknoGw43DxZD3ZG7cq4S1X0OqqDyMpDtB9HxZGy/9WAk2yNgiFzPlH7O6Bu/SjKHdV2xKHKpsrok2iSiv2Zf1oZPoDrX1TuBOdfB5xkjKuBK6VX6nF2bSWiMoqNMs7Z4j6PKP4q2zKGeHkNH8D1o05uCKXq/tWjZ6JB0kAijzhdUWOVMHM9u3LYGSAUS5B1Tzkefq2aqn4nTu/7QY84DeC1Bx1JRrsyUvE5KW8PwNVru5zhzmjVRrm1s3Od8u2sW+nd1Z4dK1RAJKyW+ULpC/naLue8Afw5twbwxR/OGapWqUneFev+ygwnm84oyTGBEx5uXdKiEKp1bWU0eCH98d53X0Hdao3OAObRhal3vNCNDOCfnqoERzacqbTH2QBM1n/yVaNOrVZtmBs2KGHm1o1sdW2fcr5zqio3jtnUQEfto8NUj0AawL9gUerW0eia4QToLJPJvOIU4OqZNkcvEYV16L3CIM5RkbNdhleAdlS8Zm3FF87GaF9k/X1d9HPSFVFFjNiNH8CPN2OIHiC+PgBOXq7rFiaKMgM5EjsdWstq7VmqdfRJMq8S0JV9dNaVo1W64AD+DHtlAubYjswgXEKuZQa9xUllZ5ZBLlhUb62i3LWKRFeQ9V2tJn1/RbyRY12HQtYYwMWvBKpy8E8CnilHl/Ek0pQy3s+vTMCU2KlkCGUBso/KMeS6ak7hGLf0mHJHwGTgEydEtOocMoDrX2cawJOIdIGlajxhRtd3k8CtzCTu15Ovz86oVW3IbcSJIVcOOmJQlYhVwaoWi4DoFPf6uZttOD+otWQJJDdPqDKOnJdFKmklok0P4EevkAR84FB5pq1Sw92kKIpCwiiZ8LpCNRNxqASTC2LVU+/0fKa9VL4tPdM2gB8FEQExqrXOly8HXBnl6g2ZtJEMJG1TJqaIyLmiHJwVa05oKbHo2A11NZW3OBHKdceodmwAP34HPGIQ10HI0kTuhzvFSMakao2sLqqa6LK1oog77EP2Q5S9YyyqxjN7dhtao9Ws/Vj/70RbdGwmXDpqfQD/9MABcPJz0g48p06d813rpoQR7ftvNpCScabGZuWM6CNan6PgJ0z4sGEAj8nQBZJLgjXABvDNx5PhOfuoDkh1DBlTtUar2WIqqiu0UykRmZ5Q3YAToRXaJC1pxV9EH2VAR+LzIAo7o9XKBoiaJmqWgkQUN11LCUvlAwcIWffM+u22rNLvVTJtV4906hSpzgw8NV5011MZTubWFZteJdYyG9DtUVdjo8VdZpORpKIol6UDeCJG1S8iOKdWPidUWxnAdAKqMuSoMhZhHxWERIDtNN/xl/xFhAqg7tgB/PnGSyb2iGDNfEl8jH4/3AkIKRK2V1sQVUsM3zOCrEsz5HacG9KcvZ4DjeiISqm9X28AXzwb6YozwKgAO7NuR0wfAHeUvEY9OdYNDCp3zaI2xlFi9HlW81T9POPc3U+Erh2bRjhU2lr5yo9XGZwFj3NuRLWZjQN4otI7t0cVMG7GTCZgag2XJY5ZFDt1WIfsJ2KQLCtJ0Gd7QPYP4F/uQw4DP03tyk3Uwp0ZwJRK0gA+gBNN9nRMpV5GdN0RUxUjK0Map1sI5ZKBiFPpxE9E4O37efkTL1lrErVA2QZc3XbgD+BfHiqpdBf9a20iUZ4BRQYvThxGa19ZJys2uoBUn5PZQMWWAdx8Xdi1fUTofUvAK7TpKDLKdBKFpN1wbVenpXNrRv1/px1T13E6JptdKFaNugH0Up9D4Tevfh7Anz1Gys//BjiJwquy1dVwQoXEUWSdLINIT+0SQnUxji0J+6j9HfzTecRpAGe/nkDKy48EvMMKlchdo7RynsvsTLWv51UAcdQd7cPZ0PFtZP+j5b0iwztGVYAbwOPQdcGCRFsHPNpHOhXusik6302sqMJ2eiLrYkifXLH7kYnBb4529MoeFK3n0ivAkEwmkVoFpAuEE2DZ59XAcj5UQk8FxW7fAL48vuRqvOtxd8qsBO63AfwKJyjRcP9MDXr26K4cG9lP6Dhry/Zs6tjixFx07Sgg9v+1Wkby+uwqzQ3gzx77loCTzM7qAwF4z2xVYyssQLOXZBGpm0RUZZlIxtcqi2nJkIMe8nVhp64H8E8PZIC4eh35L2KFKwD/DxxlAaBHABmuAAAAAElFTkSuQmCC"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass: "btn-link",
+        attrs: {
+          type: "button",
+          "data-toggle": "tooltip",
+          "data-placement": "top",
+          title: "",
+          "data-original-title":
+            "将推荐链接提供给您的朋友，请您朋友通过该链接进行注册"
+        }
+      },
+      [_c("i", { staticClass: "icon-ask" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass: "btn-link",
+        attrs: {
+          type: "button",
+          "data-toggle": "tooltip",
+          "data-placement": "top",
+          title: "",
+          "data-original-title":
+            "将推荐码提供给您的朋友，请您朋友在注册的时候输入推荐码"
+        }
+      },
+      [_c("i", { staticClass: "icon-ask" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass: "btn-link",
+        attrs: {
+          type: "button",
+          "data-toggle": "tooltip",
+          "data-placement": "top",
+          title: "",
+          "data-original-title":
+            "1星级及以上的被推荐人，将视为有效活跃会员。如果您朋友是无效会员，请让您的好友进行充值，充值成功后即可自动成为有效会员。"
+        }
+      },
+      [_c("i", { staticClass: "fa fa-question-circle" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "tr",
+      { staticClass: "jsgrid-filter-row", staticStyle: { display: "none" } },
+      [
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "70px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "70px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "60px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "60px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "tr",
+      { staticClass: "jsgrid-insert-row", staticStyle: { display: "none" } },
+      [
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "70px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "70px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "60px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "60px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("button", { staticClass: "btn btn-default step-backward" }, [
+        _c("i", { staticClass: "fa fa-step-backward" })
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-default backward" }, [
+        _c("i", { staticClass: "fa fa-backward" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("button", { staticClass: "btn btn-default forward" }, [
+        _c("i", { staticClass: "fa fa-forward" })
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-default step-forward" }, [
+        _c("i", { staticClass: "fa fa-step-forward" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("button", { staticClass: "btn btn-default refresh" }, [
+        _c("i", { staticClass: "fa fa-refresh" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44376,9 +56088,1452 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-rebate u-inner"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"rebate-level"},[_c('div',{staticClass:"level-line"},[_c('div',{staticClass:"pbc",staticStyle:{"display":"none"}},[_c('div',{staticClass:"pb-p"},[_c('ul',[_c('li',[_c('div',{staticClass:"upb"},[_c('div',{staticClass:"upbd vp1"},[_c('p',{staticClass:"zbpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("One star")])],1)],1)])]),_vm._v(" "),_c('p',{staticClass:"adpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0")])],1)],1)]),_vm._v(" "),_c('li',[_c('div',{staticClass:"upb"},[_c('div',{staticClass:"upbd vp2"},[_c('p',{staticClass:"zbpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Two stars")])],1)],1)])]),_vm._v(" "),_c('p',{staticClass:"adpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("100,000")])],1)],1)]),_vm._v(" "),_c('li',[_c('div',{staticClass:"upb"},[_c('div',{staticClass:"upbd vp3"},[_c('p',{staticClass:"zbpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Three Star")])],1)],1)])]),_vm._v(" "),_c('p',{staticClass:"adpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("500000")])],1)],1)]),_vm._v(" "),_c('li',[_c('div',{staticClass:"upb"},[_c('div',{staticClass:"upbd vp4"},[_c('p',{staticClass:"zbpb"},[_c('img',{attrs:{"src":"/assets/images/user/u_rebate/crown.png"}}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP 4")])],1)],1)])]),_vm._v(" "),_c('p',{staticClass:"adpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("1000000")])],1)],1)]),_vm._v(" "),_c('li',[_vm._m(1),_vm._v(" "),_c('p',{staticClass:"adpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("3000000")])],1)],1)]),_vm._v(" "),_c('li',[_vm._m(2),_vm._v(" "),_c('p',{staticClass:"adpb"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("6000000")])],1)],1)])])]),_vm._v(" "),_c('div',{staticClass:"pbbg"}),_vm._v(" "),_vm._m(3),_vm._v(" "),_c('div',{staticClass:"pbpd"},[_c('div',{staticClass:"pdp"}),_vm._v(" "),_c('div',{staticClass:"pbpd-pbb"},[_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Effective bet amount this week")])],1),_vm._v(" "),_c('span',{staticClass:"ac"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0")])],1)],1)],1)])]),_vm._v(" "),_c('div',{staticClass:"pbdd"},[_c('i',{staticClass:"arrow"}),_vm._v(" "),_c('p',[_c('span',{staticClass:"bgc"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("You are currently")])],1),_vm._v(" "),_c('i',{staticClass:"st"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("a star")])],1)],1)],1),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("for")])],1),_vm._v(" "),_c('i',{staticClass:"sa"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("two stars.")])],1)],1),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Just bet")]),_vm._v(" "),_c('i',{staticClass:"aa"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0")])],1),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("again.")])],1),_vm._v(" "),_c('i',{staticClass:"aa"},[_c('font',{staticStyle:{"vertical-align":"inherit"}})],1)],1)])])]),_vm._v(" "),_c('div',{staticClass:"vp7 text-center",staticStyle:{"display":"none"}},[_c('a',{staticClass:"vp7-btn",attrs:{"href":"/rights?hiddenMenu=true","target":"_blank"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("About")])],1),_vm._v(" "),_c('b',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("VIP")])],1)],1),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("interests")])],1)],1)])]),_vm._v(" "),_c('div',{staticClass:"inp"},[_c('div',{staticClass:"inpd text-center"},[_c('p',{staticClass:"p-notice",staticStyle:{"display":"none"}},[_c('span',{staticClass:"ccd"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Note")])],1)],1),_vm._v(" "),_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("1. There will be a 5-15 minute delay in the progress bar data.")])],1)],1),_vm._v(" "),_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("2. The effective bet amount progress bar is calculated on the cycle of the natural week, and is automatically cleared and recalculated every other week.")])],1)],1),_vm._v(" "),_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("3. All successful promotion stars will not rise.")])],1)],1)])])]),_vm._v(" "),_c('table',{staticClass:"table"},[_c('thead',[_c('tr',[_c('th'),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Unsettled wash amount")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Billable valid bet amount")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Total effective bet amount for the week")])],1)],1)])]),_vm._v(" "),_c('tbody',{staticClass:"rebate-games"},[_c('tr',[_c('td',{staticClass:"gameKing-name",attrs:{"game":"真人游戏"}},[_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Real-life game")])],1),_vm._v(" "),_c('em',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("(washing ratio 0%)")])],1)],1)],1)]),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1)]),_vm._v(" "),_c('tr',[_c('td',{staticClass:"gameKing-name",attrs:{"game":"电子游戏"}},[_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Video games")])],1),_vm._v(" "),_c('em',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("(washing ratio 0%)")])],1)],1)],1)]),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1)]),_vm._v(" "),_c('tr',[_c('td',{staticClass:"gameKing-name",attrs:{"game":"捕&nbsp;鱼&nbsp;王"}},[_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Fishing king")])],1),_vm._v(" "),_c('em',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("(washing ratio 0%)")])],1)],1)],1)]),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1)]),_vm._v(" "),_c('tr',[_c('td',{staticClass:"gameKing-name",attrs:{"game":"体育游戏"}},[_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Sports games")])],1),_vm._v(" "),_c('em',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("(washing ratio 0%)")])],1)],1)],1)]),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1)]),_vm._v(" "),_c('tr',[_c('td',{staticClass:"gameKing-name",attrs:{"game":"现&nbsp;场&nbsp;厅"}},[_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("On-site hall")])],1),_vm._v(" "),_c('em',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("(washing ratio 0%)")])],1)],1)],1)]),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1)]),_vm._v(" "),_c('tr',[_c('td',{staticClass:"gameKing-name",attrs:{"game":"彩票游戏"}},[_c('span',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Lottery game")])],1),_vm._v(" "),_c('em',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("(washing ratio 0%)")])],1)],1)],1)]),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1),_vm._v(" "),_c('td',{staticClass:"money"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0.00")])],1)],1)])])]),_vm._v(" "),_c('div',{staticClass:"text-center"},[_c('a',{staticClass:"btn-submit rebate-settle-submit",attrs:{"href":"javascript:;"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("submit")])],1)],1)]),_vm._v(" "),_c('div',{staticClass:"u-box"},[_c('h3',{staticClass:"font20 orange-color"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Coder commission:")])],1)],1),_vm._v(" "),_c('p',{staticClass:"tip"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Cycle (Beijing time 4-22-2019 00:00:00 - 4-28-2019 23:59:59) The")])],1),_vm._v(" "),_c('br'),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("     single game type of the code commission can reach 10 yuan to settle at any time.")])],1)],1)]),_vm._v(" "),_c('div',{staticClass:"safety-intro"})])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"rebate_ad"}},[_c('a',{staticClass:"new-promo",staticStyle:{"background":"url(https://static-pc.swcqlz.com/cms/cms_pic/20190401ecd4c303ae4c47518ef689e33501b4d8.jpg) center top"},attrs:{"target":"_blank","href":"/activity/maserati1788/index.html"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"upb"},[_c('div',{staticClass:"upbd vp5"},[_c('img',{attrs:{"src":"/assets/images/user/u_rebate/vip5.png"}})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"upb"},[_c('div',{staticClass:"upbd vp6"},[_c('img',{attrs:{"src":"/assets/images/user/u_rebate/vip6.png"}})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"pbcf"},[_c('div',{staticClass:"pbcf-p"}),_vm._v(" "),_c('div',{staticClass:"pbcf-pd",staticStyle:{"display":"none"}},[_c('p',[_vm._v("\n                本周有效投注额\n                "),_c('span',{staticClass:"ac"},[_vm._v("0")])])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-rebate u-inner" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "rebate-level" }, [
+        _c("div", { staticClass: "level-line" }, [
+          _c("div", { staticClass: "pbc", staticStyle: { display: "none" } }, [
+            _c("div", { staticClass: "pb-p" }, [
+              _c("ul", [
+                _c("li", [
+                  _c("div", { staticClass: "upb" }, [
+                    _c("div", { staticClass: "upbd vp1" }, [
+                      _c(
+                        "p",
+                        { staticClass: "zbpb" },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("One star")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "adpb" },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("0")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("div", { staticClass: "upb" }, [
+                    _c("div", { staticClass: "upbd vp2" }, [
+                      _c(
+                        "p",
+                        { staticClass: "zbpb" },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("Two stars")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "adpb" },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("100,000")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("div", { staticClass: "upb" }, [
+                    _c("div", { staticClass: "upbd vp3" }, [
+                      _c(
+                        "p",
+                        { staticClass: "zbpb" },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("Three Star")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "adpb" },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("500000")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("div", { staticClass: "upb" }, [
+                    _c("div", { staticClass: "upbd vp4" }, [
+                      _c(
+                        "p",
+                        { staticClass: "zbpb" },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src: "/assets/images/user/u_rebate/crown.png"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("VIP 4")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "adpb" },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("1000000")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "adpb" },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("3000000")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "adpb" },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("6000000")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "pbbg" }),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "pbpd" }, [
+              _c("div", { staticClass: "pdp" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "pbpd-pbb" }, [
+                _c(
+                  "p",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Effective bet amount this week")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "ac" },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("0")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "pbdd" }, [
+              _c("i", { staticClass: "arrow" }),
+              _vm._v(" "),
+              _c(
+                "p",
+                [
+                  _c(
+                    "span",
+                    { staticClass: "bgc" },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("You are currently")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "i",
+                        { staticClass: "st" },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("a star")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("for")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i",
+                    { staticClass: "sa" },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("two stars.")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Just bet")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "i",
+                        { staticClass: "aa" },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("0")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("again.")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "i",
+                    { staticClass: "aa" },
+                    [
+                      _c("font", {
+                        staticStyle: { "vertical-align": "inherit" }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "vp7 text-center", staticStyle: { display: "none" } },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "vp7-btn",
+                attrs: { href: "/rights?hiddenMenu=true", target: "_blank" }
+              },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("About")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "b",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("VIP")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("interests")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "inp" }, [
+        _c("div", { staticClass: "inpd text-center" }, [
+          _c(
+            "p",
+            { staticClass: "p-notice", staticStyle: { display: "none" } },
+            [
+              _c(
+                "span",
+                { staticClass: "ccd" },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Note")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _vm._v(
+                            "1. There will be a 5-15 minute delay in the progress bar data."
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _vm._v(
+                            "2. The effective bet amount progress bar is calculated on the cycle of the natural week, and is automatically cleared and recalculated every other week."
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _vm._v(
+                            "3. All successful promotion stars will not rise."
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("table", { staticClass: "table" }, [
+        _c("thead", [
+          _c("tr", [
+            _c("th"),
+            _vm._v(" "),
+            _c(
+              "th",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("Unsettled wash amount")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "th",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("Billable valid bet amount")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "th",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("Total effective bet amount for the week")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tbody", { staticClass: "rebate-games" }, [
+          _c("tr", [
+            _c(
+              "td",
+              { staticClass: "gameKing-name", attrs: { game: "真人游戏" } },
+              [
+                _c(
+                  "span",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Real-life game")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "em",
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("(washing ratio 0%)")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c(
+              "td",
+              { staticClass: "gameKing-name", attrs: { game: "电子游戏" } },
+              [
+                _c(
+                  "span",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Video games")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "em",
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("(washing ratio 0%)")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c(
+              "td",
+              {
+                staticClass: "gameKing-name",
+                attrs: { game: "捕&nbsp;鱼&nbsp;王" }
+              },
+              [
+                _c(
+                  "span",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Fishing king")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "em",
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("(washing ratio 0%)")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c(
+              "td",
+              { staticClass: "gameKing-name", attrs: { game: "体育游戏" } },
+              [
+                _c(
+                  "span",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Sports games")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "em",
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("(washing ratio 0%)")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c(
+              "td",
+              {
+                staticClass: "gameKing-name",
+                attrs: { game: "现&nbsp;场&nbsp;厅" }
+              },
+              [
+                _c(
+                  "span",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("On-site hall")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "em",
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("(washing ratio 0%)")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c(
+              "td",
+              { staticClass: "gameKing-name", attrs: { game: "彩票游戏" } },
+              [
+                _c(
+                  "span",
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [_vm._v("Lottery game")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "em",
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("(washing ratio 0%)")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "td",
+              { staticClass: "money" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("0.00")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-center" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn-submit rebate-settle-submit",
+            attrs: { href: "javascript:;" }
+          },
+          [
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("submit")
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "u-box" }, [
+        _c(
+          "h3",
+          { staticClass: "font20 orange-color" },
+          [
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("Coder commission:")
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "tip" },
+          [
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v(
+                    "Cycle (Beijing time 4-22-2019 00:00:00 - 4-28-2019 23:59:59) The"
+                  )
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v(
+                    "     single game type of the code commission can reach 10 yuan to settle at any time."
+                  )
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "safety-intro" })
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "rebate_ad" } }, [
+      _c("a", {
+        staticClass: "new-promo",
+        staticStyle: {
+          background:
+            "url(https://static-pc.swcqlz.com/cms/cms_pic/20190401ecd4c303ae4c47518ef689e33501b4d8.jpg) center top"
+        },
+        attrs: { target: "_blank", href: "/activity/maserati1788/index.html" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "upb" }, [
+      _c("div", { staticClass: "upbd vp5" }, [
+        _c("img", { attrs: { src: "/assets/images/user/u_rebate/vip5.png" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "upb" }, [
+      _c("div", { staticClass: "upbd vp6" }, [
+        _c("img", { attrs: { src: "/assets/images/user/u_rebate/vip6.png" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "pbcf" }, [
+      _c("div", { staticClass: "pbcf-p" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "pbcf-pd", staticStyle: { display: "none" } }, [
+        _c("p", [
+          _vm._v("\n                本周有效投注额\n                "),
+          _c("span", { staticClass: "ac" }, [_vm._v("0")])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44394,9 +57549,531 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-content u-subscribe"},[_c('div',{staticClass:"mobile-wrap"},[_c('div',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Mobile number:")])],1),_vm._v(" "),_c('span',{staticClass:"js-show-phone"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("186*******2")])],1)],1),_vm._v(" "),_c('a',{staticClass:"btn-link",attrs:{"href":"/ucenter/security/phone"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("modification")])],1)],1)],1),_vm._v(" "),_c('form',{staticClass:"js-verify-notation",attrs:{"id":"verifyPhoneForm","novalidate":"novalidate"}},[_c('div',{staticClass:"form-inline"},[_c('a',{staticClass:"btn-resend pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("obtain SMS verification code")])],1)],1),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"id":"captcha","name":"captcha","type":"text","maxlength":"6","placeholder":"请输入短信验证码"}}),_vm._v(" "),_c('a',{staticClass:"btn-submit pointer-link",attrs:{"verify-type":"bound"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("confirm at once")])],1)],1),_vm._v(" "),_c('span',{staticClass:"error-msg"})]),_vm._v(" "),_c('p',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Tips: Please enter the SMS verification code to open the SMS subscription function.")])],1)],1)])]),_vm._v(" "),_c('table',{staticClass:"js-table-subscribe table table-bordered loading-portion"},[_c('thead',[_c('tr',[_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subscription content")])],1)],1),_vm._v(" "),_c('th',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("SMS subscription")])],1)],1)])]),_vm._v(" "),_c('tbody',[_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Login prompt")])],1)],1),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Offer added")])],1)],1),_vm._v(" "),_vm._m(1)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Contact phone modification")])],1)],1),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Bank data modification")])],1)],1),_vm._v(" "),_vm._m(3)]),_vm._v(" "),_c('tr',[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recharge prompt")])],1)],1),_vm._v(" "),_vm._m(4),_vm._v(" "),_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Name modification")])],1)],1),_vm._v(" "),_vm._m(5)]),_vm._v(" "),_c('tr',{staticClass:"highlight"},[_c('td',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Cash withdrawal prompt")])],1)],1),_vm._v(" "),_vm._m(6),_vm._v(" "),_c('td'),_vm._v(" "),_c('td')])]),_vm._v(" "),_c('div',{staticClass:"transparent-base64 loading-js loading-portion-content"})])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"login","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"promotions","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyPhone","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyBankingData","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"deposit","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"modifyAccountName","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',[_c('label',{staticClass:"switcher"},[_c('input',{staticClass:"type-sms",attrs:{"name":"withdrawal","type":"checkbox"}}),_vm._v(" "),_c('span',[_c('i')])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-content u-subscribe" }, [
+      _c("div", { staticClass: "mobile-wrap" }, [
+        _c(
+          "div",
+          [
+            _c(
+              "font",
+              { staticStyle: { "vertical-align": "inherit" } },
+              [
+                _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                  _vm._v("Mobile number:")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              { staticClass: "js-show-phone" },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("186*******2")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn-link",
+                attrs: { href: "/ucenter/security/phone" }
+              },
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [_vm._v("modification")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "js-verify-notation",
+            attrs: { id: "verifyPhoneForm", novalidate: "novalidate" }
+          },
+          [
+            _c("div", { staticClass: "form-inline" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn-resend pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("obtain SMS verification code")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  id: "captcha",
+                  name: "captcha",
+                  type: "text",
+                  maxlength: "6",
+                  placeholder: "请输入短信验证码"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn-submit pointer-link",
+                  attrs: { "verify-type": "bound" }
+                },
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("confirm at once")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "error-msg" })
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              [
+                _c(
+                  "font",
+                  { staticStyle: { "vertical-align": "inherit" } },
+                  [
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _vm._v(
+                          "Tips: Please enter the SMS verification code to open the SMS subscription function."
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "js-table-subscribe table table-bordered loading-portion"
+        },
+        [
+          _c("thead", [
+            _c("tr", [
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Subscription content")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Login prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Offer added")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Contact phone modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Bank data modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(3)
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Recharge prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Name modification")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(5)
+            ]),
+            _vm._v(" "),
+            _c("tr", { staticClass: "highlight" }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "font",
+                    { staticStyle: { "vertical-align": "inherit" } },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [_vm._v("Cash withdrawal prompt")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "transparent-base64 loading-js loading-portion-content"
+          })
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "login", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "promotions", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyPhone", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyBankingData", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "deposit", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "modifyAccountName", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "switcher" }, [
+        _c("input", {
+          staticClass: "type-sms",
+          attrs: { name: "withdrawal", type: "checkbox" }
+        }),
+        _vm._v(" "),
+        _c("span", [_c("i")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44412,9 +58089,2955 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"u-content u-transaction"},[_c('ul',{staticClass:"nav nav-tabs nav-tabs-template"},[_c('li',{staticClass:"active"},[_c('a',{attrs:{"href":"#tab-1","data-toggle":"tab","aria-expanded":"true"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Withdrawals record")])],1)],1)]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"#tab-2","data-toggle":"tab"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Recharge record")])],1)],1)]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"#tab-3","data-toggle":"tab"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Washing record")])],1)],1)]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"#tab-4","data-toggle":"tab"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Offer record")])],1)],1)]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"#tab-5","data-toggle":"tab"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Game record")])],1)],1)])]),_vm._v(" "),_c('div',{staticClass:"tab-content"},[_c('div',{staticClass:"tab-pane fade tab-1 active in",attrs:{"id":"tab-1"}},[_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading"},[_c('div',{staticClass:"form-inline",attrs:{"id":"withdraw_form"}},[_c('label',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Date range")])],1)],1),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('label',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("To")])],1)],1),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('label',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("status")])],1)],1),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('select',{staticClass:"form-control",attrs:{"id":"withdrawFlag","name":"withdrawFlag"}},[_c('option',{attrs:{"value":"","selected":""}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("All")])],1)],1),_vm._v(" "),_c('option',{attrs:{"value":"0"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Waiting for processing")])],1)],1),_vm._v(" "),_c('option',{attrs:{"value":"9"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Processing")])],1)],1),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("wait for payment")])],1)],1),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Payment completed")])],1)],1),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Payment failed")])],1)],1),_vm._v(" "),_c('option',{attrs:{"value":"-1,-2"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Cancelled")])],1)],1),_vm._v(" "),_c('option',{attrs:{"value":"-3"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Approval rejection")])],1)],1)])]),_vm._v(" "),_c('button',{staticClass:"btn btn-orange",attrs:{"id":"withdraw_search"}},[_c('i',{staticClass:"fa fa-search"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Inquire")])],1)],1)])]),_vm._v(" "),_c('div',{staticClass:"panel-body jsgrid",staticStyle:{"position":"relative","height":"auto","width":"100%"},attrs:{"id":"tab-1-grid"}},[_c('div',{staticClass:"jsgrid-grid-header jsgrid-header-scrollbar"},[_c('table',{staticClass:"jsgrid-table table"},[_c('tbody',[_c('tr',{staticClass:"jsgrid-header-row"},[_c('th',{staticClass:"jsgrid-header-cell jsgrid-align-center",staticStyle:{"width":"50px"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("application time")])],1)],1),_vm._v(" "),_c('th',{staticClass:"jsgrid-header-cell jsgrid-align-center",staticStyle:{"width":"50px"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Cash withdrawal number")])],1)],1),_vm._v(" "),_c('th',{staticClass:"jsgrid-header-cell jsgrid-align-center",staticStyle:{"width":"50px"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Cash withdrawal card")])],1)],1),_vm._v(" "),_c('th',{staticClass:"jsgrid-header-cell jsgrid-align-center",staticStyle:{"width":"50px"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Withdrawal Amount")])],1)],1),_vm._v(" "),_c('th',{staticClass:"jsgrid-header-cell jsgrid-align-center",staticStyle:{"width":"20px"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("status")])],1)],1),_vm._v(" "),_c('th',{staticClass:"jsgrid-header-cell jsgrid-align-center",staticStyle:{"width":"30px"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("operating")])],1)],1),_vm._v(" "),_c('th',{staticClass:"jsgrid-header-cell jsgrid-align-center",staticStyle:{"width":"70px"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Remarks")])],1)],1)]),_vm._v(" "),_vm._m(2),_vm._v(" "),_vm._m(3)])])]),_vm._v(" "),_c('div',{staticClass:"jsgrid-grid-body"},[_c('table',{staticClass:"jsgrid-table table"},[_c('tbody',[_c('tr',{staticClass:"jsgrid-nodata-row"},[_c('td',{staticClass:"jsgrid-cell",attrs:{"colspan":"7"}},[_c('div',{staticClass:"no-data"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("No record for the selected time period!")])],1)],1)])])])])]),_vm._v(" "),_c('div',{staticClass:"jsgrid-load-shader",staticStyle:{"display":"none","position":"absolute","top":"0px","right":"0px","bottom":"0px","left":"0px","z-index":"1000"}}),_vm._v(" "),_c('div',{staticClass:"jsgrid-load-panel",staticStyle:{"display":"none","position":"absolute","top":"50%","left":"50%","z-index":"1000"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Please, wait...")])],1)],1)]),_vm._v(" "),_c('div',{staticClass:"hid_paging"},[_c('div',{staticClass:"jsgrid-pager-container",staticStyle:{"display":"none"},attrs:{"id":"withdraw_pagging"}},[_c('div',{staticClass:"jsgrid-pager"},[_c('span',{staticClass:"jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"},[_c('a',{attrs:{"href":"javascript:void(0);"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("<<")])],1)],1)]),_vm._v(" "),_c('span',{staticClass:"jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"},[_c('a',{attrs:{"href":"javascript:void(0);"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("<")])],1)],1)]),_vm._v(" "),_c('span',{staticClass:"jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"},[_c('a',{attrs:{"href":"javascript:void(0);"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v(">")])],1)],1)]),_vm._v(" "),_c('span',{staticClass:"jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"},[_c('a',{attrs:{"href":"javascript:void(0);"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v(">>")])],1)],1)])])])]),_vm._v(" "),_c('table',{staticClass:"table table-striped col6",attrs:{"id":"paging-1-grid"}},[_c('tbody',[_c('tr',{staticClass:"last"},[_c('td',{staticClass:"text-right",attrs:{"colspan":"3"}},[_c('div',{staticClass:"pull-left form-inline",attrs:{"action":""}},[_vm._m(4),_vm._v(" "),_c('div',{staticClass:"form-group"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("First")])],1),_vm._v(" "),_c('input',{staticClass:"form-control page-no",attrs:{"type":"text","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"total_page_pl"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Total 0 pages")])],1)],1)],1),_vm._v(" "),_vm._m(5)])]),_vm._v(" "),_c('td',{staticClass:"row2",staticStyle:{"width":"280px"}},[_c('b',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Subtotal:")])],1)],1),_vm._v(" "),_c('span',{staticClass:"subtotal-amount"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0")])],1)],1),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("yuan")])],1),_vm._v(" "),_c('br'),_vm._v(" "),_c('b',[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("total:")])],1)],1),_vm._v(" "),_c('span',{staticClass:"total-amount"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("0")])],1)],1),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("yuan")])],1)],1),_vm._v(" "),_c('td',{staticStyle:{"width":"160px"},attrs:{"colspan":"2"}},[_c('span',{staticClass:"page_angle"},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Display 0 to 0, total 0 records")])],1)],1)])])])])]),_vm._v(" "),_c('div',{staticClass:"panel-group",attrs:{"id":"accordion"}},[_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading",attrs:{"id":"heading-t1-1"}},[_c('h4',{staticClass:"panel-title"},[_c('a',{attrs:{"data-toggle":"collapse","data-parent":"#accordion","href":"#collapse-t1-1"}},[_c('i',{staticClass:"fa fa-quora"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Withdrawal of the application status \"waiting for processing\"?")])],1)],1)])]),_vm._v(" "),_c('div',{staticClass:"panel-collapse collapse",attrs:{"id":"collapse-t1-1"}},[_c('div',{staticClass:"panel-body"},[_c('i',{staticClass:"fa fa-font"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Indicates that your withdrawal is still under review and you will be able to enter the payment process once the review is approved.")])],1)],1)])]),_vm._v(" "),_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading",attrs:{"id":"heading-t1-2"}},[_c('h4',{staticClass:"panel-title"},[_c('a',{staticClass:"collapsed",attrs:{"data-toggle":"collapse","data-parent":"#accordion","href":"#collapse-t1-2"}},[_c('i',{staticClass:"fa fa-quora"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Withdrawal of the application status \"Waiting for payment\"?")])],1)],1)])]),_vm._v(" "),_c('div',{staticClass:"panel-collapse collapse",attrs:{"id":"collapse-t1-2"}},[_c('div',{staticClass:"panel-body"},[_c('i',{staticClass:"fa fa-font"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Indicates that it has been approved and entered the payment process, and will pay you the payment as soon as possible.")])],1)],1)])]),_vm._v(" "),_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading",attrs:{"id":"heading-t1-3"}},[_c('h4',{staticClass:"panel-title"},[_c('a',{staticClass:"collapsed",attrs:{"data-toggle":"collapse","data-parent":"#accordion","href":"#collapse-t1-3"}},[_c('i',{staticClass:"fa fa-quora"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("Withdrawal of the application status \"Payment completed\"?")])],1)],1)])]),_vm._v(" "),_vm._m(6)]),_vm._v(" "),_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading",attrs:{"id":"heading-t1-4"}},[_c('h4',{staticClass:"panel-title"},[_c('a',{staticClass:"collapsed",attrs:{"data-toggle":"collapse","data-parent":"#accordion","href":"#collapse-t1-4"}},[_c('i',{staticClass:"fa fa-quora"}),_vm._v(" "),_c('font',{staticStyle:{"vertical-align":"inherit"}},[_c('font',{staticStyle:{"vertical-align":"inherit"}},[_vm._v("How to cancel withdrawal?")])],1)],1)])]),_vm._v(" "),_vm._m(7)])])]),_vm._v(" "),_vm._m(8),_vm._v(" "),_vm._m(9),_vm._v(" "),_vm._m(10),_vm._v(" "),_vm._m(11)])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"input-group"},[_c('input',{staticClass:"form-control",attrs:{"id":"withdraw_begin_time","type":"text","placeholder":"2016-12-05 12:00:00","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"input-group-btn"},[_c('button',{staticClass:"btn btn-default",attrs:{"type":"button","onclick":"$('#withdraw_begin_time').datetimepicker('show');"}},[_c('i',{staticClass:"fa fa-calendar"})])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"input-group"},[_c('input',{staticClass:"form-control",attrs:{"id":"withdraw_end_time","type":"text","placeholder":"2016-12-05 12:00:00","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"input-group-btn"},[_c('button',{staticClass:"btn btn-default",attrs:{"type":"button","onclick":"$('#withdraw_end_time').datetimepicker('show');"}},[_c('i',{staticClass:"fa fa-calendar"})])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',{staticClass:"jsgrid-filter-row",staticStyle:{"display":"none"}},[_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"50px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"50px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"50px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"50px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"20px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"30px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"70px"}},[_c('input',{attrs:{"type":"text"}})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',{staticClass:"jsgrid-insert-row",staticStyle:{"display":"none"}},[_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"50px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"50px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"50px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"50px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"20px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"30px"}},[_c('input',{attrs:{"type":"text"}})]),_vm._v(" "),_c('td',{staticClass:"jsgrid-cell jsgrid-align-center",staticStyle:{"width":"70px"}},[_c('input',{attrs:{"type":"text"}})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default step-backward"},[_c('i',{staticClass:"fa fa-step-backward"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-default backward"},[_c('i',{staticClass:"fa fa-backward"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default forward"},[_c('i',{staticClass:"fa fa-forward"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-default step-forward"},[_c('i',{staticClass:"fa fa-step-forward"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"panel-collapse collapse",attrs:{"id":"collapse-t1-3"}},[_c('div',{staticClass:"panel-body"},[_c('i',{staticClass:"fa fa-font"}),_vm._v("表示提现已完成，请您登录银行账户查询确认。注：银行转账的到账时间主要取决于银行，如遇节假日跨行转账可能会有延迟，提现到账也将会被延迟。\n              ")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"panel-collapse collapse",attrs:{"id":"collapse-t1-4"}},[_c('div',{staticClass:"panel-body"},[_c('i',{staticClass:"fa fa-font"}),_vm._v("如您的提现是“等待处理”状态，可以点击“取消”按钮取消提现；如是“处理中”或“等待支付”状态，则需联系\n                "),_c('a',{staticClass:"text-orange as-cs-js",attrs:{"href":"javascript:;"}},[_vm._v("在线客服")]),_vm._v("\n                进行咨询；如提现状态是“支付完成”，则代表款项已支付，无法取消。\n              ")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"tab-pane fade tab-2",attrs:{"id":"tab-2"}},[_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading"},[_c('div',{staticClass:"form-inline"},[_c('label',[_vm._v("日期范围")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('input',{staticClass:"form-control date-input",attrs:{"id":"deposit_begin_time","type":"text","placeholder":"2016-12-05 12:00:00","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"input-group-btn"},[_c('button',{staticClass:"btn btn-default",attrs:{"type":"button","onclick":"$('#deposit_begin_time').datetimepicker('show');"}},[_c('i',{staticClass:"fa fa-calendar"})])])]),_vm._v(" "),_c('label',[_vm._v("到")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('input',{staticClass:"form-control date-input",attrs:{"id":"deposit_end_time","type":"text","placeholder":"2016-12-05 12:00:00","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"input-group-btn"},[_c('button',{staticClass:"btn btn-default",attrs:{"type":"button","onclick":"$('#deposit_end_time').datetimepicker('show');"}},[_c('i',{staticClass:"fa fa-calendar"})])])]),_vm._v(" "),_c('label',[_vm._v("类型")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('select',{staticClass:"form-control",attrs:{"id":"orderType"}},[_c('option',{attrs:{"selected":"","value":"ONLINE_PAYMENT"}},[_vm._v("在线支付")]),_vm._v(" "),_c('option',{attrs:{"value":"VIRTUAL_ALL"}},[_vm._v("比特币支付")]),_vm._v(" "),_c('option',{attrs:{"value":"BQ"}},[_vm._v("银行卡转账")])])]),_vm._v(" "),_c('label',[_vm._v("状态")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('select',{staticClass:"form-control",attrs:{"name":"paymentFlag","id":"paymentFlag"}},[_c('option',{attrs:{"value":"","selected":""}},[_vm._v("全部")]),_vm._v(" "),_c('option',{attrs:{"value":"WAIT"}},[_vm._v("等待")]),_vm._v(" "),_c('option',{attrs:{"value":"SUCCESS"}},[_vm._v("成功")]),_vm._v(" "),_c('option',{attrs:{"value":"FAILED"}},[_vm._v("失败")])])]),_vm._v(" "),_c('button',{staticClass:"btn btn-orange",attrs:{"id":"deposit_search"}},[_c('i',{staticClass:"fa fa-search"}),_vm._v(" 查询\n              ")])])]),_vm._v(" "),_c('div',{staticClass:"panel-body",attrs:{"id":"tab-2-grid"}}),_vm._v(" "),_c('div',{staticClass:"hid_paging"},[_c('div',{attrs:{"id":"deposit_paging"}})]),_vm._v(" "),_c('table',{staticClass:"table table-striped col6",attrs:{"id":"paging-2-grid"}},[_c('tbody',[_c('tr',{staticClass:"last"},[_c('td',{staticClass:"text-right",attrs:{"colspan":"3"}},[_c('div',{staticClass:"pull-left form-inline",attrs:{"action":""}},[_c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default step-backward"},[_c('i',{staticClass:"fa fa-step-backward"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-default backward"},[_c('i',{staticClass:"fa fa-backward"})])]),_vm._v(" "),_c('div',{staticClass:"form-group"},[_vm._v("\n                      第\n                      "),_c('input',{staticClass:"form-control page-no",attrs:{"type":"text","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"total_page_pl"},[_vm._v("共 0 页")])]),_vm._v(" "),_c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default forward"},[_c('i',{staticClass:"fa fa-forward"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-default step-forward"},[_c('i',{staticClass:"fa fa-step-forward"})])])])]),_vm._v(" "),_c('td',{staticClass:"row2",staticStyle:{"width":"300px"}},[_c('b',[_vm._v("小计：")]),_vm._v(" "),_c('span',{staticClass:"subtotal-amount"},[_vm._v("0")]),_vm._v("元\n                  "),_c('br'),_vm._v(" "),_c('b',[_vm._v("总计：")]),_vm._v(" "),_c('span',{staticClass:"total-amount"},[_vm._v("0")]),_vm._v("元\n                ")]),_vm._v(" "),_c('td',{staticStyle:{"width":"388px"},attrs:{"colspan":"1"}},[_c('span',{staticClass:"page_angle"},[_vm._v("显示0到0,共0记录")])])])])])]),_vm._v(" "),_c('p',{staticClass:"footnote"},[_vm._v("温馨提示：在线支付类型包含 在线支付、扫码支付、APP支付")]),_vm._v(" "),_c('div',{staticClass:"panel-group accordion",attrs:{"id":"accordion2"}},[_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading",attrs:{"id":"heading-t2-1"}},[_c('h4',{staticClass:"panel-title"},[_c('a',{attrs:{"data-toggle":"collapse","data-parent":"#accordion2","href":"#collapse-t2-1"}},[_c('i',{staticClass:"fa fa-quora"}),_vm._v("在线支付未到账？\n                ")])])]),_vm._v(" "),_c('div',{staticClass:"panel-collapse collapse",attrs:{"id":"collapse-t2-1"}},[_c('div',{staticClass:"panel-body"},[_c('dl',{staticClass:"dl-horizontal"},[_c('dt',[_c('i',{staticClass:"fa fa-font"})]),_vm._v(" "),_c('dd',[_vm._v("\n                    确认您的银行卡是否已经扣款成功，短信不能作为出入账凭证哦；\n                    "),_c('br'),_vm._v("如银行卡已扣款成功，请复制单号联系\n                    "),_c('a',{staticClass:"text-orange as-cs-js",attrs:{"href":"javascript:;"}},[_vm._v("在线客服")])])])])])]),_vm._v(" "),_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading",attrs:{"id":"heading-t2-2"}},[_c('h4',{staticClass:"panel-title"},[_c('a',{staticClass:"collapsed",attrs:{"data-toggle":"collapse","data-parent":"#accordion2","href":"#collapse-t2-2"}},[_c('i',{staticClass:"fa fa-quora"}),_vm._v("二维码支付未到账？\n                ")])])]),_vm._v(" "),_c('div',{staticClass:"panel-collapse collapse",attrs:{"id":"collapse-t2-2"}},[_c('div',{staticClass:"panel-body"},[_c('dl',{staticClass:"dl-horizontal"},[_c('dt',[_c('i',{staticClass:"fa fa-font"})]),_vm._v(" "),_c('dd',[_vm._v("确认您的微信/支付宝是否已经扣款成功，短信不能作为出入账凭证哦；")]),_vm._v(" "),_c('dd',[_vm._v("\n                    如微信/支付宝已扣款成功，请复制单号联系\n                    "),_c('a',{staticClass:"text-orange as-cs-js",attrs:{"href":"javascript:;"}},[_vm._v("在线客服")])])])])])]),_vm._v(" "),_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading",attrs:{"id":"heading-t2-3"}},[_c('h4',{staticClass:"panel-title"},[_c('a',{staticClass:"collapsed",attrs:{"data-toggle":"collapse","data-parent":"#accordion2","href":"#collapse-t2-3"}},[_c('i',{staticClass:"fa fa-quora"}),_vm._v("银行卡充值未到账？\n                ")])])]),_vm._v(" "),_c('div',{staticClass:"panel-collapse collapse",attrs:{"id":"collapse-t2-3"}},[_c('div',{staticClass:"panel-body"},[_c('dl',{staticClass:"dl-horizontal"},[_c('dt',[_c('i',{staticClass:"fa fa-font"})]),_vm._v(" "),_c('dd',[_vm._v("确认您的银行卡是否转账成功，跨行转账如未选择实时汇款，则无法实时到账，请耐心等待银行转账成功后即可到账。")]),_vm._v(" "),_c('dd',[_vm._v("\n                    请检查您所提交的订单信息是否正确，汇款人姓名、充值金额是否与订单信息一致。订单信息填写有误，点此\n                    "),_c('a',{attrs:{"href":"/ucenter/pay/payIndex#tab-3"}},[_vm._v("重新提交")]),_vm._v("。\n                  ")])])])])]),_vm._v(" "),_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading",attrs:{"id":"heading-t2-4"}},[_c('h4',{staticClass:"panel-title"},[_c('a',{staticClass:"collapsed",attrs:{"data-toggle":"collapse","data-parent":"#accordion2","href":"#collapse-t2-4"}},[_c('i',{staticClass:"fa fa-quora"}),_vm._v("支付宝充值未到账？\n                ")])])]),_vm._v(" "),_c('div',{staticClass:"panel-collapse collapse",attrs:{"id":"collapse-t2-4"}},[_c('div',{staticClass:"panel-body"},[_c('dl',{staticClass:"dl-horizontal"},[_c('dt',[_c('i',{staticClass:"fa fa-font"})]),_vm._v(" "),_c('dd',[_vm._v("请登录支付宝查看转账状态，只有状态为成功才代表转账成功，如遇银行系统清算，支付宝转账会有延迟。")]),_vm._v(" "),_c('dd',[_vm._v("\n                    请检查您所提交的订单信息是否正确，汇款姓名、充值金额是否与订单信息一致。订单信息填写有误，点此\n                    "),_c('a',{attrs:{"href":"/ucenter/pay/payIndex#tab-4"}},[_vm._v("重新提交")]),_vm._v("。\n                  ")])])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"tab-pane fade tab-3",attrs:{"id":"tab-3"}},[_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading"},[_c('div',{staticClass:"form-inline"},[_c('label',[_vm._v("日期范围")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('input',{staticClass:"form-control",attrs:{"id":"rebate_begin_time","type":"text","placeholder":"2016-12-05 12:00:00","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"input-group-btn"},[_c('button',{staticClass:"btn btn-default",attrs:{"type":"button","onclick":"$('#rebate_begin_time').datetimepicker('show');"}},[_c('i',{staticClass:"fa fa-calendar"})])])]),_vm._v(" "),_c('label',[_vm._v("到")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('input',{staticClass:"form-control",attrs:{"id":"rebate_end_time","type":"text","placeholder":"2016-12-05 12:00:00","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"input-group-btn"},[_c('button',{staticClass:"btn btn-default",attrs:{"type":"button","onclick":"$('#rebate_end_time').datetimepicker('show');"}},[_c('i',{staticClass:"fa fa-calendar"})])])]),_vm._v(" "),_c('label',[_vm._v("类型")]),_vm._v(" "),_c('select',{staticClass:"form-control",attrs:{"id":"rebate_type"}},[_c('option',{attrs:{"value":"AUTOMATIC"}},[_vm._v("周洗码")]),_vm._v(" "),_c('option',{attrs:{"selected":"","value":"MANUAL"}},[_vm._v("实时洗码")])]),_vm._v(" "),_c('button',{staticClass:"btn btn-orange",attrs:{"id":"rebate_search"}},[_c('i',{staticClass:"fa fa-search"}),_vm._v(" 查询\n              ")])])]),_vm._v(" "),_c('div',{staticClass:"panel-body",attrs:{"id":"tab-3-grid"}}),_vm._v(" "),_c('div',{staticClass:"hid_paging"},[_c('div',{attrs:{"id":"rebate_paging"}})]),_vm._v(" "),_c('table',{staticClass:"table table-striped col6",attrs:{"id":"paging-3-grid"}},[_c('tbody',[_c('tr',{staticClass:"last"},[_c('td',{staticClass:"text-right",attrs:{"colspan":"3"}},[_c('div',{staticClass:"pull-left form-inline",attrs:{"action":""}},[_c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default step-backward"},[_c('i',{staticClass:"fa fa-step-backward"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-default backward"},[_c('i',{staticClass:"fa fa-backward"})])]),_vm._v(" "),_c('div',{staticClass:"form-group"},[_vm._v("\n                      第\n                      "),_c('input',{staticClass:"form-control page-no",attrs:{"type":"text","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"total_page_pl"},[_vm._v("共 0 页")])]),_vm._v(" "),_c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default forward"},[_c('i',{staticClass:"fa fa-forward"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-default step-forward"},[_c('i',{staticClass:"fa fa-step-forward"})])])])]),_vm._v(" "),_c('td',{staticClass:"row2",staticStyle:{"width":"300px"}},[_c('b',[_vm._v("小计：")]),_vm._v(" "),_c('span',{staticClass:"subtotal-amount"},[_vm._v("0")]),_vm._v("元\n                  "),_c('br'),_vm._v(" "),_c('b',[_vm._v("总计：")]),_vm._v(" "),_c('span',{staticClass:"total-amount"},[_vm._v("0")]),_vm._v("元\n                ")]),_vm._v(" "),_c('td',{staticStyle:{"width":"339px"},attrs:{"colspan":"1"}},[_c('span',{staticClass:"page_angle"},[_vm._v("显示0到0,共0记录")])])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"tab-pane fade tab-4",attrs:{"id":"tab-4"}},[_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading"},[_c('div',{staticClass:"form-inline"},[_c('label',[_vm._v("日期范围")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('input',{staticClass:"form-control",attrs:{"id":"promotion_begin_time","type":"text","placeholder":"2016-12-05 12:00:00","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"input-group-btn"},[_c('button',{staticClass:"btn btn-default",attrs:{"type":"button","onclick":"$('#promotion_begin_time').datetimepicker('show');"}},[_c('i',{staticClass:"fa fa-calendar"})])])]),_vm._v(" "),_c('label',[_vm._v("到")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('input',{staticClass:"form-control",attrs:{"id":"promotion_end_time","type":"text","placeholder":"2016-12-05 12:00:00","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"input-group-btn"},[_c('button',{staticClass:"btn btn-default",attrs:{"type":"button","onclick":"$('#promotion_end_time').datetimepicker('show');"}},[_c('i',{staticClass:"fa fa-calendar"})])])]),_vm._v(" "),_c('button',{staticClass:"btn btn-orange",attrs:{"id":"promotion_search"}},[_c('i',{staticClass:"fa fa-search"}),_vm._v(" 查询\n              ")])])]),_vm._v(" "),_c('div',{staticClass:"panel-body",attrs:{"id":"tab-4-grid"}}),_vm._v(" "),_c('div',{staticClass:"hid_paging"},[_c('div',{attrs:{"id":"promotion_paging"}})]),_vm._v(" "),_c('table',{staticClass:"table table-striped col6",attrs:{"id":"paging-4-grid"}},[_c('tbody',[_c('tr',{staticClass:"last"},[_c('td',{staticClass:"text-right",attrs:{"colspan":"3"}},[_c('div',{staticClass:"pull-left form-inline",attrs:{"action":""}},[_c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default step-backward"},[_c('i',{staticClass:"fa fa-step-backward"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-default backward"},[_c('i',{staticClass:"fa fa-backward"})])]),_vm._v(" "),_c('div',{staticClass:"form-group"},[_vm._v("\n                      第\n                      "),_c('input',{staticClass:"form-control page-no",attrs:{"type":"text","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"total_page_pl"},[_vm._v("共 0 页")])]),_vm._v(" "),_c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default forward"},[_c('i',{staticClass:"fa fa-forward"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-default step-forward"},[_c('i',{staticClass:"fa fa-step-forward"})])])])]),_vm._v(" "),_c('td',{staticClass:"row2",staticStyle:{"width":"500px"}},[_c('b',[_vm._v("小计：")]),_vm._v(" "),_c('span',{staticClass:"subtotal-amount"},[_vm._v("0")]),_vm._v("元\n                  "),_c('br'),_vm._v(" "),_c('b',[_vm._v("总计：")]),_vm._v(" "),_c('span',{staticClass:"total-amount"},[_vm._v("0")]),_vm._v("元\n                ")]),_vm._v(" "),_c('td',{staticStyle:{"width":"389px"},attrs:{"colspan":"1"}},[_c('span',{staticClass:"page_angle"},[_vm._v("显示0到0,共0记录")])])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"tab-pane fade tab-5",attrs:{"id":"tab-5"}},[_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading"},[_c('form',{staticClass:"form-inline"},[_c('label',{attrs:{"for":"gameRecord_beginDateTime"}},[_vm._v("日期范围")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('input',{staticClass:"form-control",attrs:{"id":"gameRecord_beginDateTime","type":"text","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"input-group-btn"},[_c('button',{staticClass:"btn btn-default",attrs:{"type":"button","onclick":"$('#gameRecord_beginDateTime').datetimepicker('show');"}},[_c('i',{staticClass:"fa fa-calendar"})])])]),_vm._v(" "),_c('label',{attrs:{"for":"gameRecord_endDateTime"}},[_vm._v("到")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('input',{staticClass:"form-control",attrs:{"id":"gameRecord_endDateTime","type":"text","readonly":""}}),_vm._v(" "),_c('span',{staticClass:"input-group-btn"},[_c('button',{staticClass:"btn btn-default",attrs:{"type":"button","onclick":"$('#gameRecord_endDateTime').datetimepicker('show');"}},[_c('i',{staticClass:"fa fa-calendar"})])])]),_vm._v(" "),_c('label',{attrs:{"for":"gameRecord_gamePlatformId"}},[_vm._v("游戏平台")]),_vm._v(" "),_c('select',{staticClass:"form-control",attrs:{"id":"gameRecord_gamePlatformId"}},[_c('option',{attrs:{"value":"AG_QJ"}},[_vm._v("AG旗舰厅")]),_vm._v(" "),_c('option',{attrs:{"value":"AG_GJ"}},[_vm._v("AG国际厅")]),_vm._v(" "),_c('option',{attrs:{"value":"AG_CASINO"}},[_vm._v("AG赌场厅")]),_vm._v(" "),_c('option',{attrs:{"value":"AG_EG"}},[_vm._v("AG电游")]),_vm._v(" "),_c('option',{attrs:{"value":"AS_EG"}},[_vm._v("AS电玩城")]),_vm._v(" "),_c('option',{attrs:{"value":"PP_EG"}},[_vm._v("PP电游")]),_vm._v(" "),_c('option',{attrs:{"value":"PNG_EG"}},[_vm._v("PNG电游")]),_vm._v(" "),_c('option',{attrs:{"value":"TTG_EG"}},[_vm._v("TTG电游")]),_vm._v(" "),_c('option',{attrs:{"value":"MG_EG"}},[_vm._v("MG电游")]),_vm._v(" "),_c('option',{attrs:{"value":"PT_EG"}},[_vm._v("PT电游")]),_vm._v(" "),_c('option',{attrs:{"value":"SW_EG"}},[_vm._v("SW电游")]),_vm._v(" "),_c('option',{attrs:{"value":"AG_FISH"}},[_vm._v("AG捕鱼王")]),_vm._v(" "),_c('option',{attrs:{"value":"SB_SPORT"}},[_vm._v("沙巴体育")]),_vm._v(" "),_c('option',{attrs:{"value":"AG_SPORT"}},[_vm._v("AG国际体育")]),_vm._v(" "),_c('option',{attrs:{"value":"SCG"}},[_vm._v("QG刮刮彩")]),_vm._v(" "),_c('option',{attrs:{"value":"NBT"}},[_vm._v("亚游劲彩")]),_vm._v(" "),_c('option',{attrs:{"value":"VRLOT"}},[_vm._v("VR彩票")]),_vm._v(" "),_c('option',{attrs:{"value":"SCGHB"}},[_vm._v("QG疯狂红包")])]),_vm._v(" "),_c('a',{staticClass:"btn btn-orange",attrs:{"id":"gameRecord_search","href":"javascript:;"}},[_c('i',{staticClass:"fa fa-search"}),_vm._v("查询\n              ")])])]),_vm._v(" "),_c('div',{staticClass:"panel-body"},[_c('table',{staticClass:"table table-striped col6",attrs:{"id":"gameRecord_table"}},[_c('tbody',[_c('tr',[_c('th',[_vm._v("时间")]),_vm._v(" "),_c('th',[_vm._v("平台")]),_vm._v(" "),_c('th',[_vm._v("游戏类型")]),_vm._v(" "),_c('th',[_vm._v("投注单号")]),_vm._v(" "),_c('th',[_vm._v("投注金额")]),_vm._v(" "),_c('th',[_vm._v("有效投注额")]),_vm._v(" "),_c('th',[_vm._v("派彩金额")]),_vm._v(" "),_c('th',[_vm._v("备注说明")])]),_vm._v(" "),_c('tr',[_c('td',{attrs:{"colspan":"8"}},[_vm._v("所选时间段内暂无记录!")])]),_vm._v(" "),_c('tr',{staticClass:"last"},[_c('td',{staticClass:"text-right",attrs:{"colspan":"4"}},[_c('div',{staticClass:"pull-left form-inline"},[_c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default"},[_c('i',{staticClass:"gameRecord fa fa-step-backward"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-default"},[_c('i',{staticClass:"gameRecord fa fa-backward"})])]),_vm._v(" "),_c('div',{staticClass:"form-group"},[_vm._v("\n                        第\n                        "),_c('input',{staticClass:"form-control page-no",attrs:{"type":"text","readonly":"","value":"0"}}),_vm._v(" 页 共0页\n                      ")]),_vm._v(" "),_c('div',{staticClass:"form-group"},[_c('button',{staticClass:"btn btn-default"},[_c('i',{staticClass:"gameRecord fa fa-forward"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-default"},[_c('i',{staticClass:"gameRecord fa fa-step-forward"})])])])]),_vm._v(" "),_c('td',[_c('b',[_vm._v("共计:")]),_vm._v("0\n                  ")]),_vm._v(" "),_c('td',[_vm._v("0")]),_vm._v(" "),_c('td',[_vm._v("0")]),_vm._v(" "),_c('td')])])])])]),_vm._v(" "),_c('p',{staticClass:"footnote"},[_vm._v("温馨提示：实时投注记录需在5分钟后查询。")])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "u-content u-transaction" }, [
+      _c("ul", { staticClass: "nav nav-tabs nav-tabs-template" }, [
+        _c("li", { staticClass: "active" }, [
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "#tab-1",
+                "data-toggle": "tab",
+                "aria-expanded": "true"
+              }
+            },
+            [
+              _c(
+                "font",
+                { staticStyle: { "vertical-align": "inherit" } },
+                [
+                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                    _vm._v("Withdrawals record")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            { attrs: { href: "#tab-2", "data-toggle": "tab" } },
+            [
+              _c(
+                "font",
+                { staticStyle: { "vertical-align": "inherit" } },
+                [
+                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                    _vm._v("Recharge record")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            { attrs: { href: "#tab-3", "data-toggle": "tab" } },
+            [
+              _c(
+                "font",
+                { staticStyle: { "vertical-align": "inherit" } },
+                [
+                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                    _vm._v("Washing record")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            { attrs: { href: "#tab-4", "data-toggle": "tab" } },
+            [
+              _c(
+                "font",
+                { staticStyle: { "vertical-align": "inherit" } },
+                [
+                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                    _vm._v("Offer record")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            { attrs: { href: "#tab-5", "data-toggle": "tab" } },
+            [
+              _c(
+                "font",
+                { staticStyle: { "vertical-align": "inherit" } },
+                [
+                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
+                    _vm._v("Game record")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "tab-content" }, [
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane fade tab-1 active in",
+            attrs: { id: "tab-1" }
+          },
+          [
+            _c("div", { staticClass: "panel panel-default" }, [
+              _c("div", { staticClass: "panel-heading" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-inline",
+                    attrs: { id: "withdraw_form" }
+                  },
+                  [
+                    _c(
+                      "label",
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("Date range")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("To")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("status")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group" }, [
+                      _c(
+                        "select",
+                        {
+                          staticClass: "form-control",
+                          attrs: { id: "withdrawFlag", name: "withdrawFlag" }
+                        },
+                        [
+                          _c(
+                            "option",
+                            { attrs: { value: "", selected: "" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("All")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            { attrs: { value: "0" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Waiting for processing")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            { attrs: { value: "9" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Processing")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            { attrs: { value: "1" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("wait for payment")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            { attrs: { value: "2" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Payment completed")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            { attrs: { value: "3" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Payment failed")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            { attrs: { value: "-1,-2" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Cancelled")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            { attrs: { value: "-3" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Approval rejection")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-orange",
+                        attrs: { id: "withdraw_search" }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-search" }),
+                        _vm._v(" "),
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [_vm._v("Inquire")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "panel-body jsgrid",
+                  staticStyle: {
+                    position: "relative",
+                    height: "auto",
+                    width: "100%"
+                  },
+                  attrs: { id: "tab-1-grid" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "jsgrid-grid-header jsgrid-header-scrollbar"
+                    },
+                    [
+                      _c("table", { staticClass: "jsgrid-table table" }, [
+                        _c("tbody", [
+                          _c("tr", { staticClass: "jsgrid-header-row" }, [
+                            _c(
+                              "th",
+                              {
+                                staticClass:
+                                  "jsgrid-header-cell jsgrid-align-center",
+                                staticStyle: { width: "50px" }
+                              },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [
+                                    _c(
+                                      "font",
+                                      {
+                                        staticStyle: {
+                                          "vertical-align": "inherit"
+                                        }
+                                      },
+                                      [_vm._v("application time")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "th",
+                              {
+                                staticClass:
+                                  "jsgrid-header-cell jsgrid-align-center",
+                                staticStyle: { width: "50px" }
+                              },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [
+                                    _c(
+                                      "font",
+                                      {
+                                        staticStyle: {
+                                          "vertical-align": "inherit"
+                                        }
+                                      },
+                                      [_vm._v("Cash withdrawal number")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "th",
+                              {
+                                staticClass:
+                                  "jsgrid-header-cell jsgrid-align-center",
+                                staticStyle: { width: "50px" }
+                              },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [
+                                    _c(
+                                      "font",
+                                      {
+                                        staticStyle: {
+                                          "vertical-align": "inherit"
+                                        }
+                                      },
+                                      [_vm._v("Cash withdrawal card")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "th",
+                              {
+                                staticClass:
+                                  "jsgrid-header-cell jsgrid-align-center",
+                                staticStyle: { width: "50px" }
+                              },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [
+                                    _c(
+                                      "font",
+                                      {
+                                        staticStyle: {
+                                          "vertical-align": "inherit"
+                                        }
+                                      },
+                                      [_vm._v("Withdrawal Amount")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "th",
+                              {
+                                staticClass:
+                                  "jsgrid-header-cell jsgrid-align-center",
+                                staticStyle: { width: "20px" }
+                              },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [
+                                    _c(
+                                      "font",
+                                      {
+                                        staticStyle: {
+                                          "vertical-align": "inherit"
+                                        }
+                                      },
+                                      [_vm._v("status")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "th",
+                              {
+                                staticClass:
+                                  "jsgrid-header-cell jsgrid-align-center",
+                                staticStyle: { width: "30px" }
+                              },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [
+                                    _c(
+                                      "font",
+                                      {
+                                        staticStyle: {
+                                          "vertical-align": "inherit"
+                                        }
+                                      },
+                                      [_vm._v("operating")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "th",
+                              {
+                                staticClass:
+                                  "jsgrid-header-cell jsgrid-align-center",
+                                staticStyle: { width: "70px" }
+                              },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [
+                                    _c(
+                                      "font",
+                                      {
+                                        staticStyle: {
+                                          "vertical-align": "inherit"
+                                        }
+                                      },
+                                      [_vm._v("Remarks")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _vm._m(3)
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "jsgrid-grid-body" }, [
+                    _c("table", { staticClass: "jsgrid-table table" }, [
+                      _c("tbody", [
+                        _c("tr", { staticClass: "jsgrid-nodata-row" }, [
+                          _c(
+                            "td",
+                            {
+                              staticClass: "jsgrid-cell",
+                              attrs: { colspan: "7" }
+                            },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "no-data" },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "No record for the selected time period!"
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "jsgrid-load-shader",
+                    staticStyle: {
+                      display: "none",
+                      position: "absolute",
+                      top: "0px",
+                      right: "0px",
+                      bottom: "0px",
+                      left: "0px",
+                      "z-index": "1000"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "jsgrid-load-panel",
+                      staticStyle: {
+                        display: "none",
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        "z-index": "1000"
+                      }
+                    },
+                    [
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [_vm._v("Please, wait...")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "hid_paging" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "jsgrid-pager-container",
+                    staticStyle: { display: "none" },
+                    attrs: { id: "withdraw_pagging" }
+                  },
+                  [
+                    _c("div", { staticClass: "jsgrid-pager" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass:
+                            "jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"
+                        },
+                        [
+                          _c(
+                            "a",
+                            { attrs: { href: "javascript:void(0);" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("<<")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass:
+                            "jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"
+                        },
+                        [
+                          _c(
+                            "a",
+                            { attrs: { href: "javascript:void(0);" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("<")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass:
+                            "jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"
+                        },
+                        [
+                          _c(
+                            "a",
+                            { attrs: { href: "javascript:void(0);" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v(">")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass:
+                            "jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"
+                        },
+                        [
+                          _c(
+                            "a",
+                            { attrs: { href: "javascript:void(0);" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v(">>")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "table",
+                {
+                  staticClass: "table table-striped col6",
+                  attrs: { id: "paging-1-grid" }
+                },
+                [
+                  _c("tbody", [
+                    _c("tr", { staticClass: "last" }, [
+                      _c(
+                        "td",
+                        { staticClass: "text-right", attrs: { colspan: "3" } },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "pull-left form-inline",
+                              attrs: { action: "" }
+                            },
+                            [
+                              _vm._m(4),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group" },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("First")]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    staticClass: "form-control page-no",
+                                    attrs: { type: "text", readonly: "" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    { staticClass: "total_page_pl" },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("Total 0 pages")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _vm._m(5)
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticClass: "row2",
+                          staticStyle: { width: "280px" }
+                        },
+                        [
+                          _c(
+                            "b",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Subtotal:")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            { staticClass: "subtotal-amount" },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("0")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("yuan")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "b",
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("total:")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            { staticClass: "total-amount" },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("0")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("yuan")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticStyle: { width: "160px" },
+                          attrs: { colspan: "2" }
+                        },
+                        [
+                          _c(
+                            "span",
+                            { staticClass: "page_angle" },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Display 0 to 0, total 0 records")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      )
+                    ])
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "panel-group", attrs: { id: "accordion" } },
+              [
+                _c("div", { staticClass: "panel panel-default" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "panel-heading",
+                      attrs: { id: "heading-t1-1" }
+                    },
+                    [
+                      _c("h4", { staticClass: "panel-title" }, [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              "data-toggle": "collapse",
+                              "data-parent": "#accordion",
+                              href: "#collapse-t1-1"
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "fa fa-quora" }),
+                            _vm._v(" "),
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      'Withdrawal of the application status "waiting for processing"?'
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "panel-collapse collapse",
+                      attrs: { id: "collapse-t1-1" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "panel-body" },
+                        [
+                          _c("i", { staticClass: "fa fa-font" }),
+                          _vm._v(" "),
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _vm._v(
+                                    "Indicates that your withdrawal is still under review and you will be able to enter the payment process once the review is approved."
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "panel panel-default" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "panel-heading",
+                      attrs: { id: "heading-t1-2" }
+                    },
+                    [
+                      _c("h4", { staticClass: "panel-title" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "collapsed",
+                            attrs: {
+                              "data-toggle": "collapse",
+                              "data-parent": "#accordion",
+                              href: "#collapse-t1-2"
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "fa fa-quora" }),
+                            _vm._v(" "),
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      'Withdrawal of the application status "Waiting for payment"?'
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "panel-collapse collapse",
+                      attrs: { id: "collapse-t1-2" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "panel-body" },
+                        [
+                          _c("i", { staticClass: "fa fa-font" }),
+                          _vm._v(" "),
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _vm._v(
+                                    "Indicates that it has been approved and entered the payment process, and will pay you the payment as soon as possible."
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "panel panel-default" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "panel-heading",
+                      attrs: { id: "heading-t1-3" }
+                    },
+                    [
+                      _c("h4", { staticClass: "panel-title" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "collapsed",
+                            attrs: {
+                              "data-toggle": "collapse",
+                              "data-parent": "#accordion",
+                              href: "#collapse-t1-3"
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "fa fa-quora" }),
+                            _vm._v(" "),
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      'Withdrawal of the application status "Payment completed"?'
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(6)
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "panel panel-default" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "panel-heading",
+                      attrs: { id: "heading-t1-4" }
+                    },
+                    [
+                      _c("h4", { staticClass: "panel-title" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "collapsed",
+                            attrs: {
+                              "data-toggle": "collapse",
+                              "data-parent": "#accordion",
+                              href: "#collapse-t1-4"
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "fa fa-quora" }),
+                            _vm._v(" "),
+                            _c(
+                              "font",
+                              { staticStyle: { "vertical-align": "inherit" } },
+                              [
+                                _c(
+                                  "font",
+                                  {
+                                    staticStyle: { "vertical-align": "inherit" }
+                                  },
+                                  [_vm._v("How to cancel withdrawal?")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(7)
+                ])
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(8),
+        _vm._v(" "),
+        _vm._m(9),
+        _vm._v(" "),
+        _vm._m(10),
+        _vm._v(" "),
+        _vm._m(11)
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          id: "withdraw_begin_time",
+          type: "text",
+          placeholder: "2016-12-05 12:00:00",
+          readonly: ""
+        }
+      }),
+      _vm._v(" "),
+      _c("span", { staticClass: "input-group-btn" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-default",
+            attrs: {
+              type: "button",
+              onclick: "$('#withdraw_begin_time').datetimepicker('show');"
+            }
+          },
+          [_c("i", { staticClass: "fa fa-calendar" })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          id: "withdraw_end_time",
+          type: "text",
+          placeholder: "2016-12-05 12:00:00",
+          readonly: ""
+        }
+      }),
+      _vm._v(" "),
+      _c("span", { staticClass: "input-group-btn" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-default",
+            attrs: {
+              type: "button",
+              onclick: "$('#withdraw_end_time').datetimepicker('show');"
+            }
+          },
+          [_c("i", { staticClass: "fa fa-calendar" })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "tr",
+      { staticClass: "jsgrid-filter-row", staticStyle: { display: "none" } },
+      [
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "50px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "50px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "50px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "50px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "20px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "30px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "70px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "tr",
+      { staticClass: "jsgrid-insert-row", staticStyle: { display: "none" } },
+      [
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "50px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "50px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "50px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "50px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "20px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "30px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        ),
+        _vm._v(" "),
+        _c(
+          "td",
+          {
+            staticClass: "jsgrid-cell jsgrid-align-center",
+            staticStyle: { width: "70px" }
+          },
+          [_c("input", { attrs: { type: "text" } })]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("button", { staticClass: "btn btn-default step-backward" }, [
+        _c("i", { staticClass: "fa fa-step-backward" })
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-default backward" }, [
+        _c("i", { staticClass: "fa fa-backward" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("button", { staticClass: "btn btn-default forward" }, [
+        _c("i", { staticClass: "fa fa-forward" })
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-default step-forward" }, [
+        _c("i", { staticClass: "fa fa-step-forward" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "panel-collapse collapse",
+        attrs: { id: "collapse-t1-3" }
+      },
+      [
+        _c("div", { staticClass: "panel-body" }, [
+          _c("i", { staticClass: "fa fa-font" }),
+          _vm._v(
+            "表示提现已完成，请您登录银行账户查询确认。注：银行转账的到账时间主要取决于银行，如遇节假日跨行转账可能会有延迟，提现到账也将会被延迟。\n              "
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "panel-collapse collapse",
+        attrs: { id: "collapse-t1-4" }
+      },
+      [
+        _c("div", { staticClass: "panel-body" }, [
+          _c("i", { staticClass: "fa fa-font" }),
+          _vm._v(
+            "如您的提现是“等待处理”状态，可以点击“取消”按钮取消提现；如是“处理中”或“等待支付”状态，则需联系\n                "
+          ),
+          _c(
+            "a",
+            {
+              staticClass: "text-orange as-cs-js",
+              attrs: { href: "javascript:;" }
+            },
+            [_vm._v("在线客服")]
+          ),
+          _vm._v(
+            "\n                进行咨询；如提现状态是“支付完成”，则代表款项已支付，无法取消。\n              "
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "tab-pane fade tab-2", attrs: { id: "tab-2" } },
+      [
+        _c("div", { staticClass: "panel panel-default" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _c("div", { staticClass: "form-inline" }, [
+              _c("label", [_vm._v("日期范围")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c("input", {
+                  staticClass: "form-control date-input",
+                  attrs: {
+                    id: "deposit_begin_time",
+                    type: "text",
+                    placeholder: "2016-12-05 12:00:00",
+                    readonly: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-btn" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: {
+                        type: "button",
+                        onclick:
+                          "$('#deposit_begin_time').datetimepicker('show');"
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-calendar" })]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("label", [_vm._v("到")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c("input", {
+                  staticClass: "form-control date-input",
+                  attrs: {
+                    id: "deposit_end_time",
+                    type: "text",
+                    placeholder: "2016-12-05 12:00:00",
+                    readonly: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-btn" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: {
+                        type: "button",
+                        onclick:
+                          "$('#deposit_end_time').datetimepicker('show');"
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-calendar" })]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("label", [_vm._v("类型")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c(
+                  "select",
+                  { staticClass: "form-control", attrs: { id: "orderType" } },
+                  [
+                    _c(
+                      "option",
+                      { attrs: { selected: "", value: "ONLINE_PAYMENT" } },
+                      [_vm._v("在线支付")]
+                    ),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "VIRTUAL_ALL" } }, [
+                      _vm._v("比特币支付")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "BQ" } }, [
+                      _vm._v("银行卡转账")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("label", [_vm._v("状态")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c(
+                  "select",
+                  {
+                    staticClass: "form-control",
+                    attrs: { name: "paymentFlag", id: "paymentFlag" }
+                  },
+                  [
+                    _c("option", { attrs: { value: "", selected: "" } }, [
+                      _vm._v("全部")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "WAIT" } }, [
+                      _vm._v("等待")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "SUCCESS" } }, [
+                      _vm._v("成功")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "FAILED" } }, [
+                      _vm._v("失败")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-orange",
+                  attrs: { id: "deposit_search" }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-search" }),
+                  _vm._v(" 查询\n              ")
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-body", attrs: { id: "tab-2-grid" } }),
+          _vm._v(" "),
+          _c("div", { staticClass: "hid_paging" }, [
+            _c("div", { attrs: { id: "deposit_paging" } })
+          ]),
+          _vm._v(" "),
+          _c(
+            "table",
+            {
+              staticClass: "table table-striped col6",
+              attrs: { id: "paging-2-grid" }
+            },
+            [
+              _c("tbody", [
+                _c("tr", { staticClass: "last" }, [
+                  _c(
+                    "td",
+                    { staticClass: "text-right", attrs: { colspan: "3" } },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "pull-left form-inline",
+                          attrs: { action: "" }
+                        },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-default step-backward" },
+                              [_c("i", { staticClass: "fa fa-step-backward" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-default backward" },
+                              [_c("i", { staticClass: "fa fa-backward" })]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._v(
+                              "\n                      第\n                      "
+                            ),
+                            _c("input", {
+                              staticClass: "form-control page-no",
+                              attrs: { type: "text", readonly: "" }
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "total_page_pl" }, [
+                              _vm._v("共 0 页")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-default forward" },
+                              [_c("i", { staticClass: "fa fa-forward" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-default step-forward" },
+                              [_c("i", { staticClass: "fa fa-step-forward" })]
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "row2", staticStyle: { width: "300px" } },
+                    [
+                      _c("b", [_vm._v("小计：")]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "subtotal-amount" }, [
+                        _vm._v("0")
+                      ]),
+                      _vm._v("元\n                  "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("b", [_vm._v("总计：")]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "total-amount" }, [
+                        _vm._v("0")
+                      ]),
+                      _vm._v("元\n                ")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticStyle: { width: "388px" },
+                      attrs: { colspan: "1" }
+                    },
+                    [
+                      _c("span", { staticClass: "page_angle" }, [
+                        _vm._v("显示0到0,共0记录")
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "footnote" }, [
+          _vm._v("温馨提示：在线支付类型包含 在线支付、扫码支付、APP支付")
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "panel-group accordion", attrs: { id: "accordion2" } },
+          [
+            _c("div", { staticClass: "panel panel-default" }, [
+              _c(
+                "div",
+                { staticClass: "panel-heading", attrs: { id: "heading-t2-1" } },
+                [
+                  _c("h4", { staticClass: "panel-title" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          "data-toggle": "collapse",
+                          "data-parent": "#accordion2",
+                          href: "#collapse-t2-1"
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-quora" }),
+                        _vm._v("在线支付未到账？\n                ")
+                      ]
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "panel-collapse collapse",
+                  attrs: { id: "collapse-t2-1" }
+                },
+                [
+                  _c("div", { staticClass: "panel-body" }, [
+                    _c("dl", { staticClass: "dl-horizontal" }, [
+                      _c("dt", [_c("i", { staticClass: "fa fa-font" })]),
+                      _vm._v(" "),
+                      _c("dd", [
+                        _vm._v(
+                          "\n                    确认您的银行卡是否已经扣款成功，短信不能作为出入账凭证哦；\n                    "
+                        ),
+                        _c("br"),
+                        _vm._v(
+                          "如银行卡已扣款成功，请复制单号联系\n                    "
+                        ),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "text-orange as-cs-js",
+                            attrs: { href: "javascript:;" }
+                          },
+                          [_vm._v("在线客服")]
+                        )
+                      ])
+                    ])
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "panel panel-default" }, [
+              _c(
+                "div",
+                { staticClass: "panel-heading", attrs: { id: "heading-t2-2" } },
+                [
+                  _c("h4", { staticClass: "panel-title" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "collapsed",
+                        attrs: {
+                          "data-toggle": "collapse",
+                          "data-parent": "#accordion2",
+                          href: "#collapse-t2-2"
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-quora" }),
+                        _vm._v("二维码支付未到账？\n                ")
+                      ]
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "panel-collapse collapse",
+                  attrs: { id: "collapse-t2-2" }
+                },
+                [
+                  _c("div", { staticClass: "panel-body" }, [
+                    _c("dl", { staticClass: "dl-horizontal" }, [
+                      _c("dt", [_c("i", { staticClass: "fa fa-font" })]),
+                      _vm._v(" "),
+                      _c("dd", [
+                        _vm._v(
+                          "确认您的微信/支付宝是否已经扣款成功，短信不能作为出入账凭证哦；"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("dd", [
+                        _vm._v(
+                          "\n                    如微信/支付宝已扣款成功，请复制单号联系\n                    "
+                        ),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "text-orange as-cs-js",
+                            attrs: { href: "javascript:;" }
+                          },
+                          [_vm._v("在线客服")]
+                        )
+                      ])
+                    ])
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "panel panel-default" }, [
+              _c(
+                "div",
+                { staticClass: "panel-heading", attrs: { id: "heading-t2-3" } },
+                [
+                  _c("h4", { staticClass: "panel-title" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "collapsed",
+                        attrs: {
+                          "data-toggle": "collapse",
+                          "data-parent": "#accordion2",
+                          href: "#collapse-t2-3"
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-quora" }),
+                        _vm._v("银行卡充值未到账？\n                ")
+                      ]
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "panel-collapse collapse",
+                  attrs: { id: "collapse-t2-3" }
+                },
+                [
+                  _c("div", { staticClass: "panel-body" }, [
+                    _c("dl", { staticClass: "dl-horizontal" }, [
+                      _c("dt", [_c("i", { staticClass: "fa fa-font" })]),
+                      _vm._v(" "),
+                      _c("dd", [
+                        _vm._v(
+                          "确认您的银行卡是否转账成功，跨行转账如未选择实时汇款，则无法实时到账，请耐心等待银行转账成功后即可到账。"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("dd", [
+                        _vm._v(
+                          "\n                    请检查您所提交的订单信息是否正确，汇款人姓名、充值金额是否与订单信息一致。订单信息填写有误，点此\n                    "
+                        ),
+                        _c(
+                          "a",
+                          { attrs: { href: "/ucenter/pay/payIndex#tab-3" } },
+                          [_vm._v("重新提交")]
+                        ),
+                        _vm._v("。\n                  ")
+                      ])
+                    ])
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "panel panel-default" }, [
+              _c(
+                "div",
+                { staticClass: "panel-heading", attrs: { id: "heading-t2-4" } },
+                [
+                  _c("h4", { staticClass: "panel-title" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "collapsed",
+                        attrs: {
+                          "data-toggle": "collapse",
+                          "data-parent": "#accordion2",
+                          href: "#collapse-t2-4"
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-quora" }),
+                        _vm._v("支付宝充值未到账？\n                ")
+                      ]
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "panel-collapse collapse",
+                  attrs: { id: "collapse-t2-4" }
+                },
+                [
+                  _c("div", { staticClass: "panel-body" }, [
+                    _c("dl", { staticClass: "dl-horizontal" }, [
+                      _c("dt", [_c("i", { staticClass: "fa fa-font" })]),
+                      _vm._v(" "),
+                      _c("dd", [
+                        _vm._v(
+                          "请登录支付宝查看转账状态，只有状态为成功才代表转账成功，如遇银行系统清算，支付宝转账会有延迟。"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("dd", [
+                        _vm._v(
+                          "\n                    请检查您所提交的订单信息是否正确，汇款姓名、充值金额是否与订单信息一致。订单信息填写有误，点此\n                    "
+                        ),
+                        _c(
+                          "a",
+                          { attrs: { href: "/ucenter/pay/payIndex#tab-4" } },
+                          [_vm._v("重新提交")]
+                        ),
+                        _vm._v("。\n                  ")
+                      ])
+                    ])
+                  ])
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "tab-pane fade tab-3", attrs: { id: "tab-3" } },
+      [
+        _c("div", { staticClass: "panel panel-default" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _c("div", { staticClass: "form-inline" }, [
+              _c("label", [_vm._v("日期范围")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "rebate_begin_time",
+                    type: "text",
+                    placeholder: "2016-12-05 12:00:00",
+                    readonly: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-btn" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: {
+                        type: "button",
+                        onclick:
+                          "$('#rebate_begin_time').datetimepicker('show');"
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-calendar" })]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("label", [_vm._v("到")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "rebate_end_time",
+                    type: "text",
+                    placeholder: "2016-12-05 12:00:00",
+                    readonly: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-btn" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: {
+                        type: "button",
+                        onclick: "$('#rebate_end_time').datetimepicker('show');"
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-calendar" })]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("label", [_vm._v("类型")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                { staticClass: "form-control", attrs: { id: "rebate_type" } },
+                [
+                  _c("option", { attrs: { value: "AUTOMATIC" } }, [
+                    _vm._v("周洗码")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { selected: "", value: "MANUAL" } }, [
+                    _vm._v("实时洗码")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-orange",
+                  attrs: { id: "rebate_search" }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-search" }),
+                  _vm._v(" 查询\n              ")
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-body", attrs: { id: "tab-3-grid" } }),
+          _vm._v(" "),
+          _c("div", { staticClass: "hid_paging" }, [
+            _c("div", { attrs: { id: "rebate_paging" } })
+          ]),
+          _vm._v(" "),
+          _c(
+            "table",
+            {
+              staticClass: "table table-striped col6",
+              attrs: { id: "paging-3-grid" }
+            },
+            [
+              _c("tbody", [
+                _c("tr", { staticClass: "last" }, [
+                  _c(
+                    "td",
+                    { staticClass: "text-right", attrs: { colspan: "3" } },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "pull-left form-inline",
+                          attrs: { action: "" }
+                        },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-default step-backward" },
+                              [_c("i", { staticClass: "fa fa-step-backward" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-default backward" },
+                              [_c("i", { staticClass: "fa fa-backward" })]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._v(
+                              "\n                      第\n                      "
+                            ),
+                            _c("input", {
+                              staticClass: "form-control page-no",
+                              attrs: { type: "text", readonly: "" }
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "total_page_pl" }, [
+                              _vm._v("共 0 页")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-default forward" },
+                              [_c("i", { staticClass: "fa fa-forward" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-default step-forward" },
+                              [_c("i", { staticClass: "fa fa-step-forward" })]
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "row2", staticStyle: { width: "300px" } },
+                    [
+                      _c("b", [_vm._v("小计：")]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "subtotal-amount" }, [
+                        _vm._v("0")
+                      ]),
+                      _vm._v("元\n                  "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("b", [_vm._v("总计：")]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "total-amount" }, [
+                        _vm._v("0")
+                      ]),
+                      _vm._v("元\n                ")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticStyle: { width: "339px" },
+                      attrs: { colspan: "1" }
+                    },
+                    [
+                      _c("span", { staticClass: "page_angle" }, [
+                        _vm._v("显示0到0,共0记录")
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "tab-pane fade tab-4", attrs: { id: "tab-4" } },
+      [
+        _c("div", { staticClass: "panel panel-default" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _c("div", { staticClass: "form-inline" }, [
+              _c("label", [_vm._v("日期范围")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "promotion_begin_time",
+                    type: "text",
+                    placeholder: "2016-12-05 12:00:00",
+                    readonly: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-btn" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: {
+                        type: "button",
+                        onclick:
+                          "$('#promotion_begin_time').datetimepicker('show');"
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-calendar" })]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("label", [_vm._v("到")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "promotion_end_time",
+                    type: "text",
+                    placeholder: "2016-12-05 12:00:00",
+                    readonly: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-btn" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: {
+                        type: "button",
+                        onclick:
+                          "$('#promotion_end_time').datetimepicker('show');"
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-calendar" })]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-orange",
+                  attrs: { id: "promotion_search" }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-search" }),
+                  _vm._v(" 查询\n              ")
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-body", attrs: { id: "tab-4-grid" } }),
+          _vm._v(" "),
+          _c("div", { staticClass: "hid_paging" }, [
+            _c("div", { attrs: { id: "promotion_paging" } })
+          ]),
+          _vm._v(" "),
+          _c(
+            "table",
+            {
+              staticClass: "table table-striped col6",
+              attrs: { id: "paging-4-grid" }
+            },
+            [
+              _c("tbody", [
+                _c("tr", { staticClass: "last" }, [
+                  _c(
+                    "td",
+                    { staticClass: "text-right", attrs: { colspan: "3" } },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "pull-left form-inline",
+                          attrs: { action: "" }
+                        },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-default step-backward" },
+                              [_c("i", { staticClass: "fa fa-step-backward" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-default backward" },
+                              [_c("i", { staticClass: "fa fa-backward" })]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._v(
+                              "\n                      第\n                      "
+                            ),
+                            _c("input", {
+                              staticClass: "form-control page-no",
+                              attrs: { type: "text", readonly: "" }
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "total_page_pl" }, [
+                              _vm._v("共 0 页")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-default forward" },
+                              [_c("i", { staticClass: "fa fa-forward" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-default step-forward" },
+                              [_c("i", { staticClass: "fa fa-step-forward" })]
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "row2", staticStyle: { width: "500px" } },
+                    [
+                      _c("b", [_vm._v("小计：")]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "subtotal-amount" }, [
+                        _vm._v("0")
+                      ]),
+                      _vm._v("元\n                  "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("b", [_vm._v("总计：")]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "total-amount" }, [
+                        _vm._v("0")
+                      ]),
+                      _vm._v("元\n                ")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticStyle: { width: "389px" },
+                      attrs: { colspan: "1" }
+                    },
+                    [
+                      _c("span", { staticClass: "page_angle" }, [
+                        _vm._v("显示0到0,共0记录")
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "tab-pane fade tab-5", attrs: { id: "tab-5" } },
+      [
+        _c("div", { staticClass: "panel panel-default" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _c("form", { staticClass: "form-inline" }, [
+              _c("label", { attrs: { for: "gameRecord_beginDateTime" } }, [
+                _vm._v("日期范围")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "gameRecord_beginDateTime",
+                    type: "text",
+                    readonly: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-btn" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: {
+                        type: "button",
+                        onclick:
+                          "$('#gameRecord_beginDateTime').datetimepicker('show');"
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-calendar" })]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "gameRecord_endDateTime" } }, [
+                _vm._v("到")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "gameRecord_endDateTime",
+                    type: "text",
+                    readonly: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-btn" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: {
+                        type: "button",
+                        onclick:
+                          "$('#gameRecord_endDateTime').datetimepicker('show');"
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-calendar" })]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "gameRecord_gamePlatformId" } }, [
+                _vm._v("游戏平台")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  staticClass: "form-control",
+                  attrs: { id: "gameRecord_gamePlatformId" }
+                },
+                [
+                  _c("option", { attrs: { value: "AG_QJ" } }, [
+                    _vm._v("AG旗舰厅")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "AG_GJ" } }, [
+                    _vm._v("AG国际厅")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "AG_CASINO" } }, [
+                    _vm._v("AG赌场厅")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "AG_EG" } }, [
+                    _vm._v("AG电游")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "AS_EG" } }, [
+                    _vm._v("AS电玩城")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "PP_EG" } }, [
+                    _vm._v("PP电游")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "PNG_EG" } }, [
+                    _vm._v("PNG电游")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "TTG_EG" } }, [
+                    _vm._v("TTG电游")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "MG_EG" } }, [
+                    _vm._v("MG电游")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "PT_EG" } }, [
+                    _vm._v("PT电游")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "SW_EG" } }, [
+                    _vm._v("SW电游")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "AG_FISH" } }, [
+                    _vm._v("AG捕鱼王")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "SB_SPORT" } }, [
+                    _vm._v("沙巴体育")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "AG_SPORT" } }, [
+                    _vm._v("AG国际体育")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "SCG" } }, [
+                    _vm._v("QG刮刮彩")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "NBT" } }, [
+                    _vm._v("亚游劲彩")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "VRLOT" } }, [
+                    _vm._v("VR彩票")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "SCGHB" } }, [
+                    _vm._v("QG疯狂红包")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-orange",
+                  attrs: { id: "gameRecord_search", href: "javascript:;" }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-search" }),
+                  _vm._v("查询\n              ")
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-body" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table table-striped col6",
+                attrs: { id: "gameRecord_table" }
+              },
+              [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("th", [_vm._v("时间")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("平台")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("游戏类型")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("投注单号")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("投注金额")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("有效投注额")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("派彩金额")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("备注说明")])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", { attrs: { colspan: "8" } }, [
+                      _vm._v("所选时间段内暂无记录!")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", { staticClass: "last" }, [
+                    _c(
+                      "td",
+                      { staticClass: "text-right", attrs: { colspan: "4" } },
+                      [
+                        _c("div", { staticClass: "pull-left form-inline" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("button", { staticClass: "btn btn-default" }, [
+                              _c("i", {
+                                staticClass: "gameRecord fa fa-step-backward"
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("button", { staticClass: "btn btn-default" }, [
+                              _c("i", {
+                                staticClass: "gameRecord fa fa-backward"
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._v(
+                              "\n                        第\n                        "
+                            ),
+                            _c("input", {
+                              staticClass: "form-control page-no",
+                              attrs: { type: "text", readonly: "", value: "0" }
+                            }),
+                            _vm._v(" 页 共0页\n                      ")
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("button", { staticClass: "btn btn-default" }, [
+                              _c("i", {
+                                staticClass: "gameRecord fa fa-forward"
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("button", { staticClass: "btn btn-default" }, [
+                              _c("i", {
+                                staticClass: "gameRecord fa fa-step-forward"
+                              })
+                            ])
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("b", [_vm._v("共计:")]),
+                      _vm._v("0\n                  ")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("0")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("0")]),
+                    _vm._v(" "),
+                    _c("td")
+                  ])
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "footnote" }, [
+          _vm._v("温馨提示：实时投注记录需在5分钟后查询。")
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44430,9 +61053,20 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wrapper container-whitelabel"},[_c('navbar'),_vm._v(" "),_c('asides'),_vm._v(" "),_c('alertside')],1)}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "wrapper container-whitelabel" },
+    [_c("navbar"), _vm._v(" "), _c("asides"), _vm._v(" "), _c("alertside")],
+    1
+  )
+}
 var staticRenderFns = []
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44448,9 +61082,238 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"navbar-minimize-fixed"},[_c('button',{staticClass:"minimize-sidebar btn btn-link btn-just-icon"},[_c('i',{staticClass:"tim-icons icon-align-center visible-on-sidebar-regular text-muted"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-bullet-list-67 visible-on-sidebar-mini text-muted"})])]),_vm._v(" "),_c('div',{staticClass:"sidebar"},[_c('div',{staticClass:"sidebar-wrapper"},[_c('div',{staticClass:"logo"},[_c('a',{staticClass:"simple-text logo-mini",attrs:{"href":"javascript:void(0)"}},[_vm._v("TNK")]),_vm._v(" "),_c('a',{staticClass:"simple-text logo-normal",attrs:{"href":"javascript:void(0)"}},[_vm._v("Stock List")])]),_vm._v(" "),_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"nav-aside active"},[_c('a',{attrs:{"href":"http://finance.sina.com.cn/realstock/company/sh000001/nc.shtml"}},[_c('i',{staticClass:"tim-icons icon-chart-pie-36"}),_vm._v(" "),_c('p',{staticClass:"text-aside"},[_vm._v("SH000001")])])]),_vm._v(" "),_c('li',{staticClass:"nav-aside"},[_c('a',{attrs:{"href":"http://finance.sina.com.cn/realstock/company/sz399001/nc.shtml"}},[_c('i',{staticClass:"tim-icons icon-money-coins"}),_vm._v(" "),_c('p',{staticClass:"text-aside"},[_vm._v("SZ399001")])])]),_vm._v(" "),_c('li',{staticClass:"nav-aside"},[_c('a',{attrs:{"href":"http://finance.sina.com.cn/realstock/company/sh000300/nc.shtml"}},[_c('i',{staticClass:"tim-icons icon-user-run"}),_vm._v(" "),_c('p',{staticClass:"text-aside"},[_vm._v("SH00300")])])]),_vm._v(" "),_c('li',{staticClass:"nav-aside"},[_c('a',{attrs:{"href":"http://finance.sina.com.cn/realstock/company/sz399415/nc.shtml"}},[_c('i',{staticClass:"tim-icons icon-chart-pie-36"}),_vm._v(" "),_c('p',{staticClass:"text-aside"},[_vm._v("SZ399415")])])]),_vm._v(" "),_c('li',{staticClass:"nav-aside"},[_c('a',{attrs:{"href":"https://finance.sina.com.cn/money/forex/hq/DINIW.shtml"}},[_c('i',{staticClass:"tim-icons icon-chart-pie-36"}),_vm._v(" "),_c('p',{staticClass:"text-aside"},[_vm._v("US dollar Index")])])]),_vm._v(" "),_c('li',[_c('a',{attrs:{"data-toggle":"collapse","href":"#pagesExamples"}},[_c('i',{staticClass:"tim-icons icon-image-02"}),_vm._v(" "),_c('p',[_vm._v("\n              BTC/USDT\n              "),_c('b',{staticClass:"caret"})])]),_vm._v(" "),_c('div',{staticClass:"collapse",attrs:{"id":"pagesExamples"}},[_c('ul',{staticClass:"nav"},[_c('li',[_c('a',{attrs:{"href":"https://www.hbg.com/en-us/exchange/#s=btc_usdt"}},[_c('span',{staticClass:"sidebar-mini-icon"},[_vm._v("1")]),_vm._v(" "),_c('span',{staticClass:"sidebar-normal"},[_vm._v("1 Minutes")])])]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"https://www.hbg.com/en-us/exchange/#s=btc_usdt"}},[_c('span',{staticClass:"sidebar-mini-icon"},[_vm._v("5")]),_vm._v(" "),_c('span',{staticClass:"sidebar-normal"},[_vm._v("5 Minutes")])])])])])]),_vm._v(" "),_c('li',{staticClass:"nav-aside"},[_c('div',{staticClass:"qr-wrap"},[_c('div',{staticClass:"ocrloader"},[_c('em'),_vm._v(" "),_c('div',[_c('img',{attrs:{"src":"/assets/img/qrcode.png","width":"127px"}})]),_vm._v(" "),_c('span')])]),_vm._v(" "),_c('p',[_vm._v("扫一扫 下载手机亚游")])])])])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "navbar-minimize-fixed" }, [
+        _c(
+          "button",
+          { staticClass: "minimize-sidebar btn btn-link btn-just-icon" },
+          [
+            _c("i", {
+              staticClass:
+                "tim-icons icon-align-center visible-on-sidebar-regular text-muted"
+            }),
+            _vm._v(" "),
+            _c("i", {
+              staticClass:
+                "tim-icons icon-bullet-list-67 visible-on-sidebar-mini text-muted"
+            })
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sidebar" }, [
+        _c("div", { staticClass: "sidebar-wrapper" }, [
+          _c("div", { staticClass: "logo" }, [
+            _c(
+              "a",
+              {
+                staticClass: "simple-text logo-mini",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [_vm._v("TNK")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "simple-text logo-normal",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [_vm._v("Stock List")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "nav" }, [
+            _c("li", { staticClass: "nav-aside active" }, [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href:
+                      "http://finance.sina.com.cn/realstock/company/sh000001/nc.shtml"
+                  }
+                },
+                [
+                  _c("i", { staticClass: "tim-icons icon-chart-pie-36" }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-aside" }, [_vm._v("SH000001")])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-aside" }, [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href:
+                      "http://finance.sina.com.cn/realstock/company/sz399001/nc.shtml"
+                  }
+                },
+                [
+                  _c("i", { staticClass: "tim-icons icon-money-coins" }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-aside" }, [_vm._v("SZ399001")])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-aside" }, [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href:
+                      "http://finance.sina.com.cn/realstock/company/sh000300/nc.shtml"
+                  }
+                },
+                [
+                  _c("i", { staticClass: "tim-icons icon-user-run" }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-aside" }, [_vm._v("SH00300")])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-aside" }, [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href:
+                      "http://finance.sina.com.cn/realstock/company/sz399415/nc.shtml"
+                  }
+                },
+                [
+                  _c("i", { staticClass: "tim-icons icon-chart-pie-36" }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-aside" }, [_vm._v("SZ399415")])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-aside" }, [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href:
+                      "https://finance.sina.com.cn/money/forex/hq/DINIW.shtml"
+                  }
+                },
+                [
+                  _c("i", { staticClass: "tim-icons icon-chart-pie-36" }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-aside" }, [
+                    _vm._v("US dollar Index")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "a",
+                {
+                  attrs: { "data-toggle": "collapse", href: "#pagesExamples" }
+                },
+                [
+                  _c("i", { staticClass: "tim-icons icon-image-02" }),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v("\n              BTC/USDT\n              "),
+                    _c("b", { staticClass: "caret" })
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "collapse", attrs: { id: "pagesExamples" } },
+                [
+                  _c("ul", { staticClass: "nav" }, [
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href:
+                              "https://www.hbg.com/en-us/exchange/#s=btc_usdt"
+                          }
+                        },
+                        [
+                          _c("span", { staticClass: "sidebar-mini-icon" }, [
+                            _vm._v("1")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "sidebar-normal" }, [
+                            _vm._v("1 Minutes")
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href:
+                              "https://www.hbg.com/en-us/exchange/#s=btc_usdt"
+                          }
+                        },
+                        [
+                          _c("span", { staticClass: "sidebar-mini-icon" }, [
+                            _vm._v("5")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "sidebar-normal" }, [
+                            _vm._v("5 Minutes")
+                          ])
+                        ]
+                      )
+                    ])
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-aside" }, [
+              _c("div", { staticClass: "qr-wrap" }, [
+                _c("div", { staticClass: "ocrloader" }, [
+                  _c("em"),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("img", {
+                      attrs: { src: "/assets/img/qrcode.png", width: "127px" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("span")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v("扫一扫 下载手机亚游")])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44466,9 +61329,713 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"wrapper container-whitelabel"},[_c('asides'),_vm._v(" "),_c('div',{staticClass:"main-panel"},[_c('navbars'),_vm._v(" "),_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_vm._m(2),_vm._v(" "),_vm._m(3),_vm._v(" "),_c('footers')],1)],1)])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"content"},[_c('hr'),_vm._v(" "),_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-12 p-0 home-wrap"},[_c('div',{staticClass:"container-wrap"},[_c('div',{staticClass:"carousel slide",attrs:{"id":"myCarousel","data-ride":"carousel"}},[_c('ol',{staticClass:"carousel-indicators"},[_c('li',{staticClass:"active",attrs:{"data-target":"#myCarousel","data-slide-to":"0"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190328cfa9d94907ba431db6505bb707b0c58c.jpg"}})]),_vm._v(" "),_c('li',{attrs:{"data-target":"#myCarousel","data-slide-to":"1"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190326961759629a51491e8f00c2ff2e753aff.jpg"}})]),_vm._v(" "),_c('li',{attrs:{"data-target":"#myCarousel","data-slide-to":"2"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190409d5dfebd2223a4eb58427dd4f3325d3f1.jpg"}})]),_vm._v(" "),_c('li',{attrs:{"data-target":"#myCarousel","data-slide-to":"3"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190418108f63a2f4454f9dba0199230447bcbf.jpg"}})]),_vm._v(" "),_c('li',{attrs:{"data-target":"#myCarousel","data-slide-to":"4"}},[_c('img',{attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/2019042247954d584b7547a59733bbc2c3a28880.jpg"}})])]),_vm._v(" "),_c('div',{staticClass:"carousel-inner"},[_c('div',{staticClass:"carousel-item active"},[_c('img',{staticClass:"first-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/201903287c512df06b914cefb2b3a96d20d3fdbd.jpg","alt":"First\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-caption"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])]),_vm._v(" "),_c('div',{staticClass:"carousel-item"},[_c('img',{staticClass:"second-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190423b2ae4cfc35c14da4b2da530f147887c5.jpg","alt":"Second\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-captiontwo"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])]),_vm._v(" "),_c('div',{staticClass:"carousel-item"},[_c('img',{staticClass:"third-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/20190409837ef9651b994dde86cbf299a2d5a599.jpg","alt":"Third\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-captionthree"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])]),_vm._v(" "),_c('div',{staticClass:"carousel-item"},[_c('img',{staticClass:"fourd-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/201904188594c2980f2e4ffa8a7120ff2406d97a.jpg","alt":"Third\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-captionfour"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])]),_vm._v(" "),_c('div',{staticClass:"carousel-item"},[_c('img',{staticClass:"five-slide",attrs:{"src":"https://static-pc.swcqlz.com/cms/cms_pic/2019042254cc8ec48bfe4d89b4b377df2fbbcc26.jpg","alt":"Five\n            slide"}}),_vm._v(" "),_c('div',{staticClass:"container"},[_c('div',{staticClass:"slide-captionfive"},[_c('h2',{staticClass:"slide-caption__title"},[_vm._v("Mussum Ipsum")]),_vm._v(" "),_c('p',{staticClass:"slide-caption__desc"},[_vm._v("Mé faiz elementum girarzis, nisi eros vermeio.")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('a',{staticClass:"btn btn-danger animation-on-hover",attrs:{"href":"#"}},[_vm._v("Learn More")]),_vm._v(" "),_c('a',{staticClass:"btn btn-danger btn-simple",attrs:{"href":"#"}},[_vm._v("Learn More")])])])])])]),_vm._v(" "),_c('a',{staticClass:"carousel-control-prev",attrs:{"href":"#myCarousel","role":"button","data-slide":"prev"}},[_c('img',{attrs:{"src":"assets/img/arrow-left.png"}}),_vm._v(" "),_c('span',{staticClass:"sr-only"},[_vm._v("Previous")])]),_vm._v(" "),_c('a',{staticClass:"carousel-control-next",attrs:{"href":"#myCarousel","role":"button","data-slide":"next"}},[_c('img',{attrs:{"src":"assets/img/arrow-right.png"}}),_vm._v(" "),_c('span',{staticClass:"sr-only"},[_vm._v("Next")])])])]),_vm._v(" "),_c('hr')])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fixed-plugin"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"assets/img/q-btn.png"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"header-title"},[_vm._v("Sidebar Background")]),_vm._v(" "),_c('li',{staticClass:"adjustments-line"},[_c('a',{staticClass:"switch-trigger background-color",attrs:{"href":"javascript:void(0)"}},[_c('div',{staticClass:"badge-colors text-center"},[_c('span',{staticClass:"badge filter badge-primary active",attrs:{"data-color":"primary"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-info",attrs:{"data-color":"blue"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-success",attrs:{"data-color":"green"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-warning",attrs:{"data-color":"orange"}}),_vm._v(" "),_c('span',{staticClass:"badge filter badge-danger",attrs:{"data-color":"red"}})]),_vm._v(" "),_c('div',{staticClass:"clearfix"})])]),_vm._v(" "),_c('li',{staticClass:"header-title"},[_vm._v("Sidebar Mini")]),_vm._v(" "),_c('li',{staticClass:"adjustments-line"},[_c('div',{staticClass:"togglebutton switch-sidebar-mini"},[_c('span',{staticClass:"label-switch"},[_vm._v("OFF")]),_vm._v(" "),_c('input',{staticClass:"bootstrap-switch",attrs:{"type":"checkbox","name":"checkbox","checked":"","data-on-label":"","data-off-label":""}}),_vm._v(" "),_c('span',{staticClass:"label-switch label-right"},[_vm._v("ON")])]),_vm._v(" "),_c('div',{staticClass:"togglebutton switch-change-color mt-3"},[_c('span',{staticClass:"label-switch"},[_vm._v("LIGHT MODE")]),_vm._v(" "),_c('input',{staticClass:"bootstrap-switch",attrs:{"type":"checkbox","name":"checkbox","data-on-label":"","data-off-label":""}}),_vm._v(" "),_c('span',{staticClass:"label-switch label-right"},[_vm._v("DARK MODE")])])]),_vm._v(" "),_c('li',{staticClass:"button-container mt-4"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("Documentation")])]),_vm._v(" "),_c('li',{staticClass:"header-title"},[_vm._v("Thank you for 95 shares!")]),_vm._v(" "),_c('li',{staticClass:"button-container text-center"},[_c('button',{staticClass:"btn btn-round btn-info",attrs:{"id":"twitter"}},[_c('i',{staticClass:"fab fa-twitter"}),_vm._v(" · 45\n              ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-round btn-info",attrs:{"id":"facebook"}},[_c('i',{staticClass:"fab fa-facebook-f"}),_vm._v(" · 50\n              ")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v(" "),_c('a',{staticClass:"github-button",attrs:{"href":"https://github.com/creativetimofficial/ct-black-dashboard-pro","data-icon":"octicon-star","data-size":"large","data-show-count":"true","aria-label":"Star ntkme/github-buttons on GitHub"}},[_vm._v("Star")])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fixed-plugin-cutome"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"assets/img/chat-btn.gif"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"button-container mt-4 pb-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("在线咨询")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("电话回拨")])]),_vm._v(" "),_c('li',{staticClass:"button-container bg-call"},[_c('p',{staticClass:"home_custom"},[_c('i',{staticClass:"fas fa-phone-volume"}),_vm._v("服务热线\n              ")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("香港热线(0.49元/分)")]),_vm._v(" "),_c('p',{staticClass:"hongKong1"},[_vm._v("\n                +852-3841-5777\n                "),_c('br')]),_vm._v(" "),_c('p',{staticClass:"hongKong2"},[_vm._v("+852-3008-3777")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("菲律宾热线(0.99元/分)")]),_vm._v(" "),_c('p',[_vm._v("+63-2-949-8222")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"})])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"fixed-plugin-tools"},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('img',{attrs:{"src":"/assets/img/tools-btn.png"}})]),_vm._v(" "),_c('ul',{staticClass:"dropdown-menu"},[_c('li',{staticClass:"button-container mt-4 pb-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("在线咨询")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('a',{staticClass:"btn btn-default btn-block btn-round",attrs:{"href":"../docs/1.0/getting-started/introduction.html"}},[_vm._v("电话回拨")])]),_vm._v(" "),_c('li',{staticClass:"button-container bg-call"},[_c('p',{staticClass:"home_custom"},[_c('i',{staticClass:"fas fa-phone-volume"}),_vm._v("服务热线\n              ")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("香港热线(0.49元/分)")]),_vm._v(" "),_c('p',{staticClass:"hongKong1"},[_vm._v("\n                +852-3841-5777\n                "),_c('br')]),_vm._v(" "),_c('p',{staticClass:"hongKong2"},[_vm._v("+852-3008-3777")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"},[_c('p',[_vm._v("菲律宾热线(0.99元/分)")]),_vm._v(" "),_c('p',[_vm._v("+63-2-949-8222")])]),_vm._v(" "),_c('li',{staticClass:"button-container pt-0"})])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "wrapper container-whitelabel" },
+      [
+        _c("asides"),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "main-panel" },
+          [
+            _c("navbars"),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c("footers")
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content" }, [
+      _c("hr"),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-12 p-0 home-wrap" }, [
+          _c("div", { staticClass: "container-wrap" }, [
+            _c(
+              "div",
+              {
+                staticClass: "carousel slide",
+                attrs: { id: "myCarousel", "data-ride": "carousel" }
+              },
+              [
+                _c("ol", { staticClass: "carousel-indicators" }, [
+                  _c(
+                    "li",
+                    {
+                      staticClass: "active",
+                      attrs: {
+                        "data-target": "#myCarousel",
+                        "data-slide-to": "0"
+                      }
+                    },
+                    [
+                      _c("img", {
+                        attrs: {
+                          src:
+                            "https://static-pc.swcqlz.com/cms/cms_pic/20190328cfa9d94907ba431db6505bb707b0c58c.jpg"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    {
+                      attrs: {
+                        "data-target": "#myCarousel",
+                        "data-slide-to": "1"
+                      }
+                    },
+                    [
+                      _c("img", {
+                        attrs: {
+                          src:
+                            "https://static-pc.swcqlz.com/cms/cms_pic/20190326961759629a51491e8f00c2ff2e753aff.jpg"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    {
+                      attrs: {
+                        "data-target": "#myCarousel",
+                        "data-slide-to": "2"
+                      }
+                    },
+                    [
+                      _c("img", {
+                        attrs: {
+                          src:
+                            "https://static-pc.swcqlz.com/cms/cms_pic/20190409d5dfebd2223a4eb58427dd4f3325d3f1.jpg"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    {
+                      attrs: {
+                        "data-target": "#myCarousel",
+                        "data-slide-to": "3"
+                      }
+                    },
+                    [
+                      _c("img", {
+                        attrs: {
+                          src:
+                            "https://static-pc.swcqlz.com/cms/cms_pic/20190418108f63a2f4454f9dba0199230447bcbf.jpg"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    {
+                      attrs: {
+                        "data-target": "#myCarousel",
+                        "data-slide-to": "4"
+                      }
+                    },
+                    [
+                      _c("img", {
+                        attrs: {
+                          src:
+                            "https://static-pc.swcqlz.com/cms/cms_pic/2019042247954d584b7547a59733bbc2c3a28880.jpg"
+                        }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "carousel-inner" }, [
+                  _c("div", { staticClass: "carousel-item active" }, [
+                    _c("img", {
+                      staticClass: "first-slide",
+                      attrs: {
+                        src:
+                          "https://static-pc.swcqlz.com/cms/cms_pic/201903287c512df06b914cefb2b3a96d20d3fdbd.jpg",
+                        alt: "First\n            slide"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "container" }, [
+                      _c("div", { staticClass: "slide-caption" }, [
+                        _c("h2", { staticClass: "slide-caption__title" }, [
+                          _vm._v("Mussum Ipsum")
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "slide-caption__desc" }, [
+                          _vm._v(
+                            "Mé faiz elementum girarzis, nisi eros vermeio."
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "d-flex" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger animation-on-hover",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Learn More")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger btn-simple",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Learn More")]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "carousel-item" }, [
+                    _c("img", {
+                      staticClass: "second-slide",
+                      attrs: {
+                        src:
+                          "https://static-pc.swcqlz.com/cms/cms_pic/20190423b2ae4cfc35c14da4b2da530f147887c5.jpg",
+                        alt: "Second\n            slide"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "container" }, [
+                      _c("div", { staticClass: "slide-captiontwo" }, [
+                        _c("h2", { staticClass: "slide-caption__title" }, [
+                          _vm._v("Mussum Ipsum")
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "slide-caption__desc" }, [
+                          _vm._v(
+                            "Mé faiz elementum girarzis, nisi eros vermeio."
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "d-flex" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger animation-on-hover",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Learn More")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger btn-simple",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Learn More")]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "carousel-item" }, [
+                    _c("img", {
+                      staticClass: "third-slide",
+                      attrs: {
+                        src:
+                          "https://static-pc.swcqlz.com/cms/cms_pic/20190409837ef9651b994dde86cbf299a2d5a599.jpg",
+                        alt: "Third\n            slide"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "container" }, [
+                      _c("div", { staticClass: "slide-captionthree" }, [
+                        _c("h2", { staticClass: "slide-caption__title" }, [
+                          _vm._v("Mussum Ipsum")
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "slide-caption__desc" }, [
+                          _vm._v(
+                            "Mé faiz elementum girarzis, nisi eros vermeio."
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "d-flex" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger animation-on-hover",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Learn More")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger btn-simple",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Learn More")]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "carousel-item" }, [
+                    _c("img", {
+                      staticClass: "fourd-slide",
+                      attrs: {
+                        src:
+                          "https://static-pc.swcqlz.com/cms/cms_pic/201904188594c2980f2e4ffa8a7120ff2406d97a.jpg",
+                        alt: "Third\n            slide"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "container" }, [
+                      _c("div", { staticClass: "slide-captionfour" }, [
+                        _c("h2", { staticClass: "slide-caption__title" }, [
+                          _vm._v("Mussum Ipsum")
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "slide-caption__desc" }, [
+                          _vm._v(
+                            "Mé faiz elementum girarzis, nisi eros vermeio."
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "d-flex" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger animation-on-hover",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Learn More")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger btn-simple",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Learn More")]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "carousel-item" }, [
+                    _c("img", {
+                      staticClass: "five-slide",
+                      attrs: {
+                        src:
+                          "https://static-pc.swcqlz.com/cms/cms_pic/2019042254cc8ec48bfe4d89b4b377df2fbbcc26.jpg",
+                        alt: "Five\n            slide"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "container" }, [
+                      _c("div", { staticClass: "slide-captionfive" }, [
+                        _c("h2", { staticClass: "slide-caption__title" }, [
+                          _vm._v("Mussum Ipsum")
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "slide-caption__desc" }, [
+                          _vm._v(
+                            "Mé faiz elementum girarzis, nisi eros vermeio."
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "d-flex" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger animation-on-hover",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Learn More")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger btn-simple",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Learn More")]
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "carousel-control-prev",
+                    attrs: {
+                      href: "#myCarousel",
+                      role: "button",
+                      "data-slide": "prev"
+                    }
+                  },
+                  [
+                    _c("img", { attrs: { src: "assets/img/arrow-left.png" } }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "carousel-control-next",
+                    attrs: {
+                      href: "#myCarousel",
+                      role: "button",
+                      "data-slide": "next"
+                    }
+                  },
+                  [
+                    _c("img", { attrs: { src: "assets/img/arrow-right.png" } }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
+                  ]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("hr")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fixed-plugin" }, [
+      _c("div", { staticClass: "dropdown show-dropdown" }, [
+        _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
+          _c("img", { attrs: { src: "assets/img/q-btn.png" } })
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "dropdown-menu" }, [
+          _c("li", { staticClass: "header-title" }, [
+            _vm._v("Sidebar Background")
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "adjustments-line" }, [
+            _c(
+              "a",
+              {
+                staticClass: "switch-trigger background-color",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [
+                _c("div", { staticClass: "badge-colors text-center" }, [
+                  _c("span", {
+                    staticClass: "badge filter badge-primary active",
+                    attrs: { "data-color": "primary" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", {
+                    staticClass: "badge filter badge-info",
+                    attrs: { "data-color": "blue" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", {
+                    staticClass: "badge filter badge-success",
+                    attrs: { "data-color": "green" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", {
+                    staticClass: "badge filter badge-warning",
+                    attrs: { "data-color": "orange" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", {
+                    staticClass: "badge filter badge-danger",
+                    attrs: { "data-color": "red" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "clearfix" })
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "header-title" }, [_vm._v("Sidebar Mini")]),
+          _vm._v(" "),
+          _c("li", { staticClass: "adjustments-line" }, [
+            _c("div", { staticClass: "togglebutton switch-sidebar-mini" }, [
+              _c("span", { staticClass: "label-switch" }, [_vm._v("OFF")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "bootstrap-switch",
+                attrs: {
+                  type: "checkbox",
+                  name: "checkbox",
+                  checked: "",
+                  "data-on-label": "",
+                  "data-off-label": ""
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "label-switch label-right" }, [
+                _vm._v("ON")
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "togglebutton switch-change-color mt-3" },
+              [
+                _c("span", { staticClass: "label-switch" }, [
+                  _vm._v("LIGHT MODE")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "bootstrap-switch",
+                  attrs: {
+                    type: "checkbox",
+                    name: "checkbox",
+                    "data-on-label": "",
+                    "data-off-label": ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "label-switch label-right" }, [
+                  _vm._v("DARK MODE")
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "button-container mt-4" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-default btn-block btn-round",
+                attrs: { href: "../docs/1.0/getting-started/introduction.html" }
+              },
+              [_vm._v("Documentation")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "header-title" }, [
+            _vm._v("Thank you for 95 shares!")
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "button-container text-center" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-round btn-info",
+                attrs: { id: "twitter" }
+              },
+              [
+                _c("i", { staticClass: "fab fa-twitter" }),
+                _vm._v(" · 45\n              ")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-round btn-info",
+                attrs: { id: "facebook" }
+              },
+              [
+                _c("i", { staticClass: "fab fa-facebook-f" }),
+                _vm._v(" · 50\n              ")
+              ]
+            ),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "github-button",
+                attrs: {
+                  href:
+                    "https://github.com/creativetimofficial/ct-black-dashboard-pro",
+                  "data-icon": "octicon-star",
+                  "data-size": "large",
+                  "data-show-count": "true",
+                  "aria-label": "Star ntkme/github-buttons on GitHub"
+                }
+              },
+              [_vm._v("Star")]
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fixed-plugin-cutome" }, [
+      _c("div", { staticClass: "dropdown show-dropdown" }, [
+        _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
+          _c("img", { attrs: { src: "assets/img/chat-btn.gif" } })
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "dropdown-menu" }, [
+          _c("li", { staticClass: "button-container mt-4 pb-0" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-default btn-block btn-round",
+                attrs: { href: "../docs/1.0/getting-started/introduction.html" }
+              },
+              [_vm._v("在线咨询")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "button-container pt-0" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-default btn-block btn-round",
+                attrs: { href: "../docs/1.0/getting-started/introduction.html" }
+              },
+              [_vm._v("电话回拨")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "button-container bg-call" }, [
+            _c("p", { staticClass: "home_custom" }, [
+              _c("i", { staticClass: "fas fa-phone-volume" }),
+              _vm._v("服务热线\n              ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "button-container pt-0" }, [
+            _c("p", [_vm._v("香港热线(0.49元/分)")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "hongKong1" }, [
+              _vm._v("\n                +852-3841-5777\n                "),
+              _c("br")
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "hongKong2" }, [_vm._v("+852-3008-3777")])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "button-container pt-0" }, [
+            _c("p", [_vm._v("菲律宾热线(0.99元/分)")]),
+            _vm._v(" "),
+            _c("p", [_vm._v("+63-2-949-8222")])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "button-container pt-0" })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fixed-plugin-tools" }, [
+      _c("div", { staticClass: "dropdown show-dropdown" }, [
+        _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
+          _c("img", { attrs: { src: "/assets/img/tools-btn.png" } })
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "dropdown-menu" }, [
+          _c("li", { staticClass: "button-container mt-4 pb-0" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-default btn-block btn-round",
+                attrs: { href: "../docs/1.0/getting-started/introduction.html" }
+              },
+              [_vm._v("在线咨询")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "button-container pt-0" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-default btn-block btn-round",
+                attrs: { href: "../docs/1.0/getting-started/introduction.html" }
+              },
+              [_vm._v("电话回拨")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "button-container bg-call" }, [
+            _c("p", { staticClass: "home_custom" }, [
+              _c("i", { staticClass: "fas fa-phone-volume" }),
+              _vm._v("服务热线\n              ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "button-container pt-0" }, [
+            _c("p", [_vm._v("香港热线(0.49元/分)")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "hongKong1" }, [
+              _vm._v("\n                +852-3841-5777\n                "),
+              _c("br")
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "hongKong2" }, [_vm._v("+852-3008-3777")])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "button-container pt-0" }, [
+            _c("p", [_vm._v("菲律宾热线(0.99元/分)")]),
+            _vm._v(" "),
+            _c("p", [_vm._v("+63-2-949-8222")])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "button-container pt-0" })
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44484,9 +62051,156 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"cid-ro6uJJ0VM8",attrs:{"once":"footers","id":"footer7-1"}},[_c('div',{staticClass:"container"},[_c('div',{staticClass:"media-container-row align-center mbr-white"},[_c('div',{staticClass:"row row-links row-copirayt"},[_c('ul',{staticClass:"foot-menu"},[_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"About us"}},[_vm._v("About us")])])])])]),_vm._v(" "),_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"Services"}},[_vm._v("Services")])])])])]),_vm._v(" "),_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"Get In Touch"}},[_vm._v("Get In Touch")])])])])]),_vm._v(" "),_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"Careers"}},[_vm._v("Careers")])])])])]),_vm._v(" "),_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"Work"}},[_vm._v("Work")])])])])])])]),_vm._v(" "),_c('div',{staticClass:"row social-row"},[_c('div',{staticClass:"social-list align-right pb-2"},[_c('div',{staticClass:"soc-item"},[_c('a',{attrs:{"href":"#","target":"_blank"}},[_c('i',{staticClass:"icon-wechat"})])]),_vm._v(" "),_c('div',{staticClass:"soc-item"},[_c('a',{attrs:{"href":"#","target":"_blank"}},[_c('i',{staticClass:"icon-alipay"})])]),_vm._v(" "),_c('div',{staticClass:"soc-item"},[_c('a',{attrs:{"href":"#","target":"_blank"}},[_c('i',{staticClass:"icon-unionpay"})])])])]),_vm._v(" "),_c('div',{staticClass:"row row-copirayt"},[_c('p',{staticClass:"mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7 text-center"},[_vm._v("© Copyright 2019 TNK - All Rights Reserved")])])])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "section",
+      {
+        staticClass: "cid-ro6uJJ0VM8",
+        attrs: { once: "footers", id: "footer7-1" }
+      },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            { staticClass: "media-container-row align-center mbr-white" },
+            [
+              _c("div", { staticClass: "row row-links row-copirayt" }, [
+                _c("ul", { staticClass: "foot-menu" }, [
+                  _c(
+                    "li",
+                    { staticClass: "foot-menu-item mbr-fonts-style display-7" },
+                    [
+                      _c("ul", { staticClass: "nav" }, [
+                        _c("li", { staticClass: "animated_link3" }, [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("p", { attrs: { "data-title": "About us" } }, [
+                              _vm._v("About us")
+                            ])
+                          ])
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "foot-menu-item mbr-fonts-style display-7" },
+                    [
+                      _c("ul", { staticClass: "nav" }, [
+                        _c("li", { staticClass: "animated_link3" }, [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("p", { attrs: { "data-title": "Services" } }, [
+                              _vm._v("Services")
+                            ])
+                          ])
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "foot-menu-item mbr-fonts-style display-7" },
+                    [
+                      _c("ul", { staticClass: "nav" }, [
+                        _c("li", { staticClass: "animated_link3" }, [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c(
+                              "p",
+                              { attrs: { "data-title": "Get In Touch" } },
+                              [_vm._v("Get In Touch")]
+                            )
+                          ])
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "foot-menu-item mbr-fonts-style display-7" },
+                    [
+                      _c("ul", { staticClass: "nav" }, [
+                        _c("li", { staticClass: "animated_link3" }, [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("p", { attrs: { "data-title": "Careers" } }, [
+                              _vm._v("Careers")
+                            ])
+                          ])
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "foot-menu-item mbr-fonts-style display-7" },
+                    [
+                      _c("ul", { staticClass: "nav" }, [
+                        _c("li", { staticClass: "animated_link3" }, [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("p", { attrs: { "data-title": "Work" } }, [
+                              _vm._v("Work")
+                            ])
+                          ])
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row social-row" }, [
+                _c("div", { staticClass: "social-list align-right pb-2" }, [
+                  _c("div", { staticClass: "soc-item" }, [
+                    _c("a", { attrs: { href: "#", target: "_blank" } }, [
+                      _c("i", { staticClass: "icon-wechat" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "soc-item" }, [
+                    _c("a", { attrs: { href: "#", target: "_blank" } }, [
+                      _c("i", { staticClass: "icon-alipay" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "soc-item" }, [
+                    _c("a", { attrs: { href: "#", target: "_blank" } }, [
+                      _c("i", { staticClass: "icon-unionpay" })
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row row-copirayt" }, [
+                _c(
+                  "p",
+                  {
+                    staticClass:
+                      "mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7 text-center"
+                  },
+                  [_vm._v("© Copyright 2019 TNK - All Rights Reserved")]
+                )
+              ])
+            ]
+          )
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
@@ -44502,9 +62216,950 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('nav',{staticClass:"navbar navbar-expand-lg navbar-absolute navbar-transparent"},[_c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"navbar-wrapper"},[_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('a',{staticClass:"navbar-brand",attrs:{"href":_vm.welcome}},[_vm._v("TNK")])]),_vm._v(" "),_vm._m(2),_vm._v(" "),_c('div',{staticClass:"collapse navbar-collapse",attrs:{"id":"navigation"}},[_vm._m(3),_vm._v(" "),(!_vm.ismenu)?_c('span',[_vm._m(4)]):_c('span',[_c('ul',{staticClass:"navbar-nav ml-auto"},[_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":_vm.messages}},[_vm._m(5),_vm._v("Message\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#"},on:{"click":function($event){return _vm.myaccount()}}},[_vm._m(6),_vm._v("My Account\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":_vm.promote}},[_vm._m(7),_vm._v("My Privilege\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":_vm.lobby}},[_vm._m(8),_vm._v("Game Lobby\n              ")])]),_vm._v(" "),_vm._m(9),_vm._v(" "),_vm._m(10),_vm._v(" "),_vm._m(11)])])])])]),_vm._v(" "),_c('div',{staticClass:"modal fade",attrs:{"id":"loginModal"}},[_c('div',{staticClass:"modal-dialog modal-lg"},[_c('div',{staticClass:"modal-content"},[_vm._m(12),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"col-lg-12 col-md-12"},[_c('form',{staticClass:"form"},[_c('div',{staticClass:"card card-login card-white"},[_vm._m(13),_vm._v(" "),_vm._m(14),_vm._v(" "),_c('div',{staticClass:"card-footer"},[_c('a',{staticClass:"btn btn-primary btn-lg btn-block mb-3",attrs:{"href":"#login"},on:{"click":function($event){_vm.ismenu=!_vm.ismenu}}},[_vm._v("登录")]),_vm._v(" "),_vm._m(15)])])])])])])])]),_vm._v(" "),_vm._m(16),_vm._v(" "),_vm._m(17),_vm._v(" "),_vm._m(18)])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"navbar-minimize d-inline"},[_c('button',{staticClass:"minimize-sidebar btn btn-link btn-just-icon",attrs:{"rel":"tooltip","data-original-title":"Sidebar toggle","data-placement":"right"}},[_c('i',{staticClass:"tim-icons icon-align-center visible-on-sidebar-regular"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-bullet-list-67 visible-on-sidebar-mini"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"navbar-toggle d-inline"},[_c('button',{staticClass:"navbar-toggler",attrs:{"type":"button"}},[_c('span',{staticClass:"navbar-toggler-bar bar1"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar bar2"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar bar3"})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"navbar-toggler",attrs:{"type":"button","data-toggle":"collapse","data-target":"#navigation","aria-expanded":"false","aria-label":"Toggle navigation"}},[_c('span',{staticClass:"navbar-toggler-bar navbar-kebab"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar navbar-kebab"}),_vm._v(" "),_c('span',{staticClass:"navbar-toggler-bar navbar-kebab"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"navbar-nav mr-auto"},[_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-coins icon-hover"})]),_vm._v("Recommend friends\n            ")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"navbar-nav ml-auto"},[_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#loginModal"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-lock-circle icon-hover"})]),_vm._v("Login\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":".register"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"fas fa-user-plus icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-badge icon-hover"})]),_vm._v("Register\n              ")])]),_vm._v(" "),_c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#freetrial"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-controller icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-credit-card icon-hover"})]),_vm._v("Free Trial\n              ")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-chat-33 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-chat-33 icon-hover"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-single-02 icon-hover"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-trophy icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-trophy icon-hover"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-controller icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-controller icon-hover"})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":".register"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-coins icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-coins icon-hover"})]),_vm._v("Recharge\n              ")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex",attrs:{"href":"#","data-toggle":"modal","data-target":"#freetrial"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-money-coins icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-cart icon-hover"})]),_vm._v("WithDraw\n              ")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{staticClass:"nav-item"},[_c('a',{staticClass:"button nav-link d-flex fixed-logout",attrs:{"href":"#"}},[_c('div',{staticClass:"dropdown show-dropdown"},[_c('a',{attrs:{"href":"#","data-toggle":"dropdown"}},[_c('div',{staticClass:"icons"},[_c('i',{staticClass:"tim-icons icon-single-02 icon-default"}),_vm._v(" "),_c('i',{staticClass:"tim-icons icon-bullet-list-67 icon-hover"})])]),_vm._v(" "),_c('div',{staticClass:"dropdown-menu"},[_c('div',{staticClass:"row p-4"},[_c('div',{staticClass:"col-6"},[_c('img',{attrs:{"src":"assets/img/user.png","alt":""}})]),_vm._v(" "),_c('div',{staticClass:"col-6"},[_c('em',{staticClass:"header-user-name"},[_vm._v("aghq186496")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('span',{staticClass:"header-user-level level-0"},[_vm._v("新会员")])]),_vm._v(" "),_c('small',{staticClass:"header-before-login-date"},[_vm._v("最近登录时间：2019-04-24 14:25:40")])]),_vm._v(" "),_c('div',{staticClass:"menu-body"},[_c('div',{attrs:{"id":"header-balance"}},[_vm._v("\n                        总余额\n                        "),_c('h2',{staticClass:"eid_total_credit m-0 p-0"},[_vm._v("0.00")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('p',{staticClass:"text-desss"},[_vm._v("\n                            本地余额\n                            "),_c('span',{attrs:{"id":"eid_local_credit"}},[_vm._v("0.00")])]),_vm._v(" "),_c('p',{staticClass:"text-balance"},[_vm._v("\n                            游戏余额\n                            "),_c('span',{attrs:{"id":"eid_game_credit"}},[_vm._v("0.00")])])])]),_vm._v(" "),_c('a',{staticClass:"btn-logout",attrs:{"href":"javascript:;"}},[_c('i',{staticClass:"fa fa-power-off"}),_vm._v("安全退出\n                      ")])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal-header"},[_c('h4',{staticClass:"modal-title"},[_vm._v("Login Page")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("×")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card-header"},[_c('img',{attrs:{"src":"assets/img/card-primary.png","alt":""}}),_vm._v(" "),_c('h1',{staticClass:"card-title"},[_vm._v("Log in")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card-body"},[_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-email-85"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Email"}})]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-lock-circle"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Password"}})])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"d-flex justify-content-between"},[_c('a',{staticClass:"link footer-link",attrs:{"href":"javascript:void(0)"}},[_vm._v("忘记密码？")]),_vm._v(" "),_c('div',{staticClass:"d-flex"},[_c('p',{staticClass:"link footer-link"},[_vm._v("没有账号？")]),_vm._v(" "),_c('a',{staticClass:"link footer-link",attrs:{"href":"javascript:void(0)"}},[_vm._v("在此注册")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade register"},[_c('div',{staticClass:"modal-dialog modal-lg"},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('h4',{staticClass:"modal-title"},[_vm._v("Register Page")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("×")])]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"container"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-5 ml-auto"},[_c('div',{staticClass:"info-area info-horizontal mt-5"},[_c('div',{staticClass:"icon icon-warning"},[_c('i',{staticClass:"tim-icons icon-wifi"})]),_vm._v(" "),_c('div',{staticClass:"description"},[_c('h3',{staticClass:"info-title text-dark m-0"},[_vm._v("Marketing")]),_vm._v(" "),_c('p',{staticClass:"description"},[_vm._v("We've created the marketing campaign of the website. It was a very interesting collaboration.")])])]),_vm._v(" "),_c('div',{staticClass:"info-area info-horizontal"},[_c('div',{staticClass:"icon icon-primary"},[_c('i',{staticClass:"tim-icons icon-triangle-right-17"})]),_vm._v(" "),_c('div',{staticClass:"description"},[_c('h3',{staticClass:"info-title text-dark m-0"},[_vm._v("Fully Coded in HTML5")]),_vm._v(" "),_c('p',{staticClass:"description"},[_vm._v("We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.")])])]),_vm._v(" "),_c('div',{staticClass:"info-area info-horizontal"},[_c('div',{staticClass:"icon icon-info"},[_c('i',{staticClass:"tim-icons icon-trophy"})]),_vm._v(" "),_c('div',{staticClass:"description"},[_c('h3',{staticClass:"info-title text-dark m-0"},[_vm._v("Built Audience")]),_vm._v(" "),_c('p',{staticClass:"description"},[_vm._v("There is also a Fully Customizable CMS Admin Dashboard for this product.")])])])]),_vm._v(" "),_c('div',{staticClass:"col-md-7 mr-auto"},[_c('div',{staticClass:"card card-register card-white"},[_c('div',{staticClass:"card-header"},[_c('img',{staticClass:"card-img",attrs:{"src":"assets/img/card-primary.png","alt":"Card image"}}),_vm._v(" "),_c('h4',{staticClass:"card-title"},[_vm._v("Register")])]),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('form',{staticClass:"form"},[_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-single-02"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Full Name"}})]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-email-85"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Email"}})]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-lock-circle"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Password"}})]),_vm._v(" "),_c('div',{staticClass:"form-check text-left"},[_c('label',{staticClass:"form-check-label"},[_c('input',{staticClass:"form-check-input",attrs:{"type":"checkbox"}}),_vm._v(" "),_c('span',{staticClass:"form-check-sign"}),_vm._v("\n                          I agree to the\n                          "),_c('a',{attrs:{"href":"javascript:void(0)"}},[_vm._v("terms and conditions")]),_vm._v(".\n                        ")])])])]),_vm._v(" "),_c('div',{staticClass:"card-footer"},[_c('a',{staticClass:"btn btn-primary btn-round btn-lg",attrs:{"href":"javascript:void(0)"}},[_vm._v("注册")])])])])])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade",attrs:{"id":"freetrial"}},[_c('div',{staticClass:"modal-dialog modal-lg"},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('h4',{staticClass:"modal-title text-capitalize"},[_vm._v("Free trial")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("×")])]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"container"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-12 mr-auto"},[_c('div',{staticClass:"card card-register card-white"},[_c('div',{staticClass:"card-header"},[_c('img',{staticClass:"card-img",attrs:{"src":"assets/img/card-primary.png","alt":"Card image"}}),_vm._v(" "),_c('h4',{staticClass:"card-title text-title"},[_vm._v("12150")])]),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('form',{staticClass:"form"},[_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-prepend"},[_c('div',{staticClass:"input-group-text"},[_c('i',{staticClass:"tim-icons icon-single-02"})])]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"type":"text","placeholder":"Full Name"}})]),_vm._v(" "),_c('div',{staticClass:"form-check text-left"},[_c('label',{staticClass:"form-check-label"},[_c('input',{staticClass:"form-check-input",attrs:{"type":"checkbox"}}),_vm._v(" "),_c('span',{staticClass:"form-check-sign"}),_vm._v("\n                          I agree to the\n                          "),_c('a',{attrs:{"href":"javascript:void(0)"}},[_vm._v("terms and conditions")]),_vm._v(".\n                        ")])])])]),_vm._v(" "),_c('div',{staticClass:"card-footer"},[_c('a',{staticClass:"btn btn-primary btn-round btn-lg",attrs:{"href":"javascript:void(0)"}},[_vm._v("开始试玩")])])])])])])])])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal modal-search fade",attrs:{"id":"searchModal","tabindex":"-1","role":"dialog","aria-labelledby":"searchModal","aria-hidden":"true"}},[_c('div',{staticClass:"modal-dialog",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('input',{staticClass:"form-control",attrs:{"type":"text","id":"inlineFormInputGroup","placeholder":"SEARCH"}}),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal","aria-label":"Close"}},[_c('i',{staticClass:"tim-icons icon-simple-remove"})])])])])])}]
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "nav",
+      {
+        staticClass:
+          "navbar navbar-expand-lg navbar-absolute navbar-transparent"
+      },
+      [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "navbar-wrapper" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "a",
+              { staticClass: "navbar-brand", attrs: { href: _vm.welcome } },
+              [_vm._v("TNK")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse",
+              attrs: { id: "navigation" }
+            },
+            [
+              _vm._m(3),
+              _vm._v(" "),
+              !_vm.ismenu
+                ? _c("span", [_vm._m(4)])
+                : _c("span", [
+                    _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "button nav-link d-flex",
+                            attrs: { href: _vm.messages }
+                          },
+                          [_vm._m(5), _vm._v("Message\n              ")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "button nav-link d-flex",
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.myaccount()
+                              }
+                            }
+                          },
+                          [_vm._m(6), _vm._v("My Account\n              ")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "button nav-link d-flex",
+                            attrs: { href: _vm.promote }
+                          },
+                          [_vm._m(7), _vm._v("My Privilege\n              ")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "button nav-link d-flex",
+                            attrs: { href: _vm.lobby }
+                          },
+                          [_vm._m(8), _vm._v("Game Lobby\n              ")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(9),
+                      _vm._v(" "),
+                      _vm._m(10),
+                      _vm._v(" "),
+                      _vm._m(11)
+                    ])
+                  ])
+            ]
+          )
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal fade", attrs: { id: "loginModal" } }, [
+      _c("div", { staticClass: "modal-dialog modal-lg" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(12),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "col-lg-12 col-md-12" }, [
+              _c("form", { staticClass: "form" }, [
+                _c("div", { staticClass: "card card-login card-white" }, [
+                  _vm._m(13),
+                  _vm._v(" "),
+                  _vm._m(14),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-footer" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-primary btn-lg btn-block mb-3",
+                        attrs: { href: "#login" },
+                        on: {
+                          click: function($event) {
+                            _vm.ismenu = !_vm.ismenu
+                          }
+                        }
+                      },
+                      [_vm._v("登录")]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(15)
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(16),
+    _vm._v(" "),
+    _vm._m(17),
+    _vm._v(" "),
+    _vm._m(18)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "navbar-minimize d-inline" }, [
+      _c(
+        "button",
+        {
+          staticClass: "minimize-sidebar btn btn-link btn-just-icon",
+          attrs: {
+            rel: "tooltip",
+            "data-original-title": "Sidebar toggle",
+            "data-placement": "right"
+          }
+        },
+        [
+          _c("i", {
+            staticClass:
+              "tim-icons icon-align-center visible-on-sidebar-regular"
+          }),
+          _vm._v(" "),
+          _c("i", {
+            staticClass: "tim-icons icon-bullet-list-67 visible-on-sidebar-mini"
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "navbar-toggle d-inline" }, [
+      _c(
+        "button",
+        { staticClass: "navbar-toggler", attrs: { type: "button" } },
+        [
+          _c("span", { staticClass: "navbar-toggler-bar bar1" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "navbar-toggler-bar bar2" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "navbar-toggler-bar bar3" })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navigation",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation"
+        }
+      },
+      [
+        _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "navbar-nav mr-auto" }, [
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          { staticClass: "button nav-link d-flex", attrs: { href: "#" } },
+          [
+            _c("div", { staticClass: "icons" }, [
+              _c("i", { staticClass: "tim-icons icon-single-02 icon-default" }),
+              _vm._v(" "),
+              _c("i", { staticClass: "tim-icons icon-coins icon-hover" })
+            ]),
+            _vm._v("Recommend friends\n            ")
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "button nav-link d-flex",
+            attrs: {
+              href: "#",
+              "data-toggle": "modal",
+              "data-target": "#loginModal"
+            }
+          },
+          [
+            _c("div", { staticClass: "icons" }, [
+              _c("i", { staticClass: "tim-icons icon-single-02 icon-default" }),
+              _vm._v(" "),
+              _c("i", { staticClass: "tim-icons icon-lock-circle icon-hover" })
+            ]),
+            _vm._v("Login\n              ")
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "button nav-link d-flex",
+            attrs: {
+              href: "#",
+              "data-toggle": "modal",
+              "data-target": ".register"
+            }
+          },
+          [
+            _c("div", { staticClass: "icons" }, [
+              _c("i", { staticClass: "fas fa-user-plus icon-default" }),
+              _vm._v(" "),
+              _c("i", { staticClass: "tim-icons icon-badge icon-hover" })
+            ]),
+            _vm._v("Register\n              ")
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "button nav-link d-flex",
+            attrs: {
+              href: "#",
+              "data-toggle": "modal",
+              "data-target": "#freetrial"
+            }
+          },
+          [
+            _c("div", { staticClass: "icons" }, [
+              _c("i", {
+                staticClass: "tim-icons icon-controller icon-default"
+              }),
+              _vm._v(" "),
+              _c("i", { staticClass: "tim-icons icon-credit-card icon-hover" })
+            ]),
+            _vm._v("Free Trial\n              ")
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icons" }, [
+      _c("i", { staticClass: "tim-icons icon-chat-33 icon-default" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "tim-icons icon-chat-33 icon-hover" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icons" }, [
+      _c("i", { staticClass: "tim-icons icon-single-02 icon-default" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "tim-icons icon-single-02 icon-hover" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icons" }, [
+      _c("i", { staticClass: "tim-icons icon-trophy icon-default" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "tim-icons icon-trophy icon-hover" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icons" }, [
+      _c("i", { staticClass: "tim-icons icon-controller icon-default" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "tim-icons icon-controller icon-hover" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "button nav-link d-flex",
+          attrs: {
+            href: "#",
+            "data-toggle": "modal",
+            "data-target": ".register"
+          }
+        },
+        [
+          _c("div", { staticClass: "icons" }, [
+            _c("i", { staticClass: "tim-icons icon-coins icon-default" }),
+            _vm._v(" "),
+            _c("i", { staticClass: "tim-icons icon-coins icon-hover" })
+          ]),
+          _vm._v("Recharge\n              ")
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "button nav-link d-flex",
+          attrs: {
+            href: "#",
+            "data-toggle": "modal",
+            "data-target": "#freetrial"
+          }
+        },
+        [
+          _c("div", { staticClass: "icons" }, [
+            _c("i", { staticClass: "tim-icons icon-money-coins icon-default" }),
+            _vm._v(" "),
+            _c("i", { staticClass: "tim-icons icon-cart icon-hover" })
+          ]),
+          _vm._v("WithDraw\n              ")
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "button nav-link d-flex fixed-logout",
+          attrs: { href: "#" }
+        },
+        [
+          _c("div", { staticClass: "dropdown show-dropdown" }, [
+            _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
+              _c("div", { staticClass: "icons" }, [
+                _c("i", {
+                  staticClass: "tim-icons icon-single-02 icon-default"
+                }),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "tim-icons icon-bullet-list-67 icon-hover"
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "dropdown-menu" }, [
+              _c("div", { staticClass: "row p-4" }, [
+                _c("div", { staticClass: "col-6" }, [
+                  _c("img", { attrs: { src: "assets/img/user.png", alt: "" } })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6" }, [
+                  _c("em", { staticClass: "header-user-name" }, [
+                    _vm._v("aghq186496")
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "header-user-level level-0" }, [
+                    _vm._v("新会员")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("small", { staticClass: "header-before-login-date" }, [
+                  _vm._v("最近登录时间：2019-04-24 14:25:40")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "menu-body" }, [
+                _c("div", { attrs: { id: "header-balance" } }, [
+                  _vm._v(
+                    "\n                        总余额\n                        "
+                  ),
+                  _c("h2", { staticClass: "eid_total_credit m-0 p-0" }, [
+                    _vm._v("0.00")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "d-flex" }, [
+                    _c("p", { staticClass: "text-desss" }, [
+                      _vm._v(
+                        "\n                            本地余额\n                            "
+                      ),
+                      _c("span", { attrs: { id: "eid_local_credit" } }, [
+                        _vm._v("0.00")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-balance" }, [
+                      _vm._v(
+                        "\n                            游戏余额\n                            "
+                      ),
+                      _c("span", { attrs: { id: "eid_game_credit" } }, [
+                        _vm._v("0.00")
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn-logout",
+                    attrs: { href: "javascript:;" }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-power-off" }),
+                    _vm._v("安全退出\n                      ")
+                  ]
+                )
+              ])
+            ])
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Login Page")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("img", { attrs: { src: "assets/img/card-primary.png", alt: "" } }),
+      _vm._v(" "),
+      _c("h1", { staticClass: "card-title" }, [_vm._v("Log in")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "input-group" }, [
+        _c("div", { staticClass: "input-group-prepend" }, [
+          _c("div", { staticClass: "input-group-text" }, [
+            _c("i", { staticClass: "tim-icons icon-email-85" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "Email" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group" }, [
+        _c("div", { staticClass: "input-group-prepend" }, [
+          _c("div", { staticClass: "input-group-text" }, [
+            _c("i", { staticClass: "tim-icons icon-lock-circle" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "Password" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex justify-content-between" }, [
+      _c(
+        "a",
+        {
+          staticClass: "link footer-link",
+          attrs: { href: "javascript:void(0)" }
+        },
+        [_vm._v("忘记密码？")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex" }, [
+        _c("p", { staticClass: "link footer-link" }, [_vm._v("没有账号？")]),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "link footer-link",
+            attrs: { href: "javascript:void(0)" }
+          },
+          [_vm._v("在此注册")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal fade register" }, [
+      _c("div", { staticClass: "modal-dialog modal-lg" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h4", { staticClass: "modal-title" }, [_vm._v("Register Page")]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("×")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "container" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-5 ml-auto" }, [
+                  _c("div", { staticClass: "info-area info-horizontal mt-5" }, [
+                    _c("div", { staticClass: "icon icon-warning" }, [
+                      _c("i", { staticClass: "tim-icons icon-wifi" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "description" }, [
+                      _c("h3", { staticClass: "info-title text-dark m-0" }, [
+                        _vm._v("Marketing")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "description" }, [
+                        _vm._v(
+                          "We've created the marketing campaign of the website. It was a very interesting collaboration."
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "info-area info-horizontal" }, [
+                    _c("div", { staticClass: "icon icon-primary" }, [
+                      _c("i", {
+                        staticClass: "tim-icons icon-triangle-right-17"
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "description" }, [
+                      _c("h3", { staticClass: "info-title text-dark m-0" }, [
+                        _vm._v("Fully Coded in HTML5")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "description" }, [
+                        _vm._v(
+                          "We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub."
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "info-area info-horizontal" }, [
+                    _c("div", { staticClass: "icon icon-info" }, [
+                      _c("i", { staticClass: "tim-icons icon-trophy" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "description" }, [
+                      _c("h3", { staticClass: "info-title text-dark m-0" }, [
+                        _vm._v("Built Audience")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "description" }, [
+                        _vm._v(
+                          "There is also a Fully Customizable CMS Admin Dashboard for this product."
+                        )
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-7 mr-auto" }, [
+                  _c("div", { staticClass: "card card-register card-white" }, [
+                    _c("div", { staticClass: "card-header" }, [
+                      _c("img", {
+                        staticClass: "card-img",
+                        attrs: {
+                          src: "assets/img/card-primary.png",
+                          alt: "Card image"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", { staticClass: "card-title" }, [
+                        _vm._v("Register")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("form", { staticClass: "form" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-prepend" }, [
+                            _c("div", { staticClass: "input-group-text" }, [
+                              _c("i", {
+                                staticClass: "tim-icons icon-single-02"
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: { type: "text", placeholder: "Full Name" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-prepend" }, [
+                            _c("div", { staticClass: "input-group-text" }, [
+                              _c("i", {
+                                staticClass: "tim-icons icon-email-85"
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: { type: "text", placeholder: "Email" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-prepend" }, [
+                            _c("div", { staticClass: "input-group-text" }, [
+                              _c("i", {
+                                staticClass: "tim-icons icon-lock-circle"
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: { type: "text", placeholder: "Password" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-check text-left" }, [
+                          _c("label", { staticClass: "form-check-label" }, [
+                            _c("input", {
+                              staticClass: "form-check-input",
+                              attrs: { type: "checkbox" }
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "form-check-sign" }),
+                            _vm._v(
+                              "\n                          I agree to the\n                          "
+                            ),
+                            _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                              _vm._v("terms and conditions")
+                            ]),
+                            _vm._v(".\n                        ")
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-footer" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary btn-round btn-lg",
+                          attrs: { href: "javascript:void(0)" }
+                        },
+                        [_vm._v("注册")]
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "modal fade", attrs: { id: "freetrial" } },
+      [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c("h4", { staticClass: "modal-title text-capitalize" }, [
+                _vm._v("Free trial")
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "close",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("×")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "container" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12 mr-auto" }, [
+                    _c(
+                      "div",
+                      { staticClass: "card card-register card-white" },
+                      [
+                        _c("div", { staticClass: "card-header" }, [
+                          _c("img", {
+                            staticClass: "card-img",
+                            attrs: {
+                              src: "assets/img/card-primary.png",
+                              alt: "Card image"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("h4", { staticClass: "card-title text-title" }, [
+                            _vm._v("12150")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card-body" }, [
+                          _c("form", { staticClass: "form" }, [
+                            _c("div", { staticClass: "input-group" }, [
+                              _c(
+                                "div",
+                                { staticClass: "input-group-prepend" },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "input-group-text" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "tim-icons icon-single-02"
+                                      })
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Full Name"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-check text-left" }, [
+                              _c("label", { staticClass: "form-check-label" }, [
+                                _c("input", {
+                                  staticClass: "form-check-input",
+                                  attrs: { type: "checkbox" }
+                                }),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "form-check-sign" }),
+                                _vm._v(
+                                  "\n                          I agree to the\n                          "
+                                ),
+                                _c(
+                                  "a",
+                                  { attrs: { href: "javascript:void(0)" } },
+                                  [_vm._v("terms and conditions")]
+                                ),
+                                _vm._v(".\n                        ")
+                              ])
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card-footer" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-primary btn-round btn-lg",
+                              attrs: { href: "javascript:void(0)" }
+                            },
+                            [_vm._v("开始试玩")]
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal modal-search fade",
+        attrs: {
+          id: "searchModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "searchModal",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "inlineFormInputGroup",
+                    placeholder: "SEARCH"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [_c("i", { staticClass: "tim-icons icon-simple-remove" })]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
+
 
 
 /***/ }),
