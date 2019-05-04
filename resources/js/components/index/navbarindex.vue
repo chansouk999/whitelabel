@@ -7,7 +7,7 @@
             <i class="icon-user"></i>My account
           </dt>
           <dd data-sidebar="u_account">
-            <a href="#" @click="setNavShowName('myaccount',$event)"
+            <a href="#" ref="myaccount_link" @click="setNavShowName('myaccount',$event)"
             >My account</a>
           </dd>
           <dd data-sidebar="u_friend">

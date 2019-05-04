@@ -111,10 +111,9 @@
                 <a
                   href="#"
                   class="button nav-link d-flex"
-                  data-toggle="modal"
-                  data-target=".register"
+ @click="myaccount()"
                 >
-                  <div class="icons">
+                  <div class="icons">  
                     <i class="tim-icons icon-single-02 icon-default"></i>
                     <i class="tim-icons icon-single-02 icon-hover"></i>
                   </div>My Account
@@ -236,7 +235,7 @@
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
-                          <i class="tim-icons icon-email-85"></i>
+                          <i class="tim-icons icon-email-85"></i>  
                         </div>
                       </div>
                       <input type="text" class="form-control" placeholder="Email">
@@ -461,6 +460,12 @@ export default {
       messages:"./index",
       welcome:"/"
     };
+  },
+  methods:{
+    myaccount(){
+      this.$refs.myaccount_link.clicked()
+      console.log("myaccount.......")
+    }
   }
 };
 </script>

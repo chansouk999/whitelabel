@@ -17,116 +17,59 @@
         </div>
         <ul class="nav">
           <li class="nav-aside active">
-            <a href="examples/dashboard.html">
+            <a href="http://finance.sina.com.cn/realstock/company/sh000001/nc.shtml">
               <i class="tim-icons icon-chart-pie-36"></i>
-              <p class="text-aside">首页</p>
+              <p class="text-aside">SH000001</p>
             </a>
           </li>
-           <li>
+          <li class="nav-aside">
+            <a href="http://finance.sina.com.cn/realstock/company/sz399001/nc.shtml">
+              <i class="tim-icons icon-money-coins"></i>
+              <p class="text-aside">SZ399001</p>
+            </a>
+          </li>
+          <li class="nav-aside">
+            <a href="http://finance.sina.com.cn/realstock/company/sh000300/nc.shtml">
+              <i class="tim-icons icon-user-run"></i>
+              <p class="text-aside">SH00300</p>
+            </a>
+          </li>
+          <li class="nav-aside">
+            <a href="http://finance.sina.com.cn/realstock/company/sz399415/nc.shtml">
+              <i class="tim-icons icon-chart-pie-36"></i>
+              <p class="text-aside">SZ399415</p>
+            </a>
+          </li>
+          <li class="nav-aside">
+            <a href="https://finance.sina.com.cn/money/forex/hq/DINIW.shtml">
+              <i class="tim-icons icon-chart-pie-36"></i>
+              <p class="text-aside">US dollar Index</p>
+            </a>
+          </li>
+          <li>
             <a data-toggle="collapse" href="#pagesExamples">
               <i class="tim-icons icon-image-02"></i>
               <p>
-                Pages
+                BTC/USDT
                 <b class="caret"></b>
               </p>
             </a>
             <div class="collapse" id="pagesExamples">
               <ul class="nav">
                 <li>
-                  <a href="../examples/pages/pricing.html">
-                    <span class="sidebar-mini-icon">P</span>
-                    <span class="sidebar-normal"> Pricing </span>
+                  <a href="https://www.hbg.com/en-us/exchange/#s=btc_usdt">
+                    <span class="sidebar-mini-icon">1</span>
+                    <span class="sidebar-normal">1 Minutes</span>
                   </a>
                 </li>
                 <li>
-                  <a href="../examples/pages/rtl.html">
-                    <span class="sidebar-mini-icon">RS</span>
-                    <span class="sidebar-normal"> RTL Support </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="../examples/pages/timeline.html">
-                    <span class="sidebar-mini-icon">T</span>
-                    <span class="sidebar-normal"> Timeline </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="../examples/pages/login.html">
-                    <span class="sidebar-mini-icon">L</span>
-                    <span class="sidebar-normal"> Login </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="../examples/pages/register.html">
-                    <span class="sidebar-mini-icon">R</span>
-                    <span class="sidebar-normal"> Register </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="../examples/pages/lock.html">
-                    <span class="sidebar-mini-icon">LS</span>
-                    <span class="sidebar-normal"> Lock Screen </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="../examples/pages/user.html">
-                    <span class="sidebar-mini-icon">UP</span>
-                    <span class="sidebar-normal"> User Profile </span>
+                  <a href="https://www.hbg.com/en-us/exchange/#s=btc_usdt">
+                    <span class="sidebar-mini-icon">5</span>
+                    <span class="sidebar-normal">5 Minutes</span>
                   </a>
                 </li>
               </ul>
             </div>
-          </li>
-          <li class="nav-aside">
-            <a href="examples/dashboard.html">
-              <i class="tim-icons icon-chart-pie-36"></i>
-              <p class="text-aside">AG国际厅</p>
-            </a>
-          </li>
-          <li class="nav-aside">
-            <a href="examples/dashboard.html">
-              <i class="tim-icons icon-chart-pie-36"></i>
-              <p class="text-aside">AG旗舰厅</p>
-            </a>
-          </li>
-          <li class="nav-aside">
-            <a href="examples/dashboard.html">
-              <i class="tim-icons icon-chart-pie-36"></i>
-              <p class="text-aside">
-                电子游戏
-                <span class="badge badge-default text-danger">NEWS</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-aside">
-            <a href="examples/calendar.html">
-              <i class="tim-icons icon-time-alarm"></i>
-              <p class="text-aside">彩票游戏</p>
-            </a>
-          </li>
-          <li class="nav-aside">
-            <a href="examples/calendar.html">
-              <i class="icon-fish"></i>
-              <p class="text-aside">AG捕鱼王</p>
-            </a>
-          </li>
-          <li class="nav-aside">
-            <a href="examples/calendar.html">
-              <i class="tim-icons icon-video-66"></i>
-              <p class="text-aside">AS电玩城</p>
-            </a>
-          </li>
-          <li class="nav-aside">
-            <a href="examples/calendar.html">
-              <i class="tim-icons icon-user-run"></i>
-              <p class="text-aside">体育投注</p>
-            </a>
-          </li>
-          <li class="nav-aside">
-            <a href="examples/calendar.html">
-              <i class="tim-icons icon-money-coins"></i>
-              <p class="text-aside">最新优惠</p>
-            </a>
           </li>
           <li class="nav-aside">
             <div class="qr-wrap">
@@ -138,7 +81,7 @@
                 <span></span>
               </div>
             </div>
-              <p>扫一扫 下载手机亚游</p>
+            <p>扫一扫 下载手机亚游</p>
           </li>
         </ul>
       </div>
