@@ -131,8 +131,7 @@
                 <a
                   href="#"
                   class="button nav-link d-flex"
-                  data-toggle="modal"
-                  data-target=".register"
+                   @click="rechargeClick()"
                 >
                   <div class="icons">
                     <i class="tim-icons icon-coins icon-default"></i>
@@ -144,8 +143,7 @@
                 <a
                   href="#"
                   class="button nav-link d-flex"
-                  data-toggle="modal"
-                  data-target="#freetrial"
+                   @click="withDrawClick()"
                 >
                   <div class="icons">
                     <i class="tim-icons icon-money-coins icon-default"></i>
@@ -454,9 +452,13 @@ export default {
   },
   methods: {
     myaccount() {
-      console.log($("#myaccountlink")[0].click())
-      // .trigger("click");
-      console.log("myaccount.......");
+      $("#myaccountlink")[0].click()
+    },
+    withDrawClick() {
+      $("#withdraw")[0].click()
+    },
+    rechargeClick() {
+      $("#recharge")[0].click()
     }
   }
 };
