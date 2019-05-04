@@ -1,5 +1,5 @@
 <template>
-    <section once="footers" class="cid-ro6uJJ0VM8" id="footer7-1">
+    <section class="cid-ro6uJJ0VM8">
       <div class="container">
         <div class="media-container-row align-center mbr-white">
           <div class="row row-links row-copirayt">
