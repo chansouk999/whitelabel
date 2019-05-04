@@ -21,6 +21,8 @@ window.Vue = require('vue');
 
 Vue.component('app-container', require('./components/welcome/containerwelcome.vue').default);
 Vue.component('app-index', require('./components/index/index.vue').default);
+Vue.component('app-promte', require('./components/activity/containterpromote.vue').default);
+Vue.component('app-lobby', require('./components/lobby.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
