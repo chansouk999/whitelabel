@@ -1942,8 +1942,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      welcome: "/"
+    };
+  },
   components: {}
 });
 
@@ -7740,6 +7744,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _welcome_navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./welcome/navbar */ "./resources/js/components/welcome/navbar.vue");
 /* harmony import */ var _welcome_asides__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./welcome/asides */ "./resources/js/components/welcome/asides.vue");
 /* harmony import */ var _alertsidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./alertsidebar */ "./resources/js/components/alertsidebar.vue");
+/* harmony import */ var _welcome_footers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./welcome/footers */ "./resources/js/components/welcome/footers.vue");
 //
 //
 //
@@ -7748,6 +7753,305 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -7755,7 +8059,8 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     navbar: _welcome_navbar__WEBPACK_IMPORTED_MODULE_0__["default"],
     asides: _welcome_asides__WEBPACK_IMPORTED_MODULE_1__["default"],
-    alertside: _alertsidebar__WEBPACK_IMPORTED_MODULE_2__["default"]
+    alertside: _alertsidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
+    footers: _welcome_footers__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 });
 
@@ -8777,7 +9082,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     myaccount: function myaccount() {
-      this.$refs.myaccount_link.clicked();
+      console.log($("#myaccountlink")[0].click()); // .trigger("click");
+
       console.log("myaccount.......");
     }
   }
@@ -44322,7 +44628,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-wrap main-container u-wrap"},[_c('div',{staticClass:"u-menu"},[_c('div',{staticClass:"umenu-wrap"},[_c('dl',[_vm._m(0),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_account"}},[_c('a',{ref:"myaccount_link",attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('myaccount',$event)}}},[_vm._v("My account")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_friend"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('recommedndedfriends',$event)}}},[_vm._v("Recommended Friends")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_transaction"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('transactionrecord',$event)}}},[_vm._v("Transaction Record")])])]),_vm._v(" "),_c('dl',[_vm._m(1),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_pay"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('instantrecharge',$event)}}},[_vm._v("Instant recharge")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_withdraw"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('applyforwithdrawal',$event)}}},[_vm._v("Apply for withdrawal")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_self_rebate"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('selfservicewashing',$event)}}},[_vm._v("Self-service washing")])])]),_vm._v(" "),_c('dl',{attrs:{"id":"u-menu-mission"}},[_vm._m(2),_vm._v(" "),_c('dd',{staticClass:"newcomer-dd",attrs:{"data-sidebar":"u_mission_newcomer"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('novicetask',$event)}}},[_vm._v("Novice task")])]),_vm._v(" "),_c('dd',{staticClass:"daily-dd",attrs:{"data-sidebar":"u_mission_daily"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('dailytask',$event)}}},[_vm._v("Daily task")])]),_vm._v(" "),_c('dd',{staticClass:"achieve-dd",attrs:{"data-sidebar":"u_mission_achieve"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('achievementtask',$event)}}},[_vm._v("Achievement task")])])]),_vm._v(" "),_c('dl',[_vm._m(3),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_person_pwdIndex"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('changepassword',$event)}}},[_vm._v("change Password")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_bank"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('bankinfo',$event)}}},[_vm._v("Bank info")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_person_phoneIndex"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('modifyphone',$event)}}},[_vm._v("Modify phone")])])]),_vm._v(" "),_c('dl',{staticClass:"border-0"},[_vm._m(4),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_sms_subscribeIndex"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('subscription',$event)}}},[_vm._v("SMS subscription")])]),_vm._v(" "),_c('dd',{staticClass:"active",attrs:{"data-sidebar":"u_station_letter"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('message',$event)}}},[_vm._v("\n            My message\n            "),_vm._v(" "),_c('em',{staticClass:"badge letter"},[_vm._v("2")])])])])])]),_vm._v(" "),_c('div',{staticClass:"u-main"},[_c('div',{staticClass:"u-title"},[_vm._v(_vm._s(_vm.navShowName))]),_vm._v(" "),(_vm.navShowName ==='myaccount')?_c('div',{staticClass:"u-content"},[_c('myaccount')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='recommedndedfriends')?_c('div',{staticClass:"u-content"},[_c('recommedndedfriends')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='transactionrecord')?_c('div',{staticClass:"u-content"},[_c('transactionrecord')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='instantrecharge')?_c('div',{staticClass:"u-content"},[_c('instantrecharge')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='applyforwithdrawal')?_c('div',{staticClass:"u-content"},[_c('applyforwithdrawal')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='selfservicewashing')?_c('div',{staticClass:"u-content"},[_c('selfservicewashing')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='novicetask')?_c('div',{staticClass:"u-content"},[_c('novicetask')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='dailytask')?_c('div',{staticClass:"u-content"},[_c('dailytask')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='achievementtask')?_c('div',{staticClass:"u-content"},[_c('achievementtask')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='changepassword')?_c('div',{staticClass:"u-content"},[_c('changepassword')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='bankinfo')?_c('div',{staticClass:"u-content"},[_c('bankinfo')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='modifyphone')?_c('div',{staticClass:"u-content"},[_c('modifyphone')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='bankinfo')?_c('div',{staticClass:"u-content"},[_c('bankinfo')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='subscription')?_c('div',{staticClass:"u-content"},[_c('subscription')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='message')?_c('div',{staticClass:"u-content"},[_c('message')],1):_vm._e()])])}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-wrap main-container u-wrap"},[_c('div',{staticClass:"u-menu"},[_c('div',{staticClass:"umenu-wrap"},[_c('dl',[_vm._m(0),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_account"}},[_c('a',{attrs:{"href":"#","id":"myaccountlink"},on:{"click":function($event){return _vm.setNavShowName('myaccount',$event)}}},[_vm._v("My account")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_friend"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('recommedndedfriends',$event)}}},[_vm._v("Recommended Friends")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_transaction"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('transactionrecord',$event)}}},[_vm._v("Transaction Record")])])]),_vm._v(" "),_c('dl',[_vm._m(1),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_pay"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('instantrecharge',$event)}}},[_vm._v("Instant recharge")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_withdraw"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('applyforwithdrawal',$event)}}},[_vm._v("Apply for withdrawal")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_self_rebate"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('selfservicewashing',$event)}}},[_vm._v("Self-service washing")])])]),_vm._v(" "),_c('dl',{attrs:{"id":"u-menu-mission"}},[_vm._m(2),_vm._v(" "),_c('dd',{staticClass:"newcomer-dd",attrs:{"data-sidebar":"u_mission_newcomer"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('novicetask',$event)}}},[_vm._v("Novice task")])]),_vm._v(" "),_c('dd',{staticClass:"daily-dd",attrs:{"data-sidebar":"u_mission_daily"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('dailytask',$event)}}},[_vm._v("Daily task")])]),_vm._v(" "),_c('dd',{staticClass:"achieve-dd",attrs:{"data-sidebar":"u_mission_achieve"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('achievementtask',$event)}}},[_vm._v("Achievement task")])])]),_vm._v(" "),_c('dl',[_vm._m(3),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_person_pwdIndex"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('changepassword',$event)}}},[_vm._v("change Password")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_bank"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('bankinfo',$event)}}},[_vm._v("Bank info")])]),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_person_phoneIndex"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('modifyphone',$event)}}},[_vm._v("Modify phone")])])]),_vm._v(" "),_c('dl',{staticClass:"border-0"},[_vm._m(4),_vm._v(" "),_c('dd',{attrs:{"data-sidebar":"u_sms_subscribeIndex"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('subscription',$event)}}},[_vm._v("SMS subscription")])]),_vm._v(" "),_c('dd',{staticClass:"active",attrs:{"data-sidebar":"u_station_letter"}},[_c('a',{attrs:{"href":"#"},on:{"click":function($event){return _vm.setNavShowName('message',$event)}}},[_vm._v("\n            My message\n            "),_vm._v(" "),_c('em',{staticClass:"badge letter"},[_vm._v("2")])])])])])]),_vm._v(" "),_c('div',{staticClass:"u-main"},[_c('div',{staticClass:"u-title"},[_vm._v(_vm._s(_vm.navShowName))]),_vm._v(" "),(_vm.navShowName ==='myaccount')?_c('div',{staticClass:"u-content"},[_c('myaccount')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='recommedndedfriends')?_c('div',{staticClass:"u-content"},[_c('recommedndedfriends')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='transactionrecord')?_c('div',{staticClass:"u-content"},[_c('transactionrecord')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='instantrecharge')?_c('div',{staticClass:"u-content"},[_c('instantrecharge')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='applyforwithdrawal')?_c('div',{staticClass:"u-content"},[_c('applyforwithdrawal')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='selfservicewashing')?_c('div',{staticClass:"u-content"},[_c('selfservicewashing')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='novicetask')?_c('div',{staticClass:"u-content"},[_c('novicetask')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='dailytask')?_c('div',{staticClass:"u-content"},[_c('dailytask')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='achievementtask')?_c('div',{staticClass:"u-content"},[_c('achievementtask')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='changepassword')?_c('div',{staticClass:"u-content"},[_c('changepassword')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='bankinfo')?_c('div',{staticClass:"u-content"},[_c('bankinfo')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='modifyphone')?_c('div',{staticClass:"u-content"},[_c('modifyphone')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='bankinfo')?_c('div',{staticClass:"u-content"},[_c('bankinfo')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='subscription')?_c('div',{staticClass:"u-content"},[_c('subscription')],1):_vm._e(),_vm._v(" "),(_vm.navShowName ==='message')?_c('div',{staticClass:"u-content"},[_c('message')],1):_vm._e()])])}
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dt',[_c('i',{staticClass:"icon-user"}),_vm._v("My account\n        ")])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dt',[_c('i',{staticClass:"icon-yuan"}),_vm._v("Financial Center\n        ")])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dt',[_c('i',{staticClass:"icon-task"}),_vm._v("About\n        ")])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dt',[_c('i',{staticClass:"icon-records"}),_vm._v("Customer information\n        ")])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dt',{staticClass:"active"},[_c('i',{staticClass:"icon-msg"}),_vm._v("Customer Care\n        ")])}]
 render._withStripped = true
 
@@ -44430,8 +44736,8 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wrapper container-whitelabel"},[_c('navbar'),_vm._v(" "),_c('asides'),_vm._v(" "),_c('alertside')],1)}
-var staticRenderFns = []
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"wrapper container-whitelabel"},[_c('navbar'),_vm._v(" "),_c('asides'),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('alertside')],1),_vm._v(" "),_c('footers')],1)}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"main-panel ps main-container game-lobby"},[_c('div',{staticClass:"content container-wrap"},[_c('ul',[_c('li',[_c('div',{staticClass:"item item-inter"},[_c('div',{staticClass:"links"},[_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("传统百家乐")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("龙宝百家乐")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("保险百家乐")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("多台百家乐")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("龙虎")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("轮盘")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("21点")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("炸金花")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("骰宝")])]),_vm._v(" "),_c('div',{staticClass:"section"},[_c('h2',[_c('span',{staticClass:"icon"},[_c('img',{attrs:{"src":"/assets/img/AG_logo.png"}})]),_vm._v("国际厅\n              ")]),_vm._v(" "),_c('p',[_c('span',{staticClass:"orange"},[_vm._v("欧洲厅：将马耳他实地赌场与真人娱乐场整合，充满异国情调的真人游戏。")]),_vm._v(" "),_c('br'),_vm._v("VIP包桌：专属于您的桌台，尊享换荷官、飞牌、换牌靴等特权。\n              ")]),_vm._v(" "),_c('div',{staticClass:"btns"},[_c('a',{staticClass:"orange",attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("立即游戏")])])])])]),_vm._v(" "),_c('li',[_c('div',{staticClass:"item item-flagship"},[_c('div',{staticClass:"links"},[_c('a',{attrs:{"href":"/game/play/agq","target":"_blank"}},[_vm._v("经典百家乐")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agq","target":"_blank"}},[_vm._v("龙宝百家乐")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agq","target":"_blank"}},[_vm._v("保险百家乐")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agq","target":"_blank"}},[_vm._v("龙虎")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agq","target":"_blank"}},[_vm._v("轮盘")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agq","target":"_blank"}},[_vm._v("骰宝")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agq","target":"_blank"}},[_vm._v("牛牛")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agq","target":"_blank"}},[_vm._v("炸金花")])]),_vm._v(" "),_c('div',{staticClass:"section"},[_c('h2',[_c('span',{staticClass:"icon"},[_c('img',{attrs:{"src":"/assets/img/AG_logo.png"}})]),_vm._v("旗舰厅\n              ")]),_vm._v(" "),_c('p',[_c('span',{staticClass:"orange"},[_vm._v("贵宾厅：高额投注桌台，高达百万入座限红，让您轻松一掷千金。")]),_vm._v(" "),_c('br'),_vm._v("连环百家乐： 8张桌同时投注，可随意切换桌台，好路不错过。\n              ")]),_vm._v(" "),_c('div',{staticClass:"btns"},[_c('a',{staticClass:"orange",attrs:{"href":"/game/play/agq","target":"_blank"}},[_vm._v("立即游戏")])])])])]),_vm._v(" "),_c('li',[_c('div',{staticClass:"item item-warrior"},[_c('div',{staticClass:"links"},[_c('a',{attrs:{"href":"/game/dygame/","data-value":"ag","target":"_playGame"}},[_vm._v("AG")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/dygame/","data-value":"pt","target":"_playGame"}},[_vm._v("PT")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/dygame/","data-value":"mg","target":"_playGame"}},[_vm._v("MG")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/dygame/","data-value":"mg","target":"_playGame"}},[_vm._v("PP")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/dygame/","data-value":"mg","target":"_playGame"}},[_vm._v("SW")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/dygame/","data-value":"ttg","target":"_playGame"}},[_vm._v("TTG")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/dygame/","data-value":"mg","target":"_playGame"}},[_vm._v("PNG")])]),_vm._v(" "),_c('div',{staticClass:"section"},[_c('h2',[_c('span',{staticClass:"icon"},[_c('img',{attrs:{"src":"/assets/img/AG_logo.png"}})]),_vm._v("亚游电游\n              ")]),_vm._v(" "),_c('p',[_c('span',{staticClass:"orange"},[_vm._v("YOPLAY：街机游戏引领者，设有VIP专属特区，享特色游戏、好路提示、动态聊天等特权。")]),_vm._v(" "),_c('br'),_vm._v("巨奖厅：千万奖池等您赢，独立机台加倍爆奖，独有机台数据让你掌握中奖技巧。\n              ")]),_vm._v(" "),_c('div',{staticClass:"btns"},[_c('a',{staticClass:"orange",attrs:{"data-value":"egame","href":"/game/dygame/","target":"_playGame"}},[_vm._v("立即游戏")])])])])]),_vm._v(" "),_c('li',[_c('div',{staticClass:"item item-qg"},[_c('div',{staticClass:"links"},[_c('a',{attrs:{"href":"/game/play/scg","target":"_blank"}},[_vm._v("古堡密探")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/scg","target":"_blank"}},[_vm._v("骰宝王子")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/scg","target":"_blank"}},[_vm._v("捕鱼高手")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/scg","target":"_blank"}},[_vm._v("新年集福")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/scg","target":"_blank"}},[_vm._v("欢乐足球")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/scg","target":"_blank"}},[_vm._v("拆快递")])]),_vm._v(" "),_c('div',{staticClass:"section"},[_c('h2',[_c('span',{staticClass:"icon"},[_c('img',{attrs:{"src":"/assets/images/game_lobby/qg_logo.png"}})]),_vm._v("刮刮彩\n              ")]),_vm._v(" "),_c('p',[_c('span',{staticClass:"orange"},[_vm._v("美美满满：各款优质美女等着您，春光旖旎，让你血脉喷胀。")]),_vm._v(" "),_c('br'),_vm._v("天生赢家：真人百家乐为基础设计，超高爆奖率，霸占大奖排行榜的佼佼者。\n              ")]),_vm._v(" "),_c('div',{staticClass:"btns"},[_c('a',{staticClass:"orange",attrs:{"href":"/game/play/scg","target":"_blank"}},[_vm._v("立即游戏")])])])])]),_vm._v(" "),_c('li',[_c('div',{staticClass:"item item-bbin"},[_c('div',{staticClass:"links"},[_c('a',{attrs:{"data-value":"game/play/agstar","href":"/game/iframe/index.html?egames=1&gameCode=SHB&gameName=SICBO&g=as&language=zh&trial=true","target":"_playGame"}},[_vm._v("骰宝")]),_vm._v(" "),_c('a',{attrs:{"data-value":"game/play/agstar","href":"/game/iframe/index.html?egames=1&gameCode=ROU&gameName=ROULETTE&g=as&language=zh&trial=true","target":"_playGame"}},[_vm._v("轮盘")]),_vm._v(" "),_c('a',{attrs:{"data-value":"game/play/agstar","href":"/game/iframe/index.html?egames=1&gameCode=NN&gameName=NIU NIU&g=as&language=zh&trial=true","target":"_playGame"}},[_vm._v("牛牛")]),_vm._v(" "),_c('a',{attrs:{"data-value":"game/play/agstar","href":"/game/iframe/index.html?egames=1&gameCode=DT&gameName=DRAGON TIGER&g=as&language=zh&trial=true","target":"_playGame"}},[_vm._v("龙虎")]),_vm._v(" "),_c('a',{attrs:{"data-value":"game/play/agstar","href":"/game/iframe/index.html?egames=1&gameCode=ASBR&gameName=RED BLACK&g=as&language=zh&trial=true","target":"_playGame"}},[_vm._v("红黑大战")]),_vm._v(" "),_c('a',{attrs:{"data-value":"game/play/agstar","href":"/game/iframe/index.html?egames=1&g=as&platType=AS&gameCode=BZMW&gameName=asstar&platForm=AG&language=zh&trial=true","target":"_playGame"}},[_vm._v("奔驰宝马")])]),_vm._v(" "),_c('div',{staticClass:"section"},[_c('h2',[_c('span',{staticClass:"icon as"},[_c('img',{attrs:{"src":"/assets/img/as_logo.png"}})]),_vm._v("电玩城\n              ")]),_vm._v(" "),_c('p',[_c('span',{staticClass:"orange"},[_vm._v("百家乐：最低1元投注，更低网速要求，实时同步真人游戏结果，绝对公平公正。")]),_vm._v(" "),_c('br'),_vm._v("二八杠：又称疯狂牌九，可随意下顺门、天门、地门，庄家和三门单独比大小。\n              ")]),_vm._v(" "),_c('div',{staticClass:"btns"},[_c('a',{staticClass:"orange",attrs:{"href":"/game/iframe/index.html?egames=1&g=as&platType=AS&gameCode=agstar&gameName=asstar&platForm=AG&language=zh&trial=true","target":"_playGame"}},[_vm._v("立即游戏")])])])])]),_vm._v(" "),_c('li',[_c('div',{staticClass:"item item-new-world"},[_c('div',{staticClass:"links"},[_c('a',{attrs:{"href":"/game/iframe/index.html?g=agtlb","target":"_blank"}},[_vm._v("经典百家乐")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/iframe/index.html?g=agtlb","target":"_blank"}},[_vm._v("多台百家乐")])]),_vm._v(" "),_c('div',{staticClass:"section"},[_c('h2',[_c('span',{staticClass:"icon"},[_c('img',{attrs:{"src":"/assets/img/AG_logo.png"}})]),_vm._v("赌场厅\n              ")]),_vm._v(" "),_c('p',[_c('span',{staticClass:"orange"},[_vm._v("快速模式：无需输入联系方式，直接操作下注，电投手收到系统指令后现场为其操作。")]),_vm._v(" "),_c('br'),_vm._v("传统模式：输入金额及电话提交后，电投手会在5-10分钟主动联系您，语音通话为你操作下注。\n              ")]),_vm._v(" "),_c('div',{staticClass:"btns"},[_c('a',{staticClass:"orange",attrs:{"href":"/game/iframe/index.html?g=agtlb","target":"_blank"}},[_vm._v("立即游戏")])])])])]),_vm._v(" "),_c('li',[_c('div',{staticClass:"item item-sport"},[_c('div',{staticClass:"links"},[_c('a',{attrs:{"href":"/sports/sabah","target":"_blank"}},[_vm._v("沙巴体育")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agsport","target":"_blank"}},[_vm._v("AG体育")])]),_vm._v(" "),_c('div',{staticClass:"section"},[_c('h2',[_c('span',{staticClass:"icon sabah"},[_c('img',{attrs:{"src":"/assets/img/AG_logo.png"}})]),_vm._v("体育游戏\n              ")]),_vm._v(" "),_c('p',[_c('span',{staticClass:"orange"},[_vm._v("亚游电竞：全球首创视频即时投注，1080P超高清、超低延时，享受边看比赛边投注。")]),_vm._v(" "),_c('br'),_vm._v("沙巴体育：老牌体育平台，亚洲领先， 首创虚拟体育，精彩每时每刻。\n              ")]),_vm._v(" "),_c('div',{staticClass:"btns"},[_c('a',{staticClass:"orange",attrs:{"href":"/sports/sabah","target":"_blank"}},[_vm._v("立即游戏")])])])])]),_vm._v(" "),_c('li',[_c('div',{staticClass:"item item-fish"},[_c('div',{staticClass:"links"},[_c('a',{attrs:{"data-value":"fishing","href":"/game/dygame/fishing/","target":"_playGame"}},[_vm._v("捕鱼")]),_vm._v(" "),_c('a',{attrs:{"data-value":"fishing","href":"/game/dygame/fishing/","target":"_playGame"}},[_vm._v("养鱼")])]),_vm._v(" "),_c('div',{staticClass:"section"},[_c('h2',[_c('span',{staticClass:"icon"},[_c('img',{attrs:{"src":"/assets/img/AG_logo.png"}})]),_vm._v("捕鱼王\n              ")]),_vm._v(" "),_c('p',[_c('span',{staticClass:"orange"},[_vm._v("渔场：投资买鱼和AG齐做庄，鱼吃子弹变金矿，收益颇丰，操作简单，轻松离线赚钱。")]),_vm._v(" "),_c('br'),_vm._v("捕鱼王3D（多人版）：4人同场射击，最后击杀者将获取全部价值，支持实时聊天。\n              ")]),_vm._v(" "),_c('div',{staticClass:"btns"},[_c('a',{staticClass:"orange",attrs:{"data-value":"fishing","target":"_playGame","href":"/game/iframe/index.html?egames=1&g=ag&gameCode=6&gameName=Fish&platForm=AG&trial=true"}},[_vm._v("立即游戏")])])])])]),_vm._v(" "),_c('li',[_c('div',{staticClass:"item item-cow"},[_c('div',{staticClass:"links"},[_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("百家乐")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("龙虎")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("轮盘")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("多台")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("骰宝")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("牛牛")])]),_vm._v(" "),_c('div',{staticClass:"section"},[_c('h2',[_c('span',{staticClass:"icon"},[_c('img',{attrs:{"src":"/assets/img/AG_logo.png"}})]),_vm._v("直播厅\n              ")]),_vm._v(" "),_c('p',[_c('span',{staticClass:"orange"},[_vm._v("实时直播：最火爆的网络直播互动娱乐，美女主播极致互动体验，开创博彩娱乐新高度。")]),_vm._v(" "),_c('br'),_vm._v("打赏：点击聊天窗口的“礼物”标志，选择相对应的礼物，赠送给喜欢的主播作为奖励。\n              ")]),_vm._v(" "),_c('div',{staticClass:"btns"},[_c('a',{staticClass:"orange",attrs:{"href":"/game/play/agin","target":"_blank"}},[_vm._v("立即游戏")])])])])]),_vm._v(" "),_c('li',[_c('div',{staticClass:"item item-vr"},[_c('div',{staticClass:"links"},[_c('a',{attrs:{"href":"/game/play/vr","target":"_blank"}},[_vm._v("重庆时时彩")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/vr","target":"_blank"}},[_vm._v("香港六合彩")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/vr","target":"_blank"}},[_vm._v("龙翔秒秒彩")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/vr","target":"_blank"}},[_vm._v("北京赛车")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/vr","target":"_blank"}},[_vm._v("VR北京赛车")]),_vm._v(" "),_c('a',{attrs:{"href":"/game/play/vr","target":"_blank"}},[_vm._v("VR六合彩")])]),_vm._v(" "),_c('div',{staticClass:"section"},[_c('h2',[_c('span',{staticClass:"icon"},[_c('img',{attrs:{"src":"/assets/img/vr_logo.png"}})]),_vm._v("彩票\n              ")]),_vm._v(" "),_c('p',[_c('span',{staticClass:"orange"},[_vm._v("龙翔秒秒彩:热门彩票秒秒开奖，更快的节奏，更多的玩法，给您不一样的购彩体验。")]),_vm._v(" "),_c('br'),_vm._v("VR六合彩：最火爆的六合彩，再加入更公平的真人视讯开奖，让您亲眼见证开奖过程。\n              ")]),_vm._v(" "),_c('div',{staticClass:"btns"},[_c('a',{staticClass:"orange",attrs:{"href":"/game/play/vr","target":"_blank"}},[_vm._v("立即游戏")])])])])])])])])}]
 render._withStripped = true
 
 
@@ -44485,7 +44791,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"cid-ro6uJJ0VM8",attrs:{"once":"footers","id":"footer7-1"}},[_c('div',{staticClass:"container"},[_c('div',{staticClass:"media-container-row align-center mbr-white"},[_c('div',{staticClass:"row row-links row-copirayt"},[_c('ul',{staticClass:"foot-menu"},[_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"About us"}},[_vm._v("About us")])])])])]),_vm._v(" "),_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"Services"}},[_vm._v("Services")])])])])]),_vm._v(" "),_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"Get In Touch"}},[_vm._v("Get In Touch")])])])])]),_vm._v(" "),_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"Careers"}},[_vm._v("Careers")])])])])]),_vm._v(" "),_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"Work"}},[_vm._v("Work")])])])])])])]),_vm._v(" "),_c('div',{staticClass:"row social-row"},[_c('div',{staticClass:"social-list align-right pb-2"},[_c('div',{staticClass:"soc-item"},[_c('a',{attrs:{"href":"#","target":"_blank"}},[_c('i',{staticClass:"icon-wechat"})])]),_vm._v(" "),_c('div',{staticClass:"soc-item"},[_c('a',{attrs:{"href":"#","target":"_blank"}},[_c('i',{staticClass:"icon-alipay"})])]),_vm._v(" "),_c('div',{staticClass:"soc-item"},[_c('a',{attrs:{"href":"#","target":"_blank"}},[_c('i',{staticClass:"icon-unionpay"})])])])]),_vm._v(" "),_c('div',{staticClass:"row row-copirayt"},[_c('p',{staticClass:"mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7 text-center"},[_vm._v("© Copyright 2019 TNK - All Rights Reserved")])])])])])}]
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"cid-ro6uJJ0VM8"},[_c('div',{staticClass:"container"},[_c('div',{staticClass:"media-container-row align-center mbr-white"},[_c('div',{staticClass:"row row-links row-copirayt"},[_c('ul',{staticClass:"foot-menu"},[_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"About us"}},[_vm._v("About us")])])])])]),_vm._v(" "),_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"Services"}},[_vm._v("Services")])])])])]),_vm._v(" "),_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"Get In Touch"}},[_vm._v("Get In Touch")])])])])]),_vm._v(" "),_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"Careers"}},[_vm._v("Careers")])])])])]),_vm._v(" "),_c('li',{staticClass:"foot-menu-item mbr-fonts-style display-7"},[_c('ul',{staticClass:"nav"},[_c('li',{staticClass:"animated_link3"},[_c('a',{attrs:{"href":"#"}},[_c('p',{attrs:{"data-title":"Work"}},[_vm._v("Work")])])])])])])]),_vm._v(" "),_c('div',{staticClass:"row social-row"},[_c('div',{staticClass:"social-list align-right pb-2"},[_c('div',{staticClass:"soc-item"},[_c('a',{attrs:{"href":"#","target":"_blank"}},[_c('i',{staticClass:"icon-wechat"})])]),_vm._v(" "),_c('div',{staticClass:"soc-item"},[_c('a',{attrs:{"href":"#","target":"_blank"}},[_c('i',{staticClass:"icon-alipay"})])]),_vm._v(" "),_c('div',{staticClass:"soc-item"},[_c('a',{attrs:{"href":"#","target":"_blank"}},[_c('i',{staticClass:"icon-unionpay"})])])])]),_vm._v(" "),_c('div',{staticClass:"row row-copirayt"},[_c('p',{staticClass:"mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7 text-center"},[_vm._v("© Copyright 2019 TNK - All Rights Reserved")])])])])])}]
 render._withStripped = true
 
 

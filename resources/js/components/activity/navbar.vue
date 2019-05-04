@@ -139,12 +139,16 @@
     </nav>
 
     <!-- End Navbar -->
-    <div>
+    <div></div>
   </div>
-    </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      welcome: "/"
+    };
+  },
   components: {}
 };
 </script>
