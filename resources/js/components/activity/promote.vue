@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar></navbar>
+    <!-- End Header -->
     <div class="main-container vip_club">
       <div class="sections">
         <div class="section banner">
@@ -843,13 +843,15 @@
           </div>
         </div>
       </div>
+    
     </div>
   </div>
 </template>
 <script>
-import navbar from "./navbar";
 export default {
-  components: {}
+  components: {
+  
+  }
 };
 </script>
 

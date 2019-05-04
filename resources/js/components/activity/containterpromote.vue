@@ -1,9 +1,11 @@
 <template>
-    <div class="wrapper container-whitelabel">
+<div>
+        <div class="wrapper container-whitelabel">
         <navbar></navbar>
         <promote></promote>
         <alertsidebar></alertsidebar>
     </div>
+</div>
 </template>
 <script>
 import navbar from './navbar';
