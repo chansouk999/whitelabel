@@ -18781,16 +18781,14 @@ table.tablesorter thead tr .headerSortDown {
 }
 
 .fixed-plugin {
-    top: 130px;
     position: absolute;
-    right: 15px;
-    width: 30px;
-    /* background: rgb(199, 82, 231); */
+    right: 14px;
+    width: 64px;
+    background: rgba(0, 0, 0, 0.3);
     z-index: 1031;
     border-radius: 8px 0 0 8px;
-    text-align: -webkit-right;
-    height: 77px;
-    color: #fff !important;
+    text-align: center;
+    top: 184px;
 }
 
 .fixed-plugin li>a,
@@ -19123,10 +19121,10 @@ table.tablesorter thead tr .headerSortDown {
 .sidebar,
 .off-canvas-sidebar {
     background: #3358f4;
-    background: -webkit-linear-gradient(0deg, #3358f4 0%, #1d8cf8 100%);
-    background: -o-linear-gradient(0deg, #3358f4 0%, #1d8cf8 100%);
-    background: -moz-linear-gradient(0deg, #3358f4 0%, #1d8cf8 100%);
-    background: linear-gradient(0deg, #0031ff73 0%, #0855a7d4 100%);
+    background: -webkit-linear-gradient(0deg, #f5feff99 0%, #E91E63 100%);
+    background: -o-linear-gradient(0deg, #f5feff99 0%, #E91E63 100%);
+    background: -moz-linear-gradient(0deg, #f5feff99 0%, #E91E63 100%);
+    background: linear-gradient(0deg, #f5feff99 0%, #E91E63 100%);
     height: calc(100vh - 270px);
     width: 230px;
     position: absolute;
@@ -19635,10 +19633,10 @@ table.tablesorter thead tr .headerSortDown {
 .off-canvas-sidebar:before {
     content: "";
     position: absolute;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid #0554a6;
-    top: -5px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #E91E63;
+    top: -9px;
     left: 40px;
     transform: translate(-50%);
 }
