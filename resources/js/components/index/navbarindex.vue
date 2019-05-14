@@ -7,7 +7,7 @@
             <i class="icon-user"></i>My account
           </dt>
           <dd data-sidebar="u_account">
-            <a href="#" @click="setNavShowName('myaccount',$event)"
+            <a href="#" id="myaccountlink" @click="setNavShowName('myaccount',$event)"
             >My account</a>
           </dd>
           <dd data-sidebar="u_friend">
@@ -22,10 +22,10 @@
             <i class="icon-yuan"></i>Financial Center
           </dt>
           <dd data-sidebar="u_pay">
-          <a href="#" @click="setNavShowName('instantrecharge',$event)">Instant recharge</a>
+          <a href="#" id="recharge" @click="setNavShowName('instantrecharge',$event)">Instant recharge</a>
           </dd>
           <dd data-sidebar="u_withdraw">
-           <a href="#" @click="setNavShowName('applyforwithdrawal',$event)">Apply for withdrawal</a>
+           <a href="#" id="withdraw" @click="setNavShowName('applyforwithdrawal',$event)">Apply for withdrawal</a>
           </dd>
           <dd data-sidebar="u_self_rebate">
              <a href="#" @click="setNavShowName('selfservicewashing',$event)">Self-service washing</a>

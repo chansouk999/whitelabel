@@ -38,7 +38,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="navbar-nav mr-auto">
-
             <li class="nav-item">
               <a href="#" class="button nav-link d-flex">
                 <div class="icons">
@@ -97,10 +96,7 @@
           <span v-else>
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a
-                  :href="messages"
-                  class="button nav-link d-flex"
-                >
+                <a :href="messages" class="button nav-link d-flex">
                   <div class="icons">
                     <i class="tim-icons icon-chat-33 icon-default"></i>
                     <i class="tim-icons icon-chat-33 icon-hover"></i>
@@ -108,12 +104,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  href="#"
-                  class="button nav-link d-flex"
-                  data-toggle="modal"
-                  data-target=".register"
-                >
+                <a href="#" class="button nav-link d-flex" @click="myaccount()">
                   <div class="icons">
                     <i class="tim-icons icon-single-02 icon-default"></i>
                     <i class="tim-icons icon-single-02 icon-hover"></i>
@@ -121,12 +112,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  href="#"
-                  class="button nav-link d-flex"
-                  data-toggle="modal"
-                  data-target="#freetrial"
-                >
+                <a :href="promote" class="button nav-link d-flex">
                   <div class="icons">
                     <i class="tim-icons icon-trophy icon-default"></i>
                     <i class="tim-icons icon-trophy icon-hover"></i>
@@ -134,12 +120,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  href="#"
-                  class="button nav-link d-flex"
-                  data-toggle="modal"
-                  data-target="#loginModal"
-                >
+                 <a :href="lobby" class="button nav-link d-flex">
                   <div class="icons">
                     <i class="tim-icons icon-controller icon-default"></i>
                     <i class="tim-icons icon-controller icon-hover"></i>
@@ -150,8 +131,7 @@
                 <a
                   href="#"
                   class="button nav-link d-flex"
-                  data-toggle="modal"
-                  data-target=".register"
+                   @click="rechargeClick()"
                 >
                   <div class="icons">
                     <i class="tim-icons icon-coins icon-default"></i>
@@ -163,8 +143,7 @@
                 <a
                   href="#"
                   class="button nav-link d-flex"
-                  data-toggle="modal"
-                  data-target="#freetrial"
+                   @click="withDrawClick()"
                 >
                   <div class="icons">
                     <i class="tim-icons icon-money-coins icon-default"></i>
@@ -183,28 +162,35 @@
                     </a>
                     <div class="dropdown-menu">
                       <div class="row p-4">
-                           <div class="col-6">
+                        <div class="col-6">
                           <img src="assets/img/user.png" alt>
                         </div>
                         <div class="col-6">
-                           <em class="header-user-name">aghq186496</em><br>
+                          <em class="header-user-name">aghq186496</em>
+                          <br>
                           <span class="header-user-level level-0">新会员</span>
                         </div>
                         <small class="header-before-login-date">最近登录时间：2019-04-24 14:25:40</small>
+                      </div>
+                      <div class="menu-body">
+                        <div id="header-balance">
+                          总余额
+                          <h2 class="eid_total_credit m-0 p-0">0.00</h2>
+                          <div class="d-flex">
+                            <p class="text-desss">
+                              本地余额
+                              <span id="eid_local_credit">0.00</span>
+                            </p>
+                            <p class="text-balance">
+                              游戏余额
+                              <span id="eid_game_credit">0.00</span>
+                            </p>
+                          </div>
                         </div>
-                        <div class="menu-body">
-                            <div id="header-balance">
-                                总余额
-                                <h2 class="eid_total_credit m-0 p-0">0.00</h2>
-                               <div class="d-flex">
-                                 <p class="text-desss"> 本地余额 <span id="eid_local_credit">0.00</span></p>
-                                 <p class="text-balance">游戏余额 <span id="eid_game_credit">0.00</span></p>
-                               </div>
-                            </div>
-                            <a href="javascript:;" class="btn-logout">
-                                <i class="fa fa-power-off"></i>安全退出
-                            </a>
-                        </div>
+                        <a href="javascript:;" class="btn-logout">
+                          <i class="fa fa-power-off"></i>安全退出
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </a>
@@ -458,9 +444,22 @@ export default {
   data() {
     return {
       ismenu: false,
-      messages:"./index",
-      welcome:"/"
+      messages: "./index",
+      promote: "./promote",
+      welcome: "/",
+      lobby:"./lobby"
     };
+  },
+  methods: {
+    myaccount() {
+      $("#myaccountlink")[0].click()
+    },
+    withDrawClick() {
+      $("#withdraw")[0].click()
+    },
+    rechargeClick() {
+      $("#recharge")[0].click()
+    }
   }
 };
 </script>
