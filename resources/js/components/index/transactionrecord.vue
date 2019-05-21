@@ -1,45 +1,43 @@
 <template>
   <div>
     <div class="u-content u-transaction">
-      <ul class="nav nav-tabs nav-tabs-template">
-        <li class="active">
-          <a href="#tab-1" data-toggle="tab" aria-expanded="true">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Withdrawals record</font>
-            </font>
+      <ul class="nav nav-pills nav-pills-primary nav-pills-icons" role="tablist">
+        <!--
+        color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+        -->
+        <li class="nav-item">
+          <a class="nav-link active" href="#dashboard-1" role="tab" data-toggle="tab">
+            <i class="tim-icons icon-atom"></i>
+            Withdrawals record
           </a>
         </li>
-        <li>
-          <a href="#tab-2" data-toggle="tab">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Recharge record</font>
-            </font>
+        <li class="nav-item">
+          <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab">
+            <i class="tim-icons icon-settings"></i>
+            Recharge record
           </a>
         </li>
-        <li>
-          <a href="#tab-3" data-toggle="tab">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Washing record</font>
-            </font>
+        <li class="nav-item">
+          <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
+            <i class="tim-icons icon-bullet-list-67"></i>
+            Washing record
           </a>
         </li>
-        <li>
-          <a href="#tab-4" data-toggle="tab">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Offer record</font>
-            </font>
+        <li class="nav-item">
+          <a class="nav-link" href="#dashboard-1" role="tab" data-toggle="tab">
+            <i class="tim-icons icon-atom"></i>
+            Offer record
           </a>
         </li>
-        <li>
-          <a href="#tab-5" data-toggle="tab">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Game record</font>
-            </font>
+        <li class="nav-item">
+          <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab">
+            <i class="tim-icons icon-settings"></i>
+            Game record
           </a>
         </li>
       </ul>
-      <div class="tab-content">
-        <div class="tab-pane fade tab-1 active in" id="tab-1">
+      <div class="tab-content tab-space">
+        <div class="tab-pane active" id="dashboard-1">
           <div class="panel panel-default">
             <div class="panel-heading">
               <div id="withdraw_form" class="form-inline">
@@ -380,60 +378,68 @@
               </tbody>
             </table>
           </div>
+        </div>
+        <div class="tab-pane" id="schedule-1">
+          <div class="panel panel-default">
+            <div class="panel-heading" id="heading-t1-1">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-t1-1">
+                  <i class="fa fa-quora"></i>
+                  <font style="vertical-align: inherit;">
+                    <font
+                      style="vertical-align: inherit;"
+                    >Withdrawal of the application status "waiting for processing"?</font>
+                  </font>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-t1-1" class="panel-collapse collapse">
+              <div class="panel-body">
+                <i class="fa fa-font"></i>
+                <font style="vertical-align: inherit;">
+                  <font
+                    style="vertical-align: inherit;"
+                  >Indicates that your withdrawal is still under review and you will be able to enter the payment process once the review is approved.</font>
+                </font>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tasks-1">
+          <div class="panel panel-default">
+            <div class="panel-heading" id="heading-t1-2">
+              <h4 class="panel-title">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapse-t1-2"
+                >
+                  <i class="fa fa-quora"></i>
+                  <font style="vertical-align: inherit;">
+                    <font
+                      style="vertical-align: inherit;"
+                    >Withdrawal of the application status "Waiting for payment"?</font>
+                  </font>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-t1-2" class="panel-collapse collapse">
+              <div class="panel-body">
+                <i class="fa fa-font"></i>
+                <font style="vertical-align: inherit;">
+                  <font
+                    style="vertical-align: inherit;"
+                  >Indicates that it has been approved and entered the payment process, and will pay you the payment as soon as possible.</font>
+                </font>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane fade tab-1 active in" id="tab-1">
           <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-              <div class="panel-heading" id="heading-t1-1">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse-t1-1">
-                    <i class="fa fa-quora"></i>
-                    <font style="vertical-align: inherit;">
-                      <font
-                        style="vertical-align: inherit;"
-                      >Withdrawal of the application status "waiting for processing"?</font>
-                    </font>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapse-t1-1" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <i class="fa fa-font"></i>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >Indicates that your withdrawal is still under review and you will be able to enter the payment process once the review is approved.</font>
-                  </font>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" id="heading-t1-2">
-                <h4 class="panel-title">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordion"
-                    href="#collapse-t1-2"
-                  >
-                    <i class="fa fa-quora"></i>
-                    <font style="vertical-align: inherit;">
-                      <font
-                        style="vertical-align: inherit;"
-                      >Withdrawal of the application status "Waiting for payment"?</font>
-                    </font>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapse-t1-2" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <i class="fa fa-font"></i>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >Indicates that it has been approved and entered the payment process, and will pay you the payment as soon as possible.</font>
-                  </font>
-                </div>
-              </div>
-            </div>
             <div class="panel panel-default">
               <div class="panel-heading" id="heading-t1-3">
                 <h4 class="panel-title">
@@ -477,7 +483,10 @@
               <div id="collapse-t1-4" class="panel-collapse collapse">
                 <div class="panel-body">
                   <i class="fa fa-font"></i>如您的提现是“等待处理”状态，可以点击“取消”按钮取消提现；如是“处理中”或“等待支付”状态，则需联系
-                  <a href="javascript:;" class="text-orange as-cs-js">在线客服</a>
+                  <a
+                    href="javascript:;"
+                    class="text-orange as-cs-js"
+                  >在线客服</a>
                   进行咨询；如提现状态是“支付完成”，则代表款项已支付，无法取消。
                 </div>
               </div>
@@ -670,7 +679,9 @@
                     <dd>确认您的银行卡是否转账成功，跨行转账如未选择实时汇款，则无法实时到账，请耐心等待银行转账成功后即可到账。</dd>
                     <dd>
                       请检查您所提交的订单信息是否正确，汇款人姓名、充值金额是否与订单信息一致。订单信息填写有误，点此
-                      <a href="/ucenter/pay/payIndex#tab-3">重新提交</a>。
+                      <a
+                        href="/ucenter/pay/payIndex#tab-3"
+                      >重新提交</a>。
                     </dd>
                   </dl>
                 </div>
@@ -698,7 +709,9 @@
                     <dd>请登录支付宝查看转账状态，只有状态为成功才代表转账成功，如遇银行系统清算，支付宝转账会有延迟。</dd>
                     <dd>
                       请检查您所提交的订单信息是否正确，汇款姓名、充值金额是否与订单信息一致。订单信息填写有误，点此
-                      <a href="/ucenter/pay/payIndex#tab-4">重新提交</a>。
+                      <a
+                        href="/ucenter/pay/payIndex#tab-4"
+                      >重新提交</a>。
                     </dd>
                   </dl>
                 </div>
