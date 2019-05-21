@@ -7704,6 +7704,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -58239,121 +58252,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "u-content u-transaction" }, [
-      _c("ul", { staticClass: "nav nav-tabs nav-tabs-template" }, [
-        _c("li", { staticClass: "active" }, [
-          _c(
-            "a",
-            {
-              attrs: {
-                href: "#tab-1",
-                "data-toggle": "tab",
-                "aria-expanded": "true"
-              }
-            },
-            [
-              _c(
-                "font",
-                { staticStyle: { "vertical-align": "inherit" } },
-                [
-                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
-                    _vm._v("Withdrawals record")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            { attrs: { href: "#tab-2", "data-toggle": "tab" } },
-            [
-              _c(
-                "font",
-                { staticStyle: { "vertical-align": "inherit" } },
-                [
-                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
-                    _vm._v("Recharge record")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            { attrs: { href: "#tab-3", "data-toggle": "tab" } },
-            [
-              _c(
-                "font",
-                { staticStyle: { "vertical-align": "inherit" } },
-                [
-                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
-                    _vm._v("Washing record")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            { attrs: { href: "#tab-4", "data-toggle": "tab" } },
-            [
-              _c(
-                "font",
-                { staticStyle: { "vertical-align": "inherit" } },
-                [
-                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
-                    _vm._v("Offer record")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            { attrs: { href: "#tab-5", "data-toggle": "tab" } },
-            [
-              _c(
-                "font",
-                { staticStyle: { "vertical-align": "inherit" } },
-                [
-                  _c("font", { staticStyle: { "vertical-align": "inherit" } }, [
-                    _vm._v("Game record")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ])
-      ]),
+      _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "tab-content" }, [
+      _c("div", { staticClass: "tab-content tab-space" }, [
         _c(
           "div",
-          {
-            staticClass: "tab-pane fade tab-1 active in",
-            attrs: { id: "tab-1" }
-          },
+          { staticClass: "tab-pane active", attrs: { id: "dashboard-1" } },
           [
             _c("div", { staticClass: "panel panel-default" }, [
               _c("div", { staticClass: "panel-heading" }, [
@@ -58383,7 +58287,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(0),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c(
                       "label",
@@ -58404,7 +58308,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(1),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c(
                       "label",
@@ -58904,9 +58808,9 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _vm._m(2),
+                          _vm._m(3),
                           _vm._v(" "),
-                          _vm._m(3)
+                          _vm._m(4)
                         ])
                       ])
                     ]
@@ -59179,7 +59083,7 @@ var render = function() {
                               attrs: { action: "" }
                             },
                             [
-                              _vm._m(4),
+                              _vm._m(5),
                               _vm._v(" "),
                               _c(
                                 "div",
@@ -59242,7 +59146,7 @@ var render = function() {
                                 1
                               ),
                               _vm._v(" "),
-                              _vm._m(5)
+                              _vm._m(6)
                             ]
                           )
                         ]
@@ -59430,181 +59334,182 @@ var render = function() {
                   ])
                 ]
               )
-            ]),
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "tab-pane", attrs: { id: "schedule-1" } }, [
+          _c("div", { staticClass: "panel panel-default" }, [
+            _c(
+              "div",
+              { staticClass: "panel-heading", attrs: { id: "heading-t1-1" } },
+              [
+                _c("h4", { staticClass: "panel-title" }, [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        "data-toggle": "collapse",
+                        "data-parent": "#accordion",
+                        href: "#collapse-t1-1"
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-quora" }),
+                      _vm._v(" "),
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _vm._v(
+                                'Withdrawal of the application status "waiting for processing"?'
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ]
+            ),
             _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "panel-collapse collapse",
+                attrs: { id: "collapse-t1-1" }
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "panel-body" },
+                  [
+                    _c("i", { staticClass: "fa fa-font" }),
+                    _vm._v(" "),
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _vm._v(
+                              "Indicates that your withdrawal is still under review and you will be able to enter the payment process once the review is approved."
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "tab-pane", attrs: { id: "tasks-1" } }, [
+          _c("div", { staticClass: "panel panel-default" }, [
+            _c(
+              "div",
+              { staticClass: "panel-heading", attrs: { id: "heading-t1-2" } },
+              [
+                _c("h4", { staticClass: "panel-title" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "collapsed",
+                      attrs: {
+                        "data-toggle": "collapse",
+                        "data-parent": "#accordion",
+                        href: "#collapse-t1-2"
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-quora" }),
+                      _vm._v(" "),
+                      _c(
+                        "font",
+                        { staticStyle: { "vertical-align": "inherit" } },
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _vm._v(
+                                'Withdrawal of the application status "Waiting for payment"?'
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "panel-collapse collapse",
+                attrs: { id: "collapse-t1-2" }
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "panel-body" },
+                  [
+                    _c("i", { staticClass: "fa fa-font" }),
+                    _vm._v(" "),
+                    _c(
+                      "font",
+                      { staticStyle: { "vertical-align": "inherit" } },
+                      [
+                        _c(
+                          "font",
+                          { staticStyle: { "vertical-align": "inherit" } },
+                          [
+                            _vm._v(
+                              "Indicates that it has been approved and entered the payment process, and will pay you the payment as soon as possible."
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "tab-content" }, [
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane fade tab-1 active in",
+            attrs: { id: "tab-1" }
+          },
+          [
             _c(
               "div",
               { staticClass: "panel-group", attrs: { id: "accordion" } },
               [
-                _c("div", { staticClass: "panel panel-default" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "panel-heading",
-                      attrs: { id: "heading-t1-1" }
-                    },
-                    [
-                      _c("h4", { staticClass: "panel-title" }, [
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              "data-toggle": "collapse",
-                              "data-parent": "#accordion",
-                              href: "#collapse-t1-1"
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "fa fa-quora" }),
-                            _vm._v(" "),
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      'Withdrawal of the application status "waiting for processing"?'
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "panel-collapse collapse",
-                      attrs: { id: "collapse-t1-1" }
-                    },
-                    [
-                      _c(
-                        "div",
-                        { staticClass: "panel-body" },
-                        [
-                          _c("i", { staticClass: "fa fa-font" }),
-                          _vm._v(" "),
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _vm._v(
-                                    "Indicates that your withdrawal is still under review and you will be able to enter the payment process once the review is approved."
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "panel panel-default" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "panel-heading",
-                      attrs: { id: "heading-t1-2" }
-                    },
-                    [
-                      _c("h4", { staticClass: "panel-title" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "collapsed",
-                            attrs: {
-                              "data-toggle": "collapse",
-                              "data-parent": "#accordion",
-                              href: "#collapse-t1-2"
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "fa fa-quora" }),
-                            _vm._v(" "),
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      'Withdrawal of the application status "Waiting for payment"?'
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "panel-collapse collapse",
-                      attrs: { id: "collapse-t1-2" }
-                    },
-                    [
-                      _c(
-                        "div",
-                        { staticClass: "panel-body" },
-                        [
-                          _c("i", { staticClass: "fa fa-font" }),
-                          _vm._v(" "),
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _vm._v(
-                                    "Indicates that it has been approved and entered the payment process, and will pay you the payment as soon as possible."
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
                 _c("div", { staticClass: "panel panel-default" }, [
                   _c(
                     "div",
@@ -59652,7 +59557,7 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(6)
+                  _vm._m(7)
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "panel panel-default" }, [
@@ -59698,25 +59603,108 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(7)
+                  _vm._m(8)
                 ])
               ]
             )
           ]
         ),
         _vm._v(" "),
-        _vm._m(8),
-        _vm._v(" "),
         _vm._m(9),
         _vm._v(" "),
         _vm._m(10),
         _vm._v(" "),
-        _vm._m(11)
+        _vm._m(11),
+        _vm._v(" "),
+        _vm._m(12)
       ])
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      {
+        staticClass: "nav nav-pills nav-pills-primary nav-pills-icons",
+        attrs: { role: "tablist" }
+      },
+      [
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link active",
+              attrs: { href: "#dashboard-1", role: "tab", "data-toggle": "tab" }
+            },
+            [
+              _c("i", { staticClass: "tim-icons icon-atom" }),
+              _vm._v("\n          Withdrawals record\n        ")
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: { href: "#schedule-1", role: "tab", "data-toggle": "tab" }
+            },
+            [
+              _c("i", { staticClass: "tim-icons icon-settings" }),
+              _vm._v("\n          Recharge record\n        ")
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: { href: "#tasks-1", role: "tab", "data-toggle": "tab" }
+            },
+            [
+              _c("i", { staticClass: "tim-icons icon-bullet-list-67" }),
+              _vm._v("\n          Washing record\n        ")
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: { href: "#dashboard-1", role: "tab", "data-toggle": "tab" }
+            },
+            [
+              _c("i", { staticClass: "tim-icons icon-atom" }),
+              _vm._v("\n          Offer record\n        ")
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: { href: "#schedule-1", role: "tab", "data-toggle": "tab" }
+            },
+            [
+              _c("i", { staticClass: "tim-icons icon-settings" }),
+              _vm._v("\n          Game record\n        ")
+            ]
+          )
+        ])
+      ]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
