@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Users;
+
 class RegisterController extends Controller
 {
     /*
@@ -64,15 +65,15 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $date = date('y-m-d H:i:s');
-        users::create([
-            'userID'=>1,
-            'userName'=>$data['name'],	
-            'balance'=>0,
-            'totalOnlineHour'=> 0,
-            'userStatus'=>'online',
-            'registerTime'=> $date,
-            'last_activity'=> $date
-        ]);
+        $user = new users;
+        $user->userID = 1;
+        $user->userName = $data['name'];
+        $user->balance = 0;
+        $user->totalOnlineHour = 0;
+        $user->userStatus = 'online';
+        $user->registerTime = $date;
+        $user->last_activity = $date;
+        $user->save();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -83,13 +84,13 @@ class RegisterController extends Controller
     {
         $date = date('y-m-d H:i:s');
         users::create([
-            'userID'=>	1,
-            'userName'=>$data['name'],	
-            'balance'=>0,
-            'totalOnlineHour'=> 0,
-            'userStatus'=>'online',
-            'registerTime'=> $date,
-            'last_activity'=> $date
+            'userID' =>    1,
+            'userName' => $data['name'],
+            'balance' => 0,
+            'totalOnlineHour' => 0,
+            'userStatus' => 'online',
+            'registerTime' => $date,
+            'last_activity' => $date
         ]);
     }
 }
