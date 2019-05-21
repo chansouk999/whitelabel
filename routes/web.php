@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/',);
 Route::get('/index', function () {
     return view('index');
 });
@@ -23,3 +21,8 @@ Route::get('/promote', function () {
 Route::get('/lobby', function () {
     return view('lobby');
 });
+Auth::routes();
+
+// Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'MasterController@welcome')->name('home');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logoutuser');

@@ -3,6 +3,8 @@
       <div class="wrapper container-whitelabel">
     <navbar></navbar>
     <asides></asides>
+   
+   
     <div class="main-panel ps main-container game-lobby">
       <div class="content container-wrap">
         <ul>
@@ -30,12 +32,12 @@
                   <br>VIP包桌：专属于您的桌台，尊享换荷官、飞牌、换牌靴等特权。
                 </p>
                 <div class="btns">
-                  <a href="/game/play/agin" target="_blank" class="orange">立即游戏</a>
+                  <button type="submit" class="orange" value="GO"></button>
                 </div>
               </div>
             </div>
           </li>
-          <li>
+          <!-- <li>
             <div class="item item-flagship">
               <div class="links">
                 <a href="/game/play/agq" target="_blank">经典百家乐</a>
@@ -62,8 +64,8 @@
                 </div>
               </div>
             </div>
-          </li>
-          <li>
+          </li> -->
+          <!-- <li>
             <div class="item item-warrior">
               <div class="links">
                 <a href="/game/dygame/" data-value="ag" target="_playGame">AG</a>
@@ -89,8 +91,8 @@
                 </div>
               </div>
             </div>
-          </li>
-          <li>
+          </li> -->
+          <!-- <li>
             <div class="item item-qg">
               <div class="links">
                 <a href="/game/play/scg" target="_blank">古堡密探</a>
@@ -115,8 +117,8 @@
                 </div>
               </div>
             </div>
-          </li>
-          <li>
+          </li> -->
+          <!-- <li>
             <div class="item item-bbin">
               <div class="links">
                 <a
@@ -169,8 +171,8 @@
                 </div>
               </div>
             </div>
-          </li>
-          <li>
+          </li> -->
+          <!-- <li>
             <div class="item item-new-world">
               <div class="links">
                 <a href="/game/iframe/index.html?g=agtlb" target="_blank">经典百家乐</a>
@@ -191,12 +193,12 @@
                 </div>
               </div>
             </div>
-          </li>
-          <li>
+          </li> -->
+          <!-- <li>
             <div class="item item-sport">
-              <div class="links">
+              <div class="links"> -->
                 <!-- <a href="/game/play/xesports" target="_blank">亚游电竞</a> -->
-                <a href="/sports/sabah" target="_blank">沙巴体育</a>
+                <!-- <a href="/sports/sabah" target="_blank">沙巴体育</a>
                 <a href="/game/play/agsport" target="_blank">AG体育</a>
               </div>
               <div class="section">
@@ -214,8 +216,8 @@
                 </div>
               </div>
             </div>
-          </li>
-          <li>
+          </li> -->
+          <!-- <li>
             <div class="item item-fish">
               <div class="links">
                 <a data-value="fishing" href="/game/dygame/fishing/" target="_playGame">捕鱼</a>
@@ -241,8 +243,8 @@
                 </div>
               </div>
             </div>
-          </li>
-          <li>
+          </li> -->
+          <!-- <li>
             <div class="item item-cow">
               <div class="links">
                 <a href="/game/play/agin" target="_blank">百家乐</a>
@@ -267,8 +269,8 @@
                 </div>
               </div>
             </div>
-          </li>
-          <li>
+          </li> -->
+          <!-- <li>
             <div class="item item-vr">
               <div class="links">
                 <a href="/game/play/vr" target="_blank">重庆时时彩</a>
@@ -293,12 +295,13 @@
                 </div>
               </div>
             </div>
-          </li>
+          </li> -->
         </ul>
+   
       </div>
   
     </div>
-   
+     
     <alertside></alertside>  
   </div>
      <footers></footers>

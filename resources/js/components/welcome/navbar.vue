@@ -22,7 +22,7 @@
               <span class="navbar-toggler-bar bar3"></span>
             </button>
           </div>
-          <a class="navbar-brand" :href="welcome">TNK</a>
+          <a class="navbar-brand" :href="welcome">TNK {{ checkuser }}</a>
         </div>
         <button
           class="navbar-toggler"
@@ -48,7 +48,7 @@
             </li>
           </ul>
 
-          <span v-if="!ismenu">
+          <span v-if="checkuser == 'false'">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a
@@ -93,7 +93,7 @@
           </span>
 
           <!-- After Login done show this -->
-          <span v-else>
+          <span v-else-if="checkuser == 'true'">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a :href="messages" class="button nav-link d-flex">
@@ -187,8 +187,8 @@
                             </p>
                           </div>
                         </div>
-                        <a href="javascript:;" class="btn-logout">
-                          <i class="fa fa-power-off"></i>安全退出
+                        <a href="/logout" class="btn-logout">
+                          <i class="fa fa-power-off"></i>安全退出asdasd
                         </a>
                       </div>
                     </div>
@@ -212,7 +212,8 @@
           <!-- Modal body -->
           <div class="modal-body">
             <div class="col-lg-12 col-md-12">
-              <form class="form">
+              <form class="form" action="login" method="POST">
+              <input type="hidden" name="_token" :value="csrf">
                 <div class="card card-login card-white">
                   <div class="card-header">
                     <img src="assets/img/card-primary.png" alt>
@@ -225,7 +226,8 @@
                           <i class="tim-icons icon-email-85"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Email">
+                      <input id="email" type="email" class="form-control " name="email" value="" required autocomplete="email" autofocus>
+                        <input class="form-check-input" type="checkbox"  name="remember" id="remember" value="true">
                     </div>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -233,15 +235,14 @@
                           <i class="tim-icons icon-lock-circle"></i>
                         </div>
                       </div>
-                      <input type="text" placeholder="Password" class="form-control">
+                      <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
                     </div>
                   </div>
                   <div class="card-footer">
-                    <a
-                      href="#login"
+                    <button type="submit" 
                       class="btn btn-primary btn-lg btn-block mb-3"
                       @click="ismenu=!ismenu"
-                    >登录</a>
+                    >登录</button>
                     <div class="d-flex justify-content-between">
                       <a href="javascript:void(0)" class="link footer-link">忘记密码？</a>
                       <div class="d-flex">
@@ -308,19 +309,21 @@
                 </div>
                 <div class="col-md-7 mr-auto">
                   <div class="card card-register card-white">
+                     <form class="form" method="POST" action="register">
                     <div class="card-header">
                       <img class="card-img" src="assets/img/card-primary.png" alt="Card image">
                       <h4 class="card-title">Register</h4>
                     </div>
                     <div class="card-body">
-                      <form class="form">
+                     
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
                               <i class="tim-icons icon-single-02"></i>
                             </div>
                           </div>
-                          <input type="text" class="form-control" placeholder="Full Name">
+                          <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus>
+                            <input type="hidden" name="_token" :value="csrf">
                         </div>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -328,7 +331,7 @@
                               <i class="tim-icons icon-email-85"></i>
                             </div>
                           </div>
-                          <input type="text" placeholder="Email" class="form-control">
+                          <input id="email" type="email" class="form-control" name="email" required autocomplete="email">
                         </div>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -336,7 +339,8 @@
                               <i class="tim-icons icon-lock-circle"></i>
                             </div>
                           </div>
-                          <input type="text" class="form-control" placeholder="Password">
+                         <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password"><br>
+                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                         <div class="form-check text-left">
                           <label class="form-check-label">
@@ -348,11 +352,12 @@
                             >terms and conditions</a>.
                           </label>
                         </div>
-                      </form>
+                     
                     </div>
                     <div class="card-footer">
-                      <a href="javascript:void(0)" class="btn btn-primary btn-round btn-lg">注册</a>
+                      <button type="submit" class="btn btn-primary btn-round btn-lg">注册</button>
                     </div>
+                     </form>
                   </div>
                 </div>
               </div>
@@ -447,7 +452,9 @@ export default {
       messages: "./index",
       promote: "./promote",
       welcome: "/",
-      lobby:"./lobby"
+      lobby:"./lobby",
+       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+       checkuser: document.querySelector('.checkuser').getAttribute('value'),
     };
   },
   methods: {
