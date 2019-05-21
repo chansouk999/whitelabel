@@ -25,6 +25,11 @@
 
 <body class="white-content activity">
     <div id="app">
+            @if(auth()->check())
+                <input type="hidden" class="checkuser" name="" value="true">
+            @else
+                <input type="hidden" class="checkuser" name="" value="false">
+            @endif
         <app-promte></app-promte>
     </div>
    <!--   Core JS Files   -->
