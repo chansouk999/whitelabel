@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div class="wrapper container-whitelabel">
       <asides></asides>
       <div class="main-panel">

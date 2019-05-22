@@ -1,3 +1,8 @@
+.container {
+    min-width: 1280px;
+    max-width: 1920px;
+}
+
 .button {
     position: relative;
     display: inline-flex;
@@ -391,15 +396,15 @@
 
 .fixed-plugin-cutome {
     position: absolute;
-    right: 15px;
-    width: 30px;
-    /* background: rgba(0, 0, 0, 0.3);
-    */
+    right: 14px;
+    width: 41px;
+    background: rgba(0, 0, 0, 0.3);
     z-index: 1031;
     border-radius: 8px 0 0 8px;
-    text-align: -webkit-right;
-    top: 237px;
-    height: 30px;
+    text-align: center;
+    top: 150px;
+    height: 40px;
+    padding: 7px;
 }
 
 .fixed-plugin-cutome li>a,
@@ -1168,7 +1173,7 @@ hr {
         background-color: #777;
     }
     .main-panel>.content {
-        padding: 80px 30px 30px 280px;
+        padding: 75px 30px 30px 280px;
         /* min-height: calc(100vh - 70px);
         */
     }
@@ -2597,6 +2602,10 @@ ol {
 }
 
 @media (min-width: 1531px) {
+    .container-fluid {
+        min-width: 1280px;
+        max-width: 1920px;
+    }
     .u-account .section-1 .pull-left {
         padding-left: 3%;
         padding-right: 3%;
@@ -5764,4 +5773,12 @@ h4 {
     .game-lobby ul li {
         width: 33.33%;
     }
+}
+
+.color-bg {
+    background-color: #E91E63
+    /* background: -webkit-linear-gradient(0deg, #f5feff99 0%, #E91E63 100%);
+    background: -o-linear-gradient(0deg, #f5feff99 0%, #E91E63 100%);
+    background: -moz-linear-gradient(0deg, #f5feff99 0%, #E91E63 100%);
+    background: linear-gradient(0deg, #f5feff99 0%, #E91E63 100%); */
 }

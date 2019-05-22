@@ -26,7 +26,7 @@ class CreateUserTable extends Migration
             $table->dateTime('last_activity');
             $table->timestamps();
         });
-        DB::statement('ALTER TABLE user_white CHANGE id id INT(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT');
+        DB::statement('ALTER TABLE user_whitelb CHANGE id id INT(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT');
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
 

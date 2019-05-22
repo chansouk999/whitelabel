@@ -80,17 +80,5 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
-    function authenticated(array $data)
-    {
-        $date = date('y-m-d H:i:s');
-        users::create([
-            'userID' =>    1,
-            'userName' => $data['name'],
-            'balance' => 0,
-            'totalOnlineHour' => 0,
-            'userStatus' => 'online',
-            'registerTime' => $date,
-            'last_activity' => $date
-        ]);
-    }
+
 }

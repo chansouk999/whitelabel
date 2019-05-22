@@ -102,10 +102,38 @@ $(document).ready(function() {
 
         $('.light-badge').click(function() {
             $('body').addClass('white-content');
+            $('body').removeClass('dark-content');
+            blackDashboard.showSidebarMessage('White-Themes...');
         });
 
         $('.dark-badge').click(function() {
             $('body').removeClass('white-content');
+            $('body').addClass('dark-content');
+            blackDashboard.showSidebarMessage('Dark-Themes...');
+        });
+
+
+        $('#bg-primary').click(function() {
+            // $('nav').addClass('bg-success');
+            // $('nav').removeClass('bg-primary');
+            $('.color-bg').css('background-color', '#e14eca');
+            // blackDashboard.showSidebarMessage('bg-primary...');
+        });
+        $('#bg-info').click(function() {
+            $('.color-bg').css('background-color', '#1d8cf8');
+            // blackDashboard.showSidebarMessage('bg-success...');
+        });
+        $('#bg-success').click(function() {
+            $('.color-bg').css('background-color', '#00bf9a');
+            // blackDashboard.showSidebarMessage('bg-success...');
+        });
+        $('#bg-danger').click(function() {
+            $('.color-bg').css('background-color', '#fd5d93');
+            // blackDashboard.showSidebarMessage('bg-success...');
+        });
+        $('#bg-orange').click(function() {
+            $('.color-bg').css('background-color', '#fb6340');
+            // blackDashboard.showSidebarMessage('bg-success...');
         });
     });
 });
