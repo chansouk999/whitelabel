@@ -20,7 +20,7 @@ class CreateUseraccessesTable extends Migration
             $table->string('userPasscode',30);
             $table->datetime('accessTime');
             $table->string('accessIP',30);
-            $table->foreign('userID')->references('id')->on('user_white')->onDelete('cascade');
+            $table->foreign('userID')->references('id')->on('user_whitelb')->onDelete('cascade');
             $table->timestamps();
         });
         DB::statement('ALTER TABLE useraccesses CHANGE userID userID INT(20) UNSIGNED ZEROFILL NOT NULL');

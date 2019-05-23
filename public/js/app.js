@@ -1754,43 +1754,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/activity/containterpromote.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/activity/containterpromote.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navbar */ "./resources/js/components/activity/navbar.vue");
-/* harmony import */ var _promote__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./promote */ "./resources/js/components/activity/promote.vue");
-/* harmony import */ var _alertsidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../alertsidebar */ "./resources/js/components/alertsidebar.vue");
-/* harmony import */ var _welcome_footers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../welcome/footers */ "./resources/js/components/welcome/footers.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    navbar: _navbar__WEBPACK_IMPORTED_MODULE_0__["default"],
-    promote: _promote__WEBPACK_IMPORTED_MODULE_1__["default"],
-    alertsidebar: _alertsidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
-    footers: _welcome_footers__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/activity/navbar.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/activity/navbar.vue?vue&type=script&lang=js& ***!
@@ -1964,6 +1927,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _navbar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navbar.vue */ "./resources/js/components/activity/navbar.vue");
+/* harmony import */ var _alertsidebar_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../alertsidebar.vue */ "./resources/js/components/alertsidebar.vue");
 //
 //
 //
@@ -2813,8 +2778,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {}
+  components: {
+    'app-navbar': _navbar_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    'app-alertsidebar': _alertsidebar_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }
 });
 
 /***/ }),
@@ -2828,28 +2802,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3960,7 +3912,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _welcome_footers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../welcome/footers */ "./resources/js/components/welcome/footers.vue");
 /* harmony import */ var _index_navbarindex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../index/navbarindex */ "./resources/js/components/index/navbarindex.vue");
 /* harmony import */ var _alertsidebar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../alertsidebar */ "./resources/js/components/alertsidebar.vue");
-//
 //
 //
 //
@@ -8954,6 +8905,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navbar */ "./resources/js/components/welcome/navbar.vue");
 /* harmony import */ var _asides__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./asides */ "./resources/js/components/welcome/asides.vue");
 /* harmony import */ var _footers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./footers */ "./resources/js/components/welcome/footers.vue");
+/* harmony import */ var _alertsidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../alertsidebar */ "./resources/js/components/alertsidebar.vue");
 //
 //
 //
@@ -9127,160 +9079,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -9288,9 +9087,32 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     navbars: _navbar__WEBPACK_IMPORTED_MODULE_0__["default"],
     asides: _asides__WEBPACK_IMPORTED_MODULE_1__["default"],
-    footers: _footers__WEBPACK_IMPORTED_MODULE_2__["default"]
+    footers: _footers__WEBPACK_IMPORTED_MODULE_2__["default"],
+    alertaside: _alertsidebar__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  mounted: function mounted() {}
+  data: function data() {
+    return {
+      ismenu: false,
+      messages: "./index",
+      promote: "./promote",
+      welcome: "/",
+      lobby: "./lobby",
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      checkuser: document.querySelector('.checkuser').getAttribute('value')
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    myaccount: function myaccount() {
+      $("#myaccountlink")[0].click();
+    },
+    withDrawClick: function withDrawClick() {
+      $("#withdraw")[0].click();
+    },
+    rechargeClick: function rechargeClick() {
+      $("#recharge")[0].click();
+    }
+  }
 });
 
 /***/ }),
@@ -9846,6 +9668,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -9854,8 +9691,8 @@ __webpack_require__.r(__webpack_exports__);
       promote: "./promote",
       welcome: "/",
       lobby: "./lobby",
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      checkuser: document.querySelector('.checkuser').getAttribute('value')
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+      checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
   methods: {
@@ -45890,43 +45727,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/activity/containterpromote.vue?vue&type=template&id=3ccc2e5e&scoped=true&":
-/*!*****************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/activity/containterpromote.vue?vue&type=template&id=3ccc2e5e&scoped=true& ***!
-  \*****************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "wrapper container-whitelabel" },
-      [
-        _c("navbar"),
-        _vm._v(" "),
-        _c("promote"),
-        _vm._v(" "),
-        _c("alertsidebar")
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/activity/navbar.vue?vue&type=template&id=77528795&scoped=true&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/activity/navbar.vue?vue&type=template&id=77528795&scoped=true& ***!
@@ -46268,2747 +46068,3332 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "main-container vip_club" }, [
-      _c("div", { staticClass: "sections" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "section content-area1" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "carousel slide showcase-container wow fadeInUp",
-              attrs: { id: "myCarousel", "data-ride": "carousel" }
-            },
-            [
-              _vm._m(2),
+  return _c(
+    "div",
+    [
+      _c("app-navbar"),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "wrapper container-whitelabel" },
+        [
+          _c("div", { staticClass: "main-container vip_club" }, [
+            _c("div", { staticClass: "sections" }, [
+              _vm._m(0),
               _vm._v(" "),
-              _c("div", { staticClass: "carousel-inner hcbg" }, [
+              _c("div", { staticClass: "section content-area1" }, [
+                _vm._m(1),
+                _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "item slideflip active", attrs: { id: "s1" } },
+                  {
+                    staticClass:
+                      "carousel slide showcase-container wow fadeInUp",
+                    attrs: { id: "myCarousel", "data-ride": "carousel" }
+                  },
                   [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn",
-                        attrs: {
-                          href:
-                            "https://brand.ag855.com/activity/vipPrivilege/",
-                          target: "_blank"
-                        }
-                      },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [_vm._v("understand more")]
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "carousel-inner hcbg" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "item slideflip active",
+                          attrs: { id: "s1" }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn",
+                              attrs: {
+                                href:
+                                  "https://brand.ag855.com/activity/vipPrivilege/",
+                                target: "_blank"
+                              }
+                            },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("understand more")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "item slideflip", attrs: { id: "s2" } },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn",
+                              attrs: {
+                                href:
+                                  "https://brand.ag855.com/activity/vipPrivilege/",
+                                target: "_blank"
+                              }
+                            },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("Open now")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "item slideflip", attrs: { id: "s3" } },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn",
+                              attrs: {
+                                href:
+                                  "https://brand.ag855.com/activity/vipPrivilege/",
+                                target: "_blank"
+                              }
+                            },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("understand more")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "item slideflip", attrs: { id: "s4" } },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn",
+                              attrs: {
+                                href:
+                                  "https://brand.ag855.com/activity/vipPrivilege/",
+                                target: "_blank"
+                              }
+                            },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [_vm._v("understand more")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      )
+                    ])
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "item slideflip", attrs: { id: "s2" } },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn",
-                        attrs: {
-                          href:
-                            "https://brand.ag855.com/activity/vipPrivilege/",
-                          target: "_blank"
-                        }
-                      },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [_vm._v("Open now")]
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                ),
+                _vm._m(3),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "item slideflip", attrs: { id: "s3" } },
-                  [
+                _c("div", { staticClass: "container-wrap wow fadeInDown" }, [
+                  _c("div", { staticClass: "table-section" }, [
                     _c(
-                      "a",
-                      {
-                        staticClass: "btn",
-                        attrs: {
-                          href:
-                            "https://brand.ag855.com/activity/vipPrivilege/",
-                          target: "_blank"
-                        }
-                      },
+                      "table",
+                      { staticClass: "table table-striped sel sel0" },
                       [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [_vm._v("understand more")]
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "item slideflip", attrs: { id: "s4" } },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn",
-                        attrs: {
-                          href:
-                            "https://brand.ag855.com/activity/vipPrivilege/",
-                          target: "_blank"
-                        }
-                      },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [_vm._v("understand more")]
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _vm._m(3),
-          _vm._v(" "),
-          _c("div", { staticClass: "container-wrap wow fadeInDown" }, [
-            _c("div", { staticClass: "table-section" }, [
-              _c("table", { staticClass: "table table-striped sel sel0" }, [
-                _c("thead", [
-                  _c(
-                    "tr",
-                    {
-                      staticStyle: { "background-color": "rgb(144, 129, 107)" }
-                    },
-                    [
-                      _c(
-                        "th",
-                        [
+                        _c("thead", [
                           _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(144, 129, 107)"
+                              }
+                            },
                             [
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Member benefits")]
+                                "th",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Member benefits")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "th",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("One star")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "th",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Two stars")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "th",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Three Star")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "th",
+                                [
+                                  _c("img", {
+                                    attrs: { src: "/assets/img/blcrown.png" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("VIP 4")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "th",
+                                [
+                                  _c("img", {
+                                    attrs: { src: "/assets/img/scrown.png" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("VIP 5")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "th",
+                                [
+                                  _c("img", {
+                                    attrs: { src: "/assets/img/gcrown.png" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("VIP 6")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
                               )
-                            ],
-                            1
+                            ]
                           )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "th",
-                        [
+                        ]),
+                        _vm._v(" "),
+                        _c("tbody", [
                           _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(154, 139, 116)"
+                              }
+                            },
                             [
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("One star")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "th",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Washing ratio")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Two stars")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "th",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("0.60%")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Three Star")]
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("0.60%")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("0.60%")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("0.70%")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("0.80%")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("0.90%")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
                               )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "th",
-                        [
-                          _c("img", {
-                            attrs: { src: "/assets/img/blcrown.png" }
-                          }),
+                            ]
+                          ),
                           _vm._v(" "),
                           _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(144, 129, 107)"
+                              }
+                            },
                             [
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("VIP 4")]
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Anniversary gift")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("588 yuan")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("888 yuan")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("1888 yuan")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
                               )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "th",
-                        [
-                          _c("img", {
-                            attrs: { src: "/assets/img/scrown.png" }
-                          }),
+                            ]
+                          ),
                           _vm._v(" "),
                           _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(154, 139, 116)"
+                              }
+                            },
                             [
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("VIP 5")]
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Holiday gift")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("√")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("√")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
                               )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "th",
-                        [
-                          _c("img", {
-                            attrs: { src: "/assets/img/gcrown.png" }
-                          }),
+                            ]
+                          ),
                           _vm._v(" "),
                           _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(144, 129, 107)"
+                              }
+                            },
                             [
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("VIP 6")]
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Business secretary")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("√")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("√")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("√")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
                               )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tbody", [
-                  _c(
-                    "tr",
-                    {
-                      staticStyle: { "background-color": "rgb(154, 139, 116)" }
-                    },
-                    [
-                      _c(
-                        "td",
-                        [
+                            ]
+                          ),
+                          _vm._v(" "),
                           _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(154, 139, 116)"
+                              }
+                            },
                             [
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Washing ratio")]
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Overseas travel")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("√")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("√")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("√")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
                               )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
+                            ]
+                          ),
+                          _vm._v(" "),
                           _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(144, 129, 107)"
+                              }
+                            },
                             [
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("0.60%")]
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("customer service")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("General customer service")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("General customer service")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("General customer service")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("General customer service")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("account Manager")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("account Manager")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
                               )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
+                            ]
+                          ),
+                          _vm._v(" "),
                           _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(154, 139, 116)"
+                              }
+                            },
                             [
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("0.60%")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Game channel")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("0.60%")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Ordinary line")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("0.70%")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Ordinary line")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("0.80%")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Ordinary line")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("0.90%")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "tr",
-                    {
-                      staticStyle: { "background-color": "rgb(144, 129, 107)" }
-                    },
-                    [
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Ordinary line")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Anniversary gift")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("VIP line")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
                               _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("VIP line")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
                               )
-                            ],
-                            1
+                            ]
                           )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("588 yuan")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("888 yuan")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("1888 yuan")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "tr",
-                    {
-                      staticStyle: { "background-color": "rgb(154, 139, 116)" }
-                    },
-                    [
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Holiday gift")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("√")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("√")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "tr",
-                    {
-                      staticStyle: { "background-color": "rgb(144, 129, 107)" }
-                    },
-                    [
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Business secretary")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("√")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("√")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("√")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "tr",
-                    {
-                      staticStyle: { "background-color": "rgb(154, 139, 116)" }
-                    },
-                    [
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Overseas travel")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("×")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("√")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("√")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("√")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "tr",
-                    {
-                      staticStyle: { "background-color": "rgb(144, 129, 107)" }
-                    },
-                    [
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("customer service")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("General customer service")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("General customer service")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("General customer service")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("General customer service")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("account Manager")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("account Manager")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "tr",
-                    {
-                      staticStyle: { "background-color": "rgb(154, 139, 116)" }
-                    },
-                    [
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Game channel")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Ordinary line")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Ordinary line")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Ordinary line")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("Ordinary line")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("VIP line")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("VIP line")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  )
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "section content-area2",
-            staticStyle: { height: "678px" }
-          },
-          [
-            _vm._m(4),
-            _vm._v(" "),
-            _c("div", { staticClass: "container-wrap wow fadeInDown" }, [
-              _c("div", { staticClass: "table-section" }, [
-                _c("table", { staticClass: "table table-striped" }, [
-                  _c("thead", [
-                    _c(
-                      "tr",
-                      {
-                        staticStyle: {
-                          "background-color": "rgb(144, 129, 107)"
-                        }
-                      },
-                      [
-                        _c(
-                          "th",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("Member star")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "th",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("Promotion requirements")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "th",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("Promotion gift")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("tbody", [
-                    _c(
-                      "tr",
-                      {
-                        staticStyle: {
-                          "background-color": "rgb(154, 139, 116)"
-                        }
-                      },
-                      [
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("One star")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("Complete the first recharge")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("×")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "tr",
-                      {
-                        staticStyle: {
-                          "background-color": "rgb(144, 129, 107)"
-                        }
-                      },
-                      [
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("Two stars")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "Weekly effective bet amount reaches 100,000"
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("120 yuan")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "tr",
-                      {
-                        staticStyle: {
-                          "background-color": "rgb(154, 139, 116)"
-                        }
-                      },
-                      [
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("Three Star")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "Weekly effective bet amount reaches 500,000"
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("400 yuan")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "tr",
-                      {
-                        staticStyle: {
-                          "background-color": "rgb(144, 129, 107)"
-                        }
-                      },
-                      [
-                        _c(
-                          "td",
-                          [
-                            _c("img", {
-                              attrs: { src: "/assets/img/blcrown.png" }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("VIP 4")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "Weekly effective bet amount reaches 1 million"
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("600 yuan")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "tr",
-                      {
-                        staticStyle: {
-                          "background-color": "rgb(154, 139, 116)"
-                        }
-                      },
-                      [
-                        _c(
-                          "td",
-                          [
-                            _c("img", {
-                              attrs: { src: "/assets/img/scrown.png" }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("VIP 5")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "Weekly effective bet amount reaches 3 million"
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("2000 dollars")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "tr",
-                      {
-                        staticStyle: {
-                          "background-color": "rgb(144, 129, 107)"
-                        }
-                      },
-                      [
-                        _c(
-                          "td",
-                          [
-                            _c("img", {
-                              attrs: { src: "/assets/img/gcrown.png" }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("VIP 6")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "Weekly effective bet amount reaches 6 million"
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "font",
-                              { staticStyle: { "vertical-align": "inherit" } },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [_vm._v("4,000 yuan")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
+                        ])
                       ]
                     )
                   ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "rebate-level" }, [
-                _c("div", { staticClass: "level-line" }, [
-                  _c(
-                    "div",
-                    { staticClass: "pbc", staticStyle: { display: "none" } },
-                    [
-                      _c("div", { staticClass: "pb-p" }, [
-                        _c("ul", [
-                          _c("li", [
-                            _c("div", { staticClass: "upb" }, [
-                              _c("div", { staticClass: "upbd vp1" }, [
-                                _c(
-                                  "p",
-                                  { staticClass: "zbpb" },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "font",
-                                          {
-                                            staticStyle: {
-                                              "vertical-align": "inherit"
-                                            }
-                                          },
-                                          [_vm._v("One star")]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "p",
-                              { staticClass: "adpb" },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [_vm._v("0")]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("div", { staticClass: "upb" }, [
-                              _c("div", { staticClass: "upbd vp2" }, [
-                                _c(
-                                  "p",
-                                  { staticClass: "zbpb" },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "font",
-                                          {
-                                            staticStyle: {
-                                              "vertical-align": "inherit"
-                                            }
-                                          },
-                                          [_vm._v("Two stars")]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "p",
-                              { staticClass: "adpb" },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [_vm._v("100,000")]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("div", { staticClass: "upb" }, [
-                              _c("div", { staticClass: "upbd vp3" }, [
-                                _c(
-                                  "p",
-                                  { staticClass: "zbpb" },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "font",
-                                          {
-                                            staticStyle: {
-                                              "vertical-align": "inherit"
-                                            }
-                                          },
-                                          [_vm._v("Three Star")]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "p",
-                              { staticClass: "adpb" },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [_vm._v("500000")]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("div", { staticClass: "upb" }, [
-                              _c("div", { staticClass: "upbd vp4" }, [
-                                _c(
-                                  "p",
-                                  { staticClass: "zbpb" },
-                                  [
-                                    _c("img", {
-                                      attrs: { src: "/assets/img/bcrown.png" }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "font",
-                                          {
-                                            staticStyle: {
-                                              "vertical-align": "inherit"
-                                            }
-                                          },
-                                          [_vm._v("VIP 4")]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "p",
-                              { staticClass: "adpb" },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [_vm._v("1000000")]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _vm._m(5),
-                            _vm._v(" "),
-                            _c(
-                              "p",
-                              { staticClass: "adpb" },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [_vm._v("3000000")]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _vm._m(6),
-                            _vm._v(" "),
-                            _c(
-                              "p",
-                              { staticClass: "adpb" },
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [_vm._v("6000000")]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "pbbg" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "pbcf" }, [
-                        _c("div", { staticClass: "pbcf-p" }),
+              _c(
+                "div",
+                {
+                  staticClass: "section content-area2",
+                  staticStyle: { height: "678px" }
+                },
+                [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "container-wrap wow fadeInDown" }, [
+                    _c("div", { staticClass: "table-section" }, [
+                      _c("table", { staticClass: "table table-striped" }, [
+                        _c("thead", [
+                          _c(
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(144, 129, 107)"
+                              }
+                            },
+                            [
+                              _c(
+                                "th",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Member star")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "th",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Promotion requirements")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "th",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Promotion gift")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        ]),
                         _vm._v(" "),
+                        _c("tbody", [
+                          _c(
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(154, 139, 116)"
+                              }
+                            },
+                            [
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("One star")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Complete the first recharge")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("×")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(144, 129, 107)"
+                              }
+                            },
+                            [
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Two stars")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "Weekly effective bet amount reaches 100,000"
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("120 yuan")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(154, 139, 116)"
+                              }
+                            },
+                            [
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("Three Star")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "Weekly effective bet amount reaches 500,000"
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("400 yuan")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(144, 129, 107)"
+                              }
+                            },
+                            [
+                              _c(
+                                "td",
+                                [
+                                  _c("img", {
+                                    attrs: { src: "/assets/img/blcrown.png" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("VIP 4")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "Weekly effective bet amount reaches 1 million"
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("600 yuan")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(154, 139, 116)"
+                              }
+                            },
+                            [
+                              _c(
+                                "td",
+                                [
+                                  _c("img", {
+                                    attrs: { src: "/assets/img/scrown.png" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("VIP 5")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "Weekly effective bet amount reaches 3 million"
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("2000 dollars")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tr",
+                            {
+                              staticStyle: {
+                                "background-color": "rgb(144, 129, 107)"
+                              }
+                            },
+                            [
+                              _c(
+                                "td",
+                                [
+                                  _c("img", {
+                                    attrs: { src: "/assets/img/gcrown.png" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("VIP 6")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "Weekly effective bet amount reaches 6 million"
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "font",
+                                    {
+                                      staticStyle: {
+                                        "vertical-align": "inherit"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [_vm._v("4,000 yuan")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "rebate-level" }, [
+                      _c("div", { staticClass: "level-line" }, [
                         _c(
                           "div",
                           {
-                            staticClass: "pbcf-pd",
+                            staticClass: "pbc",
                             staticStyle: { display: "none" }
                           },
                           [
-                            _c(
-                              "p",
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [_vm._v("Effective bet amount this week")]
-                                    )
-                                  ],
-                                  1
-                                ),
+                            _c("div", { staticClass: "pb-p" }, [
+                              _c("ul", [
+                                _c("li", [
+                                  _c("div", { staticClass: "upb" }, [
+                                    _c("div", { staticClass: "upbd vp1" }, [
+                                      _c(
+                                        "p",
+                                        { staticClass: "zbpb" },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "font",
+                                                {
+                                                  staticStyle: {
+                                                    "vertical-align": "inherit"
+                                                  }
+                                                },
+                                                [_vm._v("One star")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    { staticClass: "adpb" },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("0")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
                                 _vm._v(" "),
-                                _c(
-                                  "span",
-                                  { staticClass: "amount" },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "font",
-                                          {
-                                            staticStyle: {
-                                              "vertical-align": "inherit"
+                                _c("li", [
+                                  _c("div", { staticClass: "upb" }, [
+                                    _c("div", { staticClass: "upbd vp2" }, [
+                                      _c(
+                                        "p",
+                                        { staticClass: "zbpb" },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "font",
+                                                {
+                                                  staticStyle: {
+                                                    "vertical-align": "inherit"
+                                                  }
+                                                },
+                                                [_vm._v("Two stars")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    { staticClass: "adpb" },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("100,000")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("div", { staticClass: "upb" }, [
+                                    _c("div", { staticClass: "upbd vp3" }, [
+                                      _c(
+                                        "p",
+                                        { staticClass: "zbpb" },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "font",
+                                                {
+                                                  staticStyle: {
+                                                    "vertical-align": "inherit"
+                                                  }
+                                                },
+                                                [_vm._v("Three Star")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    { staticClass: "adpb" },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("500000")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _c("div", { staticClass: "upb" }, [
+                                    _c("div", { staticClass: "upbd vp4" }, [
+                                      _c(
+                                        "p",
+                                        { staticClass: "zbpb" },
+                                        [
+                                          _c("img", {
+                                            attrs: {
+                                              src: "/assets/img/bcrown.png"
                                             }
-                                          },
-                                          [_vm._v("0")]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "font",
+                                                {
+                                                  staticStyle: {
+                                                    "vertical-align": "inherit"
+                                                  }
+                                                },
+                                                [_vm._v("VIP 4")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    { staticClass: "adpb" },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("1000000")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _vm._m(5),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    { staticClass: "adpb" },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("3000000")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _vm._m(6),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    { staticClass: "adpb" },
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [_vm._v("6000000")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "pbbg" }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "pbcf" }, [
+                              _c("div", { staticClass: "pbcf-p" }),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "pbcf-pd",
+                                  staticStyle: { display: "none" }
+                                },
+                                [
+                                  _c(
+                                    "p",
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Effective bet amount this week"
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        { staticClass: "amount" },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "font",
+                                                {
+                                                  staticStyle: {
+                                                    "vertical-align": "inherit"
+                                                  }
+                                                },
+                                                [_vm._v("0")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "pbpd",
+                                staticStyle: { left: "15px" }
+                              },
+                              [
+                                _c("div", { staticClass: "pdp" }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "pbpd-pbb" }, [
+                                  _c(
+                                    "p",
+                                    [
+                                      _c(
+                                        "font",
+                                        {
+                                          staticStyle: {
+                                            "vertical-align": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Effective bet amount this week"
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        { staticClass: "amount" },
+                                        [
+                                          _c(
+                                            "font",
+                                            {
+                                              staticStyle: {
+                                                "vertical-align": "inherit"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "font",
+                                                {
+                                                  staticStyle: {
+                                                    "vertical-align": "inherit"
+                                                  }
+                                                },
+                                                [_vm._v("0")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(7)
                           ]
                         )
-                      ]),
-                      _vm._v(" "),
+                      ])
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "section content-area3" }, [
+                _vm._m(8),
+                _vm._v(" "),
+                _c("div", { staticClass: "container-wrap wow fadeInDown" }, [
+                  _c("ul", [
+                    _c("li", [
                       _c(
-                        "div",
-                        { staticClass: "pbpd", staticStyle: { left: "15px" } },
+                        "i",
                         [
-                          _c("div", { staticClass: "pdp" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "pbpd-pbb" }, [
-                            _c(
-                              "p",
-                              [
-                                _c(
-                                  "font",
-                                  {
-                                    staticStyle: { "vertical-align": "inherit" }
-                                  },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [_vm._v("Effective bet amount this week")]
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  { staticClass: "amount" },
-                                  [
-                                    _c(
-                                      "font",
-                                      {
-                                        staticStyle: {
-                                          "vertical-align": "inherit"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "font",
-                                          {
-                                            staticStyle: {
-                                              "vertical-align": "inherit"
-                                            }
-                                          },
-                                          [_vm._v("0")]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ]
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("01")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
                       ),
                       _vm._v(" "),
-                      _vm._m(7)
-                    ]
-                  )
+                      _c(
+                        "p",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _vm._v(
+                                    "The promotion bet amount is calculated based on the valid bet amount from 00:00:00 on Monday to 23:59:59 on Sunday."
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "i",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("02")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _vm._v(
+                                    "Promotion star time: As long as you meet the promotion star rating within the week, you can automatically promote the star in 1 hour and immediately enjoy the star rating after promotion."
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "i",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("03")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _vm._v(
+                                    "After successfully promoting the star rating, you can enjoy the star-rated rights after promotion and never relegate."
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "i",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("04")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _vm._v(
+                                    "Promotion bonus time: After successful promotion of the star rating, the bonus will be automatically distributed. Please click the collection after receiving the bonus distribution notice (the bonus period is valid for"
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("30 days, expired).")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "i",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("05")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _vm._v(
+                                    "The promotion bonus can be withdrawn only by 1 time (effective bet amount)."
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "i",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [_vm._v("06")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        [
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _vm._v(
+                                    "According to the fair and orderly rules of the Gaming Association, any user or group betting in an abnormal manner, such as risk-free betting, gambling, or deception,"
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "font",
+                            { staticStyle: { "vertical-align": "inherit" } },
+                            [
+                              _c(
+                                "font",
+                                {
+                                  staticStyle: { "vertical-align": "inherit" }
+                                },
+                                [
+                                  _vm._v(
+                                    "AG A-Yu reserves the right to freeze or close without notice. Related accounts, no refunds, users will be blacklisted."
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
                 ])
               ])
             ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "section content-area3" }, [
-          _vm._m(8),
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "container-wrap wow fadeInDown" }, [
-            _c("ul", [
-              _c("li", [
-                _c(
-                  "i",
-                  [
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [_vm._v("01")]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  [
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [
-                            _vm._v(
-                              "The promotion bet amount is calculated based on the valid bet amount from 00:00:00 on Monday to 23:59:59 on Sunday."
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "i",
-                  [
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [_vm._v("02")]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  [
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [
-                            _vm._v(
-                              "Promotion star time: As long as you meet the promotion star rating within the week, you can automatically promote the star in 1 hour and immediately enjoy the star rating after promotion."
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "i",
-                  [
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [_vm._v("03")]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  [
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [
-                            _vm._v(
-                              "After successfully promoting the star rating, you can enjoy the star-rated rights after promotion and never relegate."
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "i",
-                  [
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [_vm._v("04")]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  [
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [
-                            _vm._v(
-                              "Promotion bonus time: After successful promotion of the star rating, the bonus will be automatically distributed. Please click the collection after receiving the bonus distribution notice (the bonus period is valid for"
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [_vm._v("30 days, expired).")]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "i",
-                  [
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [_vm._v("05")]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  [
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [
-                            _vm._v(
-                              "The promotion bonus can be withdrawn only by 1 time (effective bet amount)."
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "i",
-                  [
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [_vm._v("06")]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  [
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [
-                            _vm._v(
-                              "According to the fair and orderly rules of the Gaming Association, any user or group betting in an abnormal manner, such as risk-free betting, gambling, or deception,"
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c(
-                      "font",
-                      { staticStyle: { "vertical-align": "inherit" } },
-                      [
-                        _c(
-                          "font",
-                          { staticStyle: { "vertical-align": "inherit" } },
-                          [
-                            _vm._v(
-                              "AG A-Yu reserves the right to freeze or close without notice. Related accounts, no refunds, users will be blacklisted."
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  ])
+          _c("app-alertsidebar")
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -49241,12 +49626,56 @@ var staticRenderFns = [
       _c("div", { staticClass: "fixed-plugin" }, [
         _c("div", { staticClass: "dropdown show-dropdown" }, [
           _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
-            _c("i", { staticClass: "fa fa-cog fa-2x" })
+            _c("i", { staticClass: "fa fa-cog fa-2x  fa-spin" })
           ]),
           _vm._v(" "),
           _c("ul", { staticClass: "dropdown-menu" }, [
             _c("li", { staticClass: "header-title" }, [
-              _vm._v(" Sidebar Background")
+              _vm._v("Navbar Background")
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "adjustments-line" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "switch-trigger background-color",
+                  attrs: { href: "javascript:void(0)" }
+                },
+                [
+                  _c("div", { staticClass: "badge-colors text-center" }, [
+                    _c("span", {
+                      staticClass: "badge filter badge-primary",
+                      attrs: { id: "bg-primary" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", {
+                      staticClass: "badge filter badge-info",
+                      attrs: { id: "bg-info" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", {
+                      staticClass: "badge filter badge-success",
+                      attrs: { id: "bg-success" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", {
+                      staticClass: "badge filter badge-danger",
+                      attrs: { id: "bg-danger" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", {
+                      staticClass: "badge filter badge-orange",
+                      attrs: { id: "bg-orange" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "clearfix" })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "header-title" }, [
+              _vm._v("Sidebar Background")
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "adjustments-line" }, [
@@ -49274,13 +49703,13 @@ var staticRenderFns = [
                     }),
                     _vm._v(" "),
                     _c("span", {
-                      staticClass: "badge filter badge-warning",
-                      attrs: { "data-color": "orange" }
+                      staticClass: "badge filter badge-danger",
+                      attrs: { "data-color": "red" }
                     }),
                     _vm._v(" "),
                     _c("span", {
-                      staticClass: "badge filter badge-danger",
-                      attrs: { "data-color": "red" }
+                      staticClass: "badge filter badge-orange",
+                      attrs: { "data-color": "orange" }
                     })
                   ]),
                   _vm._v(" "),
@@ -49289,90 +49718,57 @@ var staticRenderFns = [
               )
             ]),
             _vm._v(" "),
-            _c("li", { staticClass: "header-title" }, [
-              _vm._v("\n        Sidebar Mini\n      ")
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "adjustments-line" }, [
-              _c("div", { staticClass: "togglebutton switch-sidebar-mini" }, [
-                _c("span", { staticClass: "label-switch" }, [_vm._v("OFF")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "bootstrap-switch",
-                  attrs: {
-                    type: "checkbox",
-                    name: "checkbox",
-                    checked: "",
-                    "data-on-label": "",
-                    "data-off-label": ""
-                  }
-                }),
-                _vm._v(" "),
-                _c("span", { staticClass: "label-switch label-right" }, [
-                  _vm._v("ON")
-                ])
-              ]),
-              _vm._v(" "),
+            _c("li", { staticClass: "button-container" }, [
               _c(
-                "div",
-                { staticClass: "togglebutton switch-change-color mt-3" },
-                [
-                  _c("span", { staticClass: "label-switch" }, [
-                    _vm._v("LIGHT MODE")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "bootstrap-switch",
-                    attrs: {
-                      type: "checkbox",
-                      name: "checkbox",
-                      checked: "",
-                      "data-on-label": "",
-                      "data-off-label": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "label-switch label-right" }, [
-                    _vm._v("DARK MODE")
-                  ])
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "button-container mt-4" }, [
+                "a",
+                {
+                  staticClass: "btn btn-primary btn-block btn-round",
+                  attrs: {
+                    href:
+                      "https://www.creative-tim.com/product/black-dashboard",
+                    target: "_blank"
+                  }
+                },
+                [_vm._v("Download Now")]
+              ),
+              _vm._v(" "),
               _c(
                 "a",
                 {
                   staticClass: "btn btn-default btn-block btn-round",
                   attrs: {
-                    href: "../docs/1.0/getting-started/introduction.html"
+                    href:
+                      "https://demos.creative-tim.com/black-dashboard/docs/1.0/getting-started/introduction.html",
+                    target: "_blank"
                   }
                 },
-                [_vm._v("\n          Documentation\n        ")]
+                [_vm._v("Documentation")]
               )
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "header-title" }, [
-              _vm._v("Thank you for 95 shares!")
+              _vm._v("Change the Background color here")
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "button-container text-center" }, [
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-round btn-info",
-                  attrs: { id: "twitter" }
+                  staticClass:
+                    "btn btn-default btn-round animation-on-hover btn-sm dark-badge",
+                  attrs: { type: "button" }
                 },
-                [_c("i", { staticClass: "fab fa-twitter" }), _vm._v(" · 45")]
+                [_vm._v("DARK MODE")]
               ),
               _vm._v(" "),
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-round btn-info",
-                  attrs: { id: "facebook" }
+                  staticClass:
+                    "btn btn-success btn-round animation-on-hover btn-sm light-badge",
+                  attrs: { type: "button" }
                 },
-                [_c("i", { staticClass: "fab fa-facebook-f" }), _vm._v(" · 50")]
+                [_vm._v("LIGHT MODE")]
               ),
               _vm._v(" "),
               _c("br"),
@@ -49385,14 +49781,14 @@ var staticRenderFns = [
                   staticClass: "github-button",
                   attrs: {
                     href:
-                      "https://github.com/creativetimofficial/ct-black-dashboard-pro",
+                      "https://github.com/creativetimofficial/black-dashboard",
                     "data-icon": "octicon-star",
                     "data-size": "large",
                     "data-show-count": "true",
                     "aria-label": "Star ntkme/github-buttons on GitHub"
                   }
                 },
-                [_vm._v("Star")]
+                [_vm._v("TNK")]
               )
             ])
           ])
@@ -49402,7 +49798,9 @@ var staticRenderFns = [
       _c("div", { staticClass: "fixed-plugin-cutome" }, [
         _c("div", { staticClass: "dropdown show-dropdown" }, [
           _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
-            _c("img", { attrs: { src: "assets/img/chat-btn.gif" } })
+            _c("i", {
+              staticClass: "text-white tim-icons icon-components fa-2x"
+            })
           ]),
           _vm._v(" "),
           _c("ul", { staticClass: "dropdown-menu" }, [
@@ -49435,7 +49833,7 @@ var staticRenderFns = [
             _c("li", { staticClass: "button-container bg-call" }, [
               _c("p", { staticClass: "home_custom" }, [
                 _c("i", { staticClass: "fas fa-phone-volume" }),
-                _vm._v("服务热线\n              ")
+                _vm._v("服务热线\n          ")
               ])
             ]),
             _vm._v(" "),
@@ -49443,69 +49841,7 @@ var staticRenderFns = [
               _c("p", [_vm._v("香港热线(0.49元/分)")]),
               _vm._v(" "),
               _c("p", { staticClass: "hongKong1" }, [
-                _vm._v("\n                +852-3841-5777\n                "),
-                _c("br")
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "hongKong2" }, [_vm._v("+852-3008-3777")])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "button-container pt-0" }, [
-              _c("p", [_vm._v("菲律宾热线(0.99元/分)")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("+63-2-949-8222")])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "button-container pt-0" })
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "fixed-plugin-tools" }, [
-        _c("div", { staticClass: "dropdown show-dropdown" }, [
-          _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
-            _c("img", { attrs: { src: "/assets/img/tools-btn.png" } })
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "dropdown-menu" }, [
-            _c("li", { staticClass: "button-container mt-4 pb-0" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-default btn-block btn-round",
-                  attrs: {
-                    href: "../docs/1.0/getting-started/introduction.html"
-                  }
-                },
-                [_vm._v("在线咨询")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "button-container pt-0" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-default btn-block btn-round",
-                  attrs: {
-                    href: "../docs/1.0/getting-started/introduction.html"
-                  }
-                },
-                [_vm._v("电话回拨")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "button-container bg-call" }, [
-              _c("p", { staticClass: "home_custom" }, [
-                _c("i", { staticClass: "fas fa-phone-volume" }),
-                _vm._v("服务热线\n              ")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "button-container pt-0" }, [
-              _c("p", [_vm._v("香港热线(0.49元/分)")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "hongKong1" }, [
-                _vm._v("\n                +852-3841-5777\n                "),
+                _vm._v("\n            +852-3841-5777\n            "),
                 _c("br")
               ]),
               _vm._v(" "),
@@ -52246,42 +52582,44 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "wrapper container-whitelabel" },
-      [
-        _c("asides"),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "main-panel" },
-          [
-            _c("navbars"),
-            _vm._v(" "),
-            _c("div", { staticClass: "content" }, [
-              _c("hr"),
+  return _c(
+    "div",
+    [
+      _c("navbars"),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "wrapper container-whitelabel" },
+        [
+          _c("asides"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "main-panel" },
+            [
+              _c("div", { staticClass: "content" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-12 p-0 home-wrap" },
+                    [_c("navbarindex"), _vm._v(" "), _c("hr")],
+                    1
+                  )
+                ])
+              ]),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-12 p-0 home-wrap" },
-                  [_c("navbarindex"), _vm._v(" "), _c("hr")],
-                  1
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("alertsidebar"),
-            _vm._v(" "),
-            _c("footers")
-          ],
-          1
-        )
-      ],
-      1
-    )
-  ])
+              _c("alertsidebar"),
+              _vm._v(" "),
+              _c("footers")
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -55587,7 +55925,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-wrap main-container u-wrap" }, [
     _c("div", { staticClass: "u-menu" }, [
-      _c("div", { staticClass: "umenu-wrap" }, [
+      _c("div", { staticClass: "umenu-wrap color-bg" }, [
         _c("dl", [
           _vm._m(0),
           _vm._v(" "),
@@ -64096,35 +64434,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "wrapper container-whitelabel" },
-      [
-        _c("asides"),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "main-panel" },
-          [
-            _c("navbars"),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3),
-            _vm._v(" "),
-            _c("footers")
-          ],
-          1
-        )
-      ],
-      1
-    )
-  ])
+  return _c(
+    "div",
+    [
+      _c("navbars"),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "wrapper container-whitelabel" },
+        [
+          _c("asides"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "main-panel" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("alertaside"),
+              _vm._v(" "),
+              _c("footers")
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -64132,8 +64470,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "content" }, [
-      _c("hr"),
-      _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-12 p-0 home-wrap" }, [
           _c("div", { staticClass: "container-wrap" }, [
@@ -64505,296 +64841,6 @@ var staticRenderFns = [
         ])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "fixed-plugin" }, [
-      _c("div", { staticClass: "dropdown show-dropdown" }, [
-        _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
-          _c("img", { attrs: { src: "assets/img/q-btn.png" } })
-        ]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "dropdown-menu" }, [
-          _c("li", { staticClass: "header-title" }, [
-            _vm._v("Sidebar Background")
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "adjustments-line" }, [
-            _c(
-              "a",
-              {
-                staticClass: "switch-trigger background-color",
-                attrs: { href: "javascript:void(0)" }
-              },
-              [
-                _c("div", { staticClass: "badge-colors text-center" }, [
-                  _c("span", {
-                    staticClass: "badge filter badge-primary active",
-                    attrs: { "data-color": "primary" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", {
-                    staticClass: "badge filter badge-info",
-                    attrs: { "data-color": "blue" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", {
-                    staticClass: "badge filter badge-success",
-                    attrs: { "data-color": "green" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", {
-                    staticClass: "badge filter badge-warning",
-                    attrs: { "data-color": "orange" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", {
-                    staticClass: "badge filter badge-danger",
-                    attrs: { "data-color": "red" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "clearfix" })
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "header-title" }, [_vm._v("Sidebar Mini")]),
-          _vm._v(" "),
-          _c("li", { staticClass: "adjustments-line" }, [
-            _c("div", { staticClass: "togglebutton switch-sidebar-mini" }, [
-              _c("span", { staticClass: "label-switch" }, [_vm._v("OFF")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "bootstrap-switch",
-                attrs: {
-                  type: "checkbox",
-                  name: "checkbox",
-                  checked: "",
-                  "data-on-label": "",
-                  "data-off-label": ""
-                }
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "label-switch label-right" }, [
-                _vm._v("ON")
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "togglebutton switch-change-color mt-3" },
-              [
-                _c("span", { staticClass: "label-switch" }, [
-                  _vm._v("LIGHT MODE")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "bootstrap-switch",
-                  attrs: {
-                    type: "checkbox",
-                    name: "checkbox",
-                    "data-on-label": "",
-                    "data-off-label": ""
-                  }
-                }),
-                _vm._v(" "),
-                _c("span", { staticClass: "label-switch label-right" }, [
-                  _vm._v("DARK MODE")
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "button-container mt-4" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-default btn-block btn-round",
-                attrs: { href: "../docs/1.0/getting-started/introduction.html" }
-              },
-              [_vm._v("Documentation")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "header-title" }, [
-            _vm._v("Thank you for 95 shares!")
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "button-container text-center" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-round btn-info",
-                attrs: { id: "twitter" }
-              },
-              [
-                _c("i", { staticClass: "fab fa-twitter" }),
-                _vm._v(" · 45\n              ")
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-round btn-info",
-                attrs: { id: "facebook" }
-              },
-              [
-                _c("i", { staticClass: "fab fa-facebook-f" }),
-                _vm._v(" · 50\n              ")
-              ]
-            ),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "github-button",
-                attrs: {
-                  href:
-                    "https://github.com/creativetimofficial/ct-black-dashboard-pro",
-                  "data-icon": "octicon-star",
-                  "data-size": "large",
-                  "data-show-count": "true",
-                  "aria-label": "Star ntkme/github-buttons on GitHub"
-                }
-              },
-              [_vm._v("Star")]
-            )
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "fixed-plugin-cutome" }, [
-      _c("div", { staticClass: "dropdown show-dropdown" }, [
-        _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
-          _c("img", { attrs: { src: "assets/img/chat-btn.gif" } })
-        ]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "dropdown-menu" }, [
-          _c("li", { staticClass: "button-container mt-4 pb-0" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-default btn-block btn-round",
-                attrs: { href: "../docs/1.0/getting-started/introduction.html" }
-              },
-              [_vm._v("在线咨询")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "button-container pt-0" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-default btn-block btn-round",
-                attrs: { href: "../docs/1.0/getting-started/introduction.html" }
-              },
-              [_vm._v("电话回拨")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "button-container bg-call" }, [
-            _c("p", { staticClass: "home_custom" }, [
-              _c("i", { staticClass: "fas fa-phone-volume" }),
-              _vm._v("服务热线\n              ")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "button-container pt-0" }, [
-            _c("p", [_vm._v("香港热线(0.49元/分)")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "hongKong1" }, [
-              _vm._v("\n                +852-3841-5777\n                "),
-              _c("br")
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "hongKong2" }, [_vm._v("+852-3008-3777")])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "button-container pt-0" }, [
-            _c("p", [_vm._v("菲律宾热线(0.99元/分)")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("+63-2-949-8222")])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "button-container pt-0" })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "fixed-plugin-tools" }, [
-      _c("div", { staticClass: "dropdown show-dropdown" }, [
-        _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
-          _c("img", { attrs: { src: "/assets/img/tools-btn.png" } })
-        ]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "dropdown-menu" }, [
-          _c("li", { staticClass: "button-container mt-4 pb-0" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-default btn-block btn-round",
-                attrs: { href: "../docs/1.0/getting-started/introduction.html" }
-              },
-              [_vm._v("在线咨询")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "button-container pt-0" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-default btn-block btn-round",
-                attrs: { href: "../docs/1.0/getting-started/introduction.html" }
-              },
-              [_vm._v("电话回拨")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "button-container bg-call" }, [
-            _c("p", { staticClass: "home_custom" }, [
-              _c("i", { staticClass: "fas fa-phone-volume" }),
-              _vm._v("服务热线\n              ")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "button-container pt-0" }, [
-            _c("p", [_vm._v("香港热线(0.49元/分)")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "hongKong1" }, [
-              _vm._v("\n                +852-3841-5777\n                "),
-              _c("br")
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "hongKong2" }, [_vm._v("+852-3008-3777")])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "button-container pt-0" }, [
-            _c("p", [_vm._v("菲律宾热线(0.99元/分)")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("+63-2-949-8222")])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "button-container pt-0" })
-        ])
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -64977,10 +65023,7 @@ var render = function() {
   return _c("div", [
     _c(
       "nav",
-      {
-        staticClass:
-          "navbar navbar-expand-lg navbar-absolute navbar-transparent"
-      },
+      { staticClass: "navbar navbar-expand-lg navbar-absolute color-bg" },
       [
         _c("div", { staticClass: "container-fluid" }, [
           _c("div", { staticClass: "navbar-wrapper" }, [
@@ -65015,7 +65058,7 @@ var render = function() {
                         _c(
                           "a",
                           {
-                            staticClass: "button nav-link d-flex",
+                            staticClass: "button nav-link d-flex float-left",
                             attrs: { href: _vm.messages }
                           },
                           [_vm._m(5), _vm._v("Message\n              ")]
@@ -65026,7 +65069,7 @@ var render = function() {
                         _c(
                           "a",
                           {
-                            staticClass: "button nav-link d-flex",
+                            staticClass: "button nav-link d-flex float-left",
                             attrs: { href: "#" },
                             on: {
                               click: function($event) {
@@ -65042,7 +65085,7 @@ var render = function() {
                         _c(
                           "a",
                           {
-                            staticClass: "button nav-link d-flex",
+                            staticClass: "button nav-link d-flex float-left",
                             attrs: { href: _vm.promote }
                           },
                           [_vm._m(7), _vm._v("My Privilege\n              ")]
@@ -65053,7 +65096,7 @@ var render = function() {
                         _c(
                           "a",
                           {
-                            staticClass: "button nav-link d-flex",
+                            staticClass: "button nav-link d-flex float-left",
                             attrs: { href: _vm.lobby }
                           },
                           [_vm._m(8), _vm._v("Game Lobby\n              ")]
@@ -65064,7 +65107,7 @@ var render = function() {
                         _c(
                           "a",
                           {
-                            staticClass: "button nav-link d-flex",
+                            staticClass: "button nav-link d-flex float-left",
                             attrs: { href: "#" },
                             on: {
                               click: function($event) {
@@ -65080,7 +65123,7 @@ var render = function() {
                         _c(
                           "a",
                           {
-                            staticClass: "button nav-link d-flex",
+                            staticClass: "button nav-link d-flex float-left",
                             attrs: { href: "#" },
                             on: {
                               click: function($event) {
@@ -65130,7 +65173,8 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-primary btn-lg btn-block mb-3",
+                          staticClass:
+                            "btn btn-default animation-on-hover btn-lg btn-block mb-3",
                           attrs: { type: "submit" },
                           on: {
                             click: function($event) {
@@ -65138,7 +65182,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("登录")]
+                        [_vm._v("Login")]
                       ),
                       _vm._v(" "),
                       _vm._m(15)
@@ -65147,7 +65191,8 @@ var render = function() {
                 ]
               )
             ])
-          ])
+          ]),
+          _vm._v("s\n      ")
         ])
       ])
     ]),
@@ -65160,8 +65205,6 @@ var render = function() {
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "container" }, [
               _c("div", { staticClass: "row" }, [
-                _vm._m(17),
-                _vm._v(" "),
                 _c("div", { staticClass: "col-md-7 mr-auto" }, [
                   _c("div", { staticClass: "card card-register card-white" }, [
                     _c(
@@ -65171,11 +65214,11 @@ var render = function() {
                         attrs: { method: "POST", action: "register" }
                       },
                       [
-                        _vm._m(18),
+                        _vm._m(17),
                         _vm._v(" "),
                         _c("div", { staticClass: "card-body" }, [
                           _c("div", { staticClass: "input-group" }, [
-                            _vm._m(19),
+                            _vm._m(18),
                             _vm._v(" "),
                             _c("input", {
                               staticClass: "form-control",
@@ -65185,7 +65228,8 @@ var render = function() {
                                 name: "name",
                                 required: "",
                                 autocomplete: "name",
-                                autofocus: ""
+                                autofocus: "",
+                                placeholder: "Enter your name"
                               }
                             }),
                             _vm._v(" "),
@@ -65195,14 +65239,14 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
+                          _vm._m(19),
+                          _vm._v(" "),
                           _vm._m(20),
                           _vm._v(" "),
-                          _vm._m(21),
-                          _vm._v(" "),
-                          _vm._m(22)
+                          _vm._m(21)
                         ]),
                         _vm._v(" "),
-                        _vm._m(23)
+                        _vm._m(22)
                       ]
                     )
                   ])
@@ -65214,9 +65258,9 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(24),
+    _vm._m(23),
     _vm._v(" "),
-    _vm._m(25)
+    _vm._m(24)
   ])
 }
 var staticRenderFns = [
@@ -65299,7 +65343,10 @@ var staticRenderFns = [
       _c("li", { staticClass: "nav-item" }, [
         _c(
           "a",
-          { staticClass: "button nav-link d-flex", attrs: { href: "#" } },
+          {
+            staticClass: "button nav-link d-flex float-left",
+            attrs: { href: "#" }
+          },
           [
             _c("div", { staticClass: "icons" }, [
               _c("i", { staticClass: "tim-icons icon-single-02 icon-default" }),
@@ -65321,7 +65368,7 @@ var staticRenderFns = [
         _c(
           "a",
           {
-            staticClass: "button nav-link d-flex",
+            staticClass: "button nav-link d-flex float-left",
             attrs: {
               href: "#",
               "data-toggle": "modal",
@@ -65343,7 +65390,7 @@ var staticRenderFns = [
         _c(
           "a",
           {
-            staticClass: "button nav-link d-flex",
+            staticClass: "button nav-link d-flex float-left",
             attrs: {
               href: "#",
               "data-toggle": "modal",
@@ -65365,7 +65412,7 @@ var staticRenderFns = [
         _c(
           "a",
           {
-            staticClass: "button nav-link d-flex",
+            staticClass: "button nav-link d-flex float-left",
             attrs: {
               href: "#",
               "data-toggle": "modal",
@@ -65454,7 +65501,7 @@ var staticRenderFns = [
       _c(
         "a",
         {
-          staticClass: "button nav-link d-flex fixed-logout",
+          staticClass: "button nav-link d-flex float-left fixed-logout",
           attrs: { href: "#" }
         },
         [
@@ -65471,7 +65518,7 @@ var staticRenderFns = [
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "dropdown-menu" }, [
+            _c("div", { staticClass: "dropdown-menu mt-3 p-0" }, [
               _c("div", { staticClass: "row p-4" }, [
                 _c("div", { staticClass: "col-6" }, [
                   _c("img", { attrs: { src: "assets/img/user.png", alt: "" } })
@@ -65529,7 +65576,7 @@ var staticRenderFns = [
                   { staticClass: "btn-logout", attrs: { href: "/logout" } },
                   [
                     _c("i", { staticClass: "fa fa-power-off" }),
-                    _vm._v("安全退出asdasd\n                      ")
+                    _vm._v("Log Out\n                      ")
                   ]
                 )
               ])
@@ -65579,7 +65626,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("input", {
-          staticClass: "form-control ",
+          staticClass: "form-control",
           attrs: {
             id: "email",
             type: "email",
@@ -65587,17 +65634,8 @@ var staticRenderFns = [
             value: "",
             required: "",
             autocomplete: "email",
-            autofocus: ""
-          }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-check-input",
-          attrs: {
-            type: "checkbox",
-            name: "remember",
-            id: "remember",
-            value: "true"
+            autofocus: "",
+            placeholder: "Enter email"
           }
         })
       ]),
@@ -65616,7 +65654,8 @@ var staticRenderFns = [
             type: "password",
             name: "password",
             required: "",
-            autocomplete: "current-password"
+            autocomplete: "current-password",
+            placeholder: "Enter Your Password"
           }
         })
       ])
@@ -65631,21 +65670,28 @@ var staticRenderFns = [
         "a",
         {
           staticClass: "link footer-link",
-          attrs: { href: "javascript:void(0)" }
+          attrs: {
+            href: "#",
+            "data-toggle": "modal",
+            "data-target": ".register",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
         },
-        [_vm._v("忘记密码？")]
+        [
+          _c("i", { staticClass: "fas fa-user-plus icon-default pr-3" }),
+          _vm._v("Create Account\n                    ")
+        ]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "d-flex" }, [
-        _c("p", { staticClass: "link footer-link" }, [_vm._v("没有账号？")]),
-        _vm._v(" "),
         _c(
           "a",
           {
             staticClass: "link footer-link",
             attrs: { href: "javascript:void(0)" }
           },
-          [_vm._v("在此注册")]
+          [_vm._v("Forgot Password？")]
         )
       ])
     ])
@@ -65671,73 +65717,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-5 ml-auto" }, [
-      _c("div", { staticClass: "info-area info-horizontal mt-5" }, [
-        _c("div", { staticClass: "icon icon-warning" }, [
-          _c("i", { staticClass: "tim-icons icon-wifi" })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "description" }, [
-          _c("h3", { staticClass: "info-title text-dark m-0" }, [
-            _vm._v("Marketing")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "description" }, [
-            _vm._v(
-              "We've created the marketing campaign of the website. It was a very interesting collaboration."
-            )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "info-area info-horizontal" }, [
-        _c("div", { staticClass: "icon icon-primary" }, [
-          _c("i", { staticClass: "tim-icons icon-triangle-right-17" })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "description" }, [
-          _c("h3", { staticClass: "info-title text-dark m-0" }, [
-            _vm._v("Fully Coded in HTML5")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "description" }, [
-            _vm._v(
-              "We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub."
-            )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "info-area info-horizontal" }, [
-        _c("div", { staticClass: "icon icon-info" }, [
-          _c("i", { staticClass: "tim-icons icon-trophy" })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "description" }, [
-          _c("h3", { staticClass: "info-title text-dark m-0" }, [
-            _vm._v("Built Audience")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "description" }, [
-            _vm._v(
-              "There is also a Fully Customizable CMS Admin Dashboard for this product."
-            )
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("img", {
         staticClass: "card-img",
         attrs: { src: "assets/img/card-primary.png", alt: "Card image" }
       }),
       _vm._v(" "),
-      _c("h4", { staticClass: "card-title" }, [_vm._v("Register")])
+      _c("h4", { staticClass: "card-title text-capitalize" }, [
+        _vm._v("Register")
+      ])
     ])
   },
   function() {
@@ -65768,7 +65756,8 @@ var staticRenderFns = [
           type: "email",
           name: "email",
           required: "",
-          autocomplete: "email"
+          autocomplete: "email",
+          placeholder: "Enter email"
         }
       })
     ])
@@ -65791,9 +65780,11 @@ var staticRenderFns = [
           type: "password",
           name: "password",
           required: "",
-          autocomplete: "new-password"
+          autocomplete: "new-password",
+          placeholder: "Enter password"
         }
       }),
+      _vm._v(" "),
       _c("br"),
       _vm._v(" "),
       _c("input", {
@@ -65803,7 +65794,8 @@ var staticRenderFns = [
           type: "password",
           name: "password_confirmation",
           required: "",
-          autocomplete: "new-password"
+          autocomplete: "new-password",
+          placeholder: "password_confirmation"
         }
       })
     ])
@@ -65841,7 +65833,7 @@ var staticRenderFns = [
           staticClass: "btn btn-primary btn-round btn-lg",
           attrs: { type: "submit" }
         },
-        [_vm._v("注册")]
+        [_vm._v("Register")]
       )
     ])
   },
@@ -65873,7 +65865,7 @@ var staticRenderFns = [
             _c("div", { staticClass: "modal-body" }, [
               _c("div", { staticClass: "container" }, [
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-12 mr-auto" }, [
+                  _c("div", { staticClass: "col-md-7 mr-auto" }, [
                     _c(
                       "div",
                       { staticClass: "card card-register card-white" },
@@ -78184,7 +78176,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('app-container', __webpack_require__(/*! ./components/welcome/containerwelcome.vue */ "./resources/js/components/welcome/containerwelcome.vue")["default"]);
 Vue.component('app-index', __webpack_require__(/*! ./components/index/index.vue */ "./resources/js/components/index/index.vue")["default"]);
-Vue.component('app-promte', __webpack_require__(/*! ./components/activity/containterpromote.vue */ "./resources/js/components/activity/containterpromote.vue")["default"]);
+Vue.component('app-promte', __webpack_require__(/*! ./components/activity/promote.vue */ "./resources/js/components/activity/promote.vue")["default"]);
 Vue.component('app-lobby', __webpack_require__(/*! ./components/lobby.vue */ "./resources/js/components/lobby.vue")["default"]);
 Vue.component('passport-clients', __webpack_require__(/*! ./components/passport/Clients.vue */ "./resources/js/components/passport/Clients.vue")["default"]);
 Vue.component('passport-authorized-clients', __webpack_require__(/*! ./components/passport/AuthorizedClients.vue */ "./resources/js/components/passport/AuthorizedClients.vue")["default"]);
@@ -78256,75 +78248,6 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/components/activity/containterpromote.vue":
-/*!****************************************************************!*\
-  !*** ./resources/js/components/activity/containterpromote.vue ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _containterpromote_vue_vue_type_template_id_3ccc2e5e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./containterpromote.vue?vue&type=template&id=3ccc2e5e&scoped=true& */ "./resources/js/components/activity/containterpromote.vue?vue&type=template&id=3ccc2e5e&scoped=true&");
-/* harmony import */ var _containterpromote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./containterpromote.vue?vue&type=script&lang=js& */ "./resources/js/components/activity/containterpromote.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _containterpromote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _containterpromote_vue_vue_type_template_id_3ccc2e5e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _containterpromote_vue_vue_type_template_id_3ccc2e5e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "3ccc2e5e",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/activity/containterpromote.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/activity/containterpromote.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/js/components/activity/containterpromote.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_containterpromote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./containterpromote.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/activity/containterpromote.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_containterpromote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/activity/containterpromote.vue?vue&type=template&id=3ccc2e5e&scoped=true&":
-/*!***********************************************************************************************************!*\
-  !*** ./resources/js/components/activity/containterpromote.vue?vue&type=template&id=3ccc2e5e&scoped=true& ***!
-  \***********************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_containterpromote_vue_vue_type_template_id_3ccc2e5e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./containterpromote.vue?vue&type=template&id=3ccc2e5e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/activity/containterpromote.vue?vue&type=template&id=3ccc2e5e&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_containterpromote_vue_vue_type_template_id_3ccc2e5e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_containterpromote_vue_vue_type_template_id_3ccc2e5e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
 
 /***/ }),
 

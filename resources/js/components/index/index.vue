@@ -1,11 +1,10 @@
 <template>
   <div>
+   <navbars></navbars>
     <div class="wrapper container-whitelabel">
       <asides></asides>
       <div class="main-panel">
-        <navbars></navbars>
         <div class="content">
-          <hr>
           <div class="row">
             <div class="col-12 p-0 home-wrap">
            <navbarindex></navbarindex>

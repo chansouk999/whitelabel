@@ -1,6 +1,8 @@
 <template>
   <div>
+    <app-navbar></app-navbar>
     <!-- End Header -->
+        <div class="wrapper container-whitelabel">
     <div class="main-container vip_club">
       <div class="sections">
         <div class="section banner">
@@ -845,12 +847,17 @@
       </div>
     
     </div>
+    <app-alertsidebar></app-alertsidebar>
+  </div>
   </div>
 </template>
 <script>
+import navbars from './navbar.vue';
+import alertsidebar from '../alertsidebar.vue';
 export default {
   components: {
-  
+  'app-navbar':navbars,
+  'app-alertsidebar':alertsidebar,
   }
 };
 </script>
