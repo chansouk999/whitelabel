@@ -3,7 +3,7 @@
     <div class="fixed-plugin">
       <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
-          <i class="fa fa-cog fa-2x"></i>
+          <i class="fa fa-cog fa-2x  fa-spin"></i>
         </a>
         <ul class="dropdown-menu">
             <li class="header-title">Navbar Background</li>

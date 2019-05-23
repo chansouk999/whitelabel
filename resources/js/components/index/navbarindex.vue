@@ -1,7 +1,7 @@
 <template>
   <div class="container-wrap main-container u-wrap">
     <div class="u-menu">
-      <div class="umenu-wrap">
+      <div class="umenu-wrap color-bg">
         <dl>
           <dt>
             <i class="icon-user"></i>My account

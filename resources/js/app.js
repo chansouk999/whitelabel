@@ -21,7 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('app-container', require('./components/welcome/containerwelcome.vue').default);
 Vue.component('app-index', require('./components/index/index.vue').default);
-Vue.component('app-promte', require('./components/activity/containterpromote.vue').default);
+Vue.component('app-promte', require('./components/activity/promote.vue').default);
 Vue.component('app-lobby', require('./components/lobby.vue').default);
 
 /**

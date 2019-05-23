@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-absolute color-bg" >
+    <nav class="navbar navbar-expand-lg navbar-absolute color-bg">
       <div class="container-fluid">
         <div class="navbar-wrapper">
           <div class="navbar-minimize d-inline">
@@ -39,7 +39,7 @@
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a href="#" class="button nav-link d-flex">
+              <a href="#" class="button nav-link d-flex float-left">
                 <div class="icons">
                   <i class="tim-icons icon-single-02 icon-default"></i>
                   <i class="tim-icons icon-coins icon-hover"></i>
@@ -53,7 +53,7 @@
               <li class="nav-item">
                 <a
                   href="#"
-                  class="button nav-link d-flex"
+                  class="button nav-link d-flex float-left"
                   data-toggle="modal"
                   data-target="#loginModal"
                 >
@@ -66,7 +66,7 @@
               <li class="nav-item">
                 <a
                   href="#"
-                  class="button nav-link d-flex"
+                  class="button nav-link d-flex float-left"
                   data-toggle="modal"
                   data-target=".register"
                 >
@@ -79,7 +79,7 @@
               <li class="nav-item">
                 <a
                   href="#"
-                  class="button nav-link d-flex"
+                  class="button nav-link d-flex float-left"
                   data-toggle="modal"
                   data-target="#freetrial"
                 >
@@ -96,7 +96,7 @@
           <span v-else-if="checkuser == 'true'">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a :href="messages" class="button nav-link d-flex">
+                <a :href="messages" class="button nav-link d-flex float-left">
                   <div class="icons">
                     <i class="tim-icons icon-chat-33 icon-default"></i>
                     <i class="tim-icons icon-chat-33 icon-hover"></i>
@@ -104,7 +104,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="button nav-link d-flex" @click="myaccount()">
+                <a href="#" class="button nav-link d-flex float-left" @click="myaccount()">
                   <div class="icons">
                     <i class="tim-icons icon-single-02 icon-default"></i>
                     <i class="tim-icons icon-single-02 icon-hover"></i>
@@ -112,7 +112,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a :href="promote" class="button nav-link d-flex">
+                <a :href="promote" class="button nav-link d-flex float-left">
                   <div class="icons">
                     <i class="tim-icons icon-trophy icon-default"></i>
                     <i class="tim-icons icon-trophy icon-hover"></i>
@@ -120,7 +120,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                 <a :href="lobby" class="button nav-link d-flex">
+                <a :href="lobby" class="button nav-link d-flex float-left">
                   <div class="icons">
                     <i class="tim-icons icon-controller icon-default"></i>
                     <i class="tim-icons icon-controller icon-hover"></i>
@@ -128,11 +128,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  href="#"
-                  class="button nav-link d-flex"
-                   @click="rechargeClick()"
-                >
+                <a href="#" class="button nav-link d-flex float-left" @click="rechargeClick()">
                   <div class="icons">
                     <i class="tim-icons icon-coins icon-default"></i>
                     <i class="tim-icons icon-coins icon-hover"></i>
@@ -140,19 +136,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  href="#"
-                  class="button nav-link d-flex"
-                   @click="withDrawClick()"
-                >
+                <a href="#" class="button nav-link d-flex float-left" @click="withDrawClick()">
                   <div class="icons">
                     <i class="tim-icons icon-money-coins icon-default"></i>
                     <i class="tim-icons icon-cart icon-hover"></i>
                   </div>WithDraw
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="button nav-link d-flex fixed-logout">
+               <li class="nav-item">
+                 <a href="#" class="button nav-link d-flex float-left fixed-logout">
                   <div class="dropdown show-dropdown">
                     <a href="#" data-toggle="dropdown">
                       <div class="icons">
@@ -160,7 +152,7 @@
                         <i class="tim-icons icon-bullet-list-67 icon-hover"></i>
                       </div>
                     </a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu mt-3 p-0">
                       <div class="row p-4">
                         <div class="col-6">
                           <img src="assets/img/user.png" alt>
@@ -188,7 +180,7 @@
                           </div>
                         </div>
                         <a href="/logout" class="btn-logout">
-                          <i class="fa fa-power-off"></i>安全退出asdasd
+                          <i class="fa fa-power-off"></i>Log Out
                         </a>
                       </div>
                     </div>
@@ -213,7 +205,7 @@
           <div class="modal-body">
             <div class="col-lg-12 col-md-12">
               <form class="form" action="login" method="POST">
-              <input type="hidden" name="_token" :value="csrf">
+                <input type="hidden" name="_token" :value="csrf">
                 <div class="card card-login card-white">
                   <div class="card-header">
                     <img src="assets/img/card-primary.png" alt>
@@ -226,8 +218,18 @@
                           <i class="tim-icons icon-email-85"></i>
                         </div>
                       </div>
-                      <input id="email" type="email" class="form-control " name="email" value="" required autocomplete="email" autofocus>
-                        <input class="form-check-input" type="checkbox"  name="remember" id="remember" value="true">
+                      <input
+                        id="email"
+                        type="email"
+                        class="form-control"
+                        name="email"
+                        value
+                        required
+                        autocomplete="email"
+                        autofocus
+                        placeholder="Enter email"
+                      >
+                      <!-- <input class="form-check-input" type="checkbox"  name="remember" id="remember" value="true"> -->
                     </div>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -235,26 +237,42 @@
                           <i class="tim-icons icon-lock-circle"></i>
                         </div>
                       </div>
-                      <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
+                      <input
+                        id="password"
+                        type="password"
+                        class="form-control"
+                        name="password"
+                        required
+                        autocomplete="current-password"
+                        placeholder="Enter Your Password"
+                      >
                     </div>
                   </div>
                   <div class="card-footer">
-                    <button type="submit" 
-                      class="btn btn-primary btn-lg btn-block mb-3"
+                    <button
+                      type="submit"
+                      class="btn btn-default animation-on-hover btn-lg btn-block mb-3"
                       @click="ismenu=!ismenu"
-                    >登录</button>
+                    >Login</button>
                     <div class="d-flex justify-content-between">
-                      <a href="javascript:void(0)" class="link footer-link">忘记密码？</a>
+                      <a
+                        href="#"
+                        class="link footer-link"
+                        data-toggle="modal"
+                        data-target=".register"
+                        data-dismiss="modal" aria-label="Close"
+                      >
+                          <i class="fas fa-user-plus icon-default pr-3"></i>Create Account
+                      </a>
                       <div class="d-flex">
-                        <p class="link footer-link">没有账号？</p>
-                        <a href="javascript:void(0)" class="link footer-link">在此注册</a>
+                        <a href="javascript:void(0)" class="link footer-link">Forgot Password？</a>
                       </div>
                     </div>
                   </div>
                 </div>
               </form>
             </div>
-          </div>
+          </div>s
         </div>
       </div>
     </div>
@@ -272,58 +290,31 @@
           <div class="modal-body">
             <div class="container">
               <div class="row">
-                <div class="col-md-5 ml-auto">
-                  <div class="info-area info-horizontal mt-5">
-                    <div class="icon icon-warning">
-                      <i class="tim-icons icon-wifi"></i>
-                    </div>
-                    <div class="description">
-                      <h3 class="info-title text-dark m-0">Marketing</h3>
-                      <p
-                        class="description"
-                      >We've created the marketing campaign of the website. It was a very interesting collaboration.</p>
-                    </div>
-                  </div>
-                  <div class="info-area info-horizontal">
-                    <div class="icon icon-primary">
-                      <i class="tim-icons icon-triangle-right-17"></i>
-                    </div>
-                    <div class="description">
-                      <h3 class="info-title text-dark m-0">Fully Coded in HTML5</h3>
-                      <p
-                        class="description"
-                      >We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.</p>
-                    </div>
-                  </div>
-                  <div class="info-area info-horizontal">
-                    <div class="icon icon-info">
-                      <i class="tim-icons icon-trophy"></i>
-                    </div>
-                    <div class="description">
-                      <h3 class="info-title text-dark m-0">Built Audience</h3>
-                      <p
-                        class="description"
-                      >There is also a Fully Customizable CMS Admin Dashboard for this product.</p>
-                    </div>
-                  </div>
-                </div>
                 <div class="col-md-7 mr-auto">
                   <div class="card card-register card-white">
-                     <form class="form" method="POST" action="register">
-                    <div class="card-header">
-                      <img class="card-img" src="assets/img/card-primary.png" alt="Card image">
-                      <h4 class="card-title">Register</h4>
-                    </div>
-                    <div class="card-body">
-                     
+                    <form class="form" method="POST" action="register">
+                      <div class="card-header">
+                        <img class="card-img" src="assets/img/card-primary.png" alt="Card image">
+                        <h4 class="card-title text-capitalize">Register</h4>
+                      </div>
+                      <div class="card-body">
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
                               <i class="tim-icons icon-single-02"></i>
                             </div>
                           </div>
-                          <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus>
-                            <input type="hidden" name="_token" :value="csrf">
+                          <input
+                            id="name"
+                            type="text"
+                            class="form-control"
+                            name="name"
+                            required
+                            autocomplete="name"
+                            autofocus
+                            placeholder="Enter your name"
+                          >
+                          <input type="hidden" name="_token" :value="csrf">
                         </div>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -331,7 +322,15 @@
                               <i class="tim-icons icon-email-85"></i>
                             </div>
                           </div>
-                          <input id="email" type="email" class="form-control" name="email" required autocomplete="email">
+                          <input
+                            id="email"
+                            type="email"
+                            class="form-control"
+                            name="email"
+                            required
+                            autocomplete="email"
+                            placeholder="Enter email"
+                          >
                         </div>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -339,8 +338,25 @@
                               <i class="tim-icons icon-lock-circle"></i>
                             </div>
                           </div>
-                         <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password"><br>
-                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                          <input
+                            id="password"
+                            type="password"
+                            class="form-control"
+                            name="password"
+                            required
+                            autocomplete="new-password"
+                            placeholder="Enter password"
+                          >
+                          <br>
+                          <input
+                            id="password-confirm"
+                            type="password"
+                            class="form-control"
+                            name="password_confirmation"
+                            required
+                            autocomplete="new-password"
+                            placeholder="password_confirmation"
+                          >
                         </div>
                         <div class="form-check text-left">
                           <label class="form-check-label">
@@ -352,12 +368,11 @@
                             >terms and conditions</a>.
                           </label>
                         </div>
-                     
-                    </div>
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-primary btn-round btn-lg">注册</button>
-                    </div>
-                     </form>
+                      </div>
+                      <div class="card-footer">
+                        <button type="submit" class="btn btn-primary btn-round btn-lg">Register</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -382,7 +397,7 @@
           <div class="modal-body">
             <div class="container">
               <div class="row">
-                <div class="col-md-12 mr-auto">
+                <div class="col-md-7 mr-auto">
                   <div class="card card-register card-white">
                     <div class="card-header">
                       <img class="card-img" src="assets/img/card-primary.png" alt="Card image">
@@ -452,20 +467,22 @@ export default {
       messages: "./index",
       promote: "./promote",
       welcome: "/",
-      lobby:"./lobby",
-       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-       checkuser: document.querySelector('.checkuser').getAttribute('value'),
+      lobby: "./lobby",
+      csrf: document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content"),
+      checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
   methods: {
     myaccount() {
-      $("#myaccountlink")[0].click()
+      $("#myaccountlink")[0].click();
     },
     withDrawClick() {
-      $("#withdraw")[0].click()
+      $("#withdraw")[0].click();
     },
     rechargeClick() {
-      $("#recharge")[0].click()
+      $("#recharge")[0].click();
     }
   }
 };
