@@ -25,5 +25,13 @@ class HomeController extends Controller
     {
         return view('welcome');
     }
-    
+    public function indexpage(){
+        return view('index');
+    }
+    public function promote(){
+        return view('promote');
+    }
+    public function lobby(){
+       return view('lobby'); 
+    }
 }

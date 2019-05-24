@@ -23,7 +23,20 @@ Vue.component('app-container', require('./components/welcome/containerwelcome.vu
 Vue.component('app-index', require('./components/index/index.vue').default);
 Vue.component('app-promte', require('./components/activity/promote.vue').default);
 Vue.component('app-lobby', require('./components/lobby.vue').default);
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue').default
+);
 
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue').default
+);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

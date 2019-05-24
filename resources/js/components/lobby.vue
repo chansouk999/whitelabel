@@ -11,7 +11,7 @@
           <li>
             <div class="item item-inter">
               <div class="links">
-                <a href="/game/play/agin" target="_blank">传统百家乐</a>
+                <!-- <a href="/game/play/agin" target="_blank">传统百家乐</a>
                 <a href="/game/play/agin" target="_blank">龙宝百家乐</a>
                 <a href="/game/play/agin" target="_blank">保险百家乐</a>
                 <a href="/game/play/agin" target="_blank">多台百家乐</a>
@@ -19,21 +19,22 @@
                 <a href="/game/play/agin" target="_blank">轮盘</a>
                 <a href="/game/play/agin" target="_blank">21点</a>
                 <a href="/game/play/agin" target="_blank">炸金花</a>
-                <a href="/game/play/agin" target="_blank">骰宝</a>
+                <a href="/game/play/agin" target="_blank">骰宝</a> -->
               </div>
               <div class="section">
                 <h2>
-                  <span class="icon">
-                    <img src="/assets/img/AG_logo.png">
-                  </span>国际厅
+                  <!-- <span class="icon"> -->
+                    <!-- <img src="/assets/img/AG_logo.png"> -->
+                  <!-- </span>国际厅 -->
                 </h2>
-                <p>
+                <!-- <p>
                   <span class="orange">欧洲厅：将马耳他实地赌场与真人娱乐场整合，充满异国情调的真人游戏。</span>
                   <br>VIP包桌：专属于您的桌台，尊享换荷官、飞牌、换牌靴等特权。
-                </p>
-                <div class="btns">
+                </p> -->
+                <!-- <div class="btns">
                   <button type="submit" class="orange" value="GO"></button>
-                </div>
+                </div> -->
+                <a href="#" @click="gotogame"> <h1>Play Lec68</h1> </a>
               </div>
             </div>
           </li>
@@ -318,6 +319,11 @@ export default {
     asides,
     alertside,
     footers
+  }
+  ,methods:{
+    gotogame(){
+      var myWindow = window.open("redirect", "", "width=1920,height=1080");
+    }
   }
 };
 </script>
