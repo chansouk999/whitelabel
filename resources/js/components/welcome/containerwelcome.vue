@@ -166,7 +166,7 @@
           </div>
         </div>
         <alertaside></alertaside>
-        <footers></footers>
+      <footers></footers>
       </div>
     </div>
   </div>
