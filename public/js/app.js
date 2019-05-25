@@ -3974,9 +3974,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
@@ -46661,7 +46658,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('span',{staticClass:"d-none d-xl-block"},[_c('navbarDekstop')],1),_vm._v(" "),_c('navbarMoile'),_vm._v(" "),_c('span',{staticClass:"d-block d-xl-none"},[_c('asides')],1),_vm._v(" "),_c('div',{staticClass:"d-none d-xl-block"},[_c('div',{staticClass:"wrapper container-whitelabel"},[_c('asides'),_vm._v(" "),_c('div',{staticClass:"main-panel"},[_c('div',{staticClass:"content"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-12 p-0 home-wrap"},[_c('navbarindex'),_vm._v(" "),_c('hr')],1)])])]),_vm._v(" "),_c('alertsidebar')],1)]),_vm._v(" "),_c('footers')],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('span',{staticClass:"d-none d-xl-block"},[_c('navbarDekstop')],1),_vm._v(" "),_c('navbarMoile'),_vm._v(" "),_c('span',{staticClass:"d-block d-xl-none"},[_c('asides')],1),_vm._v(" "),_c('div',{staticClass:"d-none d-xl-block"},[_c('div',{staticClass:"wrapper container-whitelabel"},[_c('asides'),_vm._v(" "),_c('div',{staticClass:"main-panel"},[_c('div',{staticClass:"content"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-12 p-0 home-wrap"},[_c('navbarindex'),_vm._v(" "),_c('hr')],1)])])])],1)])],1)}
 var staticRenderFns = []
 render._withStripped = true
 
