@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use GuzzleHttp\Cookie\CookieJar;
 // use Auth;
 /*
 |--------------------------------------------------------------------------
@@ -17,30 +18,52 @@ use GuzzleHttp\Client;
 Route::get('/index','Homecontroller@indexpage');
 Route::get('/promote','Homecontroller@promote');
 Route::get('/lobby','Homecontroller@lobby');
+Route::post('/updatemoney','MasterController@updatemoney');
 Auth::routes();
 
 Route::get('/home', function(){
     return view('home');
 });
 Route::get('/', 'MasterController@welcome')->name('home');
+Route::get('/getuserdata', 'MasterController@getuserdata');
 // Route::get('/login', 'MasterController@welcome')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logoutuser');
 Route::get('updatemoney/{id}','API/Apicontroller@updatemoney');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('redirect',function(){
-    $http = new GuzzleHttp\Client;
-    $query = http_build_query([
-        'client_id' => '9',
-        'redirect_uri' => 'http://localhost:8002/callback',
-        'response_type' => 'code',
-        'scope' => '',
-    ]); 
+    $http = new GuzzleHttp\Client();
     $namecheck = \Auth::user()->name;
     $emailcheck = \Auth::user()->email;
     $id = \Auth::user()->id;
     $provider_name = \Auth::user()->provider_name;
     $balance =  \Auth::user()->userBalance;
     $pro_id = \Auth::user()->pro_id;
+    $password = \Auth::user()->password;
+    // return $password;
+
+    $query = http_build_query([
+        'client_id' => '10',
+        'redirect_uri' => 'http://localhost:8002/callback',
+        'response_type' => 'code',
+        'scope' => '',
+    ]); 
+   
 
     $datacheck = $http->get('http://localhost:8001/api/checkapiuser?name='.$namecheck
     .'&email='.$emailcheck
@@ -49,24 +72,26 @@ Route::get('redirect',function(){
     .'&balance='.$balance
     .'&pro_id='.$pro_id
     );
+    
     $datacheckresult = json_decode((string) $datacheck->getBody(), true);
     return $datacheckresult;
-    // return redirect('http://localhost:8001/oauth/authorize?'.$query);
+    //  return redirect('http://localhost:8001/oauth/authorize?'.$query);
 })->name('get.token');
 Route::get('/callback', function (Request $request) {
-    $http = new GuzzleHttp\Client;
     
+    $http = new GuzzleHttp\Client;
+    $namecheck = \Auth::user()->name;
+    $emailcheck = \Auth::user()->email;
     
     $response = $http->post('http://localhost:8001/oauth/token', [
         'form_params' => [
             'grant_type' => 'authorization_code',
-            'client_id' => '9',
-            'client_secret' => 'YFzms4Duk2SstrCioqyaJrheyPVA26mHvv4Xc5W0',
+            'client_id' => '10',
+            'client_secret' => 'IxMjhiOGmo4KoMhA4V4z0MDfLIzlHOaRvQvVS6SG',
             'redirect_uri' => 'http://localhost:8002/callback',
             'code' => $request->code,
         ],
     ]);
-
     $accessdata = json_decode((string) $response->getBody(), true);
     $header =[
         'Content-Type' => 'application/json',
@@ -74,13 +99,23 @@ Route::get('/callback', function (Request $request) {
         'Authorization'=>'Bearer '.$accessdata['access_token']
     ];
 
+    // $response2 = $http->post('http://localhost:8002/oauth/token', [
+    //     'form_params' => [
+    //         'name' => $emailcheck,
+    //         'password' => $namecheck,
+    //         'grant_type' => 'password',
+    //         'client_id' => '10',
+    //         'client_secret' => 'IxMjhiOGmo4KoMhA4V4z0MDfLIzlHOaRvQvVS6SG',
+    //     ],
+    //     'headers'=>$header
+    // ]);
+
+    
+
 
     $resuser = $http->get('http://localhost:8001/api/users',['headers'=>$header]);
     $data =  json_decode((string) $resuser->getBody(), true);
-    return [
-        'ACCESS_DATA'=>$accessdata,
-        'USER_DATA'=>$data,$name,$email
-    ];
-    // return redirect('http://localhost:8000/getlogin');
+    // return redirect('http://localhost:8001/getlogin');
+    return [$accessdata,$data];
     
 });

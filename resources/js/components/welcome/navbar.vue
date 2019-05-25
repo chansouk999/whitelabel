@@ -229,7 +229,6 @@
                         autofocus
                         placeholder="Enter email"
                       >
-                      <!-- <input class="form-check-input" type="checkbox"  name="remember" id="remember" value="true"> -->
                     </div>
                     <div class="input-group">
                       <div class="input-group-prepend">

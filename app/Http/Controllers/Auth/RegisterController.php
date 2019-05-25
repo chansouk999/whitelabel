@@ -78,6 +78,9 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'provider_name' => 'Whitelebel1',
+            'pro_id' => '0001',
+            'userBalance' => 0,
         ]);
     }
 }
