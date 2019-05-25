@@ -86,7 +86,7 @@
     </div>
       <!-- mobile Min hide 1199px -->
 <div class="d-none d-xl-block">
-    <div class="u-main">
+    <div class="container pr-4">
       <div class="u-title">{{navShowName}}</div>
       <div class="u-content" v-if="navShowName ==='myaccount'">
         <myaccount></myaccount>

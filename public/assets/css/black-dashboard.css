@@ -18779,7 +18779,7 @@ table.tablesorter thead tr .headerSortDown {
 }
 
 .fixed-plugin {
-    position: absolute;
+    position: fixed;
     right: 0px;
     width: 41px;
     background: rgba(0, 0, 0, 0.3);
@@ -19094,7 +19094,6 @@ table.tablesorter thead tr .headerSortDown {
 @media (max-width: 575.98px) {
     .fixed-plugin {
         top: 88px;
-        right: 0px;
     }
     .fixed-plugin .dropdown-menu {
         width: 225px;
@@ -20113,7 +20112,7 @@ table.tablesorter thead tr .headerSortDown {
         transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     }
     .main-panel .content {
-        padding-left: 30px !important;
+        /* padding-left: 30px !important; */
     }
     .sidebar-mini .sidebar .logo a.logo-normal {
         opacity: 1;
@@ -29817,3 +29816,5 @@ Copyright (c) 2015 Daniel Eden
 
 
 /*# sourceMappingURL=dashboard-pro.css.map */
+
+ss

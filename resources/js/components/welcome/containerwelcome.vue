@@ -172,7 +172,7 @@
   </div>
 </template>
 <script>
-import navbars from "./navbar";
+import navbars from "./navbarDekstop";
 import asides from "./asides";
 import footers from "./footers";
 import alertaside from "../alertsidebar";

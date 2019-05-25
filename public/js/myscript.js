@@ -159,52 +159,79 @@ $(".carousel-indicators  li").on("mouseover", function() {
 // });
 
 
-$("form input[name='redirect']").val("/activity/promote");
-$(document).ready(function() {
-    if (parseInt(pn.userLevel) >= 6 || parseInt(pn.userLevel) === 0) {
-        $('.pbc').hide();
-        $('.sections .content-area2').css("height", "678px");
-    }
 
-    if (pn.userName) {
-        $.request({
-            url: "/api/rebate/bet-amount",
-            data: { "cycleType": "WEEK" }
-        }).done(function(res) {
-            if (!res.successful) {
-                if (res.data === "PROVIDER_ERROR") {
-                    $('.pbc').hide();
-                    $('.sections .content-area2').css("height", "678px");
-                }
-            } else {
-                var loginStatus = res.data.LOGIN_STATUS;
-                if (loginStatus === 'Y') {
-                    var currentLevel = res.data.USER_LEVEL;
-                    var weekBetAmount = res.data.TOTAL_BET_AMOUNT;
-                    if (parseInt(currentLevel) >= 6 || parseInt(currentLevel) === 0) {
-                        $('.pbc').hide();
-                    } else {
-                        levelAnimation(weekBetAmount.toFixed(2));
-                    }
-                } else {
-                    $('.pbc').hide();
-                    $('.sections .content-area2').css("height", "678px");
-                }
-            }
-        });
-    } else {
-        $('.pbc').hide();
-        $('.sections .content-area2').css("height", "678px");
-    }
-    if (!isNaN(parseInt(pn.userLevel))) {
-        $(".sel").addClass("sel" + pn.userLevel);
-    }
-    $(".table-striped tr:odd").css('background-color', '#9a8b74');
-    $(".table-striped tr:even").css('background-color', '#90816b');
 
-    $('#carousel-showcase .carousel-indicators .flip-container').on('mouseover', function() {
-        $(this).trigger('click');
+// $("form input[name='redirect']").val("/activity/promote");
+// $(document).ready(function() {
+
+//     if (parseInt(pn.userLevel) >= 6 || parseInt(pn.userLevel) === 0) {
+//         $('.pbc').hide();
+//         $('.sections .content-area2').css("height", "678px");
+//     }
+
+//     if (pn.userName) {
+//         $.request({
+//             url: "/api/rebate/bet-amount",
+//             data: { "cycleType": "WEEK" }
+//         }).done(function(res) {
+//             if (!res.successful) {
+//                 if (res.data === "PROVIDER_ERROR") {
+//                     $('.pbc').hide();
+//                     $('.sections .content-area2').css("height", "678px");
+//                 }
+//             } else {
+//                 var loginStatus = res.data.LOGIN_STATUS;
+//                 if (loginStatus === 'Y') {
+//                     var currentLevel = res.data.USER_LEVEL;
+//                     var weekBetAmount = res.data.TOTAL_BET_AMOUNT;
+//                     if (parseInt(currentLevel) >= 6 || parseInt(currentLevel) === 0) {
+//                         $('.pbc').hide();
+//                     } else {
+//                         levelAnimation(weekBetAmount.toFixed(2));
+//                     }
+//                 } else {
+//                     $('.pbc').hide();
+//                     $('.sections .content-area2').css("height", "678px");
+//                 }
+//             }
+//         });
+//     } else {
+//         $('.pbc').hide();
+//         $('.sections .content-area2').css("height", "678px");
+//     }
+//     if (!isNaN(parseInt(pn.userLevel))) {
+//         $(".sel").addClass("sel" + pn.userLevel);
+//     }
+//     $(".table-striped tr:odd").css('background-color', '#9a8b74');
+//     $(".table-striped tr:even").css('background-color', '#90816b');
+
+//     $('#carousel-showcase .carousel-indicators .flip-container').on('mouseover', function() {
+//         $(this).trigger('click');
+//     });
+// });
+
+
+
+// javascript init 
+// $('.bootstrap-switch').each(function() {
+//     $this = $(this);
+//     data_on_label = $this.data('on-label') || '';
+//     data_off_label = $this.data('off-label') || '';
+
+//     $this.bootstrapSwitch({
+//         onText: data_on_label,
+//         offText: data_off_label
+//     });
+// });
+
+
+// Foter Fixed
+var navItems = document.querySelectorAll(".mobile-bottom-nav__item");
+navItems.forEach(function(e, i) {
+    e.addEventListener("click", function(e) {
+        navItems.forEach(function(e2, i2) {
+            e2.classList.remove("mobile-bottom-nav__item--active");
+        })
+        this.classList.add("mobile-bottom-nav__item--active");
     });
 });
-
-

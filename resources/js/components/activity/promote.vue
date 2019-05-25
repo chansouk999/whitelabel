@@ -2,7 +2,7 @@
   <div>
     <app-navbar></app-navbar>
     <!-- End Header -->
-        <div class="wrapper container-whitelabel">
+        <div class="d-none d-xl-block wrapper container-whitelabel">
     <div class="main-container vip_club">
       <div class="sections">
         <div class="section banner">

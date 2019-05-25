@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div class="wrapper container-whitelabel">
+      <div class="d-none d-xl-block wrapper container-whitelabel">
     <navbar></navbar>
     <asides></asides>
    
@@ -309,7 +309,7 @@
   </div>
 </template>
 <script>
-import navbar from "./welcome/navbar";
+import navbar from "./welcome/navbarDekstop";
 import asides from "./welcome/asides";
 import alertside from "./alertsidebar";
 import footers from './welcome/footers';

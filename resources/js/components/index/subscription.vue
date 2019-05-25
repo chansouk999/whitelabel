@@ -1,184 +1,76 @@
 <template>
   <div>
-    <div class="u-content u-subscribe">
-      <div class="mobile-wrap">
-        <div>
-          <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">Mobile number:</font>
-          </font>
-          <span class="js-show-phone">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">186*******2</font>
-            </font>
-          </span>
-          <a href="/ucenter/security/phone" class="btn-link">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">modification</font>
-            </font>
-          </a>
-        </div>
-        <form id="verifyPhoneForm" class="js-verify-notation" novalidate="novalidate">
-          <div class="form-inline">
-            <a class="btn-resend pointer-link" verify-type="bound">
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">obtain SMS verification code</font>
-              </font>
-            </a>
-            <input
-              id="captcha"
-              name="captcha"
-              type="text"
-              class="form-control"
-              maxlength="6"
-              placeholder="请输入短信验证码"
-            >
-            <a class="btn-submit pointer-link" verify-type="bound">
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">confirm at once</font>
-              </font>
-            </a>
-            <span class="error-msg"></span>
-          </div>
-          <p>
-            <font style="vertical-align: inherit;">
-              <font
-                style="vertical-align: inherit;"
-              >Tips: Please enter the SMS verification code to open the SMS subscription function.</font>
-            </font>
-          </p>
-        </form>
-      </div>
-      <table class="js-table-subscribe table table-bordered loading-portion">
-        <thead>
-          <tr>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Subscription content</font>
-              </font>
-            </th>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">SMS subscription</font>
-              </font>
-            </th>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Subscription content</font>
-              </font>
-            </th>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">SMS subscription</font>
-              </font>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Login prompt</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="login" class="type-sms" type="checkbox">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">#</th>
+          <th> content</th>
+          <th>SMS </th>
+          <th>Salary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center">1</td>
+          <td>Andrew Mike</td>
+          <td>
+            <div class="checkbox switcher">
+              <label for="test">
+                <input
+                  type="checkbox"
+                  id="test"
+                  class="bootstrap-switch"
+                  data-on-label="ON"
+                  data-off-label="OFF"
+                >
                 <span>
-                  <i></i>
+                  <small></small>
                 </span>
               </label>
-            </td>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Offer added</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="promotions" class="type-sms" type="checkbox">
+            </div>
+          </td>
+          <td class="text-right">&euro; 99,225</td>
+          <td class="td-actions text-right">
+            <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
+              <i class="tim-icons icon-single-02"></i>
+            </button>
+            <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
+              <i class="tim-icons icon-settings"></i>
+            </button>
+            <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center">2</td>
+          <td>John Doe</td>
+          <td>
+            <div class="checkbox switcher">
+              <label for="test1">
+                <input type="checkbox" id="test1" value>
                 <span>
-                  <i></i>
+                  <small></small>
                 </span>
               </label>
-            </td>
-          </tr>
-          <tr class="highlight">
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Contact phone modification</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="modifyPhone" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Bank data modification</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="modifyBankingData" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Recharge prompt</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="deposit" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Name modification</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="modifyAccountName" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-          </tr>
-          <tr class="highlight">
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Cash withdrawal prompt</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="withdrawal" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-        <div class="transparent-base64 loading-js loading-portion-content"></div>
-      </table>
-    </div>
+            </div>
+          </td>
+          <td class="text-right">&euro; 89,241</td>
+          <td class="td-actions text-right">
+            <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-round btn-icon">
+              <i class="tim-icons icon-single-02"></i>
+            </button>
+            <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
+              <i class="tim-icons icon-settings"></i>
+            </button>
+            <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>
