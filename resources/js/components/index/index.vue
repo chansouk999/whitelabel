@@ -24,7 +24,7 @@
       </div>
     </div>
     <footers></footers>
-
+  <alertsidebar></alertsidebar>
   </div>
 </template>
 <script>
