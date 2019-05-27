@@ -101,10 +101,15 @@
 }
 
 .cid-ro6uJJ0VM8 {
-    /* padding-top: 30px;
-    */
-    padding-bottom: 30px;
+    /* padding-top: 30px; */
+    /* padding-bottom: 30px; */
     background-color: transparent;
+    /* position: absolute; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* text-align: center; */
+    /* align-items: center; */
+    margin: -50px 0px;
 }
 
 .cid-ro6uJJ0VM8 .row-links {
@@ -280,6 +285,10 @@
     letter-spacing: -.05rem;
 }
 
+.mobile-bottom-nav__item-content a {
+    color: #003679;
+}
+
 @media (max-width: 767px) {
     .cid-ro6uJJ0VM8 .media-container-row .social-list {
         -webkit-justify-content: center;
@@ -297,6 +306,10 @@
 @media (max-width: 1680px) {
     .button {
         font-size: .7rem;
+    }
+    .sidebar,
+    .off-canvas-sidebar {
+        height: calc(100vh - 90px);
     }
 }
 
@@ -414,7 +427,7 @@
 
 .fixed-plugin-cutome {
     position: fixed;
-    right: 0px;
+    right: 0;
     width: 41px;
     background: rgba(0, 0, 0, 0.3);
     z-index: 1031;
@@ -1574,12 +1587,12 @@ hr {
         background-color: #777;
     }
     .main-panel>.content {
-        padding: 75px 0px 0px 280px;
+        padding: 75px 0px 0px 20px;
         /* min-height: calc(100vh - 70px);
         */
     }
     .wrapper {
-        min-width: 1280px;
+        min-width: 1250px;
         max-width: 1920px;
     }
 }
@@ -1824,13 +1837,11 @@ div.radio.switcher label input:checked+span small {
 */
 
 .main-container {
-    position: relative;
+    /* position: relative;
     min-height: 735px;
-    /* margin-left: 175px;
-    */
+    margin-left: 175px;
     top: 57px;
     /* padding-bottom: 57px;
-    */
     /* padding-left: 196px;
     */
 }
@@ -1928,18 +1939,6 @@ dd {
 
 .u-wrap .u-menu dl dt i.icon-task {
     background-position: center -193px;
-}
-
-.u-wrap .u-menu dl dt i {
-    background-image: url(../assets/img/umenu_icons.png);
-    background-repeat: no-repeat;
-    position: relative;
-    display: inline-block;
-    width: 31px;
-    height: 22px;
-    margin-right: 3px;
-    top: 0px;
-    vertical-align: middle;
 }
 
 .u-wrap .u-menu dl dd.active a,
@@ -2806,6 +2805,15 @@ ol {
     width: 35%;
     float: left;
     margin-left: 0;
+}
+
+@media (max-width: 1600px) {
+    .u-wrap .u-menu dl dd a {
+        font-size: .5rem;
+    }
+    .u-wrap .u-menu dl dt {
+        font-size: .8rem;
+    }
 }
 
 @media (min-width: 1600px) {
@@ -6156,4 +6164,4 @@ h4 {
     transition: width 0.35s cubic-bezier(0, 0, 0.3, 1);
 }
 
-5
+s

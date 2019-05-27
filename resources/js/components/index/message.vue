@@ -5,7 +5,7 @@
       <!-- Main content -->
       <section class="content">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-3 pl-4">
             <div class="card card-nav-tabs">
               <div class="card-header bg-primary p-2 text-white">Featured</div>
               <ul class="list-group list-group-flush text-left">
@@ -40,7 +40,7 @@
             </div>
           </div>
           <!-- /.col -->
-          <div class="col-md-9">
+          <div class="col-md-9 pl-0">
             <div class="card card-primary card-outline">
               <div class="card m-0">
                 <div class="card-body">

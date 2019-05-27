@@ -6,21 +6,30 @@
     <navbarMoile></navbarMoile>
     <span class="d-block d-xl-none">
       <asides></asides>
+      <footers></footers>
     </span>
     <div class="d-none d-xl-block">
       <div class="wrapper container-whitelabel">
-        <asides></asides>
-        <div class="main-panel">
-          <div class="content">
-            <div class="row">
-              <div class="col-12 p-0 home-wrap">
-                <navbarindex></navbarindex>
-                <hr>
+        <div class="row">
+          <div class="col-2">
+            <asides></asides>
+          </div>
+          <div class="col-xl-10 col-sm-12">
+            <div class="main-panel">
+              <div class="content">
+                <div class="row">
+                  <div class="col-12 p-0 home-wrap">
+                    <navbarindex></navbarindex>
+                    <hr>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <alertsidebar></alertsidebar>
+      <footers></footers>
     </div>
   </div>
 </template>

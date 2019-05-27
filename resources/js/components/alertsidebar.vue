@@ -108,41 +108,7 @@
         </ul>
       </div>
     </div>
-    <div class="d-block d-xl-none">
-      <nav class="mobile-bottom-nav">
-        <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
-          <div class="mobile-bottom-nav__item-content">
-           <i class="tim-icons icon-bank"></i>
-          </div>
-        </div>
-        <div class="mobile-bottom-nav__item">
-          <div class="mobile-bottom-nav__item-content">
-            <i class="tim-icons icon-chat-33 icon-default"></i>
-          </div>
-        </div>
-        <div class="mobile-bottom-nav__item">
-          <div class="mobile-bottom-nav__item-content">
-            <i class="tim-icons icon-controller icon-default"></i>
-          </div>
-        </div>
-        <div class="mobile-bottom-nav__item">
-          <div class="mobile-bottom-nav__item-content">
-           <i class="tim-icons icon-coins icon-default"></i>
-          </div>
-        </div>
-        <div class="mobile-bottom-nav__item">
-          <div class="mobile-bottom-nav__item-content">
-            <i class="tim-icons icon-money-coins icon-default"></i>
-          </div>
-        </div>
-
-        <div class="mobile-bottom-nav__item">
-          <div class="mobile-bottom-nav__item-content">
-            <i class="tim-icons icon-single-02"></i>
-          </div>
-        </div>
-      </nav>
-    </div>
+   
   </div>
 </template>
 <script>
