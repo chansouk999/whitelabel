@@ -10,7 +10,7 @@
             <div class="media-body">
               <em id="account-user-name">
                 <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">Aghq186496</font>
+                  <font style="vertical-align: inherit;">{{ name }}</font>
                 </font>
               </em>
               <span id="account-user-level" class="level-0">
@@ -23,7 +23,7 @@
                   <font style="vertical-align: inherit;">Last login:</font>
                 </font>
                 <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">2019-04-27 10:53:43</font>
+                  <font style="vertical-align: inherit;">{{ login_at }}</font>
                 </font>
               </small>
             </div>
@@ -78,16 +78,18 @@
         </div>
         <div class="pull-left balance">
           <font style="vertical-align: inherit;">
+            <!-- qwqwqw -->
+            <!-- <button>Refresh</button><br> -->
             <font style="vertical-align: inherit;">The total balance</font>
           </font>
           <span id="eid_c_total_credit">
             <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">¥0.00</font>
+              <font style="vertical-align: inherit;">$ {{balance}}</font>
             </font>
           </span>
           <a id="refresh_total_credit" class="btn btn-sm btn-default" href="javascript:;">
             <i class="fa fa-refresh"></i>
-            <font style="vertical-align: inherit;">
+            <font style="vertical-align: inherit;"  @click="refresh">
               <font style="vertical-align: inherit;">Refresh quota</font>
             </font>
           </a>
@@ -565,7 +567,47 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      id:null,
+      user_id:null,
+      provider_name:null,
+      balance:null,
+      pro_id:null,
+      login_at:null,
+      name:null,
+      email:null,
+    }
+  },mounted() {
+      this.userdata()
+  },methods: {
+    refresh(){
+        this.userdata()
+    },
+     userdata(){
+      axios.get('/userdetaildata').then(res=>{
+        console.log(res.data)
+        this.id = res.data.id
+        this.user_id = res.data.user_id
+        this.provider_name = res.data.provider_name
+        this.balance = res.data.userBalance
+        this.pro_id = res.data.pro_id
+        this.name = res.data.name
+        this.email = res.data.email
+        this.login_at = res.data.updated_at
+        $('.id').val(this.id);
+        $('.provider_name').val(this.provider_name);
+        $('.balance').val(this.balance);
+        $('.pro_id').val(this.pro_id);
+        $('.name').val(this.name);
+        $('.email').val(this.email);
+      }).catch(er=>{
+        console.log(er.res)
+      })
+    },
+  },
+};
 </script>
 <style scoped>
 </style>

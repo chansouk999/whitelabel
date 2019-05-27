@@ -5228,7 +5228,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      id: null,
+      user_id: null,
+      provider_name: null,
+      balance: null,
+      pro_id: null,
+      login_at: null,
+      name: null,
+      email: null
+    };
+  },
+  mounted: function mounted() {
+    this.userdata();
+  },
+  methods: {
+    refresh: function refresh() {
+      this.userdata();
+    },
+    userdata: function userdata() {
+      var _this = this;
+
+      axios.get('/userdetaildata').then(function (res) {
+        console.log(res.data);
+        _this.id = res.data.id;
+        _this.user_id = res.data.user_id;
+        _this.provider_name = res.data.provider_name;
+        _this.balance = res.data.userBalance;
+        _this.pro_id = res.data.pro_id;
+        _this.name = res.data.name;
+        _this.email = res.data.email;
+        _this.login_at = res.data.updated_at;
+        $('.id').val(_this.id);
+        $('.provider_name').val(_this.provider_name);
+        $('.balance').val(_this.balance);
+        $('.pro_id').val(_this.pro_id);
+        $('.name').val(_this.name);
+        $('.email').val(_this.email);
+      })["catch"](function (er) {
+        console.log(er.res);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -7663,7 +7709,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module './welcome/navbarDesktop'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _welcome_navbarMobile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./welcome/navbarMobile */ "./resources/js/components/welcome/navbarMobile.vue");
 /* harmony import */ var _welcome_asides__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./welcome/asides */ "./resources/js/components/welcome/asides.vue");
 /* harmony import */ var _alertsidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./alertsidebar */ "./resources/js/components/alertsidebar.vue");
 /* harmony import */ var _welcome_footers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./welcome/footers */ "./resources/js/components/welcome/footers.vue");
@@ -7990,7 +8036,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    navbar: !(function webpackMissingModule() { var e = new Error("Cannot find module './welcome/navbarDesktop'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
+    navbar: _welcome_navbarMobile__WEBPACK_IMPORTED_MODULE_0__["default"],
     asides: _welcome_asides__WEBPACK_IMPORTED_MODULE_1__["default"],
     alertside: _alertsidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
     footers: _welcome_footers__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -8003,7 +8049,9 @@ __webpack_require__.r(__webpack_exports__);
       user_id: null,
       pro_id: null,
       name: null,
-      email: null
+      email: null,
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+      checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
   mounted: function mounted() {
@@ -8014,7 +8062,7 @@ __webpack_require__.r(__webpack_exports__);
     gotogame: function gotogame() {
       var config = {
         headers: {
-          'Access-Control-Allow-Origin': '*'
+          'X-CSRF-TOKEN': this.csrf
         }
       };
       axios.post('http://localhost:8001/checkapiuser', {
@@ -8025,7 +8073,7 @@ __webpack_require__.r(__webpack_exports__);
         pro_id: this.pro_id,
         name: this.name,
         email: this.email
-      }).then(function (res) {
+      }, config).then(function (res) {
         console.log(res.data);
         var myWindow = window.open("http://localhost:8001/redirect", "", "width=1920,height=1080");
       })["catch"](function (er) {
@@ -9786,6 +9834,16 @@ __webpack_require__.r(__webpack_exports__);
     message: _index_message_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
   },
   methods: {
+    byebye: function byebye() {
+      var config = {
+        headers: {
+          'X-CSRF-TOKEN': this.csrf
+        } // axios.get('http://localhost:8001/logout',config).then(res=>{
+        //   console.log('pkpkpkpk')
+        // })
+
+      };
+    },
     myaccount: function myaccount() {
       $("#myaccountlink")[0].click();
     },
@@ -55022,7 +55080,7 @@ var render = function() {
                       _c(
                         "font",
                         { staticStyle: { "vertical-align": "inherit" } },
-                        [_vm._v("Aghq186496")]
+                        [_vm._v(_vm._s(_vm.name))]
                       )
                     ],
                     1
@@ -55075,7 +55133,7 @@ var render = function() {
                       _c(
                         "font",
                         { staticStyle: { "vertical-align": "inherit" } },
-                        [_vm._v("2019-04-27 10:53:43")]
+                        [_vm._v(_vm._s(_vm.login_at))]
                       )
                     ],
                     1
@@ -55266,7 +55324,7 @@ var render = function() {
                     _c(
                       "font",
                       { staticStyle: { "vertical-align": "inherit" } },
-                      [_vm._v("¥0.00")]
+                      [_vm._v("$ " + _vm._s(_vm.balance))]
                     )
                   ],
                   1
@@ -55286,7 +55344,10 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "font",
-                  { staticStyle: { "vertical-align": "inherit" } },
+                  {
+                    staticStyle: { "vertical-align": "inherit" },
+                    on: { click: _vm.refresh }
+                  },
                   [
                     _c(
                       "font",
@@ -65655,7 +65716,54 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._m(11)
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass:
+                              "button nav-link d-flex float-left fixed-logout",
+                            attrs: { href: "#" }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "dropdown show-dropdown" },
+                              [
+                                _vm._m(11),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "dropdown-menu mt-3 p-0" },
+                                  [
+                                    _vm._m(12),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "menu-body" }, [
+                                      _vm._m(13),
+                                      _vm._v(" "),
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "btn-logout",
+                                          attrs: { href: "#" },
+                                          on: { click: _vm.byebye }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fa fa-power-off"
+                                          }),
+                                          _vm._v(
+                                            "Log Out\n                      "
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
                     ])
                   ])
                 : _vm._e()
@@ -65668,7 +65776,7 @@ var render = function() {
     _c("div", { staticClass: "modal fade", attrs: { id: "loginModal" } }, [
       _c("div", { staticClass: "modal-dialog modal-lg" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(12),
+          _vm._m(14),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "col-lg-12 col-md-12" }, [
@@ -65685,9 +65793,9 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "card card-login card-white" }, [
-                    _vm._m(13),
+                    _vm._m(15),
                     _vm._v(" "),
-                    _vm._m(14),
+                    _vm._m(16),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-footer" }, [
                       _c(
@@ -65705,7 +65813,7 @@ var render = function() {
                         [_vm._v("Login")]
                       ),
                       _vm._v(" "),
-                      _vm._m(15)
+                      _vm._m(17)
                     ])
                   ])
                 ]
@@ -65717,10 +65825,10 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "modal" }, [
+    _c("div", { staticClass: "modal fade", attrs: { id: "register" } }, [
       _c("div", { staticClass: "modal-dialog modal-lg show" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(16),
+          _vm._m(18),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "container" }, [
@@ -65734,11 +65842,11 @@ var render = function() {
                         attrs: { method: "POST", action: "register" }
                       },
                       [
-                        _vm._m(17),
+                        _vm._m(19),
                         _vm._v(" "),
                         _c("div", { staticClass: "card-body" }, [
                           _c("div", { staticClass: "input-group" }, [
-                            _vm._m(18),
+                            _vm._m(20),
                             _vm._v(" "),
                             _c("input", {
                               staticClass: "form-control",
@@ -65759,14 +65867,14 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
-                          _vm._m(19),
+                          _vm._m(21),
                           _vm._v(" "),
-                          _vm._m(20),
+                          _vm._m(22),
                           _vm._v(" "),
-                          _vm._m(21)
+                          _vm._m(23)
                         ]),
                         _vm._v(" "),
-                        _vm._m(22)
+                        _vm._m(24)
                       ]
                     )
                   ])
@@ -65778,9 +65886,9 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(23),
+    _vm._m(25),
     _vm._v(" "),
-    _vm._m(24)
+    _vm._m(26)
   ])
 }
 var staticRenderFns = [
@@ -65914,7 +66022,7 @@ var staticRenderFns = [
             attrs: {
               href: "#",
               "data-toggle": "modal",
-              "data-target": ".register"
+              "data-target": "#register"
             }
           },
           [
@@ -66017,93 +66125,61 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c(
-        "a",
-        {
-          staticClass: "button nav-link d-flex float-left fixed-logout",
-          attrs: { href: "#" }
-        },
-        [
-          _c("div", { staticClass: "dropdown show-dropdown" }, [
-            _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
-              _c("div", { staticClass: "icons" }, [
-                _c("i", {
-                  staticClass: "tim-icons icon-single-02 icon-default"
-                }),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass: "tim-icons icon-bullet-list-67 icon-hover"
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "dropdown-menu mt-3 p-0" }, [
-              _c("div", { staticClass: "row p-4" }, [
-                _c("div", { staticClass: "col-6" }, [
-                  _c("img", { attrs: { src: "assets/img/user.png", alt: "" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-6" }, [
-                  _c("em", { staticClass: "header-user-name" }, [
-                    _vm._v("aghq186496")
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "header-user-level level-0" }, [
-                    _vm._v("新会员")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("small", { staticClass: "header-before-login-date" }, [
-                  _vm._v("最近登录时间：2019-04-24 14:25:40")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "menu-body" }, [
-                _c("div", { attrs: { id: "header-balance" } }, [
-                  _vm._v(
-                    "\n                        总余额\n                        "
-                  ),
-                  _c("h2", { staticClass: "eid_total_credit m-0 p-0" }, [
-                    _vm._v("0.00")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "d-flex" }, [
-                    _c("p", { staticClass: "text-desss" }, [
-                      _vm._v(
-                        "\n                            本地余额\n                            "
-                      ),
-                      _c("span", { attrs: { id: "eid_local_credit" } }, [
-                        _vm._v("0.00")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-balance" }, [
-                      _vm._v(
-                        "\n                            游戏余额\n                            "
-                      ),
-                      _c("span", { attrs: { id: "eid_game_credit" } }, [
-                        _vm._v("0.00")
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "btn-logout", attrs: { href: "/logout" } },
-                  [
-                    _c("i", { staticClass: "fa fa-power-off" }),
-                    _vm._v("Log Out\n                      ")
-                  ]
-                )
-              ])
-            ])
-          ])
-        ]
-      )
+    return _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
+      _c("div", { staticClass: "icons" }, [
+        _c("i", { staticClass: "tim-icons icon-single-02 icon-default" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "tim-icons icon-bullet-list-67 icon-hover" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row p-4" }, [
+      _c("div", { staticClass: "col-6" }, [
+        _c("img", { attrs: { src: "assets/img/user.png", alt: "" } })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c("em", { staticClass: "header-user-name" }, [_vm._v("aghq186496")]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", { staticClass: "header-user-level level-0" }, [
+          _vm._v("新会员")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("small", { staticClass: "header-before-login-date" }, [
+        _vm._v("最近登录时间：2019-04-24 14:25:40")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "header-balance" } }, [
+      _vm._v("\n                        总余额\n                        "),
+      _c("h2", { staticClass: "eid_total_credit m-0 p-0" }, [_vm._v("0.00")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex" }, [
+        _c("p", { staticClass: "text-desss" }, [
+          _vm._v(
+            "\n                            本地余额\n                            "
+          ),
+          _c("span", { attrs: { id: "eid_local_credit" } }, [_vm._v("0.00")])
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-balance" }, [
+          _vm._v(
+            "\n                            游戏余额\n                            "
+          ),
+          _c("span", { attrs: { id: "eid_game_credit" } }, [_vm._v("0.00")])
+        ])
+      ])
     ])
   },
   function() {

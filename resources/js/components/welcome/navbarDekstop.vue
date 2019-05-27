@@ -68,7 +68,7 @@
                   href="#"
                   class="button nav-link d-flex float-left"
                   data-toggle="modal"
-                  data-target=".register"
+                  data-target="#register"
                 >
                   <div class="icons">
                     <i class="fas fa-user-plus icon-default"></i>
@@ -179,7 +179,7 @@
                             </p>
                           </div>
                         </div>
-                        <a href="/logout" class="btn-logout">
+                        <a href="#" class="btn-logout" @click="byebye">
                           <i class="fa fa-power-off"></i>Log Out
                         </a>
                       </div>
@@ -278,7 +278,7 @@
       </div>
     </div>
     <!-- Modal Register -->
-    <div class="modal">
+    <div class="modal fade" id="register">
       <div class="modal-dialog modal-lg show">
         <div class="modal-content">
           <!-- Modal Header -->
@@ -507,6 +507,15 @@ export default {
     message
   },
   methods: {
+    byebye(){
+      let config = {
+        headers:{'X-CSRF-TOKEN':this.csrf}
+      }
+      // axios.get('http://localhost:8001/logout',config).then(res=>{
+      //   console.log('pkpkpkpk')
+      // })
+
+    },
     myaccount() {
       $("#myaccountlink")[0].click();
     },

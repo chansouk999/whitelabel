@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 use Auth;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -39,6 +40,9 @@ class LoginController extends Controller
     }
     public function logoutuser()
     {
+        
+        // $http = new Client();
+        // $resposnse = $http->post('http://localhost:8001/byebye');
         Auth::guard('web')->logout();
         return redirect('/');
     }

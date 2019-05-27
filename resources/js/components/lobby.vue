@@ -316,7 +316,7 @@
   </div>
 </template>
 <script>
-import navbar from "./welcome/navbarDesktop";
+import navbar from "./welcome/navbarMobile";
 import asides from "./welcome/asides";
 import alertside from "./alertsidebar";
 import footers from './welcome/footers';
@@ -338,6 +338,10 @@ export default {
       pro_id:null,
       name:null,
       email:null,
+      csrf: document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content"),
+      checkuser: document.querySelector(".checkuser").getAttribute("value")
     }
   },
   mounted() {
@@ -348,8 +352,8 @@ export default {
   methods:{
     gotogame(){
       let config = {
-          headers: {'Access-Control-Allow-Origin': '*'}
-      };
+        headers:{'X-CSRF-TOKEN':this.csrf}
+      }
        axios.post('http://localhost:8001/checkapiuser',{
         id:this.id,
         user_id:this.user_id,
@@ -358,8 +362,7 @@ export default {
         pro_id:this.pro_id,
         name:this.name,
         email:this.email,
-        
-       }
+       },config
        ).then(res=>{
         console.log(res.data)
         let myWindow = window.open("http://localhost:8001/redirect", "", "width=1920,height=1080");
