@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use GuzzleHttp\Client;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,5 +14,11 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/users', function (Request $request) {
-    return $request->user()->users;
+    return $request->user();
+});
+Route::middleware('auth:api')->group( function () {
+	Route::post('updatemn', 'API\Apicontroller@updatemn');
+	Route::post('delete', 'API\Apicontroller@delete');
+    Route::get('/userdetail', 'API\Apicontroller@userdetail');
+   
 });

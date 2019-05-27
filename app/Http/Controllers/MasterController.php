@@ -12,7 +12,11 @@ class MasterController extends Controller
     }
     public function updatemoney(Request $req){
         $balnce = 900000;
-        User::where('id',13)->update(['userBalance'=>$balnce]);
+        $id = 900000;
+        User::where('id',''.$id.'')->update(['userBalance'=>$balnce]);
+    }
+    public function userdetaildata(){
+        return Auth::user();
     }
 
 }

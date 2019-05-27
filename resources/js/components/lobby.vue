@@ -34,7 +34,16 @@
                 <!-- <div class="btns">
                   <button type="submit" class="orange" value="GO"></button>
                 </div> -->
-                <a href="#" @click="gotogame"> <h1>Play Lec68</h1> </a>
+                <form action="..." onsubmit="window.open('http://localhost:8001/redirect', '', 'width=1920,height=1080')">
+                
+
+
+
+
+
+            
+                <button type="submit" > <h1>Play Lec68</h1> </button>
+                </form>
               </div>
             </div>
           </li>
@@ -313,17 +322,75 @@ import navbar from "./welcome/navbar";
 import asides from "./welcome/asides";
 import alertside from "./alertsidebar";
 import footers from './welcome/footers';
+
 export default {
+  
   components: {
     navbar,
     asides,
     alertside,
     footers
-  }
-  ,methods:{
-    gotogame(){
-      var myWindow = window.open("redirect", "", "width=1920,height=1080");
+  },
+  data(){
+    return {
+      id:null,
+      provider_name:null,
+      balance:null,
+      user_id:null,
+      pro_id:null,
+      name:null,
+      email:null,
     }
+  },
+  mounted() {
+     console.log('HELELEOEO')
+    this.userdata();
+  },
+  
+  methods:{
+    gotogame(){
+      let config = {
+          headers: {'Access-Control-Allow-Origin': '*'}
+      };
+       axios.post('http://localhost:8001/checkapiuser',{
+        id:this.id,
+        user_id:this.user_id,
+        provider_name:this.provider_name,
+        balance:this.balance,
+        pro_id:this.pro_id,
+        name:this.name,
+        email:this.email,
+        
+       }
+       ).then(res=>{
+        console.log(res.data)
+        let myWindow = window.open("http://localhost:8001/redirect", "", "width=1920,height=1080");
+      }).catch(er=>{
+        console.log(er.res)
+      })
+      
+    },
+    userdata(){
+      axios.get('/userdetaildata').then(res=>{
+        console.log(res.data)
+        this.id = res.data.id
+        this.user_id = res.data.user_id
+        this.provider_name = res.data.provider_name
+        this.balance = res.data.userBalance
+        this.pro_id = res.data.pro_id
+        this.name = res.data.name
+        this.email = res.data.email
+        $('.id').val(this.id);
+        $('.provider_name').val(this.provider_name);
+        $('.balance').val(this.balance);
+        $('.pro_id').val(this.pro_id);
+        $('.name').val(this.name);
+        $('.email').val(this.email);
+      }).catch(er=>{
+        console.log(er.res)
+      })
+    },
+    
   }
 };
 </script>

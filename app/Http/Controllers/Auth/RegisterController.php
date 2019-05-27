@@ -64,6 +64,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        function generateRandomString($length = 10) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            return $randomString;
+        }
+        $id = generateRandomString();
         $date = date('y-m-d H:i:s');
         $user = new users;
         $user->userID = 1;
@@ -75,12 +85,17 @@ class RegisterController extends Controller
         $user->last_activity = $date;
         $user->save();
         return User::create([
+            'user_id'=>$id,
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'provider_name' => 'Whitelebel1',
             'pro_id' => '0001',
             'userBalance' => 0,
+            'totalOnlineHour'=>0,
+            'userStatus'=>'online',
+            'registerTime'=>$date,
+            'last_activity'=>$date,
         ]);
     }
 }

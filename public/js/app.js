@@ -5305,6 +5305,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7995,6 +8005,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -8006,9 +8023,64 @@ __webpack_require__.r(__webpack_exports__);
     alertside: _alertsidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
     footers: _welcome_footers__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  data: function data() {
+    return {
+      id: null,
+      provider_name: null,
+      balance: null,
+      user_id: null,
+      pro_id: null,
+      name: null,
+      email: null
+    };
+  },
+  mounted: function mounted() {
+    console.log('HELELEOEO');
+    this.userdata();
+  },
   methods: {
     gotogame: function gotogame() {
-      var myWindow = window.open("redirect", "", "width=1920,height=1080");
+      var config = {
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
+      };
+      axios.post('http://localhost:8001/checkapiuser', {
+        id: this.id,
+        user_id: this.user_id,
+        provider_name: this.provider_name,
+        balance: this.balance,
+        pro_id: this.pro_id,
+        name: this.name,
+        email: this.email
+      }).then(function (res) {
+        console.log(res.data);
+        var myWindow = window.open("http://localhost:8001/redirect", "", "width=1920,height=1080");
+      })["catch"](function (er) {
+        console.log(er.res);
+      });
+    },
+    userdata: function userdata() {
+      var _this = this;
+
+      axios.get('/userdetaildata').then(function (res) {
+        console.log(res.data);
+        _this.id = res.data.id;
+        _this.user_id = res.data.user_id;
+        _this.provider_name = res.data.provider_name;
+        _this.balance = res.data.userBalance;
+        _this.pro_id = res.data.pro_id;
+        _this.name = res.data.name;
+        _this.email = res.data.email;
+        $('.id').val(_this.id);
+        $('.provider_name').val(_this.provider_name);
+        $('.balance').val(_this.balance);
+        $('.pro_id').val(_this.pro_id);
+        $('.name').val(_this.name);
+        $('.email').val(_this.email);
+      })["catch"](function (er) {
+        console.log(er.res);
+      });
     }
   }
 });
@@ -9222,6 +9294,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_myaccount_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index/myaccount.vue */ "./resources/js/components/index/myaccount.vue");
+/* harmony import */ var _index_recommedndedfriends_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index/recommedndedfriends.vue */ "./resources/js/components/index/recommedndedfriends.vue");
+/* harmony import */ var _index_transactionrecord_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../index/transactionrecord.vue */ "./resources/js/components/index/transactionrecord.vue");
+/* harmony import */ var _index_instantrecharge_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../index/instantrecharge.vue */ "./resources/js/components/index/instantrecharge.vue");
+/* harmony import */ var _index_applyforwithdrawal_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../index/applyforwithdrawal.vue */ "./resources/js/components/index/applyforwithdrawal.vue");
+/* harmony import */ var _index_selfservicewashing_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../index/selfservicewashing.vue */ "./resources/js/components/index/selfservicewashing.vue");
+/* harmony import */ var _index_novicetask_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../index/novicetask.vue */ "./resources/js/components/index/novicetask.vue");
+/* harmony import */ var _index_dailytask_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../index/dailytask.vue */ "./resources/js/components/index/dailytask.vue");
+/* harmony import */ var _index_achievementtask_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../index/achievementtask.vue */ "./resources/js/components/index/achievementtask.vue");
+/* harmony import */ var _index_changepassword_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../index/changepassword.vue */ "./resources/js/components/index/changepassword.vue");
+/* harmony import */ var _index_bankinfo_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../index/bankinfo.vue */ "./resources/js/components/index/bankinfo.vue");
+/* harmony import */ var _index_modifyphone_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../index/modifyphone.vue */ "./resources/js/components/index/modifyphone.vue");
+/* harmony import */ var _index_subscription_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../index/subscription.vue */ "./resources/js/components/index/subscription.vue");
+/* harmony import */ var _index_message_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../index/message.vue */ "./resources/js/components/index/message.vue");
 //
 //
 //
@@ -9682,9 +9768,205 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      navShowName: "message",
       ismenu: false,
       messages: "./index",
       promote: "./promote",
@@ -9693,6 +9975,22 @@ __webpack_require__.r(__webpack_exports__);
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
+  },
+  components: {
+    myaccount: _index_myaccount_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    recommedndedfriends: _index_recommedndedfriends_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    transactionrecord: _index_transactionrecord_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    instantrecharge: _index_instantrecharge_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    applyforwithdrawal: _index_applyforwithdrawal_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    selfservicewashing: _index_selfservicewashing_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    novicetask: _index_novicetask_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    dailytask: _index_dailytask_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    achievementtask: _index_achievementtask_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    changepassword: _index_changepassword_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    bankinfo: _index_bankinfo_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    modifyphone: _index_modifyphone_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    subscription: _index_subscription_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
+    message: _index_message_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
   },
   methods: {
     myaccount: function myaccount() {
@@ -9703,6 +10001,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     rechargeClick: function rechargeClick() {
       $("#recharge")[0].click();
+    },
+    setNavShowName: function setNavShowName(value, e) {
+      this.navShowName = value;
+      $("dd").removeClass("active");
+      $(e.target.parentElement).addClass("active");
+      console.log(e);
     }
   }
 });
@@ -55923,7 +56227,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-wrap main-container u-wrap" }, [
-    _c("div", { staticClass: "u-menu" }, [
+    _c("div", { staticClass: "d-none d-xl-block u-menu" }, [
       _c("div", { staticClass: "umenu-wrap color-bg" }, [
         _c("dl", [
           _vm._m(0),
@@ -55971,7 +56275,8 @@ var render = function() {
               },
               [_vm._v("Transaction Record")]
             )
-          ])
+          ]),
+          _vm._v("s\n        ")
         ]),
         _vm._v(" "),
         _c("dl", [
@@ -56178,7 +56483,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._v("\n            My message\n            "),
+                  _vm._v("\n              My message\n              "),
                   _vm._v(" "),
                   _c("em", { staticClass: "badge letter" }, [_vm._v("2")])
                 ]
@@ -56189,73 +56494,92 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "u-main" }, [
-      _c("div", { staticClass: "u-title" }, [_vm._v(_vm._s(_vm.navShowName))]),
-      _vm._v(" "),
-      _vm.navShowName === "myaccount"
-        ? _c("div", { staticClass: "u-content" }, [_c("myaccount")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "recommedndedfriends"
-        ? _c(
-            "div",
-            { staticClass: "u-content" },
-            [_c("recommedndedfriends")],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "transactionrecord"
-        ? _c("div", { staticClass: "u-content" }, [_c("transactionrecord")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "instantrecharge"
-        ? _c("div", { staticClass: "u-content" }, [_c("instantrecharge")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "applyforwithdrawal"
-        ? _c("div", { staticClass: "u-content" }, [_c("applyforwithdrawal")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "selfservicewashing"
-        ? _c("div", { staticClass: "u-content" }, [_c("selfservicewashing")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "novicetask"
-        ? _c("div", { staticClass: "u-content" }, [_c("novicetask")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "dailytask"
-        ? _c("div", { staticClass: "u-content" }, [_c("dailytask")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "achievementtask"
-        ? _c("div", { staticClass: "u-content" }, [_c("achievementtask")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "changepassword"
-        ? _c("div", { staticClass: "u-content" }, [_c("changepassword")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "bankinfo"
-        ? _c("div", { staticClass: "u-content" }, [_c("bankinfo")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "modifyphone"
-        ? _c("div", { staticClass: "u-content" }, [_c("modifyphone")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "bankinfo"
-        ? _c("div", { staticClass: "u-content" }, [_c("bankinfo")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "subscription"
-        ? _c("div", { staticClass: "u-content" }, [_c("subscription")], 1)
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.navShowName === "message"
-        ? _c("div", { staticClass: "u-content" }, [_c("message")], 1)
-        : _vm._e()
+    _c("div", { staticClass: "d-none d-xl-block" }, [
+      _c("div", { staticClass: "u-main" }, [
+        _c("div", { staticClass: "u-title" }, [
+          _vm._v(_vm._s(_vm.navShowName))
+        ]),
+        _vm._v(" "),
+        _vm.navShowName === "myaccount"
+          ? _c("div", { staticClass: "u-content" }, [_c("myaccount")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "recommedndedfriends"
+          ? _c(
+              "div",
+              { staticClass: "u-content" },
+              [_c("recommedndedfriends")],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "transactionrecord"
+          ? _c(
+              "div",
+              { staticClass: "u-content" },
+              [_c("transactionrecord")],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "instantrecharge"
+          ? _c("div", { staticClass: "u-content" }, [_c("instantrecharge")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "applyforwithdrawal"
+          ? _c(
+              "div",
+              { staticClass: "u-content" },
+              [_c("applyforwithdrawal")],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "selfservicewashing"
+          ? _c(
+              "div",
+              { staticClass: "u-content" },
+              [_c("selfservicewashing")],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "novicetask"
+          ? _c("div", { staticClass: "u-content" }, [_c("novicetask")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "dailytask"
+          ? _c("div", { staticClass: "u-content" }, [_c("dailytask")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "achievementtask"
+          ? _c("div", { staticClass: "u-content" }, [_c("achievementtask")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "changepassword"
+          ? _c("div", { staticClass: "u-content" }, [_c("changepassword")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "bankinfo"
+          ? _c("div", { staticClass: "u-content" }, [_c("bankinfo")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "modifyphone"
+          ? _c("div", { staticClass: "u-content" }, [_c("modifyphone")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "bankinfo"
+          ? _c("div", { staticClass: "u-content" }, [_c("bankinfo")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "subscription"
+          ? _c("div", { staticClass: "u-content" }, [_c("subscription")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "message"
+          ? _c("div", { staticClass: "u-content" }, [_c("message")], 1)
+          : _vm._e()
+      ])
     ])
   ])
 }
@@ -56266,7 +56590,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("dt", [
       _c("i", { staticClass: "icon-user" }),
-      _vm._v("My account\n        ")
+      _vm._v("My account\n          ")
     ])
   },
   function() {
@@ -56275,7 +56599,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("dt", [
       _c("i", { staticClass: "icon-yuan" }),
-      _vm._v("Financial Center\n        ")
+      _vm._v("Financial Center\n          ")
     ])
   },
   function() {
@@ -56284,7 +56608,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("dt", [
       _c("i", { staticClass: "icon-task" }),
-      _vm._v("About\n        ")
+      _vm._v("About\n          ")
     ])
   },
   function() {
@@ -56293,7 +56617,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("dt", [
       _c("i", { staticClass: "icon-records" }),
-      _vm._v("Customer information\n        ")
+      _vm._v("Customer information\n          ")
     ])
   },
   function() {
@@ -56302,7 +56626,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("dt", { staticClass: "active" }, [
       _c("i", { staticClass: "icon-msg" }),
-      _vm._v("Customer Care\n        ")
+      _vm._v("Customer Care\n          ")
     ])
   }
 ]
@@ -63075,8 +63399,11 @@ var render = function() {
                         _c("h2"),
                         _vm._v(" "),
                         _c(
-                          "a",
-                          { attrs: { href: "#" }, on: { click: _vm.gotogame } },
+                          "button",
+                          {
+                            attrs: { type: "submit" },
+                            on: { click: _vm.gotogame }
+                          },
                           [_c("h1", [_vm._v("Play Lec68")])]
                         )
                       ])
@@ -65039,6 +65366,397 @@ var render = function() {
           _vm._v(" "),
           _vm._m(2),
           _vm._v(" "),
+          _c("div", { staticClass: "d-block d-xl-none" }, [
+            _c("ul", { staticClass: "nav-mobile" }, [
+              _c("li", { staticClass: "menu-container" }, [
+                _c("input", { attrs: { id: "menu-toggle", type: "checkbox" } }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  { staticClass: "menu-button", attrs: { for: "menu-toggle" } },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "icon-open",
+                        attrs: { viewBox: "0 0 24 24" }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d: "M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "icon-close",
+                        attrs: { viewBox: "0 0 100 100" }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M83.288 88.13c-2.114 2.112-5.575 2.112-7.69 0L53.66 66.188c-2.113-2.112-5.572-2.112-7.686 0l-21.72 21.72c-2.114 2.113-5.572 2.113-7.687 0l-4.693-4.692c-2.114-2.114-2.114-5.573 0-7.688l21.72-21.72c2.112-2.115 2.112-5.574 0-7.687L11.87 24.4c-2.114-2.113-2.114-5.57 0-7.686l4.842-4.842c2.113-2.114 5.57-2.114 7.686 0l21.72 21.72c2.114 2.113 5.572 2.113 7.688 0l21.72-21.72c2.115-2.114 5.574-2.114 7.688 0l4.695 4.695c2.112 2.113 2.112 5.57-.002 7.686l-21.72 21.72c-2.112 2.114-2.112 5.573 0 7.686L88.13 75.6c2.112 2.11 2.112 5.572 0 7.687l-4.842 4.84z"
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("ul", { staticClass: "menu-sidebar" }, [
+                  _c("li", [
+                    _c("input", {
+                      staticClass: "submenu-toggle",
+                      attrs: { type: "checkbox", id: "sub-one" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "submenu-label",
+                        attrs: { for: "sub-one" }
+                      },
+                      [_vm._v("My account")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "menu-sub" }, [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName("myaccount", $event)
+                              }
+                            }
+                          },
+                          [_vm._v("My account")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName(
+                                  "recommedndedfriends",
+                                  $event
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("Recommeded Friends")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName(
+                                  "transactionrecord",
+                                  $event
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("Transaction Record")]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("input", {
+                      staticClass: "submenu-toggle",
+                      attrs: { type: "checkbox", id: "sub-one" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "submenu-label",
+                        attrs: { for: "sub-one" }
+                      },
+                      [_vm._v("Financial Center")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "menu-sub" }, [
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName(
+                                  "instantrecharge",
+                                  $event
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("Instant recharge")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName(
+                                  "applyforwithdrawal",
+                                  $event
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("Apply for withdrawal")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName(
+                                  "selfservicewashing",
+                                  $event
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("Self-service washing")]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("input", {
+                      staticClass: "submenu-toggle",
+                      attrs: { type: "checkbox", id: "sub-one" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "submenu-label",
+                        attrs: { for: "sub-one" }
+                      },
+                      [_vm._v("About")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "menu-sub" }, [
+                      _vm._m(5),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName("novicetask", $event)
+                              }
+                            }
+                          },
+                          [_vm._v("Novice task")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName("dailytask", $event)
+                              }
+                            }
+                          },
+                          [_vm._v("Daily task")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName(
+                                  "achievementtask",
+                                  $event
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("Achievement task")]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("input", {
+                      staticClass: "submenu-toggle",
+                      attrs: { type: "checkbox", id: "sub-one" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "submenu-label",
+                        attrs: { for: "sub-one" }
+                      },
+                      [_vm._v("Customer information")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "menu-sub" }, [
+                      _vm._m(6),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName(
+                                  "changepassword",
+                                  $event
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("change Password")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName("bankinfo", $event)
+                              }
+                            }
+                          },
+                          [_vm._v("Bank info")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName("modifyphone", $event)
+                              }
+                            }
+                          },
+                          [_vm._v("Modify phone")]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("input", {
+                      staticClass: "submenu-toggle",
+                      attrs: { type: "checkbox", id: "sub-one" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "submenu-label",
+                        attrs: { for: "sub-one" }
+                      },
+                      [_vm._v("Customer Care")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "menu-sub" }, [
+                      _vm._m(7),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName(
+                                  "subscription",
+                                  $event
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("SMS subscription")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setNavShowName("message", $event)
+                              }
+                            }
+                          },
+                          [_vm._v("My message")]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
           _c(
             "div",
             {
@@ -65046,10 +65764,10 @@ var render = function() {
               attrs: { id: "navigation" }
             },
             [
-              _vm._m(3),
+              _vm._m(8),
               _vm._v(" "),
               _vm.checkuser == "false"
-                ? _c("span", [_vm._m(4)])
+                ? _c("span", [_vm._m(9)])
                 : _vm.checkuser == "true"
                 ? _c("span", [
                     _c("ul", { staticClass: "navbar-nav ml-auto" }, [
@@ -65060,7 +65778,7 @@ var render = function() {
                             staticClass: "button nav-link d-flex float-left",
                             attrs: { href: _vm.messages }
                           },
-                          [_vm._m(5), _vm._v("Message\n              ")]
+                          [_vm._m(10), _vm._v("Message\n              ")]
                         )
                       ]),
                       _vm._v(" "),
@@ -65076,7 +65794,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._m(6), _vm._v("My Account\n              ")]
+                          [_vm._m(11), _vm._v("My Account\n              ")]
                         )
                       ]),
                       _vm._v(" "),
@@ -65087,7 +65805,7 @@ var render = function() {
                             staticClass: "button nav-link d-flex float-left",
                             attrs: { href: _vm.promote }
                           },
-                          [_vm._m(7), _vm._v("My Privilege\n              ")]
+                          [_vm._m(12), _vm._v("My Privilege\n              ")]
                         )
                       ]),
                       _vm._v(" "),
@@ -65098,7 +65816,7 @@ var render = function() {
                             staticClass: "button nav-link d-flex float-left",
                             attrs: { href: _vm.lobby }
                           },
-                          [_vm._m(8), _vm._v("Game Lobby\n              ")]
+                          [_vm._m(13), _vm._v("Game Lobby\n              ")]
                         )
                       ]),
                       _vm._v(" "),
@@ -65114,7 +65832,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._m(9), _vm._v("Recharge\n              ")]
+                          [_vm._m(14), _vm._v("Recharge\n              ")]
                         )
                       ]),
                       _vm._v(" "),
@@ -65130,11 +65848,11 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._m(10), _vm._v("WithDraw\n              ")]
+                          [_vm._m(15), _vm._v("WithDraw\n              ")]
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._m(11)
+                      _vm._m(16)
                     ])
                   ])
                 : _vm._e()
@@ -65147,7 +65865,7 @@ var render = function() {
     _c("div", { staticClass: "modal fade", attrs: { id: "loginModal" } }, [
       _c("div", { staticClass: "modal-dialog modal-lg" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(12),
+          _vm._m(17),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "col-lg-12 col-md-12" }, [
@@ -65164,9 +65882,9 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "card card-login card-white" }, [
-                    _vm._m(13),
+                    _vm._m(18),
                     _vm._v(" "),
-                    _vm._m(14),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-footer" }, [
                       _c(
@@ -65184,7 +65902,7 @@ var render = function() {
                         [_vm._v("Login")]
                       ),
                       _vm._v(" "),
-                      _vm._m(15)
+                      _vm._m(20)
                     ])
                   ])
                 ]
@@ -65196,10 +65914,10 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "modal fade register" }, [
-      _c("div", { staticClass: "modal-dialog modal-lg" }, [
+    _c("div", { staticClass: "modal register fade" }, [
+      _c("div", { staticClass: "modal-dialog modal-lg show" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(16),
+          _vm._m(21),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "container" }, [
@@ -65213,11 +65931,11 @@ var render = function() {
                         attrs: { method: "POST", action: "register" }
                       },
                       [
-                        _vm._m(17),
+                        _vm._m(22),
                         _vm._v(" "),
                         _c("div", { staticClass: "card-body" }, [
                           _c("div", { staticClass: "input-group" }, [
-                            _vm._m(18),
+                            _vm._m(23),
                             _vm._v(" "),
                             _c("input", {
                               staticClass: "form-control",
@@ -65238,14 +65956,14 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
-                          _vm._m(19),
+                          _vm._m(24),
                           _vm._v(" "),
-                          _vm._m(20),
+                          _vm._m(25),
                           _vm._v(" "),
-                          _vm._m(21)
+                          _vm._m(26)
                         ]),
                         _vm._v(" "),
-                        _vm._m(22)
+                        _vm._m(27)
                       ]
                     )
                   ])
@@ -65257,9 +65975,97 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(23),
+    _vm._m(28),
     _vm._v(" "),
-    _vm._m(24)
+    _vm._m(29),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-block d-xl-none" }, [
+      _c("div", { staticClass: "u-main" }, [
+        _c("div", { staticClass: "u-title" }, [
+          _vm._v(_vm._s(_vm.navShowName))
+        ]),
+        _vm._v(" "),
+        _vm.navShowName === "myaccount"
+          ? _c("div", { staticClass: "u-content" }, [_c("myaccount")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "recommedndedfriends"
+          ? _c(
+              "div",
+              { staticClass: "u-content" },
+              [_c("recommedndedfriends")],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "transactionrecord"
+          ? _c(
+              "div",
+              { staticClass: "u-content" },
+              [_c("transactionrecord")],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "instantrecharge"
+          ? _c("div", { staticClass: "u-content" }, [_c("instantrecharge")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "applyforwithdrawal"
+          ? _c(
+              "div",
+              { staticClass: "u-content" },
+              [_c("applyforwithdrawal")],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "selfservicewashing"
+          ? _c(
+              "div",
+              { staticClass: "u-content" },
+              [_c("selfservicewashing")],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "novicetask"
+          ? _c("div", { staticClass: "u-content" }, [_c("novicetask")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "dailytask"
+          ? _c("div", { staticClass: "u-content" }, [_c("dailytask")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "achievementtask"
+          ? _c("div", { staticClass: "u-content" }, [_c("achievementtask")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "changepassword"
+          ? _c("div", { staticClass: "u-content" }, [_c("changepassword")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "bankinfo"
+          ? _c("div", { staticClass: "u-content" }, [_c("bankinfo")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "modifyphone"
+          ? _c("div", { staticClass: "u-content" }, [_c("modifyphone")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "bankinfo"
+          ? _c("div", { staticClass: "u-content" }, [_c("bankinfo")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "subscription"
+          ? _c("div", { staticClass: "u-content" }, [_c("subscription")], 1)
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.navShowName === "message"
+          ? _c("div", { staticClass: "u-content" }, [_c("message")], 1)
+          : _vm._e()
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -65316,7 +66122,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "navbar-toggler",
+        staticClass: "navbar-toggler pl-5",
         attrs: {
           type: "button",
           "data-toggle": "collapse",
@@ -65333,6 +66139,66 @@ var staticRenderFns = [
         _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" })
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "menu-sub-title" }, [
+      _c("label", { staticClass: "submenu-label", attrs: { for: "sub-one" } }, [
+        _vm._v("Back")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "arrow left" }, [_vm._v("‹")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "menu-sub-title" }, [
+      _c("label", { staticClass: "submenu-label", attrs: { for: "sub-one" } }, [
+        _vm._v("Back")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "arrow left" }, [_vm._v("‹")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "menu-sub-title" }, [
+      _c("label", { staticClass: "submenu-label", attrs: { for: "sub-one" } }, [
+        _vm._v("Back")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "arrow left" }, [_vm._v("‹")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "menu-sub-title" }, [
+      _c("label", { staticClass: "submenu-label", attrs: { for: "sub-one" } }, [
+        _vm._v("Back")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "arrow left" }, [_vm._v("‹")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "menu-sub-title" }, [
+      _c("label", { staticClass: "submenu-label", attrs: { for: "sub-one" } }, [
+        _vm._v("Back")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "arrow left" }, [_vm._v("‹")])
+    ])
   },
   function() {
     var _vm = this
@@ -78152,14 +79018,20 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");

@@ -1,34 +1,41 @@
 <template>
   <div class="container-wrap main-container u-wrap">
-    <div class="u-menu">
+    <div class="d-none d-xl-block u-menu">
       <div class="umenu-wrap color-bg">
         <dl>
           <dt>
             <i class="icon-user"></i>My account
           </dt>
           <dd data-sidebar="u_account">
-            <a href="#" id="myaccountlink" @click="setNavShowName('myaccount',$event)"
-            >My account</a>
+            <a href="#" id="myaccountlink" @click="setNavShowName('myaccount',$event)">My account</a>
           </dd>
           <dd data-sidebar="u_friend">
             <a href="#" @click="setNavShowName('recommedndedfriends',$event)">Recommended Friends</a>
           </dd>
           <dd data-sidebar="u_transaction">
             <a href="#" @click="setNavShowName('transactionrecord',$event)">Transaction Record</a>
-          </dd>
+          </dd>s
         </dl>
         <dl>
           <dt>
             <i class="icon-yuan"></i>Financial Center
           </dt>
           <dd data-sidebar="u_pay">
-          <a href="#" id="recharge" @click="setNavShowName('instantrecharge',$event)">Instant recharge</a>
+            <a
+              href="#"
+              id="recharge"
+              @click="setNavShowName('instantrecharge',$event)"
+            >Instant recharge</a>
           </dd>
           <dd data-sidebar="u_withdraw">
-           <a href="#" id="withdraw" @click="setNavShowName('applyforwithdrawal',$event)">Apply for withdrawal</a>
+            <a
+              href="#"
+              id="withdraw"
+              @click="setNavShowName('applyforwithdrawal',$event)"
+            >Apply for withdrawal</a>
           </dd>
           <dd data-sidebar="u_self_rebate">
-             <a href="#" @click="setNavShowName('selfservicewashing',$event)">Self-service washing</a>
+            <a href="#" @click="setNavShowName('selfservicewashing',$event)">Self-service washing</a>
           </dd>
         </dl>
         <dl id="u-menu-mission">
@@ -36,13 +43,13 @@
             <i class="icon-task"></i>About
           </dt>
           <dd class="newcomer-dd" data-sidebar="u_mission_newcomer">
-             <a href="#" @click="setNavShowName('novicetask',$event)">Novice task</a>
+            <a href="#" @click="setNavShowName('novicetask',$event)">Novice task</a>
           </dd>
           <dd class="daily-dd" data-sidebar="u_mission_daily">
             <a href="#" @click="setNavShowName('dailytask',$event)">Daily task</a>
           </dd>
           <dd class="achieve-dd" data-sidebar="u_mission_achieve">
-           <a href="#" @click="setNavShowName('achievementtask',$event)">Achievement task</a>
+            <a href="#" @click="setNavShowName('achievementtask',$event)">Achievement task</a>
           </dd>
         </dl>
         <dl>
@@ -50,10 +57,10 @@
             <i class="icon-records"></i>Customer information
           </dt>
           <dd data-sidebar="u_person_pwdIndex">
-           <a href="#" @click="setNavShowName('changepassword',$event)">change Password</a>
+            <a href="#" @click="setNavShowName('changepassword',$event)">change Password</a>
           </dd>
           <dd data-sidebar="u_bank">
-             <a href="#" @click="setNavShowName('bankinfo',$event)">Bank info</a>
+            <a href="#" @click="setNavShowName('bankinfo',$event)">Bank info</a>
           </dd>
           <dd data-sidebar="u_person_phoneIndex">
             <a href="#" @click="setNavShowName('modifyphone',$event)">Modify phone</a>
@@ -64,7 +71,7 @@
             <i class="icon-msg"></i>Customer Care
           </dt>
           <dd data-sidebar="u_sms_subscribeIndex">
-           <a href="#" @click="setNavShowName('subscription',$event)">SMS subscription</a>
+            <a href="#" @click="setNavShowName('subscription',$event)">SMS subscription</a>
           </dd>
           <dd data-sidebar="u_station_letter" class="active">
             <a href="#" @click="setNavShowName('message',$event)">
@@ -77,6 +84,8 @@
         </dl>
       </div>
     </div>
+      <!-- mobile Min hide 1199px -->
+<div class="d-none d-xl-block">
     <div class="u-main">
       <div class="u-title">{{navShowName}}</div>
       <div class="u-content" v-if="navShowName ==='myaccount'">
@@ -100,30 +109,31 @@
       <div class="u-content" v-if="navShowName ==='novicetask'">
         <novicetask></novicetask>
       </div>
-        <div class="u-content" v-if="navShowName ==='dailytask'">
+      <div class="u-content" v-if="navShowName ==='dailytask'">
         <dailytask></dailytask>
       </div>
-        <div class="u-content" v-if="navShowName ==='achievementtask'">
+      <div class="u-content" v-if="navShowName ==='achievementtask'">
         <achievementtask></achievementtask>
       </div>
-        <div class="u-content" v-if="navShowName ==='changepassword'">
+      <div class="u-content" v-if="navShowName ==='changepassword'">
         <changepassword></changepassword>
       </div>
-        <div class="u-content" v-if="navShowName ==='bankinfo'">
+      <div class="u-content" v-if="navShowName ==='bankinfo'">
         <bankinfo></bankinfo>
       </div>
-        <div class="u-content" v-if="navShowName ==='modifyphone'">
+      <div class="u-content" v-if="navShowName ==='modifyphone'">
         <modifyphone></modifyphone>
       </div>
-        <div class="u-content" v-if="navShowName ==='bankinfo'">
+      <div class="u-content" v-if="navShowName ==='bankinfo'">
         <bankinfo></bankinfo>
       </div>
-        <div class="u-content" v-if="navShowName ==='subscription'">
+      <div class="u-content" v-if="navShowName ==='subscription'">
         <subscription></subscription>
       </div>
       <div class="u-content" v-if="navShowName ==='message'">
         <message></message>
       </div>
+    </div>
     </div>
   </div>
   <!-- Sidebar -->
@@ -140,8 +150,8 @@ import dailytask from "./dailytask.vue";
 import achievementtask from "./achievementtask.vue";
 import changepassword from "./changepassword.vue";
 import bankinfo from "./bankinfo.vue";
-import modifyphone from './modifyphone.vue';
-import subscription from './subscription.vue';
+import modifyphone from "./modifyphone.vue";
+import subscription from "./subscription.vue";
 import message from "./message.vue";
 export default {
   data() {
@@ -163,7 +173,7 @@ export default {
     bankinfo,
     modifyphone,
     subscription,
-    message,
+    message
   },
   methods: {
     setNavShowName(value, e) {

@@ -25,7 +25,7 @@
           <a class="navbar-brand" :href="welcome">TNK {{ checkuser }}</a>
         </div>
         <button
-          class="navbar-toggler"
+          class="navbar-toggler pl-5"
           type="button"
           data-toggle="collapse"
           data-target="#navigation"
@@ -36,6 +36,135 @@
           <span class="navbar-toggler-bar navbar-kebab"></span>
           <span class="navbar-toggler-bar navbar-kebab"></span>
         </button>
+        <div class="d-block d-xl-none">
+          <ul class="nav-mobile">
+            <li class="menu-container">
+              <input id="menu-toggle" type="checkbox">
+              <label for="menu-toggle" class="menu-button">
+                <svg class="icon-open" viewBox="0 0 24 24">
+                  <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                </svg>
+                <svg class="icon-close" viewBox="0 0 100 100">
+                  <path
+                    d="M83.288 88.13c-2.114 2.112-5.575 2.112-7.69 0L53.66 66.188c-2.113-2.112-5.572-2.112-7.686 0l-21.72 21.72c-2.114 2.113-5.572 2.113-7.687 0l-4.693-4.692c-2.114-2.114-2.114-5.573 0-7.688l21.72-21.72c2.112-2.115 2.112-5.574 0-7.687L11.87 24.4c-2.114-2.113-2.114-5.57 0-7.686l4.842-4.842c2.113-2.114 5.57-2.114 7.686 0l21.72 21.72c2.114 2.113 5.572 2.113 7.688 0l21.72-21.72c2.115-2.114 5.574-2.114 7.688 0l4.695 4.695c2.112 2.113 2.112 5.57-.002 7.686l-21.72 21.72c-2.112 2.114-2.112 5.573 0 7.686L88.13 75.6c2.112 2.11 2.112 5.572 0 7.687l-4.842 4.84z"
+                  ></path>
+                </svg>
+              </label>
+              <ul class="menu-sidebar">
+                <li>
+                  <input type="checkbox" id="sub-one" class="submenu-toggle">
+                  <label class="submenu-label" for="sub-one">My account</label>
+                  <div class="arrow right">&#8250;</div>
+                  <ul class="menu-sub">
+                    <li class="menu-sub-title">
+                      <label class="submenu-label" for="sub-one">Back</label>
+                      <div class="arrow left">&#8249;</div>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('myaccount',$event)">My account</a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        @click="setNavShowName('recommedndedfriends',$event)"
+                      >Recommeded Friends</a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        @click="setNavShowName('transactionrecord',$event)"
+                      >Transaction Record</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <input type="checkbox" id="sub-one" class="submenu-toggle">
+                  <label class="submenu-label" for="sub-one">Financial Center</label>
+                  <div class="arrow right">&#8250;</div>
+                  <ul class="menu-sub">
+                    <li class="menu-sub-title">
+                      <label class="submenu-label" for="sub-one">Back</label>
+                      <div class="arrow left">&#8249;</div>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('instantrecharge',$event)">Instant recharge</a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        @click="setNavShowName('applyforwithdrawal',$event)"
+                      >Apply for withdrawal</a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        @click="setNavShowName('selfservicewashing',$event)"
+                      >Self-service washing</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <input type="checkbox" id="sub-one" class="submenu-toggle">
+                  <label class="submenu-label" for="sub-one">About</label>
+                  <div class="arrow right">&#8250;</div>
+                  <ul class="menu-sub">
+                    <li class="menu-sub-title">
+                      <label class="submenu-label" for="sub-one">Back</label>
+                      <div class="arrow left">&#8249;</div>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('novicetask',$event)">Novice task</a>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('dailytask',$event)">Daily task</a>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('achievementtask',$event)">Achievement task</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <input type="checkbox" id="sub-one" class="submenu-toggle">
+                  <label class="submenu-label" for="sub-one">Customer information</label>
+                  <div class="arrow right">&#8250;</div>
+                  <ul class="menu-sub">
+                    <li class="menu-sub-title">
+                      <label class="submenu-label" for="sub-one">Back</label>
+                      <div class="arrow left">&#8249;</div>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('changepassword',$event)">change Password</a>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('bankinfo',$event)">Bank info</a>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('modifyphone',$event)">Modify phone</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <input type="checkbox" id="sub-one" class="submenu-toggle">
+                  <label class="submenu-label" for="sub-one">Customer Care</label>
+                  <div class="arrow right">&#8250;</div>
+                  <ul class="menu-sub">
+                    <li class="menu-sub-title">
+                      <label class="submenu-label" for="sub-one">Back</label>
+                      <div class="arrow left">&#8249;</div>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('subscription',$event)">SMS subscription</a>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('message',$event)">My message</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -143,8 +272,8 @@
                   </div>WithDraw
                 </a>
               </li>
-               <li class="nav-item">
-                 <a href="#" class="button nav-link d-flex float-left fixed-logout">
+              <li class="nav-item">
+                <a href="#" class="button nav-link d-flex float-left fixed-logout">
                   <div class="dropdown show-dropdown">
                     <a href="#" data-toggle="dropdown">
                       <div class="icons">
@@ -259,9 +388,10 @@
                         class="link footer-link"
                         data-toggle="modal"
                         data-target=".register"
-                        data-dismiss="modal" aria-label="Close"
+                        data-dismiss="modal"
+                        aria-label="Close"
                       >
-                          <i class="fas fa-user-plus icon-default pr-3"></i>Create Account
+                        <i class="fas fa-user-plus icon-default pr-3"></i>Create Account
                       </a>
                       <div class="d-flex">
                         <a href="javascript:void(0)" class="link footer-link">Forgot Password？</a>
@@ -276,8 +406,8 @@
       </div>
     </div>
     <!-- Modal Register -->
-    <div class="modal fade register">
-      <div class="modal-dialog modal-lg">
+    <div class="modal register fade">
+      <div class="modal-dialog modal-lg show">
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
@@ -456,12 +586,78 @@
       </div>
     </div>
     <!-- End Navbar -->
+    <!-- mobile Max show 1199px -->
+    <div class="d-block d-xl-none">
+      <div class="u-main">
+        <div class="u-title">{{navShowName}}</div>
+        <div class="u-content" v-if="navShowName ==='myaccount'">
+          <myaccount></myaccount>
+        </div>
+        <div class="u-content" v-if="navShowName ==='recommedndedfriends'">
+          <recommedndedfriends></recommedndedfriends>
+        </div>
+        <div class="u-content" v-if="navShowName ==='transactionrecord'">
+          <transactionrecord></transactionrecord>
+        </div>
+        <div class="u-content" v-if="navShowName ==='instantrecharge'">
+          <instantrecharge></instantrecharge>
+        </div>
+        <div class="u-content" v-if="navShowName ==='applyforwithdrawal'">
+          <applyforwithdrawal></applyforwithdrawal>
+        </div>
+        <div class="u-content" v-if="navShowName ==='selfservicewashing'">
+          <selfservicewashing></selfservicewashing>
+        </div>
+        <div class="u-content" v-if="navShowName ==='novicetask'">
+          <novicetask></novicetask>
+        </div>
+        <div class="u-content" v-if="navShowName ==='dailytask'">
+          <dailytask></dailytask>
+        </div>
+        <div class="u-content" v-if="navShowName ==='achievementtask'">
+          <achievementtask></achievementtask>
+        </div>
+        <div class="u-content" v-if="navShowName ==='changepassword'">
+          <changepassword></changepassword>
+        </div>
+        <div class="u-content" v-if="navShowName ==='bankinfo'">
+          <bankinfo></bankinfo>
+        </div>
+        <div class="u-content" v-if="navShowName ==='modifyphone'">
+          <modifyphone></modifyphone>
+        </div>
+        <div class="u-content" v-if="navShowName ==='bankinfo'">
+          <bankinfo></bankinfo>
+        </div>
+        <div class="u-content" v-if="navShowName ==='subscription'">
+          <subscription></subscription>
+        </div>
+        <div class="u-content" v-if="navShowName ==='message'">
+          <message></message>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import myaccount from "../index/myaccount.vue";
+import recommedndedfriends from "../index/recommedndedfriends.vue";
+import transactionrecord from "../index/transactionrecord.vue";
+import instantrecharge from "../index/instantrecharge.vue";
+import applyforwithdrawal from "../index/applyforwithdrawal.vue";
+import selfservicewashing from "../index/selfservicewashing.vue";
+import novicetask from "../index/novicetask.vue";
+import dailytask from "../index/dailytask.vue";
+import achievementtask from "../index/achievementtask.vue";
+import changepassword from "../index/changepassword.vue";
+import bankinfo from "../index/bankinfo.vue";
+import modifyphone from "../index/modifyphone.vue";
+import subscription from "../index/subscription.vue";
+import message from "../index/message.vue";
 export default {
   data() {
     return {
+      navShowName: "message",
       ismenu: false,
       messages: "./index",
       promote: "./promote",
@@ -473,6 +669,22 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
+  components: {
+    myaccount,
+    recommedndedfriends,
+    transactionrecord,
+    instantrecharge,
+    applyforwithdrawal,
+    selfservicewashing,
+    novicetask,
+    dailytask,
+    achievementtask,
+    changepassword,
+    bankinfo,
+    modifyphone,
+    subscription,
+    message
+  },
   methods: {
     myaccount() {
       $("#myaccountlink")[0].click();
@@ -482,6 +694,12 @@ export default {
     },
     rechargeClick() {
       $("#recharge")[0].click();
+    },
+    setNavShowName(value, e) {
+      this.navShowName = value;
+      $("dd").removeClass("active");
+      $(e.target.parentElement).addClass("active");
+      console.log(e);
     }
   }
 };
