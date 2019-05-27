@@ -2,7 +2,7 @@
   <div>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-absolute color-bg">
-      <div class="container-fluid">
+      <div class="container-fluid px-0">
         <div class="navbar-wrapper">
           <div class="navbar-minimize d-inline">
             <button
@@ -278,7 +278,7 @@
       </div>
     </div>
     <!-- Modal Register -->
-    <div class="modal">
+    <div class="modal fade" id="register">
       <div class="modal-dialog modal-lg show">
         <div class="modal-content">
           <!-- Modal Header -->
@@ -456,7 +456,107 @@
       </div>
     </div>
     <!-- End Navbar -->
-  
+    <div class="d-block d-xl-none">
+      <!-- User Not login -->
+      <span v-if="checkuser == 'false'">
+        <nav class="mobile-bottom-nav">
+          <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
+            <div class="mobile-bottom-nav__item-content">
+              <i class="tim-icons icon-badge"></i>
+              <!-- Recommed Friends -->
+            </div>
+          </div>
+          <div class="mobile-bottom-nav__item">
+            <div
+              class="mobile-bottom-nav__item-content"
+              data-toggle="modal"
+              data-target="#loginModal"
+            >
+              <i class="tim-icons icon-single-02 icon-default"></i>
+              <!-- Login -->
+            </div>
+          </div>
+          <div class="mobile-bottom-nav__item">
+            <div
+              class="mobile-bottom-nav__item-content"
+              data-toggle="modal"
+              data-target="#register"
+            >
+              <i class="fa fa-user-plus"></i>
+              <!-- Register -->
+            </div>
+          </div>
+          <div class="mobile-bottom-nav__item">
+            <div
+              class="mobile-bottom-nav__item-content"
+              data-toggle="modal"
+              data-target="#freetrial"
+            >
+              <i class="tim-icons icon-controller icon-default"></i>
+              <!-- Free Try -->
+            </div>
+          </div>
+          <div class="mobile-bottom-nav__item">
+            <div class="mobile-bottom-nav__item-content">
+              <i class="tim-icons icon-settings-gear-63"></i>
+              <!-- Change language -->
+            </div>
+          </div>
+        </nav>
+      </span>
+
+      <!-- user Login -->
+      <span v-else-if="checkuser == 'true'">
+        <nav class="mobile-bottom-nav">
+          <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
+            <div class="mobile-bottom-nav__item-content">
+              <i class="tim-icons icon-bank"></i>
+              <!--My Account -->
+            </div>
+          </div>
+          <div class="mobile-bottom-nav__item">
+            <div class="mobile-bottom-nav__item-content">
+              <a :href="messages" @click="myaccount()">
+                <i class="tim-icons icon-chat-33 icon-default"></i>
+              </a>
+              <!-- riviledge -->
+            </div>
+          </div>
+          <div class="mobile-bottom-nav__item">
+            <div class="mobile-bottom-nav__item-content">
+              <i class="tim-icons icon-controller icon-default"></i>
+              <!-- Lobby -->
+            </div>
+          </div>
+          <div class="mobile-bottom-nav__item">
+            <div class="mobile-bottom-nav__item-content">
+              <a href="#" @click="rechargeClick()">
+                <i class="tim-icons icon-coins icon-default"></i>
+              </a>
+              <!-- Recharge -->
+            </div>
+          </div>
+          <div class="mobile-bottom-nav__item">
+            <div class="mobile-bottom-nav__item-content">
+              <a href="#" @click="withDrawClick()">
+                <i class="tim-icons icon-money-coins icon-default"></i>
+              </a>
+              <!-- WithDraw -->
+            </div>
+          </div>
+
+          <div class="mobile-bottom-nav__item">
+            <div class="mobile-bottom-nav__item-content">
+              <a href="#">
+                <i class="tim-icons icon-single-02"></i>
+              </a>
+              <!-- Profile -->
+            </div>
+          </div>
+        </nav>
+      </span>
+    </div>
+
   </div>
 </template>
 <script>
@@ -466,9 +566,6 @@ import transactionrecord from "../index/transactionrecord.vue";
 import instantrecharge from "../index/instantrecharge.vue";
 import applyforwithdrawal from "../index/applyforwithdrawal.vue";
 import selfservicewashing from "../index/selfservicewashing.vue";
-import novicetask from "../index/novicetask.vue";
-import dailytask from "../index/dailytask.vue";
-import achievementtask from "../index/achievementtask.vue";
 import changepassword from "../index/changepassword.vue";
 import bankinfo from "../index/bankinfo.vue";
 import modifyphone from "../index/modifyphone.vue";
@@ -477,7 +574,7 @@ import message from "../index/message.vue";
 export default {
   data() {
     return {
-      isShowonlyIndex:false,
+      isShowonlyIndex: false,
       navShowName: "message",
       ismenu: false,
       messages: "./index",
@@ -497,9 +594,6 @@ export default {
     instantrecharge,
     applyforwithdrawal,
     selfservicewashing,
-    novicetask,
-    dailytask,
-    achievementtask,
     changepassword,
     bankinfo,
     modifyphone,

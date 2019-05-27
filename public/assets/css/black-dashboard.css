@@ -18780,7 +18780,7 @@ table.tablesorter thead tr .headerSortDown {
 
 .fixed-plugin {
     position: fixed;
-    right: 0px;
+    right: 0;
     width: 41px;
     background: rgba(0, 0, 0, 0.3);
     z-index: 1031;
@@ -19104,7 +19104,7 @@ table.tablesorter thead tr .headerSortDown {
 .wrapper {
     position: relative;
     top: 0;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .wrapper.wrapper-full-page {
@@ -19125,18 +19125,21 @@ table.tablesorter thead tr .headerSortDown {
     background: -o-linear-gradient(0deg, #f5feff99 0%, #E91E63 100%);
     background: -moz-linear-gradient(0deg, #f5feff99 0%, #E91E63 100%);
     background: linear-gradient(0deg, #f5feff99 2%, #003679 100%);
-    height: calc(100vh - 270px);
-    width: 230px;
-    position: absolute;
+    /* min-height: 85vh; */
+    height: -moz-calc(100vh - 277px);
+    height: -webkit-calc(100vh - 277px);
+    height: calc(100vh - 90px);
+    width: 100%;
+    position: relative;
     top: 75px;
-    left: 0;
+    /* left: 0; */
     z-index: 1;
     background-size: cover;
     background-position: center center;
     display: block;
     box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.6);
     /* margin-top: 82px; */
-    margin-left: 20px;
+    margin-left: 18px;
     border-radius: 5px;
 }
 
@@ -19660,9 +19663,9 @@ table.tablesorter thead tr .headerSortDown {
 
 .main-panel {
     position: relative;
-    float: right;
+    /* float: right; */
     width: 100%;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     border-top: 2px solid #e14eca;
     background: linear-gradient(#1e1e2f, #1e1e24);
     -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
@@ -19693,7 +19696,7 @@ table.tablesorter thead tr .headerSortDown {
 }
 
 .main-panel>.content {
-    padding: 55px 30px 30px 280px;
+    padding: 55px 0px 0px 280px;
     /* min-height: calc(100vh - 70px); */
 }
 
@@ -28070,6 +28073,7 @@ Copyright (c) 2015 Daniel Eden
     background: #485563;
     background: -webkit-linear-gradient(to right, #29323c, #485563);
     background: linear-gradient(to right, #d0d6dc, #d0d6dc);
+    overflow-x: hidden;
 }
 
 .white-content .navbar.navbar-transparent .navbar-brand {
@@ -28116,6 +28120,8 @@ Copyright (c) 2015 Daniel Eden
 
 .white-content .sidebar p {
     color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin: 4px 0px;
 }
 
 .white-content .main-panel {

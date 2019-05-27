@@ -4,7 +4,7 @@
       <div class="umenu-wrap color-bg">
         <dl>
           <dt>
-            <i class="icon-user"></i>My account
+            <i class="tim-icons icon-notes"></i>My account
           </dt>
           <dd data-sidebar="u_account">
             <a href="#" id="myaccountlink" @click="setNavShowName('myaccount',$event)">My account</a>
@@ -14,11 +14,11 @@
           </dd>
           <dd data-sidebar="u_transaction">
             <a href="#" @click="setNavShowName('transactionrecord',$event)">Transaction Record</a>
-          </dd>s
+          </dd>
         </dl>
         <dl>
           <dt>
-            <i class="icon-yuan"></i>Financial Center
+            <i class="tim-icons icon-paper"></i>Financial Center
           </dt>
           <dd data-sidebar="u_pay">
             <a
@@ -38,23 +38,9 @@
             <a href="#" @click="setNavShowName('selfservicewashing',$event)">Self-service washing</a>
           </dd>
         </dl>
-        <dl id="u-menu-mission">
-          <dt>
-            <i class="icon-task"></i>About
-          </dt>
-          <dd class="newcomer-dd" data-sidebar="u_mission_newcomer">
-            <a href="#" @click="setNavShowName('novicetask',$event)">Novice task</a>
-          </dd>
-          <dd class="daily-dd" data-sidebar="u_mission_daily">
-            <a href="#" @click="setNavShowName('dailytask',$event)">Daily task</a>
-          </dd>
-          <dd class="achieve-dd" data-sidebar="u_mission_achieve">
-            <a href="#" @click="setNavShowName('achievementtask',$event)">Achievement task</a>
-          </dd>
-        </dl>
         <dl>
           <dt>
-            <i class="icon-records"></i>Customer information
+            <i class="tim-icons icon-wallet-43"></i>Customer information
           </dt>
           <dd data-sidebar="u_person_pwdIndex">
             <a href="#" @click="setNavShowName('changepassword',$event)">change Password</a>
@@ -68,7 +54,7 @@
         </dl>
         <dl class="border-0">
           <dt class="active">
-            <i class="icon-msg"></i>Customer Care
+             <i class="tim-icons icon-bulb-63"></i>Customer Care
           </dt>
           <dd data-sidebar="u_sms_subscribeIndex">
             <a href="#" @click="setNavShowName('subscription',$event)">SMS subscription</a>
@@ -84,56 +70,48 @@
         </dl>
       </div>
     </div>
-      <!-- mobile Min hide 1199px -->
-<div class="d-none d-xl-block">
-    <div class="container pr-4">
-      <div class="u-title">{{navShowName}}</div>
-      <div class="u-content" v-if="navShowName ==='myaccount'">
-        <myaccount></myaccount>
+    <!-- mobile Min hide 1199px -->
+    <div class="d-none d-xl-block">
+      <div class="bg-secondary pr-4">
+        <div class="u-title">{{navShowName}}</div>
+        <div class="u-content" v-if="navShowName ==='myaccount'">
+          <myaccount></myaccount>
+        </div>
+        <div class="u-content" v-if="navShowName ==='recommedndedfriends'">
+          <recommedndedfriends></recommedndedfriends>
+        </div>
+        <div class="u-content" v-if="navShowName ==='transactionrecord'">
+          <transactionrecord></transactionrecord>
+        </div>
+        <div class="u-content" v-if="navShowName ==='instantrecharge'">
+          <instantrecharge></instantrecharge>
+        </div>
+        <div class="u-content" v-if="navShowName ==='applyforwithdrawal'">
+          <applyforwithdrawal></applyforwithdrawal>
+        </div>
+        <div class="u-content" v-if="navShowName ==='selfservicewashing'">
+          <selfservicewashing></selfservicewashing>
+        </div>
+
+        <div class="u-content" v-if="navShowName ==='changepassword'">
+          <changepassword></changepassword>
+        </div>
+        <div class="u-content" v-if="navShowName ==='bankinfo'">
+          <bankinfo></bankinfo>
+        </div>
+        <div class="u-content" v-if="navShowName ==='modifyphone'">
+          <modifyphone></modifyphone>
+        </div>
+        <div class="u-content" v-if="navShowName ==='bankinfo'">
+          <bankinfo></bankinfo>
+        </div>
+        <div class="u-content" v-if="navShowName ==='subscription'">
+          <subscription></subscription>
+        </div>
+        <div class="u-content" v-if="navShowName ==='message'">
+          <message></message>
+        </div>
       </div>
-      <div class="u-content" v-if="navShowName ==='recommedndedfriends'">
-        <recommedndedfriends></recommedndedfriends>
-      </div>
-      <div class="u-content" v-if="navShowName ==='transactionrecord'">
-        <transactionrecord></transactionrecord>
-      </div>
-      <div class="u-content" v-if="navShowName ==='instantrecharge'">
-        <instantrecharge></instantrecharge>
-      </div>
-      <div class="u-content" v-if="navShowName ==='applyforwithdrawal'">
-        <applyforwithdrawal></applyforwithdrawal>
-      </div>
-      <div class="u-content" v-if="navShowName ==='selfservicewashing'">
-        <selfservicewashing></selfservicewashing>
-      </div>
-      <div class="u-content" v-if="navShowName ==='novicetask'">
-        <novicetask></novicetask>
-      </div>
-      <div class="u-content" v-if="navShowName ==='dailytask'">
-        <dailytask></dailytask>
-      </div>
-      <div class="u-content" v-if="navShowName ==='achievementtask'">
-        <achievementtask></achievementtask>
-      </div>
-      <div class="u-content" v-if="navShowName ==='changepassword'">
-        <changepassword></changepassword>
-      </div>
-      <div class="u-content" v-if="navShowName ==='bankinfo'">
-        <bankinfo></bankinfo>
-      </div>
-      <div class="u-content" v-if="navShowName ==='modifyphone'">
-        <modifyphone></modifyphone>
-      </div>
-      <div class="u-content" v-if="navShowName ==='bankinfo'">
-        <bankinfo></bankinfo>
-      </div>
-      <div class="u-content" v-if="navShowName ==='subscription'">
-        <subscription></subscription>
-      </div>
-      <div class="u-content" v-if="navShowName ==='message'">
-        <message></message>
-      </div>
-    </div>
     </div>
   </div>
   <!-- Sidebar -->
@@ -145,9 +123,6 @@ import transactionrecord from "./transactionrecord.vue";
 import instantrecharge from "./instantrecharge.vue";
 import applyforwithdrawal from "./applyforwithdrawal.vue";
 import selfservicewashing from "./selfservicewashing.vue";
-import novicetask from "./novicetask.vue";
-import dailytask from "./dailytask.vue";
-import achievementtask from "./achievementtask.vue";
 import changepassword from "./changepassword.vue";
 import bankinfo from "./bankinfo.vue";
 import modifyphone from "./modifyphone.vue";
@@ -166,9 +141,6 @@ export default {
     instantrecharge,
     applyforwithdrawal,
     selfservicewashing,
-    novicetask,
-    dailytask,
-    achievementtask,
     changepassword,
     bankinfo,
     modifyphone,
