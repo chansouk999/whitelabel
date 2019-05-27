@@ -34,7 +34,6 @@
                 <!-- <div class="btns">
                   <button type="submit" class="orange" value="GO"></button>
                 </div> -->
-                <form action="..." onsubmit="window.open('http://localhost:8001/redirect', '', 'width=1920,height=1080')">
                 
 
 
@@ -42,8 +41,7 @@
 
 
             
-                <button type="submit" > <h1>Play Lec68</h1> </button>
-                </form>
+                <button type="submit" @click="gotogame"> <h1>Play Lec68</h1> </button>
               </div>
             </div>
           </li>
@@ -318,7 +316,7 @@
   </div>
 </template>
 <script>
-import navbar from "./welcome/navbar";
+import navbar from "./welcome/navbarDesktop";
 import asides from "./welcome/asides";
 import alertside from "./alertsidebar";
 import footers from './welcome/footers';

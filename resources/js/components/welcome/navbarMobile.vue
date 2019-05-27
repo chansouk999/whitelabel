@@ -22,7 +22,7 @@
               <span class="navbar-toggler-bar bar3"></span>
             </button>
           </div>
-          <a class="navbar-brand" :href="welcome">TNK {{ checkuser }}</a>
+          <a class="navbar-brand" :href="welcome">TNK</a>
         </div>
         <button
           class="navbar-toggler pl-5"
@@ -52,12 +52,12 @@
               </label>
               <ul class="menu-sidebar">
                 <li>
-                  <input type="checkbox" id="sub-one" class="submenu-toggle">
-                  <label class="submenu-label" for="sub-one">My account</label>
+                  <input type="checkbox" id="my-account" class="submenu-toggle">
+                  <label class="submenu-label" for="my-account">My account</label>
                   <div class="arrow right">&#8250;</div>
                   <ul class="menu-sub">
                     <li class="menu-sub-title">
-                      <label class="submenu-label" for="sub-one">Back</label>
+                      <label class="submenu-label" for="my-account">Back</label>
                       <div class="arrow left">&#8249;</div>
                     </li>
                     <li>
@@ -78,12 +78,12 @@
                   </ul>
                 </li>
                 <li>
-                  <input type="checkbox" id="sub-one" class="submenu-toggle">
-                  <label class="submenu-label" for="sub-one">Financial Center</label>
+                  <input type="checkbox" id="financial-center" class="submenu-toggle">
+                  <label class="submenu-label" for="financial-center">Financial Center</label>
                   <div class="arrow right">&#8250;</div>
                   <ul class="menu-sub">
                     <li class="menu-sub-title">
-                      <label class="submenu-label" for="sub-one">Back</label>
+                      <label class="submenu-label" for="financial-center">Back</label>
                       <div class="arrow left">&#8249;</div>
                     </li>
                     <li>
@@ -104,12 +104,12 @@
                   </ul>
                 </li>
                 <li>
-                  <input type="checkbox" id="sub-one" class="submenu-toggle">
-                  <label class="submenu-label" for="sub-one">About</label>
+                  <input type="checkbox" id="about" class="submenu-toggle">
+                  <label class="submenu-label" for="about">About</label>
                   <div class="arrow right">&#8250;</div>
                   <ul class="menu-sub">
                     <li class="menu-sub-title">
-                      <label class="submenu-label" for="sub-one">Back</label>
+                      <label class="submenu-label" for="about">Back</label>
                       <div class="arrow left">&#8249;</div>
                     </li>
                     <li>
@@ -124,12 +124,12 @@
                   </ul>
                 </li>
                 <li>
-                  <input type="checkbox" id="sub-one" class="submenu-toggle">
-                  <label class="submenu-label" for="sub-one">Customer information</label>
+                  <input type="checkbox" id="customer-information" class="submenu-toggle">
+                  <label class="submenu-label" for="customer-information">Customer information</label>
                   <div class="arrow right">&#8250;</div>
                   <ul class="menu-sub">
                     <li class="menu-sub-title">
-                      <label class="submenu-label" for="sub-one">Back</label>
+                      <label class="submenu-label" for="customer-information">Back</label>
                       <div class="arrow left">&#8249;</div>
                     </li>
                     <li>
@@ -144,12 +144,12 @@
                   </ul>
                 </li>
                 <li>
-                  <input type="checkbox" id="sub-one" class="submenu-toggle">
-                  <label class="submenu-label" for="sub-one">Customer Care</label>
+                  <input type="checkbox" id="customer-care" class="submenu-toggle">
+                  <label class="submenu-label" for="customer-care">Customer Care</label>
                   <div class="arrow right">&#8250;</div>
                   <ul class="menu-sub">
                     <li class="menu-sub-title">
-                      <label class="submenu-label" for="sub-one">Back</label>
+                      <label class="submenu-label" for="customer-care">Back</label>
                       <div class="arrow left">&#8249;</div>
                     </li>
                     <li>
@@ -452,7 +452,6 @@
                             </div>
                           </div>
                           <input
-                            id="email"
                             type="email"
                             class="form-control"
                             name="email"
@@ -468,7 +467,6 @@
                             </div>
                           </div>
                           <input
-                            id="password"
                             type="password"
                             class="form-control"
                             name="password"
@@ -588,8 +586,22 @@
     <!-- End Navbar -->
     <!-- mobile Max show 1199px -->
     <div class="d-block d-xl-none">
-      <div class="u-main">
-        <div class="u-title">{{navShowName}}</div>
+      <div class="container mt-4 px-1">
+        <nav aria-label="breadcrumb" role="navigation">
+          <ol class="breadcrumb my-1 text-capitalize">
+            <li class="breadcrumb-item">
+              <a href="#">
+                <i class="tim-icons icon-bank"></i>Home
+              </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="#">
+                <i class="tim-icons icon-wallet-43"></i>Library
+              </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{navShowName}}</li>
+          </ol>
+        </nav>
         <div class="u-content" v-if="navShowName ==='myaccount'">
           <myaccount></myaccount>
         </div>
@@ -657,6 +669,7 @@ import message from "../index/message.vue";
 export default {
   data() {
     return {
+      isShowonlyIndex: false,
       navShowName: "message",
       ismenu: false,
       messages: "./index",

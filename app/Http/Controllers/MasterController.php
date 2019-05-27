@@ -11,9 +11,9 @@ class MasterController extends Controller
         return view('welcome');
     }
     public function updatemoney(Request $req){
-        $balnce = 900000;
-        $id = 900000;
-        User::where('id',''.$id.'')->update(['userBalance'=>$balnce]);
+        // $balnce = 900000;
+        // $id = $req;
+        // User::where('id',''.$id.'')->update(['userBalance'=>$balnce]);
     }
     public function userdetaildata(){
         return Auth::user();

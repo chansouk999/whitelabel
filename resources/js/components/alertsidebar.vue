@@ -3,10 +3,10 @@
     <div class="fixed-plugin">
       <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
-          <i class="fa fa-cog fa-2x  fa-spin"></i>
+          <i class="fa fa-cog fa-2x fa-spin"></i>
         </a>
         <ul class="dropdown-menu">
-            <li class="header-title">Navbar Background</li>
+          <li class="header-title">Navbar Background</li>
           <li class="adjustments-line">
             <a href="javascript:void(0)" class="switch-trigger background-color">
               <div class="badge-colors text-center">
@@ -107,6 +107,41 @@
           <li class="button-container pt-0"></li>
         </ul>
       </div>
+    </div>
+    <div class="d-block d-xl-none">
+      <nav class="mobile-bottom-nav">
+        <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
+          <div class="mobile-bottom-nav__item-content">
+           <i class="tim-icons icon-bank"></i>
+          </div>
+        </div>
+        <div class="mobile-bottom-nav__item">
+          <div class="mobile-bottom-nav__item-content">
+            <i class="tim-icons icon-chat-33 icon-default"></i>
+          </div>
+        </div>
+        <div class="mobile-bottom-nav__item">
+          <div class="mobile-bottom-nav__item-content">
+            <i class="tim-icons icon-controller icon-default"></i>
+          </div>
+        </div>
+        <div class="mobile-bottom-nav__item">
+          <div class="mobile-bottom-nav__item-content">
+           <i class="tim-icons icon-coins icon-default"></i>
+          </div>
+        </div>
+        <div class="mobile-bottom-nav__item">
+          <div class="mobile-bottom-nav__item-content">
+            <i class="tim-icons icon-money-coins icon-default"></i>
+          </div>
+        </div>
+
+        <div class="mobile-bottom-nav__item">
+          <div class="mobile-bottom-nav__item-content">
+            <i class="tim-icons icon-single-02"></i>
+          </div>
+        </div>
+      </nav>
     </div>
   </div>
 </template>
