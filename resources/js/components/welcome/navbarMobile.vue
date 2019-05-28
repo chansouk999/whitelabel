@@ -406,11 +406,7 @@
       </div>
     </div>
     <!-- Modal Register -->
-<<<<<<< HEAD
-    <div class="modal register fade">
-=======
     <div class="modal fade" id="register">
->>>>>>> 5d3e74dfbccfc755d179317c01b1f9981b78292d
       <div class="modal-dialog modal-lg show">
         <div class="modal-content">
           <!-- Modal Header -->

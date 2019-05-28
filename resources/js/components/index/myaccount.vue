@@ -570,6 +570,7 @@
 export default {
   data(){
     return{
+      detectmoney:'',
       id:null,
       user_id:null,
       provider_name:null,
@@ -607,6 +608,10 @@ export default {
       })
     },
   },
+  watch:{
+      balance(e){
+      }
+  }
 };
 </script>
 <style scoped>

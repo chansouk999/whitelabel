@@ -331,6 +331,7 @@ export default {
   },
   data(){
     return {
+      val:'',
       id:null,
       provider_name:null,
       balance:null,
@@ -350,10 +351,11 @@ export default {
   },
   
   methods:{
+    runwindow(){
+          window.open("http://localhost:8001/redirect", "", "width=1920,height=1080");
+    },
     gotogame(){
-      let config = {
-        headers:{'X-CSRF-TOKEN':this.csrf}
-      }
+    
        axios.post('http://localhost:8001/checkapiuser',{
         id:this.id,
         user_id:this.user_id,
@@ -362,14 +364,19 @@ export default {
         pro_id:this.pro_id,
         name:this.name,
         email:this.email,
-       },config
+       }
        ).then(res=>{
-        console.log(res.data)
-        let myWindow = window.open("http://localhost:8001/redirect", "", "width=1920,height=1080");
+         if(res.status == 500){
+           console.log('okokoko')
+         }
+          console.log(res)
+          this.runwindow()
+        
       }).catch(er=>{
         console.log(er.res)
       })
-      
+    
+      window.open("http://localhost:8001/redirect", "", "width=1920,height=1080");
     },
     userdata(){
       axios.get('/userdetaildata').then(res=>{
@@ -392,7 +399,7 @@ export default {
       })
     },
     
-  }
+  },
 };
 </script>
 <style scoped>

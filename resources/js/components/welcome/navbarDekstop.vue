@@ -179,7 +179,7 @@
                             </p>
                           </div>
                         </div>
-                        <a href="#" class="btn-logout" @click="byebye">
+                        <a href="logout" class="btn-logout" @click="byebye">
                           <i class="fa fa-power-off"></i>Log Out
                         </a>
                       </div>

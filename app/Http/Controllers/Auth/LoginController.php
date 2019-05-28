@@ -40,9 +40,8 @@ class LoginController extends Controller
     }
     public function logoutuser()
     {
-        
-        // $http = new Client();
-        // $resposnse = $http->post('http://localhost:8001/byebye');
+        $http = new Client();
+        $resposnse = $http->get('http://localhost:8001/byebye');
         Auth::guard('web')->logout();
         return redirect('/');
     }
