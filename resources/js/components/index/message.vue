@@ -5,7 +5,7 @@
       <!-- Main content -->
       <section class="content">
         <div class="row">
-          <div class="col-md-3 pl-4">
+          <div class="col-md-3">
             <div class="card card-nav-tabs">
               <div class="card-header bg-primary p-2 text-white">Featured</div>
               <ul class="list-group list-group-flush text-left">
@@ -40,10 +40,10 @@
             </div>
           </div>
           <!-- /.col -->
-          <div class="col-md-9 pl-0">
+          <div class="col-md-9">
             <div class="card card-primary card-outline">
               <div class="card m-0">
-                <div class="card-body">
+                <div class="card-body pb-0">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text">
@@ -57,7 +57,7 @@
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <div class="mailbox-controls">
-                  <div class="float-left">
+                  <div class="float-left pt-0 pb-2 pl-3">
                     <!-- Check all button -->
                     <button type="button" class="btn btn-default btn-sm checkbox-toggle">
                       <i class="tim-icons icon-check-2"></i>

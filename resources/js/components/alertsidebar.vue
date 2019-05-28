@@ -6,7 +6,7 @@
           <i class="fa fa-cog fa-2x fa-spin"></i>
         </a>
         <ul class="dropdown-menu">
-          <li class="header-title">Navbar Background</li>
+          <!-- <li class="header-title">Navbar Background</li>
           <li class="adjustments-line">
             <a href="javascript:void(0)" class="switch-trigger background-color">
               <div class="badge-colors text-center">
@@ -63,19 +63,9 @@
               data-size="large"
               data-show-count="true"
               aria-label="Star ntkme/github-buttons on GitHub"
-            >TNK</a>
+            >TNK</a> -->
           </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="fixed-plugin-cutome">
-      <div class="dropdown show-dropdown">
-        <a href="#" data-toggle="dropdown">
-          <i class="text-white tim-icons icon-components fa-2x"></i>
-        </a>
-        <ul class="dropdown-menu">
-          <li class="button-container mt-4 pb-0">
+            <li class="button-container mt-4 pb-0">
             <a
               href="../docs/1.0/getting-started/introduction.html"
               class="btn btn-default btn-block btn-round"
@@ -108,6 +98,7 @@
         </ul>
       </div>
     </div>
+
    
   </div>
 </template>

@@ -26,6 +26,9 @@ class HomeController extends Controller
     {
         return view('welcome');
     }
+    public function message(){
+        return view('desktop.message');
+    }
     public function indexpage(){
         return view('index');
     }
