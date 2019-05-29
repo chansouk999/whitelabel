@@ -75,15 +75,7 @@ class RegisterController extends Controller
         }
         $id = generateRandomString();
         $date = date('y-m-d H:i:s');
-        $user = new users;
-        $user->userID = 1;
-        $user->userName = $data['name'];
-        $user->balance = 0;
-        $user->totalOnlineHour = 0;
-        $user->userStatus = 'online';
-        $user->registerTime = $date;
-        $user->last_activity = $date;
-        $user->save();
+        $ip = \Request::getClientIp();
         return User::create([
             'user_id'=>$id,
             'name' => $data['name'],
@@ -96,6 +88,8 @@ class RegisterController extends Controller
             'userStatus'=>'online',
             'registerTime'=>$date,
             'last_activity'=>$date,
+            'accessTime'=>$date,
+            'accessIP'=>$ip
         ]);
     }
 }

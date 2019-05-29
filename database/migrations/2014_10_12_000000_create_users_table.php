@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('provider_name',50);
             $table->string('pro_id',4);
             $table->string('userBalance');
+            $table->dateTime('accessTime')->nullable();
+            $table->dateTime('accessIP')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

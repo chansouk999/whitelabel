@@ -376,7 +376,7 @@ export default {
         console.log(er.res)
       })
     
-      window.open("http://localhost:8001/redirect", "", "width=1920,height=1080");
+      window.open("http://localhost:8001/redirect", "width=1920,height=1080");
     },
     userdata(){
       axios.get('/userdetaildata').then(res=>{

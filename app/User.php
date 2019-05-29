@@ -29,6 +29,8 @@ class User extends Authenticatable
         'userStatus',
         'registerTime',
         'last_activity',
+        'accessTime',
+        'accessIP',
     ];
 
     /**

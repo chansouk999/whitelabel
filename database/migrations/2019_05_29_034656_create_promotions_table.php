@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAgenttypesTable extends Migration
+class CreatePromotionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateAgenttypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('agenttypes', function (Blueprint $table) {
-            $table->string('agentType',10);
-            $table->typeID('typeID');
+        Schema::create('promotions', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ class CreateAgenttypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agenttypes');
+        Schema::dropIfExists('promotions');
     }
 }

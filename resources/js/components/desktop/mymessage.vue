@@ -2,12 +2,10 @@
   <div>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Main content -->
-      <section class="content">
         <div class="row">
           <div class="col-md-3">
             <div class="card card-nav-tabs">
-              <div class="card-header bg-primary p-2 text-white">Featured</div>
+              <div class="card-header bg-custome p-2 text-white">Featured</div>
               <ul class="list-group list-group-flush text-left">
                 <li class="list-group-item">
                   <a href>
@@ -27,7 +25,7 @@
                 <li class="list-group-item">
                   <a href>
                     <i class="fa fa-filter"></i> Junk
-                    <span class="badge badge-pill badge-primary float-right">65</span>
+                    <span class="badge badge-pill badge-custome float-right">65</span>
                   </a>
                 </li>
 
@@ -139,9 +137,6 @@
           </div>
           <!-- /.col -->
         </div>
-        <!-- /.row -->
-      </section>
-      <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <!-- start your code here! -->

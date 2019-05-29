@@ -15,6 +15,7 @@ use GuzzleHttp\Cookie\CookieJar;
 */
 
 // Route::get('/',);
+Route::get('/message','Homecontroller@message');
 Route::get('/index','Homecontroller@indexpage');
 Route::get('/promote','Homecontroller@promote');
 Route::get('/lobby','Homecontroller@lobby');

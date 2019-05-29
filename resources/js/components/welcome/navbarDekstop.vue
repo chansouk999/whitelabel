@@ -190,6 +190,9 @@
             </ul>
           </span>
         </div>
+        <span class="d-none d-xl-block">
+          
+        </span>
       </div>
     </nav>
     <!-- Modal Login -->
@@ -259,7 +262,7 @@
                         href="#"
                         class="link footer-link"
                         data-toggle="modal"
-                        data-target=".register"
+                        data-target="#register"
                         data-dismiss="modal"
                         aria-label="Close"
                       >
