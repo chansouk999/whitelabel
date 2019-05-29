@@ -65,7 +65,13 @@
           <td>
             <div class="checkbox switcher">
               <label for="test1">
-                <input type="checkbox" id="test1" value>
+               <input
+                  type="checkbox"
+                  id="test3"
+                  class="bootstrap-switch"
+                  data-on-label="ON"
+                  data-off-label="OFF"
+                >
                 <span>
                   <small></small>
                 </span>

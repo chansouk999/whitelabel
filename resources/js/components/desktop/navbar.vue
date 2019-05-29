@@ -69,7 +69,7 @@
                   href="#"
                   class="button nav-link d-flex float-left"
                   data-toggle="modal"
-                  data-target=".register"
+                  data-target="#register"
                 >
                   <div class="icons">
                     <i class="fas fa-user-plus icon-default"></i>
@@ -291,6 +291,41 @@
           <div class="modal-body">
             <div class="container">
               <div class="row">
+                 <div class="col-md-5 ml-auto">
+              <div class="info-area info-horizontal mt-5">
+                <div class="icon icon-warning">
+                  <i class="tim-icons icon-wifi"></i>
+                </div>
+                <div class="description">
+                  <h3 class="info-title">Marketing</h3>
+                  <p class="description">
+                    We've created the marketing campaign of the website. It was a very interesting collaboration.
+                  </p>
+                </div>
+              </div>
+              <div class="info-area info-horizontal">
+                <div class="icon icon-primary">
+                  <i class="tim-icons icon-triangle-right-17"></i>
+                </div>
+                <div class="description">
+                  <h3 class="info-title">Fully Coded in HTML5</h3>
+                  <p class="description">
+                    We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
+                  </p>
+                </div>
+              </div>
+              <div class="info-area info-horizontal">
+                <div class="icon icon-info">
+                  <i class="tim-icons icon-trophy"></i>
+                </div>
+                <div class="description">
+                  <h3 class="info-title">Built Audience</h3>
+                  <p class="description">
+                    There is also a Fully Customizable CMS Admin Dashboard for this product.
+                  </p>
+                </div>
+              </div>
+            </div>
                 <div class="col-md-7 mr-auto">
                   <div class="card card-register card-white">
                     <form class="form" method="POST" action="register">

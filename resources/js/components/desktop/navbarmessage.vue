@@ -46,7 +46,7 @@
             <a href="#" @click="setNavShowName('changepassword',$event)">change Password</a>
           </dd>
           <dd data-sidebar="u_bank">
-            <a href="#" @click="setNavShowName('bankinfo',$event)">Bank info</a>
+            <a href="#" id="bankinfoclick" @click="setNavShowName('bankinfo',$event)">Bank hhhhinfo</a>
           </dd>
           <dd data-sidebar="u_person_phoneIndex">
             <a href="#" @click="setNavShowName('modifyphone',$event)">Modify phone</a>
@@ -112,9 +112,6 @@
         </div>
         <div class="u-content" v-if="navShowName ==='modifyphone'">
           <modifyphone></modifyphone>
-        </div>
-        <div class="u-content" v-if="navShowName ==='bankinfo'">
-          <bankinfo></bankinfo>
         </div>
         <div class="u-content" v-if="navShowName ==='subscription'">
           <subscription></subscription>

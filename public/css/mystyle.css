@@ -2233,7 +2233,7 @@ div.radio.switcher label input:checked+span small {
         height: 57px;
         width: 5px;
         margin-left: 10px;
-        marker-top: 10px;
+        margin-top: 10px;
     }
     .steps-stops {
         height: 25px;
@@ -2247,7 +2247,7 @@ div.radio.switcher label input:checked+span small {
         width: 15px;
         border-radius: 50%;
         position: absolute;
-        margin-top: 19px;
+        margin-top: 13px;
         margin-left: -10px;
     }
     .inverted-end-circle {
@@ -2255,7 +2255,7 @@ div.radio.switcher label input:checked+span small {
         width: 15px;
         border-radius: 50%;
         position: absolute;
-        margin-top: 19px;
+        margin-top: 13px;
         margin-left: 18.1%;
     }
 }
@@ -2453,6 +2453,12 @@ div.radio.switcher label input:checked+span small {
         */
     }
     .navbar-nav li a {
+        font-size: .6rem;
+    }
+}
+
+@media (max-width: 1680px) {
+    .u-wrap .u-menu dl dd a {
         font-size: .6rem;
     }
 }

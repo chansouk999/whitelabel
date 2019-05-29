@@ -1,188 +1,75 @@
 <template>
   <div>
-    <div class="u-content u-subscribe">
-      <div class="mobile-wrap">
-        <div>
-          <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">Mobile number:</font>
-          </font>
-          <span class="js-show-phone">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">186*******2</font>
-            </font>
-          </span>
-          <a href="/ucenter/security/phone" class="btn-link">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">modification</font>
-            </font>
-          </a>
-        </div>
-        <form id="verifyPhoneForm" class="js-verify-notation" novalidate="novalidate">
-          <div class="form-inline">
-            <a class="btn-resend pointer-link" verify-type="bound">
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">obtain SMS verification code</font>
-              </font>
-            </a>
-            <input
-              id="captcha"
-              name="captcha"
-              type="text"
-              class="form-control"
-              maxlength="6"
-              placeholder="请输入短信验证码"
-            >
-            <a class="btn-submit pointer-link" verify-type="bound">
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">confirm at once</font>
-              </font>
-            </a>
-            <span class="error-msg"></span>
+    <!-- End Navbar -->
+    <blockquote class="blockquote text-center">
+      <p class="mb-0">温馨提示：提现不限次数，金额无上限，无手续费，快速到账且短信通知。.</p>
+    </blockquote>
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="title">修改密码</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="d-flex justify-content-center">
+                  <label class="control-label col-xs-4">账户总余额：</label>
+                  <p class="plain-text">
+                    <span id="balanceAmount" data-amount="0">0.00</span>
+                    <a href="javascript:refreshBalance();" class="refreshbtn">
+                      <i class="fa fa-refresh" aria-hidden="true"></i>
+                    </a>
+                  </p>
+                </div>
+                <a
+                  href="javascript:void(0);"
+                  data-tongji-attr="_trackEvent,AG8,主站,零钱转一转,零钱转一转"
+                  class="change hide"
+                ></a>
+
+                <div class="row">
+                  <div class="col-md-3 pr-md-1 text-right">
+                    <label>提现银行：</label>
+                  </div>
+                  <div class="col-md-9 pr-md-1 col-lg-5">
+                    <div class="form-group">
+                      <button class="btn btn-dribbble btn-block" @click="bankInfoClick()">
+                        <i class="fab fa-dribbble float-left"></i>新增银行卡
+                        <i class="tim-icons icon-simple-add float-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 pr-md-1 text-right">
+                    <label>提现金额：</label>
+                  </div>
+                  <div class="col-md-9 pr-md-1 col-lg-5">
+                    <div class="form-group">
+                      <input type="text" class="form-control" value placeholder="最低提现金额100元 ">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer">
+              <button type="button" class="btn btn-fill btn-primary">提 交</button>
+            </div>
           </div>
-          <p>
-            <font style="vertical-align: inherit;">
-              <font
-                style="vertical-align: inherit;"
-              >Tips: Please enter the SMS verification code to open the SMS subscription function.</font>
-            </font>
-          </p>
-        </form>
+        </div>
       </div>
-      <table class="js-table-subscribe table table-bordered loading-portion">
-        <thead>
-          <tr>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Subscription content</font>
-              </font>
-            </th>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">SMS subscription</font>
-              </font>
-            </th>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Subscription content</font>
-              </font>
-            </th>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">SMS subscription</font>
-              </font>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Login prompt</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="login" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Offer added</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="promotions" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-          </tr>
-          <tr class="highlight">
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Contact phone modification</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="modifyPhone" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Bank data modification</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="modifyBankingData" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Recharge prompt</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="deposit" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Name modification</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="modifyAccountName" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-          </tr>
-          <tr class="highlight">
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Cash withdrawal prompt</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="withdrawal" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-        <div class="transparent-base64 loading-js loading-portion-content"></div>
-      </table>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  methods:{
+    bankInfoClick(){
+      $("#bankinfoclick")[0].click()
+    }
+  }
+};
 </script>
 <style scoped>
 </style>

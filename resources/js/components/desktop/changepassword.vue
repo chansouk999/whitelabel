@@ -1,183 +1,86 @@
 <template>
   <div>
-    <div class="u-content u-subscribe">
-      <div class="mobile-wrap">
-        <div>
-          <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">Mobile number:</font>
-          </font>
-          <span class="js-show-phone">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">186*******2</font>
-            </font>
-          </span>
-          <a href="/ucenter/security/phone" class="btn-link">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">modification</font>
-            </font>
-          </a>
-        </div>
-        <form id="verifyPhoneForm" class="js-verify-notation" novalidate="novalidate">
-          <div class="form-inline">
-            <a class="btn-resend pointer-link" verify-type="bound">
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">obtain SMS verification code</font>
-              </font>
-            </a>
-            <input
-              id="captcha"
-              name="captcha"
-              type="text"
-              class="form-control"
-              maxlength="6"
-              placeholder="请输入短信验证码"
-            >
-            <a class="btn-submit pointer-link" verify-type="bound">
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">confirm at once</font>
-              </font>
-            </a>
-            <span class="error-msg"></span>
+    <div class="content">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="title">修改密码</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="row">
+                  <div class="col-md-3 pr-md-1 text-right">
+                    <label>原始密码：</label>
+                  </div>
+                  <div class="col-md-9 pr-md-1">
+                    <div class="form-group">
+                      <input type="text" class="form-control" value placeholder="请输入原始密码">
+                    </div>
+                  </div>
+                </div>
+                 <div class="row">
+                  <div class="col-md-3 pr-md-1 text-right">
+                    <label>新密码：</label>
+                  </div>
+                  <div class="col-md-9 pr-md-1">
+                    <div class="form-group">
+                      <input type="text" class="form-control" value placeholder="游戏密码由8~10位字母和数字组成 ">
+                    </div>
+                  </div>
+                </div>
+                 <div class="row">
+                  <div class="col-md-3 pr-md-1 text-right">
+                    <label>确认新密码：</label>
+                  </div>
+                  <div class="col-md-9 pr-md-1">
+                    <div class="form-group">
+                      <input type="text" class="form-control" value placeholder="游戏密码由8~10位字母和数字组成 ">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-fill btn-primary">修改 </button>
+            </div>
           </div>
-          <p>
-            <font style="vertical-align: inherit;">
-              <font
-                style="vertical-align: inherit;"
-              >Tips: Please enter the SMS verification code to open the SMS subscription function.</font>
-            </font>
-          </p>
-        </form>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-user">
+            <div class="card-body">
+              <p class="card-text"></p>
+              <div class="author">
+                <div class="block block-one"></div>
+                <div class="block block-two"></div>
+                <div class="block block-three"></div>
+                <div class="block block-four"></div>
+                <a href="javascript:void(0)">
+                  <img class="avatar" src="/assets/img/emilyz.jpg" alt="...">
+                  <h5 class="title">Mike Andrew</h5>
+                </a>
+                <p class="description">Ceo/Co-Founder</p>
+              </div>
+              <div
+                class="card-description"
+              >Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...</div>
+            </div>
+            <div class="card-footer">
+              <div class="button-container">
+                <button href="javascript:void(0)" class="btn btn-icon btn-round btn-facebook">
+                  <i class="fab fa-facebook"></i>
+                </button>
+                <button href="javascript:void(0)" class="btn btn-icon btn-round btn-twitter">
+                  <i class="fab fa-twitter"></i>
+                </button>
+                <button href="javascript:void(0)" class="btn btn-icon btn-round btn-google">
+                  <i class="fab fa-google-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <table class="js-table-subscribe table table-bordered loading-portion">
-        <thead>
-          <tr>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Subscription content</font>
-              </font>
-            </th>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">SMS subscription</font>
-              </font>
-            </th>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Subscription content</font>
-              </font>
-            </th>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">SMS subscription</font>
-              </font>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Login prompt</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="login" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Offer added</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="promotions" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-          </tr>
-          <tr class="highlight">
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Contact phone modification</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="modifyPhone" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Bank data modification</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="modifyBankingData" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Recharge prompt</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="deposit" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Name modification</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="modifyAccountName" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-          </tr>
-          <tr class="highlight">
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Cash withdrawal prompt</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="withdrawal" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-        <div class="transparent-base64 loading-js loading-portion-content"></div>
-      </table>
     </div>
   </div>
 </template>
