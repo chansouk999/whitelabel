@@ -2203,6 +2203,56 @@ div.radio.switcher label input:checked+span small {
     padding: 20px 10px 10px 10px;
 }
 
+
+/* HIDE RADIO */
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+
+/* IMAGE STYLES */
+
+[type=radio]+img {
+    cursor: pointer;
+    /* border: 2px solid #003679; */
+    width: 40px;
+    height: 40px;
+    transition: 500ms all;
+    border-radius: 50%;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+    padding: 3px;
+}
+
+
+/* CHECKED STYLES */
+
+[type=radio]:checked+img {
+    border: 2px solid #003679;
+}
+
+.input-group-append span.input-group-text {
+    width: 150px;
+    text-align: center;
+    padding: 6px;
+    display: flex;
+    position: relative;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-group button.dropdown-toggle {
+    width: 144px;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px !important;
+    margin: 0px !important;
+}
+
 @media(min-width: 900px) {
     .steps-timeline {
         border-top: 5px double #fc6429;

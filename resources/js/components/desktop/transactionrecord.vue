@@ -6,269 +6,106 @@
         color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
         -->
         <li class="nav-item">
-          <a class="nav-link active" href="#dashboard-1" role="tab" data-toggle="tab">
+          <a class="nav-link active" href="#withdrawalsrecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-atom"></i>
-            Withdrawals record
+            提现记录
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab">
+          <a class="nav-link" href="#rechargerecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-settings"></i>
-            Recharge record
+            充值记录
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
+          <a class="nav-link" href="#washingrecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-bullet-list-67"></i>
-            Washing record
+            洗码记录
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#dashboard-1" role="tab" data-toggle="tab">
+          <a class="nav-link" href="#offerecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-atom"></i>
-            Offer record
+            优惠记录
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab">
+          <a class="nav-link" href="#gamerecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-settings"></i>
-            Game record
+            游戏记录
           </a>
         </li>
       </ul>
       <div class="tab-content tab-space">
-        <div class="tab-pane active" id="dashboard-1">
+        <div class="tab-pane active" id="withdrawalsrecord">
           <div class="panel panel-default">
             <div class="panel-heading">
               <div id="withdraw_form" class="form-inline">
-                <label>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Date range</font>
-                  </font>
-                </label>
-                <div class="input-group">
-                  <input
-                    id="withdraw_begin_time"
-                    type="text"
-                    class="form-control"
-                    placeholder="2016-12-05 12:00:00"
-                    readonly
-                  >
-                  <span class="input-group-btn">
-                    <button
-                      class="btn btn-default"
-                      type="button"
-                      onclick="$('#withdraw_begin_time').datetimepicker('show');"
-                    >
-                      <i class="fa fa-calendar"></i>
-                    </button>
-                  </span>
+                <!-- input with datetimepicker -->
+                <div class="form-group">
+                  <label class="label-control px-2">Date range</label>
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
                 </div>
-                <label>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">To</font>
-                  </font>
-                </label>
-                <div class="input-group">
-                  <input
-                    id="withdraw_end_time"
-                    type="text"
-                    class="form-control"
-                    placeholder="2016-12-05 12:00:00"
-                    readonly
-                  >
-                  <span class="input-group-btn">
-                    <button
-                      class="btn btn-default"
-                      type="button"
-                      onclick="$('#withdraw_end_time').datetimepicker('show');"
-                    >
-                      <i class="fa fa-calendar"></i>
-                    </button>
-                  </span>
+                <div class="form-group">
+                  <label class="label-control px-2">To</label>
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
                 </div>
-                <label>
+                <label class="px-2">
                   <font style="vertical-align: inherit;">
                     <font style="vertical-align: inherit;">status</font>
                   </font>
                 </label>
-                <div class="input-group">
-                  <select id="withdrawFlag" name="withdrawFlag" class="form-control">
-                    <option value selected>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">All</font>
-                      </font>
-                    </option>
-                    <option value="0">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Waiting for processing</font>
-                      </font>
-                    </option>
-                    <option value="9">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Processing</font>
-                      </font>
-                    </option>
-                    <option value="1">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">wait for payment</font>
-                      </font>
-                    </option>
-                    <option value="2">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Payment completed</font>
-                      </font>
-                    </option>
-                    <option value="3">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Payment failed</font>
-                      </font>
-                    </option>
-                    <option value="-1,-2">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Cancelled</font>
-                      </font>
-                    </option>
-                    <option value="-3">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Approval rejection</font>
-                      </font>
-                    </option>
-                  </select>
+                <!-- Example single danger button -->
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >All</button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                  </div>
                 </div>
-                <button class="btn btn-orange" id="withdraw_search">
-                  <i class="fa fa-search"></i>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Inquire</font>
-                  </font>
+                <button
+                  class="btn btn-primary"
+                  id="search-button"
+                  data-toggle="modal"
+                  data-target="#searchModal"
+                >
+                  <i class="fa fa-search"></i> 查询
                 </button>
               </div>
             </div>
-            <div
-              class="panel-body jsgrid"
-              id="tab-1-grid"
-              style="position: relative; height: auto; width: 100%;"
-            >
-              <div class="jsgrid-grid-header jsgrid-header-scrollbar">
-                <table class="jsgrid-table table">
-                  <tbody>
-                    <tr class="jsgrid-header-row">
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 50px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">application time</font>
-                        </font>
-                      </th>
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 50px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">Cash withdrawal number</font>
-                        </font>
-                      </th>
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 50px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">Cash withdrawal card</font>
-                        </font>
-                      </th>
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 50px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">Withdrawal Amount</font>
-                        </font>
-                      </th>
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 20px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">status</font>
-                        </font>
-                      </th>
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 30px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">operating</font>
-                        </font>
-                      </th>
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 70px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">Remarks</font>
-                        </font>
-                      </th>
-                    </tr>
-                    <tr class="jsgrid-filter-row" style="display: none;">
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 20px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 30px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 70px;">
-                        <input type="text">
-                      </td>
-                    </tr>
-                    <tr class="jsgrid-insert-row" style="display: none;">
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 20px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 30px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 70px;">
-                        <input type="text">
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="jsgrid-grid-body">
-                <table class="jsgrid-table table">
-                  <tbody>
-                    <tr class="jsgrid-nodata-row">
-                      <td class="jsgrid-cell" colspan="7">
-                        <div class="no-data">
-                          <font style="vertical-align: inherit;">
-                            <font
-                              style="vertical-align: inherit;"
-                            >No record for the selected time period!</font>
-                          </font>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div
-                class="jsgrid-load-shader"
-                style="display: none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; z-index: 1000;"
-              ></div>
-              <div
-                class="jsgrid-load-panel"
-                style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;"
-              >
-                <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">Please, wait...</font>
-                </font>
-              </div>
-            </div>
-
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>申请时间</th>
+                  <th>提现单号</th>
+                  <th>提现银行卡</th>
+                  <th>申请时间</th>
+                  <th>提现单号</th>
+                  <th>提现银行卡</th>
+                  <th>提现银行卡</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mark</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                </tr>
+              </tbody>
+            </table>
             <div class="hid_paging">
               <div id="withdraw_pagging" class="jsgrid-pager-container" style="display: none;">
                 <div class="jsgrid-pager">
@@ -379,7 +216,7 @@
             </table>
           </div>
         </div>
-        <div class="tab-pane" id="schedule-1">
+        <div class="tab-pane" id="rechargerecord">
           <div class="panel panel-default">
             <div class="panel-heading" id="heading-t1-1">
               <h4 class="panel-title">
@@ -405,7 +242,7 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane" id="tasks-1">
+        <div class="tab-pane" id="washingrecord">
           <div class="panel panel-default">
             <div class="panel-heading" id="heading-t1-2">
               <h4 class="panel-title">
@@ -1030,7 +867,23 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  mounted() {
+    $(".datetimepicker").datetimepicker({
+      icons: {
+        time: "tim-icons icon-watch-time",
+        date: "tim-icons icon-calendar-60",
+        up: "fa fa-chevron-up",
+        down: "fa fa-chevron-down",
+        previous: "tim-icons icon-minimal-left",
+        next: "tim-icons icon-minimal-right",
+        today: "fa fa-screenshot",
+        clear: "fa fa-trash",
+        close: "fa fa-remove"
+      }
+    });
+  }
+};
 </script>
 <style scoped>
 </style>
