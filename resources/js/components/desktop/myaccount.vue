@@ -5,9 +5,12 @@
       <!-- Main content -->
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-3 px-0">
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
+              <div class="card-header bg-primary">
+                <h3 class="card-title text-white">Profile</h3>
+              </div>
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img
@@ -46,8 +49,8 @@
 
             <!-- About Me Box -->
             <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">About Me</h3>
+              <div class="card-header bg-primary">
+                <h3 class="card-title text-white">About Me</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -72,7 +75,7 @@
                 </strong>
 
                 <p class="text-custome font-weight-bolder">¥0.00</p>
-                <a href class="btn btn-primary">
+                <a href class="btn btn-primary btn-block">
                   <i class="tim-icons icon-refresh-02"></i>刷新额度
                 </a>
                 <hr>
@@ -94,7 +97,7 @@
             <!-- /.card -->
           </div>
           <!-- /.col -->
-          <div class="col-md-9">
+          <div class="col-md-9 pr-0">
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
@@ -113,10 +116,20 @@
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="activity">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <p>我的会员星级 (加入尊贵的VIP行列,坐享星级礼遇、超级特权，让您乐在源源不绝的惊喜优惠中)</p>
-                        <app-chart></app-chart>
+                    <div class="col-lg-12">
+                      <p>我的会员星级 (加入尊贵的VIP行列,坐享星级礼遇、超级特权，让您乐在源源不绝的惊喜优惠中)</p>
+                      <app-chart></app-chart>
+                      <div class="card">
+                        <div class="card-body">
+                          <h4 class="card-title">Card title</h4>
+                          <p
+                            class="card-text"
+                          >This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <p class="card-text">
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                          </p>
+                        </div>
+                        <img class="card-img-bottom" src alt="Card image cap">
                       </div>
                     </div>
                   </div>

@@ -9,10 +9,10 @@ export default {
   extends: Bar,
   data() {
     return {
-      stockname: [1,2,3,4,5,6,7,8,9],
+      stockname: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       betlose: [],
-      betwon: [1,2,3,4,5,6,7,8,9],
-    //   gettimeshow:""
+      betwon: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      //   gettimeshow:""
     };
   },
   mounted() {
@@ -46,85 +46,88 @@ export default {
     //       this.betwon.push(parseFloat(minutes + "." + seconds));
     //     });
 
-        let ctx = document.getElementById("chart");
-        let myChart = new Chart(ctx, {
-          type: "bar",
-          data: {
-            labels: this.stockname,
-            datasets: [
-              {
-                label: "minutes",
-                data: this.betwon,
-                fill: true,
-                borderColor: "blue",
-                backgroundColor:"#003679"
-              }
-            ]
-          },
-          options: {
-            elements: {
-              rectangle: {
-                borderWidth: 0,
-                borderSkipped: "bottom"
-              }
-            },
-            responsive: true,
-            legend: {
-              display: false,
-              position: "top"
-            },
-            title: {
-              display: true,
-              text: "online time minutes"
-            },
-            pan: {
-              enabled: true,
-              mode: "x" // is panning about the y axis neccessary for bar charts?
-            },
-            zoom: {
-              enabled: true,
-              mode: "x",
-              sensitivity: 1
-            },
-            tooltips: {
-              mode: "index",
-              intersect: false
-            },
-            hover: {
-              mode: "nearest",
-              intersect: true
-            },
-            scales: {
-              yAxes: [
-                {
-                  stacked: true,
-                  gridLines: {
-                    display: true
-                  },
-                  scaleLabel: {
-                    display: false
-                  },
-                  ticks: {
-                    display: true
-                  }
-                }
-              ],
-              xAxes: [
-                {
-                  stacked: true,
-                  scaleLabel: {
-                    display: false
-                  },
-                  ticks: {
-                    display: true,
-                    // min: "January-17",
-                    // max: "December-17"
-                  }
-                }
-              ]
-            }
+    let ctx = document.getElementById("chart");
+    let myChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: this.stockname,
+        datasets: [
+          {
+            label: "minutes",
+            data: this.betwon,
+            fill: true,
+            borderColor: "blue",
+            backgroundColor: "#003679"
           }
-        });
+        ]
+      },
+      options: {
+        elements: {
+          rectangle: {
+            borderWidth: 0,
+            borderSkipped: "bottom"
+          }
+        },
+        responsive: true,
+        legend: {
+          display: false,
+          position: "top"
+        },
+        title: {
+          display: true,
+          text: "online time minutes"
+        },
+        pan: {
+          enabled: true,
+          mode: "x" // is panning about the y axis neccessary for bar charts?
+        },
+        zoom: {
+          enabled: true,
+          mode: "x",
+          sensitivity: 1
+        },
+        tooltips: {
+          mode: "index",
+          intersect: false
+        },
+        hover: {
+          mode: "nearest",
+          intersect: true
+        },
+        scales: {
+          yAxes: [
+            {
+              stacked: true,
+              gridLines: {
+                display: false
+              },
+              scaleLabel: {
+                display: false
+              },
+              ticks: {
+                display: true
+              }
+            }
+          ],
+          xAxes: [
+            {
+              stacked: true,
+               gridLines: {
+                display: false
+              },
+              scaleLabel: {
+                display: false
+              },
+              ticks: {
+                display: true
+                // min: "January-17",
+                // max: "December-17"
+              }
+            }
+          ]
+        }
+      }
+    });
     //   })
     //   .catch(error => {
     //     console.log(error);
