@@ -14,9 +14,15 @@ class CreateTopuphistoriesTable extends Migration
     public function up()
     {
         Schema::create('topuphistories', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('referenceNo',11);
+            $table->double('topUpAmount',20,2);
+            $table->dateTime('topUpDate');
+            $table->string('methodID',2);
+            $table->string('method',15);
+            $table->primary('referenceNo');
             $table->timestamps();
         });
+       
     }
 
     /**

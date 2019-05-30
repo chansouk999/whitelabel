@@ -1,183 +1,768 @@
 <template>
   <div>
-    <div class="u-content u-subscribe">
-      <div class="mobile-wrap">
-        <div>
-          <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">Mobile number:</font>
-          </font>
-          <span class="js-show-phone">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">186*******2</font>
-            </font>
-          </span>
-          <a href="/ucenter/security/phone" class="btn-link">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">modification</font>
-            </font>
+    <div class="u-content u-transaction">
+      <ul class="nav nav-pills nav-pills-primary nav-pills-icons" role="tablist">
+        <!--
+        color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+        -->
+        <li class="nav-item">
+          <a class="nav-link active" href="#alipay" role="tab" data-toggle="tab">
+            <i class="tim-icons icon-atom"></i>
+            支付宝
           </a>
-        </div>
-        <form id="verifyPhoneForm" class="js-verify-notation" novalidate="novalidate">
-          <div class="form-inline">
-            <a class="btn-resend pointer-link" verify-type="bound">
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">obtain SMS verification code</font>
-              </font>
-            </a>
-            <input
-              id="captcha"
-              name="captcha"
-              type="text"
-              class="form-control"
-              maxlength="6"
-              placeholder="请输入短信验证码"
-            >
-            <a class="btn-submit pointer-link" verify-type="bound">
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">confirm at once</font>
-              </font>
-            </a>
-            <span class="error-msg"></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#scancode" role="tab" data-toggle="tab">
+            <i class="tim-icons icon-settings"></i>
+            扫码支付
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#banktransfer" role="tab" data-toggle="tab">
+            <i class="tim-icons icon-bullet-list-67"></i>
+            银行卡转账
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#bitcoin" role="tab" data-toggle="tab">
+            <i class="tim-icons icon-atom"></i>
+            比特币支付
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content tab-space">
+        <div class="tab-pane active" id="alipay">
+          <div class="container">
+            <div class="card">
+              <div class="card-body">
+                <form action>
+                  <div class="row">
+                    <div class="col-lg-4 text-right">
+                      <label class="text-dark p-2">充值方式：</label>
+                    </div>
+                    <div class="col-lg-8 form-row text-left">
+                      <div class="form-check form-check-radio">
+                        <label class="form-check-label">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="exampleRadios"
+                            id="exampleRadios1"
+                            value="option1"
+                            checked
+                          >
+                          <span class="form-check-sign"></span>
+                          First Radio
+                        </label>
+                      </div>
+                      <div class="form-check form-check-radio">
+                        <label class="form-check-label">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="exampleRadios"
+                            id="exampleRadios2"
+                            value="option2"
+                          >
+                          <span class="form-check-sign"></span>
+                          Second Radio
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4 text-right">
+                      <label class="text-dark p-2">充值金额：</label>
+                    </div>
+                    <div class="col-lg-8 form-row text-left">
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" value="100">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" value="200">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" value="500">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" value="1,000">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" value="2,000">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" value="5,000">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4 text-right">
+                      <label class="text-dark py-3">手机验证码：</label>
+                    </div>
+                    <div class="col-lg-8 form-row text-left">
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" value="100">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" value="200">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" value="500">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" value="1,000">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" value="2,000">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" value="5,000">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row d-flex justify-content-center">
+                    <div class="form-group col-lg-4">
+                      <input
+                        type="text"
+                        class="form-control mt-2"
+                        id="inputZip"
+                        placeholder="请输入6位数验证码"
+                      >
+                    </div>
+                    <button type="submit" class="btn btn-custome">发送验证码</button>
+                  </div>
+                  <button class="btn btn-custome">下一步</button>
+                  <p class="text-center">
+                    遇到问题了吗？联系
+                    <a href class="link">在线客服</a>
+                  </p>
+                </form>
+              </div>
+            </div>
           </div>
-          <p>
-            <font style="vertical-align: inherit;">
-              <font
-                style="vertical-align: inherit;"
-              >Tips: Please enter the SMS verification code to open the SMS subscription function.</font>
-            </font>
-          </p>
-        </form>
+        </div>
+
+        <div class="tab-pane" id="scancode">
+          <div class="panel panel-default">
+            <div class="panel-heading" id="heading-t1-2">
+              <h4 class="panel-title">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapse-t1-2"
+                >
+                  <i class="fa fa-quora"></i>
+                  <font style="vertical-align: inherit;">
+                    <font
+                      style="vertical-align: inherit;"
+                    >Withdrawal of the application status "Waiting for payment"?</font>
+                  </font>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-t1-2" class="panel-collapse collapse">
+              <div class="panel-body">
+                <i class="fa fa-font"></i>
+                <font style="vertical-align: inherit;">
+                  <font
+                    style="vertical-align: inherit;"
+                  >Indicates that it has been approved and entered the payment process, and will pay you the payment as soon as possible.</font>
+                </font>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <table class="js-table-subscribe table table-bordered loading-portion">
-        <thead>
-          <tr>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Subscription content</font>
-              </font>
-            </th>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">SMS subscription</font>
-              </font>
-            </th>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Subscription content</font>
-              </font>
-            </th>
-            <th>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">SMS subscription</font>
-              </font>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Login prompt</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="login" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Offer added</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="promotions" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-          </tr>
-          <tr class="highlight">
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Contact phone modification</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="modifyPhone" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Bank data modification</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="modifyBankingData" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Recharge prompt</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="deposit" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Name modification</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="modifyAccountName" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-          </tr>
-          <tr class="highlight">
-            <td>
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">Cash withdrawal prompt</font>
-              </font>
-            </td>
-            <td>
-              <label class="switcher">
-                <input name="withdrawal" class="type-sms" type="checkbox">
-                <span>
-                  <i></i>
-                </span>
-              </label>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-        <div class="transparent-base64 loading-js loading-portion-content"></div>
-      </table>
+      <div class="tab-content">
+        <div class="tab-pane fade tab-1 active in" id="tab-1">
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading" id="heading-t1-3">
+                <h4 class="panel-title">
+                  <a
+                    class="collapsed"
+                    data-toggle="collapse"
+                    data-parent="#accordion"
+                    href="#collapse-t1-3"
+                  >
+                    <i class="fa fa-quora"></i>
+                    <font style="vertical-align: inherit;">
+                      <font
+                        style="vertical-align: inherit;"
+                      >Withdrawal of the application status "Payment completed"?</font>
+                    </font>
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-t1-3" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <i class="fa fa-font"></i>表示提现已完成，请您登录银行账户查询确认。注：银行转账的到账时间主要取决于银行，如遇节假日跨行转账可能会有延迟，提现到账也将会被延迟。
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" id="heading-t1-4">
+                <h4 class="panel-title">
+                  <a
+                    class="collapsed"
+                    data-toggle="collapse"
+                    data-parent="#accordion"
+                    href="#collapse-t1-4"
+                  >
+                    <i class="fa fa-quora"></i>
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">How to cancel withdrawal?</font>
+                    </font>
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-t1-4" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <i class="fa fa-font"></i>如您的提现是“等待处理”状态，可以点击“取消”按钮取消提现；如是“处理中”或“等待支付”状态，则需联系
+                  <a
+                    href="javascript:;"
+                    class="text-orange as-cs-js"
+                  >在线客服</a>
+                  进行咨询；如提现状态是“支付完成”，则代表款项已支付，无法取消。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade tab-2" id="tab-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="form-inline">
+                <label>日期范围</label>
+                <div class="input-group">
+                  <input
+                    id="deposit_begin_time"
+                    type="text"
+                    class="form-control date-input"
+                    placeholder="2016-12-05 12:00:00"
+                    readonly
+                  >
+                  <span class="input-group-btn">
+                    <button
+                      class="btn btn-default"
+                      type="button"
+                      onclick="$('#deposit_begin_time').datetimepicker('show');"
+                    >
+                      <i class="fa fa-calendar"></i>
+                    </button>
+                  </span>
+                </div>
+                <label>到</label>
+                <div class="input-group">
+                  <input
+                    id="deposit_end_time"
+                    type="text"
+                    class="form-control date-input"
+                    placeholder="2016-12-05 12:00:00"
+                    readonly
+                  >
+                  <span class="input-group-btn">
+                    <button
+                      class="btn btn-default"
+                      type="button"
+                      onclick="$('#deposit_end_time').datetimepicker('show');"
+                    >
+                      <i class="fa fa-calendar"></i>
+                    </button>
+                  </span>
+                </div>
+                <label>类型</label>
+                <div class="input-group">
+                  <select class="form-control" id="orderType">
+                    <option selected value="ONLINE_PAYMENT">在线支付</option>
+                    <option value="VIRTUAL_ALL">比特币支付</option>
+                    <option value="BQ">银行卡转账</option>
+                  </select>
+                </div>
+                <label>状态</label>
+                <div class="input-group">
+                  <select name="paymentFlag" id="paymentFlag" class="form-control">
+                    <option value selected>全部</option>
+                    <option value="WAIT">等待</option>
+                    <option value="SUCCESS">成功</option>
+                    <option value="FAILED">失败</option>
+                  </select>
+                </div>
+                <button id="deposit_search" class="btn btn-orange">
+                  <i class="fa fa-search"></i> 查询
+                </button>
+              </div>
+            </div>
+            <div class="panel-body" id="tab-2-grid"></div>
+            <div class="hid_paging">
+              <div id="deposit_paging"></div>
+            </div>
+
+            <table class="table table-striped col6" id="paging-2-grid">
+              <tbody>
+                <tr class="last">
+                  <td colspan="3" class="text-right">
+                    <div action class="pull-left form-inline">
+                      <div class="form-group">
+                        <button class="btn btn-default step-backward">
+                          <i class="fa fa-step-backward"></i>
+                        </button>
+                        <button class="btn btn-default backward">
+                          <i class="fa fa-backward"></i>
+                        </button>
+                      </div>
+                      <div class="form-group">
+                        第
+                        <input type="text" class="form-control page-no" readonly>
+                        <span class="total_page_pl">共 0 页</span>
+                      </div>
+                      <div class="form-group">
+                        <button class="btn btn-default forward">
+                          <i class="fa fa-forward"></i>
+                        </button>
+                        <button class="btn btn-default step-forward">
+                          <i class="fa fa-step-forward"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="row2" style="width: 300px;">
+                    <b>小计：</b>
+                    <span class="subtotal-amount">0</span>元
+                    <br>
+                    <b>总计：</b>
+                    <span class="total-amount">0</span>元
+                  </td>
+                  <td colspan="1" style="width: 388px;">
+                    <span class="page_angle">显示0到0,共0记录</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="footnote">温馨提示：在线支付类型包含 在线支付、扫码支付、APP支付</p>
+          <div class="panel-group accordion" id="accordion2">
+            <div class="panel panel-default">
+              <div class="panel-heading" id="heading-t2-1">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion2" href="#collapse-t2-1">
+                    <i class="fa fa-quora"></i>在线支付未到账？
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-t2-1" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <dl class="dl-horizontal">
+                    <dt>
+                      <i class="fa fa-font"></i>
+                    </dt>
+                    <dd>
+                      确认您的银行卡是否已经扣款成功，短信不能作为出入账凭证哦；
+                      <br>如银行卡已扣款成功，请复制单号联系
+                      <a href="javascript:;" class="text-orange as-cs-js">在线客服</a>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" id="heading-t2-2">
+                <h4 class="panel-title">
+                  <a
+                    class="collapsed"
+                    data-toggle="collapse"
+                    data-parent="#accordion2"
+                    href="#collapse-t2-2"
+                  >
+                    <i class="fa fa-quora"></i>二维码支付未到账？
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-t2-2" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <dl class="dl-horizontal">
+                    <dt>
+                      <i class="fa fa-font"></i>
+                    </dt>
+                    <dd>确认您的微信/支付宝是否已经扣款成功，短信不能作为出入账凭证哦；</dd>
+                    <dd>
+                      如微信/支付宝已扣款成功，请复制单号联系
+                      <a href="javascript:;" class="text-orange as-cs-js">在线客服</a>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" id="heading-t2-3">
+                <h4 class="panel-title">
+                  <a
+                    class="collapsed"
+                    data-toggle="collapse"
+                    data-parent="#accordion2"
+                    href="#collapse-t2-3"
+                  >
+                    <i class="fa fa-quora"></i>银行卡充值未到账？
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-t2-3" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <dl class="dl-horizontal">
+                    <dt>
+                      <i class="fa fa-font"></i>
+                    </dt>
+                    <dd>确认您的银行卡是否转账成功，跨行转账如未选择实时汇款，则无法实时到账，请耐心等待银行转账成功后即可到账。</dd>
+                    <dd>
+                      请检查您所提交的订单信息是否正确，汇款人姓名、充值金额是否与订单信息一致。订单信息填写有误，点此
+                      <a
+                        href="/ucenter/pay/payIndex#tab-3"
+                      >重新提交</a>。
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" id="heading-t2-4">
+                <h4 class="panel-title">
+                  <a
+                    class="collapsed"
+                    data-toggle="collapse"
+                    data-parent="#accordion2"
+                    href="#collapse-t2-4"
+                  >
+                    <i class="fa fa-quora"></i>支付宝充值未到账？
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-t2-4" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <dl class="dl-horizontal">
+                    <dt>
+                      <i class="fa fa-font"></i>
+                    </dt>
+                    <dd>请登录支付宝查看转账状态，只有状态为成功才代表转账成功，如遇银行系统清算，支付宝转账会有延迟。</dd>
+                    <dd>
+                      请检查您所提交的订单信息是否正确，汇款姓名、充值金额是否与订单信息一致。订单信息填写有误，点此
+                      <a
+                        href="/ucenter/pay/payIndex#tab-4"
+                      >重新提交</a>。
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade tab-3" id="tab-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="form-inline">
+                <label>日期范围</label>
+                <div class="input-group">
+                  <input
+                    id="rebate_begin_time"
+                    type="text"
+                    class="form-control"
+                    placeholder="2016-12-05 12:00:00"
+                    readonly
+                  >
+                  <span class="input-group-btn">
+                    <button
+                      class="btn btn-default"
+                      type="button"
+                      onclick="$('#rebate_begin_time').datetimepicker('show');"
+                    >
+                      <i class="fa fa-calendar"></i>
+                    </button>
+                  </span>
+                </div>
+                <label>到</label>
+                <div class="input-group">
+                  <input
+                    id="rebate_end_time"
+                    type="text"
+                    class="form-control"
+                    placeholder="2016-12-05 12:00:00"
+                    readonly
+                  >
+                  <span class="input-group-btn">
+                    <button
+                      class="btn btn-default"
+                      type="button"
+                      onclick="$('#rebate_end_time').datetimepicker('show');"
+                    >
+                      <i class="fa fa-calendar"></i>
+                    </button>
+                  </span>
+                </div>
+                <label>类型</label>
+                <select id="rebate_type" class="form-control">
+                  <option value="AUTOMATIC">周洗码</option>
+                  <option selected value="MANUAL">实时洗码</option>
+                </select>
+                <button id="rebate_search" class="btn btn-orange">
+                  <i class="fa fa-search"></i> 查询
+                </button>
+              </div>
+            </div>
+            <div class="panel-body" id="tab-3-grid"></div>
+            <div class="hid_paging">
+              <div id="rebate_paging"></div>
+            </div>
+
+            <table class="table table-striped col6" id="paging-3-grid">
+              <tbody>
+                <tr class="last">
+                  <td colspan="3" class="text-right">
+                    <div action class="pull-left form-inline">
+                      <div class="form-group">
+                        <button class="btn btn-default step-backward">
+                          <i class="fa fa-step-backward"></i>
+                        </button>
+                        <button class="btn btn-default backward">
+                          <i class="fa fa-backward"></i>
+                        </button>
+                      </div>
+                      <div class="form-group">
+                        第
+                        <input type="text" class="form-control page-no" readonly>
+                        <span class="total_page_pl">共 0 页</span>
+                      </div>
+                      <div class="form-group">
+                        <button class="btn btn-default forward">
+                          <i class="fa fa-forward"></i>
+                        </button>
+                        <button class="btn btn-default step-forward">
+                          <i class="fa fa-step-forward"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="row2" style="width: 300px;">
+                    <b>小计：</b>
+                    <span class="subtotal-amount">0</span>元
+                    <br>
+                    <b>总计：</b>
+                    <span class="total-amount">0</span>元
+                  </td>
+                  <td colspan="1" style="width: 339px">
+                    <span class="page_angle">显示0到0,共0记录</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane fade tab-4" id="tab-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="form-inline">
+                <label>日期范围</label>
+                <div class="input-group">
+                  <input
+                    id="promotion_begin_time"
+                    type="text"
+                    class="form-control"
+                    placeholder="2016-12-05 12:00:00"
+                    readonly
+                  >
+                  <span class="input-group-btn">
+                    <button
+                      class="btn btn-default"
+                      type="button"
+                      onclick="$('#promotion_begin_time').datetimepicker('show');"
+                    >
+                      <i class="fa fa-calendar"></i>
+                    </button>
+                  </span>
+                </div>
+                <label>到</label>
+                <div class="input-group">
+                  <input
+                    id="promotion_end_time"
+                    type="text"
+                    class="form-control"
+                    placeholder="2016-12-05 12:00:00"
+                    readonly
+                  >
+                  <span class="input-group-btn">
+                    <button
+                      class="btn btn-default"
+                      type="button"
+                      onclick="$('#promotion_end_time').datetimepicker('show');"
+                    >
+                      <i class="fa fa-calendar"></i>
+                    </button>
+                  </span>
+                </div>
+                <button id="promotion_search" class="btn btn-orange">
+                  <i class="fa fa-search"></i> 查询
+                </button>
+              </div>
+            </div>
+            <div class="panel-body" id="tab-4-grid"></div>
+            <div class="hid_paging">
+              <div id="promotion_paging"></div>
+            </div>
+
+            <table class="table table-striped col6" id="paging-4-grid">
+              <tbody>
+                <tr class="last">
+                  <td colspan="3" class="text-right">
+                    <div action class="pull-left form-inline">
+                      <div class="form-group">
+                        <button class="btn btn-default step-backward">
+                          <i class="fa fa-step-backward"></i>
+                        </button>
+                        <button class="btn btn-default backward">
+                          <i class="fa fa-backward"></i>
+                        </button>
+                      </div>
+                      <div class="form-group">
+                        第
+                        <input type="text" class="form-control page-no" readonly>
+                        <span class="total_page_pl">共 0 页</span>
+                      </div>
+                      <div class="form-group">
+                        <button class="btn btn-default forward">
+                          <i class="fa fa-forward"></i>
+                        </button>
+                        <button class="btn btn-default step-forward">
+                          <i class="fa fa-step-forward"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="row2" style="width: 500px;">
+                    <b>小计：</b>
+                    <span class="subtotal-amount">0</span>元
+                    <br>
+                    <b>总计：</b>
+                    <span class="total-amount">0</span>元
+                  </td>
+                  <td colspan="1" style="width: 389px;">
+                    <span class="page_angle">显示0到0,共0记录</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- 游戏记录 -->
+        <div class="tab-pane fade tab-5" id="tab-5" style>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <form class="form-inline">
+                <label for="gameRecord_beginDateTime">日期范围</label>
+                <div class="input-group">
+                  <input id="gameRecord_beginDateTime" type="text" class="form-control" readonly>
+                  <span class="input-group-btn">
+                    <button
+                      class="btn btn-default"
+                      type="button"
+                      onclick="$('#gameRecord_beginDateTime').datetimepicker('show');"
+                    >
+                      <i class="fa fa-calendar"></i>
+                    </button>
+                  </span>
+                </div>
+                <label for="gameRecord_endDateTime">到</label>
+                <div class="input-group">
+                  <input id="gameRecord_endDateTime" type="text" class="form-control" readonly>
+                  <span class="input-group-btn">
+                    <button
+                      class="btn btn-default"
+                      type="button"
+                      onclick="$('#gameRecord_endDateTime').datetimepicker('show');"
+                    >
+                      <i class="fa fa-calendar"></i>
+                    </button>
+                  </span>
+                </div>
+                <label for="gameRecord_gamePlatformId">游戏平台</label>
+                <select id="gameRecord_gamePlatformId" class="form-control">
+                  <option value="AG_QJ">AG旗舰厅</option>
+                  <option value="AG_GJ">AG国际厅</option>
+                  <option value="AG_CASINO">AG赌场厅</option>
+                  <option value="AG_EG">AG电游</option>
+                  <option value="AS_EG">AS电玩城</option>
+                  <option value="PP_EG">PP电游</option>
+                  <option value="PNG_EG">PNG电游</option>
+                  <option value="TTG_EG">TTG电游</option>
+                  <option value="MG_EG">MG电游</option>
+                  <option value="PT_EG">PT电游</option>
+                  <option value="SW_EG">SW电游</option>
+                  <option value="AG_FISH">AG捕鱼王</option>
+                  <option value="SB_SPORT">沙巴体育</option>
+                  <option value="AG_SPORT">AG国际体育</option>
+                  <option value="SCG">QG刮刮彩</option>
+                  <option value="NBT">亚游劲彩</option>
+                  <option value="VRLOT">VR彩票</option>
+                  <option value="SCGHB">QG疯狂红包</option>
+                </select>
+                <a id="gameRecord_search" href="javascript:;" class="btn btn-orange">
+                  <i class="fa fa-search"></i>查询
+                </a>
+              </form>
+            </div>
+            <div class="panel-body">
+              <table id="gameRecord_table" class="table table-striped col6">
+                <tbody>
+                  <tr>
+                    <th>时间</th>
+                    <th>平台</th>
+                    <th>游戏类型</th>
+                    <th>投注单号</th>
+                    <th>投注金额</th>
+                    <th>有效投注额</th>
+                    <th>派彩金额</th>
+                    <th>备注说明</th>
+                  </tr>
+                  <tr>
+                    <td colspan="8">所选时间段内暂无记录!</td>
+                  </tr>
+                  <tr class="last">
+                    <td colspan="4" class="text-right">
+                      <div class="pull-left form-inline">
+                        <div class="form-group">
+                          <button class="btn btn-default">
+                            <i class="gameRecord fa fa-step-backward"></i>
+                          </button>
+                          <button class="btn btn-default">
+                            <i class="gameRecord fa fa-backward"></i>
+                          </button>
+                        </div>
+                        <div class="form-group">
+                          第
+                          <input type="text" class="form-control page-no" readonly value="0"> 页 共0页
+                        </div>
+                        <div class="form-group">
+                          <button class="btn btn-default">
+                            <i class="gameRecord fa fa-forward"></i>
+                          </button>
+                          <button class="btn btn-default">
+                            <i class="gameRecord fa fa-step-forward"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <b>共计:</b>0
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="footnote">温馨提示：实时投注记录需在5分钟后查询。</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>

@@ -14,9 +14,13 @@ class CreateAdminsTable extends Migration
     public function up()
     {
         Schema::create('admins', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->integer('adminID');
+            $table->string('adminName',30);
+            $table->dateTime('createDate');
+            $table->primary('adminID');
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE admins CHANGE adminID adminID INT(7) NOT NULL');
     }
 
     /**

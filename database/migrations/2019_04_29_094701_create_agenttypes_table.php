@@ -15,7 +15,7 @@ class CreateAgenttypesTable extends Migration
     {
         Schema::create('agenttypes', function (Blueprint $table) {
             $table->string('agentType',10);
-            $table->typeID('typeID');
+            $table->integer('typeID',1);
             $table->timestamps();
         });
     }

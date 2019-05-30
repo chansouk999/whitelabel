@@ -15,6 +15,8 @@ class CreateGamerulesTable extends Migration
     {
         Schema::create('gamerules', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('gameRule',50);
+            $table->string('ruleID',50);
             $table->timestamps();
         });
     }

@@ -14,10 +14,9 @@ class CreateHistoriesTable extends Migration
     public function up()
     {
         Schema::create('histories', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('betID',31);
             $table->double('betAmount',20,2);
-            $table->datetime('betTime',20,2);
+            $table->datetime('betTime');
             $table->enum('betStatus',['clear','waiting']);
             $table->primary('betID');
             $table->timestamps();

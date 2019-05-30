@@ -14,9 +14,12 @@ class CreateAdmintypesTable extends Migration
     public function up()
     {
         Schema::create('admintypes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->integer('typeID');
+            $table->string('typeName',10);
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE admintypes CHANGE typeID typeID INT(7) NOT NULL');
     }
 
     /**

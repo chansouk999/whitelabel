@@ -14,10 +14,15 @@ class CreateAnnouncementsTable extends Migration
     public function up()
     {
         Schema::create('announcements', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('AnouncementID',10);
+            $table->enum('method',['PA','NA']);
+            $table->text('message');
+            $table->dateTime('addInDate');
+            $table->primary('AnouncementID');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

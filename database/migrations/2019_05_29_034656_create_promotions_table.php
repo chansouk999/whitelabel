@@ -14,7 +14,10 @@ class CreatePromotionsTable extends Migration
     public function up()
     {
         Schema::create('promotions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('PromotionID',10);
+            $table->bigIncrements('method');
+            $table->text('message');
+            // $table->primary(['PromotionID']);
             $table->timestamps();
         });
     }

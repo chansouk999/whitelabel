@@ -14,7 +14,11 @@ class CreateGamesTable extends Migration
     public function up()
     {
         Schema::create('games', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('gameID');
+            $table->datetime('gameStart');
+            $table->datetime('gameClose');
+            $table->string('gamemode',20);
+            $table->primary(['gameID']);
             $table->timestamps();
         });
     }

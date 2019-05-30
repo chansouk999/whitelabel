@@ -352,31 +352,10 @@ export default {
   
   methods:{
     runwindow(){
-          window.open("http://localhost:8001/redirect", "", "width=1920,height=1080");
+          window.open("http://localhost:8003/redirect", "", "width=1920,height=1080");
     },
     gotogame(){
-    
-       axios.post('http://localhost:8001/checkapiuser',{
-        id:this.id,
-        user_id:this.user_id,
-        provider_name:this.provider_name,
-        balance:this.balance,
-        pro_id:this.pro_id,
-        name:this.name,
-        email:this.email,
-       }
-       ).then(res=>{
-         if(res.status == 500){
-           console.log('okokoko')
-         }
-          console.log(res)
-          this.runwindow()
-        
-      }).catch(er=>{
-        console.log(er.res)
-      })
-    
-      window.open("http://localhost:8001/redirect", "width=1920,height=1080");
+      window.open("http://localhost:8003/redirect", "_blank");
     },
     userdata(){
       axios.get('/userdetaildata').then(res=>{
