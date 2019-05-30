@@ -1,6 +1,6 @@
 <template>
   <div class="u-wrap">
-    <div class="d-none d-xl-block u-menu">
+    <div class="u-menu">
       <div class="umenu-wrap color-bg">
         <dl>
           <dt>
@@ -46,7 +46,7 @@
             <a href="#" @click="setNavShowName('changepassword',$event)">change Password</a>
           </dd>
           <dd data-sidebar="u_bank">
-            <a href="#" id="bankinfoclick" @click="setNavShowName('bankinfo',$event)">Bank hhhhinfo</a>
+            <a href="#" id="bankinfoclick" @click="setNavShowName('bankinfo',$event)">Bank info</a>
           </dd>
           <dd data-sidebar="u_person_phoneIndex">
             <a href="#" @click="setNavShowName('modifyphone',$event)">Modify phone</a>
@@ -70,8 +70,8 @@
         </dl>
       </div>
     </div>
-    <!-- mobile Min hide 1199px -->
-    <div class="d-none d-xl-block">
+
+
       <div class="bg-secondary p-3">
         <nav aria-label="breadcrumb" role="navigation">
           <ol class="breadcrumb">
@@ -82,7 +82,7 @@
               <a href="#"> <i class="tim-icons icon-chat-33 icon-default"></i
               >Message</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">{{navShowName}}</li>
+            <li class="breadcrumb-item active text-capitalize" aria-current="page">{{navShowName}}</li>
           </ol>
         </nav>
         <div class="u-content" v-if="navShowName ==='myaccount'">
@@ -120,7 +120,6 @@
           <message></message>
         </div>
       </div>
-    </div>
   </div>
   <!-- Sidebar -->
 </template>

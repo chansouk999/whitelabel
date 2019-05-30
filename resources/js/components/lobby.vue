@@ -356,6 +356,25 @@ export default {
     },
     gotogame(){
       window.open("http://localhost:8003/redirect", "_blank");
+      // let config = {
+      //   headers:{'X-CSRF-TOKEN':this.csrf}
+      // }
+      //  axios.post('http://localhost:8003/checkapiuser',{
+      //   id:this.id,
+      //   user_id:this.user_id,
+      //   provider_name:this.provider_name,
+      //   balance:this.balance,
+      //   pro_id:this.pro_id,
+      //   name:this.name,
+      //   email:this.email,
+      //  },config
+      //  ).then(res=>{
+      //   console.log(res.data)
+      //   let myWindow = window.open("http://localhost:8003/redirect", "", "width=1920,height=1080");
+      // }).catch(er=>{
+      //   console.log(er.res)
+      // })
+      
     },
     userdata(){
       axios.get('/userdetaildata').then(res=>{

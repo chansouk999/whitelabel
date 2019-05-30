@@ -6,305 +6,108 @@
         color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
         -->
         <li class="nav-item">
-          <a class="nav-link active" href="#dashboard-1" role="tab" data-toggle="tab">
+          <a class="nav-link active" href="#withdrawalsrecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-atom"></i>
-            Withdrawals record
+            提现记录
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab">
+          <a class="nav-link" href="#rechargerecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-settings"></i>
-            Recharge record
+            充值记录
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
+          <a class="nav-link" href="#washingrecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-bullet-list-67"></i>
-            Washing record
+            洗码记录
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#dashboard-1" role="tab" data-toggle="tab">
+          <a class="nav-link" href="#offerecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-atom"></i>
-            Offer record
+            优惠记录
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab">
+          <a class="nav-link" href="#gamerecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-settings"></i>
-            Game record
+            游戏记录
           </a>
         </li>
       </ul>
       <div class="tab-content tab-space">
-        <div class="tab-pane active" id="dashboard-1">
+        <div class="tab-pane active" id="withdrawalsrecord">
           <div class="panel panel-default">
             <div class="panel-heading">
               <div id="withdraw_form" class="form-inline">
-                <label>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Date range</font>
-                  </font>
-                </label>
-                <div class="input-group">
-                  <input
-                    id="withdraw_begin_time"
-                    type="text"
-                    class="form-control"
-                    placeholder="2016-12-05 12:00:00"
-                    readonly
-                  >
-                  <span class="input-group-btn">
-                    <button
-                      class="btn btn-default"
-                      type="button"
-                      onclick="$('#withdraw_begin_time').datetimepicker('show');"
-                    >
-                      <i class="fa fa-calendar"></i>
-                    </button>
-                  </span>
+                <!-- input with datetimepicker -->
+                <div class="form-group">
+                  <label class="label-control px-2">Date range</label>
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
                 </div>
-                <label>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">To</font>
-                  </font>
-                </label>
-                <div class="input-group">
-                  <input
-                    id="withdraw_end_time"
-                    type="text"
-                    class="form-control"
-                    placeholder="2016-12-05 12:00:00"
-                    readonly
-                  >
-                  <span class="input-group-btn">
-                    <button
-                      class="btn btn-default"
-                      type="button"
-                      onclick="$('#withdraw_end_time').datetimepicker('show');"
-                    >
-                      <i class="fa fa-calendar"></i>
-                    </button>
-                  </span>
+                <div class="form-group">
+                  <label class="label-control px-2">To</label>
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
                 </div>
-                <label>
+                <label class="px-2">
                   <font style="vertical-align: inherit;">
                     <font style="vertical-align: inherit;">status</font>
                   </font>
                 </label>
-                <div class="input-group">
-                  <select id="withdrawFlag" name="withdrawFlag" class="form-control">
-                    <option value selected>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">All</font>
-                      </font>
-                    </option>
-                    <option value="0">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Waiting for processing</font>
-                      </font>
-                    </option>
-                    <option value="9">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Processing</font>
-                      </font>
-                    </option>
-                    <option value="1">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">wait for payment</font>
-                      </font>
-                    </option>
-                    <option value="2">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Payment completed</font>
-                      </font>
-                    </option>
-                    <option value="3">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Payment failed</font>
-                      </font>
-                    </option>
-                    <option value="-1,-2">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Cancelled</font>
-                      </font>
-                    </option>
-                    <option value="-3">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Approval rejection</font>
-                      </font>
-                    </option>
-                  </select>
+                <!-- Example single danger button -->
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >All</button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                  </div>
                 </div>
-                <button class="btn btn-orange" id="withdraw_search">
-                  <i class="fa fa-search"></i>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Inquire</font>
-                  </font>
+                <button
+                  class="btn btn-primary"
+                  id="search-button"
+                  data-toggle="modal"
+                  data-target="#searchModal"
+                >
+                  <i class="fa fa-search"></i> 查询
                 </button>
               </div>
             </div>
-            <div
-              class="panel-body jsgrid"
-              id="tab-1-grid"
-              style="position: relative; height: auto; width: 100%;"
-            >
-              <div class="jsgrid-grid-header jsgrid-header-scrollbar">
-                <table class="jsgrid-table table">
-                  <tbody>
-                    <tr class="jsgrid-header-row">
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 50px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">application time</font>
-                        </font>
-                      </th>
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 50px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">Cash withdrawal number</font>
-                        </font>
-                      </th>
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 50px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">Cash withdrawal card</font>
-                        </font>
-                      </th>
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 50px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">Withdrawal Amount</font>
-                        </font>
-                      </th>
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 20px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">status</font>
-                        </font>
-                      </th>
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 30px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">operating</font>
-                        </font>
-                      </th>
-                      <th class="jsgrid-header-cell jsgrid-align-center" style="width: 70px;">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">Remarks</font>
-                        </font>
-                      </th>
-                    </tr>
-                    <tr class="jsgrid-filter-row" style="display: none;">
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 20px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 30px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 70px;">
-                        <input type="text">
-                      </td>
-                    </tr>
-                    <tr class="jsgrid-insert-row" style="display: none;">
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 20px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 30px;">
-                        <input type="text">
-                      </td>
-                      <td class="jsgrid-cell jsgrid-align-center" style="width: 70px;">
-                        <input type="text">
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="jsgrid-grid-body">
-                <table class="jsgrid-table table">
-                  <tbody>
-                    <tr class="jsgrid-nodata-row">
-                      <td class="jsgrid-cell" colspan="7">
-                        <div class="no-data">
-                          <font style="vertical-align: inherit;">
-                            <font
-                              style="vertical-align: inherit;"
-                            >No record for the selected time period!</font>
-                          </font>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div
-                class="jsgrid-load-shader"
-                style="display: none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; z-index: 1000;"
-              ></div>
-              <div
-                class="jsgrid-load-panel"
-                style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;"
-              >
-                <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">Please, wait...</font>
-                </font>
-              </div>
-            </div>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>申请时间</th>
+                  <th>提现单号</th>
+                  <th>提现银行卡</th>
+                  <th>申请时间</th>
+                  <th>提现单号</th>
+                  <th>提现银行卡</th>
+                  <th>提现银行卡</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mark</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                </tr>
+              </tbody>
+            </table>
 
-            <div class="hid_paging">
-              <div id="withdraw_pagging" class="jsgrid-pager-container" style="display: none;">
-                <div class="jsgrid-pager">
-                  <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button">
-                    <a href="javascript:void(0);">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">&lt;&lt;</font>
-                      </font>
-                    </a>
-                  </span>
-                  <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button">
-                    <a href="javascript:void(0);">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">&lt;</font>
-                      </font>
-                    </a>
-                  </span>
-                  <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button">
-                    <a href="javascript:void(0);">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">&gt;</font>
-                      </font>
-                    </a>
-                  </span>
-                  <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button">
-                    <a href="javascript:void(0);">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">&gt;&gt;</font>
-                      </font>
-                    </a>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <table class="table table-striped col6" id="paging-1-grid">
+            <table class="table table-striped col6">
               <tbody>
                 <tr class="last">
                   <td colspan="3" class="text-right">
@@ -321,7 +124,7 @@
                         <font style="vertical-align: inherit;">
                           <font style="vertical-align: inherit;">First</font>
                         </font>
-                        <input type="text" class="form-control page-no" readonly>
+                        <input type="text" class="col-lg-2 form-control" placeholder value="0">
                         <span class="total_page_pl">
                           <font style="vertical-align: inherit;">
                             <font style="vertical-align: inherit;">Total 0 pages</font>
@@ -377,63 +180,773 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-        </div>
-        <div class="tab-pane" id="schedule-1">
-          <div class="panel panel-default">
-            <div class="panel-heading" id="heading-t1-1">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-t1-1">
-                  <i class="fa fa-quora"></i>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >Withdrawal of the application status "waiting for processing"?</font>
-                  </font>
-                </a>
-              </h4>
-            </div>
-            <div id="collapse-t1-1" class="panel-collapse collapse">
-              <div class="panel-body">
-                <i class="fa fa-font"></i>
-                <font style="vertical-align: inherit;">
-                  <font
-                    style="vertical-align: inherit;"
-                  >Indicates that your withdrawal is still under review and you will be able to enter the payment process once the review is approved.</font>
-                </font>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane" id="tasks-1">
-          <div class="panel panel-default">
-            <div class="panel-heading" id="heading-t1-2">
-              <h4 class="panel-title">
-                <a
-                  class="collapsed"
-                  data-toggle="collapse"
-                  data-parent="#accordion"
-                  href="#collapse-t1-2"
+            <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+              <div class="card card-plain">
+                <div class="card-header" role="tab" id="headingOne">
+                  <a
+                    data-toggle="collapse"
+                    data-parent="#accordion"
+                    href="#process"
+                    aria-expanded="true"
+                    aria-controls="process"
+                  >
+                    提现申请状态“等待处理”？
+                    <i class="tim-icons icon-minimal-down"></i>
+                  </a>
+                </div>
+
+                <div
+                  id="process"
+                  class="collapse show"
+                  role="tabpanel"
+                  aria-labelledby="headingOne"
                 >
-                  <i class="fa fa-quora"></i>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >Withdrawal of the application status "Waiting for payment"?</font>
-                  </font>
-                </a>
-              </h4>
-            </div>
-            <div id="collapse-t1-2" class="panel-collapse collapse">
-              <div class="panel-body">
-                <i class="fa fa-font"></i>
-                <font style="vertical-align: inherit;">
-                  <font
-                    style="vertical-align: inherit;"
-                  >Indicates that it has been approved and entered the payment process, and will pay you the payment as soon as possible.</font>
-                </font>
+                  <div class="card-body">
+                    <p>表示您的提现还在审核中，审核通过后即可进入支付流程。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card card-plain">
+                <div class="card-header" role="tab" id="headingTwo">
+                  <a
+                    class="collapsed"
+                    data-toggle="collapse"
+                    data-parent="#accordion"
+                    href="#payment"
+                    aria-expanded="false"
+                    aria-controls="payment"
+                  >
+                    提现申请状态“等待支付”？
+                    <i class="tim-icons icon-minimal-down"></i>
+                  </a>
+                </div>
+                <div id="payment" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="card-body">
+                    <p>表示已经审核通过，进入了支付流程，会尽快为您支付到账。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card card-plain">
+                <div class="card-header" role="tab" id="headingThree">
+                  <a
+                    class="collapsed"
+                    data-toggle="collapse"
+                    data-parent="#accordion"
+                    href="#complated"
+                    aria-expanded="false"
+                    aria-controls="complated"
+                  >
+                    提现申请状态“支付完成”？
+                    <i class="tim-icons icon-minimal-down"></i>
+                  </a>
+                </div>
+                <div id="complated" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                  <div class="card-body">
+                    <p>表示提现已完成，请您登录银行账户查询确认。注：银行转账的到账时间主要取决于银行，如遇节假日跨行转账可能会有延迟，提现到账也将会被延迟。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card card-plain">
+                <div class="card-header" role="tab" id="headingThree">
+                  <a
+                    class="collapsed"
+                    data-toggle="collapse"
+                    data-parent="#accordion"
+                    href="#cancelwithdraw"
+                    aria-expanded="false"
+                    aria-controls="cancelwithdraw"
+                  >
+                    如何取消提现？
+                    <i class="tim-icons icon-minimal-down"></i>
+                  </a>
+                </div>
+                <div
+                  id="cancelwithdraw"
+                  class="collapse"
+                  role="tabpanel"
+                  aria-labelledby="headingThree"
+                >
+                  <div class="card-body">
+                    <p>如您的提现是“等待处理”状态，可以点击“取消”按钮取消提现；如是“处理中”或“等待支付”状态，则需联系。</p>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="rechargerecord">
+         <div class="panel panel-default">
+            <div class="panel-heading">
+              <div id="withdraw_form" class="form-inline">
+                <!-- input with datetimepicker -->
+                <div class="form-group">
+                  <label class="label-control px-2">Date range</label>
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                </div>
+                <div class="form-group">
+                  <label class="label-control px-2">To</label>
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                </div>
+                <label class="px-2">
+                  <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">status</font>
+                  </font>
+                </label>
+                <!-- Example single danger button -->
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >All</button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary"
+                  id="search-button"
+                  data-toggle="modal"
+                  data-target="#searchModal"
+                >
+                  <i class="fa fa-search"></i> 查询
+                </button>
+              </div>
+            </div>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>申请时间</th>
+                  <th>提现单号</th>
+                  <th>提现银行卡</th>
+                  <th>申请时间</th>
+                  <th>提现单号</th>
+                  <th>提现银行卡</th>
+                  <th>提现银行卡</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>test</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table table-striped col6">
+              <tbody>
+                <tr class="last">
+                  <td colspan="3" class="text-right">
+                    <div action class="pull-left form-inline">
+                      <div class="form-group">
+                        <button class="btn btn-default step-backward">
+                          <i class="fa fa-step-backward"></i>
+                        </button>
+                        <button class="btn btn-default backward">
+                          <i class="fa fa-backward"></i>
+                        </button>
+                      </div>
+                      <div class="form-group">
+                        <font style="vertical-align: inherit;">
+                          <font style="vertical-align: inherit;">First</font>
+                        </font>
+                        <input type="text" class="col-lg-2 form-control" placeholder value="0">
+                        <span class="total_page_pl">
+                          <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Total 0 pages</font>
+                          </font>
+                        </span>
+                      </div>
+                      <div class="form-group">
+                        <button class="btn btn-default forward">
+                          <i class="fa fa-forward"></i>
+                        </button>
+                        <button class="btn btn-default step-forward">
+                          <i class="fa fa-step-forward"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="row2" style="width: 280px;">
+                    <b>
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Subtotal:</font>
+                      </font>
+                    </b>
+                    <span class="subtotal-amount">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">0</font>
+                      </font>
+                    </span>
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">yuan</font>
+                    </font>
+                    <br>
+                    <b>
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">total:</font>
+                      </font>
+                    </b>
+                    <span class="total-amount">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">0</font>
+                      </font>
+                    </span>
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">yuan</font>
+                    </font>
+                  </td>
+                  <td colspan="2" style="width: 160px;">
+                    <span class="page_angle">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Display 0 to 0, total 0 records</font>
+                      </font>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+              <div class="card card-plain">
+                <div class="card-header" role="tab" id="headingOne">
+                  <a
+                    data-toggle="collapse"
+                    data-parent="#accordion"
+                    href="#process"
+                    aria-expanded="true"
+                    aria-controls="process"
+                  >
+                    提现申请状态“等待处理”？
+                    <i class="tim-icons icon-minimal-down"></i>
+                  </a>
+                </div>
+
+                <div
+                  id="process"
+                  class="collapse show"
+                  role="tabpanel"
+                  aria-labelledby="headingOne"
+                >
+                  <div class="card-body">
+                    <p>表示您的提现还在审核中，审核通过后即可进入支付流程。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card card-plain">
+                <div class="card-header" role="tab" id="headingTwo">
+                  <a
+                    class="collapsed"
+                    data-toggle="collapse"
+                    data-parent="#accordion"
+                    href="#payment"
+                    aria-expanded="false"
+                    aria-controls="payment"
+                  >
+                    提现申请状态“等待支付”？
+                    <i class="tim-icons icon-minimal-down"></i>
+                  </a>
+                </div>
+                <div id="payment" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="card-body">
+                    <p>表示已经审核通过，进入了支付流程，会尽快为您支付到账。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card card-plain">
+                <div class="card-header" role="tab" id="headingThree">
+                  <a
+                    class="collapsed"
+                    data-toggle="collapse"
+                    data-parent="#accordion"
+                    href="#complated"
+                    aria-expanded="false"
+                    aria-controls="complated"
+                  >
+                    提现申请状态“支付完成”？
+                    <i class="tim-icons icon-minimal-down"></i>
+                  </a>
+                </div>
+                <div id="complated" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                  <div class="card-body">
+                    <p>表示提现已完成，请您登录银行账户查询确认。注：银行转账的到账时间主要取决于银行，如遇节假日跨行转账可能会有延迟，提现到账也将会被延迟。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card card-plain">
+                <div class="card-header" role="tab" id="headingThree">
+                  <a
+                    class="collapsed"
+                    data-toggle="collapse"
+                    data-parent="#accordion"
+                    href="#cancelwithdraw"
+                    aria-expanded="false"
+                    aria-controls="cancelwithdraw"
+                  >
+                    如何取消提现？
+                    <i class="tim-icons icon-minimal-down"></i>
+                  </a>
+                </div>
+                <div
+                  id="cancelwithdraw"
+                  class="collapse"
+                  role="tabpanel"
+                  aria-labelledby="headingThree"
+                >
+                  <div class="card-body">
+                    <p>如您的提现是“等待处理”状态，可以点击“取消”按钮取消提现；如是“处理中”或“等待支付”状态，则需联系。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="washingrecord">
+         <div class="panel panel-default">
+            <div class="panel-heading">
+              <div id="withdraw_form" class="form-inline">
+                <!-- input with datetimepicker -->
+                <div class="form-group">
+                  <label class="label-control px-2">Date range</label>
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                </div>
+                <div class="form-group">
+                  <label class="label-control px-2">To</label>
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                </div>
+                <label class="px-2">
+                  <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">status</font>
+                  </font>
+                </label>
+                <!-- Example single danger button -->
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >All</button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary"
+                  id="search-button"
+                  data-toggle="modal"
+                  data-target="#searchModal"
+                >
+                  <i class="fa fa-search"></i> 查询
+                </button>
+              </div>
+            </div>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>申请时间</th>
+                  <th>提现单号</th>
+                  <th>提现银行卡</th>
+                  <th>申请时间</th>
+                  <th>提现单号</th>
+                  <th>提现银行卡</th>
+                  <th>提现银行卡</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mark</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table table-striped col6">
+              <tbody>
+                <tr class="last">
+                  <td colspan="3" class="text-right">
+                    <div action class="pull-left form-inline">
+                      <div class="form-group">
+                        <button class="btn btn-default step-backward">
+                          <i class="fa fa-step-backward"></i>
+                        </button>
+                        <button class="btn btn-default backward">
+                          <i class="fa fa-backward"></i>
+                        </button>
+                      </div>
+                      <div class="form-group">
+                        <font style="vertical-align: inherit;">
+                          <font style="vertical-align: inherit;">First test</font>
+                        </font>
+                        <input type="text" class="col-lg-2 form-control" placeholder value="0">
+                        <span class="total_page_pl">
+                          <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Total 0 pages</font>
+                          </font>
+                        </span>
+                      </div>
+                      <div class="form-group">
+                        <button class="btn btn-default forward">
+                          <i class="fa fa-forward"></i>
+                        </button>
+                        <button class="btn btn-default step-forward">
+                          <i class="fa fa-step-forward"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="row2" style="width: 280px;">
+                    <b>
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Subtotal:</font>
+                      </font>
+                    </b>
+                    <span class="subtotal-amount">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">0</font>
+                      </font>
+                    </span>
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">yuan</font>
+                    </font>
+                    <br>
+                    <b>
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">total:</font>
+                      </font>
+                    </b>
+                    <span class="total-amount">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">0</font>
+                      </font>
+                    </span>
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">yuan</font>
+                    </font>
+                  </td>
+                  <td colspan="2" style="width: 160px;">
+                    <span class="page_angle">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Display 0 to 0, total 0 records</font>
+                      </font>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          
+          </div>
+        </div>
+          <div class="tab-pane" id="offerecord">
+         <div class="panel panel-default">
+            <div class="panel-heading">
+              <div id="withdraw_form" class="form-inline">
+                <!-- input with datetimepicker -->
+                <div class="form-group">
+                  <label class="label-control px-2">Date range</label>
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                </div>
+                <div class="form-group">
+                  <label class="label-control px-2">To</label>
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                </div>
+                <label class="px-2">
+                  <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">status</font>
+                  </font>
+                </label>
+                <!-- Example single danger button -->
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >All</button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary"
+                  id="search-button"
+                  data-toggle="modal"
+                  data-target="#searchModal"
+                >
+                  <i class="fa fa-search"></i> 查询
+                </button>
+              </div>
+            </div>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>申请时间</th>
+                  <th>提现单号</th>
+                  <th>提现银行卡</th>
+                  <th>申请时间</th>
+                  <th>提现单号</th>
+                  <th>提现银行卡</th>
+                  <th>提现银行卡</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mark</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table table-striped col6">
+              <tbody>
+                <tr class="last">
+                  <td colspan="3" class="text-right">
+                    <div action class="pull-left form-inline">
+                      <div class="form-group">
+                        <button class="btn btn-default step-backward">
+                          <i class="fa fa-step-backward"></i>
+                        </button>
+                        <button class="btn btn-default backward">
+                          <i class="fa fa-backward"></i>
+                        </button>
+                      </div>
+                      <div class="form-group">
+                        <font style="vertical-align: inherit;">
+                          <font style="vertical-align: inherit;">First test</font>
+                        </font>
+                        <input type="text" class="col-lg-2 form-control" placeholder value="0">
+                        <span class="total_page_pl">
+                          <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Total 0 pages</font>
+                          </font>
+                        </span>
+                      </div>
+                      <div class="form-group">
+                        <button class="btn btn-default forward">
+                          <i class="fa fa-forward"></i>
+                        </button>
+                        <button class="btn btn-default step-forward">
+                          <i class="fa fa-step-forward"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="row2" style="width: 280px;">
+                    <b>
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Subtotal:</font>
+                      </font>
+                    </b>
+                    <span class="subtotal-amount">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">0</font>
+                      </font>
+                    </span>
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">yuan</font>
+                    </font>
+                    <br>
+                    <b>
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">total:</font>
+                      </font>
+                    </b>
+                    <span class="total-amount">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">0</font>
+                      </font>
+                    </span>
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">yuan</font>
+                    </font>
+                  </td>
+                  <td colspan="2" style="width: 160px;">
+                    <span class="page_angle">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Display 0 to 0, total 0 records</font>
+                      </font>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          
+          </div>
+        </div>
+          <div class="tab-pane" id="gamerecord">
+         <div class="panel panel-default">
+            <div class="panel-heading">
+              <div id="withdraw_form" class="form-inline">
+                <!-- input with datetimepicker -->
+                <div class="form-group">
+                  <label class="label-control px-2">Date range</label>
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                </div>
+                <div class="form-group">
+                  <label class="label-control px-2">To</label>
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                </div>
+                <label class="px-2">
+                  <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">status</font>
+                  </font>
+                </label>
+                <!-- Example single danger button -->
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >All</button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary"
+                  id="search-button"
+                  data-toggle="modal"
+                  data-target="#searchModal"
+                >
+                  <i class="fa fa-search"></i> 查询
+                </button>
+              </div>
+            </div>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>申请时间</th>
+                  <th>提现单号</th>
+                  <th>提现银行卡</th>
+                  <th>申请时间</th>
+                  <th>提现单号</th>
+                  <th>提现银行卡</th>
+                  <th>提现银行卡</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mark</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table table-striped col6">
+              <tbody>
+                <tr class="last">
+                  <td colspan="3" class="text-right">
+                    <div action class="pull-left form-inline">
+                      <div class="form-group">
+                        <button class="btn btn-default step-backward">
+                          <i class="fa fa-step-backward"></i>
+                        </button>
+                        <button class="btn btn-default backward">
+                          <i class="fa fa-backward"></i>
+                        </button>
+                      </div>
+                      <div class="form-group">
+                        <font style="vertical-align: inherit;">
+                          <font style="vertical-align: inherit;">First test</font>
+                        </font>
+                        <input type="text" class="col-lg-2 form-control" placeholder value="0">
+                        <span class="total_page_pl">
+                          <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Total 0 pages</font>
+                          </font>
+                        </span>
+                      </div>
+                      <div class="form-group">
+                        <button class="btn btn-default forward">
+                          <i class="fa fa-forward"></i>
+                        </button>
+                        <button class="btn btn-default step-forward">
+                          <i class="fa fa-step-forward"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="row2" style="width: 280px;">
+                    <b>
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Subtotal:</font>
+                      </font>
+                    </b>
+                    <span class="subtotal-amount">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">0</font>
+                      </font>
+                    </span>
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">yuan</font>
+                    </font>
+                    <br>
+                    <b>
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">total:</font>
+                      </font>
+                    </b>
+                    <span class="total-amount">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">0</font>
+                      </font>
+                    </span>
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">yuan</font>
+                    </font>
+                  </td>
+                  <td colspan="2" style="width: 160px;">
+                    <span class="page_angle">
+                      <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Display 0 to 0, total 0 records</font>
+                      </font>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          
           </div>
         </div>
       </div>
@@ -441,53 +954,9 @@
         <div class="tab-pane fade tab-1 active in" id="tab-1">
           <div class="panel-group" id="accordion">
             <div class="panel panel-default">
-              <div class="panel-heading" id="heading-t1-3">
-                <h4 class="panel-title">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordion"
-                    href="#collapse-t1-3"
-                  >
-                    <i class="fa fa-quora"></i>
-                    <font style="vertical-align: inherit;">
-                      <font
-                        style="vertical-align: inherit;"
-                      >Withdrawal of the application status "Payment completed"?</font>
-                    </font>
-                  </a>
-                </h4>
-              </div>
               <div id="collapse-t1-3" class="panel-collapse collapse">
                 <div class="panel-body">
                   <i class="fa fa-font"></i>表示提现已完成，请您登录银行账户查询确认。注：银行转账的到账时间主要取决于银行，如遇节假日跨行转账可能会有延迟，提现到账也将会被延迟。
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" id="heading-t1-4">
-                <h4 class="panel-title">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordion"
-                    href="#collapse-t1-4"
-                  >
-                    <i class="fa fa-quora"></i>
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">How to cancel withdrawal?</font>
-                    </font>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapse-t1-4" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <i class="fa fa-font"></i>如您的提现是“等待处理”状态，可以点击“取消”按钮取消提现；如是“处理中”或“等待支付”状态，则需联系
-                  <a
-                    href="javascript:;"
-                    class="text-orange as-cs-js"
-                  >在线客服</a>
-                  进行咨询；如提现状态是“支付完成”，则代表款项已支付，无法取消。
                 </div>
               </div>
             </div>
@@ -1030,7 +1499,23 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  mounted() {
+    $(".datetimepicker").datetimepicker({
+      icons: {
+        time: "tim-icons icon-watch-time",
+        date: "tim-icons icon-calendar-60",
+        up: "fa fa-chevron-up",
+        down: "fa fa-chevron-down",
+        previous: "tim-icons icon-minimal-left",
+        next: "tim-icons icon-minimal-right",
+        today: "fa fa-screenshot",
+        clear: "fa fa-trash",
+        close: "fa fa-remove"
+      }
+    });
+  }
+};
 </script>
 <style scoped>
 </style>
