@@ -82,7 +82,7 @@
               <a href="#"> <i class="tim-icons icon-chat-33 icon-default"></i
               >Message</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">{{navShowName}}</li>
+            <li class="breadcrumb-item active text-capitalize" aria-current="page">{{navShowName}}</li>
           </ol>
         </nav>
         <div class="u-content" v-if="navShowName ==='myaccount'">

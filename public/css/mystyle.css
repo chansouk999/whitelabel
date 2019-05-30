@@ -2253,6 +2253,59 @@ div.radio.switcher label input:checked+span small {
     margin: 0px !important;
 }
 
+.form-group button.btn.btn-default {
+    padding: 5px 7px;
+    margin: 10px 2px;
+}
+
+.panel .card-collapse {
+    display: flex;
+    float: left;
+    padding: 10px 10px;
+    width: 100%;
+    background-color: #d5d5d5;
+    border-radius: 4px;
+}
+
+.card-collapse .card-plain .card-header {
+    background-color: #003679;
+}
+
+.card-plain .card-header a {
+    color: #fff !important;
+}
+
+.content .u-wrap .bg-secondary {
+    width: 100%;
+    max-width: 100%;
+    min-height: 95%;
+}
+
+.w-25 {
+    width: 25%;
+}
+
+.card-body ul li .ag_qrcode img {
+    padding: 13px;
+    width: 100%;
+    margin: -42px 0px;
+    position: relative;
+    border: 2px dased #000 !important;
+    border-style: dotted;
+    border-width: 4px;
+    border-color: #47cdd1;
+    border-radius: 33px;
+    box-shadow: 0px 0px 40px 15px rgba(38, 49, 72, 0.3);
+}
+
+.card-prices.margin-top {
+    margin: 4rem 0rem;
+}
+
+.text-custome {
+    color: #fc6429 !important;
+}
+
 @media(min-width: 900px) {
     .steps-timeline {
         border-top: 5px double #fc6429;
