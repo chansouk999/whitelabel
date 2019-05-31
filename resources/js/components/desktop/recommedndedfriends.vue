@@ -23,7 +23,7 @@
             <div class="card-footer rounded bg-primary text-center mx-3 my-3">
               <div class="total-bonus">
                 <h4 class="text-white">
-                  <span >2019</span>年奖金总计
+                  <span>2019</span>年奖金总计
                 </h4>
                 <p class="text-white">
                   ¥&nbsp;

@@ -1,863 +1,549 @@
 <template>
   <div>
     <app-navbar></app-navbar>
-    <!-- End Header -->
-        <div class="d-none d-xl-block wrapper container-whitelabel">
-    <div class="main-container vip_club">
-      <div class="sections">
-        <div class="section banner">
-          <div class="dangles">
-            <div class="d1 swing slide-in-blurred-top"></div>
-            <div class="d2 swing slide-in-blurred-top"></div>
-            <div class="d3 swing slide-in-blurred-top"></div>
-            <div class="d4 swing slide-in-blurred-top"></div>
-          </div>
-          <div class="glows">
-            <div class="g1"></div>
-            <div class="g2"></div>
-            <div class="g3"></div>
-            <div class="g4"></div>
-            <div class="g5"></div>
-            <div class="g6"></div>
-            <div class="g7"></div>
-            <div class="g8"></div>
+    <div id="content">
+      <section class="row no-gutters" id="features">
+        <div class="col-lg-3 col-md-6 col-sm-12 deep-purple lighten-1 text-white">
+          <div class="p-5 text-center wow zoomIn" data-wow-delay=".1s">
+            <i class="fa fa-line-chart fa-2x"></i>
+            <div class="h5 mt-3">Agile Frameworks</div>
+            <p
+              class="mt-5"
+            >Leverage agile frameworks to provide a robust synopsis for high level overviews.</p>
           </div>
         </div>
-        <div class="section content-area1">
-          <div class="title wow fadeInDown">
-            <img src="/assets/img/title1.png">
+        <div class="col-lg-3 col-md-6 purple lighten-1 text-white">
+          <div class="p-5 text-center wow zoomIn" data-wow-delay=".3s">
+            <i class="fa fa-industry fa-2x"></i>
+            <div class="h5 mt-3">Corporate Strategy</div>
+            <p
+              class="mt-5"
+            >Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition</p>
           </div>
-          <div
-            id="myCarousel"
-            class="carousel slide showcase-container wow fadeInUp"
-            data-ride="carousel"
-          >
-            <div class="hibg">
-              <div class="carousel-indicators">
+        </div>
+        <div class="col-lg-3 col-md-6 teal lighten-1 text-white">
+          <div class="p-5 text-center wow zoomIn" data-wow-delay=".5s">
+            <i class="fa fa-users fa-2x"></i>
+            <div class="h5 mt-3">Workplace Diversity</div>
+            <p
+              class="mt-5"
+            >Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 light-blue lighten-1 text-white">
+          <div class="p-5 text-center wow zoomIn" data-wow-delay=".7s">
+            <i class="fa fa-bullhorn fa-2x"></i>
+            <div class="h5 mt-3">Survival Strategies</div>
+            <p
+              class="mt-5"
+            >Bring to the table win-win survival strategies to ensure proactive domination.</p>
+          </div>
+        </div>
+      </section>
+      <section class="text-center py-5 grey lighten-4" id="about">
+        <div class="container">
+          <div class="wow fadeIn">
+            <h2 class="h1 pt-5 pb-3">Why work with us?</h2>
+            <p class="px-5 mb-5 pb-3 lead blue-grey-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+              aliqua. Ut enim ad minim veniam.
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-r wow fadeInUp" data-wow-delay=".3s">
+              <i class="fa fa-dashboard fa-3x orange-text"></i>
+              <h3 class="h4 mt-3">Design</h3>
+              <p class="mt-3 blue-grey-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti
+                hic.
+              </p>
+            </div>
+            <div class="col-md-4 mb-r wow fadeInUp" data-wow-delay=".4s">
+              <i class="fa fa-comments-o fa-3x cyan-text"></i>
+              <h3 class="h4 mt-3">Feedback</h3>
+              <p class="mt-3 blue-grey-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti
+                hic.
+              </p>
+            </div>
+            <div class="col-md-4 mb-r wow fadeInUp" data-wow-delay=".5s">
+              <i class="fa fa-cubes fa-3x red-text"></i>
+              <h3 class="h4 mt-3">Execution</h3>
+              <p class="mt-3 blue-grey-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti
+                hic.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-5" id="projects">
+        <div class="container">
+          <div class="wow fadeIn">
+            <h2 class="text-center h1 my-4">Our best projects</h2>
+            <p class="px-5 mb-5 pb-3 lead blue-grey-text text-center">
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
+          <div class="row wow fadeInLeft" data-wow-delay=".3s">
+            <div class="col-lg-6 col-xl-5 pr-lg-5 pb-5">
+              <img
+                class="img-fluid rounded z-depth-2"
+                src="assetspromote/img/kuala-lumpur.jpg"
+                alt="project image"
+              >
+            </div>
+            <div class="col-lg-6 col-xl-7 pl-lg-5 pb-4">
+              <div class="row mb-3">
+                <div class="col-1 mr-1">
+                  <i class="fa fa-book fa-2x cyan-text"></i>
+                </div>
+                <div class="col-10">
+                  <h5 class="font-bold">Education</h5>
+                  <p class="grey-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda
+                    voluptate velit.
+                  </p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-1 mr-1">
+                  <i class="fa fa-code fa-2x red-text"></i>
+                </div>
+                <div class="col-10">
+                  <h5 class="font-bold">Technology</h5>
+                  <p class="grey-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda
+                    voluptate velit.
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1 mr-1">
+                  <i class="fa fa-money fa-2x deep-purple-text"></i>
+                </div>
+                <div class="col-10">
+                  <h5 class="font-bold">Finance</h5>
+                  <p class="grey-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda
+                    voluptate velit.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row pt-5 wow fadeInRight" data-wow-delay=".3s">
+            <div class="col-lg-6 col-xl-7 mb-3">
+              <div class="row mb-3">
+                <div class="col-1 mr-1">
+                  <i class="fa fa-bar-chart fa-2x indigo-text"></i>
+                </div>
+                <div class="col-10">
+                  <h5 class="font-bold">Marketing</h5>
+                  <p class="grey-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda
+                    voluptate velit.
+                  </p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-1 mr-1">
+                  <i class="fa fa-music fa-2x pink-text"></i>
+                </div>
+                <div class="col-10">
+                  <h5 class="font-bold">Entertainment</h5>
+                  <p class="grey-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda
+                    voluptate velit.
+                  </p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-1 mr-1">
+                  <i class="fa fa-smile-o fa-2x blue-text"></i>
+                </div>
+                <div class="col-10">
+                  <h5 class="font-bold">Communication</h5>
+                  <p class="grey-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda
+                    voluptate velit.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-xl-5 mb-3">
+              <img
+                class="img-fluid rounded z-depth-2"
+                src="assetspromote/img/san-francisco.jpg"
+                alt="project image"
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="text-center py-5 indigo darken-1 text-white" id="pricing">
+        <div class="container">
+          <div class="wow fadeIn">
+            <h2 class="h1 pt-5 pb-3">Our pricing plans</h2>
+            <p class="px-5 mb-5 pb-3 lead">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi,
+              veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.
+            </p>
+          </div>
+          <div class="row wow zoomIn">
+            <div class="col-lg-4 col-md-12 mb-r">
+              <div class="card card-image">
                 <div
-                  data-target="#myCarousel"
-                  class="flip-container active"
-                  data-slide-to="0"
+                  class="text-white text-center pricing-card d-flex align-items-center rgba-stylish-strong py-3 px-3 rounded"
                 >
-                  <div class="circlet"></div>
-                  <div class="flipper">
-                    <div class="front">
-                      <div class="icon icon1"></div>
+                  <div class="card-body">
+                    <div class="h5">Individual</div>
+                    <div class="py-5">
+                      <sup class="display-4">$</sup>
+                      <span class="display-1">9</span>
+                      <span class="display-4">/m</span>
                     </div>
-                    <div class="back">
-                      <div class="icon icon1-active"></div>
-                    </div>
-                  </div>
-                </div>
-                <div data-target="#myCarousel" class="flip-container" data-slide-to="1">
-                  <div class="circlet"></div>
-                  <div class="flipper">
-                    <div class="front">
-                      <div class="icon icon2"></div>
-                    </div>
-                    <div class="back">
-                      <div class="icon icon2-active"></div>
-                    </div>
-                  </div>
-                </div>
-                <div data-target="#myCarousel" class="flip-container" data-slide-to="2">
-                  <div class="circlet"></div>
-                  <div class="flipper">
-                    <div class="front">
-                      <div class="icon icon3"></div>
-                    </div>
-                    <div class="back">
-                      <div class="icon icon3-active"></div>
-                    </div>
-                  </div>
-                </div>
-                <div data-target="#myCarousel" class="flip-container" data-slide-to="3">
-                  <div class="circlet"></div>
-                  <div class="flipper">
-                    <div class="front">
-                      <div class="icon icon4"></div>
-                    </div>
-                    <div class="back">
-                      <div class="icon icon4-active"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-inner hcbg">
-              <div class="item slideflip active" id="s1">
-                <a
-                  href="https://brand.ag855.com/activity/vipPrivilege/"
-                  class="btn"
-                  target="_blank"
-                >
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">understand more</font>
-                  </font>
-                </a>
-              </div>
-              <div class="item slideflip" id="s2">
-                <a
-                  href="https://brand.ag855.com/activity/vipPrivilege/"
-                  class="btn"
-                  target="_blank"
-                >
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Open now</font>
-                  </font>
-                </a>
-              </div>
-              <div class="item slideflip" id="s3">
-                <a
-                  href="https://brand.ag855.com/activity/vipPrivilege/"
-                  class="btn"
-                  target="_blank"
-                >
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">understand more</font>
-                  </font>
-                </a>
-              </div>
-              <div class="item slideflip" id="s4">
-                <a
-                  href="https://brand.ag855.com/activity/vipPrivilege/"
-                  class="btn"
-                  target="_blank"
-                >
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">understand more</font>
-                  </font>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="title wow fadeInUp">
-            <img src="/assets/img/title2.png">
-          </div>
-          <div class="container-wrap wow fadeInDown">
-            <div class="table-section">
-              <table class="table table-striped sel sel0">
-                <thead>
-                  <tr style="background-color: rgb(144, 129, 107);">
-                    <th>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Member benefits</font>
-                      </font>
-                    </th>
-                    <th>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">One star</font>
-                      </font>
-                    </th>
-                    <th>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Two stars</font>
-                      </font>
-                    </th>
-                    <th>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Three Star</font>
-                      </font>
-                    </th>
-                    <th>
-                      <img src="/assets/img/blcrown.png">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">VIP 4</font>
-                      </font>
-                    </th>
-                    <th>
-                      <img src="/assets/img/scrown.png">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">VIP 5</font>
-                      </font>
-                    </th>
-                    <th>
-                      <img src="/assets/img/gcrown.png">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">VIP 6</font>
-                      </font>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr style="background-color: rgb(154, 139, 116);">
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Washing ratio</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0.60%</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0.60%</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0.60%</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0.70%</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0.80%</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0.90%</font>
-                      </font>
-                    </td>
-                  </tr>
-                  <tr style="background-color: rgb(144, 129, 107);">
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Anniversary gift</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">588 yuan</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">888 yuan</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">1888 yuan</font>
-                      </font>
-                    </td>
-                  </tr>
-                  <tr style="background-color: rgb(154, 139, 116);">
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Holiday gift</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">√</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">√</font>
-                      </font>
-                    </td>
-                  </tr>
-                  <!-- <tr>
-                                    <td>色影世界</td>
-                                    <td>×</td>
-                                    <td>×</td>
-                                    <td>×</td>
-                                    <td>√</td>
-                                    <td>√</td>
-                                    <td>√</td>
-                  </tr>-->
-                  <tr style="background-color: rgb(144, 129, 107);">
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Business secretary</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">√</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">√</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">√</font>
-                      </font>
-                    </td>
-                  </tr>
-                  <tr style="background-color: rgb(154, 139, 116);">
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Overseas travel</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">√</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">√</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">√</font>
-                      </font>
-                    </td>
-                  </tr>
-                  <tr style="background-color: rgb(144, 129, 107);">
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">customer service</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">General customer service</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">General customer service</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">General customer service</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">General customer service</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">account Manager</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">account Manager</font>
-                      </font>
-                    </td>
-                  </tr>
-                  <tr style="background-color: rgb(154, 139, 116);">
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Game channel</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Ordinary line</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Ordinary line</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Ordinary line</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Ordinary line</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">VIP line</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">VIP line</font>
-                      </font>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="section content-area2" style="height: 678px;">
-          <div class="title wow fadeInUp">
-            <img src="/assets/img/title3.png">
-          </div>
-          <div class="container-wrap wow fadeInDown">
-            <div class="table-section">
-              <table class="table table-striped">
-                <thead>
-                  <tr style="background-color: rgb(144, 129, 107);">
-                    <th>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Member star</font>
-                      </font>
-                    </th>
-                    <th>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Promotion requirements</font>
-                      </font>
-                    </th>
-                    <th>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Promotion gift</font>
-                      </font>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr style="background-color: rgb(154, 139, 116);">
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">One star</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Complete the first recharge</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">×</font>
-                      </font>
-                    </td>
-                  </tr>
-                  <tr style="background-color: rgb(144, 129, 107);">
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Two stars</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font
-                          style="vertical-align: inherit;"
-                        >Weekly effective bet amount reaches 100,000</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">120 yuan</font>
-                      </font>
-                    </td>
-                  </tr>
-                  <tr style="background-color: rgb(154, 139, 116);">
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Three Star</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font
-                          style="vertical-align: inherit;"
-                        >Weekly effective bet amount reaches 500,000</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">400 yuan</font>
-                      </font>
-                    </td>
-                  </tr>
-                  <tr style="background-color: rgb(144, 129, 107);">
-                    <td>
-                      <img src="/assets/img/blcrown.png">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">VIP 4</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font
-                          style="vertical-align: inherit;"
-                        >Weekly effective bet amount reaches 1 million</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">600 yuan</font>
-                      </font>
-                    </td>
-                  </tr>
-                  <tr style="background-color: rgb(154, 139, 116);">
-                    <td>
-                      <img src="/assets/img/scrown.png">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">VIP 5</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font
-                          style="vertical-align: inherit;"
-                        >Weekly effective bet amount reaches 3 million</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">2000 dollars</font>
-                      </font>
-                    </td>
-                  </tr>
-                  <tr style="background-color: rgb(144, 129, 107);">
-                    <td>
-                      <img src="/assets/img/gcrown.png">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">VIP 6</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font
-                          style="vertical-align: inherit;"
-                        >Weekly effective bet amount reaches 6 million</font>
-                      </font>
-                    </td>
-                    <td>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">4,000 yuan</font>
-                      </font>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="rebate-level">
-              <div class="level-line">
-                <div class="pbc" style="display: none;">
-                  <div class="pb-p">
-                    <ul>
+                    <ul class="list-unstyled">
                       <li>
-                        <div class="upb">
-                          <div class="upbd vp1">
-                            <p class="zbpb">
-                              <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">One star</font>
-                              </font>
-                            </p>
-                          </div>
-                        </div>
-                        <p class="adpb">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">0</font>
-                          </font>
+                        <p>
+                          <strong>1</strong> person
                         </p>
                       </li>
                       <li>
-                        <div class="upb">
-                          <div class="upbd vp2">
-                            <p class="zbpb">
-                              <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Two stars</font>
-                              </font>
-                            </p>
-                          </div>
-                        </div>
-                        <p class="adpb">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">100,000</font>
-                          </font>
+                        <p>
+                          <strong>10</strong> projects
                         </p>
                       </li>
                       <li>
-                        <div class="upb">
-                          <div class="upbd vp3">
-                            <p class="zbpb">
-                              <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Three Star</font>
-                              </font>
-                            </p>
-                          </div>
-                        </div>
-                        <p class="adpb">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">500000</font>
-                          </font>
+                        <p>
+                          <strong>100</strong> features
                         </p>
                       </li>
                       <li>
-                        <div class="upb">
-                          <div class="upbd vp4">
-                            <p class="zbpb">
-                              <img src="/assets/img/bcrown.png">
-                              <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">VIP 4</font>
-                              </font>
-                            </p>
-                          </div>
-                        </div>
-                        <p class="adpb">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">1000000</font>
-                          </font>
-                        </p>
-                      </li>
-                      <li>
-                        <div class="upb">
-                          <div class="upbd vp5">
-                            <img src="/assets/img/vip5.png">
-                          </div>
-                        </div>
-                        <p class="adpb">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">3000000</font>
-                          </font>
-                        </p>
-                      </li>
-                      <li>
-                        <div class="upb">
-                          <div class="upbd vp6">
-                            <img src="/assets/img/vip6.png">
-                          </div>
-                        </div>
-                        <p class="adpb">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">6000000</font>
-                          </font>
+                        <p>
+                          <strong>20GB</strong> storage
                         </p>
                       </li>
                     </ul>
+                    <a class="btn btn-outline-white mt-5">Buy now</a>
                   </div>
-                  <div class="pbbg"></div>
-                  <div class="pbcf">
-                    <div class="pbcf-p"></div>
-                    <div class="pbcf-pd" style="display: none;">
-                      <p>
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">Effective bet amount this week</font>
-                        </font>
-                        <span class="amount">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">0</font>
-                          </font>
-                        </span>
-                      </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-12 mb-r">
+              <div class="card card-image">
+                <div
+                  class="text-white text-center pricing-card d-flex align-items-center rgba-teal-strong py-3 px-3 rounded"
+                >
+                  <div class="card-body">
+                    <div class="h5">Startup</div>
+                    <div class="py-5">
+                      <sup class="display-4">$</sup>
+                      <span class="display-1">29</span>
+                      <span class="display-4">/m</span>
                     </div>
+                    <ul class="list-unstyled">
+                      <li>
+                        <p>
+                          <strong>10</strong> person
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <strong>100</strong> projects
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <strong>200</strong> features
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <strong>100GB</strong> storage
+                        </p>
+                      </li>
+                    </ul>
+                    <a class="btn btn-outline-white mt-5">Buy now</a>
                   </div>
-                  <div class="pbpd" style="left: 15px;">
-                    <div class="pdp"></div>
-                    <div class="pbpd-pbb">
-                      <p>
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">Effective bet amount this week</font>
-                        </font>
-                        <span class="amount">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">0</font>
-                          </font>
-                        </span>
-                      </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-12 mb-r">
+              <div class="card card-image">
+                <div
+                  class="text-white text-center pricing-card d-flex align-items-center rgba-red-strong py-3 px-3 rounded"
+                >
+                  <div class="card-body">
+                    <div class="h5">Enterprise</div>
+                    <div class="py-5">
+                      <sup class="display-4">$</sup>
+                      <span class="display-1">99</span>
+                      <span class="display-4">/m</span>
                     </div>
-                  </div>
-                  <div class="pbdd" style="left: 15px;">
-                    <i class="arrow"></i>
-                    <p>
-                      <span class="bgc">
-                        您当前为
-                        <i class="st">一星级</i>
-                      </span>成为
-                      <i class="sa">二星级</i> 只需再投注
-                      <i class="aa">0</i>
-                    </p>
+                    <ul class="list-unstyled">
+                      <li>
+                        <p>
+                          <strong>10+</strong> person
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <strong>Unlimited</strong> projects
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <strong>Unlimited</strong> features
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <strong>1TB</strong> storage
+                        </p>
+                      </li>
+                    </ul>
+                    <a class="btn btn-outline-white mt-5">Buy now</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="section content-area3">
-          <div class="title wow fadeInUp">
-            <img src="/assets/img/title4.png">
+      </section>
+      <section class="py-5" id="team">
+        <div class="container">
+          <div class="wow fadeIn">
+            <h2 class="h1 pt-5 pb-3 text-center">Our team members</h2>
+            <p class="px-5 mb-5 pb-3 lead text-center blue-grey-text">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate
+              esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.
+            </p>
           </div>
-          <div class="container-wrap wow fadeInDown">
-            <ul>
-              <li>
-                <i>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">01</font>
-                  </font>
-                </i>
-                <p>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >The promotion bet amount is calculated based on the valid bet amount from 00:00:00 on Monday to 23:59:59 on Sunday.</font>
-                  </font>
-                </p>
-              </li>
-              <li>
-                <i>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">02</font>
-                  </font>
-                </i>
-                <p>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >Promotion star time: As long as you meet the promotion star rating within the week, you can automatically promote the star in 1 hour and immediately enjoy the star rating after promotion.</font>
-                  </font>
-                </p>
-              </li>
-              <li>
-                <i>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">03</font>
-                  </font>
-                </i>
-                <p>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >After successfully promoting the star rating, you can enjoy the star-rated rights after promotion and never relegate.</font>
-                  </font>
-                </p>
-              </li>
-              <li>
-                <i>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">04</font>
-                  </font>
-                </i>
-                <p>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >Promotion bonus time: After successful promotion of the star rating, the bonus will be automatically distributed. Please click the collection after receiving the bonus distribution notice (the bonus period is valid for</font>
-                  </font>
-                  <br>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">30 days, expired).</font>
-                  </font>
-                </p>
-              </li>
-              <li>
-                <i>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">05</font>
-                  </font>
-                </i>
-                <p>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >The promotion bonus can be withdrawn only by 1 time (effective bet amount).</font>
-                  </font>
-                </p>
-              </li>
-              <li>
-                <i>
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">06</font>
-                  </font>
-                </i>
-                <p>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >According to the fair and orderly rules of the Gaming Association, any user or group betting in an abnormal manner, such as risk-free betting, gambling, or deception,</font>
-                  </font>
-                  <br>
-                  <font style="vertical-align: inherit;">
-                    <font
-                      style="vertical-align: inherit;"
-                    >AG A-Yu reserves the right to freeze or close without notice. Related accounts, no refunds, users will be blacklisted.</font>
-                  </font>
-                </p>
-              </li>
-            </ul>
+          <div class="row mb-lg-4 center-on-small-only">
+            <div class="col-lg-6 col-md-12 mb-r wow fadeInLeft" data-wow-delay=".3s">
+              <div class="col-md-6 float-left">
+                <img
+                  class="img-fluid rounded z-depth-1 mb-3"
+                  src="assetspromote/img/woman-1.jpg"
+                  alt="team member"
+                >
+              </div>
+              <div class="col-md-6 float-right">
+                <div class="h4">Nicole West</div>
+                <h6 class="font-bold blue-grey-text mb-4">Lead Designer</h6>
+                <p
+                  class="grey-text"
+                >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
+                <a href="https://twitter.com" target="_blank">
+                  <i class="fa fa-twitter"></i>
+                  <span class="ml-1">@nicolewest</span>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-r wow fadeInRight" data-wow-delay=".3s">
+              <div class="col-md-6 float-left">
+                <img
+                  class="img-fluid rounded z-depth-1 mb-3"
+                  src="assetspromote/img/woman-2.jpg"
+                  alt="team member"
+                >
+              </div>
+              <div class="col-md-6 float-right">
+                <div class="h4">Hannah Cruz</div>
+                <h6 class="font-bold blue-grey-text mb-4">Photographer</h6>
+                <p
+                  class="grey-text"
+                >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
+                <a href="https://twitter.com" target="_blank">
+                  <i class="fa fa-twitter"></i>
+                  <span class="ml-1">@hannahcruz</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row center-on-small-only">
+            <div class="col-lg-6 col-md-12 mb-r wow fadeInLeft" data-wow-delay=".3s">
+              <div class="col-md-6 float-left">
+                <img
+                  class="img-fluid rounded z-depth-1 mb-3"
+                  src="assetspromote/img/man-1.jpg"
+                  alt="team member"
+                >
+              </div>
+              <div class="col-md-6 float-right">
+                <div class="h4">Mark Hall</div>
+                <h6 class="font-bold blue-grey-text mb-4">Web Developer</h6>
+                <p
+                  class="grey-text"
+                >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
+                <a href="https://twitter.com" target="_blank">
+                  <i class="fa fa-twitter"></i>
+                  <span class="ml-1">@markhall</span>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-r wow fadeInRight" data-wow-delay=".3s">
+              <div class="col-md-6 float-left">
+                <img
+                  class="img-fluid rounded z-depth-1 mb-3"
+                  src="assetspromote/img/man-2.jpg"
+                  alt="team member"
+                >
+              </div>
+              <div class="col-md-6 float-right">
+                <div class="h4">Vincent Harris</div>
+                <h6 class="font-bold blue-grey-text mb-4">Web Developer</h6>
+                <p
+                  class="grey-text"
+                >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
+                <a href="https://twitter.com" target="_blank">
+                  <i class="fa fa-twitter"></i>
+                  <span class="ml-1">@vincentharris</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="contact" style="background-image:url('assetspromote/img/panorama.jpg');">
+        <div class="rgba-black-strong py-5">
+          <div class="container">
+            <div class="wow fadeIn">
+              <h2 class="h1 text-white pt-5 pb-3 text-center">Contact us</h2>
+              <p class="text-white px-5 mb-5 pb-3 lead text-center">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate
+                esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.
+              </p>
+            </div>
+            <div class="card mb-5 wow fadeInUp" data-wow-delay=".4s">
+              <div class="card-body p-5">
+                <div class="row">
+                  <div class="col-md-8">
+                    <form action="https://formspree.io/youremail@example.com" method="POST">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="md-form">
+                            <input
+                              class="form-control"
+                              id="name"
+                              type="text"
+                              name="name"
+                              required="required"
+                            >
+                            <label for="name">Your name</label>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="md-form">
+                            <input
+                              class="form-control"
+                              id="email"
+                              type="text"
+                              name="_replyto"
+                              required="required"
+                            >
+                            <label for="email">Your email</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="md-form">
+                            <input
+                              class="form-control"
+                              id="subject"
+                              type="text"
+                              name="subject"
+                              required="required"
+                            >
+                            <label for="subject">Subject</label>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="md-form">
+                            <textarea
+                              class="md-textarea"
+                              id="message"
+                              name="message"
+                              required="required"
+                            ></textarea>
+                            <label for="message">Your message</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="center-on-small-only mb-4">
+                        <button class="btn btn-indigo ml-0" type="submit">
+                          <i class="fa fa-paper-plane-o mr-2"></i> Send
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-md-4">
+                    <ul class="list-unstyled text-center">
+                      <li class="mt-4">
+                        <i class="fa fa-map-marker indigo-text fa-2x"></i>
+                        <p class="mt-2">140, City Center, New York, U.S.A</p>
+                      </li>
+                      <li class="mt-4">
+                        <i class="fa fa-phone indigo-text fa-2x"></i>
+                        <p class="mt-2">+ 01 234 567 89</p>
+                      </li>
+                      <li class="mt-4">
+                        <i class="fa fa-envelope indigo-text fa-2x"></i>
+                        <p class="mt-2">contact@company.com</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="page-footer indigo darken-2 center-on-small-only pt-0 mt-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="mb-5 flex-center">
+              <a class="px-3">
+                <i class="fa fa-facebook fa-lg white-text"></i>
+              </a>
+              <a class="px-3">
+                <i class="fa fa-twitter fa-lg white-text"></i>
+              </a>
+              <a class="px-3">
+                <i class="fa fa-google-plus fa-lg white-text"></i>
+              </a>
+              <a class="px-3">
+                <i class="fa fa-linkedin fa-lg white-text"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    
-    </div>
-    <app-alertsidebar></app-alertsidebar>
-  </div>
+      <div class="footer-copyright">
+        <div class="container-fluid">
+          <p>
+            &copy;
+            <a href="/">Material Landing</a> - Design:
+            <a href="https://templateflip.com/" target="_blank">TemplateFlip</a>
+          </p>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 <script>
-import navbars from './navbar.vue';
-import alertsidebar from '../alertsidebar.vue';
+import navbars from "./navbar";
+import alertsidebar from "../alertsidebar.vue";
 export default {
   components: {
-  'app-navbar':navbars,
-  'app-alertsidebar':alertsidebar,
+    "app-navbar": navbars,
+    "app-alertsidebar": alertsidebar
   }
 };
 </script>

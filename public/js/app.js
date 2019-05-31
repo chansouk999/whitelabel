@@ -1844,69 +1844,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1927,322 +1864,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _navbar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navbar.vue */ "./resources/js/components/activity/navbar.vue");
+/* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navbar */ "./resources/js/components/activity/navbar.vue");
 /* harmony import */ var _alertsidebar_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../alertsidebar.vue */ "./resources/js/components/alertsidebar.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2786,8 +2409,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'app-navbar': _navbar_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    'app-alertsidebar': _alertsidebar_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    "app-navbar": _navbar__WEBPACK_IMPORTED_MODULE_0__["default"],
+    "app-alertsidebar": _alertsidebar_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -4716,6 +4339,255 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chartjs */ "./resources/js/components/desktop/chartjs.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11983,264 +11855,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _welcome_navbarMobile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./welcome/navbarMobile */ "./resources/js/components/welcome/navbarMobile.vue");
-/* harmony import */ var _welcome_asides__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./welcome/asides */ "./resources/js/components/welcome/asides.vue");
+/* harmony import */ var _desktop_navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./desktop/navbar */ "./resources/js/components/desktop/navbar.vue");
+/* harmony import */ var _desktop_asides__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./desktop/asides */ "./resources/js/components/desktop/asides.vue");
 /* harmony import */ var _alertsidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./alertsidebar */ "./resources/js/components/alertsidebar.vue");
-/* harmony import */ var _welcome_footers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./welcome/footers */ "./resources/js/components/welcome/footers.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _desktop_footers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./desktop/footers */ "./resources/js/components/desktop/footers.vue");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -12310,10 +11930,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    navbar: _welcome_navbarMobile__WEBPACK_IMPORTED_MODULE_0__["default"],
-    asides: _welcome_asides__WEBPACK_IMPORTED_MODULE_1__["default"],
-    alertside: _alertsidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
-    footers: _welcome_footers__WEBPACK_IMPORTED_MODULE_3__["default"]
+    "app-navbar": _desktop_navbar__WEBPACK_IMPORTED_MODULE_0__["default"],
+    "app-aside": _desktop_asides__WEBPACK_IMPORTED_MODULE_1__["default"],
+    "app-footer": _desktop_footers__WEBPACK_IMPORTED_MODULE_3__["default"],
+    "app-alertsidebar": _alertsidebar__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -12332,10 +11952,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log('HELELEOEO');
+    console.log("HELELEOEO");
     this.userdata();
   },
-  methods: {
+  methods: _defineProperty({
     runwindow: function runwindow() {
       window.open("http://localhost:8003/redirect", "", "width=1920,height=1080");
     },
@@ -12384,7 +12004,28 @@ __webpack_require__.r(__webpack_exports__);
         console.log(er.res);
       });
     }
-  }
+  }, "userdata", function userdata() {
+    var _this2 = this;
+
+    axios.get("/userdetaildata").then(function (res) {
+      console.log(res.data);
+      _this2.id = res.data.id;
+      _this2.user_id = res.data.user_id;
+      _this2.provider_name = res.data.provider_name;
+      _this2.balance = res.data.userBalance;
+      _this2.pro_id = res.data.pro_id;
+      _this2.name = res.data.name;
+      _this2.email = res.data.email;
+      $(".id").val(_this2.id);
+      $(".provider_name").val(_this2.provider_name);
+      $(".balance").val(_this2.balance);
+      $(".pro_id").val(_this2.pro_id);
+      $(".name").val(_this2.name);
+      $(".email").val(_this2.email);
+    })["catch"](function (er) {
+      console.log(er.res);
+    });
+  })
 });
 
 /***/ }),
@@ -84790,309 +84431,211 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "nav",
-      {
-        staticClass:
-          "navbar navbar-expand-lg navbar-absolute navbar-transparent"
-      },
-      [
-        _c("div", { staticClass: "container-fluid" }, [
-          _c("div", { staticClass: "navbar-wrapper" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "navbar-brand", attrs: { href: _vm.welcome } },
-              [_vm._v("TNK")]
-            )
-          ]),
-          _vm._v(" "),
-          _vm._m(2),
-          _vm._v(" "),
-          _vm._m(3)
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("div")
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navbar-minimize d-inline" }, [
-      _c(
-        "button",
-        {
-          staticClass: "minimize-sidebar btn btn-link btn-just-icon",
-          attrs: {
-            rel: "tooltip",
-            "data-original-title": "Sidebar toggle",
-            "data-placement": "right"
-          }
-        },
-        [
-          _c("i", {
+    return _c("div", [
+      _c("header", [
+        _c(
+          "nav",
+          {
             staticClass:
-              "tim-icons icon-align-center visible-on-sidebar-regular"
-          }),
-          _vm._v(" "),
-          _c("i", {
-            staticClass: "tim-icons icon-bullet-list-67 visible-on-sidebar-mini"
-          })
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navbar-toggle d-inline" }, [
-      _c(
-        "button",
-        { staticClass: "navbar-toggler", attrs: { type: "button" } },
-        [
-          _c("span", { staticClass: "navbar-toggler-bar bar1" }),
-          _vm._v(" "),
-          _c("span", { staticClass: "navbar-toggler-bar bar2" }),
-          _vm._v(" "),
-          _c("span", { staticClass: "navbar-toggler-bar bar3" })
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "navbar-toggler",
-        attrs: {
-          type: "button",
-          "data-toggle": "collapse",
-          "data-target": "#navigation",
-          "aria-expanded": "false",
-          "aria-label": "Toggle navigation"
-        }
-      },
-      [
-        _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" }),
-        _vm._v(" "),
-        _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" }),
-        _vm._v(" "),
-        _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "collapse navbar-collapse", attrs: { id: "navigation" } },
-      [
-        _c("ul", { staticClass: "navbar-nav mr-auto" }, [
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              { staticClass: "button nav-link d-flex", attrs: { href: "#" } },
-              [
-                _c("div", { staticClass: "icons" }, [
-                  _c("i", {
-                    staticClass: "tim-icons icon-single-02 icon-default"
-                  }),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "tim-icons icon-coins icon-hover" })
-                ]),
-                _vm._v("Recommend friends\n            ")
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "button nav-link d-flex",
-                attrs: {
-                  href: "#",
-                  "data-toggle": "modal",
-                  "data-target": "#loginModal"
-                }
-              },
-              [
-                _c("div", { staticClass: "icons" }, [
-                  _c("i", {
-                    staticClass: "tim-icons icon-single-02 icon-default"
-                  }),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "tim-icons icon-lock-circle icon-hover"
-                  })
-                ]),
-                _vm._v("Message\n            ")
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "button nav-link d-flex",
-                attrs: {
-                  href: "#",
-                  "data-toggle": "modal",
-                  "data-target": ".register"
-                }
-              },
-              [
-                _c("div", { staticClass: "icons" }, [
-                  _c("i", { staticClass: "fas fa-user-plus icon-default" }),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "tim-icons icon-badge icon-hover" })
-                ]),
-                _vm._v("My Account\n            ")
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "button nav-link d-flex",
-                attrs: {
-                  href: "#",
-                  "data-toggle": "modal",
-                  "data-target": "#freetrial"
-                }
-              },
-              [
-                _c("div", { staticClass: "icons" }, [
-                  _c("i", {
-                    staticClass: "tim-icons icon-controller icon-default"
-                  }),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "tim-icons icon-credit-card icon-hover"
-                  })
-                ]),
-                _vm._v("Recharge\n            ")
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "button nav-link d-flex fixed-logout",
-                attrs: { href: "#" }
-              },
-              [
-                _c("div", { staticClass: "dropdown show-dropdown" }, [
-                  _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
-                    _c("div", { staticClass: "icons" }, [
-                      _c("i", {
-                        staticClass: "tim-icons icon-single-02 icon-default"
-                      }),
-                      _vm._v(" "),
-                      _c("i", {
-                        staticClass: "tim-icons icon-bullet-list-67 icon-hover"
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-menu" }, [
-                    _c("div", { staticClass: "row p-4" }, [
-                      _c("div", { staticClass: "col-6" }, [
-                        _c("img", {
-                          attrs: { src: "assets/img/user.png", alt: "" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-6" }, [
-                        _c("em", { staticClass: "header-user-name" }, [
-                          _vm._v("aghq186496")
-                        ]),
-                        _vm._v(" "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          { staticClass: "header-user-level level-0" },
-                          [_vm._v("新会员")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("small", { staticClass: "header-before-login-date" }, [
-                        _vm._v("最近登录时间：2019-04-24 14:25:40")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "menu-body" }, [
-                      _c("div", { attrs: { id: "header-balance" } }, [
-                        _vm._v(
-                          "\n                      总余额\n                      "
-                        ),
-                        _c("h2", { staticClass: "eid_total_credit m-0 p-0" }, [
-                          _vm._v("0.00")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "d-flex" }, [
-                          _c("p", { staticClass: "text-desss" }, [
-                            _vm._v(
-                              "\n                          本地余额\n                          "
-                            ),
-                            _c("span", { attrs: { id: "eid_local_credit" } }, [
-                              _vm._v("0.00")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "text-balance" }, [
-                            _vm._v(
-                              "\n                          游戏余额\n                          "
-                            ),
-                            _c("span", { attrs: { id: "eid_game_credit" } }, [
-                              _vm._v("0.00")
-                            ])
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
+              "navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar",
+            attrs: { id: "navbar" }
+          },
+          [
+            _c("div", { staticClass: "container" }, [
+              _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+                _c("strong", [_vm._v("Material Lanfdfdsfding")])
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "navbar-toggler",
+                  attrs: {
+                    type: "button",
+                    "data-toggle": "collapse",
+                    "data-target": "#navbarContent",
+                    "aria-controls": "navbarContent",
+                    "aria-expanded": "false",
+                    "aria-label": "Toggle navigation"
+                  }
+                },
+                [_c("span", { staticClass: "navbar-toggler-icon" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "collapse navbar-collapse",
+                  attrs: { id: "navbarContent" }
+                },
+                [
+                  _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                    _c("li", { staticClass: "nav-item" }, [
                       _c(
                         "a",
                         {
-                          staticClass: "btn-logout",
-                          attrs: { href: "javascript:;" }
+                          staticClass: "nav-link active",
+                          attrs: { href: "#about" }
                         },
-                        [
-                          _c("i", { staticClass: "fa fa-power-off" }),
-                          _vm._v("安全退出\n                    ")
-                        ]
+                        [_vm._v("About")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "#projects" }
+                        },
+                        [_vm._v("Projects")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "#pricing" }
+                        },
+                        [_vm._v("Pricing")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        { staticClass: "nav-link", attrs: { href: "#team" } },
+                        [_vm._v("Team")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "#contact" }
+                        },
+                        [_vm._v("Contact")]
                       )
                     ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary btn-rounded my-0",
+                      attrs: {
+                        href:
+                          "https://templateflip.com/templates/material-landing",
+                        target: "_blank"
+                      }
+                    },
+                    [_vm._v("Download")]
+                  )
+                ]
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "view hm-gradient", attrs: { id: "intro" } },
+          [
+            _c(
+              "div",
+              { staticClass: "full-bg-img d-flex align-items-center" },
+              [
+                _c("div", { staticClass: "container" }, [
+                  _c("div", { staticClass: "row no-gutters" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-md-10 col-lg-6 text-center text-md-left margins"
+                      },
+                      [
+                        _c("div", { staticClass: "white-text" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "wow fadeInLeft",
+                              attrs: { "data-wow-delay": "0.3s" }
+                            },
+                            [
+                              _c(
+                                "h1",
+                                {
+                                  staticClass: "h1-responsive font-bold mt-sm-5"
+                                },
+                                [_vm._v("Your Success is Our Mission.")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "h6" }, [
+                                _vm._v(
+                                  "\n                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi fuga nesciunt\n                    dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea dolor molestiae\n                    iste.\n                  "
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "wow fadeInLeft",
+                              attrs: { "data-wow-delay": "0.3s" }
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass:
+                                    "btn btn-white dark-grey-text font-bold ml-0",
+                                  attrs: {
+                                    href:
+                                      "https://www.youtube.com/watch?v=60ItHLz5WEA",
+                                    target: "_blank"
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "fa fa-play mr-1" }),
+                                  _vm._v(" View Demo\n                  ")
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "btn btn-outline-white",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("Learn more")]
+                              )
+                            ]
+                          )
+                        ])
+                      ]
+                    )
                   ])
                 ])
               ]
             )
-          ])
-        ])
-      ]
-    )
+          ]
+        )
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -85118,3328 +84661,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [
-      _c("app-navbar"),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "d-none d-xl-block wrapper container-whitelabel" },
-        [
-          _c("div", { staticClass: "main-container vip_club" }, [
-            _c("div", { staticClass: "sections" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "section content-area1" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "carousel slide showcase-container wow fadeInUp",
-                    attrs: { id: "myCarousel", "data-ride": "carousel" }
-                  },
-                  [
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "carousel-inner hcbg" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "item slideflip active",
-                          attrs: { id: "s1" }
-                        },
-                        [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn",
-                              attrs: {
-                                href:
-                                  "https://brand.ag855.com/activity/vipPrivilege/",
-                                target: "_blank"
-                              }
-                            },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [_vm._v("understand more")]
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "item slideflip", attrs: { id: "s2" } },
-                        [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn",
-                              attrs: {
-                                href:
-                                  "https://brand.ag855.com/activity/vipPrivilege/",
-                                target: "_blank"
-                              }
-                            },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [_vm._v("Open now")]
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "item slideflip", attrs: { id: "s3" } },
-                        [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn",
-                              attrs: {
-                                href:
-                                  "https://brand.ag855.com/activity/vipPrivilege/",
-                                target: "_blank"
-                              }
-                            },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [_vm._v("understand more")]
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "item slideflip", attrs: { id: "s4" } },
-                        [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn",
-                              attrs: {
-                                href:
-                                  "https://brand.ag855.com/activity/vipPrivilege/",
-                                target: "_blank"
-                              }
-                            },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [_vm._v("understand more")]
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ]
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _vm._m(3),
-                _vm._v(" "),
-                _c("div", { staticClass: "container-wrap wow fadeInDown" }, [
-                  _c("div", { staticClass: "table-section" }, [
-                    _c(
-                      "table",
-                      { staticClass: "table table-striped sel sel0" },
-                      [
-                        _c("thead", [
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(144, 129, 107)"
-                              }
-                            },
-                            [
-                              _c(
-                                "th",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Member benefits")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "th",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("One star")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "th",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Two stars")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "th",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Three Star")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "th",
-                                [
-                                  _c("img", {
-                                    attrs: { src: "/assets/img/blcrown.png" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("VIP 4")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "th",
-                                [
-                                  _c("img", {
-                                    attrs: { src: "/assets/img/scrown.png" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("VIP 5")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "th",
-                                [
-                                  _c("img", {
-                                    attrs: { src: "/assets/img/gcrown.png" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("VIP 6")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("tbody", [
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(154, 139, 116)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Washing ratio")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("0.60%")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("0.60%")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("0.60%")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("0.70%")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("0.80%")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("0.90%")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(144, 129, 107)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Anniversary gift")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("588 yuan")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("888 yuan")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("1888 yuan")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(154, 139, 116)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Holiday gift")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("√")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("√")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(144, 129, 107)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Business secretary")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("√")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("√")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("√")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(154, 139, 116)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Overseas travel")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("√")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("√")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("√")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(144, 129, 107)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("customer service")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("General customer service")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("General customer service")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("General customer service")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("General customer service")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("account Manager")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("account Manager")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(154, 139, 116)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Game channel")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Ordinary line")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Ordinary line")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Ordinary line")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Ordinary line")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("VIP line")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("VIP line")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          )
-                        ])
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "section content-area2",
-                  staticStyle: { height: "678px" }
-                },
-                [
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "container-wrap wow fadeInDown" }, [
-                    _c("div", { staticClass: "table-section" }, [
-                      _c("table", { staticClass: "table table-striped" }, [
-                        _c("thead", [
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(144, 129, 107)"
-                              }
-                            },
-                            [
-                              _c(
-                                "th",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Member star")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "th",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Promotion requirements")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "th",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Promotion gift")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("tbody", [
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(154, 139, 116)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("One star")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Complete the first recharge")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("×")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(144, 129, 107)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Two stars")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "Weekly effective bet amount reaches 100,000"
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("120 yuan")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(154, 139, 116)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("Three Star")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "Weekly effective bet amount reaches 500,000"
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("400 yuan")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(144, 129, 107)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c("img", {
-                                    attrs: { src: "/assets/img/blcrown.png" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("VIP 4")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "Weekly effective bet amount reaches 1 million"
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("600 yuan")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(154, 139, 116)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c("img", {
-                                    attrs: { src: "/assets/img/scrown.png" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("VIP 5")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "Weekly effective bet amount reaches 3 million"
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("2000 dollars")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tr",
-                            {
-                              staticStyle: {
-                                "background-color": "rgb(144, 129, 107)"
-                              }
-                            },
-                            [
-                              _c(
-                                "td",
-                                [
-                                  _c("img", {
-                                    attrs: { src: "/assets/img/gcrown.png" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("VIP 6")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "Weekly effective bet amount reaches 6 million"
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "font",
-                                    {
-                                      staticStyle: {
-                                        "vertical-align": "inherit"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [_vm._v("4,000 yuan")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          )
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "rebate-level" }, [
-                      _c("div", { staticClass: "level-line" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "pbc",
-                            staticStyle: { display: "none" }
-                          },
-                          [
-                            _c("div", { staticClass: "pb-p" }, [
-                              _c("ul", [
-                                _c("li", [
-                                  _c("div", { staticClass: "upb" }, [
-                                    _c("div", { staticClass: "upbd vp1" }, [
-                                      _c(
-                                        "p",
-                                        { staticClass: "zbpb" },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "font",
-                                                {
-                                                  staticStyle: {
-                                                    "vertical-align": "inherit"
-                                                  }
-                                                },
-                                                [_vm._v("One star")]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "p",
-                                    { staticClass: "adpb" },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [_vm._v("0")]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", [
-                                  _c("div", { staticClass: "upb" }, [
-                                    _c("div", { staticClass: "upbd vp2" }, [
-                                      _c(
-                                        "p",
-                                        { staticClass: "zbpb" },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "font",
-                                                {
-                                                  staticStyle: {
-                                                    "vertical-align": "inherit"
-                                                  }
-                                                },
-                                                [_vm._v("Two stars")]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "p",
-                                    { staticClass: "adpb" },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [_vm._v("100,000")]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", [
-                                  _c("div", { staticClass: "upb" }, [
-                                    _c("div", { staticClass: "upbd vp3" }, [
-                                      _c(
-                                        "p",
-                                        { staticClass: "zbpb" },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "font",
-                                                {
-                                                  staticStyle: {
-                                                    "vertical-align": "inherit"
-                                                  }
-                                                },
-                                                [_vm._v("Three Star")]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "p",
-                                    { staticClass: "adpb" },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [_vm._v("500000")]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", [
-                                  _c("div", { staticClass: "upb" }, [
-                                    _c("div", { staticClass: "upbd vp4" }, [
-                                      _c(
-                                        "p",
-                                        { staticClass: "zbpb" },
-                                        [
-                                          _c("img", {
-                                            attrs: {
-                                              src: "/assets/img/bcrown.png"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "font",
-                                                {
-                                                  staticStyle: {
-                                                    "vertical-align": "inherit"
-                                                  }
-                                                },
-                                                [_vm._v("VIP 4")]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "p",
-                                    { staticClass: "adpb" },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [_vm._v("1000000")]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", [
-                                  _vm._m(5),
-                                  _vm._v(" "),
-                                  _c(
-                                    "p",
-                                    { staticClass: "adpb" },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [_vm._v("3000000")]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", [
-                                  _vm._m(6),
-                                  _vm._v(" "),
-                                  _c(
-                                    "p",
-                                    { staticClass: "adpb" },
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [_vm._v("6000000")]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "pbbg" }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "pbcf" }, [
-                              _c("div", { staticClass: "pbcf-p" }),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "pbcf-pd",
-                                  staticStyle: { display: "none" }
-                                },
-                                [
-                                  _c(
-                                    "p",
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "Effective bet amount this week"
-                                              )
-                                            ]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        { staticClass: "amount" },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "font",
-                                                {
-                                                  staticStyle: {
-                                                    "vertical-align": "inherit"
-                                                  }
-                                                },
-                                                [_vm._v("0")]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass: "pbpd",
-                                staticStyle: { left: "15px" }
-                              },
-                              [
-                                _c("div", { staticClass: "pdp" }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "pbpd-pbb" }, [
-                                  _c(
-                                    "p",
-                                    [
-                                      _c(
-                                        "font",
-                                        {
-                                          staticStyle: {
-                                            "vertical-align": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "Effective bet amount this week"
-                                              )
-                                            ]
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        { staticClass: "amount" },
-                                        [
-                                          _c(
-                                            "font",
-                                            {
-                                              staticStyle: {
-                                                "vertical-align": "inherit"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "font",
-                                                {
-                                                  staticStyle: {
-                                                    "vertical-align": "inherit"
-                                                  }
-                                                },
-                                                [_vm._v("0")]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ])
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _vm._m(7)
-                          ]
-                        )
-                      ])
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "section content-area3" }, [
-                _vm._m(8),
-                _vm._v(" "),
-                _c("div", { staticClass: "container-wrap wow fadeInDown" }, [
-                  _c("ul", [
-                    _c("li", [
-                      _c(
-                        "i",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("01")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _vm._v(
-                                    "The promotion bet amount is calculated based on the valid bet amount from 00:00:00 on Monday to 23:59:59 on Sunday."
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "i",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("02")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _vm._v(
-                                    "Promotion star time: As long as you meet the promotion star rating within the week, you can automatically promote the star in 1 hour and immediately enjoy the star rating after promotion."
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "i",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("03")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _vm._v(
-                                    "After successfully promoting the star rating, you can enjoy the star-rated rights after promotion and never relegate."
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "i",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("04")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _vm._v(
-                                    "Promotion bonus time: After successful promotion of the star rating, the bonus will be automatically distributed. Please click the collection after receiving the bonus distribution notice (the bonus period is valid for"
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("30 days, expired).")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "i",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("05")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _vm._v(
-                                    "The promotion bonus can be withdrawn only by 1 time (effective bet amount)."
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "i",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [_vm._v("06")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        [
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _vm._v(
-                                    "According to the fair and orderly rules of the Gaming Association, any user or group betting in an abnormal manner, such as risk-free betting, gambling, or deception,"
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c(
-                            "font",
-                            { staticStyle: { "vertical-align": "inherit" } },
-                            [
-                              _c(
-                                "font",
-                                {
-                                  staticStyle: { "vertical-align": "inherit" }
-                                },
-                                [
-                                  _vm._v(
-                                    "AG A-Yu reserves the right to freeze or close without notice. Related accounts, no refunds, users will be blacklisted."
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ])
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("app-alertsidebar")
-        ],
-        1
-      )
-    ],
+    [_c("app-navbar"), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)],
     1
   )
 }
@@ -88448,198 +84670,1059 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "section banner" }, [
-      _c("div", { staticClass: "dangles" }, [
-        _c("div", { staticClass: "d1 swing slide-in-blurred-top" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "d2 swing slide-in-blurred-top" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "d3 swing slide-in-blurred-top" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "d4 swing slide-in-blurred-top" })
+    return _c("div", { attrs: { id: "content" } }, [
+      _c(
+        "section",
+        { staticClass: "row no-gutters", attrs: { id: "features" } },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "col-lg-3 col-md-6 col-sm-12 deep-purple lighten-1 text-white"
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "p-5 text-center wow zoomIn",
+                  attrs: { "data-wow-delay": ".1s" }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-line-chart fa-2x" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "h5 mt-3" }, [
+                    _vm._v("Agile Frameworks")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "mt-5" }, [
+                    _vm._v(
+                      "Leverage agile frameworks to provide a robust synopsis for high level overviews."
+                    )
+                  ])
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-lg-3 col-md-6 purple lighten-1 text-white" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "p-5 text-center wow zoomIn",
+                  attrs: { "data-wow-delay": ".3s" }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-industry fa-2x" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "h5 mt-3" }, [
+                    _vm._v("Corporate Strategy")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "mt-5" }, [
+                    _vm._v(
+                      "Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition"
+                    )
+                  ])
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-lg-3 col-md-6 teal lighten-1 text-white" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "p-5 text-center wow zoomIn",
+                  attrs: { "data-wow-delay": ".5s" }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-users fa-2x" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "h5 mt-3" }, [
+                    _vm._v("Workplace Diversity")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "mt-5" }, [
+                    _vm._v(
+                      "Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment."
+                    )
+                  ])
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "col-lg-3 col-md-6 light-blue lighten-1 text-white"
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "p-5 text-center wow zoomIn",
+                  attrs: { "data-wow-delay": ".7s" }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-bullhorn fa-2x" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "h5 mt-3" }, [
+                    _vm._v("Survival Strategies")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "mt-5" }, [
+                    _vm._v(
+                      "Bring to the table win-win survival strategies to ensure proactive domination."
+                    )
+                  ])
+                ]
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "section",
+        {
+          staticClass: "text-center py-5 grey lighten-4",
+          attrs: { id: "about" }
+        },
+        [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "wow fadeIn" }, [
+              _c("h2", { staticClass: "h1 pt-5 pb-3" }, [
+                _vm._v("Why work with us?")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "px-5 mb-5 pb-3 lead blue-grey-text" }, [
+                _vm._v(
+                  "\n            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna\n            aliqua. Ut enim ad minim veniam.\n          "
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-4 mb-r wow fadeInUp",
+                  attrs: { "data-wow-delay": ".3s" }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-dashboard fa-3x orange-text" }),
+                  _vm._v(" "),
+                  _c("h3", { staticClass: "h4 mt-3" }, [_vm._v("Design")]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "mt-3 blue-grey-text" }, [
+                    _vm._v(
+                      "\n              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti\n              hic.\n            "
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-4 mb-r wow fadeInUp",
+                  attrs: { "data-wow-delay": ".4s" }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-comments-o fa-3x cyan-text" }),
+                  _vm._v(" "),
+                  _c("h3", { staticClass: "h4 mt-3" }, [_vm._v("Feedback")]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "mt-3 blue-grey-text" }, [
+                    _vm._v(
+                      "\n              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti\n              hic.\n            "
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-4 mb-r wow fadeInUp",
+                  attrs: { "data-wow-delay": ".5s" }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-cubes fa-3x red-text" }),
+                  _vm._v(" "),
+                  _c("h3", { staticClass: "h4 mt-3" }, [_vm._v("Execution")]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "mt-3 blue-grey-text" }, [
+                    _vm._v(
+                      "\n              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti\n              hic.\n            "
+                    )
+                  ])
+                ]
+              )
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("section", { staticClass: "py-5", attrs: { id: "projects" } }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "wow fadeIn" }, [
+            _c("h2", { staticClass: "text-center h1 my-4" }, [
+              _vm._v("Our best projects")
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              { staticClass: "px-5 mb-5 pb-3 lead blue-grey-text text-center" },
+              [
+                _vm._v(
+                  "\n            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\n            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n          "
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "row wow fadeInLeft",
+              attrs: { "data-wow-delay": ".3s" }
+            },
+            [
+              _c("div", { staticClass: "col-lg-6 col-xl-5 pr-lg-5 pb-5" }, [
+                _c("img", {
+                  staticClass: "img-fluid rounded z-depth-2",
+                  attrs: {
+                    src: "assetspromote/img/kuala-lumpur.jpg",
+                    alt: "project image"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6 col-xl-7 pl-lg-5 pb-4" }, [
+                _c("div", { staticClass: "row mb-3" }, [
+                  _c("div", { staticClass: "col-1 mr-1" }, [
+                    _c("i", { staticClass: "fa fa-book fa-2x cyan-text" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-10" }, [
+                    _c("h5", { staticClass: "font-bold" }, [
+                      _vm._v("Education")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "grey-text" }, [
+                      _vm._v(
+                        "\n                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda\n                  voluptate velit.\n                "
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _c("div", { staticClass: "col-1 mr-1" }, [
+                    _c("i", { staticClass: "fa fa-code fa-2x red-text" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-10" }, [
+                    _c("h5", { staticClass: "font-bold" }, [
+                      _vm._v("Technology")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "grey-text" }, [
+                      _vm._v(
+                        "\n                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda\n                  voluptate velit.\n                "
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-1 mr-1" }, [
+                    _c("i", {
+                      staticClass: "fa fa-money fa-2x deep-purple-text"
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-10" }, [
+                    _c("h5", { staticClass: "font-bold" }, [_vm._v("Finance")]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "grey-text" }, [
+                      _vm._v(
+                        "\n                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda\n                  voluptate velit.\n                "
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "row pt-5 wow fadeInRight",
+              attrs: { "data-wow-delay": ".3s" }
+            },
+            [
+              _c("div", { staticClass: "col-lg-6 col-xl-7 mb-3" }, [
+                _c("div", { staticClass: "row mb-3" }, [
+                  _c("div", { staticClass: "col-1 mr-1" }, [
+                    _c("i", {
+                      staticClass: "fa fa-bar-chart fa-2x indigo-text"
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-10" }, [
+                    _c("h5", { staticClass: "font-bold" }, [
+                      _vm._v("Marketing")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "grey-text" }, [
+                      _vm._v(
+                        "\n                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda\n                  voluptate velit.\n                "
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _c("div", { staticClass: "col-1 mr-1" }, [
+                    _c("i", { staticClass: "fa fa-music fa-2x pink-text" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-10" }, [
+                    _c("h5", { staticClass: "font-bold" }, [
+                      _vm._v("Entertainment")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "grey-text" }, [
+                      _vm._v(
+                        "\n                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda\n                  voluptate velit.\n                "
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _c("div", { staticClass: "col-1 mr-1" }, [
+                    _c("i", { staticClass: "fa fa-smile-o fa-2x blue-text" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-10" }, [
+                    _c("h5", { staticClass: "font-bold" }, [
+                      _vm._v("Communication")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "grey-text" }, [
+                      _vm._v(
+                        "\n                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda\n                  voluptate velit.\n                "
+                      )
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6 col-xl-5 mb-3" }, [
+                _c("img", {
+                  staticClass: "img-fluid rounded z-depth-2",
+                  attrs: {
+                    src: "assetspromote/img/san-francisco.jpg",
+                    alt: "project image"
+                  }
+                })
+              ])
+            ]
+          )
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "glows" }, [
-        _c("div", { staticClass: "g1" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "g2" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "g3" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "g4" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "g5" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "g6" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "g7" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "g8" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title wow fadeInDown" }, [
-      _c("img", { attrs: { src: "/assets/img/title1.png" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "hibg" }, [
-      _c("div", { staticClass: "carousel-indicators" }, [
-        _c(
-          "div",
-          {
-            staticClass: "flip-container active",
-            attrs: { "data-target": "#myCarousel", "data-slide-to": "0" }
-          },
-          [
-            _c("div", { staticClass: "circlet" }),
-            _vm._v(" "),
-            _c("div", { staticClass: "flipper" }, [
-              _c("div", { staticClass: "front" }, [
-                _c("div", { staticClass: "icon icon1" })
+      _c(
+        "section",
+        {
+          staticClass: "text-center py-5 indigo darken-1 text-white",
+          attrs: { id: "pricing" }
+        },
+        [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "wow fadeIn" }, [
+              _c("h2", { staticClass: "h1 pt-5 pb-3" }, [
+                _vm._v("Our pricing plans")
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "back" }, [
-                _c("div", { staticClass: "icon icon1-active" })
+              _c("p", { staticClass: "px-5 mb-5 pb-3 lead" }, [
+                _vm._v(
+                  "\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi,\n            veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.\n          "
+                )
               ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "flip-container",
-            attrs: { "data-target": "#myCarousel", "data-slide-to": "1" }
-          },
-          [
-            _c("div", { staticClass: "circlet" }),
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "flipper" }, [
-              _c("div", { staticClass: "front" }, [
-                _c("div", { staticClass: "icon icon2" })
+            _c("div", { staticClass: "row wow zoomIn" }, [
+              _c("div", { staticClass: "col-lg-4 col-md-12 mb-r" }, [
+                _c("div", { staticClass: "card card-image" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "text-white text-center pricing-card d-flex align-items-center rgba-stylish-strong py-3 px-3 rounded"
+                    },
+                    [
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("div", { staticClass: "h5" }, [
+                          _vm._v("Individual")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "py-5" }, [
+                          _c("sup", { staticClass: "display-4" }, [
+                            _vm._v("$")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "display-1" }, [
+                            _vm._v("9")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "display-4" }, [
+                            _vm._v("/m")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("ul", { staticClass: "list-unstyled" }, [
+                          _c("li", [
+                            _c("p", [
+                              _c("strong", [_vm._v("1")]),
+                              _vm._v(" person\n                      ")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _c("p", [
+                              _c("strong", [_vm._v("10")]),
+                              _vm._v(" projects\n                      ")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _c("p", [
+                              _c("strong", [_vm._v("100")]),
+                              _vm._v(" features\n                      ")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _c("p", [
+                              _c("strong", [_vm._v("20GB")]),
+                              _vm._v(" storage\n                      ")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("a", { staticClass: "btn btn-outline-white mt-5" }, [
+                          _vm._v("Buy now")
+                        ])
+                      ])
+                    ]
+                  )
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "back" }, [
-                _c("div", { staticClass: "icon icon2-active" })
-              ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "flip-container",
-            attrs: { "data-target": "#myCarousel", "data-slide-to": "2" }
-          },
-          [
-            _c("div", { staticClass: "circlet" }),
-            _vm._v(" "),
-            _c("div", { staticClass: "flipper" }, [
-              _c("div", { staticClass: "front" }, [
-                _c("div", { staticClass: "icon icon3" })
+              _c("div", { staticClass: "col-lg-4 col-md-12 mb-r" }, [
+                _c("div", { staticClass: "card card-image" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "text-white text-center pricing-card d-flex align-items-center rgba-teal-strong py-3 px-3 rounded"
+                    },
+                    [
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("div", { staticClass: "h5" }, [_vm._v("Startup")]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "py-5" }, [
+                          _c("sup", { staticClass: "display-4" }, [
+                            _vm._v("$")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "display-1" }, [
+                            _vm._v("29")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "display-4" }, [
+                            _vm._v("/m")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("ul", { staticClass: "list-unstyled" }, [
+                          _c("li", [
+                            _c("p", [
+                              _c("strong", [_vm._v("10")]),
+                              _vm._v(" person\n                      ")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _c("p", [
+                              _c("strong", [_vm._v("100")]),
+                              _vm._v(" projects\n                      ")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _c("p", [
+                              _c("strong", [_vm._v("200")]),
+                              _vm._v(" features\n                      ")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _c("p", [
+                              _c("strong", [_vm._v("100GB")]),
+                              _vm._v(" storage\n                      ")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("a", { staticClass: "btn btn-outline-white mt-5" }, [
+                          _vm._v("Buy now")
+                        ])
+                      ])
+                    ]
+                  )
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "back" }, [
-                _c("div", { staticClass: "icon icon3-active" })
+              _c("div", { staticClass: "col-lg-4 col-md-12 mb-r" }, [
+                _c("div", { staticClass: "card card-image" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "text-white text-center pricing-card d-flex align-items-center rgba-red-strong py-3 px-3 rounded"
+                    },
+                    [
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("div", { staticClass: "h5" }, [
+                          _vm._v("Enterprise")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "py-5" }, [
+                          _c("sup", { staticClass: "display-4" }, [
+                            _vm._v("$")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "display-1" }, [
+                            _vm._v("99")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "display-4" }, [
+                            _vm._v("/m")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("ul", { staticClass: "list-unstyled" }, [
+                          _c("li", [
+                            _c("p", [
+                              _c("strong", [_vm._v("10+")]),
+                              _vm._v(" person\n                      ")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _c("p", [
+                              _c("strong", [_vm._v("Unlimited")]),
+                              _vm._v(" projects\n                      ")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _c("p", [
+                              _c("strong", [_vm._v("Unlimited")]),
+                              _vm._v(" features\n                      ")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", [
+                            _c("p", [
+                              _c("strong", [_vm._v("1TB")]),
+                              _vm._v(" storage\n                      ")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("a", { staticClass: "btn btn-outline-white mt-5" }, [
+                          _vm._v("Buy now")
+                        ])
+                      ])
+                    ]
+                  )
+                ])
               ])
             ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "flip-container",
-            attrs: { "data-target": "#myCarousel", "data-slide-to": "3" }
-          },
-          [
-            _c("div", { staticClass: "circlet" }),
-            _vm._v(" "),
-            _c("div", { staticClass: "flipper" }, [
-              _c("div", { staticClass: "front" }, [
-                _c("div", { staticClass: "icon icon4" })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "back" }, [
-                _c("div", { staticClass: "icon icon4-active" })
-              ])
-            ])
-          ]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title wow fadeInUp" }, [
-      _c("img", { attrs: { src: "/assets/img/title2.png" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title wow fadeInUp" }, [
-      _c("img", { attrs: { src: "/assets/img/title3.png" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "upb" }, [
-      _c("div", { staticClass: "upbd vp5" }, [
-        _c("img", { attrs: { src: "/assets/img/vip5.png" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "upb" }, [
-      _c("div", { staticClass: "upbd vp6" }, [
-        _c("img", { attrs: { src: "/assets/img/vip6.png" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "pbdd", staticStyle: { left: "15px" } }, [
-      _c("i", { staticClass: "arrow" }),
+          ])
+        ]
+      ),
       _vm._v(" "),
-      _c("p", [
-        _c("span", { staticClass: "bgc" }, [
-          _vm._v("\n                      您当前为\n                      "),
-          _c("i", { staticClass: "st" }, [_vm._v("一星级")])
-        ]),
-        _vm._v("成为\n                    "),
-        _c("i", { staticClass: "sa" }, [_vm._v("二星级")]),
-        _vm._v(" 只需再投注\n                    "),
-        _c("i", { staticClass: "aa" }, [_vm._v("0")])
-      ])
+      _c("section", { staticClass: "py-5", attrs: { id: "team" } }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "wow fadeIn" }, [
+            _c("h2", { staticClass: "h1 pt-5 pb-3 text-center" }, [
+              _vm._v("Our team members")
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              { staticClass: "px-5 mb-5 pb-3 lead text-center blue-grey-text" },
+              [
+                _vm._v(
+                  "\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate\n            esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.\n          "
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row mb-lg-4 center-on-small-only" }, [
+            _c(
+              "div",
+              {
+                staticClass: "col-lg-6 col-md-12 mb-r wow fadeInLeft",
+                attrs: { "data-wow-delay": ".3s" }
+              },
+              [
+                _c("div", { staticClass: "col-md-6 float-left" }, [
+                  _c("img", {
+                    staticClass: "img-fluid rounded z-depth-1 mb-3",
+                    attrs: {
+                      src: "assetspromote/img/woman-1.jpg",
+                      alt: "team member"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 float-right" }, [
+                  _c("div", { staticClass: "h4" }, [_vm._v("Nicole West")]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "font-bold blue-grey-text mb-4" }, [
+                    _vm._v("Lead Designer")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "grey-text" }, [
+                    _vm._v(
+                      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "https://twitter.com", target: "_blank" }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-twitter" }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "ml-1" }, [
+                        _vm._v("@nicolewest")
+                      ])
+                    ]
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "col-lg-6 col-md-12 mb-r wow fadeInRight",
+                attrs: { "data-wow-delay": ".3s" }
+              },
+              [
+                _c("div", { staticClass: "col-md-6 float-left" }, [
+                  _c("img", {
+                    staticClass: "img-fluid rounded z-depth-1 mb-3",
+                    attrs: {
+                      src: "assetspromote/img/woman-2.jpg",
+                      alt: "team member"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 float-right" }, [
+                  _c("div", { staticClass: "h4" }, [_vm._v("Hannah Cruz")]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "font-bold blue-grey-text mb-4" }, [
+                    _vm._v("Photographer")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "grey-text" }, [
+                    _vm._v(
+                      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "https://twitter.com", target: "_blank" }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-twitter" }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "ml-1" }, [
+                        _vm._v("@hannahcruz")
+                      ])
+                    ]
+                  )
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row center-on-small-only" }, [
+            _c(
+              "div",
+              {
+                staticClass: "col-lg-6 col-md-12 mb-r wow fadeInLeft",
+                attrs: { "data-wow-delay": ".3s" }
+              },
+              [
+                _c("div", { staticClass: "col-md-6 float-left" }, [
+                  _c("img", {
+                    staticClass: "img-fluid rounded z-depth-1 mb-3",
+                    attrs: {
+                      src: "assetspromote/img/man-1.jpg",
+                      alt: "team member"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 float-right" }, [
+                  _c("div", { staticClass: "h4" }, [_vm._v("Mark Hall")]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "font-bold blue-grey-text mb-4" }, [
+                    _vm._v("Web Developer")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "grey-text" }, [
+                    _vm._v(
+                      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "https://twitter.com", target: "_blank" }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-twitter" }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "ml-1" }, [_vm._v("@markhall")])
+                    ]
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "col-lg-6 col-md-12 mb-r wow fadeInRight",
+                attrs: { "data-wow-delay": ".3s" }
+              },
+              [
+                _c("div", { staticClass: "col-md-6 float-left" }, [
+                  _c("img", {
+                    staticClass: "img-fluid rounded z-depth-1 mb-3",
+                    attrs: {
+                      src: "assetspromote/img/man-2.jpg",
+                      alt: "team member"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 float-right" }, [
+                  _c("div", { staticClass: "h4" }, [_vm._v("Vincent Harris")]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "font-bold blue-grey-text mb-4" }, [
+                    _vm._v("Web Developer")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "grey-text" }, [
+                    _vm._v(
+                      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "https://twitter.com", target: "_blank" }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-twitter" }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "ml-1" }, [
+                        _vm._v("@vincentharris")
+                      ])
+                    ]
+                  )
+                ])
+              ]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "section",
+        {
+          staticStyle: {
+            "background-image": "url('assetspromote/img/panorama.jpg')"
+          },
+          attrs: { id: "contact" }
+        },
+        [
+          _c("div", { staticClass: "rgba-black-strong py-5" }, [
+            _c("div", { staticClass: "container" }, [
+              _c("div", { staticClass: "wow fadeIn" }, [
+                _c(
+                  "h2",
+                  { staticClass: "h1 text-white pt-5 pb-3 text-center" },
+                  [_vm._v("Contact us")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  { staticClass: "text-white px-5 mb-5 pb-3 lead text-center" },
+                  [
+                    _vm._v(
+                      "\n              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate\n              esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam.\n            "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "card mb-5 wow fadeInUp",
+                  attrs: { "data-wow-delay": ".4s" }
+                },
+                [
+                  _c("div", { staticClass: "card-body p-5" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-8" }, [
+                        _c(
+                          "form",
+                          {
+                            attrs: {
+                              action:
+                                "https://formspree.io/youremail@example.com",
+                              method: "POST"
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-md-6" }, [
+                                _c("div", { staticClass: "md-form" }, [
+                                  _c("input", {
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      id: "name",
+                                      type: "text",
+                                      name: "name",
+                                      required: "required"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("label", { attrs: { for: "name" } }, [
+                                    _vm._v("Your name")
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-6" }, [
+                                _c("div", { staticClass: "md-form" }, [
+                                  _c("input", {
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      id: "email",
+                                      type: "text",
+                                      name: "_replyto",
+                                      required: "required"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("label", { attrs: { for: "email" } }, [
+                                    _vm._v("Your email")
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c("div", { staticClass: "md-form" }, [
+                                  _c("input", {
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      id: "subject",
+                                      type: "text",
+                                      name: "subject",
+                                      required: "required"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("label", { attrs: { for: "subject" } }, [
+                                    _vm._v("Subject")
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c("div", { staticClass: "md-form" }, [
+                                  _c("textarea", {
+                                    staticClass: "md-textarea",
+                                    attrs: {
+                                      id: "message",
+                                      name: "message",
+                                      required: "required"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("label", { attrs: { for: "message" } }, [
+                                    _vm._v("Your message")
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "center-on-small-only mb-4" },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-indigo ml-0",
+                                    attrs: { type: "submit" }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-paper-plane-o mr-2"
+                                    }),
+                                    _vm._v(" Send\n                      ")
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("ul", { staticClass: "list-unstyled text-center" }, [
+                          _c("li", { staticClass: "mt-4" }, [
+                            _c("i", {
+                              staticClass: "fa fa-map-marker indigo-text fa-2x"
+                            }),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "mt-2" }, [
+                              _vm._v("140, City Center, New York, U.S.A")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", { staticClass: "mt-4" }, [
+                            _c("i", {
+                              staticClass: "fa fa-phone indigo-text fa-2x"
+                            }),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "mt-2" }, [
+                              _vm._v("+ 01 234 567 89")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("li", { staticClass: "mt-4" }, [
+                            _c("i", {
+                              staticClass: "fa fa-envelope indigo-text fa-2x"
+                            }),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "mt-2" }, [
+                              _vm._v("contact@company.com")
+                            ])
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ]
+              )
+            ])
+          ])
+        ]
+      )
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "title wow fadeInUp" }, [
-      _c("img", { attrs: { src: "/assets/img/title4.png" } })
-    ])
+    return _c(
+      "footer",
+      {
+        staticClass:
+          "page-footer indigo darken-2 center-on-small-only pt-0 mt-0"
+      },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "mb-5 flex-center" }, [
+                _c("a", { staticClass: "px-3" }, [
+                  _c("i", { staticClass: "fa fa-facebook fa-lg white-text" })
+                ]),
+                _vm._v(" "),
+                _c("a", { staticClass: "px-3" }, [
+                  _c("i", { staticClass: "fa fa-twitter fa-lg white-text" })
+                ]),
+                _vm._v(" "),
+                _c("a", { staticClass: "px-3" }, [
+                  _c("i", { staticClass: "fa fa-google-plus fa-lg white-text" })
+                ]),
+                _vm._v(" "),
+                _c("a", { staticClass: "px-3" }, [
+                  _c("i", { staticClass: "fa fa-linkedin fa-lg white-text" })
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "footer-copyright" }, [
+          _c("div", { staticClass: "container-fluid" }, [
+            _c("p", [
+              _vm._v("\n          ©\n          "),
+              _c("a", { attrs: { href: "/" } }, [_vm._v("Material Landing")]),
+              _vm._v(" - Design:\n          "),
+              _c(
+                "a",
+                {
+                  attrs: { href: "https://templateflip.com/", target: "_blank" }
+                },
+                [_vm._v("TemplateFlip")]
+              )
+            ])
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -89147,10 +86230,7 @@ var staticRenderFns = [
     return _c("div", [
       _c(
         "nav",
-        {
-          staticClass:
-            "navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top "
-        },
+        { staticClass: "navbar navbar-expand-lg fixed-top color-bg " },
         [
           _c("div", { staticClass: "container-fluid" }, [
             _c("div", { staticClass: "navbar-wrapper" }, [
@@ -92272,24 +89352,18 @@ var render = function() {
                           _vm._v(" "),
                           _c("app-chart"),
                           _vm._v(" "),
-                          _vm._m(13)
+                          _vm._m(13),
+                          _vm._v(" "),
+                          _vm._m(14)
                         ],
                         1
                       )
                     ]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "tab-pane", attrs: { id: "timeline" } },
-                    [_vm._v("timeline")]
-                  ),
+                  _vm._m(15),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "tab-pane", attrs: { id: "settings" } },
-                    [_vm._v("settings")]
-                  )
+                  _vm._m(16)
                 ])
               ])
             ])
@@ -92315,7 +89389,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "text-center" }, [
       _c("img", {
         staticClass: "profile-user-img img-fluid img-circle",
-        attrs: { src: "/assets/img/user.png", alt: "User profile picture" }
+        attrs: { src: "/assets/img/emilyz.jpg", alt: "User profile picture" }
       })
     ])
   },
@@ -92324,23 +89398,35 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "list-group list-group-unbordered mb-3" }, [
-      _c("li", { staticClass: "list-group-item" }, [
-        _c("b", [_vm._v("Followers")]),
-        _vm._v(" "),
-        _c("a", { staticClass: "float-right" }, [_vm._v("1,322")])
-      ]),
+      _c(
+        "li",
+        { staticClass: "list-group-item d-flex justify-content-between" },
+        [
+          _c("b", [_vm._v("总余额")]),
+          _vm._v(" "),
+          _c("a", { staticClass: "float-right" }, [_vm._v("¥0.00")])
+        ]
+      ),
       _vm._v(" "),
-      _c("li", { staticClass: "list-group-item" }, [
-        _c("b", [_vm._v("Following")]),
-        _vm._v(" "),
-        _c("a", { staticClass: "float-right" }, [_vm._v("543")])
-      ]),
+      _c(
+        "li",
+        { staticClass: "list-group-item d-flex justify-content-between" },
+        [
+          _c("b", [_vm._v("Following")]),
+          _vm._v(" "),
+          _c("a", { staticClass: "float-right" }, [_vm._v("543")])
+        ]
+      ),
       _vm._v(" "),
-      _c("li", { staticClass: "list-group-item" }, [
-        _c("b", [_vm._v("Friends")]),
-        _vm._v(" "),
-        _c("a", { staticClass: "float-right" }, [_vm._v("13,287")])
-      ])
+      _c(
+        "li",
+        { staticClass: "list-group-item d-flex justify-content-between" },
+        [
+          _c("b", [_vm._v("Friends")]),
+          _vm._v(" "),
+          _c("a", { staticClass: "float-right" }, [_vm._v("13,287")])
+        ]
+      )
     ])
   },
   function() {
@@ -92350,7 +89436,7 @@ var staticRenderFns = [
     return _c(
       "a",
       { staticClass: "btn btn-primary btn-block", attrs: { href: "#" } },
-      [_c("b", [_vm._v("Follow")])]
+      [_c("b", [_vm._v("刷新额度")])]
     )
   },
   function() {
@@ -92435,37 +89521,62 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header p-2" }, [
-      _c("ul", { staticClass: "nav nav-pills" }, [
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link active",
-              attrs: { href: "#activity", "data-toggle": "tab" }
-            },
-            [_vm._v("Activity")]
-          )
+      _c(
+        "ul",
+        {
+          staticClass: "nav nav-pills nav-pills-primary",
+          attrs: { role: "tablist" }
+        },
+        [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link active",
+                attrs: { href: "#activity", "data-toggle": "tab" }
+              },
+              [_vm._v("Activity")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: { href: "#timeline", "data-toggle": "tab" }
+              },
+              [_vm._v("Timeline")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: { href: "#settings", "data-toggle": "tab" }
+              },
+              [_vm._v("Settings")]
+            )
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card shadow p-3 mb-5 bg-light rounded" }, [
+      _c("div", { staticClass: "card-body text-left" }, [
+        _c("h4", { staticClass: "card-title" }, [
+          _vm._v("晋升星级投注额统计周期：北京时间周一00:00:00至周日23:59:59")
         ]),
         _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "#timeline", "data-toggle": "tab" }
-            },
-            [_vm._v("Timeline")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "#settings", "data-toggle": "tab" }
-            },
-            [_vm._v("Settings")]
+        _c("p", { staticClass: "card-text" }, [
+          _vm._v(
+            "晋级奖金发放时间：成功晋升星级后，奖金将自动进行派发，请在收到奖金派发通知后点击领取即可（奖金领取有效期为30天，过期失效）."
           )
         ])
       ])
@@ -92475,27 +89586,452 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("h4", { staticClass: "card-title" }, [_vm._v("Card title")]),
+    return _c("div", { staticClass: "card shadow p-3 mb-5 bg-light rounded" }, [
+      _c("div", { staticClass: "card-body text-left" }, [
+        _c(
+          "h4",
+          { staticClass: "card-title font-weight-bolder text-custome" },
+          [_vm._v("1343296")]
+        ),
         _vm._v(" "),
         _c("p", { staticClass: "card-text" }, [
           _vm._v(
-            "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+            "推荐朋友可享受朋友产生有效投注额0.1%的奖金，即投即送，上不封顶."
           )
         ]),
         _vm._v(" "),
-        _c("p", { staticClass: "card-text" }, [
-          _c("small", { staticClass: "text-muted" }, [
-            _vm._v("Last updated 3 mins ago")
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-2" }, [_vm._v("推荐方式：")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-10" }, [
+            _vm._v(
+              "\n                            1.让您的朋友在注册账号的时候填写左侧数字推荐码\n                            "
+            ),
+            _c("br"),
+            _vm._v(
+              "2.点击右侧复制链接，将推荐链接发送给您的朋友注册账号\n                          "
+            )
           ])
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tab-pane", attrs: { id: "timeline" } }, [
+      _c("div", { staticClass: "header text-center" }, [
+        _c("h3", { staticClass: "title" }, [_vm._v("Timeline")])
       ]),
       _vm._v(" "),
-      _c("img", {
-        staticClass: "card-img-bottom",
-        attrs: { src: "", alt: "Card image cap" }
-      })
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "card card-timeline card-plain" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("ul", { staticClass: "timeline" }, [
+                _c("li", { staticClass: "timeline-inverted" }, [
+                  _c("div", { staticClass: "timeline-badge danger" }, [
+                    _c("i", { staticClass: "tim-icons icon-planet" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "timeline-panel" }, [
+                    _c("div", { staticClass: "timeline-heading" }, [
+                      _c(
+                        "span",
+                        { staticClass: "badge badge-pill badge-danger" },
+                        [_vm._v("Some Title")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "timeline-body" }, [
+                      _c("p", [
+                        _vm._v(
+                          "Wifey made the best Father's Day meal ever. So thankful so happy so blessed. Thank you for making my family We just had fun with the “future” theme !!! It was a fun night all together ... The always rude Kanye Show at 2am Sold Out Famous viewing @ Figueroa and 12th in downtown."
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h6", [
+                      _c("i", { staticClass: "ti-time" }),
+                      _vm._v(
+                        " 11 hours ago via Twitter\n                                  "
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("div", { staticClass: "timeline-badge success" }, [
+                    _c("i", { staticClass: "tim-icons icon-user-run" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "timeline-panel" }, [
+                    _c("div", { staticClass: "timeline-heading" }, [
+                      _c(
+                        "span",
+                        { staticClass: "badge badge-pill badge-success" },
+                        [_vm._v("Another One")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "timeline-body" }, [
+                      _c("p", [
+                        _vm._v(
+                          "Thank God for the support of my wife and real friends. I also wanted to point out that it’s the first album to go number 1 off of streaming!!! I love you Ellen and also my number one design rule of anything I do from shoes to music to homes is that Kim has to like it...."
+                        )
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "timeline-inverted" }, [
+                  _c("div", { staticClass: "timeline-badge info" }, [
+                    _c("i", { staticClass: "tim-icons icon-notes" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "timeline-panel" }, [
+                    _c("div", { staticClass: "timeline-heading" }, [
+                      _c(
+                        "span",
+                        { staticClass: "badge badge-pill badge-info" },
+                        [_vm._v("Another Title")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "timeline-body" }, [
+                      _c("p", [
+                        _vm._v(
+                          "Called I Miss the Old Kanye That’s all it was Kanye And I love you like Kanye loves Kanye Famous viewing @ Figueroa and 12th in downtown LA 11:10PM"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "What if Kanye made a song about Kanye Royère doesn't make a Polar bear bed but the Polar bear couch is my favorite piece of furniture we own It wasn’t any Kanyes Set on his goals Kanye"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("hr")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "timeline-footer" }, [
+                      _c("div", { staticClass: "dropdown" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-round btn-info dropdown-toggle",
+                            attrs: { type: "button", "data-toggle": "dropdown" }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "tim-icons icon-settings-gear-63"
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "dropdown-menu" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Action")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Another action")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("Something else here")]
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("div", { staticClass: "timeline-badge warning" }, [
+                    _c("i", { staticClass: "tim-icons icon-gift-2" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "timeline-panel" }, [
+                    _c("div", { staticClass: "timeline-heading" }, [
+                      _c(
+                        "span",
+                        { staticClass: "badge badge-pill badge-warning" },
+                        [_vm._v("Another One")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "timeline-body" }, [
+                      _c("p", [
+                        _vm._v(
+                          "Tune into Big Boy's 92.3 I'm about to play the first single from Cruel Winter also to Kim’s hair and makeup Lorraine jewelry and the whole style squad at Balmain and the Yeezy team. Thank you Anna for the invite thank you to the whole Vogue team"
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tab-pane", attrs: { id: "settings" } }, [
+      _c("div", { staticClass: "header text-center" }, [
+        _c("h3", { staticClass: "title" }, [_vm._v("Settings")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _c("h5", { staticClass: "title" }, [_vm._v("Edit Profile")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("form", [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-5 pr-md-1" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Company (disabled)")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          disabled: "",
+                          value: "Creative Code Inc."
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-3 px-md-1" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Username")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text", value: "michael23" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4 pl-md-1" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Email address")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "email", placeholder: "mike@email.com" }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6 pr-md-1" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("First Name")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text", value: "Mike" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6 pl-md-1" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Last Name")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text", value: "Andrew" }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Address")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Home Address",
+                          value:
+                            "Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-4 pr-md-1" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("City")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text", value: "Mike" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4 px-md-1" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Country")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text", value: "Andrew" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4 pl-md-1" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Postal Code")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "number", placeholder: "ZIP Code" }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("About Me")]),
+                      _vm._v(" "),
+                      _c(
+                        "textarea",
+                        {
+                          staticClass: "form-control",
+                          attrs: { rows: "4", cols: "80" }
+                        },
+                        [
+                          _vm._v(
+                            "Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
+                          )
+                        ]
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-fill btn-primary",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("Save")]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("div", { staticClass: "card card-user" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("p", { staticClass: "card-text" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "author" }, [
+                _c("div", { staticClass: "block block-one" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "block block-two" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "block block-three" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "block block-four" }),
+                _vm._v(" "),
+                _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                  _c("img", {
+                    staticClass: "avatar",
+                    attrs: { src: "/assets/img/emilyz.jpg", alt: "..." }
+                  }),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "title" }, [_vm._v("Mike Andrew")])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "description" }, [
+                  _vm._v("Ceo/Co-Founder")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-description" }, [
+                _vm._v(
+                  "Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is..."
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer" }, [
+              _c("div", { staticClass: "button-container" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-icon btn-round btn-facebook",
+                    attrs: { href: "javascript:void(0)" }
+                  },
+                  [_c("i", { staticClass: "fab fa-facebook" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-icon btn-round btn-twitter",
+                    attrs: { href: "javascript:void(0)" }
+                  },
+                  [_c("i", { staticClass: "fab fa-twitter" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-icon btn-round btn-google",
+                    attrs: { href: "javascript:void(0)" }
+                  },
+                  [_c("i", { staticClass: "fab fa-google-plus" })]
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
     ])
   }
 ]
@@ -92806,129 +90342,125 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "nav",
-      { staticClass: "navbar navbar-expand-lg navbar-absolute color-bg" },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "navbar-wrapper" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "navbar-brand", attrs: { href: _vm.welcome } },
-              [_vm._v("TNK")]
-            )
-          ]),
+    _c("nav", { staticClass: "navbar navbar-expand-lg fixed-top color-bg" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "navbar-wrapper" }, [
+          _vm._m(0),
           _vm._v(" "),
-          _vm._m(2),
+          _vm._m(1),
           _vm._v(" "),
           _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse",
-              attrs: { id: "navigation" }
-            },
-            [
-              _vm._m(3),
-              _vm._v(" "),
-              _vm.checkuser == "false"
-                ? _c("span", [_vm._m(4)])
-                : _vm.checkuser == "true"
-                ? _c("span", [
-                    _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: _vm.messages }
-                          },
-                          [_vm._m(5), _vm._v("Message\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.myaccount()
-                              }
-                            }
-                          },
-                          [_vm._m(6), _vm._v("My Account\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: _vm.promote }
-                          },
-                          [_vm._m(7), _vm._v("My Privilege\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: _vm.lobby }
-                          },
-                          [_vm._m(8), _vm._v("Game Lobby\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.rechargeClick()
-                              }
-                            }
-                          },
-                          [_vm._m(9), _vm._v("Recharge\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.withDrawClick()
-                              }
-                            }
-                          },
-                          [_vm._m(10), _vm._v("WithDraw\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(11)
-                    ])
-                  ])
-                : _vm._e()
-            ]
+            "a",
+            { staticClass: "navbar-brand", attrs: { href: _vm.welcome } },
+            [_vm._v("TNK")]
           )
-        ])
-      ]
-    ),
+        ]),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navigation" }
+          },
+          [
+            _vm._m(3),
+            _vm._v(" "),
+            _vm.checkuser == "false"
+              ? _c("span", [_vm._m(4)])
+              : _vm.checkuser == "true"
+              ? _c("span", [
+                  _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: _vm.messages }
+                        },
+                        [_vm._m(5), _vm._v("Message\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.myaccount()
+                            }
+                          }
+                        },
+                        [_vm._m(6), _vm._v("My Account\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: _vm.promote }
+                        },
+                        [_vm._m(7), _vm._v("My Privilege\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: _vm.lobby }
+                        },
+                        [_vm._m(8), _vm._v("Game Lobby\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.rechargeClick()
+                            }
+                          }
+                        },
+                        [_vm._m(9), _vm._v("Recharge\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.withDrawClick()
+                            }
+                          }
+                        },
+                        [_vm._m(10), _vm._v("WithDraw\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(11)
+                  ])
+                ])
+              : _vm._e()
+          ]
+        )
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "modal fade", attrs: { id: "loginModal" } }, [
       _c("div", { staticClass: "modal-dialog modal-lg" }, [
@@ -93390,9 +90922,9 @@ var staticRenderFns = [
                   _c("img", { attrs: { src: "assets/img/user.png", alt: "" } })
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-6" }, [
+                _c("div", { staticClass: "col-6 bg-logout" }, [
                   _c("em", { staticClass: "header-user-name" }, [
-                    _vm._v("aghq186496")
+                    _vm._v("test")
                   ]),
                   _vm._v(" "),
                   _c("br"),
@@ -110328,62 +107860,102 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "div",
-        { staticClass: "wrapper container-whitelabel" },
-        [
-          _c("navbar"),
-          _vm._v(" "),
-          _c("asides"),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "main-panel ps main-container game-lobby" },
-            [
-              _c("div", { staticClass: "content container-wrap" }, [
-                _c("ul", [
-                  _c("li", [
-                    _c("div", { staticClass: "item item-inter" }, [
-                      _c("div", { staticClass: "links" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "section" }, [
-                        _c("h2"),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href:
-                                "http://localhost:8003/redirect?firstname=" +
-                                this.firstname +
-                                "&lastname=" +
-                                this.lastname +
-                                "&name=" +
-                                this.email,
-                              target: "_blank"
-                            }
-                          },
-                          [_c("h1", [_vm._v("Play Lec68")])]
-                        )
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("alertside")
-        ],
-        1
-      ),
+      _c("app-navbar"),
       _vm._v(" "),
-      _c("footers")
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-2" }, [_c("app-aside")], 1),
+          _vm._v(" "),
+          _vm._m(0)
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-12" },
+          [_c("app-footer"), _vm._v(" "), _c("app-alertsidebar")],
+          1
+        )
+      ])
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xl-10 col-sm-12" }, [
+      _c("div", { staticClass: "row content" }, [
+        _c("div", { staticClass: "col-4" }, [
+          _c("div", { staticClass: "ft-recipe" }, [
+            _c("div", { staticClass: "ft-recipe__thumb" }, [
+              _c("h3", [_vm._v("Today's Featured Recipe")]),
+              _vm._v(" "),
+              _c("img", {
+                attrs: {
+                  src:
+                    "https://zippypaws.com/app/uploads/2018/05/strawberry-waffles-1024x668.jpg",
+                  alt: "Strawberry Waffle"
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ft-recipe__content" }, [
+              _c("header", { staticClass: "content__header" }, [
+                _c("div", { staticClass: "row-wrapper" }, [
+                  _c("h2", { staticClass: "recipe-title" }, [
+                    _vm._v("Strawberry Waffle")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "user-rating" })
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "recipe-details" }, [
+                  _c("li", { staticClass: "recipe-details-item time" }, [
+                    _c("i", { staticClass: "ion ion-ios-clock-outline" }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "value" }, [_vm._v("20")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "title" }, [_vm._v("Minutes")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "recipe-details-item ingredients" }, [
+                    _c("i", { staticClass: "ion ion-ios-book-outline" }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "value" }, [_vm._v("5")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "title" }, [
+                      _vm._v("Ingredients")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "recipe-details-item servings" }, [
+                    _c("i", { staticClass: "ion ion-ios-person-outline" }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "value" }, [_vm._v("4-6")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "title" }, [_vm._v("Serving")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "description" }, [
+                _vm._v(
+                  "There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries..."
+                )
+              ]),
+              _vm._v(" "),
+              _c("footer", { staticClass: "content__footer" }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v("View Recipe")])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -110827,480 +108399,473 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "nav",
-      { staticClass: "navbar navbar-expand-lg navbar-absolute color-bg" },
-      [
-        _c("div", { staticClass: "container-fluid" }, [
-          _c("div", { staticClass: "navbar-wrapper" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "navbar-brand", attrs: { href: _vm.welcome } },
-              [_vm._v("TNK")]
-            )
-          ]),
+    _c("nav", { staticClass: "navbar navbar-expand-lg fixed-top color-bg" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "navbar-wrapper" }, [
+          _vm._m(0),
           _vm._v(" "),
-          _c("div", { staticClass: "d-block d-xl-none" }, [
-            _c("ul", { staticClass: "nav-mobile" }, [
-              _c("li", { staticClass: "menu-container" }, [
-                _c("input", { attrs: { id: "menu-toggle", type: "checkbox" } }),
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "a",
+            { staticClass: "navbar-brand", attrs: { href: _vm.welcome } },
+            [_vm._v("TNK")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "d-block d-xl-none" }, [
+          _c("ul", { staticClass: "nav-mobile" }, [
+            _c("li", { staticClass: "menu-container" }, [
+              _c("input", { attrs: { id: "menu-toggle", type: "checkbox" } }),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("ul", { staticClass: "menu-sidebar" }, [
+                _c("li", [
+                  _c("input", {
+                    staticClass: "submenu-toggle",
+                    attrs: { type: "checkbox", id: "my-account" }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "submenu-label",
+                      attrs: { for: "my-account" }
+                    },
+                    [_vm._v("My account")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu-sub" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName("myaccount", $event)
+                            }
+                          }
+                        },
+                        [_vm._v("My account")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName(
+                                "recommedndedfriends",
+                                $event
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v("Recommeded Friends")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName(
+                                "transactionrecord",
+                                $event
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v("Transaction Record")]
+                      )
+                    ])
+                  ])
+                ]),
                 _vm._v(" "),
-                _vm._m(2),
+                _c("li", [
+                  _c("input", {
+                    staticClass: "submenu-toggle",
+                    attrs: { type: "checkbox", id: "financial-center" }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "submenu-label",
+                      attrs: { for: "financial-center" }
+                    },
+                    [_vm._v("Financial Center")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu-sub" }, [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName(
+                                "instantrecharge",
+                                $event
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v("Instant recharge")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName(
+                                "applyforwithdrawal",
+                                $event
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v("Apply for withdrawal")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName(
+                                "selfservicewashing",
+                                $event
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v("Self-service washing")]
+                      )
+                    ])
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("ul", { staticClass: "menu-sidebar" }, [
-                  _c("li", [
-                    _c("input", {
-                      staticClass: "submenu-toggle",
-                      attrs: { type: "checkbox", id: "my-account" }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "submenu-label",
-                        attrs: { for: "my-account" }
-                      },
-                      [_vm._v("My account")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "menu-sub" }, [
-                      _vm._m(3),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName("myaccount", $event)
-                              }
-                            }
-                          },
-                          [_vm._v("My account")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName(
-                                  "recommedndedfriends",
-                                  $event
-                                )
-                              }
-                            }
-                          },
-                          [_vm._v("Recommeded Friends")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName(
-                                  "transactionrecord",
-                                  $event
-                                )
-                              }
-                            }
-                          },
-                          [_vm._v("Transaction Record")]
-                        )
-                      ])
-                    ])
-                  ]),
+                _c("li", [
+                  _c("input", {
+                    staticClass: "submenu-toggle",
+                    attrs: { type: "checkbox", id: "about" }
+                  }),
                   _vm._v(" "),
-                  _c("li", [
-                    _c("input", {
-                      staticClass: "submenu-toggle",
-                      attrs: { type: "checkbox", id: "financial-center" }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "submenu-label",
-                        attrs: { for: "financial-center" }
-                      },
-                      [_vm._v("Financial Center")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "menu-sub" }, [
-                      _vm._m(4),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName(
-                                  "instantrecharge",
-                                  $event
-                                )
-                              }
-                            }
-                          },
-                          [_vm._v("Instant recharge")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName(
-                                  "applyforwithdrawal",
-                                  $event
-                                )
-                              }
-                            }
-                          },
-                          [_vm._v("Apply for withdrawal")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName(
-                                  "selfservicewashing",
-                                  $event
-                                )
-                              }
-                            }
-                          },
-                          [_vm._v("Self-service washing")]
-                        )
-                      ])
-                    ])
-                  ]),
+                  _c(
+                    "label",
+                    { staticClass: "submenu-label", attrs: { for: "about" } },
+                    [_vm._v("About")]
+                  ),
                   _vm._v(" "),
-                  _c("li", [
-                    _c("input", {
-                      staticClass: "submenu-toggle",
-                      attrs: { type: "checkbox", id: "about" }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      { staticClass: "submenu-label", attrs: { for: "about" } },
-                      [_vm._v("About")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "menu-sub" }, [
-                      _vm._m(5),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName("novicetask", $event)
-                              }
-                            }
-                          },
-                          [_vm._v("Novice task")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName("dailytask", $event)
-                              }
-                            }
-                          },
-                          [_vm._v("Daily task")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName(
-                                  "achievementtask",
-                                  $event
-                                )
-                              }
-                            }
-                          },
-                          [_vm._v("Achievement task")]
-                        )
-                      ])
-                    ])
-                  ]),
+                  _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
                   _vm._v(" "),
-                  _c("li", [
-                    _c("input", {
-                      staticClass: "submenu-toggle",
-                      attrs: { type: "checkbox", id: "customer-information" }
-                    }),
+                  _c("ul", { staticClass: "menu-sub" }, [
+                    _vm._m(5),
                     _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "submenu-label",
-                        attrs: { for: "customer-information" }
-                      },
-                      [_vm._v("Customer information")]
-                    ),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName("novicetask", $event)
+                            }
+                          }
+                        },
+                        [_vm._v("Novice task")]
+                      )
+                    ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName("dailytask", $event)
+                            }
+                          }
+                        },
+                        [_vm._v("Daily task")]
+                      )
+                    ]),
                     _vm._v(" "),
-                    _c("ul", { staticClass: "menu-sub" }, [
-                      _vm._m(6),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName(
-                                  "changepassword",
-                                  $event
-                                )
-                              }
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName(
+                                "achievementtask",
+                                $event
+                              )
                             }
-                          },
-                          [_vm._v("change Password")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName("bankinfo", $event)
-                              }
-                            }
-                          },
-                          [_vm._v("Bank info")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName("modifyphone", $event)
-                              }
-                            }
-                          },
-                          [_vm._v("Modify phone")]
-                        )
-                      ])
+                          }
+                        },
+                        [_vm._v("Achievement task")]
+                      )
                     ])
-                  ]),
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("input", {
+                    staticClass: "submenu-toggle",
+                    attrs: { type: "checkbox", id: "customer-information" }
+                  }),
                   _vm._v(" "),
-                  _c("li", [
-                    _c("input", {
-                      staticClass: "submenu-toggle",
-                      attrs: { type: "checkbox", id: "customer-care" }
-                    }),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "submenu-label",
+                      attrs: { for: "customer-information" }
+                    },
+                    [_vm._v("Customer information")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu-sub" }, [
+                    _vm._m(6),
                     _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "submenu-label",
-                        attrs: { for: "customer-care" }
-                      },
-                      [_vm._v("Customer Care")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "menu-sub" }, [
-                      _vm._m(7),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName(
-                                  "subscription",
-                                  $event
-                                )
-                              }
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName(
+                                "changepassword",
+                                $event
+                              )
                             }
-                          },
-                          [_vm._v("SMS subscription")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.setNavShowName("message", $event)
-                              }
+                          }
+                        },
+                        [_vm._v("change Password")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName("bankinfo", $event)
                             }
-                          },
-                          [_vm._v("My message")]
-                        )
-                      ])
+                          }
+                        },
+                        [_vm._v("Bank info")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName("modifyphone", $event)
+                            }
+                          }
+                        },
+                        [_vm._v("Modify phone")]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("input", {
+                    staticClass: "submenu-toggle",
+                    attrs: { type: "checkbox", id: "customer-care" }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "submenu-label",
+                      attrs: { for: "customer-care" }
+                    },
+                    [_vm._v("Customer Care")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "arrow right" }, [_vm._v("›")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu-sub" }, [
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName("subscription", $event)
+                            }
+                          }
+                        },
+                        [_vm._v("SMS subscription")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setNavShowName("message", $event)
+                            }
+                          }
+                        },
+                        [_vm._v("My message")]
+                      )
                     ])
                   ])
                 ])
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse",
-              attrs: { id: "navigation" }
-            },
-            [
-              _vm._m(8),
-              _vm._v(" "),
-              _vm.checkuser == "false"
-                ? _c("span", [_vm._m(9)])
-                : _vm.checkuser == "true"
-                ? _c("span", [
-                    _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: _vm.messages }
-                          },
-                          [_vm._m(10), _vm._v("Message\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.myaccount()
-                              }
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navigation" }
+          },
+          [
+            _vm._m(8),
+            _vm._v(" "),
+            _vm.checkuser == "false"
+              ? _c("span", [_vm._m(9)])
+              : _vm.checkuser == "true"
+              ? _c("span", [
+                  _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: _vm.messages }
+                        },
+                        [_vm._m(10), _vm._v("Message\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.myaccount()
                             }
-                          },
-                          [_vm._m(11), _vm._v("My Account\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: _vm.promote }
-                          },
-                          [_vm._m(12), _vm._v("My Privilege\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: _vm.lobby }
-                          },
-                          [_vm._m(13), _vm._v("Game Lobby\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.rechargeClick()
-                              }
+                          }
+                        },
+                        [_vm._m(11), _vm._v("My Account\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: _vm.promote }
+                        },
+                        [_vm._m(12), _vm._v("My Privilege\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: _vm.lobby }
+                        },
+                        [_vm._m(13), _vm._v("Game Lobby\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.rechargeClick()
                             }
-                          },
-                          [_vm._m(14), _vm._v("Recharge\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.withDrawClick()
-                              }
+                          }
+                        },
+                        [_vm._m(14), _vm._v("Recharge\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.withDrawClick()
                             }
-                          },
-                          [_vm._m(15), _vm._v("WithDraw\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(16)
-                    ])
+                          }
+                        },
+                        [_vm._m(15), _vm._v("WithDraw\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(16)
                   ])
-                : _vm._e()
-            ]
-          )
-        ])
-      ]
-    ),
+                ])
+              : _vm._e()
+          ]
+        )
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "modal fade", attrs: { id: "loginModal" } }, [
       _c("div", { staticClass: "modal-dialog modal-lg" }, [
@@ -114435,178 +112000,168 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "nav",
-      { staticClass: "navbar navbar-expand-lg navbar-absolute color-bg" },
-      [
-        _c("div", { staticClass: "container-fluid px-0" }, [
-          _c("div", { staticClass: "navbar-wrapper" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "navbar-brand", attrs: { href: _vm.welcome } },
-              [_vm._v("TNK")]
-            )
-          ]),
+    _c("nav", { staticClass: "navbar navbar-expand-lg fixed-top color-bg" }, [
+      _c("div", { staticClass: "container-fluid px-0" }, [
+        _c("div", { staticClass: "navbar-wrapper" }, [
+          _vm._m(0),
           _vm._v(" "),
-          _vm._m(2),
+          _vm._m(1),
           _vm._v(" "),
           _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse",
-              attrs: { id: "navigation" }
-            },
-            [
-              _vm._m(3),
-              _vm._v(" "),
-              _vm.checkuser == "false"
-                ? _c("span", [_vm._m(4)])
-                : _vm.checkuser == "true"
-                ? _c("span", [
-                    _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: _vm.messages }
-                          },
-                          [_vm._m(5), _vm._v("Message\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.myaccount()
-                              }
+            "a",
+            { staticClass: "navbar-brand", attrs: { href: _vm.welcome } },
+            [_vm._v("TNK")]
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navigation" }
+          },
+          [
+            _vm._m(3),
+            _vm._v(" "),
+            _vm.checkuser == "false"
+              ? _c("span", [_vm._m(4)])
+              : _vm.checkuser == "true"
+              ? _c("span", [
+                  _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: _vm.messages }
+                        },
+                        [_vm._m(5), _vm._v("Message\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.myaccount()
                             }
-                          },
-                          [_vm._m(6), _vm._v("My Account\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: _vm.promote }
-                          },
-                          [_vm._m(7), _vm._v("My Privilege\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: _vm.lobby }
-                          },
-                          [_vm._m(8), _vm._v("Game Lobby\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.rechargeClick()
-                              }
+                          }
+                        },
+                        [_vm._m(6), _vm._v("My Account\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: _vm.promote }
+                        },
+                        [_vm._m(7), _vm._v("My Privilege\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: _vm.lobby }
+                        },
+                        [_vm._m(8), _vm._v("Game Lobby\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.rechargeClick()
                             }
-                          },
-                          [_vm._m(9), _vm._v("Recharge\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "button nav-link d-flex float-left",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.withDrawClick()
-                              }
+                          }
+                        },
+                        [_vm._m(9), _vm._v("Recharge\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.withDrawClick()
                             }
-                          },
-                          [_vm._m(10), _vm._v("WithDraw\n              ")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass:
-                              "button nav-link d-flex float-left fixed-logout",
-                            attrs: { href: "#" }
-                          },
-                          [
+                          }
+                        },
+                        [_vm._m(10), _vm._v("WithDraw\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "button nav-link d-flex float-left fixed-logout",
+                          attrs: { href: "#" }
+                        },
+                        [
+                          _c("div", { staticClass: "dropdown show-dropdown" }, [
+                            _vm._m(11),
+                            _vm._v(" "),
                             _c(
                               "div",
-                              { staticClass: "dropdown show-dropdown" },
+                              { staticClass: "dropdown-menu mt-3 p-0" },
                               [
-                                _vm._m(11),
+                                _vm._m(12),
                                 _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "dropdown-menu mt-3 p-0" },
-                                  [
-                                    _vm._m(12),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "menu-body" }, [
-                                      _vm._m(13),
-                                      _vm._v(" "),
-                                      _c(
-                                        "a",
-                                        {
-                                          staticClass: "btn-logout",
-                                          attrs: { href: "logout" },
-                                          on: { click: _vm.byebye }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fa fa-power-off"
-                                          }),
-                                          _vm._v(
-                                            "Log Out\n                      "
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  ]
-                                )
+                                _c("div", { staticClass: "menu-body" }, [
+                                  _vm._m(13),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "btn-logout",
+                                      attrs: { href: "logout" },
+                                      on: { click: _vm.byebye }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fa fa-power-off"
+                                      }),
+                                      _vm._v("Log Out\n                      ")
+                                    ]
+                                  )
+                                ])
                               ]
                             )
-                          ]
-                        )
-                      ])
+                          ])
+                        ]
+                      )
                     ])
                   ])
-                : _vm._e()
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "d-none d-xl-block" })
-        ])
-      ]
-    ),
+                ])
+              : _vm._e()
+          ]
+        ),
+        _vm._v(" "),
+        _c("span", { staticClass: "d-none d-xl-block" })
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "modal fade", attrs: { id: "loginModal" } }, [
       _c("div", { staticClass: "modal-dialog modal-lg" }, [

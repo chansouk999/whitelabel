@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-absolute color-bg">
+    <nav class="navbar navbar-expand-lg fixed-top color-bg">
       <div class="container">
         <div class="navbar-wrapper">
           <div class="navbar-minimize d-inline">
@@ -158,8 +158,8 @@
                         <div class="col-6">
                           <img src="assets/img/user.png" alt>
                         </div>
-                        <div class="col-6">
-                          <em class="header-user-name">aghq186496</em>
+                        <div class="col-6 bg-logout">
+                          <em class="header-user-name">test</em>
                           <br>
                           <span class="header-user-level level-0">新会员</span>
                         </div>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-absolute color-bg">
+    <nav class="navbar navbar-expand-lg fixed-top color-bg">
       <div class="container-fluid">
         <div class="navbar-wrapper">
           <div class="navbar-minimize d-inline">
