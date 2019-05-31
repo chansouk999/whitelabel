@@ -9,6 +9,8 @@ Vue.component('app-message', require('./components/desktop/message.vue').default
 // Mobile
 Vue.component('app-container', require('./components/mobile/container.vue').default);
 
+// Admin
+Vue.component('app-containeradmin', require('./components/admin/container.vue').default);
 
 Vue.component('app-container', require('./components/welcome/containerwelcome.vue').default);
 Vue.component('app-index', require('./components/index/index.vue').default);

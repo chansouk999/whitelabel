@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+
 class HomeController extends Controller
 {
     /**
@@ -26,17 +27,27 @@ class HomeController extends Controller
     {
         return view('welcome');
     }
-    public function message(){
+    public function message()
+    {
         return view('desktop.message');
     }
-    public function indexpage(){
+    public function indexpage()
+    {
         return view('index');
     }
-    public function promote(){
+    public function promote()
+    {
         return view('promote');
     }
-    public function lobby(){
-       return view('lobby'); 
+    public function lobby()
+    {
+        return view('lobby');
     }
-   
+
+    
+    //    admin
+    public function admin()
+    {
+        return view('admin.welcome');
+    }
 }
