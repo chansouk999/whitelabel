@@ -1,145 +1,82 @@
 <template>
   <div>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
-      <div class="container-fluid">
-        <div class="navbar-wrapper">
-          <div class="navbar-minimize d-inline">
-            <button
-              class="minimize-sidebar btn btn-link btn-just-icon"
-              rel="tooltip"
-              data-original-title="Sidebar toggle"
-              data-placement="right"
-            >
-              <i class="tim-icons icon-align-center visible-on-sidebar-regular"></i>
-              <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini"></i>
-            </button>
+    <header>
+      <!-- Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" id="navbar">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <strong>Material Lanfdfdsfding</strong>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarContent"
+            aria-controls="navbarContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#projects">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#pricing">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#team">Team</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+              </li>
+            </ul>
+            <a
+              class="btn btn-primary btn-rounded my-0"
+              href="https://templateflip.com/templates/material-landing"
+              target="_blank"
+            >Download</a>
           </div>
-          <div class="navbar-toggle d-inline">
-            <button type="button" class="navbar-toggler">
-              <span class="navbar-toggler-bar bar1"></span>
-              <span class="navbar-toggler-bar bar2"></span>
-              <span class="navbar-toggler-bar bar3"></span>
-            </button>
-          </div>
-          <a class="navbar-brand" :href="welcome">TNK</a>
         </div>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navigation"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-bar navbar-kebab"></span>
-          <span class="navbar-toggler-bar navbar-kebab"></span>
-          <span class="navbar-toggler-bar navbar-kebab"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navigation">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a href="#" class="button nav-link d-flex">
-                <div class="icons">
-                  <i class="tim-icons icon-single-02 icon-default"></i>
-                  <i class="tim-icons icon-coins icon-hover"></i>
-                </div>Recommend friends
-              </a>
-            </li>
-          </ul>
-
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a
-                href="#"
-                class="button nav-link d-flex"
-                data-toggle="modal"
-                data-target="#loginModal"
-              >
-                <div class="icons">
-                  <i class="tim-icons icon-single-02 icon-default"></i>
-                  <i class="tim-icons icon-lock-circle icon-hover"></i>
-                </div>Message
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                href="#"
-                class="button nav-link d-flex"
-                data-toggle="modal"
-                data-target=".register"
-              >
-                <div class="icons">
-                  <i class="fas fa-user-plus icon-default"></i>
-                  <i class="tim-icons icon-badge icon-hover"></i>
-                </div>My Account
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                href="#"
-                class="button nav-link d-flex"
-                data-toggle="modal"
-                data-target="#freetrial"
-              >
-                <div class="icons">
-                  <i class="tim-icons icon-controller icon-default"></i>
-                  <i class="tim-icons icon-credit-card icon-hover"></i>
-                </div>Recharge
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="button nav-link d-flex fixed-logout">
-                <div class="dropdown show-dropdown">
-                  <a href="#" data-toggle="dropdown">
-                    <div class="icons">
-                      <i class="tim-icons icon-single-02 icon-default"></i>
-                      <i class="tim-icons icon-bullet-list-67 icon-hover"></i>
-                    </div>
-                  </a>
-                  <div class="dropdown-menu">
-                    <div class="row p-4">
-                      <div class="col-6">
-                        <img src="assets/img/user.png" alt>
-                      </div>
-                      <div class="col-6">
-                        <em class="header-user-name">aghq186496</em>
-                        <br>
-                        <span class="header-user-level level-0">新会员</span>
-                      </div>
-                      <small class="header-before-login-date">最近登录时间：2019-04-24 14:25:40</small>
-                    </div>
-                    <div class="menu-body">
-                      <div id="header-balance">
-                        总余额
-                        <h2 class="eid_total_credit m-0 p-0">0.00</h2>
-                        <div class="d-flex">
-                          <p class="text-desss">
-                            本地余额
-                            <span id="eid_local_credit">0.00</span>
-                          </p>
-                          <p class="text-balance">
-                            游戏余额
-                            <span id="eid_game_credit">0.00</span>
-                          </p>
-                        </div>
-                      </div>
-                      <a href="javascript:;" class="btn-logout">
-                        <i class="fa fa-power-off"></i>安全退出
-                      </a>
+      </nav>
+      <!-- Intro Section-->
+      <section class="view hm-gradient" id="intro">
+        <div class="full-bg-img d-flex align-items-center">
+          <div class="container">
+            <div class="row no-gutters">
+              <div class="col-md-10 col-lg-6 text-center text-md-left margins">
+                <div class="white-text">
+                  <div class="wow fadeInLeft" data-wow-delay="0.3s">
+                    <h1 class="h1-responsive font-bold mt-sm-5">Your Success is Our Mission.</h1>
+                    <div class="h6">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi fuga nesciunt
+                      dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea dolor molestiae
+                      iste.
                     </div>
                   </div>
+                  <br>
+                  <div class="wow fadeInLeft" data-wow-delay="0.3s">
+                    <a
+                      class="btn btn-white dark-grey-text font-bold ml-0"
+                      href="https://www.youtube.com/watch?v=60ItHLz5WEA"
+                      target="_blank"
+                    >
+                      <i class="fa fa-play mr-1"></i> View Demo
+                    </a>
+                    <a class="btn btn-outline-white" href="#">Learn more</a>
+                  </div>
                 </div>
-              </a>
-            </li>
-          </ul>
-          <!-- After Login done show this -->
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </nav>
-
-    <!-- End Navbar -->
-    <div></div>
+      </section>
+    </header>
   </div>
 </template>
 <script>

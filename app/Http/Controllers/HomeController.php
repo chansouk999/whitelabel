@@ -37,14 +37,14 @@ class HomeController extends Controller
     }
     public function promote()
     {
-        return view('promote');
+        return view('promote.promote');
     }
     public function lobby()
     {
         return view('lobby');
     }
 
-    
+
     //    admin
     public function admin()
     {
