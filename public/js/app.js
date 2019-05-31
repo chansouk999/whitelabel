@@ -3417,14 +3417,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
 //
 //
 //
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_1__["Bar"],
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Bar"],
   data: function data() {
     return {
       stockname: [1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -12078,6 +12078,8 @@ __webpack_require__.r(__webpack_exports__);
       user_id: null,
       pro_id: null,
       name: null,
+      firstname: null,
+      lastname: null,
       email: null,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
       checkuser: document.querySelector(".checkuser").getAttribute("value")
@@ -12092,7 +12094,8 @@ __webpack_require__.r(__webpack_exports__);
       window.open("http://localhost:8003/redirect", "", "width=1920,height=1080");
     },
     gotogame: function gotogame() {
-      window.open("http://localhost:8003/redirect", "_blank"); // let config = {
+      console.log(this.firstname + this.lastname); // window.open("http://localhost:8003/redirect?firstname="+this.firstname+"&lastname="+this.lastname, "_blank");
+      // let config = {
       //   headers:{'X-CSRF-TOKEN':this.csrf}
       // }
       //  axios.post('http://localhost:8003/checkapiuser',{
@@ -12116,13 +12119,15 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/userdetaildata').then(function (res) {
         console.log(res.data);
-        _this.id = res.data.id;
-        _this.user_id = res.data.user_id;
-        _this.provider_name = res.data.provider_name;
-        _this.balance = res.data.userBalance;
-        _this.pro_id = res.data.pro_id;
-        _this.name = res.data.name;
-        _this.email = res.data.email;
+        _this.id = res.data[0].id;
+        _this.user_id = res.data[0].user_id;
+        _this.provider_name = res.data[0].provider_name;
+        _this.balance = res.data[0].userBalance;
+        _this.pro_id = res.data[0].pro_id;
+        _this.name = res.data[0].name;
+        _this.email = res.data[0].email;
+        _this.firstname = res.data[0].id;
+        _this.lastname = res.data[0].secret;
         $('.id').val(_this.id);
         $('.provider_name').val(_this.provider_name);
         $('.balance').val(_this.balance);
@@ -109468,10 +109473,18 @@ var render = function() {
                         _c("h2"),
                         _vm._v(" "),
                         _c(
-                          "button",
+                          "a",
                           {
-                            attrs: { type: "submit" },
-                            on: { click: _vm.gotogame }
+                            attrs: {
+                              href:
+                                "http://localhost:8003/redirect?firstname=" +
+                                this.firstname +
+                                "&lastname=" +
+                                this.lastname +
+                                "&name=" +
+                                this.email,
+                              target: "_blank"
+                            }
                           },
                           [_c("h1", [_vm._v("Play Lec68")])]
                         )

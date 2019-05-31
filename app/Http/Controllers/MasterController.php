@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request; 
 use Auth;
+use App\clientid;
+use Illuminate\Support\Facades\DB;
 use App\User;
 class MasterController extends Controller
 {
@@ -16,7 +18,12 @@ class MasterController extends Controller
         // User::where('id',''.$id.'')->update(['userBalance'=>$balnce]);
     }
     public function userdetaildata(){
-        return Auth::user();
+        $id = Auth::user()->id;
+        $date = date('Y-m-d');
+        return DB::table('users')
+        ->join('oauth_clients','users.id','=','oauth_clients.user_id')
+        ->where('users.id',$id)
+        ->orderby('oauth_clients.created_at','desc')->limit(1)->get();
     }
 
 }

@@ -31,7 +31,7 @@
                   <span class="orange">欧洲厅：将马耳他实地赌场与真人娱乐场整合，充满异国情调的真人游戏。</span>
                   <br>VIP包桌：专属于您的桌台，尊享换荷官、飞牌、换牌靴等特权。
                 </p> -->
-                <!-- <div class="btns">
+                <!-- <div class="btns"> 
                   <button type="submit" class="orange" value="GO"></button>
                 </div> -->
                 
@@ -41,7 +41,7 @@
 
 
             
-                <button type="submit" @click="gotogame"> <h1>Play Lec68</h1> </button>
+                <a :href=" 'http://localhost:8003/redirect?firstname='+this.firstname+'&lastname='+this.lastname+'&name='+this.email " target="_blank"> <h1>Play Lec68</h1> </a>
               </div>
             </div>
           </li>
@@ -338,6 +338,8 @@ export default {
       user_id:null,
       pro_id:null,
       name:null,
+      firstname:null,
+      lastname:null,
       email:null,
       csrf: document
         .querySelector('meta[name="csrf-token"]')
@@ -355,7 +357,8 @@ export default {
           window.open("http://localhost:8003/redirect", "", "width=1920,height=1080");
     },
     gotogame(){
-      window.open("http://localhost:8003/redirect", "_blank");
+      console.log(this.firstname+this.lastname)
+      // window.open("http://localhost:8003/redirect?firstname="+this.firstname+"&lastname="+this.lastname, "_blank");
       // let config = {
       //   headers:{'X-CSRF-TOKEN':this.csrf}
       // }
@@ -379,13 +382,15 @@ export default {
     userdata(){
       axios.get('/userdetaildata').then(res=>{
         console.log(res.data)
-        this.id = res.data.id
-        this.user_id = res.data.user_id
-        this.provider_name = res.data.provider_name
-        this.balance = res.data.userBalance
-        this.pro_id = res.data.pro_id
-        this.name = res.data.name
-        this.email = res.data.email
+        this.id = res.data[0].id
+        this.user_id = res.data[0].user_id
+        this.provider_name = res.data[0].provider_name
+        this.balance = res.data[0].userBalance
+        this.pro_id = res.data[0].pro_id
+        this.name = res.data[0].name
+        this.email = res.data[0].email
+        this.firstname = res.data[0].id
+        this.lastname = res.data[0].secret
         $('.id').val(this.id);
         $('.provider_name').val(this.provider_name);
         $('.balance').val(this.balance);
