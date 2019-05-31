@@ -50,4 +50,10 @@ class HomeController extends Controller
     {
         return view('admin.welcome');
     }
+
+      //    Mobile
+      public function whitelabel_mobile()
+      {
+          return view('mobile.welcome');
+      }
 }

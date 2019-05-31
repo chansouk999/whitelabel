@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+    <navbars></navbars>
   </div>
 </template>
 <script>

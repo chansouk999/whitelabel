@@ -29,7 +29,7 @@
         @else
             <input type="hidden" class="checkuser" name="" value="false">
         @endif
-        <app-container></app-container>
+        <app-mobile></app-mobile>
     </div>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
