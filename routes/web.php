@@ -47,7 +47,8 @@ Route::get('/getlogin',function(){
     });
 
 
-
+// admin
+ Route::get('/admin','Homecontroller@admin');
 
 
 
