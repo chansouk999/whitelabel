@@ -45,7 +45,7 @@
                     class="description"
                   >There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries...</p>
                   <footer class="content__footer">
-                    <a href="#">View Recipe</a>
+                    <a :href=" 'http://localhost:8003/redirect?firstname='+this.firstname+'&lastname='+this.lastname+'&name='+this.email " target="_blank"> <h1>Play Lec68</h1> </a>
                   </footer>
                 </div>
               </div>
@@ -150,29 +150,6 @@ export default {
         console.log(er.res)
       })
     },
-    userdata() {
-      axios
-        .get("/userdetaildata")
-        .then(res => {
-          console.log(res.data);
-          this.id = res.data.id;
-          this.user_id = res.data.user_id;
-          this.provider_name = res.data.provider_name;
-          this.balance = res.data.userBalance;
-          this.pro_id = res.data.pro_id;
-          this.name = res.data.name;
-          this.email = res.data.email;
-          $(".id").val(this.id);
-          $(".provider_name").val(this.provider_name);
-          $(".balance").val(this.balance);
-          $(".pro_id").val(this.pro_id);
-          $(".name").val(this.name);
-          $(".email").val(this.email);
-        })
-        .catch(er => {
-          console.log(er.res);
-        });
-    }
   }
 };
 </script>

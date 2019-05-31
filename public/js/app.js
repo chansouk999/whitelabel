@@ -11859,8 +11859,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _desktop_asides__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./desktop/asides */ "./resources/js/components/desktop/asides.vue");
 /* harmony import */ var _alertsidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./alertsidebar */ "./resources/js/components/alertsidebar.vue");
 /* harmony import */ var _desktop_footers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./desktop/footers */ "./resources/js/components/desktop/footers.vue");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -11955,7 +11953,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     console.log("HELELEOEO");
     this.userdata();
   },
-  methods: _defineProperty({
+  methods: {
     runwindow: function runwindow() {
       window.open("http://localhost:8003/redirect", "", "width=1920,height=1080");
     },
@@ -12004,28 +12002,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log(er.res);
       });
     }
-  }, "userdata", function userdata() {
-    var _this2 = this;
-
-    axios.get("/userdetaildata").then(function (res) {
-      console.log(res.data);
-      _this2.id = res.data.id;
-      _this2.user_id = res.data.user_id;
-      _this2.provider_name = res.data.provider_name;
-      _this2.balance = res.data.userBalance;
-      _this2.pro_id = res.data.pro_id;
-      _this2.name = res.data.name;
-      _this2.email = res.data.email;
-      $(".id").val(_this2.id);
-      $(".provider_name").val(_this2.provider_name);
-      $(".balance").val(_this2.balance);
-      $(".pro_id").val(_this2.pro_id);
-      $(".name").val(_this2.name);
-      $(".email").val(_this2.email);
-    })["catch"](function (er) {
-      console.log(er.res);
-    });
-  })
+  }
 });
 
 /***/ }),
@@ -107866,7 +107843,44 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-2" }, [_c("app-aside")], 1),
           _vm._v(" "),
-          _vm._m(0)
+          _c("div", { staticClass: "col-xl-10 col-sm-12" }, [
+            _c("div", { staticClass: "row content" }, [
+              _c("div", { staticClass: "col-4" }, [
+                _c("div", { staticClass: "ft-recipe" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ft-recipe__content" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "description" }, [
+                      _vm._v(
+                        "There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries..."
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("footer", { staticClass: "content__footer" }, [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href:
+                              "http://localhost:8003/redirect?firstname=" +
+                              this.firstname +
+                              "&lastname=" +
+                              this.lastname +
+                              "&name=" +
+                              this.email,
+                            target: "_blank"
+                          }
+                        },
+                        [_c("h1", [_vm._v("Play Lec68")])]
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
         ]),
         _vm._v(" "),
         _c(
@@ -107885,72 +107899,54 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xl-10 col-sm-12" }, [
-      _c("div", { staticClass: "row content" }, [
-        _c("div", { staticClass: "col-4" }, [
-          _c("div", { staticClass: "ft-recipe" }, [
-            _c("div", { staticClass: "ft-recipe__thumb" }, [
-              _c("h3", [_vm._v("Today's Featured Recipe")]),
-              _vm._v(" "),
-              _c("img", {
-                attrs: {
-                  src:
-                    "https://zippypaws.com/app/uploads/2018/05/strawberry-waffles-1024x668.jpg",
-                  alt: "Strawberry Waffle"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "ft-recipe__content" }, [
-              _c("header", { staticClass: "content__header" }, [
-                _c("div", { staticClass: "row-wrapper" }, [
-                  _c("h2", { staticClass: "recipe-title" }, [
-                    _vm._v("Strawberry Waffle")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "user-rating" })
-                ]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "recipe-details" }, [
-                  _c("li", { staticClass: "recipe-details-item time" }, [
-                    _c("i", { staticClass: "ion ion-ios-clock-outline" }),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "value" }, [_vm._v("20")]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "title" }, [_vm._v("Minutes")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "recipe-details-item ingredients" }, [
-                    _c("i", { staticClass: "ion ion-ios-book-outline" }),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "value" }, [_vm._v("5")]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "title" }, [
-                      _vm._v("Ingredients")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "recipe-details-item servings" }, [
-                    _c("i", { staticClass: "ion ion-ios-person-outline" }),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "value" }, [_vm._v("4-6")]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "title" }, [_vm._v("Serving")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "description" }, [
-                _vm._v(
-                  "There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries..."
-                )
-              ]),
-              _vm._v(" "),
-              _c("footer", { staticClass: "content__footer" }, [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("View Recipe")])
-              ])
-            ])
-          ])
+    return _c("div", { staticClass: "ft-recipe__thumb" }, [
+      _c("h3", [_vm._v("Today's Featured Recipe")]),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "https://zippypaws.com/app/uploads/2018/05/strawberry-waffles-1024x668.jpg",
+          alt: "Strawberry Waffle"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "content__header" }, [
+      _c("div", { staticClass: "row-wrapper" }, [
+        _c("h2", { staticClass: "recipe-title" }, [
+          _vm._v("Strawberry Waffle")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "user-rating" })
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "recipe-details" }, [
+        _c("li", { staticClass: "recipe-details-item time" }, [
+          _c("i", { staticClass: "ion ion-ios-clock-outline" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "value" }, [_vm._v("20")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "title" }, [_vm._v("Minutes")])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "recipe-details-item ingredients" }, [
+          _c("i", { staticClass: "ion ion-ios-book-outline" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "value" }, [_vm._v("5")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "title" }, [_vm._v("Ingredients")])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "recipe-details-item servings" }, [
+          _c("i", { staticClass: "ion ion-ios-person-outline" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "value" }, [_vm._v("4-6")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "title" }, [_vm._v("Serving")])
         ])
       ])
     ])
