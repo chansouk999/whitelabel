@@ -1,40 +1,318 @@
 <template>
   <div>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top bg-primary">
-      <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button
-          class="navbar-toggler"
+    <nav class="navbar navbar-expand-lg fixed-top color-bg">
+      <div class="container-fluid">
+        <div class="navbar-wrapper">
+          <div class="navbar-minimize d-inline">
+            <button
+              class="minimize-sidebar btn btn-link btn-just-icon"
+              rel="tooltip"
+              data-original-title="Sidebar toggle"
+              data-placement="right"
+            >
+              <i class="tim-icons icon-align-center visible-on-sidebar-regular"></i>
+              <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini"></i>
+            </button>
+          </div>
+          <div class="navbar-toggle d-inline">
+            <button type="button" class="navbar-toggler">
+              <span class="navbar-toggler-bar bar1"></span>
+              <span class="navbar-toggler-bar bar2"></span>
+              <span class="navbar-toggler-bar bar3"></span>
+            </button>
+          </div>
+          <a class="navbar-brand" :href="welcome">TNK</a>
+        </div>
+        <!-- <button
+          class="navbar-toggler pl-5"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
+          data-target="#navigation"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-bar navbar-kebab"></span>
           <span class="navbar-toggler-bar navbar-kebab"></span>
           <span class="navbar-toggler-bar navbar-kebab"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">
-                Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
+        </button> -->
+        <div class="d-block d-xl-none">
+          <ul class="nav-mobile">
+            <li class="menu-container">
+              <input id="menu-toggle" type="checkbox">
+              <label for="menu-toggle" class="menu-button">
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+              </label>
+              <ul class="menu-sidebar">
+                <li>
+                  <input type="checkbox" id="my-account" class="submenu-toggle">
+                  <label class="submenu-label" for="my-account">My account</label>
+                  <div class="arrow right">&#8250;</div>
+                  <ul class="menu-sub">
+                    <li class="menu-sub-title">
+                      <label class="submenu-label" for="my-account">Back</label>
+                      <div class="arrow left">&#8249;</div>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('myaccount',$event)">My account</a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        @click="setNavShowName('recommedndedfriends',$event)"
+                      >Recommeded Friends</a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        @click="setNavShowName('transactionrecord',$event)"
+                      >Transaction Record</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <input type="checkbox" id="financial-center" class="submenu-toggle">
+                  <label class="submenu-label" for="financial-center">Financial Center</label>
+                  <div class="arrow right">&#8250;</div>
+                  <ul class="menu-sub">
+                    <li class="menu-sub-title">
+                      <label class="submenu-label" for="financial-center">Back</label>
+                      <div class="arrow left">&#8249;</div>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('instantrecharge',$event)">Instant recharge</a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        @click="setNavShowName('applyforwithdrawal',$event)"
+                      >Apply for withdrawal</a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        @click="setNavShowName('selfservicewashing',$event)"
+                      >Self-service washing</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <input type="checkbox" id="about" class="submenu-toggle">
+                  <label class="submenu-label" for="about">About</label>
+                  <div class="arrow right">&#8250;</div>
+                  <ul class="menu-sub">
+                    <li class="menu-sub-title">
+                      <label class="submenu-label" for="about">Back</label>
+                      <div class="arrow left">&#8249;</div>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('novicetask',$event)">Novice task</a>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('dailytask',$event)">Daily task</a>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('achievementtask',$event)">Achievement task</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <input type="checkbox" id="customer-information" class="submenu-toggle">
+                  <label class="submenu-label" for="customer-information">Customer information</label>
+                  <div class="arrow right">&#8250;</div>
+                  <ul class="menu-sub">
+                    <li class="menu-sub-title">
+                      <label class="submenu-label" for="customer-information">Back</label>
+                      <div class="arrow left">&#8249;</div>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('changepassword',$event)">change Password</a>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('bankinfo',$event)">Bank info</a>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('modifyphone',$event)">Modify phone</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <input type="checkbox" id="customer-care" class="submenu-toggle">
+                  <label class="submenu-label" for="customer-care">Customer Care</label>
+                  <div class="arrow right">&#8250;</div>
+                  <ul class="menu-sub">
+                    <li class="menu-sub-title">
+                      <label class="submenu-label" for="customer-care">Back</label>
+                      <div class="arrow left">&#8249;</div>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('subscription',$event)">SMS subscription</a>
+                    </li>
+                    <li>
+                      <a href="#" @click="setNavShowName('message',$event)">My message</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </li>
           </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navigation">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a href="#" class="button nav-link d-flex float-left">
+                <div class="icons">
+                  <i class="tim-icons icon-single-02 icon-default"></i>
+                  <i class="tim-icons icon-coins icon-hover"></i>
+                </div>Recommend friends
+              </a>
+            </li>
+          </ul>
+
+          <span v-if="checkuser == 'false'">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a
+                  href="#"
+                  class="button nav-link d-flex float-left"
+                  data-toggle="modal"
+                  data-target="#loginModal"
+                >
+                  <div class="icons">
+                    <i class="tim-icons icon-single-02 icon-default"></i>
+                    <i class="tim-icons icon-lock-circle icon-hover"></i>
+                  </div>Login
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#"
+                  class="button nav-link d-flex float-left"
+                  data-toggle="modal"
+                  data-target=".register"
+                >
+                  <div class="icons">
+                    <i class="fas fa-user-plus icon-default"></i>
+                    <i class="tim-icons icon-badge icon-hover"></i>
+                  </div>Register
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#"
+                  class="button nav-link d-flex float-left"
+                  data-toggle="modal"
+                  data-target="#freetrial"
+                >
+                  <div class="icons">
+                    <i class="tim-icons icon-controller icon-default"></i>
+                    <i class="tim-icons icon-credit-card icon-hover"></i>
+                  </div>Free Trial
+                </a>
+              </li>
+            </ul>
+          </span>
+
+          <!-- After Login done show this -->
+          <span v-else-if="checkuser == 'true'">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a :href="messages" class="button nav-link d-flex float-left">
+                  <div class="icons">
+                    <i class="tim-icons icon-chat-33 icon-default"></i>
+                    <i class="tim-icons icon-chat-33 icon-hover"></i>
+                  </div>Message
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="button nav-link d-flex float-left" @click="myaccount()">
+                  <div class="icons">
+                    <i class="tim-icons icon-single-02 icon-default"></i>
+                    <i class="tim-icons icon-single-02 icon-hover"></i>
+                  </div>My Account
+                </a>
+              </li>
+              <li class="nav-item">
+                <a :href="promote" class="button nav-link d-flex float-left">
+                  <div class="icons">
+                    <i class="tim-icons icon-trophy icon-default"></i>
+                    <i class="tim-icons icon-trophy icon-hover"></i>
+                  </div>My Privilege
+                </a>
+              </li>
+              <li class="nav-item">
+                <a :href="lobby" class="button nav-link d-flex float-left">
+                  <div class="icons">
+                    <i class="tim-icons icon-controller icon-default"></i>
+                    <i class="tim-icons icon-controller icon-hover"></i>
+                  </div>Game Lobby
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="button nav-link d-flex float-left" @click="rechargeClick()">
+                  <div class="icons">
+                    <i class="tim-icons icon-coins icon-default"></i>
+                    <i class="tim-icons icon-coins icon-hover"></i>
+                  </div>Recharge
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="button nav-link d-flex float-left" @click="withDrawClick()">
+                  <div class="icons">
+                    <i class="tim-icons icon-money-coins icon-default"></i>
+                    <i class="tim-icons icon-cart icon-hover"></i>
+                  </div>WithDraw
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="button nav-link d-flex float-left fixed-logout">
+                  <div class="dropdown show-dropdown">
+                    <a href="#" data-toggle="dropdown">
+                      <div class="icons">
+                        <i class="tim-icons icon-single-02 icon-default"></i>
+                        <i class="tim-icons icon-bullet-list-67 icon-hover"></i>
+                      </div>
+                    </a>
+                    <div class="dropdown-menu mt-3 p-0">
+                      <div class="row p-4">
+                        <div class="col-6">
+                          <img src="assets/img/user.png" alt>
+                        </div>
+                        <div class="col-6">
+                          <em class="header-user-name">aghq186496</em>
+                          <br>
+                          <span class="header-user-level level-0">新会员</span>
+                        </div>
+                        <small class="header-before-login-date">最近登录时间：2019-04-24 14:25:40</small>
+                      </div>
+                      <div class="menu-body">
+                        <div id="header-balance">
+                          总余额
+                          <h2 class="eid_total_credit m-0 p-0">0.00</h2>
+                          <div class="d-flex">
+                            <p class="text-desss">
+                              本地余额
+                              <span id="eid_local_credit">0.00</span>
+                            </p>
+                            <p class="text-balance">
+                              游戏余额
+                              <span id="eid_game_credit">0.00</span>
+                            </p>
+                          </div>
+                        </div>
+                        <a href="/logout" class="btn-logout">
+                          <i class="fa fa-power-off"></i>Log Out
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </span>
         </div>
       </div>
     </nav>

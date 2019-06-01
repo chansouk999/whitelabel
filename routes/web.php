@@ -50,6 +50,9 @@ Route::get('/getlogin',function(){
 // admin
  Route::get('/admins','Homecontroller@admin');
 
+//  Mobile
+ Route::get('/wlmobile','Homecontroller@whitelabel_mobile');
+
 
 
 
