@@ -1,7 +1,7 @@
 <template>
   <div>
           <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg fixed-top color-bg ">
+      <!-- <nav class="navbar navbar-expand-lg fixed-top color-bg ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <a class="navbar-brand" href="#pablo"></a>
@@ -24,7 +24,7 @@
             </form>
           </div>
         </div>
-      </nav>
+      </nav> -->
       <!-- End Navbar -->
   </div>
 </template>

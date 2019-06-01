@@ -46,6 +46,7 @@
                   >There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries...</p>
                   <footer class="content__footer">
                     <a :href=" 'http://localhost:8003/redirect?firstname='+this.firstname+'&lastname='+this.lastname+'&name='+this.email " target="_blank"> <h1>Play Lec68</h1> </a>
+                    <!-- <button @click="gotogame">PLAY</button> -->
                   </footer>
                 </div>
               </div>
@@ -106,26 +107,26 @@ export default {
       );
     },
     gotogame(){
-      console.log(this.firstname+this.lastname)
-      // window.open("http://localhost:8003/redirect?firstname="+this.firstname+"&lastname="+this.lastname, "_blank");
-      // let config = {
-      //   headers:{'X-CSRF-TOKEN':this.csrf}
-      // }
-      //  axios.post('http://localhost:8003/checkapiuser',{
-      //   id:this.id,
-      //   user_id:this.user_id,
-      //   provider_name:this.provider_name,
-      //   balance:this.balance,
-      //   pro_id:this.pro_id,
-      //   name:this.name,
-      //   email:this.email,
-      //  },config
-      //  ).then(res=>{
-      //   console.log(res.data)
-      //   let myWindow = window.open("http://localhost:8003/redirect", "", "width=1920,height=1080");
-      // }).catch(er=>{
-      //   console.log(er.res)
-      // })
+      // console.log(this.firstname+this.lastname)
+     
+      let config = {
+        headers:{'X-CSRF-TOKEN':this.csrf}
+      }
+       axios.post('http://localhost:8003/checkapiuser',{
+        id:this.id,
+        user_id:this.user_id,
+        provider_name:this.provider_name,
+        balance:this.balance,
+        pro_id:this.pro_id,
+        name:this.name,
+        email:this.email,
+       },config
+       ).then(res=>{
+        console.log(res.data)
+             window.open("http://localhost:8003/redirect", "_blank");
+      }).catch(er=>{
+        console.log(er.res)
+      })
       
     },
     userdata(){
@@ -140,12 +141,12 @@ export default {
         this.email = res.data[0].email
         this.firstname = res.data[0].id
         this.lastname = res.data[0].secret
-        $('.id').val(this.id);
-        $('.provider_name').val(this.provider_name);
-        $('.balance').val(this.balance);
-        $('.pro_id').val(this.pro_id);
-        $('.name').val(this.name);
-        $('.email').val(this.email);
+        // $('.id').val(this.id);
+        // $('.provider_name').val(this.provider_name);
+        // $('.balance').val(this.balance);
+        // $('.pro_id').val(this.pro_id);
+        // $('.name').val(this.name);
+        // $('.email').val(this.email);
       }).catch(er=>{
         console.log(er.res)
       })

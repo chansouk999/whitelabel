@@ -2569,6 +2569,800 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -11922,6 +12716,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -11958,25 +12753,26 @@ __webpack_require__.r(__webpack_exports__);
       window.open("http://localhost:8003/redirect", "", "width=1920,height=1080");
     },
     gotogame: function gotogame() {
-      console.log(this.firstname + this.lastname); // window.open("http://localhost:8003/redirect?firstname="+this.firstname+"&lastname="+this.lastname, "_blank");
-      // let config = {
-      //   headers:{'X-CSRF-TOKEN':this.csrf}
-      // }
-      //  axios.post('http://localhost:8003/checkapiuser',{
-      //   id:this.id,
-      //   user_id:this.user_id,
-      //   provider_name:this.provider_name,
-      //   balance:this.balance,
-      //   pro_id:this.pro_id,
-      //   name:this.name,
-      //   email:this.email,
-      //  },config
-      //  ).then(res=>{
-      //   console.log(res.data)
-      //   let myWindow = window.open("http://localhost:8003/redirect", "", "width=1920,height=1080");
-      // }).catch(er=>{
-      //   console.log(er.res)
-      // })
+      // console.log(this.firstname+this.lastname)
+      var config = {
+        headers: {
+          'X-CSRF-TOKEN': this.csrf
+        }
+      };
+      axios.post('http://localhost:8003/checkapiuser', {
+        id: this.id,
+        user_id: this.user_id,
+        provider_name: this.provider_name,
+        balance: this.balance,
+        pro_id: this.pro_id,
+        name: this.name,
+        email: this.email
+      }, config).then(function (res) {
+        console.log(res.data);
+        window.open("http://localhost:8003/redirect", "_blank");
+      })["catch"](function (er) {
+        console.log(er.res);
+      });
     },
     userdata: function userdata() {
       var _this = this;
@@ -11991,13 +12787,12 @@ __webpack_require__.r(__webpack_exports__);
         _this.name = res.data[0].name;
         _this.email = res.data[0].email;
         _this.firstname = res.data[0].id;
-        _this.lastname = res.data[0].secret;
-        $('.id').val(_this.id);
-        $('.provider_name').val(_this.provider_name);
-        $('.balance').val(_this.balance);
-        $('.pro_id').val(_this.pro_id);
-        $('.name').val(_this.name);
-        $('.email').val(_this.email);
+        _this.lastname = res.data[0].secret; // $('.id').val(this.id);
+        // $('.provider_name').val(this.provider_name);
+        // $('.balance').val(this.balance);
+        // $('.pro_id').val(this.pro_id);
+        // $('.name').val(this.name);
+        // $('.email').val(this.email);
       })["catch"](function (er) {
         console.log(er.res);
       });
@@ -34896,6 +35691,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, "\n.aisdecolor[data-v-159b1974]{\r\nbackground-color:none;\r\ncolor: #fff;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/container.vue?vue&type=style&index=0&id=fca00c74&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/container.vue?vue&type=style&index=0&id=fca00c74&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.top-header-function[data-v-fca00c74]{\n}\n.page-current[data-v-fca00c74]{\n}\n.page-search[data-v-fca00c74]{\n}\r\n", ""]);
 
 // exports
 
@@ -83435,6 +84249,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/container.vue?vue&type=style&index=0&id=fca00c74&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/container.vue?vue&type=style&index=0&id=fca00c74&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./container.vue?vue&type=style&index=0&id=fca00c74&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/container.vue?vue&type=style&index=0&id=fca00c74&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css& ***!
@@ -85809,15 +86653,11 @@ var render = function() {
         _c(
           "div",
           { staticClass: "main-panel" },
-          [
-            _c("app-navbar"),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c("app-footer")
-          ],
+          [_c("app-navbar"), _vm._v(" "), _vm._m(0)],
           1
-        )
+        ),
+        _vm._v(" "),
+        _c("app-footer")
       ],
       1
     )
@@ -85828,285 +86668,1749 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content" }, [
-      _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "card card-nav-tabs card-plain" }, [
-          _c("div", { staticClass: "card-header card-header-danger" }, [
-            _c("div", { staticClass: "nav-tabs-navigation" }, [
-              _c("div", { staticClass: "nav-tabs-wrapper" }, [
+    return _c(
+      "div",
+      { staticClass: "content", staticStyle: { "margin-top": "0px" } },
+      [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "card card-nav-tabs card-plain" }, [
+            _c("div", { staticClass: "card-header card-header bg-dark" }, [
+              _c("div", { staticClass: "nav-tabs-navigation" }, [
+                _c("div", { staticClass: "nav-tabs-wrapper" }, [
+                  _c(
+                    "ul",
+                    {
+                      staticClass: "nav nav-tabs",
+                      attrs: { "data-tabs": "tabs" }
+                    },
+                    [
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link active",
+                            attrs: { href: "#playerinfo", "data-toggle": "tab" }
+                          },
+                          [_vm._v("Player info")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: {
+                              href: "#gamehistory",
+                              "data-toggle": "tab"
+                            }
+                          },
+                          [_vm._v("Game History")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#gameresult", "data-toggle": "tab" }
+                          },
+                          [_vm._v("Game Result")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: {
+                              href: "#withdrawtopup",
+                              "data-toggle": "tab"
+                            }
+                          },
+                          [_vm._v("Withdraw top-up")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#admininfo", "data-toggle": "tab" }
+                          },
+                          [_vm._v("Admin info")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#timeline", "data-toggle": "tab" }
+                          },
+                          [_vm._v("TimeLine")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: {
+                              href: "#>adminplayerrecord",
+                              "data-toggle": "tab"
+                            }
+                          },
+                          [_vm._v("Player record")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#agentinfo", "data-toggle": "tab" }
+                          },
+                          [_vm._v("Agent Info")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#shhinfo", "data-toggle": "tab" }
+                          },
+                          [_vm._v("SH Info")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#finance", "data-toggle": "tab" }
+                          },
+                          [_vm._v("Finance")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { href: "#request", "data-toggle": "tab" }
+                          },
+                          [_vm._v("Request")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: {
+                              href: "#announcement",
+                              "data-toggle": "tab"
+                            }
+                          },
+                          [_vm._v("Announcement")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            attrs: {
+                              href: "#managerecord",
+                              "data-toggle": "tab"
+                            }
+                          },
+                          [_vm._v("Manage Record")]
+                        )
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "tab-content text-center" }, [
                 _c(
-                  "ul",
+                  "div",
                   {
-                    staticClass: "nav nav-tabs",
-                    attrs: { "data-tabs": "tabs" }
+                    staticClass: "tab-pane active",
+                    attrs: { id: "playerinfo" }
                   },
                   [
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link active",
-                          attrs: { href: "#home", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Player info")]
-                      )
+                    _c("div", { staticClass: "top-header-function" }, [
+                      _c("span", { staticClass: "page-current" }, [
+                        _vm._v("Current Page : Page 1")
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "page-search" }, [
+                        _c("div", { staticClass: "input-group col-6" }, [
+                          _c("div", { staticClass: "input-group-prepend" }, [
+                            _c("span", { staticClass: "input-group-text" }, [
+                              _c("i", { staticClass: "fa fa-search" })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              placeholder: "With Font Awesome Icons"
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("table", { staticClass: "table" }, [
+                      _c("thead", [
+                        _c("tr", [
+                          _c("th", { staticClass: "text-center" }, [
+                            _vm._v("#")
+                          ]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("PlayerID")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Name")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Balance")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Currency")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("online hour")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Language")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Total rolling")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Available Rolling")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Online Status")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Register Time")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Register IP")]),
+                          _vm._v(" "),
+                          _c("th")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tbody", [
+                        _c("tr", [
+                          _c("td", { staticClass: "text-center" }, [
+                            _vm._v("1")
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("Andrew Mike")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("Develop")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("2013")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("€ 99,225")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("€ 99,225")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("€ 99,225")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("€ 99,225")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("€ 99,225")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("€ 99,225")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("€ 99,225")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("€ 99,225")]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "td-actions" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button", rel: "tooltip" }
+                              },
+                              [_vm._v("Game History")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button", rel: "tooltip" }
+                              },
+                              [_vm._v("Top-up History")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button", rel: "tooltip" }
+                              },
+                              [_vm._v("Withdraw History")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button", rel: "tooltip" }
+                              },
+                              [_vm._v("Access Record")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button", rel: "tooltip" }
+                              },
+                              [_vm._v("Action Record")]
+                            )
+                          ])
+                        ])
+                      ])
                     ]),
                     _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#updates", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Game History")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#history", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Game Result")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#history", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Withdraw top-up")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#history", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Admin info")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#history", "data-toggle": "tab" }
-                        },
-                        [_vm._v("TimeLine")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#history", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Player record")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#history", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Agent Info")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#history", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Finance")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#history", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Request")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#history", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Announcement")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#history", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Manage Record")]
-                      )
+                    _c("nav", { attrs: { "aria-label": "..." } }, [
+                      _c("ul", { staticClass: "pagination" }, [
+                        _c("li", { staticClass: "page-item" }, [
+                          _c(
+                            "select",
+                            { staticClass: "browser-default custom-select" },
+                            [
+                              _c("option", { attrs: { selected: "" } }, [
+                                _vm._v("1")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("2")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "2" } }, [
+                                _vm._v("3")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "3" } }, [
+                                _vm._v("4")
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "page-item disabled" }, [
+                          _c("span", { staticClass: "page-link" }, [
+                            _vm._v("Previous")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "page-item" }, [
+                          _c(
+                            "a",
+                            { staticClass: "page-link", attrs: { href: "#" } },
+                            [_vm._v("1")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "page-item active" }, [
+                          _c("span", { staticClass: "page-link" }, [
+                            _vm._v(
+                              "\n                              2\n                              "
+                            ),
+                            _c("span", { staticClass: "sr-only" }, [
+                              _vm._v("(current)")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "page-item" }, [
+                          _c(
+                            "a",
+                            { staticClass: "page-link", attrs: { href: "#" } },
+                            [_vm._v("3")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "page-item" }, [
+                          _c(
+                            "a",
+                            { staticClass: "page-link", attrs: { href: "#" } },
+                            [_vm._v("Next")]
+                          )
+                        ])
+                      ])
                     ])
                   ]
-                )
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("table", { staticClass: "table" }, [
-          _c("thead", [
-            _c("tr", [
-              _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("PlayerID")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Name")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Balance")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Currency")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("online hour")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Language")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Total rolling")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Available Rolling")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Online Status")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Register Time")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Register IP")]),
-              _vm._v(" "),
-              _c("th")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td", { staticClass: "text-center" }, [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Andrew Mike")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Develop")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("2013")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("€ 99,225")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("€ 99,225")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("€ 99,225")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("€ 99,225")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("€ 99,225")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("€ 99,225")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("€ 99,225")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("€ 99,225")]),
-              _vm._v(" "),
-              _c("td", { staticClass: "td-actions" }, [
+                ),
+                _vm._v(" "),
                 _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-default",
-                    attrs: { type: "button", rel: "tooltip" }
-                  },
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
                   [
-                    _vm._v(
-                      "\n                             Game History\n                          "
+                    _c(
+                      "div",
+                      {
+                        staticClass: "tab-pane active",
+                        attrs: { id: "playerinfo" }
+                      },
+                      [
+                        _c("div", { staticClass: "top-header-function" }, [
+                          _c("span", { staticClass: "page-current" }, [
+                            _vm._v("Current Page : Page 1")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "page-search" }, [
+                            _c("div", { staticClass: "input-group col-6" }, [
+                              _c(
+                                "div",
+                                { staticClass: "input-group-prepend" },
+                                [
+                                  _c(
+                                    "span",
+                                    { staticClass: "input-group-text" },
+                                    [_c("i", { staticClass: "fa fa-search" })]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "With Font Awesome Icons"
+                                }
+                              })
+                            ])
+                          ])
+                        ]),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("table", { staticClass: "table" }, [
+                          _c("thead", [
+                            _c("tr", [
+                              _c("th", { staticClass: "text-center" }, [
+                                _vm._v("#")
+                              ]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Reference")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("PlayerID")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("gameID")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Bet Amount")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Payout")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Rolling")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Payout Status")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Bet Place Time")]),
+                              _vm._v(" "),
+                              _c("th")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tbody", [
+                            _c("tr", [
+                              _c("td", { staticClass: "text-center" }, [
+                                _vm._v("1")
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("bet id")]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("Develop")]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("2013")]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("€ 99,225")]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("€ 99,225")]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("€ 99,225")]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("€ 99,225")]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("€ 99,225")]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "td-actions" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "button", rel: "tooltip" }
+                                  },
+                                  [_vm._v("View Player")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "button", rel: "tooltip" }
+                                  },
+                                  [_vm._v("View Game Result")]
+                                )
+                              ])
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("nav", { attrs: { "aria-label": "..." } }, [
+                          _c("ul", { staticClass: "pagination" }, [
+                            _c("li", { staticClass: "page-item" }, [
+                              _c(
+                                "select",
+                                {
+                                  staticClass: "browser-default custom-select"
+                                },
+                                [
+                                  _c("option", { attrs: { selected: "" } }, [
+                                    _vm._v("1")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "1" } }, [
+                                    _vm._v("2")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "2" } }, [
+                                    _vm._v("3")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "3" } }, [
+                                    _vm._v("4")
+                                  ])
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "page-item disabled" }, [
+                              _c("span", { staticClass: "page-link" }, [
+                                _vm._v("Previous")
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "page-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "page-link",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("1")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "page-item active" }, [
+                              _c("span", { staticClass: "page-link" }, [
+                                _vm._v(
+                                  "\n                              2\n                              "
+                                ),
+                                _c("span", { staticClass: "sr-only" }, [
+                                  _vm._v("(current)")
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "page-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "page-link",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("3")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "page-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "page-link",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("Next")]
+                              )
+                            ])
+                          ])
+                        ])
+                      ]
                     )
                   ]
                 ),
                 _vm._v(" "),
                 _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-default",
-                    attrs: { type: "button", rel: "tooltip" }
-                  },
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "gameresult" } },
                   [
-                    _vm._v(
-                      "\n                              Top-up History\n                          "
+                    _c(
+                      "div",
+                      { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "tab-pane active",
+                            attrs: { id: "playerinfo" }
+                          },
+                          [
+                            _c("div", { staticClass: "top-header-function" }, [
+                              _c("span", { staticClass: "page-current" }, [
+                                _vm._v("Current Page : Page 1")
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "page-search" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "input-group col-6" },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "input-group-prepend" },
+                                      [
+                                        _c(
+                                          "span",
+                                          { staticClass: "input-group-text" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-search"
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "With Font Awesome Icons"
+                                      }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("table", { staticClass: "table" }, [
+                              _c("thead", [
+                                _c("tr", [
+                                  _c("th", { staticClass: "text-center" }, [
+                                    _vm._v("#")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("gameID")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Game Result")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Number of Bets")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Number of Players")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Total Cash In")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Result Out Time")]),
+                                  _vm._v(" "),
+                                  _c("th")
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("tbody", [
+                                _c("tr", [
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v("1")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("bet id")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Develop")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("2013")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "td-actions" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        attrs: {
+                                          type: "button",
+                                          rel: "tooltip"
+                                        }
+                                      },
+                                      [_vm._v("View Detail")]
+                                    )
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("nav", { attrs: { "aria-label": "..." } }, [
+                              _c("ul", { staticClass: "pagination" }, [
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      staticClass:
+                                        "browser-default custom-select"
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { selected: "" } },
+                                        [_vm._v("1")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "1" } }, [
+                                        _vm._v("2")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "2" } }, [
+                                        _vm._v("3")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "3" } }, [
+                                        _vm._v("4")
+                                      ])
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  { staticClass: "page-item disabled" },
+                                  [
+                                    _c("span", { staticClass: "page-link" }, [
+                                      _vm._v("Previous")
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("1")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item active" }, [
+                                  _c("span", { staticClass: "page-link" }, [
+                                    _vm._v(
+                                      "\n                              2\n                              "
+                                    ),
+                                    _c("span", { staticClass: "sr-only" }, [
+                                      _vm._v("(current)")
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("3")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("Next")]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        )
+                      ]
                     )
                   ]
                 ),
                 _vm._v(" "),
                 _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-default",
-                    attrs: { type: "button", rel: "tooltip" }
-                  },
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "withdrawtopup" } },
                   [
-                    _vm._v(
-                      "\n                              Withdraw History\n                          "
+                    _c(
+                      "div",
+                      { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "tab-pane active",
+                            attrs: { id: "playerinfo" }
+                          },
+                          [
+                            _c("div", { staticClass: "top-header-function" }, [
+                              _c("span", { staticClass: "page-current" }, [
+                                _vm._v("Current Page : Page 1")
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "page-search" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "input-group col-6" },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "input-group-prepend" },
+                                      [
+                                        _c(
+                                          "span",
+                                          { staticClass: "input-group-text" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-search"
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "With Font Awesome Icons"
+                                      }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("table", { staticClass: "table" }, [
+                              _c("thead", [
+                                _c("tr", [
+                                  _c("th", { staticClass: "text-center" }, [
+                                    _vm._v("#")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Time")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("UserID")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Event")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Referrence")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Balance")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Amount")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Balance After Event")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Details")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Served By")]),
+                                  _vm._v(" "),
+                                  _c("th")
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("tbody", [
+                                _c("tr", [
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v("1")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("bet id")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Develop")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("2013")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "td-actions" })
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("nav", { attrs: { "aria-label": "..." } }, [
+                              _c("ul", { staticClass: "pagination" }, [
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      staticClass:
+                                        "browser-default custom-select"
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { selected: "" } },
+                                        [_vm._v("1")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "1" } }, [
+                                        _vm._v("2")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "2" } }, [
+                                        _vm._v("3")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "3" } }, [
+                                        _vm._v("4")
+                                      ])
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  { staticClass: "page-item disabled" },
+                                  [
+                                    _c("span", { staticClass: "page-link" }, [
+                                      _vm._v("Previous")
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("1")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item active" }, [
+                                  _c("span", { staticClass: "page-link" }, [
+                                    _vm._v(
+                                      "\n                              2\n                              "
+                                    ),
+                                    _c("span", { staticClass: "sr-only" }, [
+                                      _vm._v("(current)")
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("3")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("Next")]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", {
+                  staticClass: "tab-pane",
+                  attrs: { id: "admininfo" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "timeline" } },
+                  [_c("p", [_vm._v("timeLine")])]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "tab-pane",
+                    attrs: { id: "adminplayerrecord" }
+                  },
+                  [_c("p", [_vm._v("adminplayerrecord")])]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "agentinfo" } },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "tab-pane active",
+                            attrs: { id: "playerinfo" }
+                          },
+                          [
+                            _c("div", { staticClass: "top-header-function" }, [
+                              _c("span", { staticClass: "page-current" }, [
+                                _vm._v("Current Page : Page 1")
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "page-search" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "input-group col-6" },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "input-group-prepend" },
+                                      [
+                                        _c(
+                                          "span",
+                                          { staticClass: "input-group-text" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-search"
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "With Font Awesome Icons"
+                                      }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("table", { staticClass: "table" }, [
+                              _c("thead", [
+                                _c("tr", [
+                                  _c("th", { staticClass: "text-center" }, [
+                                    _vm._v("#")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("AgentID")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Type")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Join In Time")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Number Of Player Below")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("etails")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Request IP")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("IP")]),
+                                  _vm._v(" "),
+                                  _c("th")
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("tbody", [
+                                _c("tr", [
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v("1")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("bet id")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Develop")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("2013")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("€ 99,225")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "td-actions" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        attrs: {
+                                          type: "button",
+                                          rel: "tooltip"
+                                        }
+                                      },
+                                      [_vm._v("Approve")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        attrs: {
+                                          type: "button",
+                                          rel: "tooltip"
+                                        }
+                                      },
+                                      [_vm._v("Deny")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        attrs: {
+                                          type: "button",
+                                          rel: "tooltip"
+                                        }
+                                      },
+                                      [_vm._v("View User")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        attrs: {
+                                          type: "button",
+                                          rel: "tooltip"
+                                        }
+                                      },
+                                      [_vm._v("Messager User")]
+                                    )
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("nav", { attrs: { "aria-label": "..." } }, [
+                              _c("ul", { staticClass: "pagination" }, [
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      staticClass:
+                                        "browser-default custom-select"
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { selected: "" } },
+                                        [_vm._v("1")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "1" } }, [
+                                        _vm._v("2")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "2" } }, [
+                                        _vm._v("3")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "3" } }, [
+                                        _vm._v("4")
+                                      ])
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  { staticClass: "page-item disabled" },
+                                  [
+                                    _c("span", { staticClass: "page-link" }, [
+                                      _vm._v("Previous")
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("1")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item active" }, [
+                                  _c("span", { staticClass: "page-link" }, [
+                                    _vm._v(
+                                      "\n                              2\n                              "
+                                    ),
+                                    _c("span", { staticClass: "sr-only" }, [
+                                      _vm._v("(current)")
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("3")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("Next")]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        )
+                      ]
                     )
                   ]
                 ),
                 _vm._v(" "),
                 _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-default",
-                    attrs: { type: "button", rel: "tooltip" }
-                  },
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "finance" } },
                   [
-                    _vm._v(
-                      "\n                              Access Record\n                          "
+                    _c(
+                      "div",
+                      { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "tab-pane active",
+                            attrs: { id: "playerinfo" }
+                          },
+                          [
+                            _c("div", { staticClass: "top-header-function" }, [
+                              _c("span", { staticClass: "page-current" }, [
+                                _vm._v("Current Page : Page 1")
+                              ]),
+                              _vm._v(" "),
+                              _c("button", { staticClass: "btn bg-dark" }, [
+                                _vm._v("Make Balance Transfer")
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "page-search" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "input-group col-6" },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "input-group-prepend" },
+                                      [
+                                        _c(
+                                          "span",
+                                          { staticClass: "input-group-text" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-search"
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "With Font Awesome Icons"
+                                      }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("table", { staticClass: "table" }, [
+                              _c("thead", [
+                                _c("tr", [
+                                  _c("th", { staticClass: "text-center" }, [
+                                    _vm._v("#")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("AgentID")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Type")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Join In Time")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Number Of Player Below")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Sub-Agent")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Balance")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Percenatge")]),
+                                  _vm._v(" "),
+                                  _c("th")
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("tbody", [
+                                _c("tr", [
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v("1")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Time")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("User")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Amount")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Currency")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Methods")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Assist Admin")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Reference No")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "td-actions" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        attrs: {
+                                          type: "button",
+                                          rel: "tooltip"
+                                        }
+                                      },
+                                      [_vm._v("View Evidence")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        attrs: {
+                                          type: "button",
+                                          rel: "tooltip"
+                                        }
+                                      },
+                                      [_vm._v("Edit Evidence")]
+                                    )
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("nav", { attrs: { "aria-label": "..." } }, [
+                              _c("ul", { staticClass: "pagination" }, [
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      staticClass:
+                                        "browser-default custom-select"
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { selected: "" } },
+                                        [_vm._v("1")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "1" } }, [
+                                        _vm._v("2")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "2" } }, [
+                                        _vm._v("3")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "3" } }, [
+                                        _vm._v("4")
+                                      ])
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  { staticClass: "page-item disabled" },
+                                  [
+                                    _c("span", { staticClass: "page-link" }, [
+                                      _vm._v("Previous")
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("1")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item active" }, [
+                                  _c("span", { staticClass: "page-link" }, [
+                                    _vm._v(
+                                      "\n                              2\n                              "
+                                    ),
+                                    _c("span", { staticClass: "sr-only" }, [
+                                      _vm._v("(current)")
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("3")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("Next")]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        )
+                      ]
                     )
                   ]
                 ),
                 _vm._v(" "),
                 _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-default",
-                    attrs: { type: "button", rel: "tooltip" }
-                  },
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "shhinfo" } },
+                  [_c("p", [_vm._v("shhinfo")])]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "request" } },
                   [
-                    _vm._v(
-                      "\n                              Action Record\n                          "
+                    _c(
+                      "div",
+                      { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "tab-pane active",
+                            attrs: { id: "playerinfo" }
+                          },
+                          [
+                            _c("div", { staticClass: "top-header-function" }, [
+                              _c("span", { staticClass: "page-current" }, [
+                                _vm._v("Current Page : Page 1")
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "page-search" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "input-group col-6" },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "input-group-prepend" },
+                                      [
+                                        _c(
+                                          "span",
+                                          { staticClass: "input-group-text" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-search"
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "With Font Awesome Icons"
+                                      }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("table", { staticClass: "table" }, [
+                              _c("thead", [
+                                _c("tr", [
+                                  _c("th", { staticClass: "text-center" }, [
+                                    _vm._v("#")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("PlayerID")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Request Detail")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Amount")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Methods")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("etails")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Balance")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Percenatge")]),
+                                  _vm._v(" "),
+                                  _c("th")
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("tbody", [
+                                _c("tr", [
+                                  _c("td", { staticClass: "text-center" }, [
+                                    _vm._v("1")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Time")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("User")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Amount")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Currency")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Methods")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Assist Admin")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Reference No")]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "td-actions" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        attrs: {
+                                          type: "button",
+                                          rel: "tooltip"
+                                        }
+                                      },
+                                      [_vm._v("View Evidence")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        attrs: {
+                                          type: "button",
+                                          rel: "tooltip"
+                                        }
+                                      },
+                                      [_vm._v("Edit Evidence")]
+                                    )
+                                  ])
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("nav", { attrs: { "aria-label": "..." } }, [
+                              _c("ul", { staticClass: "pagination" }, [
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      staticClass:
+                                        "browser-default custom-select"
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { selected: "" } },
+                                        [_vm._v("1")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "1" } }, [
+                                        _vm._v("2")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "2" } }, [
+                                        _vm._v("3")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "3" } }, [
+                                        _vm._v("4")
+                                      ])
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  { staticClass: "page-item disabled" },
+                                  [
+                                    _c("span", { staticClass: "page-link" }, [
+                                      _vm._v("Previous")
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("1")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item active" }, [
+                                  _c("span", { staticClass: "page-link" }, [
+                                    _vm._v(
+                                      "\n                              2\n                              "
+                                    ),
+                                    _c("span", { staticClass: "sr-only" }, [
+                                      _vm._v("(current)")
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("3")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("Next")]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        )
+                      ]
                     )
                   ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "announcement" } },
+                  [_c("p", [_vm._v("announcement")])]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "tab-pane", attrs: { id: "managerecord" } },
+                  [_c("p", [_vm._v("managerecord")])]
                 )
               ])
             ])
           ])
         ])
-      ])
-    ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -86197,90 +88501,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div")
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "nav",
-        { staticClass: "navbar navbar-expand-lg fixed-top color-bg " },
-        [
-          _c("div", { staticClass: "container-fluid" }, [
-            _c("div", { staticClass: "navbar-wrapper" }, [
-              _c("a", {
-                staticClass: "navbar-brand",
-                attrs: { href: "#pablo" }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "navbar-toggler",
-                attrs: {
-                  type: "button",
-                  "data-toggle": "collapse",
-                  "aria-controls": "navigation-index",
-                  "aria-expanded": "false",
-                  "aria-label": "Toggle navigation"
-                }
-              },
-              [
-                _c("span", { staticClass: "sr-only" }, [
-                  _vm._v("Toggle navigation")
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "navbar-toggler-icon icon-bar" }),
-                _vm._v(" "),
-                _c("span", { staticClass: "navbar-toggler-icon icon-bar" }),
-                _vm._v(" "),
-                _c("span", { staticClass: "navbar-toggler-icon icon-bar" })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "collapse navbar-collapse justify-content-end" },
-              [
-                _c("form", { staticClass: "navbar-form" }, [
-                  _c("div", { staticClass: "input-group no-border" }, [
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        value: "",
-                        placeholder: "Search..."
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-white btn-round btn-just-icon",
-                        attrs: { type: "submit" }
-                      },
-                      [
-                        _c("i", { staticClass: "material-icons" }, [
-                          _vm._v("search")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "ripple-container" })
-                      ]
-                    )
-                  ])
-                ])
-              ]
-            )
-          ])
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -127341,7 +129564,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _container_vue_vue_type_template_id_fca00c74_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./container.vue?vue&type=template&id=fca00c74&scoped=true& */ "./resources/js/components/admin/container.vue?vue&type=template&id=fca00c74&scoped=true&");
 /* harmony import */ var _container_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./container.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/container.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _container_vue_vue_type_style_index_0_id_fca00c74_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./container.vue?vue&type=style&index=0&id=fca00c74&scoped=true&lang=css& */ "./resources/js/components/admin/container.vue?vue&type=style&index=0&id=fca00c74&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -127349,7 +129574,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _container_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _container_vue_vue_type_template_id_fca00c74_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _container_vue_vue_type_template_id_fca00c74_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -127378,6 +129603,22 @@ component.options.__file = "resources/js/components/admin/container.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./container.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/container.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/container.vue?vue&type=style&index=0&id=fca00c74&scoped=true&lang=css&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/container.vue?vue&type=style&index=0&id=fca00c74&scoped=true&lang=css& ***!
+  \**************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_style_index_0_id_fca00c74_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./container.vue?vue&type=style&index=0&id=fca00c74&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/container.vue?vue&type=style&index=0&id=fca00c74&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_style_index_0_id_fca00c74_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_style_index_0_id_fca00c74_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_style_index_0_id_fca00c74_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_style_index_0_id_fca00c74_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_container_vue_vue_type_style_index_0_id_fca00c74_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
