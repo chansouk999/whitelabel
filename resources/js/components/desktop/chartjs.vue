@@ -7,6 +7,11 @@ import VueCharts from "vue-chartjs";
 
 export default {
   extends: Bar,
+  props: {
+   backgroundcolor: {
+    default: "#003679",
+    type: String
+  }},
   data() {
     return {
       stockname: [1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -57,7 +62,7 @@ export default {
             data: this.betwon,
             fill: true,
             borderColor: "blue",
-            backgroundColor: "#003679"
+            backgroundColor: this.backgroundcolor
           }
         ]
       },
@@ -112,7 +117,7 @@ export default {
           xAxes: [
             {
               stacked: true,
-               gridLines: {
+              gridLines: {
                 display: false
               },
               scaleLabel: {

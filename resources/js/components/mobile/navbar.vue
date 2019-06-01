@@ -1,15 +1,34 @@
 <template>
   <div>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top bg-primary">
+    <nav class="navbar navbar-expand-lg fixed-top color-bg">
       <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <div class="navbar-wrapper">
+          <div class="navbar-minimize d-inline">
+            <button
+              class="minimize-sidebar btn btn-link btn-just-icon"
+              rel="tooltip"
+              data-original-title="Sidebar toggle"
+              data-placement="right"
+            >
+              <i class="tim-icons icon-align-center visible-on-sidebar-regular"></i>
+              <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini"></i>
+            </button>
+          </div>
+          <div class="navbar-toggle d-inline">
+            <button type="button" class="navbar-toggler">
+              <span class="navbar-toggler-bar bar1"></span>
+              <span class="navbar-toggler-bar bar2"></span>
+              <span class="navbar-toggler-bar bar3"></span>
+            </button>
+          </div>
+          <a class="navbar-brand" :href="welcome">TNK</a>
+        </div>
         <button
-          class="navbar-toggler"
+          class="navbar-toggler pl-5"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
+          data-target="#navigation"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
@@ -17,24 +36,160 @@
           <span class="navbar-toggler-bar navbar-kebab"></span>
           <span class="navbar-toggler-bar navbar-kebab"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">
-                Home
-                <span class="sr-only">(current)</span>
+
+        <div class="collapse navbar-collapse" id="navigation">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a href="#" class="button nav-link d-flex float-left">
+                <div class="icons">
+                  <i class="tim-icons icon-single-02 icon-default"></i>
+                  <i class="tim-icons icon-coins icon-hover"></i>
+                </div>Recommend friends
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
           </ul>
+
+          <span v-if="checkuser == 'false'">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a
+                  href="#"
+                  class="button nav-link d-flex float-left"
+                  data-toggle="modal"
+                  data-target="#loginModal"
+                >
+                  <div class="icons">
+                    <i class="tim-icons icon-single-02 icon-default"></i>
+                    <i class="tim-icons icon-lock-circle icon-hover"></i>
+                  </div>Login
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#"
+                  class="button nav-link d-flex float-left"
+                  data-toggle="modal"
+                  data-target="#register"
+                >
+                  <div class="icons">
+                    <i class="fas fa-user-plus icon-default"></i>
+                    <i class="tim-icons icon-badge icon-hover"></i>
+                  </div>Register
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#"
+                  class="button nav-link d-flex float-left"
+                  data-toggle="modal"
+                  data-target="#freetrial"
+                >
+                  <div class="icons">
+                    <i class="tim-icons icon-controller icon-default"></i>
+                    <i class="tim-icons icon-credit-card icon-hover"></i>
+                  </div>Free Trial
+                </a>
+              </li>
+            </ul>
+          </span>
+
+          <!-- After Login done show this -->
+          <span v-else-if="checkuser == 'true'">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a :href="messages" class="button nav-link d-flex float-left">
+                  <div class="icons">
+                    <i class="tim-icons icon-chat-33 icon-default"></i>
+                    <i class="tim-icons icon-chat-33 icon-hover"></i>
+                  </div>Message
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="button nav-link d-flex float-left" @click="myaccount()">
+                  <div class="icons">
+                    <i class="tim-icons icon-single-02 icon-default"></i>
+                    <i class="tim-icons icon-single-02 icon-hover"></i>
+                  </div>My Account
+                </a>
+              </li>
+              <li class="nav-item">
+                <a :href="promote" class="button nav-link d-flex float-left">
+                  <div class="icons">
+                    <i class="tim-icons icon-trophy icon-default"></i>
+                    <i class="tim-icons icon-trophy icon-hover"></i>
+                  </div>My Privilege
+                </a>
+              </li>
+              <li class="nav-item">
+                <a :href="lobby" class="button nav-link d-flex float-left">
+                  <div class="icons">
+                    <i class="tim-icons icon-controller icon-default"></i>
+                    <i class="tim-icons icon-controller icon-hover"></i>
+                  </div>Game Lobby
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="button nav-link d-flex float-left" @click="rechargeClick()">
+                  <div class="icons">
+                    <i class="tim-icons icon-coins icon-default"></i>
+                    <i class="tim-icons icon-coins icon-hover"></i>
+                  </div>Recharge
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="button nav-link d-flex float-left" @click="withDrawClick()">
+                  <div class="icons">
+                    <i class="tim-icons icon-money-coins icon-default"></i>
+                    <i class="tim-icons icon-cart icon-hover"></i>
+                  </div>WithDraw
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="button nav-link d-flex float-left fixed-logout">
+                  <div class="dropdown show-dropdown">
+                    <a href="#" data-toggle="dropdown">
+                      <div class="icons">
+                        <i class="tim-icons icon-single-02 icon-default"></i>
+                        <i class="tim-icons icon-bullet-list-67 icon-hover"></i>
+                      </div>
+                    </a>
+                    <div class="dropdown-menu mt-3 p-0">
+                      <div class="row p-4">
+                        <div class="col-6">
+                          <img src="assets/img/user.png" alt>
+                        </div>
+                        <div class="col-6 bg-logout">
+                          <em class="header-user-name">test</em>
+                          <br>
+                          <span class="header-user-level level-0">新会员</span>
+                        </div>
+                        <small class="header-before-login-date">最近登录时间：2019-04-24 14:25:40</small>
+                      </div>
+                      <div class="menu-body">
+                        <div id="header-balance">
+                          总余额
+                          <h2 class="eid_total_credit m-0 p-0">0.00</h2>
+                          <div class="d-flex">
+                            <p class="text-desss">
+                              本地余额
+                              <span id="eid_local_credit">0.00</span>
+                            </p>
+                            <p class="text-balance">
+                              游戏余额
+                              <span id="eid_game_credit">0.00</span>
+                            </p>
+                          </div>
+                        </div>
+                        <a href="/logout" class="btn-logout">
+                          <i class="fa fa-power-off"></i>Log Out
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </span>
         </div>
       </div>
     </nav>
@@ -136,6 +291,41 @@
           <div class="modal-body">
             <div class="container">
               <div class="row">
+                <div class="col-md-5 ml-auto">
+                  <div class="info-area info-horizontal mt-5">
+                    <div class="icon icon-warning">
+                      <i class="tim-icons icon-wifi"></i>
+                    </div>
+                    <div class="description">
+                      <h3 class="info-title">Marketing</h3>
+                      <p
+                        class="description"
+                      >We've created the marketing campaign of the website. It was a very interesting collaboration.</p>
+                    </div>
+                  </div>
+                  <div class="info-area info-horizontal">
+                    <div class="icon icon-primary">
+                      <i class="tim-icons icon-triangle-right-17"></i>
+                    </div>
+                    <div class="description">
+                      <h3 class="info-title">Fully Coded in HTML5</h3>
+                      <p
+                        class="description"
+                      >We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.</p>
+                    </div>
+                  </div>
+                  <div class="info-area info-horizontal">
+                    <div class="icon icon-info">
+                      <i class="tim-icons icon-trophy"></i>
+                    </div>
+                    <div class="description">
+                      <h3 class="info-title">Built Audience</h3>
+                      <p
+                        class="description"
+                      >There is also a Fully Customizable CMS Admin Dashboard for this product.</p>
+                    </div>
+                  </div>
+                </div>
                 <div class="col-md-7 mr-auto">
                   <div class="card card-register card-white">
                     <form class="form" method="POST" action="register">
@@ -302,61 +492,7 @@
     </div>
     <!-- End Navbar -->
     <!-- mobile Max show 1199px -->
-    <div class="d-block d-xl-none">
-      <div class="container mt-4 px-1">
-        <nav aria-label="breadcrumb" role="navigation">
-          <ol class="breadcrumb my-1 text-capitalize">
-            <li class="breadcrumb-item">
-              <a href="#">
-                <i class="tim-icons icon-bank"></i>Home
-              </a>
-            </li>
-            <li class="breadcrumb-item">
-              <a href="#">
-                <i class="tim-icons icon-wallet-43"></i>Library
-              </a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">{{navShowName}}</li>
-          </ol>
-        </nav>
-        <div class="u-content" v-if="navShowName ==='myaccount'">
-          <myaccount></myaccount>
-        </div>
-        <div class="u-content" v-if="navShowName ==='recommedndedfriends'">
-          <recommedndedfriends></recommedndedfriends>
-        </div>
-        <div class="u-content" v-if="navShowName ==='transactionrecord'">
-          <transactionrecord></transactionrecord>
-        </div>
-        <div class="u-content" v-if="navShowName ==='instantrecharge'">
-          <instantrecharge></instantrecharge>
-        </div>
-        <div class="u-content" v-if="navShowName ==='applyforwithdrawal'">
-          <applyforwithdrawal></applyforwithdrawal>
-        </div>
-        <div class="u-content" v-if="navShowName ==='selfservicewashing'">
-          <selfservicewashing></selfservicewashing>
-        </div>
-        <div class="u-content" v-if="navShowName ==='changepassword'">
-          <changepassword></changepassword>
-        </div>
-        <div class="u-content" v-if="navShowName ==='bankinfo'">
-          <bankinfo></bankinfo>
-        </div>
-        <div class="u-content" v-if="navShowName ==='modifyphone'">
-          <modifyphone></modifyphone>
-        </div>
-        <div class="u-content" v-if="navShowName ==='bankinfo'">
-          <bankinfo></bankinfo>
-        </div>
-        <div class="u-content" v-if="navShowName ==='subscription'">
-          <subscription></subscription>
-        </div>
-        <div class="u-content" v-if="navShowName ==='message'">
-          <message></message>
-        </div>
-      </div>
-    </div>
+
     <div class="d-block d-xl-none">
       <!-- User Not login -->
       <span v-if="checkuser == 'false'">
@@ -388,16 +524,6 @@
             </div>
           </div>
           <div class="mobile-bottom-nav__item">
-            <div
-              class="mobile-bottom-nav__item-content"
-              data-toggle="modal"
-              data-target="#freetrial"
-            >
-              <i class="tim-icons icon-controller icon-default"></i>
-              <!-- Free Try -->
-            </div>
-          </div>
-          <div class="mobile-bottom-nav__item">
             <div class="mobile-bottom-nav__item-content">
               <i class="tim-icons icon-settings-gear-63"></i>
               <!-- Change language -->
@@ -421,12 +547,6 @@
                 <i class="tim-icons icon-chat-33 icon-default"></i>
               </a>
               <!-- riviledge -->
-            </div>
-          </div>
-          <div class="mobile-bottom-nav__item">
-            <div class="mobile-bottom-nav__item-content">
-              <i class="tim-icons icon-controller icon-default"></i>
-              <!-- Lobby -->
             </div>
           </div>
           <div class="mobile-bottom-nav__item">
@@ -460,24 +580,13 @@
   </div>
 </template>
 <script>
-import myaccount from "../index/myaccount.vue";
-import recommedndedfriends from "../index/recommedndedfriends.vue";
-import transactionrecord from "../index/transactionrecord.vue";
-import instantrecharge from "../index/instantrecharge.vue";
-import applyforwithdrawal from "../index/applyforwithdrawal.vue";
-import selfservicewashing from "../index/selfservicewashing.vue";
-import changepassword from "../index/changepassword.vue";
-import bankinfo from "../index/bankinfo.vue";
-import modifyphone from "../index/modifyphone.vue";
-import subscription from "../index/subscription.vue";
-import message from "../index/message.vue";
 export default {
   data() {
     return {
       isShowonlyIndex: false,
       navShowName: "message",
       ismenu: false,
-      messages: "./index",
+      messages: "./message",
       promote: "./promote",
       welcome: "/",
       lobby: "./lobby",
@@ -487,19 +596,7 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
-  components: {
-    myaccount,
-    recommedndedfriends,
-    transactionrecord,
-    instantrecharge,
-    applyforwithdrawal,
-    selfservicewashing,
-    changepassword,
-    bankinfo,
-    modifyphone,
-    subscription,
-    message
-  },
+  components: {},
   methods: {
     myaccount() {
       $("#myaccountlink")[0].click();

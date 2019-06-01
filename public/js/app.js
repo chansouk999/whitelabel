@@ -4088,6 +4088,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Bar"],
+  props: {
+    backgroundcolor: {
+      "default": "#003679",
+      type: String
+    }
+  },
   data: function data() {
     return {
       stockname: [1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -4132,7 +4138,7 @@ __webpack_require__.r(__webpack_exports__);
           data: this.betwon,
           fill: true,
           borderColor: "blue",
-          backgroundColor: "#003679"
+          backgroundColor: this.backgroundcolor
         }]
       },
       options: {
@@ -12917,11 +12923,404 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navbar */ "./resources/js/components/mobile/navbar.vue");
 /* harmony import */ var _asides__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./asides */ "./resources/js/components/mobile/asides.vue");
 /* harmony import */ var _footers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./footers */ "./resources/js/components/mobile/footers.vue");
+/* harmony import */ var _desktop_chartjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../desktop/chartjs */ "./resources/js/components/desktop/chartjs.vue");
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -12929,7 +13328,8 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     navbars: _navbar__WEBPACK_IMPORTED_MODULE_0__["default"],
     asides: _asides__WEBPACK_IMPORTED_MODULE_1__["default"],
-    footers: _footers__WEBPACK_IMPORTED_MODULE_2__["default"]
+    footers: _footers__WEBPACK_IMPORTED_MODULE_2__["default"],
+    chartjs: _desktop_chartjs__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -12970,84 +13370,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -13061,17 +13383,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_myaccount_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index/myaccount.vue */ "./resources/js/components/index/myaccount.vue");
-/* harmony import */ var _index_recommedndedfriends_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index/recommedndedfriends.vue */ "./resources/js/components/index/recommedndedfriends.vue");
-/* harmony import */ var _index_transactionrecord_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../index/transactionrecord.vue */ "./resources/js/components/index/transactionrecord.vue");
-/* harmony import */ var _index_instantrecharge_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../index/instantrecharge.vue */ "./resources/js/components/index/instantrecharge.vue");
-/* harmony import */ var _index_applyforwithdrawal_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../index/applyforwithdrawal.vue */ "./resources/js/components/index/applyforwithdrawal.vue");
-/* harmony import */ var _index_selfservicewashing_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../index/selfservicewashing.vue */ "./resources/js/components/index/selfservicewashing.vue");
-/* harmony import */ var _index_changepassword_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../index/changepassword.vue */ "./resources/js/components/index/changepassword.vue");
-/* harmony import */ var _index_bankinfo_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../index/bankinfo.vue */ "./resources/js/components/index/bankinfo.vue");
-/* harmony import */ var _index_modifyphone_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../index/modifyphone.vue */ "./resources/js/components/index/modifyphone.vue");
-/* harmony import */ var _index_subscription_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../index/subscription.vue */ "./resources/js/components/index/subscription.vue");
-/* harmony import */ var _index_message_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../index/message.vue */ "./resources/js/components/index/message.vue");
 //
 //
 //
@@ -13533,24 +13844,133 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
-
-
-
-
-
-
-
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       isShowonlyIndex: false,
       navShowName: "message",
       ismenu: false,
-      messages: "./index",
+      messages: "./message",
       promote: "./promote",
       welcome: "/",
       lobby: "./lobby",
@@ -13558,19 +13978,7 @@ __webpack_require__.r(__webpack_exports__);
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
-  components: {
-    myaccount: _index_myaccount_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    recommedndedfriends: _index_recommedndedfriends_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    transactionrecord: _index_transactionrecord_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    instantrecharge: _index_instantrecharge_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    applyforwithdrawal: _index_applyforwithdrawal_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    selfservicewashing: _index_selfservicewashing_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    changepassword: _index_changepassword_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    bankinfo: _index_bankinfo_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-    modifyphone: _index_modifyphone_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
-    subscription: _index_subscription_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
-    message: _index_message_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
-  },
+  components: {},
   methods: {
     myaccount: function myaccount() {
       $("#myaccountlink")[0].click();
@@ -110165,9 +110573,805 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("navbars")], 1)
+  return _c(
+    "div",
+    [
+      _c("navbars"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-2" }, [_c("asides")], 1),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 px-1" }, [
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "tab-content tab-space p-0" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "tab-pane show active",
+                  attrs: { id: "link1", "aria-expanded": "true" }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "shadow-lg" },
+                    [
+                      _c("chartjs", { attrs: { backgroundcolor: "#ff8d72" } }),
+                      _vm._v(" "),
+                      _vm._m(4)
+                    ],
+                    1
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "tab-pane",
+                attrs: { id: "link2", "aria-expanded": "false" }
+              }),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "tab-pane",
+                attrs: { id: "link3", "aria-expanded": "false" }
+              })
+            ])
+          ])
+        ])
+      ])
+    ],
+    1
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xl-10 col-sm-12 px-1" }, [
+      _c("div", { staticClass: "main-panel" }, [
+        _c("div", { staticClass: "content px-0" }, [
+          _c("div", { staticClass: "home-wrap" }, [
+            _c("div", { staticClass: "container-wrap" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "carousel slide",
+                  attrs: { id: "myCarousel", "data-ride": "carousel" }
+                },
+                [
+                  _c("ol", { staticClass: "carousel-indicators" }, [
+                    _c(
+                      "li",
+                      {
+                        staticClass: "active",
+                        attrs: {
+                          "data-target": "#myCarousel",
+                          "data-slide-to": "0"
+                        }
+                      },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://static-pc.swcqlz.com/cms/cms_pic/20190328cfa9d94907ba431db6505bb707b0c58c.jpg"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      {
+                        attrs: {
+                          "data-target": "#myCarousel",
+                          "data-slide-to": "1"
+                        }
+                      },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://static-pc.swcqlz.com/cms/cms_pic/20190326961759629a51491e8f00c2ff2e753aff.jpg"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      {
+                        attrs: {
+                          "data-target": "#myCarousel",
+                          "data-slide-to": "2"
+                        }
+                      },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://static-pc.swcqlz.com/cms/cms_pic/20190409d5dfebd2223a4eb58427dd4f3325d3f1.jpg"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      {
+                        attrs: {
+                          "data-target": "#myCarousel",
+                          "data-slide-to": "3"
+                        }
+                      },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://static-pc.swcqlz.com/cms/cms_pic/20190418108f63a2f4454f9dba0199230447bcbf.jpg"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      {
+                        attrs: {
+                          "data-target": "#myCarousel",
+                          "data-slide-to": "4"
+                        }
+                      },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://static-pc.swcqlz.com/cms/cms_pic/2019042247954d584b7547a59733bbc2c3a28880.jpg"
+                          }
+                        })
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "carousel-inner" }, [
+                    _c("div", { staticClass: "carousel-item active" }, [
+                      _c("img", {
+                        staticClass: "first-slide",
+                        attrs: {
+                          src:
+                            "https://static-pc.swcqlz.com/cms/cms_pic/201903287c512df06b914cefb2b3a96d20d3fdbd.jpg",
+                          alt: "First\n            slide"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "carousel-item" }, [
+                      _c("img", {
+                        staticClass: "second-slide",
+                        attrs: {
+                          src:
+                            "https://static-pc.swcqlz.com/cms/cms_pic/20190423b2ae4cfc35c14da4b2da530f147887c5.jpg",
+                          alt: "Second\n            slide"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "carousel-item" }, [
+                      _c("img", {
+                        staticClass: "third-slide",
+                        attrs: {
+                          src:
+                            "https://static-pc.swcqlz.com/cms/cms_pic/20190409837ef9651b994dde86cbf299a2d5a599.jpg",
+                          alt: "Third\n            slide"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "carousel-item" }, [
+                      _c("img", {
+                        staticClass: "fourd-slide",
+                        attrs: {
+                          src:
+                            "https://static-pc.swcqlz.com/cms/cms_pic/201904188594c2980f2e4ffa8a7120ff2406d97a.jpg",
+                          alt: "Third\n            slide"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "carousel-item" }, [
+                      _c("img", {
+                        staticClass: "five-slide",
+                        attrs: {
+                          src:
+                            "https://static-pc.swcqlz.com/cms/cms_pic/2019042254cc8ec48bfe4d89b4b377df2fbbcc26.jpg",
+                          alt: "Five\n            slide"
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "carousel-control-prev",
+                      attrs: {
+                        href: "#myCarousel",
+                        role: "button",
+                        "data-slide": "prev"
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "tim-icons icon-minimal-left" }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "sr-only" }, [
+                        _vm._v("Previous")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "carousel-control-next",
+                      attrs: {
+                        href: "#myCarousel",
+                        role: "button",
+                        "data-slide": "next"
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "tim-icons icon-minimal-right" }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
+                    ]
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 px-1" }, [
+      _c("div", { staticClass: "card card-stats" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "w-20" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "info-icon text-center icon-warning shadow-warning"
+                },
+                [
+                  _c("i", { staticClass: "tim-icons icon-chat-33" }),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("AG旗舰厅")])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-20" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "info-icon text-center icon-primary shadow-primary"
+                },
+                [
+                  _c("i", { staticClass: "tim-icons icon-shape-star" }),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("AG国际厅")])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-20" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "info-icon text-center icon-success shadow-success"
+                },
+                [
+                  _c("i", { staticClass: "tim-icons icon-single-02" }),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("AG捕鱼王")])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-20" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "info-icon text-center icon-warning shadow-warning"
+                },
+                [
+                  _c("i", { staticClass: "tim-icons icon-chat-33" }),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("电子游戏")])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-20" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "info-icon text-center icon-danger shadow-danger"
+                },
+                [
+                  _c("i", { staticClass: "tim-icons icon-molecule-40" }),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("沙巴体育")])
+                ]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 px-1" }, [
+      _c("div", { staticClass: "card bg-light rounded-1 mb-1" }, [
+        _c("div", { staticClass: "card-body px-0 py-1" }, [
+          _c("div", { staticClass: "input-group my-1" }, [
+            _c("p", { staticClass: "headTxt" }, [_vm._v("Search")]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "item-link",
+                attrs: { href: "#", placeholder: "With Font Awesome Icons" }
+              },
+              [_vm._v("【热点新闻】中美贸易战事件")]
+            ),
+            _vm._v(" "),
+            _c("a", { staticClass: "more_txt", attrs: { href: "#" } }, [
+              _vm._v("更多")
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      {
+        staticClass: "nav nav-pills nav-pills-primary",
+        attrs: { role: "tablist" }
+      },
+      [
+        _c("li", { staticClass: "nav-item w-33" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link active",
+              attrs: {
+                "data-toggle": "tab",
+                href: "#link1",
+                role: "tablist",
+                "aria-expanded": "true"
+              }
+            },
+            [_vm._v("热门游戏")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item w-33" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                "data-toggle": "tab",
+                href: "#link2",
+                role: "tablist",
+                "aria-expanded": "false"
+              }
+            },
+            [_vm._v("真人视讯")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item w-33" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                "data-toggle": "tab",
+                href: "#link3",
+                role: "tablist",
+                "aria-expanded": "false"
+              }
+            },
+            [_vm._v("电子游戏")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "slide-container" }, [
+      _c("div", { staticClass: "wrapper" }, [
+        _c("div", { staticClass: "clash-card barbarian" }, [
+          _c(
+            "div",
+            { staticClass: "clash-card__image clash-card__image--barbarian" },
+            [
+              _c("img", {
+                attrs: {
+                  src:
+                    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/barbarian.png",
+                  alt: "barbarian"
+                }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "clash-card__level clash-card__level--barbarian" },
+            [_vm._v("Level 4")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "clash-card__unit-name" }, [
+            _vm._v("The Barbarian")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "clash-card__unit-description barbarian-description"
+            },
+            [
+              _vm._v(
+                "The Barbarian is a kilt-clad Scottish warrior with an angry, battle-ready expression, hungry for destruction. He has Killer yellow horseshoe mustache."
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "clash-card__unit-stats clash-card__unit-stats--barbarian clearfix"
+            },
+            [
+              _c("div", { staticClass: "one-third" }, [
+                _c("div", { staticClass: "stat" }, [
+                  _vm._v(
+                    "\n                          20\n                          "
+                  ),
+                  _c("sup", [_vm._v("S")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Training")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "one-third" }, [
+                _c("div", { staticClass: "stat" }, [_vm._v("16")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Speed")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "one-third no-border" }, [
+                _c("div", { staticClass: "stat" }, [_vm._v("150")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Cost")])
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "wrapper" }, [
+        _c("div", { staticClass: "clash-card archer" }, [
+          _c(
+            "div",
+            { staticClass: "clash-card__image clash-card__image--archer" },
+            [
+              _c("img", {
+                attrs: {
+                  src:
+                    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/archer.png",
+                  alt: "archer"
+                }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "clash-card__level clash-card__level--archer" },
+            [_vm._v("Level 5")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "clash-card__unit-name" }, [
+            _vm._v("The Archer")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "clash-card__unit-description archer-description" },
+            [
+              _vm._v(
+                "The Archer is a female warrior with sharp eyes. She wears a short, light green dress, a hooded cape, a leather belt and an attached small pouch."
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "clash-card__unit-stats clash-card__unit-stats--archer clearfix"
+            },
+            [
+              _c("div", { staticClass: "one-third" }, [
+                _c("div", { staticClass: "stat" }, [
+                  _vm._v(
+                    "\n                          25\n                          "
+                  ),
+                  _c("sup", [_vm._v("S")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Training")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "one-third" }, [
+                _c("div", { staticClass: "stat" }, [_vm._v("24")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Speed")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "one-third no-border" }, [
+                _c("div", { staticClass: "stat" }, [_vm._v("300")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Cost")])
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "wrapper" }, [
+        _c("div", { staticClass: "clash-card giant" }, [
+          _c(
+            "div",
+            { staticClass: "clash-card__image clash-card__image--giant" },
+            [
+              _c("img", {
+                attrs: {
+                  src:
+                    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/giant.png",
+                  alt: "giant"
+                }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "clash-card__level clash-card__level--giant" },
+            [_vm._v("Level 5")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "clash-card__unit-name" }, [
+            _vm._v("The Giant")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "clash-card__unit-description giant-description" },
+            [
+              _vm._v(
+                "Slow, steady and powerful, Giants are massive warriors that soak up huge amounts of damage. Show them a turret or cannon and you'll see their fury unleashed!"
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "clash-card__unit-stats clash-card__unit-stats--giant clearfix"
+            },
+            [
+              _c("div", { staticClass: "one-third" }, [
+                _c("div", { staticClass: "stat" }, [
+                  _vm._v(
+                    "\n                          2\n                          "
+                  ),
+                  _c("sup", [_vm._v("M")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Training")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "one-third" }, [
+                _c("div", { staticClass: "stat" }, [_vm._v("12")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Speed")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "one-third no-border" }, [
+                _c("div", { staticClass: "stat" }, [_vm._v("2250")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Cost")])
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "wrapper" }, [
+        _c("div", { staticClass: "clash-card goblin" }, [
+          _c(
+            "div",
+            { staticClass: "clash-card__image clash-card__image--goblin" },
+            [
+              _c("img", {
+                attrs: {
+                  src:
+                    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/goblin.png",
+                  alt: "goblin"
+                }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "clash-card__level clash-card__level--goblin" },
+            [_vm._v("Level 5")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "clash-card__unit-name" }, [
+            _vm._v("The Goblin")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "clash-card__unit-description goblin-description" },
+            [
+              _vm._v(
+                "These pesky little creatures only have eyes for one thing: LOOT! They are faster than a Spring Trap, and their hunger for resources is limitless."
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "clash-card__unit-stats clash-card__unit-stats--goblin clearfix"
+            },
+            [
+              _c("div", { staticClass: "one-third" }, [
+                _c("div", { staticClass: "stat" }, [
+                  _vm._v(
+                    "\n                          30\n                          "
+                  ),
+                  _c("sup", [_vm._v("S")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Training")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "one-third" }, [
+                _c("div", { staticClass: "stat" }, [_vm._v("32")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Speed")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "one-third no-border" }, [
+                _c("div", { staticClass: "stat" }, [_vm._v("100")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Cost")])
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "wrapper mb-5" }, [
+        _c("div", { staticClass: "clash-card wizard" }, [
+          _c(
+            "div",
+            { staticClass: "clash-card__image clash-card__image--wizard" },
+            [
+              _c("img", {
+                attrs: {
+                  src:
+                    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/wizard.png",
+                  alt: "wizard"
+                }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "clash-card__level clash-card__level--wizard" },
+            [_vm._v("Level 6")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "clash-card__unit-name" }, [
+            _vm._v("The Wizard")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "clash-card__unit-description wizard-description" },
+            [
+              _vm._v(
+                "The Wizard is a terrifying presence on the battlefield. Pair him up with some of his fellows and cast concentrated blasts of destruction on anything, land or sky!"
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "clash-card__unit-stats clash-card__unit-stats--wizard clearfix"
+            },
+            [
+              _c("div", { staticClass: "one-third" }, [
+                _c("div", { staticClass: "stat" }, [
+                  _vm._v(
+                    "\n                          5\n                          "
+                  ),
+                  _c("sup", [_vm._v("M")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Training")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "one-third" }, [
+                _c("div", { staticClass: "stat" }, [_vm._v("16")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Speed")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "one-third no-border" }, [
+                _c("div", { staticClass: "stat" }, [_vm._v("4000")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "stat-value" }, [_vm._v("Cost")])
+              ])
+            ]
+          )
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -110189,135 +111393,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div")
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "cid-ro6uJJ0VM8" }, [
-      _c("div", { staticClass: "media-container-row align-center mbr-white" }, [
-        _c("div", { staticClass: "row row-links row-copirayt" }, [
-          _c("ul", { staticClass: "foot-menu" }, [
-            _c(
-              "li",
-              { staticClass: "foot-menu-item mbr-fonts-style display-7" },
-              [
-                _c("ul", { staticClass: "nav" }, [
-                  _c("li", { staticClass: "animated_link3" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _c("p", { attrs: { "data-title": "About us" } }, [
-                        _vm._v("About us")
-                      ])
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "foot-menu-item mbr-fonts-style display-7" },
-              [
-                _c("ul", { staticClass: "nav" }, [
-                  _c("li", { staticClass: "animated_link3" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _c("p", { attrs: { "data-title": "Services" } }, [
-                        _vm._v("Services")
-                      ])
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "foot-menu-item mbr-fonts-style display-7" },
-              [
-                _c("ul", { staticClass: "nav" }, [
-                  _c("li", { staticClass: "animated_link3" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _c("p", { attrs: { "data-title": "Get In Touch" } }, [
-                        _vm._v("Get In Touch")
-                      ])
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "foot-menu-item mbr-fonts-style display-7" },
-              [
-                _c("ul", { staticClass: "nav" }, [
-                  _c("li", { staticClass: "animated_link3" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _c("p", { attrs: { "data-title": "Careers" } }, [
-                        _vm._v("Careers")
-                      ])
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "foot-menu-item mbr-fonts-style display-7" },
-              [
-                _c("ul", { staticClass: "nav" }, [
-                  _c("li", { staticClass: "animated_link3" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _c("p", { attrs: { "data-title": "Work" } }, [
-                        _vm._v("Work")
-                      ])
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row social-row" }, [
-          _c("div", { staticClass: "social-list align-right pb-2" }, [
-            _c("div", { staticClass: "soc-item" }, [
-              _c("a", { attrs: { href: "#", target: "_blank" } }, [
-                _c("i", { staticClass: "icon-wechat" })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "soc-item" }, [
-              _c("a", { attrs: { href: "#", target: "_blank" } }, [
-                _c("i", { staticClass: "icon-alipay" })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "soc-item" }, [
-              _c("a", { attrs: { href: "#", target: "_blank" } }, [
-                _c("i", { staticClass: "icon-unionpay" })
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row row-copirayt" }, [
-          _c(
-            "p",
-            {
-              staticClass:
-                "mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7 text-center"
-            },
-            [_vm._v("© Copyright 2019 TNK - All Rights Reserved")]
-          )
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -110340,12 +111418,130 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c("nav", { staticClass: "navbar navbar-expand-lg fixed-top color-bg" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "navbar-wrapper" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "a",
+            { staticClass: "navbar-brand", attrs: { href: _vm.welcome } },
+            [_vm._v("TNK")]
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navigation" }
+          },
+          [
+            _vm._m(3),
+            _vm._v(" "),
+            _vm.checkuser == "false"
+              ? _c("span", [_vm._m(4)])
+              : _vm.checkuser == "true"
+              ? _c("span", [
+                  _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: _vm.messages }
+                        },
+                        [_vm._m(5), _vm._v("Message\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.myaccount()
+                            }
+                          }
+                        },
+                        [_vm._m(6), _vm._v("My Account\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: _vm.promote }
+                        },
+                        [_vm._m(7), _vm._v("My Privilege\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: _vm.lobby }
+                        },
+                        [_vm._m(8), _vm._v("Game Lobby\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.rechargeClick()
+                            }
+                          }
+                        },
+                        [_vm._m(9), _vm._v("Recharge\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "button nav-link d-flex float-left",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.withDrawClick()
+                            }
+                          }
+                        },
+                        [_vm._m(10), _vm._v("WithDraw\n              ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(11)
+                  ])
+                ])
+              : _vm._e()
+          ]
+        )
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "modal fade", attrs: { id: "loginModal" } }, [
       _c("div", { staticClass: "modal-dialog modal-lg" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(1),
+          _vm._m(12),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "col-lg-12 col-md-12" }, [
@@ -110362,9 +111558,9 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "card card-login card-white" }, [
-                    _vm._m(2),
+                    _vm._m(13),
                     _vm._v(" "),
-                    _vm._m(3),
+                    _vm._m(14),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-footer" }, [
                       _c(
@@ -110382,7 +111578,7 @@ var render = function() {
                         [_vm._v("Login")]
                       ),
                       _vm._v(" "),
-                      _vm._m(4)
+                      _vm._m(15)
                     ])
                   ])
                 ]
@@ -110397,11 +111593,13 @@ var render = function() {
     _c("div", { staticClass: "modal fade", attrs: { id: "register" } }, [
       _c("div", { staticClass: "modal-dialog modal-lg show" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(5),
+          _vm._m(16),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "container" }, [
               _c("div", { staticClass: "row" }, [
+                _vm._m(17),
+                _vm._v(" "),
                 _c("div", { staticClass: "col-md-7 mr-auto" }, [
                   _c("div", { staticClass: "card card-register card-white" }, [
                     _c(
@@ -110411,11 +111609,11 @@ var render = function() {
                         attrs: { method: "POST", action: "register" }
                       },
                       [
-                        _vm._m(6),
+                        _vm._m(18),
                         _vm._v(" "),
                         _c("div", { staticClass: "card-body" }, [
                           _c("div", { staticClass: "input-group" }, [
-                            _vm._m(7),
+                            _vm._m(19),
                             _vm._v(" "),
                             _c("input", {
                               staticClass: "form-control",
@@ -110436,14 +111634,14 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
-                          _vm._m(8),
+                          _vm._m(20),
                           _vm._v(" "),
-                          _vm._m(9),
+                          _vm._m(21),
                           _vm._v(" "),
-                          _vm._m(10)
+                          _vm._m(22)
                         ]),
                         _vm._v(" "),
-                        _vm._m(11)
+                        _vm._m(23)
                       ]
                     )
                   ])
@@ -110455,110 +111653,17 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(12),
+    _vm._m(24),
     _vm._v(" "),
-    _vm._m(13),
-    _vm._v(" "),
-    _c("div", { staticClass: "d-block d-xl-none" }, [
-      _c("div", { staticClass: "container mt-4 px-1" }, [
-        _c(
-          "nav",
-          { attrs: { "aria-label": "breadcrumb", role: "navigation" } },
-          [
-            _c("ol", { staticClass: "breadcrumb my-1 text-capitalize" }, [
-              _vm._m(14),
-              _vm._v(" "),
-              _vm._m(15),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "breadcrumb-item active",
-                  attrs: { "aria-current": "page" }
-                },
-                [_vm._v(_vm._s(_vm.navShowName))]
-              )
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _vm.navShowName === "myaccount"
-          ? _c("div", { staticClass: "u-content" }, [_c("myaccount")], 1)
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.navShowName === "recommedndedfriends"
-          ? _c(
-              "div",
-              { staticClass: "u-content" },
-              [_c("recommedndedfriends")],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.navShowName === "transactionrecord"
-          ? _c(
-              "div",
-              { staticClass: "u-content" },
-              [_c("transactionrecord")],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.navShowName === "instantrecharge"
-          ? _c("div", { staticClass: "u-content" }, [_c("instantrecharge")], 1)
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.navShowName === "applyforwithdrawal"
-          ? _c(
-              "div",
-              { staticClass: "u-content" },
-              [_c("applyforwithdrawal")],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.navShowName === "selfservicewashing"
-          ? _c(
-              "div",
-              { staticClass: "u-content" },
-              [_c("selfservicewashing")],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.navShowName === "changepassword"
-          ? _c("div", { staticClass: "u-content" }, [_c("changepassword")], 1)
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.navShowName === "bankinfo"
-          ? _c("div", { staticClass: "u-content" }, [_c("bankinfo")], 1)
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.navShowName === "modifyphone"
-          ? _c("div", { staticClass: "u-content" }, [_c("modifyphone")], 1)
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.navShowName === "bankinfo"
-          ? _c("div", { staticClass: "u-content" }, [_c("bankinfo")], 1)
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.navShowName === "subscription"
-          ? _c("div", { staticClass: "u-content" }, [_c("subscription")], 1)
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.navShowName === "message"
-          ? _c("div", { staticClass: "u-content" }, [_c("message")], 1)
-          : _vm._e()
-      ])
-    ]),
+    _vm._m(25),
     _vm._v(" "),
     _c("div", { staticClass: "d-block d-xl-none" }, [
       _vm.checkuser == "false"
-        ? _c("span", [_vm._m(16)])
+        ? _c("span", [_vm._m(26)])
         : _vm.checkuser == "true"
         ? _c("span", [
             _c("nav", { staticClass: "mobile-bottom-nav" }, [
-              _vm._m(17),
+              _vm._m(27),
               _vm._v(" "),
               _c("div", { staticClass: "mobile-bottom-nav__item" }, [
                 _c("div", { staticClass: "mobile-bottom-nav__item-content" }, [
@@ -110580,8 +111685,6 @@ var render = function() {
                   )
                 ])
               ]),
-              _vm._v(" "),
-              _vm._m(18),
               _vm._v(" "),
               _c("div", { staticClass: "mobile-bottom-nav__item" }, [
                 _c("div", { staticClass: "mobile-bottom-nav__item-content" }, [
@@ -110625,7 +111728,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(19)
+              _vm._m(28)
             ])
           ])
         : _vm._e()
@@ -110637,79 +111740,323 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "navbar-minimize d-inline" }, [
+      _c(
+        "button",
+        {
+          staticClass: "minimize-sidebar btn btn-link btn-just-icon",
+          attrs: {
+            rel: "tooltip",
+            "data-original-title": "Sidebar toggle",
+            "data-placement": "right"
+          }
+        },
+        [
+          _c("i", {
+            staticClass:
+              "tim-icons icon-align-center visible-on-sidebar-regular"
+          }),
+          _vm._v(" "),
+          _c("i", {
+            staticClass: "tim-icons icon-bullet-list-67 visible-on-sidebar-mini"
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "navbar-toggle d-inline" }, [
+      _c(
+        "button",
+        { staticClass: "navbar-toggler", attrs: { type: "button" } },
+        [
+          _c("span", { staticClass: "navbar-toggler-bar bar1" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "navbar-toggler-bar bar2" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "navbar-toggler-bar bar3" })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
-      "nav",
-      { staticClass: "navbar navbar-expand-lg fixed-top bg-primary" },
+      "button",
+      {
+        staticClass: "navbar-toggler pl-5",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navigation",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation"
+        }
+      },
       [
-        _c("div", { staticClass: "container" }, [
-          _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-            _vm._v("Navbar")
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "navbar-toggler",
-              attrs: {
-                type: "button",
-                "data-toggle": "collapse",
-                "data-target": "#navbarNav",
-                "aria-controls": "navbarNav",
-                "aria-expanded": "false",
-                "aria-label": "Toggle navigation"
-              }
-            },
-            [
-              _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" }),
+        _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "navbar-nav mr-auto" }, [
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "button nav-link d-flex float-left",
+            attrs: { href: "#" }
+          },
+          [
+            _c("div", { staticClass: "icons" }, [
+              _c("i", { staticClass: "tim-icons icon-single-02 icon-default" }),
               _vm._v(" "),
-              _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" }),
+              _c("i", { staticClass: "tim-icons icon-coins icon-hover" })
+            ]),
+            _vm._v("Recommend friends\n            ")
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "button nav-link d-flex float-left",
+            attrs: {
+              href: "#",
+              "data-toggle": "modal",
+              "data-target": "#loginModal"
+            }
+          },
+          [
+            _c("div", { staticClass: "icons" }, [
+              _c("i", { staticClass: "tim-icons icon-single-02 icon-default" }),
               _vm._v(" "),
-              _c("span", { staticClass: "navbar-toggler-bar navbar-kebab" })
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse",
-              attrs: { id: "navbarNav" }
-            },
-            [
-              _c("ul", { staticClass: "navbar-nav" }, [
-                _c("li", { staticClass: "nav-item active" }, [
-                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                    _vm._v("\n              Home\n              "),
-                    _c("span", { staticClass: "sr-only" }, [
-                      _vm._v("(current)")
+              _c("i", { staticClass: "tim-icons icon-lock-circle icon-hover" })
+            ]),
+            _vm._v("Login\n              ")
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "button nav-link d-flex float-left",
+            attrs: {
+              href: "#",
+              "data-toggle": "modal",
+              "data-target": "#register"
+            }
+          },
+          [
+            _c("div", { staticClass: "icons" }, [
+              _c("i", { staticClass: "fas fa-user-plus icon-default" }),
+              _vm._v(" "),
+              _c("i", { staticClass: "tim-icons icon-badge icon-hover" })
+            ]),
+            _vm._v("Register\n              ")
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "nav-item" }, [
+        _c(
+          "a",
+          {
+            staticClass: "button nav-link d-flex float-left",
+            attrs: {
+              href: "#",
+              "data-toggle": "modal",
+              "data-target": "#freetrial"
+            }
+          },
+          [
+            _c("div", { staticClass: "icons" }, [
+              _c("i", {
+                staticClass: "tim-icons icon-controller icon-default"
+              }),
+              _vm._v(" "),
+              _c("i", { staticClass: "tim-icons icon-credit-card icon-hover" })
+            ]),
+            _vm._v("Free Trial\n              ")
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icons" }, [
+      _c("i", { staticClass: "tim-icons icon-chat-33 icon-default" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "tim-icons icon-chat-33 icon-hover" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icons" }, [
+      _c("i", { staticClass: "tim-icons icon-single-02 icon-default" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "tim-icons icon-single-02 icon-hover" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icons" }, [
+      _c("i", { staticClass: "tim-icons icon-trophy icon-default" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "tim-icons icon-trophy icon-hover" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icons" }, [
+      _c("i", { staticClass: "tim-icons icon-controller icon-default" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "tim-icons icon-controller icon-hover" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icons" }, [
+      _c("i", { staticClass: "tim-icons icon-coins icon-default" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "tim-icons icon-coins icon-hover" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icons" }, [
+      _c("i", { staticClass: "tim-icons icon-money-coins icon-default" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "tim-icons icon-cart icon-hover" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "button nav-link d-flex float-left fixed-logout",
+          attrs: { href: "#" }
+        },
+        [
+          _c("div", { staticClass: "dropdown show-dropdown" }, [
+            _c("a", { attrs: { href: "#", "data-toggle": "dropdown" } }, [
+              _c("div", { staticClass: "icons" }, [
+                _c("i", {
+                  staticClass: "tim-icons icon-single-02 icon-default"
+                }),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "tim-icons icon-bullet-list-67 icon-hover"
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "dropdown-menu mt-3 p-0" }, [
+              _c("div", { staticClass: "row p-4" }, [
+                _c("div", { staticClass: "col-6" }, [
+                  _c("img", { attrs: { src: "assets/img/user.png", alt: "" } })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6 bg-logout" }, [
+                  _c("em", { staticClass: "header-user-name" }, [
+                    _vm._v("test")
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "header-user-level level-0" }, [
+                    _vm._v("新会员")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("small", { staticClass: "header-before-login-date" }, [
+                  _vm._v("最近登录时间：2019-04-24 14:25:40")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "menu-body" }, [
+                _c("div", { attrs: { id: "header-balance" } }, [
+                  _vm._v(
+                    "\n                        总余额\n                        "
+                  ),
+                  _c("h2", { staticClass: "eid_total_credit m-0 p-0" }, [
+                    _vm._v("0.00")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "d-flex" }, [
+                    _c("p", { staticClass: "text-desss" }, [
+                      _vm._v(
+                        "\n                            本地余额\n                            "
+                      ),
+                      _c("span", { attrs: { id: "eid_local_credit" } }, [
+                        _vm._v("0.00")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-balance" }, [
+                      _vm._v(
+                        "\n                            游戏余额\n                            "
+                      ),
+                      _c("span", { attrs: { id: "eid_game_credit" } }, [
+                        _vm._v("0.00")
+                      ])
                     ])
                   ])
                 ]),
                 _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                    _vm._v("Features")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                    _vm._v("Pricing")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    { staticClass: "nav-link disabled", attrs: { href: "#" } },
-                    [_vm._v("Disabled")]
-                  )
-                ])
+                _c(
+                  "a",
+                  { staticClass: "btn-logout", attrs: { href: "/logout" } },
+                  [
+                    _c("i", { staticClass: "fa fa-power-off" }),
+                    _vm._v("Log Out\n                      ")
+                  ]
+                )
               ])
-            ]
-          )
-        ])
-      ]
-    )
+            ])
+          ])
+        ]
+      )
+    ])
   },
   function() {
     var _vm = this
@@ -110836,6 +112183,62 @@ var staticRenderFns = [
         },
         [_vm._v("×")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-5 ml-auto" }, [
+      _c("div", { staticClass: "info-area info-horizontal mt-5" }, [
+        _c("div", { staticClass: "icon icon-warning" }, [
+          _c("i", { staticClass: "tim-icons icon-wifi" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "description" }, [
+          _c("h3", { staticClass: "info-title" }, [_vm._v("Marketing")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "description" }, [
+            _vm._v(
+              "We've created the marketing campaign of the website. It was a very interesting collaboration."
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "info-area info-horizontal" }, [
+        _c("div", { staticClass: "icon icon-primary" }, [
+          _c("i", { staticClass: "tim-icons icon-triangle-right-17" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "description" }, [
+          _c("h3", { staticClass: "info-title" }, [
+            _vm._v("Fully Coded in HTML5")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "description" }, [
+            _vm._v(
+              "We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub."
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "info-area info-horizontal" }, [
+        _c("div", { staticClass: "icon icon-info" }, [
+          _c("i", { staticClass: "tim-icons icon-trophy" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "description" }, [
+          _c("h3", { staticClass: "info-title" }, [_vm._v("Built Audience")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "description" }, [
+            _vm._v(
+              "There is also a Fully Customizable CMS Admin Dashboard for this product."
+            )
+          ])
+        ])
+      ])
     ])
   },
   function() {
@@ -111133,28 +112536,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "breadcrumb-item" }, [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "tim-icons icon-bank" }),
-        _vm._v("Home\n            ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "breadcrumb-item" }, [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "tim-icons icon-wallet-43" }),
-        _vm._v("Library\n            ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("nav", { staticClass: "mobile-bottom-nav" }, [
       _c(
         "div",
@@ -111191,17 +112572,6 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "mobile-bottom-nav__item" }, [
-        _c(
-          "div",
-          {
-            staticClass: "mobile-bottom-nav__item-content",
-            attrs: { "data-toggle": "modal", "data-target": "#freetrial" }
-          },
-          [_c("i", { staticClass: "tim-icons icon-controller icon-default" })]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "mobile-bottom-nav__item" }, [
         _c("div", { staticClass: "mobile-bottom-nav__item-content" }, [
           _c("i", { staticClass: "tim-icons icon-settings-gear-63" })
         ])
@@ -111223,16 +112593,6 @@ var staticRenderFns = [
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mobile-bottom-nav__item" }, [
-      _c("div", { staticClass: "mobile-bottom-nav__item-content" }, [
-        _c("i", { staticClass: "tim-icons icon-controller icon-default" })
-      ])
-    ])
   },
   function() {
     var _vm = this
