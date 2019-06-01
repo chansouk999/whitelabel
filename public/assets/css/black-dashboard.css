@@ -98,7 +98,7 @@ body {
     color: #525f7f;
     text-align: -webkit-center;
     /* text-align: center; */
-    background-color: #c8d1dc;
+    background-color: #ffffff;
 }
 
 [tabindex="-1"]:focus {
@@ -19121,11 +19121,11 @@ table.tablesorter thead tr .headerSortDown {
 
 .sidebar,
 .off-canvas-sidebar {
-    background: #3358f4;
-    background: -webkit-linear-gradient(0deg, #f5feff99 0%, #E91E63 100%);
-    background: -o-linear-gradient(0deg, #f5feff99 0%, #E91E63 100%);
-    background: -moz-linear-gradient(0deg, #f5feff99 0%, #E91E63 100%);
-    background: linear-gradient(0deg, #f5feff99 2%, #003679 100%);
+    background: #003679;
+    background: -webkit-linear-gradient(0deg, #003679 2%, #003679 100%);
+    background: -o-linear-gradient(0deg, #003679 2%, #003679 100%);
+    background: -moz-linear-gradient(0deg, #003679 2%, #003679 100%);
+    background: linear-gradient(0deg, #003679 2%, #003679 100%);
     height: calc(100vh - 263px);
     width: 100%;
     position: relative;
@@ -28066,10 +28066,10 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content {
-    /* background: #fbfbfb; */
-    background: #485563;
+    background: #ffffff;
+    /* background: #485563;
     background: -webkit-linear-gradient(to right, #29323c, #485563);
-    background: linear-gradient(to right, #d0d6dc, #d0d6dc);
+    background: linear-gradient(to right, #d0d6dc, #d0d6dc); */
     overflow-x: hidden;
 }
 
@@ -28122,11 +28122,11 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content .main-panel {
-    /* background: #fbfbfb; */
-    background: #fbfbfb;
+    background: #ffffff;
+    /* background: #fbfbfb;
     background: #485563;
     background: -webkit-linear-gradient(to right, #29323c, #485563);
-    background: linear-gradient(to right, #d0d6dc, #d0d6dc);
+    background: linear-gradient(to right, #d0d6dc, #d0d6dc); */
 }
 
 .dark-content {

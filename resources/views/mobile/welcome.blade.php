@@ -19,7 +19,8 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="assets/demo/demo.css" rel="stylesheet" />
         <!-- Mystyle -->
-        <link href="css/mystyle.css" rel="stylesheet" />
+        <link href="css/mainmobile.css" rel="stylesheet" />
+
 </head>
 
 <body class="white-content">
