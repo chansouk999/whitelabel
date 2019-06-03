@@ -36,6 +36,8 @@ return [
     */
 
     'guards' => [
+        
+
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -65,6 +67,8 @@ return [
     */
 
     'providers' => [
+        
+
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
@@ -92,6 +96,8 @@ return [
     */
 
     'passwords' => [
+        
+
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
