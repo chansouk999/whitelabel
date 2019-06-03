@@ -80,7 +80,7 @@ export default {
         },
         title: {
           display: true,
-          text: "online time minutes"
+          // text: "online time minutes"
         },
         pan: {
           enabled: true,

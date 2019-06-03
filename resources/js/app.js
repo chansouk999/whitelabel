@@ -35,6 +35,16 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue').default
 );
 
+
+import Vue from 'vue'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
+// require styles
+import 'swiper/dist/css/swiper.css'
+
+Vue.use(VueAwesomeSwiper, /* { default global options } */ )
+
+
 const app = new Vue({
     el: '#app'
 });

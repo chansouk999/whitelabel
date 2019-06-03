@@ -149,8 +149,15 @@
           <div class="card bg-light rounded-1 mb-1">
             <div class="card-body px-0 py-1">
               <div class="input-group my-1">
-                <p class="headTxt">Search</p>
-                <a href="#" class="item-link" placeholder="With Font Awesome Icons">【热点新闻】中美贸易战事件</a>
+                <button
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#searchModal"
+                  class="btn-warning animation-on-hover btn-icon btn-round"
+                >
+                  <i class="tim-icons icon-zoom-split"></i>
+                </button>
+                <a href="#" class="item-link" placeholder>【热点新闻】中美贸易战事件</a>
                 <a href="#" class="more_txt">更多</a>
               </div>
             </div>
@@ -188,206 +195,326 @@
           </ul>
           <div class="tab-content tab-space p-0">
             <div class="tab-pane show active" id="link1" aria-expanded="true">
-              <div class="shadow-lg">
+              <div class="container shadow-lg">
                 <chartjs backgroundcolor="#ff8d72"></chartjs>
-                <div class="slide-container">
-                  <div class="wrapper">
-                    <div class="clash-card barbarian">
-                      <div class="clash-card__image clash-card__image--barbarian">
-                        <img
-                          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/barbarian.png"
-                          alt="barbarian"
-                        >
-                      </div>
-                      <div class="clash-card__level clash-card__level--barbarian">Level 4</div>
-                      <div class="clash-card__unit-name">The Barbarian</div>
-                      <div
-                        class="clash-card__unit-description barbarian-description"
-                      >The Barbarian is a kilt-clad Scottish warrior with an angry, battle-ready expression, hungry for destruction. He has Killer yellow horseshoe mustache.</div>
-
-                      <div
-                        class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix"
-                      >
-                        <div class="one-third">
-                          <div class="stat">
-                            20
-                            <sup>S</sup>
-                          </div>
-                          <div class="stat-value">Training</div>
-                        </div>
-
-                        <div class="one-third">
-                          <div class="stat">16</div>
-                          <div class="stat-value">Speed</div>
-                        </div>
-
-                        <div class="one-third no-border">
-                          <div class="stat">150</div>
-                          <div class="stat-value">Cost</div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- end clash-card barbarian-->
+                <hr class="hr-mobile">
+                <div class="row d-flex justify-content-between py-2">
+                  <div class="d-flex">
+                    <img
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/201905098b86ac2b5ed84d349b5413336407acc2.png"
+                      alt
+                    >
+                    <span class="game_rBox">
+                      <h4>亚游电竞</h4>
+                      <p>看直播 投比赛 尽享电竞乐趣</p>
+                    </span>
                   </div>
-                  <!-- end wrapper -->
-
-                  <div class="wrapper">
-                    <div class="clash-card archer">
-                      <div class="clash-card__image clash-card__image--archer">
-                        <img
-                          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/archer.png"
-                          alt="archer"
-                        >
-                      </div>
-                      <div class="clash-card__level clash-card__level--archer">Level 5</div>
-                      <div class="clash-card__unit-name">The Archer</div>
-                      <div
-                        class="clash-card__unit-description archer-description"
-                      >The Archer is a female warrior with sharp eyes. She wears a short, light green dress, a hooded cape, a leather belt and an attached small pouch.</div>
-
-                      <div class="clash-card__unit-stats clash-card__unit-stats--archer clearfix">
-                        <div class="one-third">
-                          <div class="stat">
-                            25
-                            <sup>S</sup>
-                          </div>
-                          <div class="stat-value">Training</div>
-                        </div>
-
-                        <div class="one-third">
-                          <div class="stat">24</div>
-                          <div class="stat-value">Speed</div>
-                        </div>
-
-                        <div class="one-third no-border">
-                          <div class="stat">300</div>
-                          <div class="stat-value">Cost</div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- end clash-card archer-->
-                  </div>
-                  <!-- end wrapper -->
-
-                  <div class="wrapper">
-                    <div class="clash-card giant">
-                      <div class="clash-card__image clash-card__image--giant">
-                        <img
-                          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/giant.png"
-                          alt="giant"
-                        >
-                      </div>
-                      <div class="clash-card__level clash-card__level--giant">Level 5</div>
-                      <div class="clash-card__unit-name">The Giant</div>
-                      <div
-                        class="clash-card__unit-description giant-description"
-                      >Slow, steady and powerful, Giants are massive warriors that soak up huge amounts of damage. Show them a turret or cannon and you'll see their fury unleashed!</div>
-
-                      <div class="clash-card__unit-stats clash-card__unit-stats--giant clearfix">
-                        <div class="one-third">
-                          <div class="stat">
-                            2
-                            <sup>M</sup>
-                          </div>
-                          <div class="stat-value">Training</div>
-                        </div>
-
-                        <div class="one-third">
-                          <div class="stat">12</div>
-                          <div class="stat-value">Speed</div>
-                        </div>
-
-                        <div class="one-third no-border">
-                          <div class="stat">2250</div>
-                          <div class="stat-value">Cost</div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- end clash-card giant-->
-                  </div>
-                  <!-- end wrapper -->
-
-                  <div class="wrapper">
-                    <div class="clash-card goblin">
-                      <div class="clash-card__image clash-card__image--goblin">
-                        <img
-                          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/goblin.png"
-                          alt="goblin"
-                        >
-                      </div>
-                      <div class="clash-card__level clash-card__level--goblin">Level 5</div>
-                      <div class="clash-card__unit-name">The Goblin</div>
-                      <div
-                        class="clash-card__unit-description goblin-description"
-                      >These pesky little creatures only have eyes for one thing: LOOT! They are faster than a Spring Trap, and their hunger for resources is limitless.</div>
-
-                      <div class="clash-card__unit-stats clash-card__unit-stats--goblin clearfix">
-                        <div class="one-third">
-                          <div class="stat">
-                            30
-                            <sup>S</sup>
-                          </div>
-                          <div class="stat-value">Training</div>
-                        </div>
-
-                        <div class="one-third">
-                          <div class="stat">32</div>
-                          <div class="stat-value">Speed</div>
-                        </div>
-
-                        <div class="one-third no-border">
-                          <div class="stat">100</div>
-                          <div class="stat-value">Cost</div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- end clash-card goblin-->
-                  </div>
-                  <!-- end wrapper -->
-
-                  <div class="wrapper mb-5">
-                    <div class="clash-card wizard">
-                      <div class="clash-card__image clash-card__image--wizard">
-                        <img
-                          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/wizard.png"
-                          alt="wizard"
-                        >
-                      </div>
-                      <div class="clash-card__level clash-card__level--wizard">Level 6</div>
-                      <div class="clash-card__unit-name">The Wizard</div>
-                      <div
-                        class="clash-card__unit-description wizard-description"
-                      >The Wizard is a terrifying presence on the battlefield. Pair him up with some of his fellows and cast concentrated blasts of destruction on anything, land or sky!</div>
-
-                      <div class="clash-card__unit-stats clash-card__unit-stats--wizard clearfix">
-                        <div class="one-third">
-                          <div class="stat">
-                            5
-                            <sup>M</sup>
-                          </div>
-                          <div class="stat-value">Training</div>
-                        </div>
-
-                        <div class="one-third">
-                          <div class="stat">16</div>
-                          <div class="stat-value">Speed</div>
-                        </div>
-
-                        <div class="one-third no-border">
-                          <div class="stat">4000</div>
-                          <div class="stat-value">Cost</div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- end clash-card wizard-->
-                  </div>
-                  <!-- end wrapper -->
+                  <p class="mycolor-icon">
+                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
+                  </p>
                 </div>
-                <!-- end container -->
+                <hr class="hr-mobile">
+                <div class="row d-flex justify-content-between py-2">
+                  <div class="d-flex">
+                    <img
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190528e5478ab16d8a4c14805c1b62251d4869.png"
+                      alt
+                    >
+                    <span class="game_rBox">
+                      <h4>乐门彩票</h4>
+                      <p>百万奖池等你来赢</p>
+                    </span>
+                  </div>
+                  <p class="mycolor-icon">
+                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
+                  </p>
+                </div>
+                <hr class="hr-mobile">
+                <div class="row d-flex justify-content-between py-2">
+                  <div class="d-flex">
+                    <img
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190116f703eef0847744918ee6564887564951.png"
+                      alt
+                    >
+                    <span class="game_rBox">
+                      <h4>AS电玩城</h4>
+                      <p>真人游戏结果！更快网速体验！</p>
+                    </span>
+                  </div>
+                  <p class="mycolor-icon">
+                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
+                  </p>
+                </div>
+                <hr class="hr-mobile">
+                <div class="row d-flex justify-content-between py-2">
+                  <div class="d-flex">
+                    <img
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190425039f1d5c4d51457c96cb792875a99219.jpg"
+                      alt
+                    >
+                    <span class="game_rBox">
+                      <h4>VR彩票</h4>
+                      <p>热门彩种来袭 超高洗码</p>
+                    </span>
+                  </div>
+                  <p class="mycolor-icon">
+                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
+                  </p>
+                </div>
+                <hr class="hr-mobile">
+                <div class="row d-flex justify-content-between py-2">
+                  <div class="d-flex">
+                    <img
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190116836d92c12f824745bfe88ae136bebf17.png"
+                      alt
+                    >
+                    <span class="game_rBox">
+                      <h4>YOPLAY街机</h4>
+                      <p>回到小时候玩街机电玩的感觉</p>
+                    </span>
+                  </div>
+                  <p class="mycolor-icon">
+                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
+                  </p>
+                </div>
+                <hr class="hr-mobile">
+                <div class="row d-flex justify-content-between py-2">
+                  <div class="d-flex">
+                    <img
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190116c81ce9d9d81d4d71a25573d8a514118c.jpg"
+                      alt
+                    >
+                    <span class="game_rBox">
+                      <h4>AG体育</h4>
+                      <p>专业欧盘 高赔首选</p>
+                    </span>
+                  </div>
+                  <p class="mycolor-icon">
+                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
+                  </p>
+                </div>
+                <hr class="hr-mobile">
               </div>
             </div>
-            <div class="tab-pane" id="link2" aria-expanded="false"></div>
-            <div class="tab-pane" id="link3" aria-expanded="false"></div>
+            <div class="tab-pane" id="link2" aria-expanded="false">
+              <div class="container shadow-lg">
+                <img
+                  src="https://static-h5.swcqlz.com/cms/cms_pic/201901164404c1e0ef244f03bf219ec35af5cbc3.jpg"
+                  alt
+                >
+                <hr class="hr-mobile">
+                <div class="row d-flex justify-content-between py-2">
+                  <div class="d-flex">
+                    <img
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190116c06d119c28604be1b114cbab79323e7f.png"
+                      alt
+                    >
+                    <span class="game_rBox">
+                      <h4>亚游电竞</h4>
+                      <p>看直播 投比赛 尽享电竞乐趣</p>
+                    </span>
+                  </div>
+                  <p class="mycolor-icon">
+                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
+                  </p>
+                </div>
+                <hr class="hr-mobile">
+                <div class="row d-flex justify-content-between py-2">
+                  <div class="d-flex">
+                    <img
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/201905287706b5246279410698bd148198bb2421.png"
+                      alt
+                    >
+                    <span class="game_rBox">
+                      <h4>乐门彩票</h4>
+                      <p>百万奖池等你来赢</p>
+                    </span>
+                  </div>
+                  <p class="mycolor-icon">
+                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
+                  </p>
+                </div>
+                <hr class="hr-mobile">
+                <div class="row d-flex justify-content-between py-2">
+                  <div class="d-flex">
+                    <img
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/201905287706b5246279410698bd148198bb2421.png"
+                      alt
+                    >
+                    <span class="game_rBox">
+                      <h4>AS电玩城</h4>
+                      <p>真人游戏结果！更快网速体验！</p>
+                    </span>
+                  </div>
+                  <p class="mycolor-icon">
+                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
+                  </p>
+                </div>
+                <hr class="hr-mobile">
+                <div class="row d-flex justify-content-between py-2">
+                  <div class="d-flex">
+                    <img
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/2019011697bb7dea9f854c5ab27be45d174fcb37.png"
+                      alt
+                    >
+                    <span class="game_rBox">
+                      <h4>VR彩票</h4>
+                      <p>热门彩种来袭 超高洗码</p>
+                    </span>
+                  </div>
+                  <p class="mycolor-icon">
+                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
+                  </p>
+                </div>
+                <hr class="hr-mobile">
+                <div class="row d-flex justify-content-between py-2">
+                  <div class="d-flex">
+                    <img
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/201901168db4495073ab4b4ab6bc887573504778.png"
+                      alt
+                    >
+                    <span class="game_rBox">
+                      <h4>YOPLAY街机</h4>
+                      <p>回到小时候玩街机电玩的感觉</p>
+                    </span>
+                  </div>
+                  <p class="mycolor-icon">
+                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
+                  </p>
+                </div>
+                <hr class="hr-mobile">
+                <div class="row d-flex justify-content-between py-2">
+                  <div class="d-flex">
+                    <img
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190116df9f4d2849ed42d3a14873d3b585ec2e.png"
+                      alt
+                    >
+                    <span class="game_rBox">
+                      <h4>AG体育</h4>
+                      <p>专业欧盘 高赔首选</p>
+                    </span>
+                  </div>
+                  <p class="mycolor-icon">
+                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
+                  </p>
+                </div>
+                <hr class="hr-mobile">
+              </div>
+            </div>
+            <div class="tab-pane" id="link3" aria-expanded="false">
+              <div class="col-12 px-1">
+                <img
+                  alt
+                  src="https://static-h5.swcqlz.com/cms/cms_pic/20190116f71077c971884321bb7bdac1bd52a83b.jpg"
+                >
+              </div>
+              <div class="col-12 row px-0 mt-1">
+                <div class="col-6 px-2">
+                  <div class="card shadow-wl">
+                    <img
+                      class="card-img-top"
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190116f0f6339f888147628ee46134e29bef67.png"
+                      alt="Card image cap"
+                    >
+                    <div class="card-body">
+                      <h4 class="card-title">飞禽走兽多人版</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 px-2">
+                  <div class="card shadow-wl">
+                    <img
+                      class="card-img-top"
+                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190116d2c5f5f3a9924dd4ad82138d589d4646.png"
+                      alt="Card image cap"
+                    >
+                    <div class="card-body">
+                      <h4 class="card-title">金拉霸</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="row">
+                <div class="col-12 px-0">
+                  <flickity ref="flickity" :options="flickityOptions">
+                    <div class="carousel-cell">
+                      <img
+                        src="https://static-h5.swcqlz.com/cms/cms_pic/201905312940e4b826e949499dc51c3cdb810e3b.jpg"
+                        alt
+                      >
+                    </div>
+                    <div class="carousel-cell">
+                      <img
+                        src="https://static-h5.swcqlz.com/cms/cms_pic/201905315db58b639a4f478fab8b1d45f12f22a8.jpg"
+                        alt
+                      >
+                    </div>
+                    <div class="carousel-cell">
+                      <img
+                        src="https://static-h5.swcqlz.com/cms/cms_pic/20180531015c5365ee7a4bc1b4723d85c0908315.jpg"
+                        alt
+                      >
+                    </div>
+                    <div class="carousel-cell">
+                      <img
+                        src="https://static-h5.swcqlz.com/cms/cms_pic/201905312940e4b826e949499dc51c3cdb810e3b.jpg"
+                        alt
+                      >
+                    </div>
+                    <div class="carousel-cell">
+                      <img
+                        src="https://static-h5.swcqlz.com/cms/cms_pic/201905315db58b639a4f478fab8b1d45f12f22a8.jpg"
+                        alt
+                      >
+                    </div>
+                  </flickity>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 p-1">
+              <div class="card bg-light my-1">
+                <div class="card-body p-1">
+                  <div class="d-flex justify-content-between">
+                    <h4 class="card-title">客户端下载</h4>
+                    <a href="#">
+                      更多
+                      <i class="tim-icons icon-minimal-right"></i>
+                    </a>
+                  </div>
+                </div>
+                <img class="card-img-bottom" src="/assets/img/banner_wl.jpg" alt="Card image cap">
+              </div>
+            </div>
+            <div class="col-12 mb-6 px-1">
+              <div class="copyright">
+                <a href="#">关于AG亚游</a> |
+                <a href="#">隐私说明</a> |
+                <a href="#">合约条款</a> |
+                <a href="#">联络我们</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal modal-search fade"
+      id="searchModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="searchModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -395,6 +522,7 @@
   </div>
 </template>
 <script>
+import Flickity from "vue-flickity";
 import navbars from "./navbar";
 import asides from "./asides";
 import footers from "./footers";
@@ -404,10 +532,19 @@ export default {
     navbars,
     asides,
     footers,
-    chartjs
+    chartjs,
+    Flickity
   },
   data() {
     return {
+      flickityOptions: {
+        initialIndex: 3,
+        prevNextButtons: false,
+        pageDots: false,
+        wrapAround: true
+
+        // any options from Flickity can be used
+      },
       ismenu: false,
       messages: "./index",
       promote: "./promote",
@@ -415,13 +552,23 @@ export default {
       lobby: "./lobby",
       csrf: document
         .querySelector('meta[name="csrf-token"]')
-        .getAttribute("content"),
-      checkuser: document.querySelector(".checkuser").getAttribute("value")
+        .getAttribute("content")
     };
   },
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.swiper;
+    }
+  },
   mounted() {},
-
   methods: {
+    next() {
+      this.$refs.flickity.next();
+    },
+
+    previous() {
+      this.$refs.flickity.previous();
+    },
     myaccount() {
       $("#myaccountlink")[0].click();
     },
