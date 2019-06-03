@@ -43,7 +43,7 @@ Route::get('/getlogin',function(){
         ]
     ]);
     return $datacheckresult = json_decode((string) $resposnse->getBody(), true);
-    return redirect('http://localhost:8001/getlogin');
+    // return redirect('http://localhost:8001/getlogin');
     });
 
 
