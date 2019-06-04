@@ -153,7 +153,7 @@
                   type="button"
                   data-toggle="modal"
                   data-target="#searchModal"
-                  class="btn-warning "
+                  class="btn-warning"
                 >
                   <i class="tim-icons icon-zoom-split"></i>
                 </button>
@@ -197,96 +197,11 @@
             <div class="tab-pane show active" id="link1" aria-expanded="true">
               <div class="container shadow-lg">
                 <chartjs backgroundcolor="#ff8d72"></chartjs>
-                <hr class="hr-mobile">
                 <div class="row d-flex justify-content-between py-2">
                   <div class="d-flex">
-                    <img
-                      src="https://static-h5.swcqlz.com/cms/cms_pic/201905098b86ac2b5ed84d349b5413336407acc2.png"
-                      alt
-                    >
                     <span class="game_rBox">
                       <h4>亚游电竞</h4>
                       <p>看直播 投比赛 尽享电竞乐趣</p>
-                    </span>
-                  </div>
-                  <p class="mycolor-icon">
-                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
-                  </p>
-                </div>
-                <hr class="hr-mobile">
-                <div class="row d-flex justify-content-between py-2">
-                  <div class="d-flex">
-                    <img
-                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190528e5478ab16d8a4c14805c1b62251d4869.png"
-                      alt
-                    >
-                    <span class="game_rBox">
-                      <h4>乐门彩票</h4>
-                      <p>百万奖池等你来赢</p>
-                    </span>
-                  </div>
-                  <p class="mycolor-icon">
-                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
-                  </p>
-                </div>
-                <hr class="hr-mobile">
-                <div class="row d-flex justify-content-between py-2">
-                  <div class="d-flex">
-                    <img
-                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190116f703eef0847744918ee6564887564951.png"
-                      alt
-                    >
-                    <span class="game_rBox">
-                      <h4>AS电玩城</h4>
-                      <p>真人游戏结果！更快网速体验！</p>
-                    </span>
-                  </div>
-                  <p class="mycolor-icon">
-                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
-                  </p>
-                </div>
-                <hr class="hr-mobile">
-                <div class="row d-flex justify-content-between py-2">
-                  <div class="d-flex">
-                    <img
-                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190425039f1d5c4d51457c96cb792875a99219.jpg"
-                      alt
-                    >
-                    <span class="game_rBox">
-                      <h4>VR彩票</h4>
-                      <p>热门彩种来袭 超高洗码</p>
-                    </span>
-                  </div>
-                  <p class="mycolor-icon">
-                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
-                  </p>
-                </div>
-                <hr class="hr-mobile">
-                <div class="row d-flex justify-content-between py-2">
-                  <div class="d-flex">
-                    <img
-                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190116836d92c12f824745bfe88ae136bebf17.png"
-                      alt
-                    >
-                    <span class="game_rBox">
-                      <h4>YOPLAY街机</h4>
-                      <p>回到小时候玩街机电玩的感觉</p>
-                    </span>
-                  </div>
-                  <p class="mycolor-icon">
-                    <button class="btn btn-warning animation-on-hover" type="button">开始游戏</button>
-                  </p>
-                </div>
-                <hr class="hr-mobile">
-                <div class="row d-flex justify-content-between py-2">
-                  <div class="d-flex">
-                    <img
-                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190116c81ce9d9d81d4d71a25573d8a514118c.jpg"
-                      alt
-                    >
-                    <span class="game_rBox">
-                      <h4>AG体育</h4>
-                      <p>专业欧盘 高赔首选</p>
                     </span>
                   </div>
                   <p class="mycolor-icon">
