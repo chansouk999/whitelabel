@@ -67,7 +67,7 @@
                   <div class="tab-pane active" id="playerinfo">
                     
                   <div class="top-header-function">
-                    <span class="page-current">Current Page : Page 1</span>
+                    <span class="page-current">Current Page : Page {{ userdetailpg.currentpage }}</span>
                     <span class="page-search">
                       <div class="input-group col-6">
                               <div class="input-group-prepend">
@@ -75,7 +75,7 @@
                                   <i class="fa fa-search"></i>
                                 </span>
                               </div>
-                              <input type="text" class="form-control" placeholder="With Font Awesome Icons">
+                              <input type="text" class="form-control" placeholder="With Font Awesome Icons" v-model="searchuserdetail" @keyup.enter="userdata(userdetailpg.path+'?search='+searchuserdetail,method='search')">
                             </div>
                     </span>
                   </div><br>
@@ -97,21 +97,38 @@
                           <th>Register IP</th>
                           <th></th>
                         </tr>
+                        
                       </thead>
+                       
                       <tbody>
-                        <tr>
-                          <td class="text-center">1</td>
-                          <td>Andrew Mike</td>
-                          <td>Develop</td>
-                          <td>2013</td>
-                          <td>&euro; 99,225</td>
-                          <td>&euro; 99,225</td>
-                          <td>&euro; 99,225</td>
-                          <td>&euro; 99,225</td>
-                          <td>&euro; 99,225</td>
-                          <td>&euro; 99,225</td>
-                          <td>&euro; 99,225</td>
-                          <td>&euro; 99,225</td>
+                      
+                        <tr class="tr-loader" v-if="loading == true">
+                          <td colspan="13">
+                             <div class="cover-load">
+                              <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                              </div>
+                              </td>
+                        </tr>
+                         <tr class="tr-loader" v-if="loading_text == true">
+                          <td colspan="13">
+                             <div class="cover-load">
+                              NO DATA IN THIS PAGE
+                              </div>
+                              </td>
+                        </tr>
+                        <tr  v-for="(data,index) in userdetail" class="userdeteail"  v-if="loading == false">
+                          <td class="text-center">{{ index+1 }}</td>
+                          <td>{{data.user_id}}</td>
+                          <td>{{data.name}}</td>
+                          <td>{{data.userBalance}}</td>
+                          <td>{{data.totalOnlineHour}}</td>
+                          <td>{{data.id}}</td>
+                          <td>{{data.userBalance}}</td>
+                          <td>{{data.userBalance}}</td>
+                          <td>{{data.userBalance}}</td>
+                          <td>{{data.userStatus}}</td>
+                          <td>{{data.created_at}}</td>
+                          <td>{{data.accessIP}}</td>
                           <td class="td-actions">
                             <button type="button" rel="tooltip" class="btn btn-success">Game History</button>
                             <button
@@ -143,27 +160,23 @@
                         <ul class="pagination">
                           <li class="page-item">
                             
-                            <select class="browser-default custom-select">
-                              <option selected>1</option>
-                              <option value="1">2</option>
-                              <option value="2">3</option>
-                              <option value="3">4</option>
+                            <select class="browser-default custom-select" v-model="userdetailselectpage" @change="userdata(userdetailselectpage,method='listpage')">
+                              <option selected v-for="page in userdetailpg.last_page" :value="page">{{ page }}</option>
                             </select>
                           </li>
-                          <li class="page-item disabled">
+                          <li class="page-item">
 
-                            <span class="page-link">Previous</span>
+                            <span class="page-link" @click="userdata(userdetailpg.prev_page_url,method='previous')">Previous</span>
                           </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">{{ userdetailpg.currentpage - 1 }}</a></li>
                           <li class="page-item active">
                             <span class="page-link">
-                              2
-                              <span class="sr-only">(current)</span>
+                              <span class="sr-only">{{userdetailpg.currentpage}}</span>
                             </span>
                           </li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#">{{ userdetailpg.currentpage + 1 }}</a></li>
                           <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
+                            <a class="page-link" href="#" @click="userdata(userdetailpg.next_page_url,method='next')" >Next</a>
                           </li>
                         </ul>
                       </nav>
@@ -898,14 +911,128 @@ import aside from "./asides";
 import navbar from "./navbar";
 import footer from "./footers";
 export default {
+  data(){
+    return {
+      loading_text:false,
+      loading:null,
+      userdetail:[],
+      userdetailpg:[],
+      userdetailselectpage:null,
+      searchuserdetail:null,
+
+    }
+  },
   components: {
     "app-aside": aside,
     "app-navbar": navbar,
     "app-footer": footer
-  }
+  },
+  mounted() {
+    this.userdata()
+  },
+  methods:{
+    // else if(method == 'search'){
+    //             url = pagenum
+    //         }
+    
+    
+      userdata(pagenum,method){
+        this.loading=true
+        this.loading_text =false
+        let url =''
+        if(this.searchuserdetail == null){
+            if(method =='listpage'){
+                url = '/getdata?page='+pagenum
+            }else if(method == 'previous' || method == 'next'){
+                url = pagenum
+            }else{
+                url = '/getdata'
+            }
+        }else{
+            if(method =='listpage'){
+                  url = '/getdata?page='+pagenum+'&search='+this.searchuserdetail
+            }else{
+                  url = pagenum
+            }
+        }
+        axios.get(url).then(res=>{
+          console.log(res.data.userdata)
+          if(res.data.userdata == ''){
+              alert('ok')
+            }
+          this.userdetail = res.data.userdata.data
+          this.userdetailpg = {
+            currentpage:res.data.userdata.current_page,
+            next_page_url:res.data.userdata.next_page_url,
+            path:res.data.userdata.path,
+            last_page_url:res.data.userdata.last_page_url,
+            per_page:res.data.userdata.per_page,
+            last_page:res.data.userdata.last_page,
+            prev_page_url:res.data.userdata.prev_page_url,
+            per_page:res.data.userdata.per_page,
+            
+          }
+           
+        }).catch(er=>{console.log(er.res)})
+      },
+    
+  },
+    watch: {
+        userdetail(e){
+          this.loading=false
+          // console.log(e)
+        
+
+        }
+      },
 };
 </script>
 <style scoped>
+.tr-loader{
+
+}
+.tr-loader td{
+  
+}
+.cover-load{
+margin-top: 40px;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 51px;
+  height: 51px;
+  margin: 6px;
+  border: 6px solid #343a40;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #343a40 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .top-header-function{
 
 }

@@ -21,6 +21,7 @@ Route::get('/promote','Homecontroller@promote');
 Route::get('/lobby','Homecontroller@lobby');
 Route::post('/updatemoney','MasterController@updatemoney');
 Auth::routes();
+Route::get('/getdata','AdminController@getuserdata');
 
 Route::get('/home', function(){
     return view('home');

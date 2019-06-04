@@ -2468,6 +2468,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _asides__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./asides */ "./resources/js/components/admin/asides.vue");
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navbar */ "./resources/js/components/admin/navbar.vue");
 /* harmony import */ var _footers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./footers */ "./resources/js/components/admin/footers.vue");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3367,10 +3382,77 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      loading_text: false,
+      loading: null,
+      userdetail: [],
+      userdetailpg: [],
+      userdetailselectpage: null,
+      searchuserdetail: null
+    };
+  },
   components: {
     "app-aside": _asides__WEBPACK_IMPORTED_MODULE_0__["default"],
     "app-navbar": _navbar__WEBPACK_IMPORTED_MODULE_1__["default"],
     "app-footer": _footers__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  mounted: function mounted() {
+    this.userdata();
+  },
+  methods: {
+    // else if(method == 'search'){
+    //             url = pagenum
+    //         }
+    userdata: function userdata(pagenum, method) {
+      var _this = this;
+
+      this.loading = true;
+      this.loading_text = false;
+      var url = '';
+
+      if (this.searchuserdetail == null) {
+        if (method == 'listpage') {
+          url = '/getdata?page=' + pagenum;
+        } else if (method == 'previous' || method == 'next') {
+          url = pagenum;
+        } else {
+          url = '/getdata';
+        }
+      } else {
+        if (method == 'listpage') {
+          url = '/getdata?page=' + pagenum + '&search=' + this.searchuserdetail;
+        } else {
+          url = pagenum;
+        }
+      }
+
+      axios.get(url).then(function (res) {
+        console.log(res.data.userdata);
+
+        if (res.data.userdata == '') {
+          alert('ok');
+        }
+
+        _this.userdetail = res.data.userdata.data;
+        _this.userdetailpg = _defineProperty({
+          currentpage: res.data.userdata.current_page,
+          next_page_url: res.data.userdata.next_page_url,
+          path: res.data.userdata.path,
+          last_page_url: res.data.userdata.last_page_url,
+          per_page: res.data.userdata.per_page,
+          last_page: res.data.userdata.last_page,
+          prev_page_url: res.data.userdata.prev_page_url
+        }, "per_page", res.data.userdata.per_page);
+      })["catch"](function (er) {
+        console.log(er.res);
+      });
+    }
+  },
+  watch: {
+    userdetail: function userdetail(e) {
+      this.loading = false; // console.log(e)
+    }
   }
 });
 
@@ -35839,7 +35921,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.top-header-function[data-v-fca00c74]{\n}\n.page-current[data-v-fca00c74]{\n}\n.page-search[data-v-fca00c74]{\n}\r\n", ""]);
+exports.push([module.i, "\n.tr-loader[data-v-fca00c74]{\n}\n.tr-loader td[data-v-fca00c74]{\n}\n.cover-load[data-v-fca00c74]{\r\nmargin-top: 40px;\n}\n.lds-ring[data-v-fca00c74] {\r\n  display: inline-block;\r\n  position: relative;\r\n  width: 64px;\r\n  height: 64px;\n}\n.lds-ring div[data-v-fca00c74] {\r\n  box-sizing: border-box;\r\n  display: block;\r\n  position: absolute;\r\n  width: 51px;\r\n  height: 51px;\r\n  margin: 6px;\r\n  border: 6px solid #343a40;\r\n  border-radius: 50%;\r\n  -webkit-animation: lds-ring-data-v-fca00c74 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\r\n          animation: lds-ring-data-v-fca00c74 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\r\n  border-color: #343a40 transparent transparent transparent;\n}\n.lds-ring div[data-v-fca00c74]:nth-child(1) {\r\n  -webkit-animation-delay: -0.45s;\r\n          animation-delay: -0.45s;\n}\n.lds-ring div[data-v-fca00c74]:nth-child(2) {\r\n  -webkit-animation-delay: -0.3s;\r\n          animation-delay: -0.3s;\n}\n.lds-ring div[data-v-fca00c74]:nth-child(3) {\r\n  -webkit-animation-delay: -0.15s;\r\n          animation-delay: -0.15s;\n}\n@-webkit-keyframes lds-ring-data-v-fca00c74 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n100% {\r\n    -webkit-transform: rotate(360deg);\r\n            transform: rotate(360deg);\n}\n}\n@keyframes lds-ring-data-v-fca00c74 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n100% {\r\n    -webkit-transform: rotate(360deg);\r\n            transform: rotate(360deg);\n}\n}\n.top-header-function[data-v-fca00c74]{\n}\n.page-current[data-v-fca00c74]{\n}\n.page-search[data-v-fca00c74]{\n}\r\n", ""]);
 
 // exports
 
@@ -86783,7 +86865,353 @@ var render = function() {
         _c(
           "div",
           { staticClass: "main-panel" },
-          [_c("app-navbar"), _vm._v(" "), _vm._m(0)],
+          [
+            _c("app-navbar"),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "content", staticStyle: { "margin-top": "0px" } },
+              [
+                _c("div", { staticClass: "container-fluid" }, [
+                  _c("div", { staticClass: "card card-nav-tabs card-plain" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "tab-content text-center" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "tab-pane active",
+                            attrs: { id: "playerinfo" }
+                          },
+                          [
+                            _c("div", { staticClass: "top-header-function" }, [
+                              _c("span", { staticClass: "page-current" }, [
+                                _vm._v(
+                                  "Current Page : Page " +
+                                    _vm._s(_vm.userdetailpg.currentpage)
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "page-search" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "input-group col-6" },
+                                  [
+                                    _vm._m(1),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.searchuserdetail,
+                                          expression: "searchuserdetail"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "With Font Awesome Icons"
+                                      },
+                                      domProps: { value: _vm.searchuserdetail },
+                                      on: {
+                                        keyup: function($event) {
+                                          if (
+                                            !$event.type.indexOf("key") &&
+                                            _vm._k(
+                                              $event.keyCode,
+                                              "enter",
+                                              13,
+                                              $event.key,
+                                              "Enter"
+                                            )
+                                          ) {
+                                            return null
+                                          }
+                                          return _vm.userdata(
+                                            _vm.userdetailpg.path +
+                                              "?search=" +
+                                              _vm.searchuserdetail,
+                                            (_vm.method = "search")
+                                          )
+                                        },
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.searchuserdetail =
+                                            $event.target.value
+                                        }
+                                      }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("table", { staticClass: "table" }, [
+                              _vm._m(2),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                [
+                                  _vm.loading == true
+                                    ? _c("tr", { staticClass: "tr-loader" }, [
+                                        _vm._m(3)
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.loading_text == true
+                                    ? _c("tr", { staticClass: "tr-loader" }, [
+                                        _vm._m(4)
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.userdetail, function(data, index) {
+                                    return _vm.loading == false
+                                      ? _c(
+                                          "tr",
+                                          { staticClass: "userdeteail" },
+                                          [
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-center" },
+                                              [_vm._v(_vm._s(index + 1))]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(data.user_id))
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(data.name))
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(data.userBalance))
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                _vm._s(data.totalOnlineHour)
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [_vm._v(_vm._s(data.id))]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(data.userBalance))
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(data.userBalance))
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(data.userBalance))
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(data.userStatus))
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(data.created_at))
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(data.accessIP))
+                                            ]),
+                                            _vm._v(" "),
+                                            _vm._m(5, true)
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  })
+                                ],
+                                2
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("nav", { attrs: { "aria-label": "..." } }, [
+                              _c("ul", { staticClass: "pagination" }, [
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.userdetailselectpage,
+                                          expression: "userdetailselectpage"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "browser-default custom-select",
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.userdetailselectpage = $event
+                                              .target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          },
+                                          function($event) {
+                                            return _vm.userdata(
+                                              _vm.userdetailselectpage,
+                                              (_vm.method = "listpage")
+                                            )
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    _vm._l(_vm.userdetailpg.last_page, function(
+                                      page
+                                    ) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          attrs: { selected: "" },
+                                          domProps: { value: page }
+                                        },
+                                        [_vm._v(_vm._s(page))]
+                                      )
+                                    }),
+                                    0
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "page-link",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.userdata(
+                                            _vm.userdetailpg.prev_page_url,
+                                            (_vm.method = "previous")
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Previous")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm.userdetailpg.currentpage - 1)
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item active" }, [
+                                  _c("span", { staticClass: "page-link" }, [
+                                    _c("span", { staticClass: "sr-only" }, [
+                                      _vm._v(
+                                        _vm._s(_vm.userdetailpg.currentpage)
+                                      )
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm.userdetailpg.currentpage + 1)
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "page-item" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "page-link",
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.userdata(
+                                            _vm.userdetailpg.next_page_url,
+                                            (_vm.method = "next")
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Next")]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(6),
+                        _vm._v(" "),
+                        _vm._m(7),
+                        _vm._v(" "),
+                        _vm._m(8),
+                        _vm._v(" "),
+                        _c("div", {
+                          staticClass: "tab-pane",
+                          attrs: { id: "admininfo" }
+                        }),
+                        _vm._v(" "),
+                        _vm._m(9),
+                        _vm._v(" "),
+                        _vm._m(10),
+                        _vm._v(" "),
+                        _vm._m(11),
+                        _vm._v(" "),
+                        _vm._m(12),
+                        _vm._v(" "),
+                        _vm._m(13),
+                        _vm._v(" "),
+                        _vm._m(14),
+                        _vm._v(" "),
+                        _vm._m(15),
+                        _vm._v(" "),
+                        _vm._m(16)
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ],
           1
         ),
         _vm._v(" "),
@@ -86798,1748 +87226,1288 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header card-header bg-dark" }, [
+      _c("div", { staticClass: "nav-tabs-navigation" }, [
+        _c("div", { staticClass: "nav-tabs-wrapper" }, [
+          _c(
+            "ul",
+            { staticClass: "nav nav-tabs", attrs: { "data-tabs": "tabs" } },
+            [
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link active",
+                    attrs: { href: "#playerinfo", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Player info")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#gamehistory", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Game History")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#gameresult", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Game Result")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#withdrawtopup", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Withdraw top-up")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#admininfo", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Admin info")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#timeline", "data-toggle": "tab" }
+                  },
+                  [_vm._v("TimeLine")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#>adminplayerrecord", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Player record")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#agentinfo", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Agent Info")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#shhinfo", "data-toggle": "tab" }
+                  },
+                  [_vm._v("SH Info")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#finance", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Finance")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#request", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Request")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#announcement", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Announcement")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#managerecord", "data-toggle": "tab" }
+                  },
+                  [_vm._v("Manage Record")]
+                )
+              ])
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fa fa-search" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("PlayerID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Balance")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Currency")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("online hour")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Language")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total rolling")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Available Rolling")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Online Status")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Register Time")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Register IP")]),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { colspan: "13" } }, [
+      _c("div", { staticClass: "cover-load" }, [
+        _c("div", { staticClass: "lds-ring" }, [
+          _c("div"),
+          _c("div"),
+          _c("div"),
+          _c("div")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { colspan: "13" } }, [
+      _c("div", { staticClass: "cover-load" }, [
+        _vm._v(
+          "\n                              NO DATA IN THIS PAGE\n                              "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "td-actions" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success",
+          attrs: { type: "button", rel: "tooltip" }
+        },
+        [_vm._v("Game History")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success",
+          attrs: { type: "button", rel: "tooltip" }
+        },
+        [_vm._v("Top-up History")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success",
+          attrs: { type: "button", rel: "tooltip" }
+        },
+        [_vm._v("Withdraw History")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success",
+          attrs: { type: "button", rel: "tooltip" }
+        },
+        [_vm._v("Access Record")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success",
+          attrs: { type: "button", rel: "tooltip" }
+        },
+        [_vm._v("Action Record")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "content", staticStyle: { "margin-top": "0px" } },
+      { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
       [
-        _c("div", { staticClass: "container-fluid" }, [
-          _c("div", { staticClass: "card card-nav-tabs card-plain" }, [
-            _c("div", { staticClass: "card-header card-header bg-dark" }, [
-              _c("div", { staticClass: "nav-tabs-navigation" }, [
-                _c("div", { staticClass: "nav-tabs-wrapper" }, [
-                  _c(
-                    "ul",
-                    {
-                      staticClass: "nav nav-tabs",
-                      attrs: { "data-tabs": "tabs" }
-                    },
-                    [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link active",
-                            attrs: { href: "#playerinfo", "data-toggle": "tab" }
-                          },
-                          [_vm._v("Player info")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: {
-                              href: "#gamehistory",
-                              "data-toggle": "tab"
-                            }
-                          },
-                          [_vm._v("Game History")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "#gameresult", "data-toggle": "tab" }
-                          },
-                          [_vm._v("Game Result")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: {
-                              href: "#withdrawtopup",
-                              "data-toggle": "tab"
-                            }
-                          },
-                          [_vm._v("Withdraw top-up")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "#admininfo", "data-toggle": "tab" }
-                          },
-                          [_vm._v("Admin info")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "#timeline", "data-toggle": "tab" }
-                          },
-                          [_vm._v("TimeLine")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: {
-                              href: "#>adminplayerrecord",
-                              "data-toggle": "tab"
-                            }
-                          },
-                          [_vm._v("Player record")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "#agentinfo", "data-toggle": "tab" }
-                          },
-                          [_vm._v("Agent Info")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "#shhinfo", "data-toggle": "tab" }
-                          },
-                          [_vm._v("SH Info")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "#finance", "data-toggle": "tab" }
-                          },
-                          [_vm._v("Finance")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "#request", "data-toggle": "tab" }
-                          },
-                          [_vm._v("Request")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: {
-                              href: "#announcement",
-                              "data-toggle": "tab"
-                            }
-                          },
-                          [_vm._v("Announcement")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: {
-                              href: "#managerecord",
-                              "data-toggle": "tab"
-                            }
-                          },
-                          [_vm._v("Manage Record")]
-                        )
-                      ])
-                    ]
-                  )
+        _c(
+          "div",
+          { staticClass: "tab-pane active", attrs: { id: "playerinfo" } },
+          [
+            _c("div", { staticClass: "top-header-function" }, [
+              _c("span", { staticClass: "page-current" }, [
+                _vm._v("Current Page : Page 1")
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "page-search" }, [
+                _c("div", { staticClass: "input-group col-6" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("span", { staticClass: "input-group-text" }, [
+                      _c("i", { staticClass: "fa fa-search" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "With Font Awesome Icons"
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("table", { staticClass: "table" }, [
+              _c("thead", [
+                _c("tr", [
+                  _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Reference")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("PlayerID")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("gameID")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Bet Amount")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Payout")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Rolling")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Payout Status")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Bet Place Time")]),
+                  _vm._v(" "),
+                  _c("th")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", { staticClass: "text-center" }, [_vm._v("1")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("bet id")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Develop")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("2013")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "td-actions" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button", rel: "tooltip" }
+                      },
+                      [_vm._v("View Player")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button", rel: "tooltip" }
+                      },
+                      [_vm._v("View Game Result")]
+                    )
+                  ])
                 ])
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "tab-content text-center" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "tab-pane active",
-                    attrs: { id: "playerinfo" }
-                  },
-                  [
-                    _c("div", { staticClass: "top-header-function" }, [
-                      _c("span", { staticClass: "page-current" }, [
-                        _vm._v("Current Page : Page 1")
-                      ]),
+            _c("nav", { attrs: { "aria-label": "..." } }, [
+              _c("ul", { staticClass: "pagination" }, [
+                _c("li", { staticClass: "page-item" }, [
+                  _c(
+                    "select",
+                    { staticClass: "browser-default custom-select" },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [_vm._v("1")]),
                       _vm._v(" "),
-                      _c("span", { staticClass: "page-search" }, [
-                        _c("div", { staticClass: "input-group col-6" }, [
-                          _c("div", { staticClass: "input-group-prepend" }, [
-                            _c("span", { staticClass: "input-group-text" }, [
-                              _c("i", { staticClass: "fa fa-search" })
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              placeholder: "With Font Awesome Icons"
-                            }
-                          })
-                        ])
-                      ])
-                    ]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("table", { staticClass: "table" }, [
-                      _c("thead", [
-                        _c("tr", [
-                          _c("th", { staticClass: "text-center" }, [
-                            _vm._v("#")
-                          ]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("PlayerID")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Name")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Balance")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Currency")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("online hour")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Language")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Total rolling")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Available Rolling")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Online Status")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Register Time")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Register IP")]),
-                          _vm._v(" "),
-                          _c("th")
-                        ])
-                      ]),
+                      _c("option", { attrs: { value: "1" } }, [_vm._v("2")]),
                       _vm._v(" "),
-                      _c("tbody", [
-                        _c("tr", [
-                          _c("td", { staticClass: "text-center" }, [
-                            _vm._v("1")
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v("Andrew Mike")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v("Develop")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v("2013")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v("€ 99,225")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v("€ 99,225")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v("€ 99,225")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v("€ 99,225")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v("€ 99,225")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v("€ 99,225")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v("€ 99,225")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v("€ 99,225")]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "td-actions" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-success",
-                                attrs: { type: "button", rel: "tooltip" }
-                              },
-                              [_vm._v("Game History")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-success",
-                                attrs: { type: "button", rel: "tooltip" }
-                              },
-                              [_vm._v("Top-up History")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-success",
-                                attrs: { type: "button", rel: "tooltip" }
-                              },
-                              [_vm._v("Withdraw History")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-success",
-                                attrs: { type: "button", rel: "tooltip" }
-                              },
-                              [_vm._v("Access Record")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-success",
-                                attrs: { type: "button", rel: "tooltip" }
-                              },
-                              [_vm._v("Action Record")]
-                            )
-                          ])
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("nav", { attrs: { "aria-label": "..." } }, [
-                      _c("ul", { staticClass: "pagination" }, [
-                        _c("li", { staticClass: "page-item" }, [
-                          _c(
-                            "select",
-                            { staticClass: "browser-default custom-select" },
-                            [
-                              _c("option", { attrs: { selected: "" } }, [
-                                _vm._v("1")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "1" } }, [
-                                _vm._v("2")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "2" } }, [
-                                _vm._v("3")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "3" } }, [
-                                _vm._v("4")
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "page-item disabled" }, [
-                          _c("span", { staticClass: "page-link" }, [
-                            _vm._v("Previous")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "page-item" }, [
-                          _c(
-                            "a",
-                            { staticClass: "page-link", attrs: { href: "#" } },
-                            [_vm._v("1")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "page-item active" }, [
-                          _c("span", { staticClass: "page-link" }, [
-                            _vm._v(
-                              "\n                              2\n                              "
-                            ),
-                            _c("span", { staticClass: "sr-only" }, [
-                              _vm._v("(current)")
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "page-item" }, [
-                          _c(
-                            "a",
-                            { staticClass: "page-link", attrs: { href: "#" } },
-                            [_vm._v("3")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "page-item" }, [
-                          _c(
-                            "a",
-                            { staticClass: "page-link", attrs: { href: "#" } },
-                            [_vm._v("Next")]
-                          )
-                        ])
-                      ])
+                      _c("option", { attrs: { value: "2" } }, [_vm._v("3")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "3" } }, [_vm._v("4")])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item disabled" }, [
+                  _c("span", { staticClass: "page-link" }, [_vm._v("Previous")])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("1")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item active" }, [
+                  _c("span", { staticClass: "page-link" }, [
+                    _vm._v(
+                      "\n                              2\n                              "
+                    ),
+                    _c("span", { staticClass: "sr-only" }, [
+                      _vm._v("(current)")
                     ])
-                  ]
-                ),
+                  ])
+                ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "tab-pane active",
-                        attrs: { id: "playerinfo" }
-                      },
-                      [
-                        _c("div", { staticClass: "top-header-function" }, [
-                          _c("span", { staticClass: "page-current" }, [
-                            _vm._v("Current Page : Page 1")
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "page-search" }, [
-                            _c("div", { staticClass: "input-group col-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "input-group-prepend" },
-                                [
-                                  _c(
-                                    "span",
-                                    { staticClass: "input-group-text" },
-                                    [_c("i", { staticClass: "fa fa-search" })]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("input", {
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "With Font Awesome Icons"
-                                }
-                              })
-                            ])
-                          ])
-                        ]),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("table", { staticClass: "table" }, [
-                          _c("thead", [
-                            _c("tr", [
-                              _c("th", { staticClass: "text-center" }, [
-                                _vm._v("#")
-                              ]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("Reference")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("PlayerID")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("gameID")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("Bet Amount")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("Payout")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("Rolling")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("Payout Status")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("Bet Place Time")]),
-                              _vm._v(" "),
-                              _c("th")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tbody", [
-                            _c("tr", [
-                              _c("td", { staticClass: "text-center" }, [
-                                _vm._v("1")
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("bet id")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("Develop")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("2013")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("€ 99,225")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("€ 99,225")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("€ 99,225")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("€ 99,225")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("€ 99,225")]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "td-actions" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-success",
-                                    attrs: { type: "button", rel: "tooltip" }
-                                  },
-                                  [_vm._v("View Player")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-success",
-                                    attrs: { type: "button", rel: "tooltip" }
-                                  },
-                                  [_vm._v("View Game Result")]
-                                )
-                              ])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("nav", { attrs: { "aria-label": "..." } }, [
-                          _c("ul", { staticClass: "pagination" }, [
-                            _c("li", { staticClass: "page-item" }, [
-                              _c(
-                                "select",
-                                {
-                                  staticClass: "browser-default custom-select"
-                                },
-                                [
-                                  _c("option", { attrs: { selected: "" } }, [
-                                    _vm._v("1")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "1" } }, [
-                                    _vm._v("2")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2" } }, [
-                                    _vm._v("3")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "3" } }, [
-                                    _vm._v("4")
-                                  ])
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "page-item disabled" }, [
-                              _c("span", { staticClass: "page-link" }, [
-                                _vm._v("Previous")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "page-item" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "page-link",
-                                  attrs: { href: "#" }
-                                },
-                                [_vm._v("1")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "page-item active" }, [
-                              _c("span", { staticClass: "page-link" }, [
-                                _vm._v(
-                                  "\n                              2\n                              "
-                                ),
-                                _c("span", { staticClass: "sr-only" }, [
-                                  _vm._v("(current)")
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "page-item" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "page-link",
-                                  attrs: { href: "#" }
-                                },
-                                [_vm._v("3")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "page-item" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "page-link",
-                                  attrs: { href: "#" }
-                                },
-                                [_vm._v("Next")]
-                              )
-                            ])
-                          ])
-                        ])
-                      ]
-                    )
-                  ]
-                ),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("3")
+                  ])
+                ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "tab-pane", attrs: { id: "gameresult" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "tab-pane active",
-                            attrs: { id: "playerinfo" }
-                          },
-                          [
-                            _c("div", { staticClass: "top-header-function" }, [
-                              _c("span", { staticClass: "page-current" }, [
-                                _vm._v("Current Page : Page 1")
-                              ]),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "page-search" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "input-group col-6" },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "input-group-prepend" },
-                                      [
-                                        _c(
-                                          "span",
-                                          { staticClass: "input-group-text" },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fa fa-search"
-                                            })
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: "With Font Awesome Icons"
-                                      }
-                                    })
-                                  ]
-                                )
-                              ])
-                            ]),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("table", { staticClass: "table" }, [
-                              _c("thead", [
-                                _c("tr", [
-                                  _c("th", { staticClass: "text-center" }, [
-                                    _vm._v("#")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("gameID")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Game Result")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Number of Bets")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Number of Players")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Total Cash In")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Result Out Time")]),
-                                  _vm._v(" "),
-                                  _c("th")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tbody", [
-                                _c("tr", [
-                                  _c("td", { staticClass: "text-center" }, [
-                                    _vm._v("1")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("bet id")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Develop")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("2013")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "td-actions" }, [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-success",
-                                        attrs: {
-                                          type: "button",
-                                          rel: "tooltip"
-                                        }
-                                      },
-                                      [_vm._v("View Detail")]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("nav", { attrs: { "aria-label": "..." } }, [
-                              _c("ul", { staticClass: "pagination" }, [
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "select",
-                                    {
-                                      staticClass:
-                                        "browser-default custom-select"
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { attrs: { selected: "" } },
-                                        [_vm._v("1")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "1" } }, [
-                                        _vm._v("2")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "2" } }, [
-                                        _vm._v("3")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "3" } }, [
-                                        _vm._v("4")
-                                      ])
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "li",
-                                  { staticClass: "page-item disabled" },
-                                  [
-                                    _c("span", { staticClass: "page-link" }, [
-                                      _vm._v("Previous")
-                                    ])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("1")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item active" }, [
-                                  _c("span", { staticClass: "page-link" }, [
-                                    _vm._v(
-                                      "\n                              2\n                              "
-                                    ),
-                                    _c("span", { staticClass: "sr-only" }, [
-                                      _vm._v("(current)")
-                                    ])
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("3")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("Next")]
-                                  )
-                                ])
-                              ])
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "tab-pane", attrs: { id: "withdrawtopup" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "tab-pane active",
-                            attrs: { id: "playerinfo" }
-                          },
-                          [
-                            _c("div", { staticClass: "top-header-function" }, [
-                              _c("span", { staticClass: "page-current" }, [
-                                _vm._v("Current Page : Page 1")
-                              ]),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "page-search" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "input-group col-6" },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "input-group-prepend" },
-                                      [
-                                        _c(
-                                          "span",
-                                          { staticClass: "input-group-text" },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fa fa-search"
-                                            })
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: "With Font Awesome Icons"
-                                      }
-                                    })
-                                  ]
-                                )
-                              ])
-                            ]),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("table", { staticClass: "table" }, [
-                              _c("thead", [
-                                _c("tr", [
-                                  _c("th", { staticClass: "text-center" }, [
-                                    _vm._v("#")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Time")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("UserID")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Event")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Referrence")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Balance")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Amount")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Balance After Event")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Details")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Served By")]),
-                                  _vm._v(" "),
-                                  _c("th")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tbody", [
-                                _c("tr", [
-                                  _c("td", { staticClass: "text-center" }, [
-                                    _vm._v("1")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("bet id")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Develop")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("2013")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "td-actions" })
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("nav", { attrs: { "aria-label": "..." } }, [
-                              _c("ul", { staticClass: "pagination" }, [
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "select",
-                                    {
-                                      staticClass:
-                                        "browser-default custom-select"
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { attrs: { selected: "" } },
-                                        [_vm._v("1")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "1" } }, [
-                                        _vm._v("2")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "2" } }, [
-                                        _vm._v("3")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "3" } }, [
-                                        _vm._v("4")
-                                      ])
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "li",
-                                  { staticClass: "page-item disabled" },
-                                  [
-                                    _c("span", { staticClass: "page-link" }, [
-                                      _vm._v("Previous")
-                                    ])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("1")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item active" }, [
-                                  _c("span", { staticClass: "page-link" }, [
-                                    _vm._v(
-                                      "\n                              2\n                              "
-                                    ),
-                                    _c("span", { staticClass: "sr-only" }, [
-                                      _vm._v("(current)")
-                                    ])
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("3")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("Next")]
-                                  )
-                                ])
-                              ])
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", {
-                  staticClass: "tab-pane",
-                  attrs: { id: "admininfo" }
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "tab-pane", attrs: { id: "timeline" } },
-                  [_c("p", [_vm._v("timeLine")])]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "tab-pane",
-                    attrs: { id: "adminplayerrecord" }
-                  },
-                  [_c("p", [_vm._v("adminplayerrecord")])]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "tab-pane", attrs: { id: "agentinfo" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "tab-pane active",
-                            attrs: { id: "playerinfo" }
-                          },
-                          [
-                            _c("div", { staticClass: "top-header-function" }, [
-                              _c("span", { staticClass: "page-current" }, [
-                                _vm._v("Current Page : Page 1")
-                              ]),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "page-search" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "input-group col-6" },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "input-group-prepend" },
-                                      [
-                                        _c(
-                                          "span",
-                                          { staticClass: "input-group-text" },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fa fa-search"
-                                            })
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: "With Font Awesome Icons"
-                                      }
-                                    })
-                                  ]
-                                )
-                              ])
-                            ]),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("table", { staticClass: "table" }, [
-                              _c("thead", [
-                                _c("tr", [
-                                  _c("th", { staticClass: "text-center" }, [
-                                    _vm._v("#")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("AgentID")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Type")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Join In Time")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Number Of Player Below")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("etails")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Request IP")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("IP")]),
-                                  _vm._v(" "),
-                                  _c("th")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tbody", [
-                                _c("tr", [
-                                  _c("td", { staticClass: "text-center" }, [
-                                    _vm._v("1")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("bet id")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Develop")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("2013")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("€ 99,225")]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "td-actions" }, [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-success",
-                                        attrs: {
-                                          type: "button",
-                                          rel: "tooltip"
-                                        }
-                                      },
-                                      [_vm._v("Approve")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-success",
-                                        attrs: {
-                                          type: "button",
-                                          rel: "tooltip"
-                                        }
-                                      },
-                                      [_vm._v("Deny")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-success",
-                                        attrs: {
-                                          type: "button",
-                                          rel: "tooltip"
-                                        }
-                                      },
-                                      [_vm._v("View User")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-success",
-                                        attrs: {
-                                          type: "button",
-                                          rel: "tooltip"
-                                        }
-                                      },
-                                      [_vm._v("Messager User")]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("nav", { attrs: { "aria-label": "..." } }, [
-                              _c("ul", { staticClass: "pagination" }, [
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "select",
-                                    {
-                                      staticClass:
-                                        "browser-default custom-select"
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { attrs: { selected: "" } },
-                                        [_vm._v("1")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "1" } }, [
-                                        _vm._v("2")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "2" } }, [
-                                        _vm._v("3")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "3" } }, [
-                                        _vm._v("4")
-                                      ])
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "li",
-                                  { staticClass: "page-item disabled" },
-                                  [
-                                    _c("span", { staticClass: "page-link" }, [
-                                      _vm._v("Previous")
-                                    ])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("1")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item active" }, [
-                                  _c("span", { staticClass: "page-link" }, [
-                                    _vm._v(
-                                      "\n                              2\n                              "
-                                    ),
-                                    _c("span", { staticClass: "sr-only" }, [
-                                      _vm._v("(current)")
-                                    ])
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("3")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("Next")]
-                                  )
-                                ])
-                              ])
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "tab-pane", attrs: { id: "finance" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "tab-pane active",
-                            attrs: { id: "playerinfo" }
-                          },
-                          [
-                            _c("div", { staticClass: "top-header-function" }, [
-                              _c("span", { staticClass: "page-current" }, [
-                                _vm._v("Current Page : Page 1")
-                              ]),
-                              _vm._v(" "),
-                              _c("button", { staticClass: "btn bg-dark" }, [
-                                _vm._v("Make Balance Transfer")
-                              ]),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "page-search" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "input-group col-6" },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "input-group-prepend" },
-                                      [
-                                        _c(
-                                          "span",
-                                          { staticClass: "input-group-text" },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fa fa-search"
-                                            })
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: "With Font Awesome Icons"
-                                      }
-                                    })
-                                  ]
-                                )
-                              ])
-                            ]),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("table", { staticClass: "table" }, [
-                              _c("thead", [
-                                _c("tr", [
-                                  _c("th", { staticClass: "text-center" }, [
-                                    _vm._v("#")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("AgentID")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Type")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Join In Time")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Number Of Player Below")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Sub-Agent")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Balance")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Percenatge")]),
-                                  _vm._v(" "),
-                                  _c("th")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tbody", [
-                                _c("tr", [
-                                  _c("td", { staticClass: "text-center" }, [
-                                    _vm._v("1")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Time")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("User")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Amount")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Currency")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Methods")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Assist Admin")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Reference No")]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "td-actions" }, [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-success",
-                                        attrs: {
-                                          type: "button",
-                                          rel: "tooltip"
-                                        }
-                                      },
-                                      [_vm._v("View Evidence")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-success",
-                                        attrs: {
-                                          type: "button",
-                                          rel: "tooltip"
-                                        }
-                                      },
-                                      [_vm._v("Edit Evidence")]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("nav", { attrs: { "aria-label": "..." } }, [
-                              _c("ul", { staticClass: "pagination" }, [
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "select",
-                                    {
-                                      staticClass:
-                                        "browser-default custom-select"
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { attrs: { selected: "" } },
-                                        [_vm._v("1")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "1" } }, [
-                                        _vm._v("2")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "2" } }, [
-                                        _vm._v("3")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "3" } }, [
-                                        _vm._v("4")
-                                      ])
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "li",
-                                  { staticClass: "page-item disabled" },
-                                  [
-                                    _c("span", { staticClass: "page-link" }, [
-                                      _vm._v("Previous")
-                                    ])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("1")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item active" }, [
-                                  _c("span", { staticClass: "page-link" }, [
-                                    _vm._v(
-                                      "\n                              2\n                              "
-                                    ),
-                                    _c("span", { staticClass: "sr-only" }, [
-                                      _vm._v("(current)")
-                                    ])
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("3")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("Next")]
-                                  )
-                                ])
-                              ])
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "tab-pane", attrs: { id: "shhinfo" } },
-                  [_c("p", [_vm._v("shhinfo")])]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "tab-pane", attrs: { id: "request" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "tab-pane", attrs: { id: "gamehistory" } },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "tab-pane active",
-                            attrs: { id: "playerinfo" }
-                          },
-                          [
-                            _c("div", { staticClass: "top-header-function" }, [
-                              _c("span", { staticClass: "page-current" }, [
-                                _vm._v("Current Page : Page 1")
-                              ]),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "page-search" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "input-group col-6" },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "input-group-prepend" },
-                                      [
-                                        _c(
-                                          "span",
-                                          { staticClass: "input-group-text" },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fa fa-search"
-                                            })
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        type: "text",
-                                        placeholder: "With Font Awesome Icons"
-                                      }
-                                    })
-                                  ]
-                                )
-                              ])
-                            ]),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("table", { staticClass: "table" }, [
-                              _c("thead", [
-                                _c("tr", [
-                                  _c("th", { staticClass: "text-center" }, [
-                                    _vm._v("#")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("PlayerID")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Request Detail")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Amount")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Methods")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("etails")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Balance")]),
-                                  _vm._v(" "),
-                                  _c("th", [_vm._v("Percenatge")]),
-                                  _vm._v(" "),
-                                  _c("th")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("tbody", [
-                                _c("tr", [
-                                  _c("td", { staticClass: "text-center" }, [
-                                    _vm._v("1")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Time")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("User")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Amount")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Currency")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Methods")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Assist Admin")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Reference No")]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "td-actions" }, [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-success",
-                                        attrs: {
-                                          type: "button",
-                                          rel: "tooltip"
-                                        }
-                                      },
-                                      [_vm._v("View Evidence")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-success",
-                                        attrs: {
-                                          type: "button",
-                                          rel: "tooltip"
-                                        }
-                                      },
-                                      [_vm._v("Edit Evidence")]
-                                    )
-                                  ])
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("nav", { attrs: { "aria-label": "..." } }, [
-                              _c("ul", { staticClass: "pagination" }, [
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "select",
-                                    {
-                                      staticClass:
-                                        "browser-default custom-select"
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { attrs: { selected: "" } },
-                                        [_vm._v("1")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "1" } }, [
-                                        _vm._v("2")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "2" } }, [
-                                        _vm._v("3")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "3" } }, [
-                                        _vm._v("4")
-                                      ])
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "li",
-                                  { staticClass: "page-item disabled" },
-                                  [
-                                    _c("span", { staticClass: "page-link" }, [
-                                      _vm._v("Previous")
-                                    ])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("1")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item active" }, [
-                                  _c("span", { staticClass: "page-link" }, [
-                                    _vm._v(
-                                      "\n                              2\n                              "
-                                    ),
-                                    _c("span", { staticClass: "sr-only" }, [
-                                      _vm._v("(current)")
-                                    ])
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("3")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "page-item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "page-link",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("Next")]
-                                  )
-                                ])
-                              ])
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "tab-pane", attrs: { id: "announcement" } },
-                  [_c("p", [_vm._v("announcement")])]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "tab-pane", attrs: { id: "managerecord" } },
-                  [_c("p", [_vm._v("managerecord")])]
-                )
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("Next")
+                  ])
+                ])
               ])
             ])
-          ])
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tab-pane", attrs: { id: "gameresult" } }, [
+      _c("div", { staticClass: "tab-pane", attrs: { id: "gamehistory" } }, [
+        _c(
+          "div",
+          { staticClass: "tab-pane active", attrs: { id: "playerinfo" } },
+          [
+            _c("div", { staticClass: "top-header-function" }, [
+              _c("span", { staticClass: "page-current" }, [
+                _vm._v("Current Page : Page 1")
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "page-search" }, [
+                _c("div", { staticClass: "input-group col-6" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("span", { staticClass: "input-group-text" }, [
+                      _c("i", { staticClass: "fa fa-search" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "With Font Awesome Icons"
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("table", { staticClass: "table" }, [
+              _c("thead", [
+                _c("tr", [
+                  _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("gameID")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Game Result")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Number of Bets")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Number of Players")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Total Cash In")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Result Out Time")]),
+                  _vm._v(" "),
+                  _c("th")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", { staticClass: "text-center" }, [_vm._v("1")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("bet id")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Develop")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("2013")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "td-actions" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button", rel: "tooltip" }
+                      },
+                      [_vm._v("View Detail")]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("nav", { attrs: { "aria-label": "..." } }, [
+              _c("ul", { staticClass: "pagination" }, [
+                _c("li", { staticClass: "page-item" }, [
+                  _c(
+                    "select",
+                    { staticClass: "browser-default custom-select" },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [_vm._v("1")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "1" } }, [_vm._v("2")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "2" } }, [_vm._v("3")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "3" } }, [_vm._v("4")])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item disabled" }, [
+                  _c("span", { staticClass: "page-link" }, [_vm._v("Previous")])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("1")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item active" }, [
+                  _c("span", { staticClass: "page-link" }, [
+                    _vm._v(
+                      "\n                              2\n                              "
+                    ),
+                    _c("span", { staticClass: "sr-only" }, [
+                      _vm._v("(current)")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("3")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("Next")
+                  ])
+                ])
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "tab-pane", attrs: { id: "withdrawtopup" } },
+      [
+        _c("div", { staticClass: "tab-pane", attrs: { id: "gamehistory" } }, [
+          _c(
+            "div",
+            { staticClass: "tab-pane active", attrs: { id: "playerinfo" } },
+            [
+              _c("div", { staticClass: "top-header-function" }, [
+                _c("span", { staticClass: "page-current" }, [
+                  _vm._v("Current Page : Page 1")
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "page-search" }, [
+                  _c("div", { staticClass: "input-group col-6" }, [
+                    _c("div", { staticClass: "input-group-prepend" }, [
+                      _c("span", { staticClass: "input-group-text" }, [
+                        _c("i", { staticClass: "fa fa-search" })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "With Font Awesome Icons"
+                      }
+                    })
+                  ])
+                ])
+              ]),
+              _c("br"),
+              _vm._v(" "),
+              _c("table", { staticClass: "table" }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Time")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("UserID")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Event")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Referrence")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Balance")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Amount")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Balance After Event")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Details")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Served By")]),
+                    _vm._v(" "),
+                    _c("th")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", { staticClass: "text-center" }, [_vm._v("1")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("bet id")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("Develop")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("2013")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("€ 99,225")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("€ 99,225")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("€ 99,225")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("€ 99,225")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("€ 99,225")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("€ 99,225")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("€ 99,225")]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "td-actions" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("nav", { attrs: { "aria-label": "..." } }, [
+                _c("ul", { staticClass: "pagination" }, [
+                  _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "select",
+                      { staticClass: "browser-default custom-select" },
+                      [
+                        _c("option", { attrs: { selected: "" } }, [
+                          _vm._v("1")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "1" } }, [_vm._v("2")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2" } }, [_vm._v("3")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "3" } }, [_vm._v("4")])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "page-item disabled" }, [
+                    _c("span", { staticClass: "page-link" }, [
+                      _vm._v("Previous")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      { staticClass: "page-link", attrs: { href: "#" } },
+                      [_vm._v("1")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "page-item active" }, [
+                    _c("span", { staticClass: "page-link" }, [
+                      _vm._v(
+                        "\n                              2\n                              "
+                      ),
+                      _c("span", { staticClass: "sr-only" }, [
+                        _vm._v("(current)")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      { staticClass: "page-link", attrs: { href: "#" } },
+                      [_vm._v("3")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      { staticClass: "page-link", attrs: { href: "#" } },
+                      [_vm._v("Next")]
+                    )
+                  ])
+                ])
+              ])
+            ]
+          )
         ])
       ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tab-pane", attrs: { id: "timeline" } }, [
+      _c("p", [_vm._v("timeLine")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "tab-pane", attrs: { id: "adminplayerrecord" } },
+      [_c("p", [_vm._v("adminplayerrecord")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tab-pane", attrs: { id: "agentinfo" } }, [
+      _c("div", { staticClass: "tab-pane", attrs: { id: "gamehistory" } }, [
+        _c(
+          "div",
+          { staticClass: "tab-pane active", attrs: { id: "playerinfo" } },
+          [
+            _c("div", { staticClass: "top-header-function" }, [
+              _c("span", { staticClass: "page-current" }, [
+                _vm._v("Current Page : Page 1")
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "page-search" }, [
+                _c("div", { staticClass: "input-group col-6" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("span", { staticClass: "input-group-text" }, [
+                      _c("i", { staticClass: "fa fa-search" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "With Font Awesome Icons"
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("table", { staticClass: "table" }, [
+              _c("thead", [
+                _c("tr", [
+                  _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("AgentID")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Type")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Join In Time")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Number Of Player Below")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("etails")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Request IP")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("IP")]),
+                  _vm._v(" "),
+                  _c("th")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", { staticClass: "text-center" }, [_vm._v("1")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("bet id")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Develop")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("2013")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("€ 99,225")]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "td-actions" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button", rel: "tooltip" }
+                      },
+                      [_vm._v("Approve")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button", rel: "tooltip" }
+                      },
+                      [_vm._v("Deny")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button", rel: "tooltip" }
+                      },
+                      [_vm._v("View User")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button", rel: "tooltip" }
+                      },
+                      [_vm._v("Messager User")]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("nav", { attrs: { "aria-label": "..." } }, [
+              _c("ul", { staticClass: "pagination" }, [
+                _c("li", { staticClass: "page-item" }, [
+                  _c(
+                    "select",
+                    { staticClass: "browser-default custom-select" },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [_vm._v("1")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "1" } }, [_vm._v("2")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "2" } }, [_vm._v("3")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "3" } }, [_vm._v("4")])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item disabled" }, [
+                  _c("span", { staticClass: "page-link" }, [_vm._v("Previous")])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("1")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item active" }, [
+                  _c("span", { staticClass: "page-link" }, [
+                    _vm._v(
+                      "\n                              2\n                              "
+                    ),
+                    _c("span", { staticClass: "sr-only" }, [
+                      _vm._v("(current)")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("3")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("Next")
+                  ])
+                ])
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tab-pane", attrs: { id: "finance" } }, [
+      _c("div", { staticClass: "tab-pane", attrs: { id: "gamehistory" } }, [
+        _c(
+          "div",
+          { staticClass: "tab-pane active", attrs: { id: "playerinfo" } },
+          [
+            _c("div", { staticClass: "top-header-function" }, [
+              _c("span", { staticClass: "page-current" }, [
+                _vm._v("Current Page : Page 1")
+              ]),
+              _vm._v(" "),
+              _c("button", { staticClass: "btn bg-dark" }, [
+                _vm._v("Make Balance Transfer")
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "page-search" }, [
+                _c("div", { staticClass: "input-group col-6" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("span", { staticClass: "input-group-text" }, [
+                      _c("i", { staticClass: "fa fa-search" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "With Font Awesome Icons"
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("table", { staticClass: "table" }, [
+              _c("thead", [
+                _c("tr", [
+                  _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("AgentID")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Type")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Join In Time")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Number Of Player Below")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Sub-Agent")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Balance")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Percenatge")]),
+                  _vm._v(" "),
+                  _c("th")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", { staticClass: "text-center" }, [_vm._v("1")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Time")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("User")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Amount")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Currency")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Methods")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Assist Admin")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Reference No")]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "td-actions" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button", rel: "tooltip" }
+                      },
+                      [_vm._v("View Evidence")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button", rel: "tooltip" }
+                      },
+                      [_vm._v("Edit Evidence")]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("nav", { attrs: { "aria-label": "..." } }, [
+              _c("ul", { staticClass: "pagination" }, [
+                _c("li", { staticClass: "page-item" }, [
+                  _c(
+                    "select",
+                    { staticClass: "browser-default custom-select" },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [_vm._v("1")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "1" } }, [_vm._v("2")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "2" } }, [_vm._v("3")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "3" } }, [_vm._v("4")])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item disabled" }, [
+                  _c("span", { staticClass: "page-link" }, [_vm._v("Previous")])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("1")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item active" }, [
+                  _c("span", { staticClass: "page-link" }, [
+                    _vm._v(
+                      "\n                              2\n                              "
+                    ),
+                    _c("span", { staticClass: "sr-only" }, [
+                      _vm._v("(current)")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("3")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("Next")
+                  ])
+                ])
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tab-pane", attrs: { id: "shhinfo" } }, [
+      _c("p", [_vm._v("shhinfo")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tab-pane", attrs: { id: "request" } }, [
+      _c("div", { staticClass: "tab-pane", attrs: { id: "gamehistory" } }, [
+        _c(
+          "div",
+          { staticClass: "tab-pane active", attrs: { id: "playerinfo" } },
+          [
+            _c("div", { staticClass: "top-header-function" }, [
+              _c("span", { staticClass: "page-current" }, [
+                _vm._v("Current Page : Page 1")
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "page-search" }, [
+                _c("div", { staticClass: "input-group col-6" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("span", { staticClass: "input-group-text" }, [
+                      _c("i", { staticClass: "fa fa-search" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "With Font Awesome Icons"
+                    }
+                  })
+                ])
+              ])
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("table", { staticClass: "table" }, [
+              _c("thead", [
+                _c("tr", [
+                  _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("PlayerID")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Request Detail")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Amount")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Methods")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("etails")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Balance")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Percenatge")]),
+                  _vm._v(" "),
+                  _c("th")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", { staticClass: "text-center" }, [_vm._v("1")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Time")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("User")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Amount")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Currency")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Methods")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Assist Admin")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Reference No")]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "td-actions" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button", rel: "tooltip" }
+                      },
+                      [_vm._v("View Evidence")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button", rel: "tooltip" }
+                      },
+                      [_vm._v("Edit Evidence")]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("nav", { attrs: { "aria-label": "..." } }, [
+              _c("ul", { staticClass: "pagination" }, [
+                _c("li", { staticClass: "page-item" }, [
+                  _c(
+                    "select",
+                    { staticClass: "browser-default custom-select" },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [_vm._v("1")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "1" } }, [_vm._v("2")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "2" } }, [_vm._v("3")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "3" } }, [_vm._v("4")])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item disabled" }, [
+                  _c("span", { staticClass: "page-link" }, [_vm._v("Previous")])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("1")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item active" }, [
+                  _c("span", { staticClass: "page-link" }, [
+                    _vm._v(
+                      "\n                              2\n                              "
+                    ),
+                    _c("span", { staticClass: "sr-only" }, [
+                      _vm._v("(current)")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("3")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v("Next")
+                  ])
+                ])
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "tab-pane", attrs: { id: "announcement" } },
+      [_c("p", [_vm._v("announcement")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "tab-pane", attrs: { id: "managerecord" } },
+      [_c("p", [_vm._v("managerecord")])]
     )
   }
 ]
