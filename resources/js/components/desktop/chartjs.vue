@@ -4,19 +4,19 @@
 <script>
 import { Bar, Line } from "vue-chartjs";
 import VueCharts from "vue-chartjs";
-
 export default {
   extends: Bar,
   props: {
-   backgroundcolor: {
-    default: "#003679",
-    type: String
-  }},
+    backgroundcolor: {
+      default: "#003679",
+      type: String
+    }
+  },
   data() {
     return {
       stockname: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       betlose: [],
-      betwon: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      betwon: [11, 2, 23, 4, 45, 6, 37, 8, 59]
       //   gettimeshow:""
     };
   },
@@ -53,7 +53,7 @@ export default {
 
     let ctx = document.getElementById("chart");
     let myChart = new Chart(ctx, {
-      type: "bar",
+      type: "line",
       data: {
         labels: this.stockname,
         datasets: [
@@ -61,7 +61,7 @@ export default {
             label: "minutes",
             data: this.betwon,
             fill: true,
-            borderColor: "blue",
+            borderColor: "#ff8d72",
             backgroundColor: this.backgroundcolor
           }
         ]
@@ -79,17 +79,27 @@ export default {
           position: "top"
         },
         title: {
-          display: true,
-          text: "online time minutes"
+          display: true
+          // text: "online time minutes"
         },
         pan: {
           enabled: true,
-          mode: "x" // is panning about the y axis neccessary for bar charts?
+          mode: "x"
+          // speed: 10,
+          // threshold: 10,
+          // limits: {
+          //     max: 10,
+          //     min: 0.5
+          // }
         },
         zoom: {
           enabled: true,
           mode: "x",
-          sensitivity: 1
+          drag: false,
+          sensitivity: 0.5,
+          limits: {
+            min: 0.5
+          }
         },
         tooltips: {
           mode: "index",
