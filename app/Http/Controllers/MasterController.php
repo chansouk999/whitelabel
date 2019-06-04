@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request; 
 use Auth;
+use Jenssegers\Agent\Agent;
 use App\clientid;
 use Illuminate\Support\Facades\DB;
 use App\User;
 class MasterController extends Controller
 {
     public function welcome(){
-        return view('desktop.welcome');
+        $agent = new Agent();
+        if($agent->isMobile()){
+            return view('mobile.welcome');
+        }else{
+            return view('desktop.welcome');
+        }
+       
     }
     public function updatemoney(Request $req){
         // $balnce = 900000;
