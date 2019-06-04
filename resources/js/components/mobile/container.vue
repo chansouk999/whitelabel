@@ -153,7 +153,7 @@
                   type="button"
                   data-toggle="modal"
                   data-target="#searchModal"
-                  class="btn-warning animation-on-hover btn-icon btn-round"
+                  class="btn-warning "
                 >
                   <i class="tim-icons icon-zoom-split"></i>
                 </button>

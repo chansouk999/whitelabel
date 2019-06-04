@@ -16,7 +16,7 @@ export default {
     return {
       stockname: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       betlose: [],
-      betwon: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      betwon: [11, 2, 23, 4, 45, 6, 37, 8, 59]
       //   gettimeshow:""
     };
   },
@@ -53,7 +53,7 @@ export default {
 
     let ctx = document.getElementById("chart");
     let myChart = new Chart(ctx, {
-      type: "bar",
+      type: "line",
       data: {
         labels: this.stockname,
         datasets: [
@@ -61,7 +61,7 @@ export default {
             label: "minutes",
             data: this.betwon,
             fill: true,
-            borderColor: "blue",
+            borderColor: "#ff8d72",
             backgroundColor: this.backgroundcolor
           }
         ]

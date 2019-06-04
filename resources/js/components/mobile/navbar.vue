@@ -24,18 +24,18 @@
           </div>
           <a class="navbar-brand" :href="welcome">TNK</a>
         </div>
-        <button
-          class="navbar-toggler pl-5"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navigation"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-bar navbar-kebab"></span>
-          <span class="navbar-toggler-bar navbar-kebab"></span>
-          <span class="navbar-toggler-bar navbar-kebab"></span>
-        </button>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item d-flex">
+            <button class="btn btn-login"   data-toggle="modal"
+                  data-target="#loginModal">
+              <i class="tim-icons icon-single-02 icon-default"></i>
+            </button>
+            <button class="btn btn-register"   data-toggle="modal"
+                  data-target="#register">
+              <i class="fas fa-user-plus icon-default"></i>
+            </button>
+          </li>
+        </ul>
 
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="navbar-nav mr-auto">
@@ -48,148 +48,6 @@
               </a>
             </li>
           </ul>
-
-          <span v-if="checkuser == 'false'">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a
-                  href="#"
-                  class="button nav-link d-flex float-left"
-                  data-toggle="modal"
-                  data-target="#loginModal"
-                >
-                  <div class="icons">
-                    <i class="tim-icons icon-single-02 icon-default"></i>
-                    <i class="tim-icons icon-lock-circle icon-hover"></i>
-                  </div>Login
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="#"
-                  class="button nav-link d-flex float-left"
-                  data-toggle="modal"
-                  data-target="#register"
-                >
-                  <div class="icons">
-                    <i class="fas fa-user-plus icon-default"></i>
-                    <i class="tim-icons icon-badge icon-hover"></i>
-                  </div>Register
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="#"
-                  class="button nav-link d-flex float-left"
-                  data-toggle="modal"
-                  data-target="#freetrial"
-                >
-                  <div class="icons">
-                    <i class="tim-icons icon-controller icon-default"></i>
-                    <i class="tim-icons icon-credit-card icon-hover"></i>
-                  </div>Free Trial
-                </a>
-              </li>
-            </ul>
-          </span>
-
-          <!-- After Login done show this -->
-          <span v-else-if="checkuser == 'true'">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a :href="messages" class="button nav-link d-flex float-left">
-                  <div class="icons">
-                    <i class="tim-icons icon-chat-33 icon-default"></i>
-                    <i class="tim-icons icon-chat-33 icon-hover"></i>
-                  </div>Message
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="button nav-link d-flex float-left" @click="myaccount()">
-                  <div class="icons">
-                    <i class="tim-icons icon-single-02 icon-default"></i>
-                    <i class="tim-icons icon-single-02 icon-hover"></i>
-                  </div>My Account
-                </a>
-              </li>
-              <li class="nav-item">
-                <a :href="promote" class="button nav-link d-flex float-left">
-                  <div class="icons">
-                    <i class="tim-icons icon-trophy icon-default"></i>
-                    <i class="tim-icons icon-trophy icon-hover"></i>
-                  </div>My Privilege
-                </a>
-              </li>
-              <li class="nav-item">
-                <a :href="lobby" class="button nav-link d-flex float-left">
-                  <div class="icons">
-                    <i class="tim-icons icon-controller icon-default"></i>
-                    <i class="tim-icons icon-controller icon-hover"></i>
-                  </div>Game Lobby
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="button nav-link d-flex float-left" @click="rechargeClick()">
-                  <div class="icons">
-                    <i class="tim-icons icon-coins icon-default"></i>
-                    <i class="tim-icons icon-coins icon-hover"></i>
-                  </div>Recharge
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="button nav-link d-flex float-left" @click="withDrawClick()">
-                  <div class="icons">
-                    <i class="tim-icons icon-money-coins icon-default"></i>
-                    <i class="tim-icons icon-cart icon-hover"></i>
-                  </div>WithDraw
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="button nav-link d-flex float-left fixed-logout">
-                  <div class="dropdown show-dropdown">
-                    <a href="#" data-toggle="dropdown">
-                      <div class="icons">
-                        <i class="tim-icons icon-single-02 icon-default"></i>
-                        <i class="tim-icons icon-bullet-list-67 icon-hover"></i>
-                      </div>
-                    </a>
-                    <div class="dropdown-menu mt-3 p-0">
-                      <div class="row p-4">
-                        <div class="col-6">
-                          <img src="assets/img/user.png" alt>
-                        </div>
-                        <div class="col-6 bg-logout">
-                          <em class="header-user-name">test</em>
-                          <br>
-                          <span class="header-user-level level-0">新会员</span>
-                        </div>
-                        <small class="header-before-login-date">最近登录时间：2019-04-24 14:25:40</small>
-                      </div>
-                      <div class="menu-body">
-                        <div id="header-balance">
-                          总余额
-                          <h2 class="eid_total_credit m-0 p-0">0.00</h2>
-                          <div class="d-flex">
-                            <p class="text-desss">
-                              本地余额
-                              <span id="eid_local_credit">0.00</span>
-                            </p>
-                            <p class="text-balance">
-                              游戏余额
-                              <span id="eid_game_credit">0.00</span>
-                            </p>
-                          </div>
-                        </div>
-                        <a href="/logout" class="btn-logout">
-                          <i class="fa fa-power-off"></i>Log Out
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </span>
         </div>
       </div>
     </nav>
@@ -203,8 +61,8 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <!-- Modal body -->
-          <div class="modal-body">
-            <div class="col-lg-12 col-md-12">
+          <div class="modal-body px-2">
+            <div class="col-lg-12 col-md-12 px-0">
               <form class="form" action="login" method="POST">
                 <input type="hidden" name="_token" :value="csrf">
                 <div class="card card-login card-white">
@@ -288,45 +146,10 @@
           </div>
 
           <!-- Modal body -->
-          <div class="modal-body">
+          <div class="modal-body px-2">
             <div class="container">
               <div class="row">
-                <div class="col-md-5 ml-auto">
-                  <div class="info-area info-horizontal mt-5">
-                    <div class="icon icon-warning">
-                      <i class="tim-icons icon-wifi"></i>
-                    </div>
-                    <div class="description">
-                      <h3 class="info-title">Marketing</h3>
-                      <p
-                        class="description"
-                      >We've created the marketing campaign of the website. It was a very interesting collaboration.</p>
-                    </div>
-                  </div>
-                  <div class="info-area info-horizontal">
-                    <div class="icon icon-primary">
-                      <i class="tim-icons icon-triangle-right-17"></i>
-                    </div>
-                    <div class="description">
-                      <h3 class="info-title">Fully Coded in HTML5</h3>
-                      <p
-                        class="description"
-                      >We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.</p>
-                    </div>
-                  </div>
-                  <div class="info-area info-horizontal">
-                    <div class="icon icon-info">
-                      <i class="tim-icons icon-trophy"></i>
-                    </div>
-                    <div class="description">
-                      <h3 class="info-title">Built Audience</h3>
-                      <p
-                        class="description"
-                      >There is also a Fully Customizable CMS Admin Dashboard for this product.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-7 mr-auto">
+                <div class="col-md-12 px-0">
                   <div class="card card-register card-white">
                     <form class="form" method="POST" action="register">
                       <div class="card-header">

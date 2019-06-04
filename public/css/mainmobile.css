@@ -2062,12 +2062,38 @@ ol {
 }
 
 .card .input-group button {
-    -webkit-box-shadow: 0px 0px 10px 1px rgb(255, 130, 121);
-    -moz-box-shadow: 0px 0px 10px 1px rgb(255, 130, 121);
-    box-shadow: 0px 0px 10px 1px rgb(255, 130, 121);
-    padding: 0px 20px;
+    padding: 0px 0px 0px 10px;
     font-size: 1rem;
     margin: 0px 10px 0px 0px;
+    background: transparent;
+    border: none;
+    color: #f94e71;
+    font-weight: bolder;
+}
+
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.btn-warning:active:focus,
+.btn-warning:active:hover,
+.btn-warning.active:focus,
+.btn-warning.active:hover {
+    background-color: none !important;
+    background-image: none !important;
+    background-image: none !important;
+    background-image: none !important;
+    background-image: none !important;
+    color: #ffffff;
+    box-shadow: none;
+}
+
+.card .input-group button:focus,
+.card .input-group button:active {
+    background: transparent;
+    color: #fff;
+    border: 0;
+    border-radius: 0px;
 }
 
 .card .input-group .more_txt {
@@ -2215,6 +2241,50 @@ hr.hr-mobile {
 .shadow-wl {
     margin: 10px 0px;
     box-shadow: 5px 3px 10px 0px rgb(134, 134, 134) !important;
+}
+
+nav.navbar ul button.btn-login {
+    background: transparent;
+    color: #fff;
+    border: 2px dashed;
+    border-radius: 7px;
+    margin: 0px 2px;
+    padding: 4px 6px;
+}
+
+nav.navbar ul li.nav-item button.btn-register {
+    background: transparent;
+    color: #fff;
+    border: 2px dashed;
+    border-radius: 7px;
+    margin: 0px 2px;
+    padding: 4px 6px;
+}
+
+nav.navbar ul button.btn-login:hover,
+nav.navbar ul button.btn-login:focus,
+nav.navbar ul button.btn-login:active {
+    background: #ff8d72 !important;
+    background-image: -webkit-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72)!important;
+    background-image: -o-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72)!important;
+    background-image: -moz-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72)!important;
+    background-image: linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72)!important;
+    -webkit-box-shadow: 3px 3px 7px -1px rgba(0, 0, 0, 0.56)!important;
+    -moz-box-shadow: 3px 3px 7px -1px rgba(0, 0, 0, 0.56)!important;
+    box-shadow: 3px 3px 7px -1px rgba(0, 0, 0, 0.56)!important;
+}
+
+nav.navbar ul li.nav-item button.btn-register:hover,
+nav.navbar ul li.nav-item button.btn-register:focus,
+nav.navbar ul li.nav-item button.btn-register:active {
+    background: #ff8d72!important;
+    background-image: -webkit-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72)!important;
+    background-image: -o-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72)!important;
+    background-image: -moz-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72)!important;
+    background-image: linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72)!important;
+    -webkit-box-shadow: 3px 3px 7px -1px rgba(0, 0, 0, 0.56)!important;
+    -moz-box-shadow: 3px 3px 7px -1px rgba(0, 0, 0, 0.56)!important;
+    box-shadow: 3px 3px 7px -1px rgba(0, 0, 0, 0.56)!important;
 }
 
 @media (min-width: 576px) {
