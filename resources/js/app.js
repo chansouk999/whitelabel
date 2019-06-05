@@ -34,7 +34,12 @@ Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue').default
 );
+// main.js
+import VueSweetalert2 from 'vue-sweetalert2';
+Vue.use(VueSweetalert2);
 
+import Notifications from 'vue-notification'
+Vue.use(Notifications)
 
 import Vue from 'vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'

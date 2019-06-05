@@ -149,9 +149,10 @@ $(document).ready(function() {
 
 // Auto Modal
 setTimeout(function() {
-    $('#loginModal').modal("show");
-}, 5000);
-
+    if ($('.checkuser').val() == 'false') {
+        $('#loginModal').modal("show");
+    }
+}, 3000);
 
 
 $("form input[name='redirect']").val("/activity/promote");

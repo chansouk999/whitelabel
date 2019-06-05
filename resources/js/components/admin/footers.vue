@@ -1,25 +1,37 @@
 <template>
   <div>
-    <footer class="footer">
-      <div class="container-fluid">
-        <nav class="float-left">
-          <ul>
-            <li>
-              <a href="https://www.creative-tim.com">Creative Tim</a>
-            </li>
-            <li>
-              <a href="https://creative-tim.com/presentation">About Us</a>
-            </li>
-            <li>
-              <a href="http://blog.creative-tim.com">Blog</a>
-            </li>
-            <li>
-              <a href="https://www.creative-tim.com/license">test</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </footer>
+  <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Company
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Portfolio
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Blog
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <p class="copyright pull-right">
+                        &copy;
+                        <a href="http://www.creative-tim.com/">Creative Tim</a>, made with love for a better web
+                    </p>
+                </div>
+            </footer>
   </div>
 </template>
 <script>

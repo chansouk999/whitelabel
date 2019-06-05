@@ -20,8 +20,8 @@
     <link href="assets/demo/demo.css" rel="stylesheet" />
     <!-- Mystyle -->
     <link href="css/mystyle.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css" id="theme-styles">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css" id="theme-styles">
 </head>
 <body>
     <div id="app">
@@ -30,10 +30,8 @@
         @else
         <input type="hidden" class="checkuser" name="" value="false">
         @endif
-        @include('sweetalert::alert')
         <app-desktop></app-desktop>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.js"></script>
     <!--   Core JS Files   -->
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../js/app.js"></script>
@@ -80,6 +78,7 @@
     <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
     <!-- Black Dashboard DEMO methods, don't include it in your project! -->
     <script src="../assets/demo/demo.js"></script>
+    @include('sweetalert::alert')
 </body>
 
 </html>

@@ -13,13 +13,12 @@ use SebastianBergmann\Environment\Console;
 class MasterController extends Controller
 {
     public function welcome(){
-        Alert::success('Success Title', 'Success Message');
-        return view('desktop.welcome');
-    
         $agent = new Agent();
         if($agent->isMobile()){
+        // Alert::success('Mobile', 'Mobile Mode');
             return view('mobile.welcome');
         }else{
+            //  Alert::success('Desktop', 'Desktop Mode');
             return view('desktop.welcome');
         }
        
