@@ -205,6 +205,7 @@
                                   class="btn btn-primary"
                                 >Action Record</button>
                               </div>
+<<<<<<< HEAD
                             </div>
                             <!-- PLAYER INFO -->
                             <nav aria-label="...">
@@ -272,6 +273,94 @@
                                       placeholder="With Font Awesome Icons"
                                     >
                                   </div>
+=======
+                              </td>
+                        </tr>
+                        <tr  v-for="(data,index) in userdetail" class="userdeteail"  v-if="loading == false">
+                          <td class="text-center">{{ index+1 }}</td>
+                          <td>{{data.user_id}}</td>
+                          <td>{{data.name}}</td>
+                          <td>{{data.userBalance}}</td>
+                          <td>{{data.currency}}</td>
+                          <td>{{data.totalOnlineHour}}</td>
+                          <td>{{data.lang}}</td>
+                          <td>{{data.TotalRolling}}</td>
+                          <td>{{data.AvailableRolling}}</td>
+                          <td>{{data.userStatus}}</td>
+                          <td>{{data.created_at}}</td>
+                          <td>{{data.accessIP}}</td>
+                          <td class="td-actions">
+                            <button type="button" rel="tooltip" class="btn btn-success ml-2">Game History</button>
+                            <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Top-up History</button>
+                            <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Withdraw History</button>
+                            <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Access Record</button>
+                            <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Action Record</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- PLAYER INFO -->
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            
+                            <select class="browser-default custom-select" v-model="userdetailselectpage" @change="userdata(userdetailselectpage,method='listpage')">
+                              <option selected v-for="page in userdetailpg.last_page" :value="page">{{ page }}</option>
+                            </select>
+                          </li>
+                          <li class="page-item">
+
+                            <span class="page-link" @click="userdata(userdetailpg.prev_page_url,method='previous')">Previous</span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">{{ userdetailpg.currentpage - 1 }}</a></li>
+                          <li class="page-item active">
+                            <span class="page-link">
+                              {{userdetailpg.currentpage}}
+                              <span class="sr-only">{{userdetailpg.currentpage}}</span>
+                            </span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">{{ userdetailpg.currentpage + 1 }}</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#" @click="userdata(userdetailpg.next_page_url,method='next')" >Next</a>
+                          </li>
+                        </ul>
+                      </nav>
+
+                  </div>
+
+
+                  
+                  <div class="tab-pane" id="gamehistory">
+
+                    
+
+                     <div class="tab-pane active" id="playerinfo">
+                    <!-- PLAYER INFO -->
+                    
+                  <div class="top-header-function">
+                    <span class="page-current">Current Page : Page 1</span>
+                    <span class="page-search">
+                      <div class="input-group col-6">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="fa fa-search"></i>
+>>>>>>> 7c393e2c54c5850837cfdf4cf45445fea68d2cf8
                                 </span>
                               </div>
                               <br>
@@ -306,6 +395,7 @@
                                     <td>&euro; 99,225</td>
                                     <!-- <td>&euro; 99,225</td>
                           <td>&euro; 99,225</td>
+<<<<<<< HEAD
                                     <td>&euro; 99,225</td>-->
                                     <td class="td-actions">
                                       <!-- <button type="button" rel="tooltip" class="btn btn-success">Game History</button> -->
@@ -320,13 +410,34 @@
                                         class="btn btn-success"
                                       >View Game Result</button>
                                       <!-- <button
+=======
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <!-- <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td> -->
+                          <td class="td-actions">
+                            <!-- <button type="button" rel="tooltip" class="btn btn-success ml-2">Game History</button> -->
+                            <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
+                            >View Player</button>
+                            <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >View Game Result</button>
+                            <!-- <button
+>>>>>>> 7c393e2c54c5850837cfdf4cf45445fea68d2cf8
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
                             >Access Record</button>
                             <button
                               type="button"
                               rel="tooltip"
+<<<<<<< HEAD
                               class="btn btn-success"
                                       >Action Record</button>-->
                                     </td>
@@ -364,6 +475,66 @@
                                   </li>
                                 </ul>
                               </nav>
+=======
+                              class="btn btn-success ml-2"
+                            >Action Record</button> -->
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- PLAYER INFO -->
+                     <nav aria-label="...">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            
+                            <select class="browser-default custom-select">
+                              <option selected>1</option>
+                              <option value="1">2</option>
+                              <option value="2">3</option>
+                              <option value="3">4</option>
+                            </select>
+                          </li>
+                          <li class="page-item disabled">
+
+                            <span class="page-link">Previous</span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item active">
+                            <span class="page-link">
+                              2
+                              <span class="sr-only">(current)</span>
+                            </span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                          </li>
+                        </ul>
+                      </nav>
+                  </div>
+                    
+                  </div>
+                  <div class="tab-pane" id="gameresult">
+
+
+
+
+                     <div class="tab-pane" id="gamehistory">
+
+                     <div class="tab-pane active" id="playerinfo">
+                    <!-- PLAYER INFO -->
+                    
+                  <div class="top-header-function">
+                    <span class="page-current">Current Page : Page 1</span>
+                    <span class="page-search">
+                      <div class="input-group col-6">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="fa fa-search"></i>
+                                </span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="With Font Awesome Icons">
+>>>>>>> 7c393e2c54c5850837cfdf4cf45445fea68d2cf8
                             </div>
                           </div>
                           <div class="tab-pane" id="gameresult">
@@ -420,6 +591,7 @@
                                       <td>&euro; 99,225</td>
                                       <!-- <td>&euro; 99,225</td>
                           <td>&euro; 99,225</td>
+<<<<<<< HEAD
                                       <td>&euro; 99,225</td>-->
                                       <td class="td-actions">
                                         <!-- <button type="button" rel="tooltip" class="btn btn-success">Game History</button> -->
@@ -434,13 +606,33 @@
                               class="btn btn-success"
                                         >View Game Result</button>-->
                                         <!-- <button
+=======
+                          <td>&euro; 99,225</td>
+                          <!-- <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td> -->
+                          <td class="td-actions">
+                            <!-- <button type="button" rel="tooltip" class="btn btn-success ml-2">Game History</button> -->
+                            <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
+                            >View Detail</button>
+                            <!-- <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >View Game Result</button> -->
+                            <!-- <button
+>>>>>>> 7c393e2c54c5850837cfdf4cf45445fea68d2cf8
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
                             >Access Record</button>
                             <button
                               type="button"
                               rel="tooltip"
+<<<<<<< HEAD
                               class="btn btn-success"
                                         >Action Record</button>-->
                                       </td>
@@ -478,6 +670,67 @@
                                     </li>
                                   </ul>
                                 </nav>
+=======
+                              class="btn btn-success ml-2"
+                            >Action Record</button> -->
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- PLAYER INFO -->
+                     <nav aria-label="...">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            
+                            <select class="browser-default custom-select">
+                              <option selected>1</option>
+                              <option value="1">2</option>
+                              <option value="2">3</option>
+                              <option value="3">4</option>
+                            </select>
+                          </li>
+                          <li class="page-item disabled">
+
+                            <span class="page-link">Previous</span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item active">
+                            <span class="page-link">
+                              2
+                              <span class="sr-only">(current)</span>
+                            </span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                          </li>
+                        </ul>
+                      </nav>
+                  </div>
+                  </div>
+                   
+                   
+
+
+                  </div>
+                  <div class="tab-pane" id="withdrawtopup">
+
+
+
+                    <div class="tab-pane" id="gamehistory">
+
+                     <div class="tab-pane active" id="playerinfo">
+                    <!-- PLAYER INFO -->
+                    
+                  <div class="top-header-function">
+                    <span class="page-current">Current Page : Page 1</span>
+                    <span class="page-search">
+                      <div class="input-group col-6">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="fa fa-search"></i>
+                                </span>
+>>>>>>> 7c393e2c54c5850837cfdf4cf45445fea68d2cf8
                               </div>
                             </div>
                           </div>
@@ -519,6 +772,7 @@
                                       <th>Served By</th>
                                       <!-- <th>Online Status</th>
                           <th>Register Time</th>
+<<<<<<< HEAD
                                       <th>Register IP</th>-->
                                       <th></th>
                                     </tr>
@@ -550,13 +804,47 @@
                               class="btn btn-success"
                                         >View Game Result</button>-->
                                         <!-- <button
+=======
+                          <th>Register IP</th> -->
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="text-center">1</td>
+                          <td>bet id</td>
+                          <td>Develop</td>
+                          <td>2013</td>
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <!-- <td>&euro; 99,225</td> -->
+                          <td class="td-actions">
+                            <!-- <button type="button" rel="tooltip" class="btn btn-success ml-2">Game History</button> -->
+                            <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
+                            >View Detail</button> -->
+                            <!-- <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >View Game Result</button> -->
+                            <!-- <button
+>>>>>>> 7c393e2c54c5850837cfdf4cf45445fea68d2cf8
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
                             >Access Record</button>
                             <button
                               type="button"
                               rel="tooltip"
+<<<<<<< HEAD
                               class="btn btn-success"
                                         >Action Record</button>-->
                                       </td>
@@ -594,6 +882,87 @@
                                     </li>
                                   </ul>
                                 </nav>
+=======
+                              class="btn btn-success ml-2"
+                            >Action Record</button> -->
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- PLAYER INFO -->
+                     <nav aria-label="...">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            
+                            <select class="browser-default custom-select">
+                              <option selected>1</option>
+                              <option value="1">2</option>
+                              <option value="2">3</option>
+                              <option value="3">4</option>
+                            </select>
+                          </li>
+                          <li class="page-item disabled">
+
+                            <span class="page-link">Previous</span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item active">
+                            <span class="page-link">
+                              2
+                              <span class="sr-only">(current)</span>
+                            </span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                          </li>
+                        </ul>
+                      </nav>
+                  </div>
+                  </div>
+                    
+                    
+
+
+
+                  </div>
+                  <div class="tab-pane" id="admininfo">
+
+
+
+
+                    
+                   
+
+
+
+
+
+                  </div>
+                  <div class="tab-pane" id="timeline">
+                    <p>timeLine</p>
+                  </div>
+                  <div class="tab-pane" id="adminplayerrecord">
+                    <p>adminplayerrecord</p>
+                  </div>
+                  <div class="tab-pane" id="agentinfo">
+
+
+
+                    <div class="tab-pane" id="gamehistory">
+
+                     <div class="tab-pane active" id="playerinfo">
+                    <!-- PLAYER INFO -->
+                    
+                  <div class="top-header-function">
+                    <span class="page-current">Current Page : Page 1</span>
+                    <span class="page-search">
+                      <div class="input-group col-6">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="fa fa-search"></i>
+                                </span>
+>>>>>>> 7c393e2c54c5850837cfdf4cf45445fea68d2cf8
                               </div>
                             </div>
                           </div>
@@ -664,6 +1033,7 @@
                           <td>&euro; 99,225</td>
                           <td>&euro; 99,225</td>
                           <td>&euro; 99,225</td>
+<<<<<<< HEAD
                                       <td>&euro; 99,225</td>-->
                                       <td class="td-actions">
                                         <button
@@ -726,8 +1096,98 @@
                                     </li>
                                   </ul>
                                 </nav>
+=======
+                          <!-- <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td>
+                          <td>&euro; 99,225</td> -->
+                          <td class="td-actions">
+                            <button type="button" rel="tooltip" class="btn btn-success ml-2">Approve</button>
+                            <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Deny</button>
+                            <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >View User</button>
+                            <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Messager User</button>
+                            <!-- <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Action Record</button> -->
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- PLAYER INFO -->
+                     <nav aria-label="...">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            
+                            <select class="browser-default custom-select">
+                              <option selected>1</option>
+                              <option value="1">2</option>
+                              <option value="2">3</option>
+                              <option value="3">4</option>
+                            </select>
+                          </li>
+                          <li class="page-item disabled">
+
+                            <span class="page-link">Previous</span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item active">
+                            <span class="page-link">
+                              2
+                              <span class="sr-only">(current)</span>
+                            </span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                          </li>
+                        </ul>
+                      </nav>
+                  </div>
+                  </div>
+                   
+                   
+
+
+
+                  </div>
+                  <div class="tab-pane" id="finance">
+                   
+                   
+
+<div class="tab-pane" id="gamehistory">
+
+                     <div class="tab-pane active" id="playerinfo">
+                    <!-- PLAYER INFO -->
+                    
+                  <div class="top-header-function">
+                    <span class="page-current">Current Page : Page 1</span>
+                    <button class="btn bg-dark">Make Balance Transfer</button>
+                    <span class="page-search">
+                      <div class="input-group col-6">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="fa fa-search"></i>
+                                </span>
+>>>>>>> 7c393e2c54c5850837cfdf4cf45445fea68d2cf8
                               </div>
                             </div>
+<<<<<<< HEAD
                           </div>
                           <div class="tab-pane" id="finance">
                             <div class="tab-pane" id="gamehistory">
@@ -838,8 +1298,118 @@
                                     </li>
                                   </ul>
                                 </nav>
+=======
+                    </span>
+                  </div><br>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center">#</th>
+                          <th>AgentID</th>
+                          <th>Type</th>
+                          <th>Join In Time</th>
+                          <th>Number Of Player Below</th>
+                          <th>Sub-Agent</th>
+                          <th>Balance</th>
+                          <th>Percenatge</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="text-center">1</td>
+                          <td>Time</td>
+                          <td>User</td>
+                          <td>Amount</td>
+                          <td>Currency</td>
+                          <td>Methods</td>
+                          <td>Assist Admin</td>
+                          <td>Reference No</td>
+                          <td class="td-actions">
+                            <button type="button" rel="tooltip" class="btn btn-success ml-2">View Evidence</button>
+                            <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Edit Evidence</button>
+                            <!-- <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Income</button> -->
+                            <!-- <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Comission</button> -->
+                            <!-- <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Action Record</button> -->
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- PLAYER INFO -->
+                     <nav aria-label="...">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            
+                            <select class="browser-default custom-select">
+                              <option selected>1</option>
+                              <option value="1">2</option>
+                              <option value="2">3</option>
+                              <option value="3">4</option>
+                            </select>
+                          </li>
+                          <li class="page-item disabled">
+
+                            <span class="page-link">Previous</span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item active">
+                            <span class="page-link">
+                              2
+                              <span class="sr-only">(current)</span>
+                            </span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                          </li>
+                        </ul>
+                      </nav>
+                  </div>
+                  </div>
+
+
+
+                  </div>
+                  <div class="tab-pane" id="shhinfo">
+                    <p>shhinfo</p>
+                  </div>
+                  <div class="tab-pane" id="request">
+
+
+
+                    <div class="tab-pane" id="gamehistory">
+
+                     <div class="tab-pane active" id="playerinfo">
+                    <!-- PLAYER INFO -->
+                    
+                  <div class="top-header-function">
+                    <span class="page-current">Current Page : Page 1</span>
+                    <span class="page-search">
+                      <div class="input-group col-6">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="fa fa-search"></i>
+                                </span>
+>>>>>>> 7c393e2c54c5850837cfdf4cf45445fea68d2cf8
                               </div>
                             </div>
+<<<<<<< HEAD
                           </div>
                           <div class="tab-pane" id="shhinfo">
                             <p>shhinfo</p>
@@ -964,6 +1534,102 @@
                         </div>
                       </div>
                     </div>
+=======
+                    </span>
+                  </div><br>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center">#</th>
+                          <th>PlayerID</th>
+                          <th>Request Detail</th>
+                          <th>Amount</th>
+                          <th>Methods</th>
+                          <th>etails</th>
+                          <th>Balance</th>
+                          <th>Percenatge</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="text-center">1</td>
+                          <td>Time</td>
+                          <td>User</td>
+                          <td>Amount</td>
+                          <td>Currency</td>
+                          <td>Methods</td>
+                          <td>Assist Admin</td>
+                          <td>Reference No</td>
+                          <td class="td-actions">
+                            <button type="button" rel="tooltip" class="btn btn-success ml-2">View Evidence</button>
+                            <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Edit Evidence</button>
+                            <!-- <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Income</button> -->
+                            <!-- <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Comission</button> -->
+                            <!-- <button
+                              type="button"
+                              rel="tooltip"
+                              class="btn btn-success ml-2"
+                            >Action Record</button> -->
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- PLAYER INFO -->
+                     <nav aria-label="...">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            
+                            <select class="browser-default custom-select">
+                              <option selected>1</option>
+                              <option value="1">2</option>
+                              <option value="2">3</option>
+                              <option value="3">4</option>
+                            </select>
+                          </li>
+                          <li class="page-item disabled">
+
+                            <span class="page-link">Previous</span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item active">
+                            <span class="page-link">
+                              2
+                              <span class="sr-only">(current)</span>
+                            </span>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                          </li>
+                        </ul>
+                      </nav>
+                  </div>
+                  </div>
+                    
+                    
+
+
+
+                  </div>
+                  <div class="tab-pane" id="announcement">
+                    <p>announcement</p>
+                  </div>
+                  <div class="tab-pane" id="managerecord">
+                    <p>managerecord</p>
+>>>>>>> 7c393e2c54c5850837cfdf4cf45445fea68d2cf8
                   </div>
                 </div>
               </div>

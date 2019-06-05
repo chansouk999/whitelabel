@@ -3,10 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\User;
-use Illuminate\Support\Facades\DB;
-use Auth;
-class authcheck
+
+class onlinehistory
 {
     /**
      * Handle an incoming request.
@@ -17,14 +15,7 @@ class authcheck
      */
     public function handle($request, Closure $next)
     {
-        // if(Auth::check()){
-        //     echo Auth::user();
-            
-        // }else{
-        //     echo "NO ONE LOGIN";
-        // }
-        // echo User::count()+1;
-       
+        
         return $next($request);
     }
 }

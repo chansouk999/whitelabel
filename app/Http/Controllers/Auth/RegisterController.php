@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Users;
-
+use App\userdetail;
 class RegisterController extends Controller
 {
     /*
@@ -64,6 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+            
         function generateRandomString($length = 10) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
@@ -73,11 +74,12 @@ class RegisterController extends Controller
             }
             return $randomString;
         }
-        $id = generateRandomString();
+        
+        $userid = generateRandomString();
         $date = date('y-m-d H:i:s');
         $ip = \Request::getClientIp();
-        return User::create([
-            'user_id'=>$id,
+        $user = User::create([
+            'user_id'=>$userid,
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -91,5 +93,16 @@ class RegisterController extends Controller
             'accessTime'=>$date,
             'accessIP'=>$ip
         ]);
+        $id = trim(User::latest()->limit(1)->pluck('id'),'["]');
+
+        userdetail::create([
+            'id' => $id,
+            'user_id' => $userid,
+            'currency' => 'USD',
+            'lang' => 'CH',
+            'TotalRolling' => 0,
+            'AvailableRolling' => 0,
+        ]);
+        return $user;
     }
 }
