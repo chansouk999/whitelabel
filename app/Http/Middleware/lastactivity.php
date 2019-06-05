@@ -4,7 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-use App\Users;
+use Illuminate\Support\Facades\DB;
+use App\User;
 class lastactivity
 {
     /**
@@ -31,16 +32,16 @@ class lastactivity
             $minutes = (intval($second) / 60) % 60;
 
             if ($minutes > 5) {
-                $DH = DB::UPDATE(" UPDATE user_whitelb
-                SET userStatus = 'offine' 
+                $DH = DB::UPDATE(" UPDATE users
+                SET userStatus = 'offline' 
                 WHERE last_activity < '" . $formatted_date . "' ");
             } else {
-                $checkoffline = trim(Users::where('userID', '=', $id)->get()->pluck('userStatus'), '["]');
+                $checkoffline = trim(User::where('user_id', '=', $id)->get()->pluck('userStatus'), '["]');
                 if ($checkoffline == 'offline') {
-                    Users::where('userID','=',$id)->update([''=>'online']);
+                    User::where('user_id','=',$id)->update([''=>'online']);
                 }
             }
-            Users::where('last_activity', '=', null)->update(['last_activity' => $date]);
+            User::where('last_activity', '=', null)->update(['last_activity' => $date]);
             if ($last_activity < $now) {
                 Auth::guard('web')->logout();
                 return redirect('/');

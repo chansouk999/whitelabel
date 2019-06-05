@@ -29,9 +29,14 @@ class CreateUsersTable extends Migration
             $table->string('accessIP',25)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            // $table->primary(['user_id','id']);
             $table->rememberToken();
             $table->timestamps();
         });
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->increments('id');
+        // });
+        // DB::statement('ALTER TABLE users CHANGE id id INT(11) NOT NUL');
     }
 
     /**

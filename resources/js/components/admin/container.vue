@@ -121,35 +121,35 @@
                           <td>{{data.user_id}}</td>
                           <td>{{data.name}}</td>
                           <td>{{data.userBalance}}</td>
+                          <td>{{data.currency}}</td>
                           <td>{{data.totalOnlineHour}}</td>
-                          <td>{{data.id}}</td>
-                          <td>{{data.userBalance}}</td>
-                          <td>{{data.userBalance}}</td>
-                          <td>{{data.userBalance}}</td>
+                          <td>{{data.lang}}</td>
+                          <td>{{data.TotalRolling}}</td>
+                          <td>{{data.AvailableRolling}}</td>
                           <td>{{data.userStatus}}</td>
                           <td>{{data.created_at}}</td>
                           <td>{{data.accessIP}}</td>
                           <td class="td-actions">
-                            <button type="button" rel="tooltip" class="btn btn-success">Game History</button>
+                            <button type="button" rel="tooltip" class="btn btn-success ml-2">Game History</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Top-up History</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Withdraw History</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Access Record</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Action Record</button>
                           </td>
                         </tr>
@@ -239,26 +239,26 @@
                           <td>&euro; 99,225</td>
                           <td>&euro; 99,225</td> -->
                           <td class="td-actions">
-                            <!-- <button type="button" rel="tooltip" class="btn btn-success">Game History</button> -->
+                            <!-- <button type="button" rel="tooltip" class="btn btn-success ml-2">Game History</button> -->
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >View Player</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >View Game Result</button>
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Access Record</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Action Record</button> -->
                           </td>
                         </tr>
@@ -352,26 +352,26 @@
                           <td>&euro; 99,225</td>
                           <td>&euro; 99,225</td> -->
                           <td class="td-actions">
-                            <!-- <button type="button" rel="tooltip" class="btn btn-success">Game History</button> -->
+                            <!-- <button type="button" rel="tooltip" class="btn btn-success ml-2">Game History</button> -->
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >View Detail</button>
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >View Game Result</button> -->
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Access Record</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Action Record</button> -->
                           </td>
                         </tr>
@@ -469,26 +469,26 @@
                           <td>&euro; 99,225</td>
                           <!-- <td>&euro; 99,225</td> -->
                           <td class="td-actions">
-                            <!-- <button type="button" rel="tooltip" class="btn btn-success">Game History</button> -->
+                            <!-- <button type="button" rel="tooltip" class="btn btn-success ml-2">Game History</button> -->
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >View Detail</button> -->
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >View Game Result</button> -->
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Access Record</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Action Record</button> -->
                           </td>
                         </tr>
@@ -609,26 +609,26 @@
                           <td>&euro; 99,225</td>
                           <td>&euro; 99,225</td> -->
                           <td class="td-actions">
-                            <button type="button" rel="tooltip" class="btn btn-success">Approve</button>
+                            <button type="button" rel="tooltip" class="btn btn-success ml-2">Approve</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Deny</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >View User</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Messager User</button>
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Action Record</button> -->
                           </td>
                         </tr>
@@ -719,26 +719,26 @@
                           <td>Assist Admin</td>
                           <td>Reference No</td>
                           <td class="td-actions">
-                            <button type="button" rel="tooltip" class="btn btn-success">View Evidence</button>
+                            <button type="button" rel="tooltip" class="btn btn-success ml-2">View Evidence</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Edit Evidence</button>
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Income</button> -->
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Comission</button> -->
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Action Record</button> -->
                           </td>
                         </tr>
@@ -829,26 +829,26 @@
                           <td>Assist Admin</td>
                           <td>Reference No</td>
                           <td class="td-actions">
-                            <button type="button" rel="tooltip" class="btn btn-success">View Evidence</button>
+                            <button type="button" rel="tooltip" class="btn btn-success ml-2">View Evidence</button>
                             <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Edit Evidence</button>
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Income</button> -->
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Comission</button> -->
                             <!-- <button
                               type="button"
                               rel="tooltip"
-                              class="btn btn-success"
+                              class="btn btn-success ml-2"
                             >Action Record</button> -->
                           </td>
                         </tr>
