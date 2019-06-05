@@ -20,7 +20,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Authentication Guards
+    | Authentication Guards  
     |--------------------------------------------------------------------------
     |
     | Next, you may define every authentication guard for your application.

@@ -148,12 +148,9 @@ $(document).ready(function() {
 
 
 // Auto Modal
-// for login
-
-// $(document).ready(function() {
-//     $("#loginModal").modal("show");
-// });
-
+setTimeout(function() {
+    $('#loginModal').modal("show");
+}, 5000);
 
 
 
