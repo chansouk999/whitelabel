@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\createclientid::class,
             \App\Http\Middleware\authcheck::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
         ],
 
         'api' => [
@@ -63,6 +64,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'sweetalert' => \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
     ];
 
     /**

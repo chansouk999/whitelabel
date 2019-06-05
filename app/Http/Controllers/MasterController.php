@@ -8,13 +8,15 @@ use Jenssegers\Agent\Agent;
 use App\clientid;
 use Illuminate\Support\Facades\DB;
 use App\User;
-use App\userdetail;
+use RealRashid\SweetAlert\Facades\Alert;
+use SebastianBergmann\Environment\Console;
 
 class MasterController extends Controller
 {
-    public function welcome()
-    {
-
+    public function welcome(){
+        Alert::success('Success Title', 'Success Message');
+        // return view('desktop.welcome');
+    
         $agent = new Agent();
         // if (Auth::check()) {
         //     $id = Auth::user()->id;
