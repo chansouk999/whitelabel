@@ -171,6 +171,7 @@
                           <li class="page-item"><a class="page-link" href="#">{{ userdetailpg.currentpage - 1 }}</a></li>
                           <li class="page-item active">
                             <span class="page-link">
+                              {{userdetailpg.currentpage}}
                               <span class="sr-only">{{userdetailpg.currentpage}}</span>
                             </span>
                           </li>
@@ -931,50 +932,88 @@ export default {
     this.userdata()
   },
   methods:{
-    // else if(method == 'search'){
-    //             url = pagenum
-    //         }
-    
-    
-      userdata(pagenum,method){
-        this.loading=true
-        this.loading_text =false
-        let url =''
-        if(this.searchuserdetail == null){
-            if(method =='listpage'){
-                url = '/getdata?page='+pagenum
-            }else if(method == 'previous' || method == 'next'){
-                url = pagenum
-            }else{
-                url = '/getdata'
-            }
-        }else{
-            if(method =='listpage'){
-                  url = '/getdata?page='+pagenum+'&search='+this.searchuserdetail
-            }else{
-                  url = pagenum
-            }
-        }
-        axios.get(url).then(res=>{
-          console.log(res.data.userdata)
-          if(res.data.userdata == ''){
-              alert('ok')
-            }
-          this.userdetail = res.data.userdata.data
-          this.userdetailpg = {
-            currentpage:res.data.userdata.current_page,
-            next_page_url:res.data.userdata.next_page_url,
-            path:res.data.userdata.path,
-            last_page_url:res.data.userdata.last_page_url,
-            per_page:res.data.userdata.per_page,
-            last_page:res.data.userdata.last_page,
-            prev_page_url:res.data.userdata.prev_page_url,
-            per_page:res.data.userdata.per_page,
-            
-          }
-           
-        }).catch(er=>{console.log(er.res)})
-      },
+                    userdata(pagenum,method){
+                      this.loading=true
+                      this.loading_text =false
+                      let url =''
+                      if(this.searchuserdetail == null){
+                          if(method =='listpage'){
+                              url = '/getdata?page='+pagenum
+                          }else if(method == 'previous' || method == 'next'){
+                              url = pagenum
+                          }else{
+                              url = '/getdata'
+                          }
+                      }else{
+                          if(method =='listpage'){
+                                url = '/getdata?page='+pagenum+'&search='+this.searchuserdetail
+                          }else{
+                                url = pagenum
+                          }
+                      }
+                      axios.get(url).then(res=>{
+                        console.log(res.data.userdata)
+                        if(res.data.userdata == ''){
+                            alert('ok')
+                          }
+                            this.userdetail = res.data.userdata.data
+                            this.userdetailpg = {
+                              currentpage:res.data.userdata.current_page,
+                              next_page_url:res.data.userdata.next_page_url,
+                              path:res.data.userdata.path,
+                              last_page_url:res.data.userdata.last_page_url,
+                              per_page:res.data.userdata.per_page,
+                              last_page:res.data.userdata.last_page,
+                              prev_page_url:res.data.userdata.prev_page_url,
+                              per_page:res.data.userdata.per_page,
+                          }
+                      }).catch(er=>{console.log(er.res)})
+                    },
+
+
+
+                    gamehistory(pagenum,method){
+                      this.loading=true
+                      this.loading_text =false
+                      let url =''
+                      if(this.searchuserdetail == null){
+                          if(method =='listpage'){
+                              url = '/getdata?page='+pagenum
+                          }else if(method == 'previous' || method == 'next'){
+                              url = pagenum
+                          }else{
+                              url = '/getdata'
+                          }
+                      }else{
+                          if(method =='listpage'){
+                                url = '/getdata?page='+pagenum+'&search='+this.searchuserdetail
+                          }else{
+                                url = pagenum
+                          }
+                      }
+                      axios.get(url).then(res=>{
+                        console.log(res.data.userdata)
+                        if(res.data.userdata == ''){
+                            alert('ok')
+                          }
+                            this.userdetail = res.data.userdata.data
+                            this.userdetailpg = {
+                              currentpage:res.data.userdata.current_page,
+                              next_page_url:res.data.userdata.next_page_url,
+                              path:res.data.userdata.path,
+                              last_page_url:res.data.userdata.last_page_url,
+                              per_page:res.data.userdata.per_page,
+                              last_page:res.data.userdata.last_page,
+                              prev_page_url:res.data.userdata.prev_page_url,
+                              per_page:res.data.userdata.per_page,
+                          }
+                      }).catch(er=>{console.log(er.res)})
+                    },
+
+
+
+
+
     
   },
     watch: {

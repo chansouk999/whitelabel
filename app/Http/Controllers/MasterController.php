@@ -32,5 +32,12 @@ class MasterController extends Controller
         ->where('users.id',$id)
         ->orderby('oauth_clients.created_at','desc')->limit(1)->get();
     }
+    public function checklogin(Request $req){
+        $email = $req->email;
+        $check = User::where('email','=',''.$email.'')->get()->count();
+        if($check < 1){
+            return ['success'=>'notfound'];
+        }
+    }
 
 }
