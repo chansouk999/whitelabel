@@ -2,6 +2,8 @@
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
+use Illuminate\Support\Facades\Route;
+
 // use Auth;
 /*
 |--------------------------------------------------------------------------
@@ -56,16 +58,17 @@ Route::get('/getlogin',function(){
  Route::get('/wlmobile','Homecontroller@whitelabel_mobile');
 
 
+//  Route::domain('{m}.localhost:8004')->group(function () {
+//     Route::get('/', function () {
+//             return "OK MOBVILE";
+//     });
+// });
 
 
 
 
 
-
-
-
-
-
+Route::post('/checklogin','MasterController@checklogin');
 
 // Route::get('redirect',function(){
 //     $http = new GuzzleHttp\Client();

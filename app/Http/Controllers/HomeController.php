@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use Jenssegers\Agent\Agent;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $agent = new Agent();
+        if($agent->isMobile()){
+            return "FUCK YOU VONG";
+        }else{
+            return view('welcome');
+        }
+        
     }
     public function message()
     {

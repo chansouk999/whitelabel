@@ -220,6 +220,7 @@
                         </div>
                       </div>
                       <input
+                      v-model="email"
                         id="email"
                         type="email"
                         class="form-control"
@@ -238,6 +239,7 @@
                         </div>
                       </div>
                       <input
+                      v-model="password"
                         id="password"
                         type="password"
                         class="form-control"
@@ -250,9 +252,13 @@
                   </div>
                   <div class="card-footer">
                     <button
-                      type="submit"
                       class="btn btn-default animation-on-hover btn-lg btn-block mb-3"
-                      @click="ismenu=!ismenu"
+                      @click.prevent="checklogin"
+                    >Login</button>
+                    <button
+                      style="visibility:hidden"
+                      type="submit"
+                      class="btn btn-default btn-loginder animation-on-hover btn-lg btn-block mb-3"
                     >Login</button>
                     <div class="d-flex justify-content-between">
                       <a
@@ -599,6 +605,8 @@
 export default {
   data() {
     return {
+      email:null,
+      password:null,
       isShowonlyIndex: false,
       navShowName: "message",
       ismenu: false,
@@ -615,6 +623,21 @@ export default {
   components: {
   },
   methods: {
+    
+    checklogin(){
+      let data = {
+        email: this.email,
+        pwd:this.password
+      }
+      axios.post('checklogin',data).then(res=>{
+        if(res.data.success == 'notfound'){
+            alert('CHECK EMAIL AND PASSWORDS');
+        }else{
+          $('.btn-loginder').click();
+        }
+      }).catch(er=>{console.log(er.res)})
+    },
+
     myaccount() {
       $("#myaccountlink")[0].click();
     },
