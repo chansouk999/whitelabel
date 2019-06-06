@@ -1,0 +1,11 @@
+.card .card-body ul li {
+    list-style: none;
+    border-bottom: 1px dashed #f4005930;
+}
+
+.card ul li .product-info {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 10px 20px 0px 20px;
+}
