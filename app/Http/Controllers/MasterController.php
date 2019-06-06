@@ -14,36 +14,12 @@ use SebastianBergmann\Environment\Console;
 class MasterController extends Controller
 {
     public function welcome(){
-<<<<<<< HEAD
         $agent = new Agent();
         if($agent->isMobile()){
         // Alert::success('Mobile', 'Mobile Mode');
             return view('mobile.welcome');
         }else{
             //  Alert::success('Desktop', 'Desktop Mode');
-=======
-        Alert::success('Success Title', 'Success Message');
-        // return view('desktop.welcome');
-    
-        $agent = new Agent();
-        // if (Auth::check()) {
-        //     $id = Auth::user()->id;
-        //     $check = userdetail::where('id', '=', $id)->get()->count();
-        //     if ($check < 1) {
-        //         userdetail::create([
-        //             'id' => Auth::user()->id,
-        //             'user_id' => Auth::user()->user_id,
-        //             'currency' => 'USD',
-        //             'lang' => 'CH',
-        //             'TotalRolling' => 0,
-        //             'AvailableRolling' => 0,
-        //         ]);
-        //     }
-        // }
-        if ($agent->isMobile()) {
-            return view('mobile.welcome');
-        } else {
->>>>>>> 7c393e2c54c5850837cfdf4cf45445fea68d2cf8
             return view('desktop.welcome');
         }
     }
