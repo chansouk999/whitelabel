@@ -3,7 +3,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use Illuminate\Support\Facades\Route;
-
+use App\access_token;
 // use Auth;
 /*
 |--------------------------------------------------------------------------
@@ -70,97 +70,45 @@ Route::get('/getlogin',function(){
 
 Route::post('/checklogin','MasterController@checklogin');
 
-// Route::get('redirect',function(){
-//     $http = new GuzzleHttp\Client();
-//     $namecheck = \Auth::user()->name;
-//     $emailcheck = \Auth::user()->email;
-//     $id = \Auth::user()->id;
-//     $provider_name = \Auth::user()->provider_name;
-//     $balance =  \Auth::user()->userBalance;
-//     $pro_id = \Auth::user()->pro_id;
-//     $password = \Auth::user()->password;
-//     // return $password;
-
-//     $query = http_build_query([
-//         'client_id' => '13',
-//         'redirect_uri' => 'http://localhost:8002/callback',
-//         'response_type' => 'code',
-//         'scope' => '',
-//     ]); 
-   
-
-//     $datacheck = $http->get('http://localhost:8001/api/checkapiuser?name='.$namecheck
-//     .'&email='.$emailcheck
-//     .'&id='.$id
-//     .'&provider_name='.$provider_name
-//     .'&balance='.$balance
-//     .'&pro_id='.$pro_id
-//     );
-
+Route::get('redirect',function(){
+    $http = new GuzzleHttp\Client();
+    $query = http_build_query([
+        'client_id' => '3',
+        'redirect_uri' => 'http://localhost:8004/callback',
+        'response_type' => 'code',
+        'scope' => '',
+    ]); 
+     return redirect('http://localhost:8003/oauth/authorize?'.$query);
+})->name('get.token');
+Route::get('/callback', function (Request $request) {
     
-//     $datacheckresult = json_decode((string) $datacheck->getBody(), true);
-//     // $header =[
-//     //     'Content-Type' => 'application/json',
-//     //     'Accept'=>'application/json',
-//     //     'Authorization'=>'Bearer '.$datacheckresult['access_token']
-//     // ];
-
-//     // $response = $http->post('http://localhost:8001/oauth/token', [
-//     //     'headers' => $header,
-//     //     'form_params' => [
-//     //         'username' => $emailcheck,
-//     //         'password' => $namecheck,
-//     //         'grant_type' => 'password',
-//     //         'client_id' => '12',
-//     //         'client_secret' => 'v8wLf490sptGgBWWyaC3rAPbIzd7NLtQLcO2zMgx',
-//     //     ]
-//     // ]);
-//     // $accessdata = json_decode((string) $response->getBody(), true);
-
-
-
-//     // return $header;
-//      return redirect('http://localhost:8001/oauth/authorize?'.$query);
-// })->name('get.token');
-// Route::get('/callback', function (Request $request) {
-    
-//     $http = new GuzzleHttp\Client;
-//     $namecheck = \Auth::user()->name;
-//     $emailcheck = \Auth::user()->email;
-    
-//     $response = $http->post('http://localhost:8001/oauth/token', [
-//         'form_params' => [
-//             'grant_type' => 'authorization_code',
-//             'client_id' => '13',
-//             'client_secret' => 'lofQKammC1Rk5cAJPFHEBJ6iXNcC9boKw7LzccgS',
-//             'redirect_uri' => 'http://localhost:8002/callback',
-//             'code' => $request->code,
-//         ],
-//     ]);
-//     $accessdata = json_decode((string) $response->getBody(), true);
-//     $header =[
-//         'Content-Type' => 'application/json',
-//         'Accept'=>'application/json',
-//         'Authorization'=>'Bearer '.$accessdata['access_token']
-//     ];
-
-//     // $response2 = $http->post('http://localhost:8002/oauth/token', [
-//     //     'form_params' => [
-//     //         'name' => $emailcheck,
-//     //         'password' => $namecheck,
-//     //         'grant_type' => 'password',
-//     //         'client_id' => '10',
-//     //         'client_secret' => 'IxMjhiOGmo4KoMhA4V4z0MDfLIzlHOaRvQvVS6SG',
-//     //     ],
-//     //     'headers'=>$header
-//     // ]);
-
-    
-
-
-//     $resuser = $http->get('http://localhost:8001/api/users',['headers'=>$header]);
-//     $data =  json_decode((string) $resuser->getBody(), true);
-//     return redirect('http://localhost:8001/getlogin');
+    $http = new GuzzleHttp\Client;
+    $response = $http->post('http://localhost:8003/oauth/token', [
+        'form_params' => [
+            'grant_type' => 'authorization_code',
+            'client_id' => '3',
+            'client_secret' => '3BI3MvBm9NPor77QHcfYEgTiX5F5UExGJDNMTZqb',
+            'redirect_uri' => 'http://localhost:8004/callback',
+            'code' => $request->code,
+        ],
+    ]);
+    $accessdata = json_decode((string) $response->getBody(), true);
+    $header =[
+        'Content-Type' => 'application/json',
+        'Accept'=>'application/json',
+        'Authorization'=>'Bearer '.$accessdata['access_token']
+    ];
+    $resuser = $http->get('http://localhost:8003/api/users',['headers'=>$header]);
+    $data =  json_decode((string) $resuser->getBody(), true);
+    $date = date('Y-m-d');
+    $check = access_token::where([['created_at','like','%'.$date.'%'],['user_id','=',''.$data['user_id'].'']])->get()->count();
+    if($check < 1){
+        access_token::create([
+            'user_id'=>$data['user_id'],
+            'access_token'=>$accessdata['access_token']
+        ]);
+    }
+    return redirect('http://localhost:8003/getlogin');
 //     // return [$accessdata,$data];
     
-// });
+});

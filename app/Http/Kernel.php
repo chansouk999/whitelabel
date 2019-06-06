@@ -37,6 +37,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \App\Http\Middleware\createclientid::class,
             \App\Http\Middleware\authcheck::class,
+            \App\Http\Middleware\lastactivity::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
         ],

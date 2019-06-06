@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->integer('totalOnlineHour');
             $table->enum('userStatus',['online','offline']);
-            $table->date('registerTime');
-            $table->date('last_activity');
+            $table->dateTime('registerTime');
+            $table->dateTime('last_activity');
             $table->string('provider_name',50);
             $table->string('pro_id',4);
             $table->string('userBalance');

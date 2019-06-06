@@ -103,7 +103,7 @@
                                       class="form-control"
                                       placeholder="Search"
                                       v-model="searchuserdetail"
-                                      @keyup.enter="userdata(userdetailpg.path+'?search='+searchuserdetail,method='search')"
+                                      @keyup.enter.prevent="userdata(userdetailpg.path+'?search='+searchuserdetail,method='search')"
                                     >
                                     <span class="material-input"></span>
                                   </div>
@@ -166,12 +166,16 @@
                                       <td>{{data.user_id}}</td>
                                       <td>{{data.name}}</td>
                                       <td>{{data.userBalance}}</td>
-                                      <td>{{data.totalOnlineHour}}</td>
-                                      <td>{{data.id}}</td>
-                                      <td>{{data.userBalance}}</td>
-                                      <td>{{data.userBalance}}</td>
-                                      <td>{{data.userBalance}}</td>
-                                      <td>{{data.userStatus}}</td>
+                                      <td>{{data.currency}}</td>
+                                       <td>{{ Math.floor(data.totalOnlineHour / 3600)  }} Hours </td>
+                                      <td>{{data.lang}}</td>
+                                      <td>{{data.TotalRolling}}</td>
+                                      <td>{{data.AvailableRolling}}</td>
+                                      <td>
+                                        <span v-if="data.userStatus=='offine'" style="color:#999">Offline</span>
+                                        <span v-else style="color:green">Online</span>
+
+                                        </td>
                                       <td>{{data.created_at}}</td>
                                       <td>{{data.accessIP}}</td>
                                       <!-- <div class="col-md-5 col-lg-5"> -->
@@ -223,7 +227,7 @@
                                     >{{ page }}</option>
                                   </select>
                                 </li>
-                                <li class="page-item">
+                                <li class="page-item" v-if="userdetailpg.prev_page_url !== null">
                                   <span
                                     class="page-link"
                                     @click="userdata(userdetailpg.prev_page_url,method='previous')"
@@ -243,7 +247,7 @@
                                 <li class="page-item">
                                   <a class="page-link" href="#">{{ userdetailpg.currentpage + 1 }}</a>
                                 </li>
-                                <li class="page-item">
+                                <li class="page-item" v-if="userdetailpg.next_page_url !== null">
                                   <a
                                     class="page-link"
                                     href="#"
