@@ -24,7 +24,7 @@
           </div>
           <div class="info">
             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-              Tania Andrew
+            Hi! Vongkeo
               <b class="caret"></b>
             </a>
             <div class="collapse" id="collapseExample">

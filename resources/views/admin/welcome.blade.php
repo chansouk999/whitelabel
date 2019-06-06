@@ -4,50 +4,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
-  <link rel="apple-touch-icon" sizes="76x76" href="../assetsadmin/img/apple-icon.png" />
-  <link rel="icon" type="image/png" href="../assetsadmin/img/favicon.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('../assetsadmin/img/apple-icon.png') }}" />
+  <link rel="icon" type="image/png" href="{{ asset('../assetsadmin/img/favicon.png') }}" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Material Dashboard PRO by Creative Tim | Premium Bootstrap Admin Template</title>
+  <title>Admin | Whitelabel</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
-  <!-- Canonical SEO -->
-  <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-pro" />
-  <!--  Social tags      -->
-  <meta name="keywords" content="material dashboard, bootstrap material admin, bootstrap material dashboard, material design admin, material design, creative tim, html dashboard, html css dashboard, web dashboard, freebie, free bootstrap dashboard, css3 dashboard, bootstrap admin, bootstrap dashboard, frontend, responsive bootstrap dashboard, premiu material design admin">
-  <meta name="description" content="Material Dashboard PRO is a Premium Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design.">
-  <!-- Schema.org markup for Google+ -->
-  <meta itemprop="name" content="Material Dashboard PRO by Creative Tim | Premium Bootstrap Admin Template">
-  <meta itemprop="description" content="Material Dashboard PRO is a Premium Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design.">
-  <meta itemprop="image" content="../../../s3.amazonaws.com/creativetim_bucket/products/51/opt_mdp_thumbnail.jpg">
-  <!-- Twitter Card data -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@creativetim">
-  <meta name="twitter:title" content="Material Dashboard PRO by Creative Tim | Premium Bootstrap Admin Template">
-  <meta name="twitter:description" content="Material Dashboard PRO is a Premium Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design.">
-  <meta name="twitter:creator" content="@creativetim">
-  <meta name="twitter:image" content="../../../s3.amazonaws.com/creativetim_bucket/products/51/opt_mdp_thumbnail.jpg">
-  <!-- Open Graph data -->
-  <meta property="fb:app_id" content="655968634437471">
-  <meta property="og:title" content="Material Dashboard PRO by Creative Tim | Premium Bootstrap Admin Template" />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="http://www.creative-tim.com/product/material-dashboard-pro" />
-  <meta property="og:image" content="../../../s3.amazonaws.com/creativetim_bucket/products/51/opt_mdp_thumbnail.jpg" />
-  <meta property="og:description" content="Material Dashboard PRO is a Premium Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design." />
-  <meta property="og:site_name" content="Creative Tim" />
+
+  <link href="{{ asset('../assetsadmin/css/main.css') }}" rel="stylesheet" />
   <!-- Bootstrap core CSS     -->
-  <link href="../assetsadmin/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="{{asset('../assetsadmin/css/bootstrap.min.css')}}" rel="stylesheet" />
   <!--  Material Dashboard CSS    -->
-  <link href="../assetsadmin/css/material-dashboard.css" rel="stylesheet" />
+  <link href="{{asset('../assetsadmin/css/material-dashboard.css')}}" rel="stylesheet" />
   <!--  CSS for Demo Purpose, don't include it in your project     -->
-  <link href="../assetsadmin/css/demo.css" rel="stylesheet" />
+  <link href="{{asset('../assetsadmin/css/demo.css')}}" rel="stylesheet" />
   <!--     Fonts and icons     -->
-  <link href="../assetsadmin/css/font-awesome.css" rel="stylesheet" />
-  <link href="../assetsadmin/css/google-roboto-300-700.css" rel="stylesheet" />
+  <link href="{{asset('../assetsadmin/css/font-awesome.css')}}" rel="stylesheet" />
+  <link href="{{asset('../assetsadmin/css/google-roboto-300-700.css')}}" rel="stylesheet" />
 </head>
 
 <body>
-  <div id="app" class="wrapper">
+  <div id="app">
     @if(auth()->check())
     <input type="hidden" class="checkuser" name="" value="true">
     @else
@@ -55,50 +32,49 @@
     @endif
     <app-containeradmin></app-containeradmin>
   </div>
-  <!--   Core JS Files   -->
-  
   <script src="../js/app.js"></script>
-  <script src="../assetsadmin/js/jquery-3.1.1.min.js" type="text/javascript"></script>
-  <script src="../assetsadmin/js/jquery-ui.min.js" type="text/javascript"></script>
-  <script src="../assetsadmin/js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="../assetsadmin/js/material.min.js" type="text/javascript"></script>
-  <script src="../assetsadmin/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+  <!--   Core JS Files   -->
+  <script src="{{asset('../assetsadmin/js/jquery-3.1.1.min.js')}}" type="text/javascript"></script>
+  <script src="{{asset('../assetsadmin/js/jquery-ui.min.j')}}s" type="text/javascript"></script>
+  <script src="{{asset('../assetsadmin/js/bootstrap.min.js')}}" type="text/javascript"></script>
+  <script src="{{asset('../assetsadmin/js/material.min.js')}}" type="text/javascript"></script>
+  <script src="{{asset('../assetsadmin/js/perfect-scrollbar.jquery.min.js')}}" type="text/javascript"></script>
   <!-- Forms Validations Plugin -->
-  <script src="../assetsadmin/js/jquery.validate.min.js"></script>
+  <script src="{{asset('../assetsadmin/js/jquery.validate.min.js')}}" type="text/javascript"></script>
   <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-  <script src="../assetsadmin/js/moment.min.js"></script>
+  <script src="{{asset('../assetsadmin/js/moment.min.js')}}" type="text/javascript"></script>
   <!--  Charts Plugin -->
-  <script src="../assetsadmin/js/chartist.min.js"></script>
+  <script src="{{asset('../assetsadmin/js/chartist.min.js')}}" type="text/javascript"></script>
   <!--  Plugin for the Wizard -->
-  <script src="../assetsadmin/js/jquery.bootstrap-wizard.js"></script>
+  <script src="{{asset('../assetsadmin/js/jquery.bootstrap-wizard.js')}}" type="text/javascript"></script>
   <!--  Notifications Plugin    -->
-  <script src="../assetsadmin/js/bootstrap-notify.js"></script>
+  <script src="{{asset('../assetsadmin/js/bootstrap-notify.js')}}" type="text/javascript"></script>
   <!--   Sharrre Library    -->
-  <script src="../assetsadmin/js/jquery.sharrre.js"></script>
+  <script src="{{asset('../assetsadmin/js/jquery.sharrre.js')}}" type="text/javascript"></script>
   <!-- DateTimePicker Plugin -->
-  <script src="../assetsadmin/js/bootstrap-datetimepicker.js"></script>
+  <script src="{{asset('../assetsadmin/js/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
   <!-- Vector Map plugin -->
-  <script src="../assetsadmin/js/jquery-jvectormap.js"></script>
+  <script src="{{asset('../assetsadmin/js/jquery-jvectormap.js')}}" type="text/javascript"></script>
   <!-- Sliders Plugin -->
-  <script src="../assetsadmin/js/nouislider.min.js"></script>
+  <script src="{{asset('../assetsadmin/js/nouislider.min.js')}}" type="text/javascript"></script>
   <!--  Google Maps Plugin    -->
-  <!--<script src="../assetsadmin/js/jquery.select-bootstrap.js"></script>-->
+  <!--<script src="assetsadmin/js/jquery.select-bootstrap.js"></script>-->
   <!-- Select Plugin -->
-  <script src="../assetsadmin/js/jquery.select-bootstrap.js"></script>
+  <script src="{{asset('../assetsadmin/js/jquery.select-bootstrap.js')}}" type="text/javascript"></script>
   <!--  DataTables.net Plugin    -->
-  <script src="../assetsadmin/js/jquery.datatables.js"></script>
+  <script src="{{asset('../assetsadmin/js/jquery.datatables.js')}}" type="text/javascript"></script>
   <!-- Sweet Alert 2 plugin -->
-  <script src="../assetsadmin/js/sweetalert2.js"></script>
+  <script src="{{asset('../assetsadmin/js/sweetalert2.js')}}" type="text/javascript"></script>
   <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-  <script src="../assetsadmin/js/jasny-bootstrap.min.js"></script>
+  <script src="{{asset('../assetsadmin/js/jasny-bootstrap.min.js')}}" type="text/javascript"></script>
   <!--  Full Calendar Plugin    -->
-  <script src="../assetsadmin/js/fullcalendar.min.js"></script>
+  <script src="{{asset('../assetsadmin/js/fullcalendar.min.js')}}" type="text/javascript"></script>
   <!-- TagsInput Plugin -->
-  <script src="../assetsadmin/js/jquery.tagsinput.js"></script>
+  <script src="{{asset('../assetsadmin/js/jquery.tagsinput.js')}}" type="text/javascript"></script>
   <!-- Material Dashboard javascript methods -->
-  <script src="../assetsadmin/js/material-dashboard.js"></script>
+  <script src="{{asset('../assetsadmin/js/material-dashboard.js')}}" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../assetsadmin/js/demo.js"></script>
+  <script src="{{asset('../assetsadmin/js/demo.js')}}"  type="text/javascript"></script>
   <script type="text/javascript">
     $(document).ready(function() {
 
@@ -108,7 +84,6 @@
       demo.initVectorMap();
     });
   </script>
-
 </body>
 
 </html>
