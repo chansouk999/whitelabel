@@ -3452,7 +3452,7 @@ jvm.MultiMap.defaultParams = {
 
 
 
-// World_mill_en code
+// World_mill_en code 
 
 $.fn.vectorMap('addMap', 'world_mill_en', {
   "insets": [{

@@ -1,123 +1,201 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('../assetsadmin/img/apple-icon.png') }}" />
-  <link rel="icon" type="image/png" href="{{ asset('../assetsadmin/img/favicon.png') }}" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Admin | Whitelabel</title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-  <meta name="viewport" content="width=device-width" />
-
-  <link href="{{ asset('../assetsadmin/css/main.css') }}" rel="stylesheet" />
-  <!-- Bootstrap core CSS     -->
-  <link href="{{asset('../assetsadmin/css/bootstrap.min.css')}}" rel="stylesheet" />
-  <!--  Material Dashboard CSS    -->
-  <link href="{{asset('../assetsadmin/css/material-dashboard.css')}}" rel="stylesheet" />
-  <!--  CSS for Demo Purpose, don't include it in your project     -->
-  <link href="{{asset('../assetsadmin/css/demo.css')}}" rel="stylesheet" />
-  <!--     Fonts and icons     -->
-  <link href="{{asset('../assetsadmin/css/font-awesome.css')}}" rel="stylesheet" />
-  <link href="{{asset('../assetsadmin/css/google-roboto-300-700.css')}}" rel="stylesheet" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assetsadmin/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assetsadmin/img/favicon.png">
+    <title>
+        Black Dashboard PRO by Creative Tim
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- Nucleo Icons -->
+    <link href="../assetsadmin/css/nucleo-icons.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="../assetsadmin/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="../assetsadmin/demo/demo.css" rel="stylesheet" />
+    <link href="../assetsadmin/css/main.css" rel="stylesheet" />
 </head>
 
-<body>
-  <div id="app">
-    @if(auth()->check())
-    <input type="hidden" class="checkuser" name="" value="true">
-    @else
-    <input type="hidden" class="checkuser" name="" value="false">
-    @endif
-    <app-containeradmin></app-containeradmin>
-  </div>
-  <script src="../js/app.js"></script>
-  <!--   Core JS Files   -->
-  <script src="{{asset('../assetsadmin/js/jquery-3.1.1.min.js')}}" type="text/javascript"></script>
-  <script src="{{asset('../assetsadmin/js/jquery-ui.min.j')}}s" type="text/javascript"></script>
-  <script src="{{asset('../assetsadmin/js/bootstrap.min.js')}}" type="text/javascript"></script>
-  <script src="{{asset('../assetsadmin/js/material.min.js')}}" type="text/javascript"></script>
-  <script src="{{asset('../assetsadmin/js/perfect-scrollbar.jquery.min.js')}}" type="text/javascript"></script>
-  <!-- Forms Validations Plugin -->
-  <script src="{{asset('../assetsadmin/js/jquery.validate.min.js')}}" type="text/javascript"></script>
-  <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-  <script src="{{asset('../assetsadmin/js/moment.min.js')}}" type="text/javascript"></script>
-  <!--  Charts Plugin -->
-  <script src="{{asset('../assetsadmin/js/chartist.min.js')}}" type="text/javascript"></script>
-  <!--  Plugin for the Wizard -->
-  <script src="{{asset('../assetsadmin/js/jquery.bootstrap-wizard.js')}}" type="text/javascript"></script>
-  <!--  Notifications Plugin    -->
-  <script src="{{asset('../assetsadmin/js/bootstrap-notify.js')}}" type="text/javascript"></script>
-  <!--   Sharrre Library    -->
-  <script src="{{asset('../assetsadmin/js/jquery.sharrre.js')}}" type="text/javascript"></script>
-  <!-- DateTimePicker Plugin -->
-  <script src="{{asset('../assetsadmin/js/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
-  <!-- Vector Map plugin -->
-  <script src="{{asset('../assetsadmin/js/jquery-jvectormap.js')}}" type="text/javascript"></script>
-  <!-- Sliders Plugin -->
-  <script src="{{asset('../assetsadmin/js/nouislider.min.js')}}" type="text/javascript"></script>
-  <!--  Google Maps Plugin    -->
-  <!--<script src="assetsadmin/js/jquery.select-bootstrap.js"></script>-->
-  <!-- Select Plugin -->
-  <script src="{{asset('../assetsadmin/js/jquery.select-bootstrap.js')}}" type="text/javascript"></script>
-  <!--  DataTables.net Plugin    -->
-  <script src="{{asset('../assetsadmin/js/jquery.datatables.js')}}" type="text/javascript"></script>
-  <!-- Sweet Alert 2 plugin -->
-  <script src="{{asset('../assetsadmin/js/sweetalert2.js')}}" type="text/javascript"></script>
-  <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-  <script src="{{asset('../assetsadmin/js/jasny-bootstrap.min.js')}}" type="text/javascript"></script>
-  <!--  Full Calendar Plugin    -->
-  <script src="{{asset('../assetsadmin/js/fullcalendar.min.js')}}" type="text/javascript"></script>
-  <!-- TagsInput Plugin -->
-  <script src="{{asset('../assetsadmin/js/jquery.tagsinput.js')}}" type="text/javascript"></script>
-  <!-- Material Dashboard javascript methods -->
-  <script src="{{asset('../assetsadmin/js/material-dashboard.js')}}" type="text/javascript"></script>
-  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="{{asset('../assetsadmin/js/demo.js')}}"  type="text/javascript"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-        $('#datatables').DataTable({
-            "pagingType": "full_numbers",
-            "lengthMenu": [
-                [10, 25, 50, -1],
-                [10, 25, 50, "All"]
-            ],
-            responsive: true,
-            language: {
-                search: "_INPUT_",
-                searchPlaceholder: "Search records",
-            }
+<body class="sidebar-mini">
+    <div id="app">
+        @if(auth()->check())
+        <input type="hidden" class="checkuser" name="" value="true">
+        @else
+        <input type="hidden" class="checkuser" name="" value="false">
+        @endif
+        <app-containeradmin></app-containeradmin>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="../assetsadmin/js/core/jquery.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../assetsadmin/js/core/popper.min.js"></script>
+    <script src="../assetsadmin/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../assetsadmin/js/plugins/moment.min.js"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="../assetsadmin/js/plugins/bootstrap-switch.js"></script>
+    <!--  Plugin for Sweet Alert -->
+    <script src="../assetsadmin/js/plugins/sweetalert2.min.js"></script>
+    <!--  Plugin for Sorting Tables -->
+    <script src="../assetsadmin/js/plugins/jquery.tablesorter.js"></script>
+    <!-- Forms Validations Plugin -->
+    <script src="../assetsadmin/js/plugins/jquery.validate.min.js"></script>
+    <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+    <script src="../assetsadmin/js/plugins/jquery.bootstrap-wizard.js"></script>
+    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+    <script src="../assetsadmin/js/plugins/bootstrap-selectpicker.js"></script>
+    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+    <script src="../assetsadmin/js/plugins/bootstrap-datetimepicker.js"></script>
+    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
+    <script src="../assetsadmin/js/plugins/jquery.dataTables.min.js"></script>
+    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <script src="../assetsadmin/js/plugins/bootstrap-tagsinput.js"></script>
+    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="../assetsadmin/js/plugins/jasny-bootstrap.min.js"></script>
+    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+    <script src="../assetsadmin/js/plugins/fullcalendar.min.js"></script>
+    <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+    <script src="../assetsadmin/js/plugins/jquery-jvectormap.js"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="../assetsadmin/js/plugins/nouislider.min.js"></script>
+    <!--  Google Maps Plugin    -->
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
+    <script src="../assetsadmin/js/core/bootstrap.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="../assetsadmin/js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="../assetsadmin/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assetsadmin/js/black-dashboard.min.js?v=1.0.0"></script>
+    <!-- Black Dashboard DEMO methods, don't include it in your project! -->
+    <script src="../assetsadmin/demo/demo.js"></script>
+    <script>
+        $(document).ready(function() {
+          $().ready(function() {
+            $sidebar = $('.sidebar');
+            $navbar = $('.navbar');
+            $main_panel = $('.main-panel');
+
+            $full_page = $('.full-page');
+
+            $sidebar_responsive = $('body > .navbar-collapse');
+            sidebar_mini_active = true;
+            white_color = false;
+
+            window_width = $(window).width();
+
+            fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+
+
+            $('.fixed-plugin a').click(function(event) {
+              if ($(this).hasClass('switch-trigger')) {
+                if (event.stopPropagation) {
+                  event.stopPropagation();
+                } else if (window.event) {
+                  window.event.cancelBubble = true;
+                }
+              }
+            });
+
+            $('.fixed-plugin .background-color span').click(function() {
+              $(this).siblings().removeClass('active');
+              $(this).addClass('active');
+
+              var new_color = $(this).data('color');
+
+              if ($sidebar.length != 0) {
+                $sidebar.attr('data', new_color);
+              }
+
+              if ($main_panel.length != 0) {
+                $main_panel.attr('data', new_color);
+              }
+
+              if ($full_page.length != 0) {
+                $full_page.attr('filter-color', new_color);
+              }
+
+              if ($sidebar_responsive.length != 0) {
+                $sidebar_responsive.attr('data', new_color);
+              }
+            });
+
+            $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
+              var $btn = $(this);
+
+              if (sidebar_mini_active == true) {
+                $('body').removeClass('sidebar-mini');
+                sidebar_mini_active = false;
+                blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+              } else {
+                $('body').addClass('sidebar-mini');
+                sidebar_mini_active = true;
+                blackDashboard.showSidebarMessage('Sidebar mini activated...');
+              }
+
+              // we simulate the window Resize so the charts will get updated in realtime.
+              var simulateWindowResize = setInterval(function() {
+                window.dispatchEvent(new Event('resize'));
+              }, 180);
+
+              // we stop the simulation of Window Resize after the animations are completed
+              setTimeout(function() {
+                clearInterval(simulateWindowResize);
+              }, 1000);
+            });
+
+            $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
+              var $btn = $(this);
+
+              if (white_color == true) {
+
+                $('body').addClass('change-background');
+                setTimeout(function() {
+                  $('body').removeClass('change-background');
+                  $('body').removeClass('white-content');
+                }, 900);
+                white_color = false;
+              } else {
+
+                $('body').addClass('change-background');
+                setTimeout(function() {
+                  $('body').removeClass('change-background');
+                  $('body').addClass('white-content');
+                }, 900);
+
+                white_color = true;
+              }
+
+
+            });
+
+            $('.light-badge').click(function() {
+              $('body').addClass('white-content');
+            });
+
+            $('.dark-badge').click(function() {
+              $('body').removeClass('white-content');
+            });
+          });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+          // Javascript method's body can be found in assetsadmin/js/demos.js
+          demo.initDashboardPageCharts();
+
+          demo.initVectorMap();
 
         });
-
-
-        var table = $('#datatables').DataTable();
-
-        // Edit record
-        table.on('click', '.edit', function() {
-            $tr = $(this).closest('tr');
-
-            var data = table.row($tr).data();
-            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-        });
-
-        // Delete a record
-        table.on('click', '.remove', function(e) {
-            $tr = $(this).closest('tr');
-            table.row($tr).remove().draw();
-            e.preventDefault();
-        });
-
-        //Like record
-        table.on('click', '.like', function() {
-            alert('You clicked on Like button');
-        });
-
-        $('.card .material-datatables label').addClass('form-group');
-    });
-</script>
-
+    </script>
 </body>
 
 </html>

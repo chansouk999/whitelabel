@@ -1,6 +1,12 @@
 <template>
   <div>
     <div class="wrapper">
+      <div class="navbar-minimize-fixed">
+        <button class="minimize-sidebar btn btn-link btn-just-icon">
+          <i class="tim-icons icon-align-center visible-on-sidebar-regular text-muted"></i>
+          <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini text-muted"></i>
+        </button>
+      </div>
       <app-aside></app-aside>
       <div class="main-panel">
         <app-navbar></app-navbar>
