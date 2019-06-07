@@ -46,7 +46,7 @@
                   >There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries...</p>
                   <footer class="content__footer">
                     <a :href=" 'http://localhost:8003/redirect?firstname='+this.firstname+'&lastname='+this.lastname+'&name='+this.email " target="_blank"> <h1>Play Lec68</h1> </a>
-                    <!-- <button @click="gotogame">PLAY</button> -->
+                    <button @click="runwindow">PLAY</button>
                   </footer>
                 </div>
               </div>
@@ -100,11 +100,12 @@ export default {
 
   methods: {
     runwindow() {
-      window.open(
-        "http://localhost:8003/redirect",
-        "",
-        "width=1920,height=1080"
-      );
+     window.open('http://localhost:8003/redirect?firstname='+this.firstname+'&lastname='+this.lastname+'&name='+this.email,'LEC68.COM',"width=1920,height=1080,location=no");
+      // window.open(
+      //   "http://localhost:8003/redirect",
+      //   "",
+      //   "width=1920,height=1080"
+      // );
     },
     gotogame(){
       // console.log(this.firstname+this.lastname)
