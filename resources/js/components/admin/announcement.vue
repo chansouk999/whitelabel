@@ -90,7 +90,7 @@
             <div class="card card-profile">
               <div class="card-avatar">
                 <a href="#pablo">
-                  <img class="img" src="assetsadmin/img/faces/marc.jpg">
+                  <img class="img" src="assetsadmin/img/marc.jpg">
                 </a>
               </div>
               <div class="card-content">

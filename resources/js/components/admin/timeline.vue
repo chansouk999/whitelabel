@@ -1,107 +1,218 @@
 <template>
   <div>
-    <div class="content">
-      <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
         <div class="row">
-          <div class="col-md-8">
-            <div class="card">
-              <div class="card-header card-header-icon" data-background-color="rose">
-                <i class="material-icons">perm_identity</i>
-              </div>
-              <div class="card-content">
-                <h4 class="card-title">
-                  Edit Profile -
-                  <small class="category">Complete your profile</small>
-                </h4>
-                <form>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th class="text-center">#</th>
-                        <th>Name</th>
-                        <th>Job Position</th>
-                        <th>Since</th>
-                        <th class="text-right">Salary</th>
-                        <th class="text-right">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="text-center">1</td>
-                        <td>Andrew Mike</td>
-                        <td>Develop</td>
-                        <td>2013</td>
-                        <td class="text-right">&euro; 99,225</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info">
-                            <i class="material-icons">person</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">2</td>
-                        <td>John Doe</td>
-                        <td>Design</td>
-                        <td>2012</td>
-                        <td class="text-right">&euro; 89,241</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info btn-round">
-                            <i class="material-icons">person</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success btn-round">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger btn-round">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">3</td>
-                        <td>Alex Mike</td>
-                        <td>Design</td>
-                        <td>2010</td>
-                        <td class="text-right">&euro; 92,144</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info btn-simple">
-                            <i class="material-icons">person</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success btn-simple">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </form>
+          <div class="col-md-6 d-flex">
+            <div class="btn btn-icon btn-round btn-youtube disabled">
+              <i class="tim-icons icon-calendar-60"></i>
+            </div>
+            <!-- input with datetimepicker -->
+            <div class="form-group">
+              <input type="text" class="form-control datetimepicker" value="10/05/2018">
+            </div>
+          </div>
+          <div class="col-md-6 text-right">
+            <button
+              class="btn btn-link"
+              id="timeline1"
+              data-toggle="modal"
+              data-target=".timeline1"
+            >
+              <i class="tim-icons icon-zoom-split"></i>
+              <span class="d-lg-none d-md-block">Search</span>
+            </button>
+            <div
+              class="modal modal-search timeline1 fade"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="timeline1"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inlineFormInputGroup"
+                      placeholder="SEARCH"
+                    >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <i class="tim-icons icon-simple-remove"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card card-profile">
-              <div class="card-avatar">
-                <a href="#pablo">
-                  <img class="img" src="assetsadmin/img/faces/marc.jpg">
-                </a>
-              </div>
-              <div class="card-content">
-                <h6 class="category text-gray">CEO / Co-Founder</h6>
-                <h4 class="card-title">FUCK YOU! Bank</h4>
-                <p
-                  class="description"
-                >Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...</p>
-                <a href="#pablo" class="btn btn-rose btn-round">Follow</a>
+        </div>
+        <div class="card card-timeline card-plain">
+          <div class="card-body">
+            <ul class="timeline timeline-simple">
+              <li class="timeline-inverted">
+                <div class="timeline-badge danger">
+                  <i class="tim-icons icon-bag-16"></i>
+                </div>
+                <div class="timeline-panel text-left">
+                  <div class="timeline-heading">
+                    <span class="badge badge-pill badge-danger">23/11/2019</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-primary">
+                      Admin-adminID
+                      <span class="text-info">Change his password</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                    <p class="text-primary">
+                      Admin-adminID
+                      <span class="text-info">Change his password of and admin</span>
+                      <span class="text-primary">adminID</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                  </div>
+                  <h6>
+                    <i class="ti-time"></i>
+                  </h6>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-badge success">
+                  <i class="tim-icons icon-gift-2"></i>
+                </div>
+                <div class="timeline-panel text-left">
+                  <div class="timeline-heading">
+                    <span class="badge badge-pill badge-success">22/11/2018</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-primary">
+                      Admin-adminID
+                      <span class="text-info">Blocked a player</span>
+                      <span class="text-primary">userApiID</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                    <p class="text-primary">
+                      Admin-adminID
+                      <span class="text-info">add a portal priovider</span>
+                      <span class="text-primary">webID</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                    <p class="text-primary">
+                      Admin-adminID
+                      <span class="text-info">Logged in</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                    <p class="text-primary">
+                      Admin-adminID
+                      <span class="text-info">add $30000000 to a web</span>
+                      <span class="text-primary">webID</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6 d-flex">
+            <div class="btn btn-icon btn-round btn-youtube disabled">
+              <i class="tim-icons icon-calendar-60"></i>
+            </div>
+            <!-- input with datetimepicker -->
+            <div class="form-group">
+              <input type="text" class="form-control datetimepicker" value="10/05/2018">
+            </div>
+          </div>
+          <div class="col-md-6 text-right">
+            <button
+              class="btn btn-link"
+              id="timeline2"
+              data-toggle="modal"
+              data-target=".timeline2"
+            >
+              <i class="tim-icons icon-zoom-split"></i>
+              <span class="d-lg-none d-md-block">Search</span>
+            </button>
+            <div
+              class="modal modal-search timeline2 fade"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="timeline2"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inlineFormInputGroup"
+                      placeholder="SEARCH"
+                    >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <i class="tim-icons icon-simple-remove"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="card card-timeline card-plain">
+          <div class="card-body">
+            <ul class="timeline timeline-simple">
+              <li class="timeline-inverted">
+                <div class="timeline-badge danger">
+                  <i class="tim-icons icon-bag-16"></i>
+                </div>
+                <div class="timeline-panel text-left">
+                  <div class="timeline-heading">
+                    <span class="badge badge-pill badge-danger">23/11/2019</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-primary">
+                      <span class="text-info">Change his password</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                    <p class="text-primary">
+                      <span class="text-info">Change his password of and admin</span>
+                      <span class="text-primary">adminID</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                  </div>
+                  <h6>
+                    <i class="ti-time"></i>
+                  </h6>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-badge success">
+                  <i class="tim-icons icon-gift-2"></i>
+                </div>
+                <div class="timeline-panel text-left">
+                  <div class="timeline-heading">
+                    <span class="badge badge-pill badge-danger">23/11/2019</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-primary">
+                      <span class="text-info">Change his password</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                    <p class="text-primary">
+                      <span class="text-info">Change his password of and admin</span>
+                      <span class="text-primary">adminID</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                  </div>
+                  <h6>
+                    <i class="ti-time"></i>
+                  </h6>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -109,7 +220,17 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  mounted() {
+    $(document).ready(function() {
+      // initialise Datetimepicker and Sliders
+      blackDashboard.initDateTimePicker();
+      if ($(".slider").length != 0) {
+        demo.initSliders();
+      }
+    });
+  }
+};
 </script>
 
 <style scoped>

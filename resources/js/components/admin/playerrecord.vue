@@ -1,117 +1,168 @@
 <template>
   <div>
-    <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="card">
-              <div class="card-header card-header-icon" data-background-color="rose">
-                <i class="material-icons">perm_identity</i>
-              </div>
-              <div class="card-content">
-                <h4 class="card-title">
-                  Edit Profile -
-                  <small class="category">Complete your profile</small>
-                </h4>
-                <form>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th class="text-center">#</th>
-                        <th>Name</th>
-                        <th>Job Position</th>
-                        <th>Since</th>
-                        <th class="text-right">Salary</th>
-                        <th class="text-right">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="text-center">1</td>
-                        <td>Andrew Mike</td>
-                        <td>Develop</td>
-                        <td>2013</td>
-                        <td class="text-right">&euro; 99,225</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info">
-                            <i class="material-icons">person</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">2</td>
-                        <td>John Doe</td>
-                        <td>Design</td>
-                        <td>2012</td>
-                        <td class="text-right">&euro; 89,241</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info btn-round">
-                            <i class="material-icons">person</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success btn-round">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger btn-round">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">3</td>
-                        <td>Alex Mike</td>
-                        <td>Design</td>
-                        <td>2010</td>
-                        <td class="text-right">&euro; 92,144</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info btn-simple">
-                            <i class="material-icons">person</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success btn-simple">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-profile">
-              <div class="card-avatar">
-                <a href="#pablo">
-                  <img class="img" src="assetsadmin/img/faces/marc.jpg">
-                </a>
-              </div>
-              <div class="card-content">
-                <h6 class="category text-gray">CEO / Co-Founder</h6>
-                <h4 class="card-title">FUCK YOU! Bank</h4>
-                <p
-                  class="description"
-                >Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...</p>
-                <a href="#pablo" class="btn btn-rose btn-round">Follow</a>
+    <!-- PLAYER INFO -->
+    <div class="row">
+      <div class="col-md-6 d-flex">
+        <div class="btn btn-icon btn-round btn-youtube disabled">
+          <i class="tim-icons icon-calendar-60"></i>
+        </div>
+        <!-- input with datetimepicker -->
+        <div class="form-group">
+          <input type="text" class="form-control datetimepicker" value="10/05/2018">
+        </div>
+      </div>
+      <div class="col-md-6 text-right">
+        <button
+          class="btn btn-link"
+          id="playerrecord"
+          data-toggle="modal"
+          data-target=".playerrecord"
+        >
+          <i class="tim-icons icon-zoom-split"></i>
+          <span class="d-lg-none d-md-block">Search</span>
+        </button>
+        <div
+          class="modal modal-search playerrecord fade"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="playerrecord"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inlineFormInputGroup"
+                  placeholder="SEARCH"
+                >
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <i class="tim-icons icon-simple-remove"></i>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-12 col-sm-12">
+        <div class="card card-timeline card-plain">
+          <div class="card-body">
+            <ul class="timeline timeline-simple">
+              <li class="timeline-inverted">
+                <div class="timeline-badge danger">
+                  <i class="tim-icons icon-bag-16"></i>
+                </div>
+                <div class="timeline-panel text-left">
+                  <div class="timeline-heading">
+                    <span class="badge badge-pill badge-success">22/11/2018</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-primary">
+                   PlayerID
+                      <span class="text-info">Changed his Password</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                    <p class="text-primary">
+                   PlayerID
+                      <span class="text-info">withdm rolling, approved by </span>
+                      <span class="text-primary">adminID</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-badge success">
+                  <i class="tim-icons icon-calendar-60"></i>
+                </div>
+                <div class="timeline-panel text-left">
+                  <div class="timeline-heading">
+                    <span class="badge badge-pill badge-success">22/11/2018</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-primary">
+                   PlayerID
+                      <span class="text-info">Requested (withdraw $200 from rolling )</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                    <p class="text-primary">
+                   PlayerID
+                      <span class="text-info">Placed $20 bet ot in n small-Firs</span>
+                      <span class="text-primary">gameID</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                    <p class="text-primary">
+                   PlayerID
+                      <span class="text-info">Lost $100 by betting on number-7-First in </span>
+                       <span class="text-primary">gameID</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                    <p class="text-primary">
+                   PlayerID
+                      <span class="text-info">Top up $1000 to balance by</span>
+                      <span class="text-primary">methodID</span>
+                      <span class="text-warning">17:42:33</span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- PLAYER INFO -->
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item">
+          <select class="browser-default custom-select">
+            <option selected>1</option>
+            <option value="1">2</option>
+            <option value="2">3</option>
+            <option value="3">4</option>
+          </select>
+        </li>
+        <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item active">
+          <span class="page-link">
+            2
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  mounted() {
+    $(document).ready(function() {
+      // initialise Datetimepicker and Sliders
+      blackDashboard.initDateTimePicker();
+      if ($(".slider").length != 0) {
+        demo.initSliders();
+      }
+    });
+  }
+};
 </script>
 
 <style scoped>
 </style>
+
 

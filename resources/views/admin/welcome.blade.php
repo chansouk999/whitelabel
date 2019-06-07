@@ -7,22 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../assetsadmin/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assetsadmin/img/favicon.png">
-    <title>
-        Black Dashboard PRO by Creative Tim
-    </title>
+    <title>Whitelabel | Admin</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <!-- Nucleo Icons -->
-    <link href="../assetsadmin/css/nucleo-icons.css" rel="stylesheet" />
-    <!-- CSS Files -->
+    <link href="assets/css/nucleo-icons.css" rel="stylesheet" /> <!-- CSS Files -->
     <link href="../assetsadmin/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assetsadmin/demo/demo.css" rel="stylesheet" />
     <link href="../assetsadmin/css/main.css" rel="stylesheet" />
 </head>
 
-<body class="sidebar-mini">
+<body class="">
     <div id="app">
         @if(auth()->check())
         <input type="hidden" class="checkuser" name="" value="true">
