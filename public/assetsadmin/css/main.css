@@ -20,3 +20,7 @@
     justify-content: space-between;
     color: #000;
 }
+
+.content .card ul li.w-8 {
+    width: 8.3333333333%;
+}

@@ -20,55 +20,55 @@
                     <div class="nav-tabs-navigation">
                       <div class="nav-tabs-wrapper">
                         <ul class="nav nav-pills nav-pills-primary" role="tablist" data-tabs="tabs">
-                          <li class="nav-item">
+                          <li class="nav-item w-8">
                             <a
                               class="nav-link active"
                               href="#playerinfo"
                               data-toggle="tab"
                             >Player info</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item w-8">
                             <a class="nav-link" href="#gamehistory" data-toggle="tab">Game History</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item w-8">
                             <a class="nav-link" href="#gameresult" data-toggle="tab">Game Result</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item w-8">
                             <a
                               class="nav-link"
                               href="#withdrawtopup"
                               data-toggle="tab"
                             >Withdraw top-up</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item w-8">
                             <a class="nav-link" href="#admininfo" data-toggle="tab">Admin info</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item w-8">
                             <a class="nav-link" href="#timeline" data-toggle="tab">TimeLine</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item w-8">
                             <a
                               class="nav-link"
                               href="#adminplayerrecord"
                               data-toggle="tab"
                             >Player record</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item w-8">
                             <a class="nav-link" href="#agentinfo" data-toggle="tab">Agent Info</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item w-8">
                             <a class="nav-link" href="#shhinfo" data-toggle="tab">SH Info</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item w-8">
                             <a class="nav-link" href="#finance" data-toggle="tab">Finance</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item w-8">
                             <a class="nav-link" href="#request" data-toggle="tab">Request</a>
                           </li>
                           <li class="page-item" v-if="userdetailpg.next_page_url !== null">
                             <a class="nav-link" href="#announcement" data-toggle="tab">Announcement</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item w-8">
                             <a class="nav-link" href="#managerecord" data-toggle="tab">Manage Record</a>
                           </li>
                         </ul>
