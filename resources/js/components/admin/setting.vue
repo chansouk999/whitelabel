@@ -1,102 +1,75 @@
 <template>
   <div>
     <div class="fixed-plugin">
-      <div class="dropdown">
+      <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
           <i class="fa fa-cog fa-2x"></i>
         </a>
         <ul class="dropdown-menu">
-          <li class="header-title">Sidebar Filters</li>
-          <li class="adjustments-line">
-            <a href="javascript:void(0)" class="switch-trigger active-color">
-              <div class="badge-colors text-center">
-                <span class="badge filter badge-purple" data-color="purple"></span>
-                <span class="badge filter badge-blue" data-color="blue"></span>
-                <span class="badge filter badge-green" data-color="green"></span>
-                <span class="badge filter badge-orange" data-color="orange"></span>
-                <span class="badge filter badge-red" data-color="red"></span>
-                <span class="badge filter badge-rose active" data-color="rose"></span>
-              </div>
-              <div class="clearfix"></div>
-            </a>
-          </li>
           <li class="header-title">Sidebar Background</li>
           <li class="adjustments-line">
             <a href="javascript:void(0)" class="switch-trigger background-color">
-              <div class="text-center">
-                <span class="badge filter badge-white" data-color="white"></span>
-                <span class="badge filter badge-black active" data-color="black"></span>
+              <div class="badge-colors text-center">
+                <span class="badge filter badge-primary active" data-color="primary"></span>
+                <span class="badge filter badge-info" data-color="blue"></span>
+                <span class="badge filter badge-success" data-color="green"></span>
+                <span class="badge filter badge-warning" data-color="orange"></span>
+                <span class="badge filter badge-danger" data-color="red"></span>
               </div>
               <div class="clearfix"></div>
             </a>
           </li>
+          <li class="header-title">Sidebar Mini</li>
           <li class="adjustments-line">
-            <a href="javascript:void(0)" class="switch-trigger">
-              <p>Sidebar Mini</p>
-              <div class="togglebutton switch-sidebar-mini">
-                <label>
-                  <input type="checkbox" unchecked>
-                </label>
-              </div>
-              <div class="clearfix"></div>
-            </a>
-          </li>
-          <li class="adjustments-line">
-            <a href="javascript:void(0)" class="switch-trigger">
-              <p>Sidebar Image</p>
-              <div class="togglebutton switch-sidebar-image">
-                <label>
-                  <input type="checkbox" checked>
-                </label>
-              </div>
-              <div class="clearfix"></div>
-            </a>
-          </li>
-          <li class="header-title">Images</li>
-          <li class="active">
-            <a class="img-holder switch-trigger" href="javascript:void(0)">
-              <img src="assetsadmin/img/sidebar-1.jpg" alt>
-            </a>
-          </li>
-          <li>
-            <a class="img-holder switch-trigger" href="javascript:void(0)">
-              <img src="assetsadmin/img/sidebar-2.jpg" alt>
-            </a>
-          </li>
-          <li>
-            <a class="img-holder switch-trigger" href="javascript:void(0)">
-              <img src="assetsadmin/img/sidebar-3.jpg" alt>
-            </a>
-          </li>
-          <li>
-            <a class="img-holder switch-trigger" href="javascript:void(0)">
-              <img src="assetsadmin/img/sidebar-4.jpg" alt>
-            </a>
-          </li>
-          <li class="button-container">
-            <div class>
-              <a
-                href="http://www.creative-tim.com/product/material-dashboard-pro"
-                target="_blank"
-                class="btn btn-rose btn-block"
-              >Buy Now</a>
+            <div class="togglebutton switch-sidebar-mini">
+              <span class="label-switch">OFF</span>
+              <input
+                type="checkbox"
+                name="checkbox"
+                checked
+                class="bootstrap-switch"
+                data-on-label
+                data-off-label
+              >
+              <span class="label-switch label-right">ON</span>
             </div>
-            <div class>
-              <a
-                href="http://www.creative-tim.com/product/material-dashboard"
-                target="_blank"
-                class="btn btn-info btn-block"
-              >Get Free Demo</a>
+            <div class="togglebutton switch-change-color mt-3">
+              <span class="label-switch">LIGHT MODE</span>
+              <input
+                type="checkbox"
+                name="checkbox"
+                checked
+                class="bootstrap-switch"
+                data-on-label
+                data-off-label
+              >
+              <span class="label-switch label-right">DARK MODE</span>
             </div>
+          </li>
+          <li class="button-container mt-4">
+            <a
+              href="../docs/1.0/getting-started/introduction.html"
+              class="btn btn-default btn-block btn-round"
+            >Documentation</a>
           </li>
           <li class="header-title">Thank you for 95 shares!</li>
-          <li class="button-container">
-            <button id="twitter" class="btn btn-social btn-twitter btn-round">
-              <i class="fa fa-twitter"></i> &middot; 45
+          <li class="button-container text-center">
+            <button id="twitter" class="btn btn-round btn-info">
+              <i class="fab fa-twitter"></i> &middot; 45
             </button>
-            <button id="facebook" class="btn btn-social btn-facebook btn-round">
-              <i class="fa fa-facebook-square">&middot;</i>50
+            <button id="facebook" class="btn btn-round btn-info">
+              <i class="fab fa-facebook-f"></i> &middot; 50
             </button>
+            <br>
+            <br>
+            <a
+              class="github-button"
+              href="https://github.com/creativetimofficial/ct-black-dashboard-pro"
+              data-icon="octicon-star"
+              data-size="large"
+              data-show-count="true"
+              aria-label="Star ntkme/github-buttons on GitHub"
+            >Star</a>
           </li>
         </ul>
       </div>
@@ -106,8 +79,7 @@
     <script>
 export default {};
 </script>
-    
+
     <style scoped>
 </style>
-    
-    
+

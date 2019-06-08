@@ -1,11 +1,22 @@
 .card .card-body ul li {
     list-style: none;
-    border-bottom: 1px dashed #f4005930;
 }
 
 .card ul li .product-info {
+    list-style: none;
+    border-bottom: 1px dashed #fff;
     display: flex;
     justify-content: space-between;
     list-style: none;
-    padding: 10px 20px 0px 20px;
+    padding: 10px 10px 0px 10px;
+}
+
+.nav-pills .nav-item .nav-link {
+    padding: 11px 22px;
+}
+
+.modal-content .modal-body ul li.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    color: #000;
 }

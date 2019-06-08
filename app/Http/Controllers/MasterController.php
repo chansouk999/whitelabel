@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Jenssegers\Agent\Agent;
 use App\clientid;
+use App\access_token;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -14,6 +15,9 @@ use SebastianBergmann\Environment\Console;
 class MasterController extends Controller
 {
     public function welcome(){
+        
+        // GET TOKEN ADMIN
+        // GET TOKEN ADMIN
         $agent = new Agent();
         if($agent->isMobile()){
         // Alert::success('Mobile', 'Mobile Mode');

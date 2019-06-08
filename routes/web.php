@@ -23,7 +23,31 @@ Route::get('/promote','Homecontroller@promote');
 Route::get('/lobby','Homecontroller@lobby');
 Route::post('/updatemoney','MasterController@updatemoney');
 Auth::routes();
+
+
+
+
+
+
+
+
+
+
 Route::get('/getdata','AdminController@getuserdata');
+Route::get('/gettoken','AdminController@gettoken');
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/home', function(){
     return view('home');
@@ -64,7 +88,9 @@ Route::get('/getlogin',function(){
 //     });
 // });
 
-
+Route::get('admin/check',function(){
+    return "This route can only be accessed by super admin";
+})->middleware('role:super');
 
 
 
