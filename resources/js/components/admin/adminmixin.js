@@ -27,7 +27,14 @@ export const adminmixin = {
           this.config = {
                           headers: {
                             Authorization: 'Bearer '+this.token,
-                            Accept:'application/json'
+                            Accept:'application/json',
+                            'Access-Control-Allow-Origin':'*',
+                            'Access-Control-Allow-Methods':'*',
+                            'Access-Control-Allow-Headers':'*'
+                          },
+                          proxy: {
+                            host: '104.236.174.88',
+                            port: 3128
                           }
                         }
                          axios
@@ -42,9 +49,18 @@ export const adminmixin = {
             
             
             })
-            .catch(er => {
-              console.log(er.res);
-            });
+            .catch(function (error) {
+              if (error.response) {
+                console.log(error.response.headers);
+              } 
+              else if (error.request) {
+                  console.log(error.request);
+              } 
+              else {
+                console.log(error.message);
+              }
+            console.log(error.config);
+          });
           })
         },
         userdata(pagenum, method) {

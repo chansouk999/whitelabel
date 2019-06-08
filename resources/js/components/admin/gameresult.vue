@@ -194,15 +194,15 @@ methods:{
   gamehistorypage(methods){
         if(methods=='previous'){
           if(this.gamehistorystart > 0){
-             this.gamehistorystart -= 20
+              this.gamehistorystart -= 20
               this.gamehistoryend -= 20
               this.gamehistorypagenum -= 1
           }
         }else{
            if(this.gamehistoryend < this.gameresult.length){
               this.gamehistorystart += 20
-          this.gamehistoryend += 20
-          this.gamehistorypagenum += 1
+              this.gamehistoryend += 20
+              this.gamehistorypagenum += 1
           }
          
         }
@@ -210,18 +210,14 @@ methods:{
   },
   computed:{
     customFilter(){
-    // return this.gamehistory.filter((item)=>{
-    //     return item.betAmount.includes(this.gamehistorysearch)
-    // })
-    if(this.gamehistorysearch){
-      return this.gameresult.filter(post => {
-        return post.gameresult.includes(this.gamehistorysearch) || post.gameID.includes(this.gamehistorysearch) || post.created_at.includes(this.gamehistorysearch);
-    });
-    }else{
-      return this.gameresult
-    }
-     
-  },
+      if(this.gamehistorysearch){
+        return this.gameresult.filter(post => {
+          return post.gameresult.includes(this.gamehistorysearch) || post.gameID.includes(this.gamehistorysearch) || post.created_at.includes(this.gamehistorysearch);
+        });
+      }else{
+        return this.gameresult
+      }
+    },
   }
 
  

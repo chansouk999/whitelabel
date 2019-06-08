@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\createclientid::class,
             \App\Http\Middleware\authcheck::class,
             \App\Http\Middleware\lastactivity::class,
+            \App\Http\Middleware\Cors::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
         ],
@@ -66,6 +67,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'sweetalert' => \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
+        'cors' => \App\Http\Middleware\Cors::class, 
     ];
 
     /**
