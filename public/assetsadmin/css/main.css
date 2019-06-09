@@ -24,3 +24,8 @@
 .content .card ul li.w-8 {
     width: 8.3333333333%;
 }
+
+.modal-content .modal-body .card-footer {
+    display: flex;
+    justify-content: space-between;
+}
