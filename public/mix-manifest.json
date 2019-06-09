@@ -1,4 +1,40 @@
-{
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
-}
+  [ 
+    {
+        "province" :[
+            "Xinjiang",
+            "Tibet",
+            "Inner Mongolia",
+            "Qinghai",
+            "Sichuan",
+            "Heilongjiang",
+            "Gansu",
+            "Yunnan",
+            "Guangxi",
+            "Hunan",
+            "Shaanxi",
+            "Hebei",
+            "Jilin",
+            "Hubei",
+            "Guangdong",
+            "Guizhou",
+            "Henan",
+            "Jiangxi",
+            "Shandong",
+            "Shanxi",
+            "Liaoning",
+            "Anhui",
+            "Fujian",
+            "Jiangsu",
+            "Zhejiang",
+            "Chongqing",
+            "Ningxia",
+            "Hainan",
+            "Beijing",
+            "Tianjin",
+            "Shanghai",
+            "Hong Kong",
+            "Macau",
+        ]
+       
+   }
+]

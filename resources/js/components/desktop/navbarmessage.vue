@@ -7,13 +7,13 @@
             <i class="tim-icons icon-notes"></i>My account
           </dt>
           <dd data-sidebar="u_account">
-            <a href="#" id="myaccountlink" @click="setNavShowName('myaccount',$event)">My account</a>
+            <a href="#" id="myaccountlink" @click.prevent="setNavShowName('myaccount',$event)">My account</a>
           </dd>
           <dd data-sidebar="u_friend">
-            <a href="#" @click="setNavShowName('recommedndedfriends',$event)">Recommended Friends</a>
+            <a href="#" @click.prevent="setNavShowName('recommedndedfriends',$event)">Recommended Friends</a>
           </dd>
           <dd data-sidebar="u_transaction">
-            <a href="#" @click="setNavShowName('transactionrecord',$event)">Transaction Record</a>
+            <a href="#" @click.prevent="setNavShowName('transactionrecord',$event)">Transaction Record</a>
           </dd>
         </dl>
         <dl>
@@ -24,18 +24,18 @@
             <a
               href="#"
               id="recharge"
-              @click="setNavShowName('instantrecharge',$event)"
+              @click.prevent="setNavShowName('instantrecharge',$event)"
             >Instant recharge</a>
           </dd>
           <dd data-sidebar="u_withdraw">
             <a
               href="#"
               id="withdraw"
-              @click="setNavShowName('applyforwithdrawal',$event)"
+              @click.prevent="setNavShowName('applyforwithdrawal',$event)"
             >Apply for withdrawal</a>
           </dd>
           <dd data-sidebar="u_self_rebate">
-            <a href="#" @click="setNavShowName('selfservicewashing',$event)">Self-service washing</a>
+            <a href="#" @click.prevent="setNavShowName('selfservicewashing',$event)">Self-service washing</a>
           </dd>
         </dl>
         <dl>
@@ -43,13 +43,13 @@
             <i class="tim-icons icon-wallet-43"></i>Customer information
           </dt>
           <dd data-sidebar="u_person_pwdIndex">
-            <a href="#" @click="setNavShowName('changepassword',$event)">change Password</a>
+            <a href="#" @click.prevent="setNavShowName('changepassword',$event)">change Password</a>
           </dd>
           <dd data-sidebar="u_bank">
-            <a href="#" id="bankinfoclick" @click="setNavShowName('bankinfo',$event)">Bank info</a>
+            <a href="#" id="bankinfoclick" @click.prevent="setNavShowName('bankinfo',$event)">Bank info</a>
           </dd>
           <dd data-sidebar="u_person_phoneIndex">
-            <a href="#" @click="setNavShowName('modifyphone',$event)">Modify phone</a>
+            <a href="#" @click.prevent="setNavShowName('modifyphone',$event)">Modify phone</a>
           </dd>
         </dl>
         <dl class="border-0">
@@ -57,10 +57,10 @@
             <i class="tim-icons icon-bulb-63"></i>Customer Care
           </dt>
           <dd data-sidebar="u_sms_subscribeIndex">
-            <a href="#" @click="setNavShowName('subscription',$event)">SMS subscription</a>
+            <a href="#" @click.prevent="setNavShowName('subscription',$event)">SMS subscription</a>
           </dd>
           <dd data-sidebar="u_station_letter" class="active">
-            <a href="#" @click="setNavShowName('message',$event)">
+            <a href="#" @click.prevent="setNavShowName('message',$event)">
               My message
               <!--<shiro:hasAnyRoles name="customer:type:1">-->
               <em class="badge letter" style>2</em>
@@ -138,7 +138,8 @@ import message from "./mymessage.vue";
 export default {
   data() {
     return {
-      navShowName: "message"
+      navShowName: "message",
+      country:[],
     };
   },
   components: {
@@ -154,12 +155,28 @@ export default {
     subscription,
     message
   },
+  mounted(){
+    this.getct()
+  },
   methods: {
     setNavShowName(value, e) {
       this.navShowName = value;
       $("dd").removeClass("active");
       $(e.target.parentElement).addClass("active");
-      console.log(e);
+      
+    },
+     getct(){
+      axios.get('https://restcountries-v1.p.rapidapi.com/all',
+      {
+         headers:{
+          "X-RapidAPI-Host": "restcountries-v1.p.rapidapi.com",
+          "X-RapidAPI-Key": "a824d001c9msh6de5d0e55c5cafep1c4601jsn9b81f345f6e5"
+        }
+      }
+      ).then(res=>{
+        this.country = res.data
+        console.log(res.data)
+      })
     }
   }
 };
