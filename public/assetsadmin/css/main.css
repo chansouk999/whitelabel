@@ -29,3 +29,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+.fileinput .thumbnail {
+    max-width: 100%;
+}

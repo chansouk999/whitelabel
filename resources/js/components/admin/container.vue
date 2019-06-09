@@ -65,7 +65,8 @@
                           <li class="nav-item w-8">
                             <a class="nav-link" href="#request" data-toggle="tab">Request</a>
                           </li>
-                          <li class="page-item" v-if="userdetailpg.next_page_url !== null">
+                          <li class="nav-item w-8" v-if="userdetailpg.next_page_url == null">
+                            <!-- <li class="page-item" v-if="userdetailpg.next_page_url !== null"> -->
                             <a class="nav-link" href="#announcement" data-toggle="tab">Announcement</a>
                           </li>
                           <li class="nav-item w-8">
@@ -173,7 +174,7 @@
                                   <td>{{data.user_id}}</td>
                                   <td>{{data.name}}</td>
                                   <td>{{data.userBalance}}</td>
-                                  <td>{{data.totalOnlineHour}} Hours {{  }}</td>
+                                  <td>{{data.totalOnlineHour}} Hours {{ }}</td>
                                   <td>{{data.id}}</td>
                                   <td>{{data.userBalance}}</td>
                                   <td>{{data.userBalance}}</td>
@@ -254,10 +255,9 @@
                                 v-model="userdetailselectpage"
                                 @change="userdata(userdetailselectpage,method='listpage')"
                               >
-                                <option
-                                  v-for="page in userdetailpg.last_page"
-                                  :value="page"
-                                ><span>{{ page }}</span></option>
+                                <option v-for="page in userdetailpg.last_page" :value="page">
+                                  <span>{{ page }}</span>
+                                </option>
                               </select>
                             </li>
                             <li class="page-item" v-if="userdetailpg.prev_page_url !== null">
@@ -364,25 +364,25 @@ import modal from "./modal";
 export default {
   mixins: [adminmixin],
   components: {
-        "app-aside": aside,
-        "app-navbar": navbar,
-        "app-footer": footer,
-        "app-setting": setting,
-        "app-playerinfo": playerinfo,
-        "app-gamehistory": gamehistory,
-        "app-gameresult": gameresult,
-        "app-withdraw": withdraw,
-        "app-admin-info": admininfor,
-        "app-timeline": timeline,
-        "app-playerrecord": playerrecord,
-        "app-agentinfo": agentinfo,
-        "app-shinfo": shinfo,
-        "app-finance": finance,
-        "app-request": request,
-        "app-announcement": announcement,
-        "app-managerecord": managerecord,
-        "app-modal": modal
-      },
+    "app-aside": aside,
+    "app-navbar": navbar,
+    "app-footer": footer,
+    "app-setting": setting,
+    "app-playerinfo": playerinfo,
+    "app-gamehistory": gamehistory,
+    "app-gameresult": gameresult,
+    "app-withdraw": withdraw,
+    "app-admin-info": admininfor,
+    "app-timeline": timeline,
+    "app-playerrecord": playerrecord,
+    "app-agentinfo": agentinfo,
+    "app-shinfo": shinfo,
+    "app-finance": finance,
+    "app-request": request,
+    "app-announcement": announcement,
+    "app-managerecord": managerecord,
+    "app-modal": modal
+  }
 };
 </script>
 <style scoped>
