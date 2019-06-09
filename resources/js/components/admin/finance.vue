@@ -148,29 +148,90 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="row">
-              <div class="col-md-5"></div>
-              <div class="col-md-7"></div>
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-3">
+                    <p class="text-white text-right">Transfer Amount</p>
+                  </div>
+                  <div class="col-md-7">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-single-02"></i>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Transfer Amount">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <p class="text-white text-right">UserID</p>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-single-02"></i>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Type here...">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <p class="text-white text-right">Search for list</p>
+                  </div>
+                  <div class="col-md-4">
+                    <select
+                      class="selectpicker"
+                      data-size="7"
+                      data-style="btn btn-primary"
+                      title="Single Select"
+                    >
+                      <option disabled selected>Single Option</option>
+                      <option value="2">Foobar</option>
+                      <option value="3">Is great</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                   <div class="col-md-3">
+                    <p class="text-white text-right">UserID</p>
+                  </div>
+                   <div class="col-md-3">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-single-02"></i>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Type here...">
+                    </div>
+                  </div>
+                   <div class="col-md-2">
+                    <p class="text-white text-right">Search for list</p>
+                  </div>
+                   <div class="col-md-4">
+                    <select
+                      class="selectpicker"
+                      data-size="7"
+                      data-style="btn btn-primary"
+                      title="Single Select"
+                    >
+                      <option disabled selected>Single Option</option>
+                      <option value="2">Foobar</option>
+                      <option value="3">Is great</option>
+                    </select>
+                  </div>
+                </div>
+                <hr>
+              </div>
             </div>
-            <div class="row">
-              <div class="col-md-5"></div>
-              <div class="col-md-7"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-5"></div>
-              <div class="col-md-7"></div>
-            </div>
-
-            <hr>
-            <h5>Tooltips in a modal</h5>
-            <p>
-              <a href="#" class="tooltip-test" title="Tooltip">This link</a> and
-              <a href="#" class="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.
-            </p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary">Confirm</button>
           </div>
         </div>
       </div>
@@ -329,7 +390,6 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <h4 class="card-title">Regular Image</h4>
                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                   <div class="fileinput-new thumbnail">
                     <img src="assetsadmin/img/img-opacity.png" alt="...">

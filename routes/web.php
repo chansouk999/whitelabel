@@ -55,6 +55,7 @@ Route::get('/home', function(){
 Route::get('/', 'MasterController@welcome')->name('home');
 Route::get('/userdetaildata', 'MasterController@userdetaildata');
 Route::get('/getuserdata', 'MasterController@getuserdata');
+Route::post('/sendsms', 'MasterController@sendsms');
 // Route::get('/login', 'MasterController@welcome')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logoutuser');
 Route::get('updatemoney/{id}','API/Apicontroller@updatemoney');
@@ -113,7 +114,7 @@ Route::get('/callback', function (Request $request) {
         'form_params' => [
             'grant_type' => 'authorization_code',
             'client_id' => '3',
-            'client_secret' => '3BI3MvBm9NPor77QHcfYEgTiX5F5UExGJDNMTZqb',
+            'client_secret' => 'sBR3DGz8O9RJLkDa1Q4rixdC19iWktnjDca3yvBV',
             'redirect_uri' => 'http://localhost:8004/callback',
             'code' => $request->code,
         ],

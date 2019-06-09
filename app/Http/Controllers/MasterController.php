@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Request as Reqst;
 use Auth;
 use Jenssegers\Agent\Agent;
+use Nexmo\Laravel\Facade\Nexmo;
+
 use App\clientid;
+use Illuminate\Support\Facades\Cache;
 use App\access_token;
 use Illuminate\Support\Facades\DB;
 use App\User;
@@ -14,15 +18,16 @@ use SebastianBergmann\Environment\Console;
 
 class MasterController extends Controller
 {
-    public function welcome(){
-        
+    public function welcome()
+    {
+
         // GET TOKEN ADMIN
         // GET TOKEN ADMIN
         $agent = new Agent();
-        if($agent->isMobile()){
-        // Alert::success('Mobile', 'Mobile Mode');
+        if ($agent->isMobile()) {
+            // Alert::success('Mobile', 'Mobile Mode');
             return view('mobile.welcome');
-        }else{
+        } else {
             //  Alert::success('Desktop', 'Desktop Mode');
             return view('desktop.welcome');
         }
@@ -49,5 +54,59 @@ class MasterController extends Controller
         if ($check < 1) {
             return ['success' => 'notfound'];
         }
+    }
+    public function reqwithdraw(Request $req)
+    { }
+    public function sendsms(Request $req)
+    {
+        $basic  = new \Nexmo\Client\Credentials\Basic('222a363b', 'Krn82zRNs6ZE9GmT');
+        $client = new \Nexmo\Client($basic,true);
+        $code =mt_rand(100000,989999);
+
+        $message = $client->message()->send([
+            'to' => $req->phonenumber,
+            'from' => 'Nexmo',
+            'text' => 'This is Your Confirmation Code ' .$code 
+        ]);
+        
+        // $message = Nexmo::message()->send([
+        //     'to'   => $req->phonenumber,
+        //     'from' => '16105552344',
+        //     'text' => 'Using the facade to send a message.'
+        // ]);
+
+        Cache::put('confirmCode', $code, 1);
+        if ($message) {
+            return "OK";
+        }else{
+            return "NOT OK";
+        }
+    }
+    public function payments(Request $req){
+        Omnipay::setGateway('PayPal');
+        $cardInput = [
+            'number'      => '4444333322221111',
+            'firstName'   => 'MR. WALTER WHITE',
+            'lastName' => 'Tables',
+            'expiryMonth' => '03',
+            'expiryYear'  => '16',
+            'cvv'         => '333',
+        ];
+        $card = Omnipay::creditCard($cardInput);
+
+        // $response = Omnipay::purchase([
+        //     'amount'    => '100.00',
+        //     'returnUrl' => 'http://bobjones.com/payment/return',
+        //     'cancelUrl' => 'http://bobjones.com/payment/cancel',
+        //     'card'      => $cardInput
+        // ])->send();
+
+        $response = Omnipay::purchase([
+            'amount' => '100.00',
+            'currency' => 'USD',
+            'card'   => $cardInput
+        ])->send();
+        
+        dd($response->getMessage());
     }
 }

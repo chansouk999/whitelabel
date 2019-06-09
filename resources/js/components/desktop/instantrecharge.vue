@@ -37,7 +37,8 @@
               <form action>
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
-                    <label class="text-dark p-2">充值方式：</label>
+                    <!-- <label class="text-dark p-2">充值方式：</label> -->
+                    <label class="text-dark p-2">Recharge method:</label>
                   </div>
                   <div class="col-lg-8 form-row text-left">
                     <label>
@@ -48,7 +49,8 @@
                 </div>
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
-                    <label class="text-dark p-2">充值金额：</label>
+                    <label class="text-dark p-2">Recharge amount：</label>
+                    <!-- <label class="text-dark p-2">充值金额：</label> -->
                   </div>
                   <div class="col-lg-8 form-row text-left">
                     <div class="form-group col-lg-1">
@@ -73,7 +75,8 @@
                 </div>
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
-                    <label class="text-dark py-3">到账金额：</label>
+                    <label class="text-dark py-3">Amount reached：</label>
+                    <!-- <label class="text-dark py-3">到账金额：</label> -->
                   </div>
                   <div class="col-lg-8 form-row text-left">
                     <div class="d-flex">
