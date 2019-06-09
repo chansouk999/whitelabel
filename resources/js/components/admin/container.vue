@@ -38,7 +38,7 @@
                               class="nav-link"
                               href="#withdrawtopup"
                               data-toggle="tab"
-                            >Withdraw top-up</a>
+                            >Withdraw - top-up</a>
                           </li>
                           <li class="nav-item w-8">
                             <a class="nav-link" href="#admininfo" data-toggle="tab">Admin info</a>

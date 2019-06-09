@@ -17,10 +17,10 @@ use App\access_token;
 */
 
 // Route::get('/',);
-Route::get('/message','Homecontroller@message');
-Route::get('/index','Homecontroller@indexpage');
-Route::get('/promote','Homecontroller@promote');
-Route::get('/lobby','Homecontroller@lobby');
+Route::get('/message','HomeController@message');
+Route::get('/index','HomeController@indexpage');
+Route::get('/promote','HomeController@promote');
+Route::get('/lobby','HomeController@lobby');
 Route::post('/updatemoney','MasterController@updatemoney');
 Auth::routes();
 
@@ -76,10 +76,10 @@ Route::get('/getlogin',function(){
 
 
 // admin
- Route::get('/admins','Homecontroller@admin');
+ Route::get('/admins','HomeController@admin');
 
 //  Mobile
- Route::get('/wlmobile','Homecontroller@whitelabel_mobile');
+ Route::get('/wlmobile','HomeController@whitelabel_mobile');
 
 
 //  Route::domain('{m}.localhost:8004')->group(function () {

@@ -29,9 +29,9 @@
                     <th>Request Detail</th>
                     <th>Amount</th>
                     <th>Methods</th>
-                    <th>etails</th>
-                    <th>Balance</th>
-                    <th>Percenatge</th>
+                    <th>Details</th>
+                    <th>Reuqest Time</th>
+                    <th>IP</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -46,8 +46,10 @@
                     <td>Assist Admin</td>
                     <td>Reference No</td>
                     <td class="td-actions">
-                      <button type="button" rel="tooltip" class="btn btn-success">View Evidence</button>
-                      <button type="button" rel="tooltip" class="btn btn-success">Edit Evidence</button>
+                      <button type="button" rel="tooltip" class="btn btn-success">Approve</button>
+                      <button type="button" rel="tooltip" class="btn btn-success">Deny</button>, 
+                      <button type="button" rel="tooltip" class="btn btn-success">View User</button>
+                      <button type="button" rel="tooltip" class="btn btn-success">Message User</button>
                       <!-- <button
                               type="button"
                               rel="tooltip"
