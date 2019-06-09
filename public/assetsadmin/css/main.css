@@ -22,7 +22,7 @@
 }
 
 .content .card ul li.w-8 {
-    width: 8.3333333333%;
+    width: 7.6899999999%;
 }
 
 .modal-content .modal-body .card-footer {
@@ -32,4 +32,8 @@
 
 .fileinput .thumbnail {
     max-width: 100%;
+}
+
+.modal-login .modal-content .modal-profile img {
+    border-radius: 58px;
 }

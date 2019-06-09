@@ -89,7 +89,12 @@
                   <a href="javascript:void(0)" class="nav-item dropdown-item">Profile</a>
                 </li>
                 <li class="nav-link">
-                  <a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a>
+                  <a
+                    href="javascript:void(0)"
+                    data-toggle="modal"
+                    data-target="#password"
+                    class="nav-item dropdown-item"
+                  >Settings</a>
                 </li>
                 <li class="dropdown-divider"></li>
                 <li class="nav-link">
@@ -121,6 +126,88 @@
         </div>
       </div>
     </div>
+    <!-- Modal Change password -->
+
+    <div
+      class="modal fade modal-primary"
+      id="password"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-login">
+        <div class="modal-content">
+          <div class="card card-login card-plain">
+            <div class="modal-header justify-content-center">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+
+              <div class="header header-primary text-center">
+                <div class="modal-profile">
+                  <img src="assetsadmin/img/emilyz.jpg" alt="...">
+                </div>
+              </div>
+            </div>
+            <div class="modal-body">
+              <form class="form" method action>
+                <div class="card-content">
+                  <div class="input-group no-border form-control-lg">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-lock-circle"></i>
+                      </div>
+                    </div>
+                    <input
+                      type="text"
+                      name="current_password"
+                      id="current_password"
+                      class="form-control"
+                      placeholder="Current Password..."
+                    >
+                  </div>
+
+                  <div class="input-group no-border form-control-lg">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-key-25"></i>
+                      </div>
+                    </div>
+                    <input
+                      type="password"
+                      name="new_password"
+                      id="new_password"
+                      placeholder="New Password"
+                      class="form-control"
+                    >
+                  </div>
+
+                  <div class="input-group no-border form-control-lg">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-key-25"></i>
+                      </div>
+                    </div>
+                    <input
+                      type="password"
+                      name="confirm_password"
+                      id="confirm_password"
+                      placeholder="Confirm Password"
+                      class="form-control"
+                    >
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer text-center pt-4">
+              <a href="#pablo" class="btn btn-neutral btn-round btn-lg btn-block">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Change password -->
   </div>
 </template>
 <script>
