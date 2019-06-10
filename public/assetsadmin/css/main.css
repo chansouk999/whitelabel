@@ -37,3 +37,16 @@
 .modal-login .modal-content .modal-profile img {
     border-radius: 58px;
 }
+
+.full-page.pricing-page,
+.full-page.login-page,
+.full-page.lock-page,
+.full-page.register-page {
+    min-height: 95vh;
+    background: radial-gradient(#1e1e2f, #1e1e24);
+}
+
+.wrapper.wrapper-full-page {
+    min-height: 95vh;
+    height: auto;
+}

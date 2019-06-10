@@ -27,7 +27,7 @@
     <link href="{{asset('../assetsadmin/css/main.css')}}" rel="stylesheet" />
 </head>
 
-<body class="login-page">
+<body class="login-page register-page">
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container">
             <div class="navbar-translate">
