@@ -17,10 +17,10 @@ use App\access_token;
 */
 
 // Route::get('/',);
-Route::get('/message','Homecontroller@message');
-Route::get('/index','Homecontroller@indexpage');
-Route::get('/promote','Homecontroller@promote');
-Route::get('/lobby','Homecontroller@lobby');
+Route::get('/message','HomeController@message');
+Route::get('/index','HomeController@indexpage');
+Route::get('/promote','HomeController@promote');
+Route::get('/lobby','HomeController@lobby');
 Route::post('/updatemoney','MasterController@updatemoney');
 Auth::routes();
 
@@ -55,6 +55,7 @@ Route::get('/home', function(){
 Route::get('/', 'MasterController@welcome')->name('home');
 Route::get('/userdetaildata', 'MasterController@userdetaildata');
 Route::get('/getuserdata', 'MasterController@getuserdata');
+Route::post('/sendsms', 'MasterController@sendsms');
 // Route::get('/login', 'MasterController@welcome')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logoutuser');
 Route::get('updatemoney/{id}','API/Apicontroller@updatemoney');
@@ -76,10 +77,10 @@ Route::get('/getlogin',function(){
 
 
 // admin
- Route::get('/admins','Homecontroller@admin');
+ Route::get('/admins','HomeController@admin');
 
 //  Mobile
- Route::get('/wlmobile','Homecontroller@whitelabel_mobile');
+ Route::get('/wlmobile','HomeController@whitelabel_mobile');
 
 
 //  Route::domain('{m}.localhost:8004')->group(function () {

@@ -10,115 +10,26 @@
     </blockquote>
     <div class="container my-5">
       <div class="row">
-        <div class="col-lg-3 col-md-6">
-          <div class="card card-pricing card-primary">
-            <div class="card-body">
-              <h1 class="card-title">pro</h1>
-              <img class="card-img" src="/assets/img/card-primary.png" alt="Image">
-              <ul class="list-group">
-                <li class="list-group-item">300 messages</li>
-                <li class="list-group-item">150 emails</li>
-                <li class="list-group-item">24/7 Support</li>
-              </ul>
-              <div class="card-prices">
-                <h3 class="text-on-front">
-                  <span>$</span>95
-                </h3>
-                <h5 class="text-on-back">95</h5>
-                <p class="plan">Professional plan</p>
-              </div>
-            </div>
-            <div class="card-footer text-center mb-3 mt-3">
-              <button
-                class="btn btn-round btn-just-icon btn-primary"
-                data-toggle="modal"
-                data-target="#addbankcard"
-              >添加银行卡</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="card card-pricing card-success card-white">
-            <div class="card-body">
-              <h1 class="card-title">basic</h1>
-              <img class="card-img" src="/assets/img/card-success.png" alt="Image">
-              <ul class="list-group">
-                <li class="list-group-item">50 messages</li>
-                <li class="list-group-item">100 emails</li>
-                <li class="list-group-item">24/7 Support</li>
-              </ul>
-              <div class="card-prices">
-                <h3 class="text-on-front">
-                  <span>$</span>57
-                </h3>
-                <h5 class="text-on-back">57</h5>
-                <p class="plan">Basic plan</p>
-              </div>
-            </div>
-            <div class="card-footer text-center mb-3 mt-3">
-              <button
-                class="btn btn-round btn-just-icon btn-success"
-                data-toggle="modal"
-                data-target="#addbankcard"
-              >添加银行卡</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="card card-pricing card-warning card-raised card-white">
-            <div class="card-body">
-              <h1 class="card-title">mid</h1>
-              <img class="card-img" src="/assets/img/card-warning.png" alt="Image">
-              <ul class="list-group">
-                <li class="list-group-item">200 messages</li>
-                <li class="list-group-item">130 emails</li>
-                <li class="list-group-item">24/7 Support</li>
-              </ul>
-              <div class="card-prices">
-                <h3 class="text-on-front">
-                  <span>$</span>72
-                </h3>
-                <h5 class="text-on-back">72</h5>
-                <p class="plan">Medium plan</p>
-              </div>
-            </div>
-            <div class="card-footer text-center mb-3 mt-3">
-              <button
-                class="btn btn-round btn-just-icon btn-warning"
-                data-toggle="modal"
-                data-target="#addbankcard"
-              >添加银行卡</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="card card-pricing card-danger card-white">
-            <div class="card-body">
-              <h1 class="card-title">trial</h1>
-              <img class="card-img" src="/assets/img/card-danger.png" alt="Image">
-              <ul class="list-group">
-                <li class="list-group-item">50 messages</li>
-                <li class="list-group-item">50 emails</li>
-                <li class="list-group-item">No Support</li>
-              </ul>
-              <div class="card-prices">
-                <h3 class="text-on-front">
-                  <span>$</span>9
-                </h3>
-                <h5 class="text-on-back">9</h5>
-                <p class="plan">Trial plan</p>
-              </div>
-            </div>
-            <div class="card-footer text-center mb-3 mt-3">
-              <button
-                type="button"
-                class="btn btn-round btn-just-icon btn-danger"
-                data-toggle="modal"
-                data-target="#addbankcard"
-              >添加比特币钱包</button>
-            </div>
-          </div>
-        </div>
+        
+
+        <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Bank Account (Number)</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your Bank Account with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+        
+        
       </div>
     </div>
 
@@ -199,7 +110,9 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  
+};
 </script>
 <style scoped>
 </style>

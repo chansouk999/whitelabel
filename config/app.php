@@ -177,6 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Ignited\LaravelOmnipay\LaravelOmnipayServiceProvider::class
 
     ],
 
@@ -230,6 +231,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
+        'Omnipay' => Ignited\LaravelOmnipay\Facades\OmnipayFacade::class
+        
 
 
     ],

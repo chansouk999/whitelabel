@@ -20,14 +20,14 @@
                   >
                 </div>
 
-                <h3 class="profile-username text-center">{{ name }}</h3>
+                <h3 class="profile-username text-center">{{ email }}</h3>
 
-                <p class="text-muted text-center">Software Engineer</p>
+                <p class="text-muted text-center">{{name}}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item d-flex justify-content-between">
                     <b>总余额</b>
-                    <a class="float-right">¥0.00</a>
+                    <a class="float-right">${{balance}}</a>
                   </li>
                   <li class="list-group-item d-flex justify-content-between">
                     <b>Following</b>
@@ -74,15 +74,22 @@
                   <i class="fa fa-pencil mr-1"></i> 总余额
                 </strong>
 
-                <p class="text-custome font-weight-bolder">¥0.00</p>
+                <p class="text-custome font-weight-bolder">${{balance}}</p>
                 <a href class="btn btn-primary btn-block">
                   <i class="tim-icons icon-refresh-02"></i>刷新额度
                 </a>
-                <hr>
+                <hr>id
+<!-- user_id
+provider_name
+balance
+pro_id
+name
+email
+login_at -->
                 <strong>
                   <i class="fa fa-pencil mr-1"></i> 总余额
                 </strong>
-                <p class="text-custome font-weight-bolder">¥0.00</p>
+                <p class="text-custome font-weight-bolder">${{balance}}</p>
                 <a href class="btn btn-primary">
                   <i class="tim-icons icon-badge"></i>立即充值
                   <span>Deposit Now</span>
@@ -435,15 +442,15 @@ export default {
       axios
         .get("/userdetaildata")
         .then(res => {
-          console.log(res.data);
-          this.id = res.data.id;
-          this.user_id = res.data.user_id;
-          this.provider_name = res.data.provider_name;
-          this.balance = res.data.userBalance;
-          this.pro_id = res.data.pro_id;
-          this.name = res.data.name;
-          this.email = res.data.email;
-          this.login_at = res.data.updated_at;
+          console.log(res.data[0]);
+          this.id = res.data[0].id;
+          this.user_id = res.data[0].user_id;
+          this.provider_name = res.data[0].provider_name;
+          this.balance = res.data[0].userBalance;
+          this.pro_id = res.data[0].pro_id;
+          this.name = res.data[0].name;
+          this.email = res.data[0].email;
+          this.login_at = res.data[0].created_at;
           $(".id").val(this.id);
           $(".provider_name").val(this.provider_name);
           $(".balance").val(this.balance);
