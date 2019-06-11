@@ -95,13 +95,14 @@ export default {
   },
   mounted() {
     console.log("HELELEOEO");
+    
     this.userdata();
   },
 
   methods: {
     runwindow() {
 
-     window.open('http://lec68.com/redirect?&name='+this.email,'LEC68.COM',"width=1920,height=1080,location=no");
+     window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://localhost:8004','LEC68.COM',"width=1920,height=1080,location=no");
     },
     gotogame(){
       // console.log(this.firstname+this.lastname)

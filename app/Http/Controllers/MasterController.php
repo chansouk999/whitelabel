@@ -18,6 +18,9 @@ use SebastianBergmann\Environment\Console;
 
 class MasterController extends Controller
 {
+    public function payment(Request $req){
+        
+    }
     public function welcome()
     {
 
