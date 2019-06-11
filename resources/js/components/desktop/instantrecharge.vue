@@ -34,70 +34,118 @@
         <div class="tab-pane active" id="alipay">
           <div class="card">
             <div class="card-body">
-              <form action>
+              <form class="layui-form layui-field-box" id="form1">
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
                     <!-- <label class="text-dark p-2">充值方式：</label> -->
-                    <label class="text-dark p-2">Recharge method:</label>
+                    <label class="text-dark p-2">支付金额:</label>
                   </div>
-                  <div class="col-lg-8 form-row text-left">
-                    <label>
-                      <input type="radio" name="test" value="small" checked>
-                      <img src="/assets/img/alipay.png">
-                    </label>
+                  <div class="col-lg-2">
+                    <input
+                      type="text"
+                      id="money"
+                      name="money"
+                      value="100"
+                      required
+                      lay-verify="required"
+                      placeholder="请输入支付金额"
+                      class="form-control"
+                    >
                   </div>
                 </div>
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
-                    <label class="text-dark p-2">Recharge amount：</label>
+                    <label class="text-dark p-2">充值方式：</label>
                     <!-- <label class="text-dark p-2">充值金额：</label> -->
                   </div>
                   <div class="col-lg-8 form-row text-left">
-                    <div class="form-group col-lg-1">
-                      <input type="text" class="form-control" id="inputZip" value="100">
-                    </div>
-                    <div class="form-group col-lg-1">
-                      <input type="text" class="form-control" id="inputZip" value="200">
-                    </div>
-                    <div class="form-group col-lg-1">
-                      <input type="text" class="form-control" id="inputZip" value="500">
-                    </div>
-                    <div class="form-group col-lg-1">
-                      <input type="text" class="form-control" id="inputZip" value="1,000">
-                    </div>
-                    <div class="form-group col-lg-1">
-                      <input type="text" class="form-control" id="inputZip" value="2,000">
-                    </div>
-                    <div class="form-group col-lg-1">
-                      <input type="text" class="form-control" id="inputZip" value="5,000">
+                    <div class="col-lg-8 form-row text-left">
+                      <div class="form-check form-check-radio">
+                        <label class="form-check-label">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="data_type"
+                            value="json"
+                            title="JSON"
+                            checked
+                          >
+                          JSON
+                          <span class="form-check-sign"></span>
+                        </label>
+                      </div>
+                      <div class="form-check form-check-radio">
+                        <label class="form-check-label">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="data_type"
+                            value="h5"
+                            title="H5收银台"
+                          >
+                          H5收银台
+                          <span class="form-check-sign"></span>
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
-                    <label class="text-dark py-3">Amount reached：</label>
+                    <label class="text-dark py-3">支付类型：</label>
                     <!-- <label class="text-dark py-3">到账金额：</label> -->
                   </div>
-                  <div class="col-lg-8 form-row text-left">
-                    <div class="d-flex">
-                      <input
-                        type="text"
-                        class="form-control mt-2"
-                        id="inputZip"
-                        placeholder="请输入6位数验证码"
-                      >
-                      <button type="submit" class="btn btn-custome">发送验证码</button>
+                  <div class="col-lg-8 text-left">
+                    <div class="form-group col-md-4 px-0">
+                      <select id="inputState" name="pay_type" class="form-control">
+                        <option value="1">微信二维码</option>
+                        <option value="2">支付宝二维码</option>
+                        <option value="3">银行综合码</option>
+                        <option value="4">银行卡</option>
+                        <option value="10" selected>随机(微信|支付宝|银行综合码)</option>
+                      </select>
                     </div>
+                    <button
+                      type="submit"
+                      class="btn btn-custome"
+                      id="submit1"
+                      lay-submit
+                      lay-filter="submit1"
+                    >确认</button>
                   </div>
                 </div>
-                <div class="d-block">
-                  <button class="btn btn-custome">下一步</button>
-                  <p class="text-dark">
-                    <i class="fa fa-exclamation-circle"></i>支付二维码仅本次订单支付有效，
-                    <i>过后请勿再使用</i>
-                  </p>
-                </div>
               </form>
+              <div class="card">
+                <div class="card-body">
+                  <form class="layui-form layui-field-box" id="form2">
+                    <div class="row py-3">
+                      <div class="col-lg-4 text-right">
+                        <!-- <label class="text-dark p-2">充值方式：</label> -->
+                        <label class="text-dark p-2">订单号:</label>
+                      </div>
+                      <div class="col-lg-2 d-block text-left">
+                        <input
+                          type="text"
+                          id="order_sn"
+                          name="order_sn"
+                          required
+                          lay-verify="required"
+                          value
+                          placeholder="请输入订单号"
+                          class="form-control"
+                        >
+                        <button
+                          type="submit"
+                          class="btn btn-custome"
+                          id="submit1"
+                          lay-submit
+                          lay-filter="submit1"
+                        >确认</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -316,12 +364,7 @@
                     </div>
                     <div class="col-lg-5 form-row text-left">
                       <div class="input-group mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          aria-label
-                          placeholder="优惠金额无上限"
-                        >
+                        <input type="text" class="form-control" aria-label placeholder="优惠金额无上限">
                         <div class="input-group-append">
                           <span class="input-group-text bg-custome px-5 border-0">1%</span>
                         </div>

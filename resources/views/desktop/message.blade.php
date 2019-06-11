@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
-    <title>Whitlabel </title>
+    <title>Whitlabel</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -37,9 +37,9 @@
         <app-message></app-message>
     </div>
     <!--   Core JS Files   -->
-    <script src="../js/app.js"></script>
-   <!--   Core JS Files   -->
    <script src="../assets/js/core/jquery.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/myscript.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
