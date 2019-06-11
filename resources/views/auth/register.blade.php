@@ -48,8 +48,8 @@
                                 <h4 class="card-title">{{ __('Registerte') }}</h4>
                             </div>
                             <form method="POST" action="{{ route('register') }}">
-                                    @csrf
-                            <div class="card-body">
+                                @csrf
+                                <div class="card-body">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -98,7 +98,7 @@
                                                 <i class="tim-icons icon-lock-circle"></i>
                                             </div>
                                         </div>
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required  placeholder="Confirm Password" autocomplete="new-password">
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm Password" autocomplete="new-password">
                                     </div>
                                     <div class="form-check text-left">
                                         <label class="form-check-label">
@@ -108,13 +108,13 @@
                                             <a href="javascript:void(0)">terms and conditions</a>.
                                         </label>
                                     </div>
-                                
-                            </div>
-                            <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
+
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Register') }}
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -152,3 +152,5 @@
     </div>
 </div>
 @endsection
+
+
