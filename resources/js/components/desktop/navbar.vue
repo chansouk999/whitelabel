@@ -693,6 +693,7 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
+  // asdasdasd
   components: {},
   methods: {
     registercheck() {
@@ -735,7 +736,7 @@ export default {
         }
       }
     },
-
+// asdasdasdasd
     checklogin() {
       let vm = this
       let data = {
