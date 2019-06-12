@@ -21,6 +21,7 @@
     <!-- Mystyle -->
     <link href="css/mystyle.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css" id="theme-styles">
 </head>
 <body>
