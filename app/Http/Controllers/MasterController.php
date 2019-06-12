@@ -12,12 +12,20 @@ use App\clientid;
 use Illuminate\Support\Facades\Cache;
 use App\access_token;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
 
 class MasterController extends Controller
 {
+    public function checkconnection(){
+        if(Auth::check()){
+            return ['success'=>'success'];
+        }else{
+            return ['success'=>'timeout'];
+        }
+    }
   
     public function checkreigster(Request $req){
         
@@ -72,11 +80,12 @@ class MasterController extends Controller
         $password = $req->pwd;
         $check = User::where('email', '=', '' . $email . '')->get();
         $count = $check->count();
-        $checkpwd = trim($check->pluck('password'),'["]');
-        if ($check < 1) {
+        // return $check;
+        if ($count < 1) {
             return ['success' => 'notfound'];
         }else{
-            if(Hash::check($checkpwd, $password)){
+            $checkpwd = $check->pluck('password')[0];
+            if(!Hash::check($password, $checkpwd)){
                 return ['success' => 'passwordnotmatch'];
             }else{
                 return ['success'=>'success'];

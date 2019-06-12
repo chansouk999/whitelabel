@@ -100,7 +100,15 @@ export default {
   },
   methods: {
     runwindow() {
-     window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://localhost:8004','LEC68.COM',"width=1920,height=1080,location=no");
+      axios.get('/checkconnection').then(res=>{
+        if(res.data.success=='timeout'){
+          alert('Your session timeout refresh your browser')
+          location.href = "/"
+        }else{
+             window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://localhost:8004','LEC68.COM',"width=1920,height=1080,location=no");
+        }
+      })
+    
     //  window.open('http://lec68.com/redirect?&name='+this.email+'&urlback=http://159.138.130.64','LEC68.COM',"width=1920,height=1080,location=no");
     },
     gotogame(){
