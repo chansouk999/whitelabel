@@ -191,6 +191,29 @@
               </li>
             </ul>
           </span>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <!-- Example single danger button -->
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-danger dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >English</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">English</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Chinese</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Thai</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Lao</a>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -606,7 +629,6 @@
 export default {
   data() {
     return {
-
       email: null,
       password: null,
       isShowonlyIndex: false,
