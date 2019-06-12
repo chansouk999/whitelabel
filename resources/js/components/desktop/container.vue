@@ -1,6 +1,15 @@
 <template>
   <div>
-    <navbars></navbars>
+    <navbars
+      :recommend_friends="recommend_friends"
+      :message="message"
+      :myaccount_tra="myaccount_tra"
+      :myprivilege="myprivilege"
+      :gamelobby="gamelobby"
+      :recharge="recharge"
+      :withdraw="withdraw"
+      :currentlang="currentlang"
+    ></navbars>
     <div class="container">
       <div class="row">
         <div class="col-2">
@@ -184,7 +193,7 @@ export default {
   components: {
     navbars,
     asides,
-    footers,
+    footers
   },
   data() {
     return {
@@ -199,6 +208,16 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
+  props: [
+    "recommend_friends",
+    "message",
+    "myaccount_tra",
+    "myprivilege",
+    "gamelobby",
+    "recharge",
+    "withdraw",
+    "currentlang"
+  ],
   mounted() {},
 
   methods: {
