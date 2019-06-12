@@ -61,7 +61,7 @@
           </dd>
           <dd data-sidebar="u_station_letter" class="active">
             <a href="#" @click.prevent="setNavShowName('message',$event)">
-              My message
+              My message 
               <!--<shiro:hasAnyRoles name="customer:type:1">-->
               <em class="badge letter" style>2</em>
               <!--</shiro:hasAnyRoles>-->

@@ -150,6 +150,7 @@
             });
 
             $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
+              
               var $btn = $(this);
 
               if (white_color == true) {
