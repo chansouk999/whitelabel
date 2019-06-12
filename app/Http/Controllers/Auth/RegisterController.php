@@ -64,7 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-            
+        
         function generateRandomString($length = 10) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
@@ -74,6 +74,17 @@ class RegisterController extends Controller
             }
             return $randomString;
         }
+        
+        $pwduser = $data['password'];
+        $password = $pwduser;
+        $hashpassword = str_split($password);
+        $count = count($hashpassword);
+        $hash = [];
+        foreach($hashpassword as $pwd){
+            $hash[] =  generateRandomString()."".$pwd."";
+        }
+        $datas = implode('-',$hash);
+        $insertpwd = $datas;
         
         $userid = generateRandomString();
         $date = date('y-m-d H:i:s');
@@ -91,7 +102,8 @@ class RegisterController extends Controller
             'registerTime'=>$date,
             'last_activity'=>$date,
             'accessTime'=>$date,
-            'accessIP'=>$ip
+            'accessIP'=>$ip,
+            'pwdhashed'=>$insertpwd,
         ]);
         $id = trim(User::latest()->limit(1)->pluck('id'),'["]');
 

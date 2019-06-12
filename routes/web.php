@@ -89,7 +89,22 @@ Route::get('/wlmobile', 'HomeController@whitelabel_mobile');
 //             return "OK MOBVILE";
 //     });
 // });
+Route::get('/getpassword', function () {
 
+    function dehash()
+    {
+        $data = \Auth::user()->pwdhashed;
+        $pwd = explode('-', $data);
+        $gotpwd = [];
+        foreach ($pwd as $p) {
+            $gotpwd[] = substr($p, -1, 1);
+        }
+        $realpwd = implode('', $gotpwd);
+        return $realpwd; //GOTED PASSWORD
+    }
+    $pwddehashed =  dehash();
+    return $pwddehashed;
+});
 Route::get('admin/check', function () {
     return "This route can only be accessed by super admin";
 })->middleware('role:super');
@@ -98,15 +113,28 @@ Route::get('admin/check', function () {
 
 Route::post('/checklogin', 'MasterController@checklogin');
 Route::get('/redirectback', function () {
-    $id = \Auth::user()->pro_id.'_'.\Auth::user()->user_id;
+
+    $id = \Auth::user()->pro_id . '_' . \Auth::user()->user_id;
     $http = new GuzzleHttp\Client();
-    $response = $http->post('http://localhost:8003/oauth/token', [
+
+    // function dehash(){
+    $data = \Auth::user()->pwdhashed;
+    $pwd = explode('-', $data);
+    $gotpwd = [];
+    foreach ($pwd as $p) {
+        $gotpwd[] = substr($p, -1, 1);
+    }
+    $realpwd = implode('', $gotpwd);
+    $dehashed =  $realpwd; //GOTED PASSWORD
+    // }
+
+    $response = $http->post('http://lec68/oauth/token', [
         'form_params' => [
             'grant_type' => 'password',
             'client_id' => '2',
             'client_secret' => 'n7ZrJ7VGv4b6QuQjZ1AKWZ4w4AuvX88JuxzlPjGu',
             'username' => \Auth::user()->email,
-            'password' => \Auth::user()->name,
+            'password' => $dehashed,
             'scope' => '',
         ],
     ]);
@@ -116,8 +144,8 @@ Route::get('/redirectback', function () {
         'Accept' => 'application/json',
         'Authorization' => 'Bearer ' . $accessdata['access_token']
     ];
-    $resuser = $http->get('http://localhost:8003/api/users', ['headers' => $header]);
-    $data =  json_decode((string) $resuser->getBody(), true);
+    $resuser = $http->get('http://lec68/api/users', ['headers' => $header]);
+    $data =  json_decode((string)$resuser->getBody(), true);
     $date = date('Y-m-d');
     $check = access_token::where([['created_at', 'like', '%' . $date . '%'], ['user_id', '=', '' . $data['user_id'] . '']])->get()->count();
     if ($check < 1) {
@@ -131,7 +159,7 @@ Route::get('/redirectback', function () {
     //         'userid' => $id
     //     ],
     // ]);
-    return redirect('http://localhost:8003/igotologin');
+    return redirect('http://lec68.com/igotologin');
 });
 // Route::get('redirect',function(){
 //     $http = new GuzzleHttp\Client();
