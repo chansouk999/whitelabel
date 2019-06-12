@@ -10,6 +10,14 @@ export default {
     backgroundcolor: {
       default: "#003679",
       type: String
+    },
+    typechart: {
+      type: String,
+      required: true
+    },
+    borderColor: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -53,7 +61,9 @@ export default {
 
     let ctx = document.getElementById("chart");
     let myChart = new Chart(ctx, {
-      type: "line",
+      // type: "bar",
+      type: this.typechart,
+      responsive: true,
       data: {
         labels: this.stockname,
         datasets: [
@@ -62,7 +72,10 @@ export default {
             data: this.betwon,
             fill: true,
             borderColor: "#ff8d72",
-            backgroundColor: this.backgroundcolor
+            backgroundColor: this.backgroundcolor,
+            borderWidth: 2,
+            borderDash: [],
+            borderDashOffset: 0.0
           }
         ]
       },
@@ -114,7 +127,7 @@ export default {
             {
               stacked: true,
               gridLines: {
-                display: false
+                display: true
               },
               scaleLabel: {
                 display: false
@@ -128,7 +141,7 @@ export default {
             {
               stacked: true,
               gridLines: {
-                display: false
+                display: true
               },
               scaleLabel: {
                 display: false
