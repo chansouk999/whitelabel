@@ -45,7 +45,8 @@
                 <div class="icons">
                   <i class="tim-icons icon-single-02 icon-default"></i>
                   <i class="tim-icons icon-coins icon-hover"></i>
-                </div>Recommend friends
+                </div>
+                {{recommend_friends}}
               </a>
             </li>
           </ul>
@@ -102,7 +103,8 @@
                   <div class="icons">
                     <i class="tim-icons icon-chat-33 icon-default"></i>
                     <i class="tim-icons icon-chat-33 icon-hover"></i>
-                  </div>Message
+                  </div>
+                  {{message}}
                 </a>
               </li>
               <li class="nav-item">
@@ -110,7 +112,8 @@
                   <div class="icons">
                     <i class="tim-icons icon-single-02 icon-default"></i>
                     <i class="tim-icons icon-single-02 icon-hover"></i>
-                  </div>My Account
+                  </div>
+                  {{myaccount_tra}}
                 </a>
               </li>
               <li class="nav-item">
@@ -118,7 +121,8 @@
                   <div class="icons">
                     <i class="tim-icons icon-trophy icon-default"></i>
                     <i class="tim-icons icon-trophy icon-hover"></i>
-                  </div>My Privilege
+                  </div>
+                  {{myprivilege}}
                 </a>
               </li>
               <li class="nav-item">
@@ -126,7 +130,8 @@
                   <div class="icons">
                     <i class="tim-icons icon-controller icon-default"></i>
                     <i class="tim-icons icon-controller icon-hover"></i>
-                  </div>Game Lobby
+                  </div>
+                  {{gamelobby}}
                 </a>
               </li>
               <li class="nav-item">
@@ -134,7 +139,8 @@
                   <div class="icons">
                     <i class="tim-icons icon-coins icon-default"></i>
                     <i class="tim-icons icon-coins icon-hover"></i>
-                  </div>Recharge
+                  </div>
+                  {{recharge}}
                 </a>
               </li>
               <li class="nav-item">
@@ -142,7 +148,8 @@
                   <div class="icons">
                     <i class="tim-icons icon-money-coins icon-default"></i>
                     <i class="tim-icons icon-cart icon-hover"></i>
-                  </div>WithDraw
+                  </div>
+                  {{withdraw}}
                 </a>
               </li>
               <li class="nav-item">
@@ -201,15 +208,26 @@
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
-                >English</button>
+                >
+                  <span v-if="currentlang=='en'" class="flag-icon flag-icon-us"></span>
+                  <span v-if="currentlang=='ch'" class="flag-icon flag-icon-cn"></span>
+                  <span v-if="currentlang=='th'" class="flag-icon flag-icon-th"></span>
+                  <span v-if="currentlang=='la'" class="flag-icon flag-icon-la"></span>
+                </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">English</a>
+                  <div class="d-flex justify-content-between">
+                    <a class="dropdown-item" href="locale/en">English</a>
+                    <span class="flag-icon flag-icon-us"></span>
+                  </div>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Chinese</a>
+                  <a class="dropdown-item" href="locale/ch">Chinese</a>
+                  <span class="flag-icon flag-icon-cn"></span>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Thai</a>
+                  <a class="dropdown-item" href="locale/th">Thai</a>
+                  <span class="flag-icon flag-icon-th"></span>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Lao</a>
+                  <a class="dropdown-item" href="locale/la">Lao</a>
+                  <span class="flag-icon flag-icon-la"></span>
                 </div>
               </div>
             </li>
@@ -736,7 +754,17 @@ export default {
       $(e.target.parentElement).addClass("active");
       console.log(e);
     }
-  }
+  },
+  props: [
+    "recommend_friends",
+    "message",
+    "myaccount_tra",
+    "myprivilege",
+    "gamelobby",
+    "recharge",
+    "withdraw",
+    "currentlang"
+  ]
 };
 </script>
 <style scoped>

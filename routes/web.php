@@ -164,7 +164,7 @@ Route::get('/redirectback', function () {
 //     //     'redirect_uri' => 'http://localhost:8004/callback',
 //     //     'response_type' => 'code',
 //     //     'scope' => '',
-//     // ]); 
+//     // ]);   
 //     //  return redirect('http://localhost:8003/oauth/authorize?'.$query);
 // })->name('get.token');
 // Route::get('/callback', function (Request $request) {
@@ -199,3 +199,11 @@ Route::get('/redirectback', function () {
 // //     // return [$accessdata,$data];
     
 // });
+
+/////timer
+Route::get('locale/{locale}', function ($locale) {
+    Session::put('locale', $locale);
+    return redirect()->back();
+});
+
+

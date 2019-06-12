@@ -24,7 +24,7 @@ export default {
     return {
       stockname: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       betlose: [],
-      betwon: [11, 2, 23, 4, 45, 6, 37, 8, 59]
+      betwon: [200, 300, 500, 1000, 3000, 6000]
       //   gettimeshow:""
     };
   },
@@ -133,7 +133,11 @@ export default {
                 display: false
               },
               ticks: {
-                display: true
+                display: true,
+                callback: function(value, index, values) {
+                  console.log("Value " + value);
+                  return Math.round(value).toString()+" K";
+                }
               }
             }
           ],

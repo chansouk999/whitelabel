@@ -40,6 +40,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\lastactivity::class,
             \App\Http\Middleware\Cors::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\Switchlang::class,
             \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
         ],
 
