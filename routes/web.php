@@ -128,7 +128,7 @@ Route::get('/redirectback', function () {
     $dehashed =  $realpwd; //GOTED PASSWORD
     // }
 
-    $response = $http->post('http://localhost:8003/oauth/token', [
+    $response = $http->post('http://lec68/oauth/token', [
         'form_params' => [
             'grant_type' => 'password',
             'client_id' => '2',
@@ -144,7 +144,7 @@ Route::get('/redirectback', function () {
         'Accept' => 'application/json',
         'Authorization' => 'Bearer ' . $accessdata['access_token']
     ];
-    $resuser = $http->get('http://localhost:8003/api/users', ['headers' => $header]);
+    $resuser = $http->get('http://lec68/api/users', ['headers' => $header]);
     $data =  json_decode((string)$resuser->getBody(), true);
     $date = date('Y-m-d');
     $check = access_token::where([['created_at', 'like', '%' . $date . '%'], ['user_id', '=', '' . $data['user_id'] . '']])->get()->count();
@@ -159,7 +159,7 @@ Route::get('/redirectback', function () {
     //         'userid' => $id
     //     ],
     // ]);
-    return redirect('http://localhost:8003/igotologin');
+    return redirect('http://lec68.com/igotologin');
 });
 // Route::get('redirect',function(){
 //     $http = new GuzzleHttp\Client();
