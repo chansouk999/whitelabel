@@ -38,7 +38,8 @@
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
                     <!-- <label class="text-dark p-2">充值方式：</label> -->
-                    <label class="text-dark p-2">支付金额:</label>
+                    <!-- 支付金额: -->
+                    <label class="text-dark p-2">Payment amount:</label>
                   </div>
                   <div class="col-lg-2">
                     <input
@@ -55,7 +56,8 @@
                 </div>
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
-                    <label class="text-dark p-2">充值方式：</label>
+                    <!-- 充值方式 -->
+                    <label class="text-dark p-2"> Recharge method：</label>
                     <!-- <label class="text-dark p-2">充值金额：</label> -->
                   </div>
                   <div class="col-lg-8 form-row text-left">
@@ -83,7 +85,8 @@
                             value="h5"
                             title="H5收银台"
                           >
-                          H5收银台
+                          <!-- H5收银台 -->
+                          H5 checkout counter
                           <span class="form-check-sign"></span>
                         </label>
                       </div>
@@ -92,17 +95,18 @@
                 </div>
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
-                    <label class="text-dark py-3">支付类型：</label>
+                    <!-- 支付类型： -->
+                    <label class="text-dark py-3"> Payment Types:</label>
                     <!-- <label class="text-dark py-3">到账金额：</label> -->
                   </div>
                   <div class="col-lg-8 text-left">
                     <div class="form-group col-md-4 px-0">
                       <select id="inputState" name="pay_type" class="form-control">
-                        <option value="1">微信二维码</option>
-                        <option value="2">支付宝二维码</option>
-                        <option value="3">银行综合码</option>
-                        <option value="4">银行卡</option>
-                        <option value="10" selected>随机(微信|支付宝|银行综合码)</option>
+                        <!-- <option value="1">微信二维码</option> -->
+                        <option value="2" selected>Alipay</option> <!--支付宝二维码 -->
+                        <!-- <option value="3">银行综合码</option> -->
+                        <!-- <option value="4">银行卡</option> -->
+                        <!-- <option value="10" selected>随机(微信|支付宝|银行综合码)</option> -->
                       </select>
                     </div>
                     <button

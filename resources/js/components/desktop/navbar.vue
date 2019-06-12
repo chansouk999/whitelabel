@@ -371,6 +371,7 @@
                             </div>
                           </div>
                           <input
+                          v-model="reg_name"
                             id="name"
                             type="text"
                             class="form-control"
@@ -389,6 +390,7 @@
                             </div>
                           </div>
                           <input
+                          v-model="reg_email"
                             type="email"
                             class="form-control"
                             name="email"
@@ -404,6 +406,7 @@
                             </div>
                           </div>
                           <input
+                          v-model="reg_password"
                             type="password"
                             class="form-control"
                             name="password"
@@ -413,6 +416,7 @@
                           >
                           <br>
                           <input
+                          v-model="reg_password_confirm"
                             id="password-confirm"
                             type="password"
                             class="form-control"
@@ -434,7 +438,8 @@
                         </div>
                       </div>
                       <div class="card-footer">
-                        <button type="submit" class="btn btn-primary btn-round btn-lg">Register</button>
+                        <button type="submit" class="btn btn-primary btn-round btn-lg" @click.prevent="registercheck">Register</button>
+                        <button type="submit"  style="visibility:hidden" class="btn btn-primary btn-round btn-lg btnregister">Register</button>
                       </div>
                     </form>
                   </div>
@@ -629,6 +634,10 @@
 export default {
   data() {
     return {
+      reg_name:null,
+      reg_email:null,
+      reg_password:null,
+      reg_password_confirm:null,
       email: null,
       password: null,
       isShowonlyIndex: false,
@@ -646,6 +655,41 @@ export default {
   },
   components: {},
   methods: {
+    registercheck(){
+      let vm =this
+      // reg_name
+      // reg_email
+      // reg_password
+      // reg_password_confirm
+      if(vm.reg_name === null || vm.reg_email === null || vm.reg_password === null || vm.reg_password_confirm === null){
+        alert("Please Complete the form");
+      }else{
+        if(!vm.reg_email.includes('@')){
+          alert("Missing @ letter");
+        }
+        else if(vm.reg_password !== vm.reg_password_confirm ){
+          vm.reg_password=null
+          vm.reg_password_confirm=null
+             alert("Password not Match");
+        }else if(vm.reg_password.length < 7){
+           vm.reg_password=null
+           vm.reg_password_confirm=null
+             alert("Password Must Bigger Than 7 Character");
+        }else{
+            axios.post('checkreigster',{name:vm.reg_name,email:vm.reg_email}).then(res=>{
+              if(res.data.success === 'nameexist'){
+                alert("name already in use try another");
+              }else if(res.data.success === 'emailexist'){
+                alert("email already in use try another");  
+              }else{
+                $('.btnregister').click();
+              }
+            }).catch(er=>{console.log(er.res)})
+        }
+      }
+      
+    },
+
     checklogin() {
       let data = {
         email: this.email,
