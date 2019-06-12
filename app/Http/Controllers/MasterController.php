@@ -69,9 +69,18 @@ class MasterController extends Controller
     public function checklogin(Request $req)
     {
         $email = $req->email;
-        $check = User::where('email', '=', '' . $email . '')->get()->count();
+        $password = $req->pwd;
+        $check = User::where('email', '=', '' . $email . '')->get();
+        $count = $check->count();
+        $checkpwd = trim($check->pluck('password'),'["]');
         if ($check < 1) {
             return ['success' => 'notfound'];
+        }else{
+            if(Hash::check($checkpwd, $password)){
+                return ['success' => 'passwordnotmatch'];
+            }else{
+                return ['success'=>'success'];
+            }
         }
     }
     public function reqwithdraw(Request $req)
