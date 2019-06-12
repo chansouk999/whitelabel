@@ -773,7 +773,7 @@ export default {
            
           }else{
             console.log(res.data)
-            //  $(".btn-loginder").click();
+             $(".btn-loginder").click();
           }
         })
         .catch(er => {
