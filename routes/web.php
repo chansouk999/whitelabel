@@ -52,7 +52,9 @@ Route::get('/gettoken', 'AdminController@gettoken');
 Route::get('/home', function () {
     return view('home');
 });
+// Route::get('/',)
 Route::get('/', 'MasterController@welcome')->name('home');
+Route::get('/checkconnection', 'MasterController@checkconnection');
 Route::post('/checkreigster', 'MasterController@checkreigster');
 Route::get('/userdetaildata', 'MasterController@userdetaildata');
 Route::get('/getuserdata', 'MasterController@getuserdata');

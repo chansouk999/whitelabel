@@ -711,6 +711,7 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
+<<<<<<< HEAD
   mounted() {
     let check;
     let path = window.location.href
@@ -748,14 +749,15 @@ export default {
         break;
     }
   },
+=======
+  // asdasdasd
+>>>>>>> 3d0c628b8ba8e50a1570f31407747fcaef9c7832
   components: {},
   methods: {
     registercheck() {
       let vm = this;
-      // reg_name
-      // reg_email
-      // reg_password
-      // reg_password_confirm
+      let com = vm.reg_email.split("@");
+      let gotcom = com[1].split('.')[1]
       if (
         vm.reg_name === null ||
         vm.reg_email === null ||
@@ -764,8 +766,8 @@ export default {
       ) {
         alert("Please Complete the form");
       } else {
-        if (!vm.reg_email.includes("@")) {
-          alert("Missing @ letter");
+        if (!vm.reg_email.includes("@") || !vm.reg_email.includes('.com') || gotcom.length > 3 ) {
+          alert('Check your email "@xxxxx.com" before submit ')
         } else if (vm.reg_password !== vm.reg_password_confirm) {
           vm.reg_password = null;
           vm.reg_password_confirm = null;
@@ -792,36 +794,51 @@ export default {
         }
       }
     },
-
+// asdasdasdasd
     checklogin() {
+      let vm = this
       let data = {
-        email: this.email,
-        pwd: this.password
+        email: vm.email,
+        pwd: vm.password
       };
+      if(data.email == null || data.pwd == null ){
+           alert('Please Complete the form')
+      }else if(!vm.email.includes('@') || !vm.email.includes('.com')){
+         alert('Check your email "@xxxxx.com" before submit ')
+      }
+      else{
       axios
         .post("checklogin", data)
         .then(res => {
           if (res.data.success == "notfound") {
-            Swal.fire({
-              type: "error",
-              title: "Oops...",
-              text: "please try again later!",
-              footer: "<a href=>forgot password?</a>",
-              timer: 2500,
-              content: el
-            });
-          } else {
-            this.$notify({
-              group: "foo",
-              title: "Important message",
-              text: "Hello user! This is a notification!"
-            });
-            $(".btn-loginder").click();
+            console.log(res.data)
+            alert('Email not found');
+            // Swal.fire({
+            //   type: "error",
+            //   title: "Oops...",
+            //   text: "please try again later!",
+            //   footer: "<a href=>forgot password?</a>",
+            //   timer: 2500,
+            //   content: el
+            // });
+          } else if(res.data.success == "passwordnotmatch"){
+            console.log(res.data)
+             alert('Please check your password');
+            // this.$notify({
+            //   group: "foo",
+            //   title: "Important message",
+            //   text: "Hello user! This is a notification!"
+            // });
+           
+          }else{
+            console.log(res.data)
+             $(".btn-loginder").click();
           }
         })
         .catch(er => {
-          console.log(er.res);
+          console.log(er.response);
         });
+      }
     },
 
     myaccount() {
