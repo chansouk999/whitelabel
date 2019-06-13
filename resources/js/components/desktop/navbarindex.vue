@@ -134,6 +134,7 @@ export default {
       navShowName: "message"
     };
   },
+ 
   components: {
     myaccount,
     recommedndedfriends,

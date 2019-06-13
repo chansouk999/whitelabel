@@ -18,6 +18,21 @@ return [
     'modify_phone' => '修改手機',
     'msmsubscription' => '訂閱',
     'my_message' => '我的留言',
-    'change_password'=>'更改密碼',
-    'customer_care' =>'客戶服務',
+    'change_password' => '更改密碼',
+    'customer_care' => '客戶服務',
+    'login' => '快速登录',
+    'register' => '註冊',
+    'free_trial' => '免費試用',
+    // GAME stock
+    "stock1" => "上证综合指数",
+    "stock2" => "深圳成份指数",
+    "stock3" => "沪深300指数",
+    "stock4" => "大数据100指数",
+    "stock5" => "美元指数",
+    "stock6" => "比特币",
+    "us_stock" => "美股",
+    "cryptocurrencies" => "虚拟币价格",
+    "chines_stock" => "中国股市",
+    "lobby" => "游戏大厅",
+
 ];

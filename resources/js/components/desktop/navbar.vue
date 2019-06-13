@@ -63,7 +63,8 @@
                   <div class="icons">
                     <i class="tim-icons icon-single-02 icon-default"></i>
                     <i class="tim-icons icon-lock-circle icon-hover"></i>
-                  </div>Login
+                  </div>
+                  {{login}}
                 </a>
               </li>
               <li class="nav-item">
@@ -76,7 +77,8 @@
                   <div class="icons">
                     <i class="fas fa-user-plus icon-default"></i>
                     <i class="tim-icons icon-badge icon-hover"></i>
-                  </div>Register
+                  </div>
+                  {{register}}
                 </a>
               </li>
               <li class="nav-item">
@@ -89,7 +91,8 @@
                   <div class="icons">
                     <i class="tim-icons icon-controller icon-default"></i>
                     <i class="tim-icons icon-credit-card icon-hover"></i>
-                  </div>Free Trial
+                  </div>
+                  {{free_trial}}
                 </a>
               </li>
             </ul>
@@ -99,7 +102,7 @@
           <span v-else-if="checkuser == 'true'">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a :href="messages" class="button nav-link d-flex float-left">
+                <a ref="message" :href="messages" class="button nav-link d-flex float-left">
                   <div class="icons">
                     <i class="tim-icons icon-chat-33 icon-default"></i>
                     <i class="tim-icons icon-chat-33 icon-hover"></i>
@@ -108,7 +111,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="button nav-link d-flex float-left" @click="myaccount()">
+                <a
+                  ref="myaccount"
+                  href="#"
+                  class="button nav-link d-flex float-left"
+                  @click="myaccount()"
+                >
                   <div class="icons">
                     <i class="tim-icons icon-single-02 icon-default"></i>
                     <i class="tim-icons icon-single-02 icon-hover"></i>
@@ -117,7 +125,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a :href="promote" class="button nav-link d-flex float-left">
+                <a ref="promote" :href="promote" class="button nav-link d-flex float-left">
                   <div class="icons">
                     <i class="tim-icons icon-trophy icon-default"></i>
                     <i class="tim-icons icon-trophy icon-hover"></i>
@@ -126,7 +134,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a :href="lobby" class="button nav-link d-flex float-left">
+                <a ref="lobby" :href="lobby" class="button nav-link d-flex float-left">
                   <div class="icons">
                     <i class="tim-icons icon-controller icon-default"></i>
                     <i class="tim-icons icon-controller icon-hover"></i>
@@ -135,7 +143,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="button nav-link d-flex float-left" @click="rechargeClick()">
+                <a
+                  ref="recharge"
+                  href="#"
+                  class="button nav-link d-flex float-left"
+                  @click="rechargeClick()"
+                >
                   <div class="icons">
                     <i class="tim-icons icon-coins icon-default"></i>
                     <i class="tim-icons icon-coins icon-hover"></i>
@@ -144,7 +157,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="button nav-link d-flex float-left" @click="withDrawClick()">
+                <a
+                  ref="withdraw"
+                  href="#"
+                  class="button nav-link d-flex float-left"
+                  @click="withDrawClick()"
+                >
                   <div class="icons">
                     <i class="tim-icons icon-money-coins icon-default"></i>
                     <i class="tim-icons icon-cart icon-hover"></i>
@@ -693,6 +711,43 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
+  mounted() {
+    let check;
+    let path = window.location.href
+      .split("/")
+      .pop()
+      .split("?")[0];
+    let urlParams = new URLSearchParams(window.location.search);
+    let myParam = urlParams.get("page");
+    if (myParam == null) {
+      check = path;
+    } else {
+      check = myParam;
+    }
+    switch (check) {
+      case "modern":
+        this.$refs.index.classList.add("active");
+        break;
+      case "message":
+        this.$refs.message.classList.add("active");
+        break;
+      case "myaccount":
+        this.$refs.myaccount.classList.add("active");
+        break;
+      case "promote":
+        this.$refs.promote.classList.add("active");
+        break;
+      case "lobby":
+        this.$refs.lobby.classList.add("active");
+        break;
+      case "recharge":
+        this.$refs.recharge.classList.add("active");
+        break;
+      case "withDrawClick":
+        this.$refs.withdraw.classList.add("active");
+        break;
+    }
+  },
   components: {},
   methods: {
     registercheck() {
@@ -770,13 +825,43 @@ export default {
     },
 
     myaccount() {
-      $("#myaccountlink")[0].click();
+      let url = window.location.href
+        .split("/")
+        .pop()
+        .split("?")[0];
+      // alert(url)
+      if (url == "message") {
+        $("#myaccountlink")[0].click();
+        window.location = "/message?page=myaccount";
+      } else {
+        window.location = "/message?page=myaccount";
+      }
     },
     withDrawClick() {
-      $("#withdraw")[0].click();
+      let url = window.location.href
+        .split("/")
+        .pop()
+        .split("?")[0];
+      // alert(url)
+      if (url == "message") {
+        $("#withDrawClick")[0].click();
+        window.location = "/message?page=withDrawClick";
+      } else {
+        window.location = "/message?page=withDrawClick";
+      }
     },
     rechargeClick() {
-      $("#recharge")[0].click();
+      let url = window.location.href
+        .split("/")
+        .pop()
+        .split("?")[0];
+      // alert(url);
+      if (url == "message") {
+        $("#recharge")[0].click();
+        window.location = "/message?page=recharge";
+      } else {
+        window.location = "/message?page=recharge";
+      }
     },
     setNavShowName(value, e) {
       this.navShowName = value;
@@ -793,7 +878,10 @@ export default {
     "gamelobby",
     "recharge",
     "withdraw",
-    "currentlang"
+    "currentlang",
+    "login",
+    "register",
+    "free_trial"
   ]
 };
 </script>

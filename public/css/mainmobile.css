@@ -2109,6 +2109,8 @@ ol {
     position: absolute;
 }
 
+
+/* 
 .card .card-body .shadow-warning {
     -webkit-box-shadow: 0px 0px 10px 1px rgb(255, 130, 121);
     -moz-box-shadow: 0px 0px 10px 1px rgb(255, 130, 121);
@@ -2131,7 +2133,7 @@ ol {
     -webkit-box-shadow: 0px 0px 10px 1px #fd5d93;
     -moz-box-shadow: 0px 0px 10px 1px #fd5d93;
     box-shadow: 0px 0px 10px 1px #fd5d93;
-}
+} */
 
 .shadow-lg .d-flex img {
     width: 50px;
@@ -2611,6 +2613,11 @@ div.radio.switcher label input:checked+span small {
     max-width: 20%;
 }
 
+.w-16 {
+    flex: 0 0 20%;
+    max-width: 16.66666%;
+}
+
 .card-body .w-20 p {
     font-size: .7rem;
     padding: 10px 0px;
@@ -2780,6 +2787,37 @@ div.radio.switcher label input:checked+span small {
     font-size: .7rem;
     background-size: 210% 210%;
     background-position: top right;
+}
+
+.fixed-plugin .dropdown .dropdown-menu:after {
+    border-bottom: 0.4em solid rgba(0, 0, 0, 0);
+    border-left: 0.4em solid #f5f6fa;
+    border-top: 0.4em solid rgba(0, 0, 0, 0);
+    right: -16px;
+}
+
+.fixed-plugin .dropdown-menu {
+    background-color: #f5f6fa;
+    background: #f5f6fa;
+}
+
+.fixed-plugin .badge {
+    height: 30px;
+    width: 30px;
+}
+
+.fixed-plugin li.header-title {
+    color: #ff3a10;
+}
+
+.fixed-plugin .badge {
+    border: 1px solid #ff3200;
+}
+
+.card .card-body .w-25 a p {
+    font-size: 0.6rem;
+    padding: 5px 0px 0px 0px;
+    font-weight: 500;
 }
 
 @media(min-width: 900px) {

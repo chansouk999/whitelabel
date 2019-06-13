@@ -30,7 +30,24 @@
         @else
             <input type="hidden" class="checkuser" name="" value="false">
         @endif
-        <app-mobile></app-mobile>
+        <app-mobile
+            recommend_friends="@lang('home.recommend_friends')"
+            message="@lang('home.message')"
+            myaccount_tra="@lang('home.myaccount_tra')"
+            myprivilege="@lang('home.myprivilege')"
+            gamelobby="@lang('home.gamelobby')"
+            recharge="@lang('home.recharge')"
+            withdraw="@lang('home.withdraw')"
+            currentlang="{{Lang::locale()}}"
+            login="@lang('home.login')"
+            register="@lang('home.register')"
+            free_trial="@lang('home.free_trial')"
+            us_stock="@lang('home.us_stock')"
+            cryptocurrencies="@lang('home.cryptocurrencies')"
+            chines_stock="@lang('home.chines_stock')"
+            lobby="@lang('home.lobby')"
+
+        ></app-mobile>
     </div>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
@@ -70,6 +87,7 @@
   <!-- Place this tag in your head or just before your close body tag. -->
   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
   <script src="../assets/js/core/bootstrap.min.js"></script>
+  <link href=" https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.css" rel="stylesheet">
 
   <!-- Chart JS -->
   <script src="../assets/js/plugins/chartjs.min.js"></script>

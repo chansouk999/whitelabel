@@ -19,38 +19,38 @@
           <li class="nav-aside active">
             <a href="http://finance.sina.com.cn/realstock/company/sh000001/nc.shtml">
               <i class="tim-icons icon-chart-pie-36"></i>
-              <p class="text-aside">SH000001</p>
+              <p class="text-aside">{{stock1}}</p>
             </a>
           </li>
           <li class="nav-aside">
             <a href="http://finance.sina.com.cn/realstock/company/sz399001/nc.shtml">
               <i class="tim-icons icon-money-coins"></i>
-              <p class="text-aside">SZ399001</p>
+              <p class="text-aside">{{stock2}}</p>
             </a>
           </li>
           <li class="nav-aside">
             <a href="http://finance.sina.com.cn/realstock/company/sh000300/nc.shtml">
               <i class="tim-icons icon-user-run"></i>
-              <p class="text-aside">SH00300</p>
+              <p class="text-aside">{{stock3}}</p>
             </a>
           </li>
           <li class="nav-aside">
             <a href="http://finance.sina.com.cn/realstock/company/sz399415/nc.shtml">
               <i class="tim-icons icon-chart-pie-36"></i>
-              <p class="text-aside">SZ399415</p>
+              <p class="text-aside">{{stock4}}</p>
             </a>
           </li>
           <li class="nav-aside">
             <a href="https://finance.sina.com.cn/money/forex/hq/DINIW.shtml">
               <i class="tim-icons icon-chart-pie-36"></i>
-              <p class="text-aside">US dollar Index</p>
+              <p class="text-aside">{{stock5}}</p>
             </a>
           </li>
           <li>
             <a data-toggle="collapse" href="#pagesExamples">
               <i class="tim-icons icon-image-02"></i>
               <p>
-                BTC/USDT
+                {{stock6}}
                 <b class="caret"></b>
               </p>
             </a>
@@ -89,7 +89,9 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props: ["stock1", "stock2", "stock3", "stock4", "stock5", "stock6"]
+};
 </script>
 <style scoped>
 </style>

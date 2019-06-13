@@ -55,6 +55,15 @@
         my_message="@lang('home.my_message')"
         change_password="@lang('home.change_password')"
         customer_care="@lang('home.customer_care')"
+        login="@lang('home.login')"
+        register="@lang('home.register')"
+        free_trial="@lang('home.free_trial')"
+        stock1="@lang('home.stock1')"
+        stock2="@lang('home.stock2')"
+        stock3="@lang('home.stock3')"
+        stock4="@lang('home.stock4')"
+        stock5="@lang('home.stock5')"
+        stock6="@lang('home.stock6')"
         ></app-message>
     </div>
     <!--   Core JS Files   -->
