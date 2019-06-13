@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      stockname: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      stockname: [1, 2, 3, 4, 5, 6],
       betlose: [],
       betwon: [200, 300, 500, 1000, 3000, 6000]
       //   gettimeshow:""
@@ -75,7 +75,15 @@ export default {
             backgroundColor: this.backgroundcolor,
             borderWidth: 2,
             borderDash: [],
-            borderDashOffset: 0.0
+            borderDashOffset: 0.0,
+            Color:"#ff0000",
+            pointBackgroundColor: "#ff0000",
+            pointBorderColor: "rgba(255,255,255,0)",
+            pointHoverBackgroundColor: "#00c0ef",
+            pointBorderWidth: 20,
+            pointHoverRadius: 10,
+            pointHoverBorderWidth: 15,
+            pointRadius: 10
           }
         ]
       },
@@ -136,7 +144,7 @@ export default {
                 display: true,
                 callback: function(value, index, values) {
                   console.log("Value " + value);
-                  return Math.round(value).toString()+" K";
+                  return Math.round(value).toString() + " K";
                 }
               }
             }
@@ -157,6 +165,30 @@ export default {
               }
             }
           ]
+        },
+        animation: {
+          duration: 1,
+          onComplete: function() {
+            var chartInstance = this.chart,
+              ctx = chartInstance.ctx;
+            ctx.font = Chart.helpers.fontString(
+              Chart.defaults.global.defaultFontSize,
+              Chart.defaults.global.defaultFontStyle,
+              Chart.defaults.global.defaultFontFamily,
+              Chart.defaults.global.defaultColor
+            );
+            ctx.textAlign = "center";
+            ctx.textBaseline = "bottom";
+
+            this.data.datasets.forEach(function(dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function(bar, index) {
+                var data = dataset.data[index];
+                ctx.fillText(data, bar._model.x, bar._model.y + 7);
+                ctx.fillStyle = "#ffffff";
+              });
+            });
+          }
         }
       }
     });
