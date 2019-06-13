@@ -42,7 +42,7 @@
           <dd data-sidebar="u_withdraw">
             <a
               href="#"
-              id="withdraw"
+              id="withDrawClick"
               @click.prevent="setNavShowName('applyforwithdrawal',$event)"
             >{{ apply_for_withdrawal }}</a>
           </dd>

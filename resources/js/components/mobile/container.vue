@@ -108,38 +108,43 @@
           </div>
         </div>
         <div class="col-12 px-1">
-          <div class="card card-stats">
+          <div class="card card-stats h-100">
             <div class="card-body">
               <div class="row">
-                <div class="w-20">
-                  <div class="info-icon text-center icon-warning shadow-warning">
-                    <i class="tim-icons icon-chat-33"></i>
-                    <p>AG旗舰厅</p>
-                  </div>
+                <div class="w-25">
+                  <a href>
+                    <div class="info-icon text-center icon-primary shadow-primary">
+                      <!-- <i class="tim-icons icon-trophy"></i> -->
+                      <img src="assets/img/us_flag.png" alt="">
+                      <p>{{us_stock}}</p>
+                    </div>
+                  </a>
                 </div>
-                <div class="w-20">
-                  <div class="info-icon text-center icon-primary shadow-primary">
-                    <i class="tim-icons icon-shape-star"></i>
-                    <p>AG国际厅</p>
-                  </div>
+                <div class="w-25">
+                  <a href>
+                    <div class="info-icon text-center icon-warning shadow-info">
+                      <!-- <i class="tim-icons icon-controller"></i> -->
+                      <img src="assets/img/bitcoin.png" alt="">
+                      <p>{{cryptocurrencies}}</p>
+                    </div>
+                  </a>
                 </div>
-                <div class="w-20">
-                  <div class="info-icon text-center icon-success shadow-success">
-                    <i class="tim-icons icon-single-02"></i>
-                    <p>AG捕鱼王</p>
-                  </div>
+                <div class="w-25">
+                  <a href>
+                    <div class="info-icon text-center icon-danger shadow-success">
+                       <img src="assets/img/china_flag.png" alt="">
+                      <p>{{chines_stock}}</p>
+                    </div>
+                  </a>
                 </div>
-                <div class="w-20">
-                  <div class="info-icon text-center icon-warning shadow-warning">
-                    <i class="tim-icons icon-chat-33"></i>
-                    <p>电子游戏</p>
-                  </div>
-                </div>
-                <div class="w-20">
-                  <div class="info-icon text-center icon-danger shadow-danger">
-                    <i class="tim-icons icon-molecule-40"></i>
-                    <p>沙巴体育</p>
-                  </div>
+                <div class="w-25">
+                  <a href>
+                    <div class="info-icon text-center icon-success shadow-danger">
+                       <img src="assets/img/Aragon-icon.png" alt="">
+                      <!-- <i class="tim-icons icon-palette"></i> -->
+                      <p>{{lobby}}</p>
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -191,7 +196,7 @@
                 role="tablist"
                 aria-expanded="false"
               >电子游戏</a>
-            </li> 
+            </li>
           </ul>
           <div class="tab-content tab-space p-0">
             <div class="tab-pane show active" id="link1" aria-expanded="true">
@@ -434,9 +439,11 @@
         </div>
       </div>
     </div>
+    <setting></setting>
   </div>
 </template>
 <script>
+import setting from "./settig_mobile";
 import Flickity from "vue-flickity";
 import navbars from "./navbar";
 import asides from "./asides";
@@ -444,6 +451,7 @@ import footers from "./footers";
 import chartjs from "../desktop/chartjs";
 export default {
   components: {
+    setting,
     navbars,
     asides,
     footers,
@@ -493,7 +501,24 @@ export default {
     rechargeClick() {
       $("#recharge")[0].click();
     }
-  }
+  },
+  props: [
+    "recommend_friends",
+    "message",
+    "myaccount_tra",
+    "myprivilege",
+    "gamelobby",
+    "recharge",
+    "withdraw",
+    "currentlang",
+    "login",
+    "register",
+    "free_trial",
+    "us_stock",
+    "cryptocurrencies",
+    "chines_stock",
+    "lobby"
+  ]
 };
 </script>
 <style scoped>

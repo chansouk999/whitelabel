@@ -41,6 +41,15 @@
             recharge="@lang('home.recharge')"
             withdraw="@lang('home.withdraw')"
             currentlang="{{Lang::locale()}}"
+            login="@lang('home.login')"
+            register="@lang('home.register')"
+            free_trial="@lang('home.free_trial')"
+            stock1="@lang('home.stock1')"
+            stock2="@lang('home.stock2')"
+            stock3="@lang('home.stock3')"
+            stock4="@lang('home.stock4')"
+            stock5="@lang('home.stock5')"
+            stock6="@lang('home.stock6')"
             ></app-desktop>
     </div>
     <!--   Core JS Files   -->

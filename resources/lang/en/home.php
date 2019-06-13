@@ -19,6 +19,24 @@ return [
     'msmsubscription' => ' MSM Subscription',
     'my_message' => ' My Message',
     'change_password' => 'Change Password',
-    'customer_care' =>'Customer Care',
+    'customer_care' => 'Customer Care',
+    'login' => 'Login',
+    'register' => 'Register',
+    'free_trial' => 'Free Trial',
+    // GAME stock
+    "stock1"=>"SH000001",
+    "stock2"=>"SZ399001",
+    "stock3"=>"SH00300",
+    "stock4"=>"SZ399415",
+    "stock5"=>"US dollar Index",
+    "stock6"=>"BTC/USDT",
+    "us_stock"=>"US Stock",
+    "cryptocurrencies"=>"cryptocurrencies",
+    "chines_stock"=>"Chines Stock",
+    "lobby"=>"Lobby",
+
 
 ];
+
+
+

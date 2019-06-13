@@ -9,11 +9,21 @@
       :recharge="recharge"
       :withdraw="withdraw"
       :currentlang="currentlang"
+      :login="login"
+      :register="register"
+      :free_trial="free_trial"
     ></navbars>
     <div class="container">
       <div class="row">
         <div class="col-2">
-          <asides></asides>
+          <asides
+            :stock1="stock1"
+            :stock2="stock2"
+            :stock3="stock3"
+            :stock4="stock4"
+            :stock5="stock5"
+            :stock6="stock6"
+          ></asides>
         </div>
         <div class="col-xl-10 col-sm-12">
           <div class="main-panel">
@@ -178,7 +188,7 @@
             </div>
           </div>
           <div class="row">
-                <footers></footers>
+            <footers></footers>
           </div>
         </div>
         <div class="col-12">
@@ -219,7 +229,16 @@ export default {
     "gamelobby",
     "recharge",
     "withdraw",
-    "currentlang"
+    "currentlang",
+    "login",
+    "register",
+    "free_trial",
+    "stock1",
+    "stock2",
+    "stock3",
+    "stock4",
+    "stock5",
+    "stock6"
   ],
   mounted() {},
 
@@ -228,7 +247,7 @@ export default {
       $("#myaccountlink")[0].click();
     },
     withDrawClick() {
-      $("#withdraw")[0].click();
+      $("#withDrawClick")[0].click();
     },
     rechargeClick() {
       $("#recharge")[0].click();

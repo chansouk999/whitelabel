@@ -30,7 +30,16 @@
             @else
                 <input type="hidden" class="checkuser" name="" value="false">
             @endif
-        <app-lobby></app-lobby>
+        <app-lobby
+            recommend_friends="@lang('home.recommend_friends')"
+            message="@lang('home.message')"
+            myaccount_tra="@lang('home.myaccount_tra')"
+            myprivilege="@lang('home.myprivilege')"
+            gamelobby="@lang('home.gamelobby')"
+            recharge="@lang('home.recharge')"
+            withdraw="@lang('home.withdraw')"
+            currentlang="{{Lang::locale()}}"
+        ></app-lobby>
     </div>
    <!--   Core JS Files   -->
    <script src="../assets/js/core/jquery.min.js"></script>
