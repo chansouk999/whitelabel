@@ -7,7 +7,7 @@ use App\Request as Reqst;
 use Auth;
 use Jenssegers\Agent\Agent;
 use Nexmo\Laravel\Facade\Nexmo;
-
+use Illuminate\Support\Facades\Validator;
 use App\clientid;
 use Illuminate\Support\Facades\Cache;
 use App\access_token;
@@ -18,6 +18,22 @@ use SebastianBergmann\Environment\Console;
 
 class MasterController extends Controller
 {
+  
+    public function checkreigster(Request $req){
+        
+        $email = $req->email;
+        $name = $req->name;
+        $countm = User::where('email','=',$email)->get()->count();
+        $countn = User::where('name','=',$name)->get()->count();
+        if($countn > 0){
+            return ['success'=>'nameexist'];
+        }elseif($countm){
+            return ['success'=>'emailexist'];
+        }else{
+            return ['success'=>'success'];
+        }
+
+    }
     public function payment(Request $req){
         
     }

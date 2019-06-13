@@ -177,9 +177,12 @@
               </div>
             </div>
           </div>
+          <div class="row">
+                <footers></footers>
+          </div>
         </div>
         <div class="col-12">
-          <footers></footers>
+          <!-- <footers></footers> -->
         </div>
       </div>
     </div>

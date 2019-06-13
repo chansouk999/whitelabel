@@ -53,6 +53,7 @@ Route::get('/home', function () {
     return view('home');
 });
 Route::get('/', 'MasterController@welcome')->name('home');
+Route::post('/checkreigster', 'MasterController@checkreigster');
 Route::get('/userdetaildata', 'MasterController@userdetaildata');
 Route::get('/getuserdata', 'MasterController@getuserdata');
 Route::post('/sendsms', 'MasterController@sendsms');
@@ -103,7 +104,7 @@ Route::get('/getpassword', function () {
         return $realpwd; //GOTED PASSWORD
     }
     $pwddehashed =  dehash();
-    return $pwddehashed;
+    // return $pwddehashed;
 });
 Route::get('admin/check', function () {
     return "This route can only be accessed by super admin";
@@ -113,10 +114,8 @@ Route::get('admin/check', function () {
 
 Route::post('/checklogin', 'MasterController@checklogin');
 Route::get('/redirectback', function () {
-
     $id = \Auth::user()->pro_id . '_' . \Auth::user()->user_id;
     $http = new GuzzleHttp\Client();
-
     // function dehash(){
     $data = \Auth::user()->pwdhashed;
     $pwd = explode('-', $data);
@@ -125,10 +124,11 @@ Route::get('/redirectback', function () {
         $gotpwd[] = substr($p, -1, 1);
     }
     $realpwd = implode('', $gotpwd);
-    $dehashed =  $realpwd; //GOTED PASSWORD
+ $dehashed =  $realpwd; //GOTED PASSWORD
     // }
+    // return $dehashed;
 
-    $response = $http->post('http://lec68/oauth/token', [
+    $response = $http->post('http://localhost:8003/oauth/token', [
         'form_params' => [
             'grant_type' => 'password',
             'client_id' => '2',
@@ -144,8 +144,8 @@ Route::get('/redirectback', function () {
         'Accept' => 'application/json',
         'Authorization' => 'Bearer ' . $accessdata['access_token']
     ];
-    $resuser = $http->get('http://lec68/api/users', ['headers' => $header]);
-    $data =  json_decode((string)$resuser->getBody(), true);
+    $resuser = $http->get('http://localhost:8003/api/users', ['headers' => $header]);
+  $data =  json_decode((string)$resuser->getBody(), true);
     $date = date('Y-m-d');
     $check = access_token::where([['created_at', 'like', '%' . $date . '%'], ['user_id', '=', '' . $data['user_id'] . '']])->get()->count();
     if ($check < 1) {
@@ -154,12 +154,7 @@ Route::get('/redirectback', function () {
             'access_token' => $accessdata['access_token']
         ]);
     }
-    // $response = $http->post('http://localhost:8003/igotologin', [
-    //     'form_params' => [
-    //         'userid' => $id
-    //     ],
-    // ]);
-    return redirect('http://lec68.com/igotologin');
+    return redirect('http://localhost:8003/igotologin');
 });
 // Route::get('redirect',function(){
 //     $http = new GuzzleHttp\Client();
