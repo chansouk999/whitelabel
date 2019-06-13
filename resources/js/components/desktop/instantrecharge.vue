@@ -41,7 +41,7 @@
                     <!-- 支付金额: -->
                     <label class="text-dark p-2">Payment amount:</label>
                   </div>
-                  <div class="col-lg-2">
+                  <div class="col-lg-3">
                     <input
                       type="text"
                       id="money"
@@ -127,7 +127,7 @@
                         <!-- <label class="text-dark p-2">充值方式：</label> -->
                         <label class="text-dark p-2">订单号:</label>
                       </div>
-                      <div class="col-lg-2 d-block text-left">
+                      <div class="col-lg-3 d-block text-left">
                         <input
                           type="text"
                           id="order_sn"

@@ -34,7 +34,28 @@
         @else
         <input type="hidden" class="checkuser" name="" value="false">
         @endif
-        <app-message></app-message>
+        <app-message
+        recommend_friends="@lang('home.recommend_friends')"
+        message="@lang('home.message')"
+        myaccount_tra="@lang('home.myaccount_tra')"
+        myprivilege="@lang('home.myprivilege')"
+        gamelobby="@lang('home.gamelobby')"
+        recharge="@lang('home.recharge')"
+        withdraw="@lang('home.withdraw')"
+        currentlang="{{Lang::locale()}}"
+        transaction_record="@lang('home.transaction_record')"
+        instant_recharge="@lang('home.instant_recharge')"
+        financial_center="@lang('home.financial_center')"
+        apply_for_withdrawal="@lang('home.apply_for_withdrawal')"
+        self_service_rolling="@lang('home.self_service_rolling')"
+        customer_information="@lang('home.customer_information')"
+        bank_info="@lang('home.bank_info')"
+        modify_phone="@lang('home.modify_phone')"
+        msmsubscription="@lang('home.msmsubscription')"
+        my_message="@lang('home.my_message')"
+        change_password="@lang('home.change_password')"
+        customer_care="@lang('home.customer_care')"
+        ></app-message>
     </div>
     <!--   Core JS Files   -->
    <script src="../assets/js/core/jquery.min.js"></script>
@@ -81,6 +102,8 @@
   <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
   <!-- Black Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+  <link href=" https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.css" rel="stylesheet">
+
   <script>
     $(document).ready(function() {
       $().ready(function() {

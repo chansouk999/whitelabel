@@ -204,30 +204,44 @@
               <div class="btn-group">
                 <button
                   type="button"
-                  class="btn btn-danger dropdown-toggle"
+                  class="btn btn-success dropdown-toggle"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span v-if="currentlang=='en'" class="flag-icon flag-icon-us"></span>
-                  <span v-if="currentlang=='ch'" class="flag-icon flag-icon-cn"></span>
-                  <span v-if="currentlang=='th'" class="flag-icon flag-icon-th"></span>
-                  <span v-if="currentlang=='la'" class="flag-icon flag-icon-la"></span>
+                  <span v-if="currentlang=='en'" class="flag-icon flag-icon-us d-flex">
+                    <span class="ml-4">English</span>
+                  </span>
+                  <span v-if="currentlang=='ch'" class="flag-icon flag-icon-cn d-flex">
+                    <span class="ml-4">Chines</span>
+                  </span>
+                  <span v-if="currentlang=='th'" class="flag-icon flag-icon-th d-flex">
+                    <span class="ml-4">Thai</span>
+                  </span>
+                  <span v-if="currentlang=='la'" class="flag-icon flag-icon-la d-flex">
+                    <span class="ml-4">Lao</span>
+                  </span>
                 </button>
                 <div class="dropdown-menu">
-                  <div class="d-flex justify-content-between">
-                    <a class="dropdown-item" href="locale/en">English</a>
-                    <span class="flag-icon flag-icon-us"></span>
-                  </div>
+                  <a class="dropdown-item" href="locale/en">
+                    English
+                    <span class="pull-right flag-icon flag-icon-us"></span>
+                  </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="locale/ch">Chinese</a>
-                  <span class="flag-icon flag-icon-cn"></span>
+                  <a class="dropdown-item" href="locale/ch">
+                    Chinese
+                    <span class="pull-right flag-icon flag-icon-cn"></span>
+                  </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="locale/th">Thai</a>
-                  <span class="flag-icon flag-icon-th"></span>
+                  <a class="dropdown-item" href="locale/th">
+                    Thai
+                    <span class="pull-right flag-icon flag-icon-th"></span>
+                  </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="locale/la">Lao</a>
-                  <span class="flag-icon flag-icon-la"></span>
+                  <a class="dropdown-item" href="locale/la">
+                    Lao
+                    <span class="pull-right flag-icon flag-icon-la"></span>
+                  </a>
                 </div>
               </div>
             </li>
@@ -389,7 +403,7 @@
                             </div>
                           </div>
                           <input
-                          v-model="reg_name"
+                            v-model="reg_name"
                             id="name"
                             type="text"
                             class="form-control"
@@ -408,7 +422,7 @@
                             </div>
                           </div>
                           <input
-                          v-model="reg_email"
+                            v-model="reg_email"
                             type="email"
                             class="form-control"
                             name="email"
@@ -424,7 +438,7 @@
                             </div>
                           </div>
                           <input
-                          v-model="reg_password"
+                            v-model="reg_password"
                             type="password"
                             class="form-control"
                             name="password"
@@ -434,7 +448,7 @@
                           >
                           <br>
                           <input
-                          v-model="reg_password_confirm"
+                            v-model="reg_password_confirm"
                             id="password-confirm"
                             type="password"
                             class="form-control"
@@ -456,8 +470,16 @@
                         </div>
                       </div>
                       <div class="card-footer">
-                        <button type="submit" class="btn btn-primary btn-round btn-lg" @click.prevent="registercheck">Register</button>
-                        <button type="submit"  style="visibility:hidden" class="btn btn-primary btn-round btn-lg btnregister">Register</button>
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn-round btn-lg"
+                          @click.prevent="registercheck"
+                        >Register</button>
+                        <button
+                          type="submit"
+                          style="visibility:hidden"
+                          class="btn btn-primary btn-round btn-lg btnregister"
+                        >Register</button>
                       </div>
                     </form>
                   </div>
@@ -652,10 +674,10 @@
 export default {
   data() {
     return {
-      reg_name:null,
-      reg_email:null,
-      reg_password:null,
-      reg_password_confirm:null,
+      reg_name: null,
+      reg_email: null,
+      reg_password: null,
+      reg_password_confirm: null,
       email: null,
       password: null,
       isShowonlyIndex: false,
@@ -673,39 +695,47 @@ export default {
   },
   components: {},
   methods: {
-    registercheck(){
-      let vm =this
+    registercheck() {
+      let vm = this;
       // reg_name
       // reg_email
       // reg_password
       // reg_password_confirm
-      if(vm.reg_name === null || vm.reg_email === null || vm.reg_password === null || vm.reg_password_confirm === null){
+      if (
+        vm.reg_name === null ||
+        vm.reg_email === null ||
+        vm.reg_password === null ||
+        vm.reg_password_confirm === null
+      ) {
         alert("Please Complete the form");
-      }else{
-        if(!vm.reg_email.includes('@')){
+      } else {
+        if (!vm.reg_email.includes("@")) {
           alert("Missing @ letter");
-        }
-        else if(vm.reg_password !== vm.reg_password_confirm ){
-          vm.reg_password=null
-          vm.reg_password_confirm=null
-             alert("Password not Match");
-        }else if(vm.reg_password.length < 7){
-           vm.reg_password=null
-           vm.reg_password_confirm=null
-             alert("Password Must Bigger Than 7 Character");
-        }else{
-            axios.post('checkreigster',{name:vm.reg_name,email:vm.reg_email}).then(res=>{
-              if(res.data.success === 'nameexist'){
+        } else if (vm.reg_password !== vm.reg_password_confirm) {
+          vm.reg_password = null;
+          vm.reg_password_confirm = null;
+          alert("Password not Match");
+        } else if (vm.reg_password.length < 7) {
+          vm.reg_password = null;
+          vm.reg_password_confirm = null;
+          alert("Password Must Bigger Than 7 Character");
+        } else {
+          axios
+            .post("checkreigster", { name: vm.reg_name, email: vm.reg_email })
+            .then(res => {
+              if (res.data.success === "nameexist") {
                 alert("name already in use try another");
-              }else if(res.data.success === 'emailexist'){
-                alert("email already in use try another");  
-              }else{
-                $('.btnregister').click();
+              } else if (res.data.success === "emailexist") {
+                alert("email already in use try another");
+              } else {
+                $(".btnregister").click();
               }
-            }).catch(er=>{console.log(er.res)})
+            })
+            .catch(er => {
+              console.log(er.res);
+            });
         }
       }
-      
     },
 
     checklogin() {
