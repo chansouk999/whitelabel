@@ -345,7 +345,7 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Register Page</h4>
+            <!-- <h4 class="modal-title">Register Page</h4> -->
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
@@ -356,16 +356,16 @@
                 <div class="col-md-5 ml-auto">
                   <div class="info-area info-horizontal mt-5">
                     <div class="icon icon-warning">
-                      <i class="tim-icons icon-wifi"></i>
+                      <!-- <i class="tim-icons icon-wifi"></i> -->
                     </div>
                     <div class="description">
-                      <h3 class="info-title">Marketing</h3>
+                      <h3 class="info-title">Casio online</h3>
                       <p
                         class="description"
-                      >We've created the marketing campaign of the website. It was a very interesting collaboration.</p>
+                      >Welcome to lec668.com gaming center.</p>
                     </div>
                   </div>
-                  <div class="info-area info-horizontal">
+                  <!-- <div class="info-area info-horizontal">
                     <div class="icon icon-primary">
                       <i class="tim-icons icon-triangle-right-17"></i>
                     </div>
@@ -386,15 +386,16 @@
                         class="description"
                       >There is also a Fully Customizable CMS Admin Dashboard for this product.</p>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="col-md-7 mr-auto">
-                  <div class="card card-register card-white">
+                  <div class="card card-register card-white" style="box-shadow:none">
                     <form class="form" method="POST" action="register">
                       <div class="card-header">
-                        <img class="card-img" src="assets/img/card-primary.png" alt="Card image">
-                        <h4 class="card-title text-capitalize">Register</h4>
+                        <!-- <img class="card-img" src="assets/img/card-primary.png" alt="Card image"> -->
+                        <h4 class="card-title text-capitalize" style="color:#32436e">Lec668</h4>
                       </div>
+
                       <div class="card-body">
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -440,18 +441,25 @@
                           <input
                             v-model="reg_password"
                             type="password"
-                            class="form-control"
+                            class="form-control reg_password"
                             name="password"
                             required
                             autocomplete="new-password"
                             placeholder="Enter password"
                           >
-                          <br>
-                          <input
+                         
+                        </div>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i class="tim-icons icon-lock-circle"></i>
+                            </div>
+                          </div>
+                         <input
                             v-model="reg_password_confirm"
                             id="password-confirm"
                             type="password"
-                            class="form-control"
+                            class="form-control reg_password"
                             name="password_confirmation"
                             required
                             autocomplete="new-password"
@@ -460,12 +468,7 @@
                         </div>
                         <div class="form-check text-left">
                           <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox">
-                            <span class="form-check-sign"></span>
-                            I agree to the
-                            <a
-                              href="javascript:void(0)"
-                            >terms and conditions</a>.
+                            {{msg}}
                           </label>
                         </div>
                       </div>
@@ -674,6 +677,7 @@
 export default {
   data() {
     return {
+      msg:'we are waiting for you',
       reg_name: null,
       reg_email: null,
       reg_password: null,
@@ -695,11 +699,54 @@ export default {
   },
   // asdasdasd
   components: {},
+  watch:{
+    reg_email(data){
+      let vm =this
+       let com = data.split("@");
+         let gotcom = com[1].split('.')[1]
+      if(!data.includes("@") || !data.includes('.com') || gotcom.length > 3 ){
+         vm.msg ='Check email form Ex:abc@gmail.com'
+      }else{
+        vm.msg ='Email correct!!'
+      }
+    },
+    reg_password_confirm(data){
+      let vm=this 
+
+      if(data.length > 7){
+      if(data == vm.reg_password){
+        vm.msg ='password matched'
+        $('.reg_password').css('border','1px solid green');
+      }else{
+         vm.msg ='password not match'
+        $('.reg_password').css('border','1px solid red');
+      }
+       }else{
+           vm.msg ='password must be bigger than 7 character'
+      }
+
+    
+  },
+    reg_password(data){
+      let vm=this 
+      if(data.length > 7){
+        if(data == vm.reg_password_confirm){
+          vm.msg ='password matched'
+          $('.reg_password').css('border','1px solid green');
+        }else{
+          vm.msg ='password not match'
+          $('.reg_password').css('border','1px solid red');
+        }
+      }else{
+           vm.msg ='password must be bigger than 7 character'
+      }
+
+    }
+  },
   methods: {
     registercheck() {
       let vm = this;
-      let com = vm.reg_email.split("@");
-      let gotcom = com[1].split('.')[1]
+     
       if (
         vm.reg_name === null ||
         vm.reg_email === null ||
@@ -708,6 +755,8 @@ export default {
       ) {
         alert("Please Complete the form");
       } else {
+         let com = vm.reg_email.split("@");
+         let gotcom = com[1].split('.')[1]
         if (!vm.reg_email.includes("@") || !vm.reg_email.includes('.com') || gotcom.length > 3 ) {
           alert('Check your email "@xxxxx.com" before submit ')
         } else if (vm.reg_password !== vm.reg_password_confirm) {
@@ -717,7 +766,7 @@ export default {
         } else if (vm.reg_password.length < 7) {
           vm.reg_password = null;
           vm.reg_password_confirm = null;
-          alert("Password Must Bigger Than 7 Character");
+          alert("Password Must be Bigger Than 7 Character");
         } else {
           axios
             .post("checkreigster", { name: vm.reg_name, email: vm.reg_email })
