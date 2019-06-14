@@ -22,7 +22,7 @@ use SebastianBergmann\Environment\Console;
 
 class PaymentController extends Controller
 {
-    private $api = 'https://pay.duobao33.com/pay/'; // api地址 //API address: https://pay.duobao33.com/ 
+    private $api = 'http://192.168.77.66:2000/pay/'; // api地址 //API address: https://pay.duobao33.com/ 
     private $bid = '1'; // 商户号，后台取得 //merchant account : 18
     private $key = 'vhzw7epncps0szxd'; // 商户钥匙，后台取得 // encryptedkey : 0yxlmlv8u4az177p
     private $iv = 'rrhs7ryxs3ock5vt'; // 商户钥匙iv，后台取得// encryptedIV : phpzs30dl5g536pa
@@ -66,7 +66,9 @@ class PaymentController extends Controller
     //curl
 
     public function curl($url, array $post) {
+      // return [$post];
         $ch = curl_init();
+        
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -86,6 +88,7 @@ class PaymentController extends Controller
         $response = curl_exec($ch);
         $request_info = curl_getinfo($ch);
         $http_code = $request_info['http_code'];
+        return $response;
         $this->logs(['response' => $response]);
         if ($http_code == 200) {
           curl_close($ch);
@@ -147,7 +150,7 @@ class PaymentController extends Controller
         //data_type 数据类型：string, 当等于'json'则为json数据，否则返回平台的h5收银台网址
         //data_type will return json data type if is =json, otherwise return to h5 merchant url
         $order['data_type'] = !empty($data['data_type']) ? $data['data_type'] : '';
-       
+      //  return $order;
         //sign 签名 MD5(
         //商户key + "|" +
         //bid + "|" +
@@ -166,7 +169,10 @@ class PaymentController extends Controller
         );
         //下单请求
         // order request
+        // return $order;
         $result = $this->curl($this->api.'api/index', $order);
+        
+        print_r($result);
         try {
           $content = json_decode($result, true);
           if(empty($content)) {
@@ -196,6 +202,7 @@ class PaymentController extends Controller
          * sys_order_sn 平台订单号：string,
          * sign MD5签名：string,
          */
+        // return $data;
         try {
           if(empty($data) || !is_array($data)) {
             throw new Exception('数据为空或数据参数错误'); //data is empty 
