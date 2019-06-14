@@ -711,7 +711,6 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
-<<<<<<< HEAD
   mounted() {
     let check;
     let path = window.location.href
@@ -749,9 +748,6 @@ export default {
         break;
     }
   },
-=======
-  // asdasdasd
->>>>>>> 3d0c628b8ba8e50a1570f31407747fcaef9c7832
   components: {},
   methods: {
     registercheck() {

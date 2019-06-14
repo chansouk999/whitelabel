@@ -2289,6 +2289,11 @@ nav.navbar ul li.nav-item button.btn-register:active {
     box-shadow: 3px 3px 7px -1px rgba(0, 0, 0, 0.56)!important;
 }
 
+.mbile-chart {
+    width: 366px !important;
+    margin: 0px 0px 0px -16px;
+}
+
 @media (min-width: 576px) {
     .container {
         max-width: 100%;

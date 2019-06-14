@@ -115,7 +115,7 @@
                   <a href>
                     <div class="info-icon text-center icon-primary shadow-primary">
                       <!-- <i class="tim-icons icon-trophy"></i> -->
-                      <img src="assets/img/us_flag.png" alt="">
+                      <img src="assets/img/us_flag.png" alt>
                       <p>{{us_stock}}</p>
                     </div>
                   </a>
@@ -124,7 +124,7 @@
                   <a href>
                     <div class="info-icon text-center icon-warning shadow-info">
                       <!-- <i class="tim-icons icon-controller"></i> -->
-                      <img src="assets/img/bitcoin.png" alt="">
+                      <img src="assets/img/bitcoin.png" alt>
                       <p>{{cryptocurrencies}}</p>
                     </div>
                   </a>
@@ -132,7 +132,7 @@
                 <div class="w-25">
                   <a href>
                     <div class="info-icon text-center icon-danger shadow-success">
-                       <img src="assets/img/china_flag.png" alt="">
+                      <img src="assets/img/china_flag.png" alt>
                       <p>{{chines_stock}}</p>
                     </div>
                   </a>
@@ -140,7 +140,7 @@
                 <div class="w-25">
                   <a href>
                     <div class="info-icon text-center icon-success shadow-danger">
-                       <img src="assets/img/Aragon-icon.png" alt="">
+                      <img src="assets/img/Aragon-icon.png" alt>
                       <!-- <i class="tim-icons icon-palette"></i> -->
                       <p>{{lobby}}</p>
                     </div>
@@ -201,7 +201,11 @@
           <div class="tab-content tab-space p-0">
             <div class="tab-pane show active" id="link1" aria-expanded="true">
               <div class="container shadow-lg">
-                <chartjs backgroundcolor="#ff8d72"></chartjs>
+                <chartjs 
+                backgroundcolor="#ff8d72" 
+                bordercolor="red" 
+                typechart="line"
+                ></chartjs>
                 <div class="row d-flex justify-content-between py-2">
                   <div class="d-flex">
                     <span class="game_rBox">
