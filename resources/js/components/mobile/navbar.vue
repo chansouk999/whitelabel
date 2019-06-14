@@ -24,19 +24,18 @@
           </div>
           <a class="navbar-brand" :href="welcome">TNK</a>
         </div>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item d-flex">
-            <button class="btn btn-login"   data-toggle="modal"
-                  data-target="#loginModal">
-              <i class="tim-icons icon-single-02 icon-default"></i>
-            </button>
-            <button class="btn btn-register"   data-toggle="modal"
-                  data-target="#register">
-              <i class="fas fa-user-plus icon-default"></i>
-            </button>
-          </li>
-        </ul>
-
+        <span v-if="checkuser == 'false'">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item d-flex">
+              <button class="btn btn-login" data-toggle="modal" data-target="#loginModal">
+                <i class="tim-icons icon-single-02 icon-default"></i>
+              </button>
+              <button class="btn btn-register" data-toggle="modal" data-target="#register">
+                <i class="fas fa-user-plus icon-default"></i>
+              </button>
+            </li>
+          </ul>
+        </span>
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">

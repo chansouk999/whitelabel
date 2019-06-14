@@ -38,7 +38,7 @@
           </li>
           <li class="button-container mt-4 pb-0 d-flex justify-content-center">
             <a href="#" class="btn btn-warning btn-ms">在线咨询</a>
-            <a href="#" class="btn btn-warning btn-ms">电话回拨</a>
+            <a href="/logout" class="btn btn-warning btn-ms">Log Out</a>
           </li>
         </ul>
       </div>

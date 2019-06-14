@@ -1,5 +1,5 @@
 <template>
-  <canvas id="chart"></canvas>
+  <canvas id="chart" class="mbile-chart"></canvas>
 </template>
 <script>
 import { Bar, Line } from "vue-chartjs";
