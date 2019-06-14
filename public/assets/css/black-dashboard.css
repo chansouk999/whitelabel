@@ -18787,7 +18787,7 @@ table.tablesorter thead tr .headerSortDown {
     z-index: 1031;
     border-radius: 8px 0 0 8px;
     text-align: center;
-    top: 100px;
+    top: 20%;
     height: 40px;
     padding: 7px;
 }

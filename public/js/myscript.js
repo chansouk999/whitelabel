@@ -148,11 +148,11 @@ $(document).ready(function() {
 
 
 // Auto Modal
-setTimeout(function() {
-    if ($('.checkuser').val() == 'false') {
-        $('#loginModal').modal("show");
-    }
-}, 3000);
+// setTimeout(function() {
+//     if ($('.checkuser').val() == 'false') {
+//         $('#loginModal').modal("show");
+//     }
+// }, 3000);
 
 
 $("form input[name='redirect']").val("/activity/promote");

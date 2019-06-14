@@ -87,7 +87,9 @@ class MasterController extends Controller
         $count = $check->count();
         // return $check;
         if ($count < 1) {
+            // Alert::error('Error Message', 'Optional Title');
             return ['success' => 'notfound'];
+            
         } else {
             $checkpwd = $check->pluck('password')[0];
             if (!Hash::check($password, $checkpwd)) {

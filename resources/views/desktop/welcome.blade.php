@@ -20,9 +20,6 @@
     <link href="assets/demo/demo.css" rel="stylesheet" />
     <!-- Mystyle -->
     <link href="css/mystyle.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css" id="theme-styles">
 </head>
 <body>
     <div id="app">
@@ -31,7 +28,6 @@
         @else
         <input type="hidden" class="checkuser" name="" value="false">
         @endif
-      
         <app-desktop
             recommend_friends="@lang('home.recommend_friends')"
             message="@lang('home.message')"
@@ -50,8 +46,16 @@
             stock4="@lang('home.stock4')"
             stock5="@lang('home.stock5')"
             stock6="@lang('home.stock6')"
+            us_stock="@lang('home.us_stock')"
+            cryptocurrencies="@lang('home.cryptocurrencies')"
+            chines_stock="@lang('home.chines_stock')"
+            lobby="@lang('home.lobby')"
+
             ></app-desktop>
+            
     </div>
+    @include('sweetalert::alert')
+
     <!--   Core JS Files   -->
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../js/app.js"></script>
@@ -99,7 +103,6 @@
     <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
     <!-- Black Dashboard DEMO methods, don't include it in your project! -->
     <script src="../assets/demo/demo.js"></script>
-    @include('sweetalert::alert')
 </body>
 
 </html>

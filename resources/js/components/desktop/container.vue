@@ -23,6 +23,10 @@
             :stock4="stock4"
             :stock5="stock5"
             :stock6="stock6"
+            :us_stock="us_stock"
+            :cryptocurrencies="cryptocurrencies"
+            :chines_stock="chines_stock"
+            :lobby="lobby"
           ></asides>
         </div>
         <div class="col-xl-10 col-sm-12">
@@ -160,7 +164,7 @@
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div>.
                     </div>
                     <a
                       class="carousel-control-prev"
@@ -190,15 +194,16 @@
           <div class="row">
             <footers></footers>
           </div>
-        </div>
-        <div class="col-12">
-          <!-- <footers></footers> -->
+          <div class="row">
+            <app-alertsidebar></app-alertsidebar>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import alertsidebar from '../alertsidebar';
 import navbars from "./navbar";
 import asides from "./asides";
 import footers from "./footers";
@@ -206,7 +211,8 @@ export default {
   components: {
     navbars,
     asides,
-    footers
+    footers,
+    "app-alertsidebar": alertsidebar
   },
   data() {
     return {
@@ -238,7 +244,11 @@ export default {
     "stock3",
     "stock4",
     "stock5",
-    "stock6"
+    "stock6",
+    "us_stock",
+    "cryptocurrencies",
+    "chines_stock",
+    "lobby"
   ],
   mounted() {},
 

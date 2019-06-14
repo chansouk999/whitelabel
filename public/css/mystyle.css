@@ -844,9 +844,9 @@
     left: auto !important;
     top: 26px !important;
     width: 300px;
-    border-radius: 0.1875rem;
+    /* border-radius: 0.1875rem;
     padding: 0 10px;
-    background: linear-gradient(#003679, #e2e9ed);
+    background: linear-gradient(#003679, #e2e9ed); */
 }
 
 .fixed-logout .dropdown .dropdown-menu .tim-icons {
@@ -861,7 +861,7 @@
 }
 
 .dropdown-menu .menu-body a {
-    background-color: #ba54f5;
+    background-color: #003679;
     width: 100%;
     position: absolute;
     text-align: center;
@@ -2385,6 +2385,85 @@ section.cid-ro6uJJ0VM8 {
     color: #fff;
 }
 
+.swal2-icon.swal2-warning {
+    font-size: 1rem !important;
+}
+
+
+/* .swal2-icon::before {
+    display: flex;
+    align-items: center;
+    height: 92%;
+    font-size: 3.75em;
+    margin-left: 32px
+} */
+
+.sidebar .nav .nav-aside a img {
+    font-size: 20px;
+    float: left;
+    margin-right: 12px;
+    line-height: 30px;
+    width: 34px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    position: relative;
+}
+
+.fixed-plugin a p {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    color: #fff;
+    margin: 0
+}
+
+.fixed-plugin-custome a p {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    color: #fff;
+    margin: 0
+}
+
+.fixed-plugin {
+    position: fixed;
+    right: 0;
+    width: 23px;
+    background: rgb(255, 108, 0);
+    z-index: 1031;
+    border-radius: 0;
+    text-align: center;
+    top: 10%;
+    padding: 0px 2px 0px 0px;
+    color: #fff;
+    height: auto;
+    box-shadow: 0px 0px 3px 3px #e2d9d3
+}
+
+.fixed-plugin-custome {
+    position: fixed;
+    right: 0;
+    width: 23px;
+    background: rgb(255, 108, 0);
+    z-index: 1031;
+    border-radius: 0;
+    text-align: center;
+    top: 22%;
+    padding: 0px 2px 0px 0px;
+    color: #fff;
+    height: auto;
+    box-shadow: 0px 0px 3px 3px #e2d9d3
+}
+
+.sidebar .nav .img-btc a img {
+    font-size: 20px;
+    float: left;
+    margin-right: 12px;
+    line-height: 30px;
+    width: 34px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    position: relative;
+}
+
 @media(min-width: 900px) {
     .steps-timeline {
         border-top: 5px double #fc6429;
@@ -2758,7 +2837,7 @@ section.cid-ro6uJJ0VM8 {
         height: 80px;
     }
     .carousel-item {
-        height: calc(66vh - 21px);
+        height: calc(66vh - 51px);
         background-color: #777;
     }
     .main-panel>.content {
@@ -2818,5 +2897,14 @@ section.cid-ro6uJJ0VM8 {
 @media (min-width: 62em) {
     .featurette-heading {
         margin-top: 0.1rem;
+    }
+}
+
+@media (min-width: 2560px) {
+    .fixed-plugin {
+        margin-right: 13%;
+    }
+    .fixed-plugin-custome {
+        margin-right: 13%;
     }
 }
