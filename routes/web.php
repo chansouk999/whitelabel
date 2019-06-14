@@ -55,6 +55,7 @@ Route::get('/home', function () {
 // Route::get('/',)
 Route::get('/', 'MasterController@welcome')->name('home');
 Route::get('/checkconnection', 'MasterController@checkconnection');
+
 Route::post('/checkreigster', 'MasterController@checkreigster');
 Route::get('/userdetaildata', 'MasterController@userdetaildata');
 Route::get('/getuserdata', 'MasterController@getuserdata');
@@ -209,3 +210,11 @@ Route::get('locale/{locale}', function ($locale) {
 });
 
 
+
+
+
+Route::get('/coding',function(Request $req){
+    return $req->getHttpHost();
+});
+Route::get('/notify','PaymentController@notify');
+Route::post('actionpayment', 'PaymentController@actionpayment');

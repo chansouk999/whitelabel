@@ -17,34 +17,39 @@ use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
 
+
 class MasterController extends Controller
 {
-    public function checkconnection(){
-        if(Auth::check()){
-            return ['success'=>'success'];
-        }else{
-            return ['success'=>'timeout'];
+    
+    public function checkconnection()
+    {
+        if (Auth::check()) {
+            return ['success' => 'success'];
+        } else {
+            return ['success' => 'timeout'];
         }
     }
-  
-    public function checkreigster(Request $req){
-        
+
+    public function checkreigster(Request $req)
+    {
+
         $email = $req->email;
         $name = $req->name;
-        $countm = User::where('email','=',$email)->get()->count();
-        $countn = User::where('name','=',$name)->get()->count();
-        if($countn > 0){
-            return ['success'=>'nameexist'];
-        }elseif($countm){
-            return ['success'=>'emailexist'];
-        }else{
-            return ['success'=>'success'];
+        $countm = User::where('email', '=', $email)->get()->count();
+        $countn = User::where('name', '=', $name)->get()->count();
+        if ($countn > 0) {
+            return ['success' => 'nameexist'];
+        } elseif ($countm) {
+            return ['success' => 'emailexist'];
+        } else {
+            return ['success' => 'success'];
         }
-
     }
-    public function payment(Request $req){
-        
+    public function payment()
+    {
+        return "HELLO THIS PAYMENT FUNCTION";
     }
+    
     public function welcome()
     {
 
@@ -83,12 +88,12 @@ class MasterController extends Controller
         // return $check;
         if ($count < 1) {
             return ['success' => 'notfound'];
-        }else{
+        } else {
             $checkpwd = $check->pluck('password')[0];
-            if(!Hash::check($password, $checkpwd)){
+            if (!Hash::check($password, $checkpwd)) {
                 return ['success' => 'passwordnotmatch'];
-            }else{
-                return ['success'=>'success'];
+            } else {
+                return ['success' => 'success'];
             }
         }
     }
@@ -97,15 +102,15 @@ class MasterController extends Controller
     public function sendsms(Request $req)
     {
         $basic  = new \Nexmo\Client\Credentials\Basic('222a363b', 'Krn82zRNs6ZE9GmT');
-        $client = new \Nexmo\Client($basic,true);
-        $code =mt_rand(100000,989999);
+        $client = new \Nexmo\Client($basic, true);
+        $code = mt_rand(100000, 989999);
 
         $message = $client->message()->send([
             'to' => $req->phonenumber,
             'from' => 'Nexmo',
-            'text' => 'This is Your Confirmation Code ' .$code 
+            'text' => 'This is Your Confirmation Code ' . $code
         ]);
-        
+
         // $message = Nexmo::message()->send([
         //     'to'   => $req->phonenumber,
         //     'from' => '16105552344',
@@ -115,11 +120,12 @@ class MasterController extends Controller
         Cache::put('confirmCode', $code, 1);
         if ($message) {
             return "OK";
-        }else{
+        } else {
             return "NOT OK";
         }
     }
-    public function payments(Request $req){
+    public function payments(Request $req)
+    {
         Omnipay::setGateway('PayPal');
         $cardInput = [
             'number'      => '4444333322221111',
@@ -143,7 +149,7 @@ class MasterController extends Controller
             'currency' => 'USD',
             'card'   => $cardInput
         ])->send();
-        
+
         dd($response->getMessage());
     }
 }

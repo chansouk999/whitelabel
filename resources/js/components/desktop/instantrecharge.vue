@@ -34,6 +34,31 @@
         <div class="tab-pane active" id="alipay">
           <div class="card">
             <div class="card-body">
+               <div class="row py-3">
+                    <div class="col-lg-4 text-right">
+                      <label class="text-dark p-2">Amount:</label>
+                    </div>
+                    <div class="col-lg-8 form-row text-left">
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 100" value="100" readonly="readonly">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 200" value="200" readonly="readonly">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 500" value="500" readonly="readonly">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 1000" value="1,000" readonly="readonly">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 2000" value="2,000" readonly="readonly">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 5000" value="5,000" readonly="readonly">
+                      </div>
+                    </div>
+                  </div>
               <form class="layui-form layui-field-box" id="form1">
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
@@ -46,11 +71,13 @@
                       type="text"
                       id="money"
                       name="money"
-                      value="100"
                       required
+   readonly="readonly"
+   style="background:#fff"
+                      v-model="paymentamount"
                       lay-verify="required"
                       placeholder="请输入支付金额"
-                      class="form-control"
+                      class="form-control paymentAmount"
                     >
                   </div>
                 </div>
@@ -69,6 +96,7 @@
                             type="radio"
                             name="data_type"
                             value="json"
+                            v-model="recmetho"
                             title="JSON"
                             checked
                           >
@@ -81,6 +109,7 @@
                           <input
                             class="form-check-input"
                             type="radio"
+                            v-model="recmetho"
                             name="data_type"
                             value="h5"
                             title="H5收银台"
@@ -101,7 +130,7 @@
                   </div>
                   <div class="col-lg-8 text-left">
                     <div class="form-group col-md-4 px-0">
-                      <select id="inputState" name="pay_type" class="form-control">
+                      <select id="inputState" name="pay_type" v-model="paymenttype" class="form-control">
                         <!-- <option value="1">微信二维码</option> -->
                         <option value="2" selected>Alipay</option> <!--支付宝二维码 -->
                         <!-- <option value="3">银行综合码</option> -->
@@ -110,21 +139,22 @@
                       </select>
                     </div>
                     <button
+                    @click.prevent="payment"
                       type="submit"
                       class="btn btn-custome"
                       id="submit1"
                       lay-submit
                       lay-filter="submit1"
-                    >确认</button>
+                    >Next Step</button>
                   </div>
                 </div>
               </form>
-              <div class="card">
+              <!-- <div class="card">
                 <div class="card-body">
                   <form class="layui-form layui-field-box" id="form2">
                     <div class="row py-3">
                       <div class="col-lg-4 text-right">
-                        <!-- <label class="text-dark p-2">充值方式：</label> -->
+                        <label class="text-dark p-2">充值方式：</label>
                         <label class="text-dark p-2">订单号:</label>
                       </div>
                       <div class="col-lg-3 d-block text-left">
@@ -149,7 +179,7 @@
                     </div>
                   </form>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -410,8 +440,61 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      paymentamount:0,
+      disabled:true,
+      recmetho:null,
+      paymenttype:null,
+    }
+  },
+  watch:{
+    paymentamount(e){
+        $('.paymentAmount').css('border','1px solid green');
+        setTimeout(()=>{
+          $('.paymentAmount').css('border','1px solid #bbbdc4');
+        },500)
+        
+    }
+  },
+  methods:{
+    payment(data){
+      let vm = this
+        data ={
+          money : vm.paymentamount,
+          data_type : vm.recmetho,
+          pay_type : vm.paymenttype
+        }
+        console.log(data)
+        axios.post('actionpayment',{data}).then(res=>{
+          console.log(res.data)
+            // if(res.code === 100){
+            //   if(data_type === 'h5'){
+                
+            //   }else if(data_type === 'json'){
+                
+            //     // $('#json_html .top-info').html(res.data.remark);
+            //     // $('#json_html .qrcode').attr('src',res.data.qrcode);
+               
+            //   }
+            // }else{
+            //   layer.msg(res.msg);
+            // }
+        }).catch(er=>{console.log(er.response)})
+    }
+  }
+};
 </script>
 <style scoped>
+#inputZip{
+  cursor: pointer;
+      background: #fff
+}
+.paymentAmount{
+    background: #fff;
+    color: #000;
+
+}
 </style>
 
