@@ -65,7 +65,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
-        function generateRandomString($length = 10) {
+        function generateRandomString($length = 5) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
             $randomString = '';
@@ -86,7 +86,7 @@ class RegisterController extends Controller
         $datas = implode('-',$hash);
         $insertpwd = $datas;
         
-        $userid = generateRandomString();
+        $userid = date('YmdHis').generateRandomString();
         $date = date('y-m-d H:i:s');
         $ip = \Request::getClientIp();
         $user = User::create([

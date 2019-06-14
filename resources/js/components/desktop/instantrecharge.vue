@@ -3,7 +3,7 @@
     <div class="u-content u-transaction">
       <ul class="nav nav-pills nav-pills-primary nav-pills-icons" role="tablist">
         <!--
-        color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+            color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
         -->
         <li class="nav-item">
           <a class="nav-link active" href="#alipay" role="tab" data-toggle="tab">
@@ -39,6 +39,9 @@
                       <label class="text-dark p-2">Amount:</label>
                     </div>
                     <div class="col-lg-8 form-row text-left">
+                       <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 1" value="1" readonly="readonly">
+                      </div>
                       <div class="form-group col-lg-1">
                         <input type="text" class="form-control" id="inputZip" @click="paymentamount = 100" value="100" readonly="readonly">
                       </div>
@@ -437,16 +440,53 @@
         </div>
       </div>
     </div>
+
+    <!-- QR -->
+    <div id="contentpop">
+    <div class="pop-qr2" v-if="loading == false">
+      <div class="qr-data2">
+       <div class="lds-facebook"><div></div><div></div><div></div></div>
+      </div>
+    </div>
+    <div class="pop-qr" v-if="qr_pop == true" >
+      <div class="close-op" @click="qr_pop=false"></div>
+        <div class="qr-data">
+          
+            <div id="json_html">
+              {{ order_sn }}
+              <div class="top-info" v-html="remake">
+              </div>
+              <img class="qrcode" :src="qrcode" alt="">
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
   </div>
 </template>
 <script>
 export default {
   data(){
     return{
+      order_sn:null,
+      loading:null,
+      remake:null,
+      qrcode:null,
       paymentamount:0,
+      qr_pop:null,
       disabled:true,
       recmetho:null,
       paymenttype:null,
+
     }
   },
   watch:{
@@ -460,6 +500,12 @@ export default {
   },
   methods:{
     payment(data){
+
+      
+
+
+
+      // this.loading=false
       let vm = this
         data ={
           money : vm.paymentamount,
@@ -467,34 +513,49 @@ export default {
           pay_type : vm.paymenttype
         }
         console.log(data)
-        axios.post('actionpayment',{data}).then(res=>{
-          console.log(res.data)
-            // if(res.code === 100){
-            //   if(data_type === 'h5'){
+       
+        // axios.post('actionpayment',{data}).then(res=>{
+        //   console.log(res.data)
+        //     if(res.data.code == 100){
+              
+        //       if(data.data_type == 'h5'){
                 
-            //   }else if(data_type === 'json'){
-                
-            //     // $('#json_html .top-info').html(res.data.remark);
-            //     // $('#json_html .qrcode').attr('src',res.data.qrcode);
-               
-            //   }
-            // }else{
-            //   layer.msg(res.msg);
-            // }
-        }).catch(er=>{console.log(er.response)})
+        //       }else if(data.data_type == 'json'){
+        //         vm.loading=true
+        //         vm.qr_pop=true;
+        //         vm.order_sn = res.data.data.order_sn
+        //         vm.remake = res.data.data.remark;
+        //         vm.qrcode = res.data.data.qrcode;
+
+                  let opendata = '<div id="contentpop"> <div class="pop-qr" >'+
+                    '<div class="close-op"></div>'+
+                      '<div class="qr-data">'+
+                          '<div id="json_html">'+
+                            vm.order_sn+
+                            '<div class="top-info" >'+vm.remake+'</div>'+
+                            '<img class="qrcode" src="'+vm.qrcode+'" alt="">'+
+                        ' </div>'+
+                      '</div>'+
+                  ' </div> </div>';
+                  var win =  window.open('','LEC68.COM',"location=no,fullscreen=yes,menubar=no");
+                  win.document.write('<html><head><title>Print it!</title><link rel="stylesheet" type="text/css" href="css/mystyle.css"></head><body>');
+                  win.document.write(opendata);
+                  win.document.write('</body></html>');
+
+
+
+        //       }
+        //     }else{
+        //       vm.loading=true
+        //        vm.qr_pop=true;
+        //        vm.remake = res.data.msg;
+        //     }
+        // }).catch(er=>{console.log(er.response)})
     }
   }
 };
 </script>
 <style scoped>
-#inputZip{
-  cursor: pointer;
-      background: #fff
-}
-.paymentAmount{
-    background: #fff;
-    color: #000;
 
-}
 </style>
 
