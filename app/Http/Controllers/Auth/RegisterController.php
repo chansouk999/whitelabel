@@ -86,7 +86,7 @@ class RegisterController extends Controller
         $datas = implode('-',$hash);
         $insertpwd = $datas;
         
-        $userid = date('YmdHis').generateRandomString();
+        $userid = date('His').generateRandomString();
         $date = date('y-m-d H:i:s');
         $ip = \Request::getClientIp();
         $user = User::create([
