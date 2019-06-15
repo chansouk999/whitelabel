@@ -208,7 +208,12 @@
           <div class="tab-content tab-space p-0">
             <div class="tab-pane show active" id="link1" aria-expanded="true">
               <div class="container shadow-lg">
-                <chartjs backgroundcolor="#ff8d72" bordercolor="red" typechart="line"></chartjs>
+                <chartjs
+                  backgroundcolor="#ff8d72"
+                  bordercolor="red"
+                  typechart="line"
+                  number_data="false"
+                ></chartjs>
                 <div class="row d-flex justify-content-between py-2">
                   <div class="d-flex">
                     <span class="game_rBox">

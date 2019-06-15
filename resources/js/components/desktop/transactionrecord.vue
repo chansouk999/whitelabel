@@ -180,7 +180,7 @@
                 </tr>
               </tbody>
             </table>
-            <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+            <!-- <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
               <div class="card card-plain">
                 <div class="card-header" role="tab" id="headingOne">
                   <a
@@ -271,11 +271,11 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
         <div class="tab-pane" id="rechargerecord">
-         <div class="panel panel-default">
+          <div class="panel panel-default">
             <div class="panel-heading">
               <div id="withdraw_form" class="form-inline">
                 <!-- input with datetimepicker -->
@@ -417,7 +417,7 @@
                 </tr>
               </tbody>
             </table>
-            <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+            <!-- <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
               <div class="card card-plain">
                 <div class="card-header" role="tab" id="headingOne">
                   <a
@@ -427,7 +427,7 @@
                     aria-expanded="true"
                     aria-controls="process"
                   >
-                    提现申请状态“等待处理”？
+                    提现申请状态“等待处理”？test
                     <i class="tim-icons icon-minimal-down"></i>
                   </a>
                 </div>
@@ -508,11 +508,11 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="tab-pane" id="washingrecord">
-         <div class="panel panel-default">
+          <div class="panel panel-default">
             <div class="panel-heading">
               <div id="withdraw_form" class="form-inline">
                 <!-- input with datetimepicker -->
@@ -654,11 +654,10 @@
                 </tr>
               </tbody>
             </table>
-          
           </div>
         </div>
-          <div class="tab-pane" id="offerecord">
-         <div class="panel panel-default">
+        <div class="tab-pane" id="offerecord">
+          <div class="panel panel-default">
             <div class="panel-heading">
               <div id="withdraw_form" class="form-inline">
                 <!-- input with datetimepicker -->
@@ -800,11 +799,10 @@
                 </tr>
               </tbody>
             </table>
-          
           </div>
         </div>
-          <div class="tab-pane" id="gamerecord">
-         <div class="panel panel-default">
+        <div class="tab-pane" id="gamerecord">
+          <div class="panel panel-default">
             <div class="panel-heading">
               <div id="withdraw_form" class="form-inline">
                 <!-- input with datetimepicker -->
@@ -946,7 +944,6 @@
                 </tr>
               </tbody>
             </table>
-          
           </div>
         </div>
       </div>

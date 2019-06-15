@@ -1151,12 +1151,16 @@
     margin: 0;
 }
 
+.h-0 {
+    min-height: 0 !important;
+}
+
 .color-bg {
-    background: #ff8d72;
-    background-image: -webkit-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72);
-    background-image: -o-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72);
-    background-image: -moz-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72);
-    background-image: linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72);
+    background: #ff8d72 !important;
+    background-image: -webkit-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72) !important;
+    background-image: -o-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72) !important;
+    background-image: -moz-linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72) !important;
+    background-image: linear-gradient(to bottom left, #ff8d72, #ff6491, #ff8d72) !important;
     -webkit-box-shadow: 3px 3px 7px -1px rgba(0, 0, 0, 0.56);
     -moz-box-shadow: 3px 3px 7px -1px rgba(0, 0, 0, 0.56);
     box-shadow: 3px 3px 7px -1px rgba(0, 0, 0, 0.56);
@@ -2110,31 +2114,44 @@ ol {
     position: absolute;
 }
 
-
-/* 
-.card .card-body .shadow-warning {
+.card .card-footer .shadow-warning i {
     -webkit-box-shadow: 0px 0px 10px 1px rgb(255, 130, 121);
     -moz-box-shadow: 0px 0px 10px 1px rgb(255, 130, 121);
     box-shadow: 0px 0px 10px 1px rgb(255, 130, 121);
+    border-radius: 50%;
 }
 
-.card .card-body .shadow-primary {
+.card .card-footer .shadow-primary i {
     -webkit-box-shadow: 0px 0px 10px 1px #e14eca;
     -moz-box-shadow: 0px 0px 10px 1px #e14eca;
     box-shadow: 0px 0px 10px 1px #e14eca;
+    border-radius: 50%;
 }
 
-.card .card-body .shadow-success {
+.card .card-footer .shadow-success i {
     -webkit-box-shadow: 0px 0px 10px 1px #00f2c3;
     -moz-box-shadow: 0px 0px 10px 1px #00f2c3;
     box-shadow: 0px 0px 10px 1px #00f2c3;
+    border-radius: 50%;
 }
 
-.card .card-body .shadow-danger {
+.card .card-footer .shadow-danger i {
     -webkit-box-shadow: 0px 0px 10px 1px #fd5d93;
     -moz-box-shadow: 0px 0px 10px 1px #fd5d93;
     box-shadow: 0px 0px 10px 1px #fd5d93;
-} */
+    border-radius: 50%;
+}
+
+.card-stats .info-icon i {
+    color: #ffffff;
+    font-size: 1.7em;
+    padding: 13px 13px;
+}
+
+.card-footer .w-25 p {
+    font-size: .7rem;
+    padding: 10px 0px;
+}
 
 .shadow-lg .d-flex img {
     width: 50px;
@@ -2297,6 +2314,10 @@ nav.navbar ul li.nav-item button.btn-register:active {
 
 .swal2-icon.swal2-warning {
     font-size: 1rem !important;
+}
+
+.w-33 {
+    width: 33.33333%;
 }
 
 @media (min-width: 576px) {

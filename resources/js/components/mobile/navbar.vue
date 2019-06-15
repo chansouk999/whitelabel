@@ -15,14 +15,19 @@
               <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini"></i>
             </button>
           </div>
-          <div class="navbar-toggle d-inline">
-            <button type="button" class="navbar-toggler">
-              <span class="navbar-toggler-bar bar1"></span>
-              <span class="navbar-toggler-bar bar2"></span>
-              <span class="navbar-toggler-bar bar3"></span>
-            </button>
-          </div>
-          <a class="navbar-brand" :href="welcome">TNK</a>
+          <span v-if="checkuser == 'true'">
+            <div class="navbar-toggle d-inline">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" :href="welcome">TNK</a>
+          </span>
+          <span v-if="checkuser == 'false'">
+            <a class="navbar-brand" :href="welcome">TNK</a>
+          </span>
         </div>
         <span v-if="checkuser == 'false'">
           <ul class="navbar-nav ml-auto">
@@ -241,13 +246,13 @@
                       <div class="card-footer">
                         <button
                           type="submit"
-                          class="btn btn-primary btn-round btn-lg"
+                          class="btn btn-block btn-primary btn-round btn-lg"
                           @click.prevent="registercheck"
                         >Register</button>
                         <button
                           type="submit"
                           style="visibility:hidden"
-                          class="btn btn-primary btn-round btn-lg btnregister"
+                          class="btn btn-block btn-primary btn-round btn-lg btnregister"
                         >Register</button>
                       </div>
                     </form>
@@ -387,7 +392,7 @@
           </div>
           <div class="mobile-bottom-nav__item">
             <div class="mobile-bottom-nav__item-content">
-              <a :href="messages" @click="myaccount()">
+              <a href="#">
                 <i class="tim-icons icon-chat-33 icon-default"></i>
               </a>
               <!-- riviledge -->
@@ -395,7 +400,7 @@
           </div>
           <div class="mobile-bottom-nav__item">
             <div class="mobile-bottom-nav__item-content">
-              <a href="#" @click="rechargeClick()">
+              <a href="#">
                 <i class="tim-icons icon-coins icon-default"></i>
               </a>
               <!-- Recharge -->
@@ -403,7 +408,7 @@
           </div>
           <div class="mobile-bottom-nav__item">
             <div class="mobile-bottom-nav__item-content">
-              <a href="#" @click="withDrawClick()">
+              <a href="#">
                 <i class="tim-icons icon-money-coins icon-default"></i>
               </a>
               <!-- WithDraw -->
@@ -412,7 +417,7 @@
 
           <div class="mobile-bottom-nav__item">
             <div class="mobile-bottom-nav__item-content">
-              <a href="#">
+              <a href="/myaccount">
                 <i class="tim-icons icon-single-02"></i>
               </a>
               <!-- Profile -->
@@ -552,26 +557,34 @@ export default {
           .then(res => {
             if (res.data.success == "notfound") {
               console.log(res.data);
-              alert("Email not found");
-              // Swal.fire({
-              //   type: "error",
-              //   title: "Oops...",
-              //   text: "please try again later!",
-              //   footer: "<a href=>forgot password?</a>",
-              //   timer: 2500,
-              //   content: el
-              // });
+              // alert('Email not found');
+              // Use sweetalert2
+              this.$swal({
+                title: "Not Found!",
+                text: "Please check your Email & Password!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "error"
+              }).catch(swal.noop);
             } else if (res.data.success == "passwordnotmatch") {
               console.log(res.data);
-              alert("Please check your password");
-              // this.$notify({
-              //   group: "foo",
-              //   title: "Important message",
-              //   text: "Hello user! This is a notification!"
-              // });
+              this.$swal({
+                title: "Password wrong!",
+                text: "Please check your Password again!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "warning"
+              }).catch(swal.noop);
             } else {
               console.log(res.data);
               $(".btn-loginder").click();
+              this.$swal({
+                title: "Good job!",
+                text: "You clicked the button!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "success"
+              }).catch(swal.noop);
             }
           })
           .catch(er => {

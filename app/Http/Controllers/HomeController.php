@@ -28,16 +28,15 @@ class HomeController extends Controller
     public function index()
     {
         // GET TOKEN ADMIN
-        $user_id=Auth::user()->user_id;
-        return $gettoken = trim(access_token::where('user_id','like','%'.$user_id.'%')->orderby('created_at','desc')->limit(1)->get()->pluck('token'),'["]');
+        $user_id = Auth::user()->user_id;
+        return $gettoken = trim(access_token::where('user_id', 'like', '%' . $user_id . '%')->orderby('created_at', 'desc')->limit(1)->get()->pluck('token'), '["]');
         // GET TOKEN ADMIN
         $agent = new Agent();
-        if($agent->isMobile()){
-            return "FUCK YOU VONG";
-        }else{
+        if ($agent->isMobile()) {
+            return "FUCK YOU BANK";
+        } else {
             return view('welcome');
         }
-        
     }
     public function message()
     {
@@ -63,9 +62,13 @@ class HomeController extends Controller
         return view('admin.welcome');
     }
 
-      //    Mobile
-      public function whitelabel_mobile()
-      {
-          return view('mobile.welcome');
-      }
+    //    Mobile
+    public function whitelabel_mobile()
+    {
+        return view('mobile.welcome');
+    }
+    public function myaccount()
+    {
+        return view('mobile.myaccount');
+    }
 }
