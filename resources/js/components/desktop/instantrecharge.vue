@@ -8,10 +8,17 @@
         <li class="nav-item">
           <a class="nav-link active" href="#alipay" role="tab" data-toggle="tab">
             <i class="tim-icons icon-atom"></i>
-            支付宝
+            <!-- 支付宝 -->
+            Alipay
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="#transfertoapi" role="tab" data-toggle="tab">
+            <i class="tim-icons icon-settings"></i>
+            Transfer
+          </a>
+        </li>
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#scancode" role="tab" data-toggle="tab">
             <i class="tim-icons icon-settings"></i>
             扫码支付
@@ -28,7 +35,7 @@
             <i class="tim-icons icon-atom"></i>
             比特币支付
           </a>
-        </li>
+        </li> -->
       </ul>
       <div class="tab-content tab-space">
         <div class="tab-pane active" id="alipay">
@@ -186,6 +193,106 @@
             </div>
           </div>
         </div>
+
+
+
+
+
+
+
+
+        <div class="tab-pane" id="transfertoapi">
+          <div class="panel panel-default">
+            <div class="card">
+              <div class="card-body">
+                
+
+  <div class="row py-3">
+                    <div class="col-lg-4 text-right">
+                      <label class="text-dark p-2">Current Balance: {{balance}}</label>
+                    </div>
+                    </div>
+                <div class="row py-3">
+                    <div class="col-lg-4 text-right">
+                      <label class="text-dark p-2">Amount:</label>
+                    </div>
+                    <div class="col-lg-8 form-row text-left">
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="transferamount = 100" value="100" readonly="readonly">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="transferamount = 200" value="200" readonly="readonly">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="transferamount = 500" value="500" readonly="readonly">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="transferamount = 1000" value="1,000" readonly="readonly">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="transferamount = 2000" value="2,000" readonly="readonly">
+                      </div>
+                      <div class="form-group col-lg-1">
+                        <input type="text" class="form-control" id="inputZip" @click="transferamount = 5000" value="5,000" readonly="readonly">
+                      </div>
+                    </div>
+                  </div>
+              <form class="layui-form layui-field-box" id="form1">
+                <div class="row py-3">
+                  <div class="col-lg-4 text-right">
+                    <!-- <label class="text-dark p-2">充值方式：</label> -->
+                    <!-- 支付金额: -->
+                    <label class="text-dark p-2">Transfer amount:</label>
+                  </div>
+                  <div class="col-lg-3">
+                    <input
+                      type="text"
+                      id="money"
+                      name="money"
+                      required
+   readonly="readonly"
+   style="background:#fff"
+                      v-model="transferamount"
+                      lay-verify="required"
+                      placeholder="请输入支付金额"
+                      class="form-control paymentAmount"
+                    ><br> <button
+                    @click.prevent="transfermoney"
+                      type="submit"
+                      class="btn btn-custome"
+                      id="submit1"
+                      lay-submit
+                      lay-filter="submit1"
+                    >Confirm</button>
+                  </div>
+                </div>
+              </form>
+            
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div class="tab-pane" id="scancode">
           <div class="panel panel-default">
@@ -474,9 +581,12 @@
   </div>
 </template>
 <script>
+import { msgmixin } from "../msgmixin.js";
 export default {
+ mixins: [msgmixin],
   data(){
     return{
+      transferamount:0,
       order_sn:null,
       loading:null,
       remake:null,
@@ -499,59 +609,23 @@ export default {
     }
   },
   methods:{
-    payment(data){
-
-      
-
-
-
-      // this.loading=false
-      let vm = this
-        data ={
-          money : vm.paymentamount,
-          data_type : vm.recmetho,
-          pay_type : vm.paymenttype
-        }
-        console.log(data)
-       
-        // axios.post('actionpayment',{data}).then(res=>{
-        //   console.log(res.data)
-        //     if(res.data.code == 100){
-              
-        //       if(data.data_type == 'h5'){
-                
-        //       }else if(data.data_type == 'json'){
-        //         vm.loading=true
-        //         vm.qr_pop=true;
-        //         vm.order_sn = res.data.data.order_sn
-        //         vm.remake = res.data.data.remark;
-        //         vm.qrcode = res.data.data.qrcode;
-
-                  let opendata = '<div id="contentpop"> <div class="pop-qr" >'+
-                    '<div class="close-op"></div>'+
-                      '<div class="qr-data">'+
-                          '<div id="json_html">'+
-                            vm.order_sn+
-                            '<div class="top-info" >'+vm.remake+'</div>'+
-                            '<img class="qrcode" src="'+vm.qrcode+'" alt="">'+
-                        ' </div>'+
-                      '</div>'+
-                  ' </div> </div>';
-                  var win =  window.open('','LEC68.COM',"width=850,height=1060,location=no,fullscreen=yes");
-                  win.document.write('<html><head><title>Your QR CODE</title><link rel="stylesheet" type="text/css" href="css/mystyle.css"></head><body>');
-                  win.document.write(opendata);
-                  win.document.write('</body></html>');
-
-
-
-        //       }
-        //     }else{
-        //       vm.loading=true
-        //        vm.qr_pop=true;
-        //        vm.remake = res.data.msg;
-        //     }
-        // }).catch(er=>{console.log(er.response)})
-    }
+      gotar(){
+            let vm = this
+            let opendata = '<div id="contentpop"> <div class="pop-qr" >'+
+                      '<div class="close-op"></div>'+
+                        '<div class="qr-data">'+
+                            '<div id="json_html">'+
+                              vm.order_sn+
+                              '<div class="top-info" >'+vm.remake+'</div>'+
+                              '<img class="qrcode" src="'+vm.qrcode+'" alt="">'+
+                          ' </div>'+
+                        '</div>'+
+                    ' </div> </div>';
+                    var win =  window.open('','LEC68.COM',"width=850,height=1060");
+                    win.document.write('<html><head><title>Your QR CODE</title><link rel="stylesheet" type="text/css" href="css/mystyle.css"></head><body>');
+                    win.document.write(opendata);
+                    win.document.write('</body></html>');
+        },
   }
 };
 </script>

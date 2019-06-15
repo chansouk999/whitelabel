@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Request as Reqst;
 use Auth;
+use GuzzleHttp\Client;
 use Jenssegers\Agent\Agent;
 use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +21,107 @@ use SebastianBergmann\Environment\Console;
 
 class MasterController extends Controller
 {
-    
+    protected $urlforserver = 'http://159.138.130.64'; // 1 use this if you are running on server 
+    protected $urlforserverapi = 'http://lec68.com'; // 2 use this if you are running on server
+    protected $urlforlocal8003 = 'http://localhost:8003'; //1 use this if you are running on localhost
+    protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
+    protected $data = [];
+    public function returncode($data)
+    {
+        return ['code' => $data];
+    }
+    public function checkuser(array $data)
+    {
+        $http = new Client;
+        $response = $http->post($this->urlforlocal8003 . '/api/checkuser', [ //replace url with $this->urlforserver
+            'form_params' => [
+                'user_email' => $data['email'],
+            ],
+        ]);
+        $accessdata = json_decode((string)$response->getBody(), true);
+        if ($accessdata['code'] == 0) {
+            return $this->returncode(0);
+        } else {
+            return $this->returncode(200);
+        }
+    }
+    public function getfreshtoken()
+    {
+        $id = Auth::user()->pro_id . '_' . Auth::user()->user_id;
+        $http = new Client;
+        // function dehash(){
+        $data = Auth::user()->pwdhashed;
+        $pwd = explode('-', $data);
+        $gotpwd = [];
+        foreach ($pwd as $p) {
+            $gotpwd[] = substr($p, -1, 1);
+        }
+        $realpwd = implode('', $gotpwd);
+        $dehashed =  $realpwd; //GOTED PASSWORD
+        // }
+        $checkit = [];
+        $checkit['email'] = Auth::user()->email;
+        $checkuser  = $this->checkuser($checkit);
+        if ($checkuser['code'] == 200) {
+            $response = $http->post('http://localhost:8003/oauth/token', [
+                'form_params' => [
+                    'grant_type' => 'password',
+                    'client_id' => '2',
+                    'client_secret' => 'n7ZrJ7VGv4b6QuQjZ1AKWZ4w4AuvX88JuxzlPjGu',
+                    'username' => Auth::user()->email,
+                    'password' => $dehashed,
+                    'scope' => '',
+                ],
+            ]);
+            $accessdata = json_decode((string)$response->getBody(), true);
+            $date = date('Y-m-d');
+            $check = access_token::where([['created_at', 'like', '%' . $date . '%'], ['user_id', '=', '' . $id . '']])->get()->count();
+            if ($check < 1) {
+                access_token::create([
+                    'user_id' =>  $id,
+                    'access_token' => $accessdata['access_token']
+                ]);
+            }
+            return ['token'=>$accessdata['access_token'],$checkuser];
+        }else{
+            return $this->returncode(0);
+        }
+    }
+    public function transfertoapi(Request $req)
+    {
+        $userid = Auth::user()->pro_id . '_' . Auth::user()->user_id;
+        $http = new Client;
+        $accesstoken = access_token::where('user_id', '=', '' . $userid . '')->limit(1)->get();
+        $countcheck = $accesstoken->count();
+        if ($countcheck < 1) {
+            $token = $this->getfreshtoken()['token'];
+        } else {
+            $token =   $accesstoken->pluck('access_token')[0];
+        }
+        $userbl = Auth::user()->userBalance;
+        $res =$this->getfreshtoken();
+        return $res;
+        if ($req->amount > $userbl) {
+            return $this->returncode(99);//not enough
+        }elseif($res['code']==0){
+            return $this->returncode(0);
+        }
+        else {
+            $header = [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . $token
+            ];
+            // return $header;
+            $response = $http->post($this->urlforlocal8003 . '/api/transfertoapi', [ //replace url with $this->urlforserver
+                'form_params' => [
+                    'amount' => $req->amount,
+                    'user_id' => $userid,
+                ], 'headers' => $header
+            ]);
+            return $accessdata = json_decode((string)$response->getBody(), true);
+        }
+    }
     public function checkconnection()
     {
         if (Auth::check()) {
@@ -49,7 +150,7 @@ class MasterController extends Controller
     {
         return "HELLO THIS PAYMENT FUNCTION";
     }
-    
+
     public function welcome()
     {
 
@@ -89,7 +190,6 @@ class MasterController extends Controller
         if ($count < 1) {
             // Alert::error('Error Message', 'Optional Title');
             return ['success' => 'notfound'];
-            
         } else {
             $checkpwd = $check->pluck('password')[0];
             if (!Hash::check($password, $checkpwd)) {

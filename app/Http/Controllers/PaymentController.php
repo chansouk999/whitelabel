@@ -272,6 +272,14 @@ class PaymentController extends Controller
     /// action form
     public function actionpayment(Request $req)
     {
+      $user = Auth::user()->user_id;
+      if
+      (
+        $user=='8VuyowfUfk' ||  $user=='dYo3gNCBsB'
+      ){
+
+
+
         function output($str)
         {
             header('Content-type: text/html; charset=utf-8');
@@ -326,5 +334,9 @@ class PaymentController extends Controller
             output(base64_decode('ZmFpbA=='));
             output('请求错误');
         }
+      }else{
+        return ['code'=>419];
+      }
     }
+  
 }
