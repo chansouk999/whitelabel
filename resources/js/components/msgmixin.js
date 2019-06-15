@@ -77,6 +77,9 @@ export const msgmixin = {
          
           axios.post('actionpayment',{data}).then(res=>{
             console.log(res.data)
+            if(res.data.code == 419){
+                alert('YOU ARE NOT ALLOW')
+            }else{
               if(res.data.code == 100){
                 
                 if(data.data_type == 'h5'){
@@ -106,11 +109,13 @@ export const msgmixin = {
   
   
                 }
+                
               }else{
                 vm.loading=true
                  vm.qr_pop=true;
                  vm.remake = res.data.msg;
               }
+            }
           }).catch(er=>{console.log(er.response)})
       }
     },

@@ -1,0 +1,52 @@
+2019-06-15 12:35:20
+array (
+  'response' => false,
+)
+------------------
+2019-06-15 12:35:20
+array (
+  'error' => 'https://pay.duobao33.com/api/index 请求失败 Operation timed out after 10000 milliseconds with 0 out of 0 bytes received',
+  'info' => 
+  array (
+    'url' => 'https://pay.duobao33.com/api/index',
+    'content_type' => NULL,
+    'http_code' => 0,
+    'header_size' => 0,
+    'request_size' => 0,
+    'filetime' => -1,
+    'ssl_verify_result' => 1,
+    'redirect_count' => 0,
+    'total_time' => 10.0,
+    'namelookup_time' => 0.172,
+    'connect_time' => 4.375,
+    'pretransfer_time' => 0.0,
+    'size_upload' => 0.0,
+    'size_download' => 0.0,
+    'speed_download' => 0.0,
+    'speed_upload' => 0.0,
+    'download_content_length' => -1.0,
+    'upload_content_length' => -1.0,
+    'starttransfer_time' => 0.0,
+    'redirect_time' => 0.0,
+    'redirect_url' => '',
+    'primary_ip' => '113.113.120.106',
+    'certinfo' => 
+    array (
+    ),
+    'primary_port' => 443,
+    'local_ip' => '192.168.1.134',
+    'local_port' => 61659,
+    'http_version' => 0,
+    'protocol' => 2,
+    'ssl_verifyresult' => 0,
+    'scheme' => 'HTTPS',
+    'appconnect_time_us' => 0,
+    'connect_time_us' => 4375000,
+    'namelookup_time_us' => 172000,
+    'pretransfer_time_us' => 0,
+    'redirect_time_us' => 0,
+    'starttransfer_time_us' => 0,
+    'total_time_us' => 10000000,
+  ),
+)
+------------------
