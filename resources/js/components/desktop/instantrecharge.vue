@@ -609,7 +609,23 @@ export default {
     }
   },
   methods:{
-  
+      gotar(){
+            let vm = this
+            let opendata = '<div id="contentpop"> <div class="pop-qr" >'+
+                      '<div class="close-op"></div>'+
+                        '<div class="qr-data">'+
+                            '<div id="json_html">'+
+                              vm.order_sn+
+                              '<div class="top-info" >'+vm.remake+'</div>'+
+                              '<img class="qrcode" src="'+vm.qrcode+'" alt="">'+
+                          ' </div>'+
+                        '</div>'+
+                    ' </div> </div>';
+                    var win =  window.open('','LEC68.COM',"width=850,height=1060,location=no,fullscreen=yes");
+                    win.document.write('<html><head><title>Your QR CODE</title><link rel="stylesheet" type="text/css" href="css/mystyle.css"></head><body>');
+                    win.document.write(opendata);
+                    win.document.write('</body></html>');
+        },
   }
 };
 </script>

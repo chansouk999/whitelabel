@@ -19,6 +19,7 @@ export const msgmixin = {
         this.userdatasecond()
     },
     methods: {
+      
         userdatasecond() {
             axios
               .get("/userdetaildata")
@@ -77,45 +78,29 @@ export const msgmixin = {
          
           axios.post('actionpayment',{data}).then(res=>{
             console.log(res.data)
-            // if(res.data.code == 419){
-            //     alert('YOU ARE NOT ALLOW')
-            // }else{
-            //   if(res.data.code == 100){
+            if(res.data.code == 419){
+                alert('YOU ARE NOT ALLOW')
+            }else{
+              if(res.data.code == 100){
                 
-            //     if(data.data_type == 'h5'){
+                if(data.data_type == 'h5'){
                   
-            //     }else if(data.data_type == 'json'){
-            //       vm.loading=true
-            //       vm.qr_pop=true;
-            //       vm.order_sn = res.data.data.order_sn
-            //       vm.remake = res.data.data.remark;
-            //       vm.qrcode = res.data.data.qrcode;
+                }else if(data.data_type == 'json'){
+                  vm.loading=true
+                  vm.qr_pop=true;
+                  vm.order_sn = res.data.data.order_sn
+                  vm.remake = res.data.data.remark;
+                  vm.qrcode = res.data.data.qrcode;
+                    this.gotar()
   
-                    let opendata = '<div id="contentpop"> <div class="pop-qr" >'+
-                      '<div class="close-op"></div>'+
-                        '<div class="qr-data">'+
-                            '<div id="json_html">'+
-                              vm.order_sn+
-                              '<div class="top-info" >'+vm.remake+'</div>'+
-                              '<img class="qrcode" src="'+vm.qrcode+'" alt="">'+
-                          ' </div>'+
-                        '</div>'+
-                    ' </div> </div>';
-                    var win =  window.open('','LEC68.COM',"width=850,height=1060,location=no,fullscreen=yes");
-                    win.document.write('<html><head><title>Your QR CODE</title><link rel="stylesheet" type="text/css" href="css/mystyle.css"></head><body>');
-                    win.document.write(opendata);
-                    win.document.write('</body></html>');
-  
-  
-  
-            //     }
+                }
                 
-            //   }else{
-            //     vm.loading=true
-            //      vm.qr_pop=true;
-            //      vm.remake = res.data.msg;
-            //   }
-            // }
+              }else{
+                vm.loading=true
+                 vm.qr_pop=true;
+                 vm.remake = res.data.msg;
+              }
+            }
           }).catch(er=>{console.log(er.response)})
       }
     },
