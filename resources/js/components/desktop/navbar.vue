@@ -46,7 +46,7 @@
                   <i class="tim-icons icon-single-02 icon-default"></i>
                   <i class="tim-icons icon-coins icon-hover"></i>
                 </div>
-                {{recommend_friends}}Fuck YOU Bank
+                {{recommend_friends}}
               </a>
             </li>
           </ul>

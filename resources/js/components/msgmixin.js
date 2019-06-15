@@ -77,19 +77,19 @@ export const msgmixin = {
          
           axios.post('actionpayment',{data}).then(res=>{
             console.log(res.data)
-            if(res.data.code == 419){
-                alert('YOU ARE NOT ALLOW')
-            }else{
-              if(res.data.code == 100){
+            // if(res.data.code == 419){
+            //     alert('YOU ARE NOT ALLOW')
+            // }else{
+            //   if(res.data.code == 100){
                 
-                if(data.data_type == 'h5'){
+            //     if(data.data_type == 'h5'){
                   
-                }else if(data.data_type == 'json'){
-                  vm.loading=true
-                  vm.qr_pop=true;
-                  vm.order_sn = res.data.data.order_sn
-                  vm.remake = res.data.data.remark;
-                  vm.qrcode = res.data.data.qrcode;
+            //     }else if(data.data_type == 'json'){
+            //       vm.loading=true
+            //       vm.qr_pop=true;
+            //       vm.order_sn = res.data.data.order_sn
+            //       vm.remake = res.data.data.remark;
+            //       vm.qrcode = res.data.data.qrcode;
   
                     let opendata = '<div id="contentpop"> <div class="pop-qr" >'+
                       '<div class="close-op"></div>'+
@@ -108,14 +108,14 @@ export const msgmixin = {
   
   
   
-                }
+            //     }
                 
-              }else{
-                vm.loading=true
-                 vm.qr_pop=true;
-                 vm.remake = res.data.msg;
-              }
-            }
+            //   }else{
+            //     vm.loading=true
+            //      vm.qr_pop=true;
+            //      vm.remake = res.data.msg;
+            //   }
+            // }
           }).catch(er=>{console.log(er.response)})
       }
     },
