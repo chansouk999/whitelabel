@@ -31,7 +31,7 @@
                 <input type="hidden" class="checkuser" name="" value="false">
             @endif
         <app-lobby
-            recommend_friends="@lang('home.recommend_friends')"
+        recommend_friends="@lang('home.recommend_friends')"
             message="@lang('home.message')"
             myaccount_tra="@lang('home.myaccount_tra')"
             myprivilege="@lang('home.myprivilege')"
@@ -39,6 +39,19 @@
             recharge="@lang('home.recharge')"
             withdraw="@lang('home.withdraw')"
             currentlang="{{Lang::locale()}}"
+            login="@lang('home.login')"
+            register="@lang('home.register')"
+            free_trial="@lang('home.free_trial')"
+            stock1="@lang('home.stock1')"
+            stock2="@lang('home.stock2')"
+            stock3="@lang('home.stock3')"
+            stock4="@lang('home.stock4')"
+            stock5="@lang('home.stock5')"
+            stock6="@lang('home.stock6')"
+            us_stock="@lang('home.us_stock')"
+            cryptocurrencies="@lang('home.cryptocurrencies')"
+            chines_stock="@lang('home.chines_stock')"
+            lobby="@lang('home.lobby')"
         ></app-lobby>
     </div>
    <!--   Core JS Files   -->
@@ -78,6 +91,7 @@
   <!-- Place this tag in your head or just before your close body tag. -->
   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
   <script src="../assets/js/core/bootstrap.min.js"></script>
+  <link href=" https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.css" rel="stylesheet">
 
   <!-- Chart JS -->
   <script src="../assets/js/plugins/chartjs.min.js"></script>

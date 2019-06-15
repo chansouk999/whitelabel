@@ -20,8 +20,6 @@
     <link href="assets/demo/demo.css" rel="stylesheet" />
     <!-- Mystyle -->
     <link href="css/mainmobile.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css" id="theme-styles">
 </head>
 
 <body class="white-content">
@@ -31,9 +29,31 @@
         @else
         <input type="hidden" class="checkuser" name="" value="false">
         @endif
-        @include('sweetalert::alert')
-        <app-mobile recommend_friends="@lang('home.recommend_friends')" message="@lang('home.message')" myaccount_tra="@lang('home.myaccount_tra')" myprivilege="@lang('home.myprivilege')" gamelobby="@lang('home.gamelobby')" recharge="@lang('home.recharge')" withdraw="@lang('home.withdraw')" currentlang="{{Lang::locale()}}" login="@lang('home.login')" register="@lang('home.register')" free_trial="@lang('home.free_trial')" us_stock="@lang('home.us_stock')" cryptocurrencies="@lang('home.cryptocurrencies')" chines_stock="@lang('home.chines_stock')" lobby="@lang('home.lobby')"></app-mobile>
+        <app-mobile 
+        recommend_friends="@lang('home.recommend_friends')" 
+        message="@lang('home.message')" 
+        myaccount_tra="@lang('home.myaccount_tra')" 
+        myprivilege="@lang('home.myprivilege')" 
+        gamelobby="@lang('home.gamelobby')" 
+        recharge="@lang('home.recharge')"
+         withdraw="@lang('home.withdraw')" 
+         currentlang="{{Lang::locale()}}" 
+         login="@lang('home.login')" 
+         register="@lang('home.register')" 
+         free_trial="@lang('home.free_trial')" 
+         us_stock="@lang('home.us_stock')" 
+         cryptocurrencies="@lang('home.cryptocurrencies')" 
+         chines_stock="@lang('home.chines_stock')" 
+         lobby="@lang('home.lobby')"
+          stock1="@lang('home.stock1')"
+        stock2="@lang('home.stock2')"
+        stock3="@lang('home.stock3')"
+        stock4="@lang('home.stock4')"
+        stock5="@lang('home.stock5')"
+        stock6="@lang('home.stock6')"
+            ></app-mobile>
     </div>
+    @include('sweetalert::alert')
     <!--   Core JS Files   -->
     <script src="../assets/js/core/jquery.min.js"></script>
 

@@ -51,16 +51,11 @@
           <!-- /.row -->
           <div class="row mt-5">
             <app-footer></app-footer>
+              <app-alertsidebar></app-alertsidebar>
           </div>
         </div>
       </div>
-      <div class="col-12">
-        <!-- <app-footer></app-footer> -->
-        <app-alertsidebar></app-alertsidebar>
-      </div>
     </div>
-    <!-- /.content-wrapper -->
-    <!-- start your code here! -->
   </div>
 </template>
 <script>

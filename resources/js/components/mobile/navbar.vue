@@ -77,6 +77,7 @@
                         </div>
                       </div>
                       <input
+                        v-model="email"
                         id="email"
                         type="email"
                         class="form-control"
@@ -95,6 +96,7 @@
                         </div>
                       </div>
                       <input
+                        v-model="password"
                         id="password"
                         type="password"
                         class="form-control"
@@ -107,9 +109,13 @@
                   </div>
                   <div class="card-footer">
                     <button
-                      type="submit"
                       class="btn btn-default animation-on-hover btn-lg btn-block mb-3"
-                      @click="ismenu=!ismenu"
+                      @click.prevent="checklogin"
+                    >Login</button>
+                    <button
+                      style="visibility:hidden"
+                      type="submit"
+                      class="btn btn-default btn-loginder animation-on-hover btn-lg btn-block mb-3"
                     >Login</button>
                     <div class="d-flex justify-content-between">
                       <a
@@ -163,6 +169,7 @@
                             </div>
                           </div>
                           <input
+                            v-model="reg_name"
                             id="name"
                             type="text"
                             class="form-control"
@@ -181,6 +188,7 @@
                             </div>
                           </div>
                           <input
+                            v-model="reg_email"
                             type="email"
                             class="form-control"
                             name="email"
@@ -196,6 +204,7 @@
                             </div>
                           </div>
                           <input
+                            v-model="reg_password"
                             type="password"
                             class="form-control"
                             name="password"
@@ -205,6 +214,7 @@
                           >
                           <br>
                           <input
+                            v-model="reg_password_confirm"
                             id="password-confirm"
                             type="password"
                             class="form-control"
@@ -213,6 +223,9 @@
                             autocomplete="new-password"
                             placeholder="password_confirmation"
                           >
+                        </div>
+                        <div class="form-check text-left">
+                          <label class="form-check-label">{{msg}}</label>
                         </div>
                         <div class="form-check text-left">
                           <label class="form-check-label">
@@ -226,7 +239,16 @@
                         </div>
                       </div>
                       <div class="card-footer">
-                        <button type="submit" class="btn btn-primary btn-round btn-lg">Register</button>
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn-round btn-lg"
+                          @click.prevent="registercheck"
+                        >Register</button>
+                        <button
+                          type="submit"
+                          style="visibility:hidden"
+                          class="btn btn-primary btn-round btn-lg btnregister"
+                        >Register</button>
                       </div>
                     </form>
                   </div>
@@ -405,6 +427,13 @@
 export default {
   data() {
     return {
+      msg: "we are waiting for you",
+      reg_name: null,
+      reg_email: null,
+      reg_password: null,
+      reg_password_confirm: null,
+      email: null,
+      password: null,
       isShowonlyIndex: false,
       navShowName: "message",
       ismenu: false,
@@ -418,16 +447,177 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
+  watch: {
+    reg_email(data) {
+      let vm = this;
+      let com = data.split("@");
+      let gotcom = com[1].split(".")[1];
+      if (!data.includes("@") || !data.includes(".com") || gotcom.length > 3) {
+        vm.msg = "Check email form Ex:abc@gmail.com";
+      } else {
+        vm.msg = "Email correct!!";
+      }
+    },
+    reg_password_confirm(data) {
+      let vm = this;
+
+      if (data.length > 7) {
+        if (data == vm.reg_password) {
+          vm.msg = "password matched";
+          $(".reg_password").css("border", "1px solid green");
+        } else {
+          vm.msg = "password not match";
+          $(".reg_password").css("border", "1px solid red");
+        }
+      } else {
+        vm.msg = "password must be bigger than 7 character";
+      }
+    },
+    reg_password(data) {
+      let vm = this;
+      if (data.length > 7) {
+        if (data == vm.reg_password_confirm) {
+          vm.msg = "password matched";
+          $(".reg_password").css("border", "1px solid green");
+        } else {
+          vm.msg = "password not match";
+          $(".reg_password").css("border", "1px solid red");
+        }
+      } else {
+        vm.msg = "password must be bigger than 7 character";
+      }
+    }
+  },
   components: {},
   methods: {
+    registercheck() {
+      let vm = this;
+
+      if (
+        vm.reg_name === null ||
+        vm.reg_email === null ||
+        vm.reg_password === null ||
+        vm.reg_password_confirm === null
+      ) {
+        alert("Please Complete the form");
+      } else {
+        let com = vm.reg_email.split("@");
+        let gotcom = com[1].split(".")[1];
+        if (
+          !vm.reg_email.includes("@") ||
+          !vm.reg_email.includes(".com") ||
+          gotcom.length > 3
+        ) {
+          alert('Check your email "@xxxxx.com" before submit ');
+        } else if (vm.reg_password !== vm.reg_password_confirm) {
+          vm.reg_password = null;
+          vm.reg_password_confirm = null;
+          alert("Password not Match");
+        } else if (vm.reg_password.length < 7) {
+          vm.reg_password = null;
+          vm.reg_password_confirm = null;
+          alert("Password Must be Bigger Than 7 Character");
+        } else {
+          axios
+            .post("checkreigster", { name: vm.reg_name, email: vm.reg_email })
+            .then(res => {
+              if (res.data.success === "nameexist") {
+                alert("name already in use try another");
+              } else if (res.data.success === "emailexist") {
+                alert("email already in use try another");
+              } else {
+                $(".btnregister").click();
+              }
+            })
+            .catch(er => {
+              console.log(er.res);
+            });
+        }
+      }
+    },
+    // asdasdasdasd
+    checklogin() {
+      let vm = this;
+      let data = {
+        email: vm.email,
+        pwd: vm.password
+      };
+      if (data.email == null || data.pwd == null) {
+        alert("Please Complete the form");
+      } else if (!vm.email.includes("@") || !vm.email.includes(".com")) {
+        alert('Check your email "@xxxxx.com" before submit ');
+      } else {
+        axios
+          .post("checklogin", data)
+          .then(res => {
+            if (res.data.success == "notfound") {
+              console.log(res.data);
+              alert("Email not found");
+              // Swal.fire({
+              //   type: "error",
+              //   title: "Oops...",
+              //   text: "please try again later!",
+              //   footer: "<a href=>forgot password?</a>",
+              //   timer: 2500,
+              //   content: el
+              // });
+            } else if (res.data.success == "passwordnotmatch") {
+              console.log(res.data);
+              alert("Please check your password");
+              // this.$notify({
+              //   group: "foo",
+              //   title: "Important message",
+              //   text: "Hello user! This is a notification!"
+              // });
+            } else {
+              console.log(res.data);
+              $(".btn-loginder").click();
+            }
+          })
+          .catch(er => {
+            console.log(er.response);
+          });
+      }
+    },
+
     myaccount() {
-      $("#myaccountlink")[0].click();
+      let url = window.location.href
+        .split("/")
+        .pop()
+        .split("?")[0];
+      // alert(url)
+      if (url == "message") {
+        $("#myaccountlink")[0].click();
+        window.location = "/message?page=myaccount";
+      } else {
+        window.location = "/message?page=myaccount";
+      }
     },
     withDrawClick() {
-      $("#withdraw")[0].click();
+      let url = window.location.href
+        .split("/")
+        .pop()
+        .split("?")[0];
+      // alert(url)
+      if (url == "message") {
+        $("#withDrawClick")[0].click();
+        window.location = "/message?page=withDrawClick";
+      } else {
+        window.location = "/message?page=withDrawClick";
+      }
     },
     rechargeClick() {
-      $("#recharge")[0].click();
+      let url = window.location.href
+        .split("/")
+        .pop()
+        .split("?")[0];
+      // alert(url);
+      if (url == "message") {
+        $("#recharge")[0].click();
+        window.location = "/message?page=recharge";
+      } else {
+        window.location = "/message?page=recharge";
+      }
     },
     setNavShowName(value, e) {
       this.navShowName = value;
@@ -435,7 +625,20 @@ export default {
       $(e.target.parentElement).addClass("active");
       console.log(e);
     }
-  }
+  },
+  props: [
+    "recommend_friends",
+    "message",
+    "myaccount_tra",
+    "myprivilege",
+    "gamelobby",
+    "recharge",
+    "withdraw",
+    "currentlang",
+    "login",
+    "register",
+    "free_trial"
+  ]
 };
 </script>
 <style scoped>

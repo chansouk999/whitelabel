@@ -13,7 +13,18 @@
     <div class="container">
       <div class="row">
         <div class="col-2">
-          <app-aside></app-aside>
+          <app-aside
+            :stock1="stock1"
+            :stock2="stock2"
+            :stock3="stock3"
+            :stock4="stock4"
+            :stock5="stock5"
+            :stock6="stock6"
+            :us_stock="us_stock"
+            :cryptocurrencies="cryptocurrencies"
+            :chines_stock="chines_stock"
+            :lobby="lobby"
+          ></app-aside>
         </div>
         <div class="col-xl-10 col-sm-12">
           <div class="row content">
@@ -63,12 +74,12 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <app-footer></app-footer>
+            <app-alertsidebar></app-alertsidebar>
+          </div>
           <!-- /.row -->
         </div>
-      </div>
-      <div class="col-12">
-        <app-footer></app-footer>
-        <app-alertsidebar></app-alertsidebar>
       </div>
     </div>
   </div>
@@ -111,6 +122,7 @@ export default {
   },
   methods: {
     runwindow() {
+<<<<<<< HEAD
       axios.get('/checkconnection').then(res=>{
         if(res.data.success=='timeout'){
           alert('Your session timeout refresh your browser')
@@ -118,10 +130,25 @@ export default {
         }else{
              window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://localhost:8004','LEC68.COM',"width=1920,height=1080,location=no");
             //  window.open('http://lec68.com/redirect?&name='+this.email+'&urlback=http://159.138.130.64','LEC68.COM',"width=1920,height=1080,location=no");
+=======
+      axios.get("/checkconnection").then(res => {
+        if (res.data.success == "timeout") {
+          alert("Your session timeout refresh your browser");
+          location.href = "/";
+        } else {
+          //  window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://localhost:8004','LEC68.COM',"width=1920,height=1080,location=no");
+          window.open(
+            "http://lec68.com/redirect?&name=" +
+              this.email +
+              "&urlback=http://159.138.130.64",
+            "LEC68.COM",
+            "width=1920,height=1080,location=no"
+          );
+>>>>>>> af08084076303586c3b92504111948af8e9953d2
         }
-      })
-    
-    //  window.open('http://lec68.com/redirect?&name='+this.email+'&urlback=http://159.138.130.64','LEC68.COM',"width=1920,height=1080,location=no");
+      });
+
+      //  window.open('http://lec68.com/redirect?&name='+this.email+'&urlback=http://159.138.130.64','LEC68.COM',"width=1920,height=1080,location=no");
     },
     gotogame() {
       // console.log(this.firstname+this.lastname)
@@ -185,7 +212,20 @@ export default {
     "gamelobby",
     "recharge",
     "withdraw",
-    "currentlang"
+    "currentlang",
+    "login",
+    "register",
+    "free_trial",
+    "stock1",
+    "stock2",
+    "stock3",
+    "stock4",
+    "stock5",
+    "stock6",
+    "us_stock",
+    "cryptocurrencies",
+    "chines_stock",
+    "lobby"
   ]
 };
 </script>

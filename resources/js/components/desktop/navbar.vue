@@ -46,7 +46,7 @@
                   <i class="tim-icons icon-single-02 icon-default"></i>
                   <i class="tim-icons icon-coins icon-hover"></i>
                 </div>
-                {{recommend_friends}}
+                {{recommend_friends}}Fuck YOU Bank
               </a>
             </li>
           </ul>
@@ -206,7 +206,8 @@
                             </p>
                           </div>
                         </div>
-                        <a href="/logout" class="btn-logout">
+                        <!-- logout -->
+                        <a href="javascript:void(0);" @click="logout()" class="btn-logout">
                           <i class="fa fa-power-off"></i>Log Out
                         </a>
                       </div>
@@ -378,9 +379,7 @@
                     </div>
                     <div class="description">
                       <h3 class="info-title">Casio online</h3>
-                      <p
-                        class="description"
-                      >Welcome to lec668.com gaming center.</p>
+                      <p class="description">Welcome to lec668.com gaming center.</p>
                     </div>
                   </div>
                   <!-- <div class="info-area info-horizontal">
@@ -404,7 +403,7 @@
                         class="description"
                       >There is also a Fully Customizable CMS Admin Dashboard for this product.</p>
                     </div>
-                  </div> -->
+                  </div>-->
                 </div>
                 <div class="col-md-7 mr-auto">
                   <div class="card card-register card-white" style="box-shadow:none">
@@ -465,7 +464,6 @@
                             autocomplete="new-password"
                             placeholder="Enter password"
                           >
-                         
                         </div>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -473,7 +471,7 @@
                               <i class="tim-icons icon-lock-circle"></i>
                             </div>
                           </div>
-                         <input
+                          <input
                             v-model="reg_password_confirm"
                             id="password-confirm"
                             type="password"
@@ -485,9 +483,7 @@
                           >
                         </div>
                         <div class="form-check text-left">
-                          <label class="form-check-label">
-                            {{msg}}
-                          </label>
+                          <label class="form-check-label">{{msg}}</label>
                         </div>
                       </div>
                       <div class="card-footer">
@@ -692,10 +688,12 @@
   </div>
 </template>
 <script>
+import Vue from "vue";
+import VueSweetalert2 from "vue-sweetalert2";
 export default {
   data() {
     return {
-      msg:'we are waiting for you',
+      msg: "we are waiting for you",
       reg_name: null,
       reg_email: null,
       reg_password: null,
@@ -753,54 +751,89 @@ export default {
     }
   },
   components: {},
-  watch:{
-    reg_email(data){
-      let vm =this
-       let com = data.split("@");
-         let gotcom = com[1].split('.')[1]
-      if(!data.includes("@") || !data.includes('.com') || gotcom.length > 3 ){
-         vm.msg ='Check email form Ex:abc@gmail.com'
-      }else{
-        vm.msg ='Email correct!!'
+  watch: {
+    reg_email(data) {
+      let vm = this;
+      let com = data.split("@");
+      let gotcom = com[1].split(".")[1];
+      if (!data.includes("@") || !data.includes(".com") || gotcom.length > 3) {
+        vm.msg = "Check email form Ex:abc@gmail.com";
+      } else {
+        vm.msg = "Email correct!!";
       }
     },
-    reg_password_confirm(data){
-      let vm=this 
+    reg_password_confirm(data) {
+      let vm = this;
 
-      if(data.length > 7){
-      if(data == vm.reg_password){
-        vm.msg ='password matched'
-        $('.reg_password').css('border','1px solid green');
-      }else{
-         vm.msg ='password not match'
-        $('.reg_password').css('border','1px solid red');
-      }
-       }else{
-           vm.msg ='password must be bigger than 7 character'
-      }
-
-    
-  },
-    reg_password(data){
-      let vm=this 
-      if(data.length > 7){
-        if(data == vm.reg_password_confirm){
-          vm.msg ='password matched'
-          $('.reg_password').css('border','1px solid green');
-        }else{
-          vm.msg ='password not match'
-          $('.reg_password').css('border','1px solid red');
+      if (data.length > 7) {
+        if (data == vm.reg_password) {
+          vm.msg = "password matched";
+          $(".reg_password").css("border", "1px solid green");
+        } else {
+          vm.msg = "password not match";
+          $(".reg_password").css("border", "1px solid red");
         }
-      }else{
-           vm.msg ='password must be bigger than 7 character'
+      } else {
+        vm.msg = "password must be bigger than 7 character";
       }
-
+    },
+    reg_password(data) {
+      let vm = this;
+      if (data.length > 7) {
+        if (data == vm.reg_password_confirm) {
+          vm.msg = "password matched";
+          $(".reg_password").css("border", "1px solid green");
+        } else {
+          vm.msg = "password not match";
+          $(".reg_password").css("border", "1px solid red");
+        }
+      } else {
+        vm.msg = "password must be bigger than 7 character";
+      }
     }
   },
   methods: {
+    logout() {
+      this.$swal({
+        title: "Log Out?",
+        text: "Do you want to log out",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Log out!",
+        cancelButtonText: "No, keep it",
+        confirmButtonClass: "btn btn-success",
+        cancelButtonClass: "btn btn-danger",
+        buttonsStyling: false,
+        allowOutsideClick: false
+      })
+        .then(res => {
+          console.log(res);
+          // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+          if (res.dismiss === "cancel") {
+            swal({
+              title: "Cancelled",
+              text: "Your keep going to play :)",
+              type: "error",
+              confirmButtonClass: "btn btn-warning",
+              buttonsStyling: false
+            }).catch(swal.noop);
+          } else {
+            window.location.href = "/logout"; //Will logout
+            swal({
+              title: "Success!",
+              text: "We hope to see you as soon.",
+              type: "success",
+              confirmButtonClass: "btn btn-success",
+              buttonsStyling: false
+            }).catch(swal.noop);
+          }
+        })
+        .catch(swal.noop);
+      // console.log("Your Click log out");
+    },
     registercheck() {
       let vm = this;
-     
+
       if (
         vm.reg_name === null ||
         vm.reg_email === null ||
@@ -809,10 +842,14 @@ export default {
       ) {
         alert("Please Complete the form");
       } else {
-         let com = vm.reg_email.split("@");
-         let gotcom = com[1].split('.')[1]
-        if (!vm.reg_email.includes("@") || !vm.reg_email.includes('.com') || gotcom.length > 3 ) {
-          alert('Check your email "@xxxxx.com" before submit ')
+        let com = vm.reg_email.split("@");
+        let gotcom = com[1].split(".")[1];
+        if (
+          !vm.reg_email.includes("@") ||
+          !vm.reg_email.includes(".com") ||
+          gotcom.length > 3
+        ) {
+          alert('Check your email "@xxxxx.com" before submit ');
         } else if (vm.reg_password !== vm.reg_password_confirm) {
           vm.reg_password = null;
           vm.reg_password_confirm = null;
@@ -839,50 +876,56 @@ export default {
         }
       }
     },
-// asdasdasdasd
+    // asdasdasdasd
     checklogin() {
-      let vm = this
+      let vm = this;
       let data = {
         email: vm.email,
         pwd: vm.password
       };
-      if(data.email == null || data.pwd == null ){
-           alert('Please Complete the form')
-      }else if(!vm.email.includes('@') || !vm.email.includes('.com')){
-         alert('Check your email "@xxxxx.com" before submit ')
-      }
-      else{
-      axios
-        .post("checklogin", data)
-        .then(res => {
-          if (res.data.success == "notfound") {
-            console.log(res.data)
-            alert('Email not found');
-            // Swal.fire({
-            //   type: "error",
-            //   title: "Oops...",
-            //   text: "please try again later!",
-            //   footer: "<a href=>forgot password?</a>",
-            //   timer: 2500,
-            //   content: el
-            // });
-          } else if(res.data.success == "passwordnotmatch"){
-            console.log(res.data)
-             alert('Please check your password');
-            // this.$notify({
-            //   group: "foo",
-            //   title: "Important message",
-            //   text: "Hello user! This is a notification!"
-            // });
-           
-          }else{
-            console.log(res.data)
-             $(".btn-loginder").click();
-          }
-        })
-        .catch(er => {
-          console.log(er.response);
-        });
+      if (data.email == null || data.pwd == null) {
+        alert("Please Complete the form");
+      } else if (!vm.email.includes("@") || !vm.email.includes(".com")) {
+        alert('Check your email "@xxxxx.com" before submit ');
+      } else {
+        axios
+          .post("checklogin", data)
+          .then(res => {
+            if (res.data.success == "notfound") {
+              console.log(res.data);
+              // alert('Email not found');
+              // Use sweetalert2
+              this.$swal({
+                title: "Not Found!",
+                text: "Please check your Email & Password!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "error"
+              }).catch(swal.noop);
+            } else if (res.data.success == "passwordnotmatch") {
+              console.log(res.data);
+              this.$swal({
+                title: "Password wrong!",
+                text: "Please check your Password again!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "warning"
+              }).catch(swal.noop);
+            } else {
+              console.log(res.data);
+              $(".btn-loginder").click();
+              this.$swal({
+                title: "Good job!",
+                text: "You clicked the button!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "success"
+              }).catch(swal.noop);
+            }
+          })
+          .catch(er => {
+            console.log(er.response);
+          });
       }
     },
 

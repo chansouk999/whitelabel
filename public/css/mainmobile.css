@@ -461,6 +461,7 @@
     justify-content: center;
     font-weight: 900;
     font-weight: bolder;
+    color: #ff3100a6;
 }
 
 .mobile-bottom-nav__item--active {
@@ -2292,6 +2293,10 @@ nav.navbar ul li.nav-item button.btn-register:active {
 .mbile-chart {
     width: 366px !important;
     margin: 0px 0px 0px -16px;
+}
+
+.swal2-icon.swal2-warning {
+    font-size: 1rem !important;
 }
 
 @media (min-width: 576px) {

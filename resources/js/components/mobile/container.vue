@@ -4,7 +4,14 @@
     <div class="container">
       <div class="row">
         <div class="col-2">
-          <asides></asides>
+          <asides
+            :stock1="stock1"
+            :stock2="stock2"
+            :stock3="stock3"
+            :stock4="stock4"
+            :stock5="stock5"
+            :stock6="stock6"
+          ></asides>
         </div>
         <div class="col-xl-10 col-sm-12 px-1">
           <div class="main-panel">
@@ -201,11 +208,7 @@
           <div class="tab-content tab-space p-0">
             <div class="tab-pane show active" id="link1" aria-expanded="true">
               <div class="container shadow-lg">
-                <chartjs 
-                backgroundcolor="#ff8d72" 
-                bordercolor="red" 
-                typechart="line"
-                ></chartjs>
+                <chartjs backgroundcolor="#ff8d72" bordercolor="red" typechart="line"></chartjs>
                 <div class="row d-flex justify-content-between py-2">
                   <div class="d-flex">
                     <span class="game_rBox">
@@ -521,7 +524,13 @@ export default {
     "us_stock",
     "cryptocurrencies",
     "chines_stock",
-    "lobby"
+    "lobby",
+    "stock1",
+    "stock2",
+    "stock3",
+    "stock4",
+    "stock5",
+    "stock6"
   ]
 };
 </script>

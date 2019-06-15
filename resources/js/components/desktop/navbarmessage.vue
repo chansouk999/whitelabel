@@ -91,7 +91,8 @@
       </div>
     </div>
 
-    <div class="bg-secondary p-3">
+
+    <div class="bg-secondary pr-3 py-2 ">
       <nav aria-label="breadcrumb" role="navigation">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
