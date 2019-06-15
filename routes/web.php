@@ -55,6 +55,7 @@ Route::get('/home', function () {
 // Route::get('/',)
 Route::get('/', 'MasterController@welcome')->name('home');
 Route::get('/checkconnection', 'MasterController@checkconnection');
+Route::post('/transfertoapi', 'MasterController@transfertoapi');
 
 Route::post('/checkreigster', 'MasterController@checkreigster');
 Route::get('/userdetaildata', 'MasterController@userdetaildata');
@@ -148,7 +149,7 @@ Route::get('/redirectback', function () {
         'Authorization' => 'Bearer ' . $accessdata['access_token']
     ];
     $resuser = $http->get('http://localhost:8003/api/users', ['headers' => $header]);
-  $data =  json_decode((string)$resuser->getBody(), true);
+   $data =  json_decode((string)$resuser->getBody(), true);
     $date = date('Y-m-d');
     $check = access_token::where([['created_at', 'like', '%' . $date . '%'], ['user_id', '=', '' . $data['user_id'] . '']])->get()->count();
     if ($check < 1) {
