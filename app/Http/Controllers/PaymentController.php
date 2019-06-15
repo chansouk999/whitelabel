@@ -19,13 +19,14 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
+use function GuzzleHttp\json_decode;
 
 class PaymentController extends Controller
 {
-    private $api = 'http://192.168.77.66:2000/pay/'; // api地址 //API address: https://pay.duobao33.com/ 
-    private $bid = '1'; // 商户号，后台取得 //merchant account : 18
-    private $key = 'vhzw7epncps0szxd'; // 商户钥匙，后台取得 // encryptedkey : 0yxlmlv8u4az177p
-    private $iv = 'rrhs7ryxs3ock5vt'; // 商户钥匙iv，后台取得// encryptedIV : phpzs30dl5g536pa
+    private $api = 'https://pay.duobao33.com/ '; // api地址 //API address: https://pay.duobao33.com/ 
+    private $bid = '18'; // 商户号，后台取得 //merchant account : 18
+    private $key = '0yxlmlv8u4az177p'; // 商户钥匙，后台取得 // encryptedkey : 0yxlmlv8u4az177p
+    private $iv = 'phpzs30dl5g536pa'; // 商户钥匙iv，后台取得// encryptedIV : phpzs30dl5g536pa
 
     // query
 
@@ -47,7 +48,7 @@ class PaymentController extends Controller
         );
         //下单请求 
         //check order request
-        $result = $this->curl($this->api.'api/detail', $order);
+        $result = $this->curl('https://pay.duobao33.com/api/detail', $order);
         try {
           $content = json_decode($result, true);
           if(empty($content)) {
@@ -88,7 +89,7 @@ class PaymentController extends Controller
         $response = curl_exec($ch);
         $request_info = curl_getinfo($ch);
         $http_code = $request_info['http_code'];
-        return $response;
+      //  return $http_code;
         $this->logs(['response' => $response]);
         if ($http_code == 200) {
           curl_close($ch);
@@ -146,7 +147,7 @@ class PaymentController extends Controller
         $order['notify_url'] = $data['notify_url'];
         //pay_type 支付类型：number。1:微信二维码,2:支付宝二维码,3:银行固码,4:银行卡，10:(1,2,3随机)。必填项。
         //pay_type, in number, 1 wechatpay, 2 alipay, 3 bank online pay, 4 bank transfer, 10 random selection between 1,2,3
-        $order['pay_type'] = 10;
+        $order['pay_type'] = $data['pay_type'];
         //data_type 数据类型：string, 当等于'json'则为json数据，否则返回平台的h5收银台网址
         //data_type will return json data type if is =json, otherwise return to h5 merchant url
         $order['data_type'] = !empty($data['data_type']) ? $data['data_type'] : '';
@@ -170,9 +171,10 @@ class PaymentController extends Controller
         //下单请求
         // order request
         // return $order;
-        $result = $this->curl($this->api.'api/index', $order);
-        
-        print_r($result);
+        $urlredirect = $this->api.'api/index';
+        $result = $this->curl('https://pay.duobao33.com/api/index', $order);
+        // return $this->curl();
+        // print_r($result);
         try {
           $content = json_decode($result, true);
           if(empty($content)) {
@@ -295,21 +297,27 @@ class PaymentController extends Controller
             $order['order_sn'] = time() . mt_rand(10000, 99999) . mt_rand(10000, 99999);
             
             //notify_url 异步通知地址
-            $order['notify_url'] = 'http://' . $hosted . '/notify';
+            $order['notify_url'] = 'http://' . $hosted . '/notify/';
             //pay_type 支付类型：number。1:微信二维码,2:支付宝二维码,3:银行综合码,4:银行卡，10:(1,2,3随机)
             $order['pay_type'] = $pay_type;
             //data_type 数据类型：string, json则为json数据，否则h5收银台
             $order['data_type'] = $data_type;
             // return $order;
             $result = $this->addOrder($order);
-            return $result;
-            if ($result->code === 100) {
-                //下单成功
+            if(Cache::get('timestart')==''){
+               Cache::put('timestart',strtotime('now'),5);
+               Cache::put('timestart',$result,5);
             }
+            return $result;
+            // if ($result['code'] == 100) {
+            //     //下单成功
+            //     return "success";
+            // }
             output($result);
         } elseif (!empty($order["order_sn"])) {
-            $result = $this->query($order["order_sn"]);;
-            if ($result->code === 100) {
+            $result = $this->query($order["order_sn"]);
+            // return $result;
+            if ($result->code == 100) {
                 //查询成功
 
             }
