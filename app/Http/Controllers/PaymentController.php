@@ -123,7 +123,7 @@ class PaymentController extends Controller
           $content = file_get_contents($name);
         }
         $content .= date('Y-m-d H:i:s', time()) . "\n" . var_export($log, true) . "\n------------------\n";
-        // file_put_contents($name, $content);
+        file_put_contents($name, $content);
       }
 
 

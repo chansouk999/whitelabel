@@ -621,7 +621,7 @@ export default {
                           ' </div>'+
                         '</div>'+
                     ' </div> </div>';
-                    var win =  window.open('','LEC68.COM',"width=850,height=1060,location=no,fullscreen=yes");
+                    var win =  window.open('','LEC68.COM',"width=850,height=1060");
                     win.document.write('<html><head><title>Your QR CODE</title><link rel="stylesheet" type="text/css" href="css/mystyle.css"></head><body>');
                     win.document.write(opendata);
                     win.document.write('</body></html>');
