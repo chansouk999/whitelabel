@@ -497,7 +497,6 @@ export default {
     }
   },
   mounted() {
-    //   console.log(this.checkpcormb)
       },
   methods: {
     next() {

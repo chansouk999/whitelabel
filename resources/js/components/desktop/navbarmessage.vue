@@ -3,10 +3,10 @@
     <div class="row px-3">
       <div class="col-md-3 pr-0 bg-navbar">
         <ul>
-          <lh class="nav-title">
+          <li class="nav-title">
             <i class="tim-icons icon-notes"></i>
             {{ myaccount_tra }}
-          </lh>
+          </li>
         </ul>
         <ul class="list-group-navbar">
           <li class="list-navbar">
@@ -32,10 +32,10 @@
       </div>
       <div class="col-md-3 px-0 bg-navbar">
         <ul class="p-0">
-          <lh class="nav-title">
+          <li class="nav-title">
             <i class="tim-icons icon-paper"></i>
             {{ financial_center }}
-          </lh>
+          </li>
         </ul>
         <ul class="list-group-navbar">
           <li class="list-navbar">
@@ -62,10 +62,10 @@
       </div>
       <div class="col-md-3 px-0 bg-navbar">
         <ul class="p-0">
-          <lh class="nav-title">
+          <li class="nav-title">
             <i class="tim-icons icon-wallet-43"></i>
             {{ customer_information }}
-          </lh>
+          </li>
         </ul>
         <ul class="list-group-navbar">
           <li class="list-navbar">
@@ -88,10 +88,10 @@
       </div>
       <div class="col-md-3 pl-0 bg-navbar">
         <ul class="p-0">
-          <lh class="nav-title">
+          <li class="nav-title">
             <i class="tim-icons icon-bulb-63"></i>
             {{ customer_care }}
-          </lh>
+          </li>
         </ul>
         <ul class="list-group-navbar">
           <li class="list-navbar">

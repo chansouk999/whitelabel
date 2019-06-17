@@ -213,7 +213,7 @@ export default {
                 meta.data.forEach(function(bar, index) {
                   var data = dataset.data[index];
                   ctx.fillStyle = "#ff6c00";
-                  ctx.fillText(data + "%", bar._model.x, bar._model.y - 5);
+                  ctx.fillText(data / 100 + "%", bar._model.x, bar._model.y - 5);
                 });
               });
             }
