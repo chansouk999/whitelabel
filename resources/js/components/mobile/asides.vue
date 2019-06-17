@@ -16,7 +16,7 @@
           <a href="javascript:void(0)" class="simple-text logo-normal">Stock List</a>
         </div>
         <ul class="nav">
-          <li class="nav-aside active">
+          <li class="nav-aside">
             <a href="#">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p class="text-aside">{{stock1}}</p>

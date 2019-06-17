@@ -2666,12 +2666,16 @@ ul.list-group-navbar {
 }
 
 .clash-card__unit-stats .one-third {
-    width: 100%;
+    width: 25%;
     float: left;
     padding: 20px 15px;
 }
 
-.clash-card__unit-stats sup {
+.w-75 {
+    width: 75%;
+}
+
+.clash-card__unit-stats .clash-card__unit-stats--barbarian .clash-card__unit-stats sup {
     position: absolute;
     bottom: 4px;
     font-size: 45%;
@@ -2727,6 +2731,10 @@ ul.list-group-navbar {
 
 .giant-description {
     color: #f6901a;
+}
+
+.clash-card__unit-stats.clash-card__unit-stats--barbarian.clearfix a.third {
+    color: #fff;
 }
 
 @media(min-width: 900px) {
