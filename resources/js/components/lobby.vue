@@ -26,7 +26,176 @@
             :lobby="lobby"
           ></app-aside>
         </div>
+
         <div class="col-xl-10 col-sm-12">
+          <div class="container-wrap">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active">
+                  <img src="assets/img/lobby1.jpg">
+                </li>
+                <li data-target="#myCarousel" data-slide-to="1" class>
+                  <img src="assets/img/lobby2.jpg">
+                </li>
+                <li data-target="#myCarousel" data-slide-to="2" class>
+                  <img src="assets/img/lobby3.jpg">
+                </li>
+              </ol> -->
+
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    class="first-slide"
+                    src="assets/img/lobby1.jpg"
+                    alt="First
+              slide"
+                  >
+                  <div class="container">
+                    <div class="slide-caption">
+                      <h2 class="slide-caption__title">Mussum Ipsum</h2>
+                      <p class="slide-caption__desc">Mé faiz elementum girarzis, nisi eros vermeio.</p>
+                      <div class="d-flex">
+                        <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
+                        <a href="#" class="btn btn-danger btn-simple">Learn More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img
+                    class="second-slide"
+                    src="assets/img/lobby2.jpg"
+                    alt="Second
+              slide"
+                  >
+                  <div class="container">
+                    <div class="slide-captiontwo">
+                      <h2 class="slide-caption__title">Mussum Ipsum</h2>
+                      <p class="slide-caption__desc">Mé faiz elementum girarzis, nisi eros vermeio.</p>
+                      <div class="d-flex">
+                        <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
+                        <a href="#" class="btn btn-danger btn-simple">Learn More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img
+                    class="fourth-slide"
+                    src="assets/img/lobby3.jpg"
+                    alt="fourth
+              slide"
+                  >
+                  <div class="container">
+                    <div class="slide-captiontwo">
+                      <h2 class="slide-caption__title">Mussum Ipsum</h2>
+                      <p class="slide-caption__desc">Mé faiz elementum girarzis, nisi eros vermeio.</p>
+                      <div class="d-flex">
+                        <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
+                        <a href="#" class="btn btn-danger btn-simple">Learn More</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                <img src="assets/img/arrow-left.png">
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                <img src="assets/img/arrow-right.png">
+                <span class="sr-only">Next</span>
+              </a> -->
+            </div>
+          </div>
+          <!-- Sidebar -->
+          <div class="col-md-12">
+            <div class="slide-container">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="wrapper">
+                    <div class="clash-card barbarian">
+                      <div class="clash-card__image clash-card__image--barbarian">
+                        <img src="assets/img/barbarian.png" alt="barbarian">
+                      </div>
+                      <div class="clash-card__level clash-card__level--barbarian">竞咪</div>
+                      <div class="clash-card__unit-name">竞咪</div>
+                      <div
+                        class="clash-card__unit-description barbarian-description"
+                      >独家首创：自主切牌。玩家不仅可以与主播进行语音文字聊天，还可以全程主导整个游戏节奏，全方位拉近玩家与现场真实游戏互动的体验。</div>
+
+                      <div
+                        class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix"
+                      >
+                        <div class="one-third">
+                          <div class="stat">
+                            20
+                            <sup>S</sup>
+                          </div>
+                          <div class="stat-value">Training</div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end clash-card barbarian-->
+                  </div>
+                  <!-- end wrapper -->
+                </div>
+                <div class="col-md-4">
+                  <div class="wrapper">
+                    <div class="clash-card archer">
+                      <div class="clash-card__image clash-card__image--archer">
+                        <img src="assets/img/archer.png" alt="archer">
+                      </div>
+                      <div class="clash-card__level clash-card__level--archer">包桌</div>
+                      <div class="clash-card__unit-name">包桌</div>
+                      <div
+                        class="clash-card__unit-description archer-description"
+                      >VIP包桌可自行控制游戏节奏，尽享更换荷官、飞牌及换靴等优越功能，成就更高级及自主的娱乐享受。</div>
+
+                      <div class="clash-card__unit-stats clash-card__unit-stats--archer clearfix">
+                        <div class="one-third">
+                          <div class="stat">
+                            25
+                            <sup>S</sup>
+                          </div>
+                          <div class="stat-value">Training</div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end clash-card archer-->
+                  </div>
+                  <!-- end wrapper -->
+                </div>
+                <div class="col-md-4 mb-5">
+                  <div class="wrapper">
+                    <div class="clash-card giant">
+                      <div class="clash-card__image clash-card__image--giant">
+                        <img src="assets/img/giant.png" alt="giant">
+                      </div>
+                      <div class="clash-card__level clash-card__level--giant">多台</div>
+                      <div class="clash-card__unit-name">多台</div>
+                      <div
+                        class="clash-card__unit-description giant-description"
+                      >私人定制不同类型的游戏同时投注，随心所欲，多张桌枱任意切换。</div>
+
+                      <div class="clash-card__unit-stats clash-card__unit-stats--giant clearfix">
+                        <div class="one-third">
+                          <div class="stat">
+                            2
+                            <sup>M</sup>
+                          </div>
+                          <div class="stat-value">Training</div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end clash-card giant-->
+                  </div>
+                  <!-- end wrapper -->
+                </div>
+              </div>
+            </div>
+            <!-- end container -->
+          </div>
           <div class="row content">
             <div class="col-4">
               <div class="ft-recipe">
@@ -122,13 +291,19 @@ export default {
   },
   methods: {
     runwindow() {
-      axios.get('/checkconnection').then(res=>{
-        if(res.data.success=='timeout'){
-          alert('Your session timeout refresh your browser')
-          location.href = "/"
-        }else{
-            //  window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://localhost:8004','LEC68.COM',"width=1920,height=1080,location=no");
-             window.open('http://lec68.com/redirect?&name='+this.email+'&urlback=http://159.138.130.64','LEC68.COM',"width=1920,height=1080,location=no");
+      axios.get("/checkconnection").then(res => {
+        if (res.data.success == "timeout") {
+          alert("Your session timeout refresh your browser");
+          location.href = "/";
+        } else {
+          //  window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://localhost:8004','LEC68.COM',"width=1920,height=1080,location=no");
+          window.open(
+            "http://lec68.com/redirect?&name=" +
+              this.email +
+              "&urlback=http://159.138.130.64",
+            "LEC68.COM",
+            "width=1920,height=1080,location=no"
+          );
         }
       });
 
