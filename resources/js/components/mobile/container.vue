@@ -213,6 +213,7 @@
                   bordercolor="red"
                   typechart="line"
                   number_data="false"
+                  :checkpcormb="checkpcormb"
                 ></chartjs>
                 <div class="row d-flex justify-content-between py-2">
                   <div class="d-flex">
@@ -495,7 +496,8 @@ export default {
       return this.$refs.mySwiper.swiper;
     }
   },
-  mounted() {},
+  mounted() {
+      },
   methods: {
     next() {
       this.$refs.flickity.next();
@@ -513,6 +515,7 @@ export default {
     rechargeClick() {
       $("#recharge")[0].click();
     }
+
   },
   props: [
     "recommend_friends",
@@ -535,7 +538,8 @@ export default {
     "stock3",
     "stock4",
     "stock5",
-    "stock6"
+    "stock6",
+    "checkpcormb"
   ]
 };
 </script>

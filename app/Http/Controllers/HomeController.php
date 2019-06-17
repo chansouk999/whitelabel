@@ -40,6 +40,7 @@ class HomeController extends Controller
     }
     public function message()
     {
+
         return view('desktop.message');
     }
     public function indexpage()
@@ -65,7 +66,8 @@ class HomeController extends Controller
     //    Mobile
     public function whitelabel_mobile()
     {
-        return view('mobile.welcome');
+        $checkpcormb= "mb";
+        return view('mobile.welcome', compact('checkpcormb'));
     }
     public function myaccount()
     {

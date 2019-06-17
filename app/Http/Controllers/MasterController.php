@@ -21,7 +21,7 @@ use SebastianBergmann\Environment\Console;
 
 class MasterController extends Controller
 {
-    protected $urlforserver = 'http://159.138.130.64'; // 1 use this if you are running on server 
+    protected $urlforserver = 'http://159.138.130.64'; // 1 use this if you are running on server
     protected $urlforserverapi = 'http://lec68.com'; // 2 use this if you are running on server
     protected $urlforlocal8003 = 'http://localhost:8003'; //1 use this if you are running on localhost
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
@@ -159,10 +159,14 @@ class MasterController extends Controller
         $agent = new Agent();
         if ($agent->isMobile()) {
             // Alert::success('Mobile', 'Mobile Mode');
-            return view('mobile.welcome');
+            $checkpcormb = "mb";
+            return view('mobile.welcome', compact('checkpcormb'));
+            // return view('mobile.message', compact('checkpcormb'));
         } else {
             //  Alert::success('Desktop', 'Desktop Mode');
-            return view('desktop.welcome');
+            $checkpcormb = "pc";
+            return view('desktop.welcome', compact('checkpcormb'));
+            // return view('desktop.message', compact('checkpcormb'));
         }
     }
     public function updatemoney(Request $req)

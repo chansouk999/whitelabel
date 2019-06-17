@@ -111,7 +111,8 @@ export default {
     "stock3",
     "stock4",
     "stock5",
-    "stock6"
+    "stock6",
+    "checkpcormb"
   ]
 };
 </script>
