@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Request extends Model
 {
-    protected $fiiable = [
+    protected $fillable = [
         'userId',
         'requestDetail',
         'amount',
@@ -14,5 +14,6 @@ class Request extends Model
         'detail',
         'requestTime',
         'ip',
+        'status'
     ];
 }

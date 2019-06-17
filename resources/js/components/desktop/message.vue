@@ -23,8 +23,8 @@
             :stock6="stock6"
           ></app-aside>
         </div>
-        <div class="col-xl-10 col-sm-12">
-          <div class="row content">
+        <div class="col-xl-10 col-sm-12 px-0">
+          <div class="content">
             <app-navbarMessage
               :recommend_friends="recommend_friends"
               :message="message"

@@ -5,11 +5,24 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Request as Reqst;
 use DateTime;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\userdetail;
 class Apicontroller extends Controller
 {
+    public function testcode(){
+        $id = Auth::user()->user_id;
+        // date_default_timezone_set("Asia/Shanghai");
+        $date2 = new DateTime;
+        $date2->modify('-650 second');
+        $formatted_date = $date2->format('Y-m-d H:i:s');
+        $latesttopuop =  Reqst::where([['userId', '=', $id],['created_at','>=',''.$formatted_date.'']])->orderby('created_at','desc')->limit(1)->get();
+        $tn = strtotime('now');
+        $now = strtotime($latesttopuop->pluck('created_at')[0]);
+        return $now-$tn;
+    }
     public function userdetail(){
         return Auth::user();
     }

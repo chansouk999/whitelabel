@@ -73,18 +73,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="text-center">1</td>
-              <td>UserID</td>
-              <td>top-up/withdraw balance/withdraw rolling</td>
-              <td>$.....</td>
-              <td>methodID</td>
-              <td>if alipay display' aliplay account's if bank transfer display account number address adnd branch</td>
-              <td>DATATIME</td>
-              <td>192.168.1.1</td>
+            <tr v-for="(data,index) in requestdata" v-if="index >= A && index <= B">
+              <td class="text-center">{{index+1}}</td>
+              <td>{{ data.userId }}</td>
+              <td>{{ data.requestDetail }}</td>
+              <td>{{ data.amount }}</td>
+              <td>{{ data.method }}</td>
+              <td>CardNo : {{ JSON.parse(data.detail).cardno }} ,registerCity : {{ JSON.parse(data.detail).regcity }} ,RegisterProvince : {{ JSON.parse(data.detail).regprovince }} ,Branch : {{ JSON.parse(data.detail).branch }}</td>
+
+              <td>{{ data.requestTime }}</td>
+              <td>{{ data.ip }}</td>
               <td class="td-actions">
                 <span data-toggle="modal" data-target=".approv">
-                  <button
+                  <button @click="actionmethod(method='approve',data.id)"
                     type="button"
                     data-toggle="tooltip"
                     data-placement="bottom"
@@ -95,7 +96,7 @@
                   </button>
                 </span>
                 <span data-toggle="modal" data-target=".deny">
-                  <button
+                  <button @click="actionmethod(method='deny',data.id)"
                     type="button"
                     data-toggle="tooltip"
                     data-placement="bottom"
@@ -144,8 +145,8 @@
             <option value="3">4</option>
           </select>
         </li>
-        <li class="page-item disabled">
-          <span class="page-link">Previous</span>
+        <li class="page-item">
+          <span class="page-link" @click="paginate(method='previous')">Previous</span>
         </li>
         <li class="page-item">
           <a class="page-link" href="#">1</a>
@@ -160,7 +161,7 @@
           <a class="page-link" href="#">3</a>
         </li>
         <li class="page-item">
-          <a class="page-link" href="#">Next</a>
+          <a class="page-link" href="#" @click="paginate(method='next')">Next</a>
         </li>
       </ul>
     </nav>
@@ -458,9 +459,94 @@
   </div>
 </template>
 <script>
-export default {};
-</script>
+import { adminmixin } from "./adminmixin.js";
+export default {
+  mixins: [adminmixin],
+  data() {
+    return {
+      A: 0,
+      B: 19,
+      requestdata: []
+    };
+  },
+  computed: {
+    filterrequest() {
+      // if (this.gamehistorysearch) {
+      //   return this.gamehistory.filter(post => {
+      //     return (
+      //       post.token.includes(this.gamehistorysearch) ||
+      //       post.betStatus.includes(this.gamehistorysearch) ||
+      //       post.betdetail.includes(this.gamehistorysearch)
+      //     );
+      //   });
+      // } else {
+      //   return this.gamehistory;
+      // }
+    }
+  },
+  mounted() {
+    this.getrequestdata();
+  },
+  methods: {
+    actionmethod(method,id){
+      let code = 0;
+      if(method=='approve'){
+         code=200 // success
+      }
+      if(method=='deny'){
+        code==303 // no access
+      }
+      let data = {
+          method:method,
+          code:code,
+          id:id
+      }
+      axios.post('/actionprocess',data).then(res=>{
+        let code = res.data.code
+        let msg = res.data.msg
+        let data = res.data.data
+        console.log(res.data)
+        if(code==200){
+          console.log(msg)
+        }
+        if(code==100){
+          console.log(msg)
+        }
+        if(code==300){
+          console.log(msg)
+        }
+        if(code==500){
+          console.log(msg)
+        }
+      })
 
+    },
+    paginate(method) {
+      let vm = this;
+      if (method == "previous") {
+        if (vm.A > 0) {
+          vm.A -= 20;
+          vm.B -= 20;
+        }
+      } else {
+        if (vm.B < vm.requestdata.length) {
+          vm.A += 20;
+          vm.B += 20;
+        }
+      }
+    },
+    getrequestdata(page, data, code) {
+      let vm = this;
+      axios.get("/getreuest").then(res => {
+        console.log(res.data.data);
+        vm.requestdata = res.data.data.data;
+        // let decode = JSON.parse(vm.requestdata).branch
+        // console.log(decode)
+      });
+    }
+  }
+};
+</script>
 <style scoped>
 </style>
 

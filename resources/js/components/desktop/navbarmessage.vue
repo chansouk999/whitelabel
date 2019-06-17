@@ -1,144 +1,162 @@
 <template>
-  <div class="u-wrap">
-    <div class="u-menu">
-      <div class="umenu-wrap color-bg">
-        <dl>
-          <dt>
+  <div>
+    <div class="row px-3">
+      <div class="col-md-3 pr-0 bg-navbar">
+        <ul>
+          <lh class="nav-title">
             <i class="tim-icons icon-notes"></i>
             {{ myaccount_tra }}
-          </dt>
-          <dd data-sidebar="u_account">
+          </lh>
+        </ul>
+        <ul class="list-group-navbar">
+          <li class="list-navbar">
             <a
               href="#"
               id="myaccountlink"
               @click.prevent="setNavShowName('myaccount',$event)"
             >{{ myaccount_tra }}</a>
-          </dd>
-          <dd data-sidebar="u_friend">
+          </li>
+          <li class="list-navbar">
             <a
               href="#"
               @click.prevent="setNavShowName('recommedndedfriends',$event)"
             >{{ recommend_friends }}</a>
-          </dd>
-          <dd data-sidebar="u_transaction">
+          </li>
+          <li class="list-navbar">
             <a
               href="#"
               @click.prevent="setNavShowName('transactionrecord',$event)"
             >{{ transaction_record }}</a>
-          </dd>
-        </dl>
-        <dl>
-          <dt>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3 px-0 bg-navbar">
+        <ul class="p-0">
+          <lh class="nav-title">
             <i class="tim-icons icon-paper"></i>
             {{ financial_center }}
-          </dt>
-          <dd data-sidebar="u_pay">
+          </lh>
+        </ul>
+        <ul class="list-group-navbar">
+          <li class="list-navbar">
             <a
               href="#"
               id="recharge"
               @click.prevent="setNavShowName('instantrecharge',$event)"
             >{{ instant_recharge }}</a>
-          </dd>
-          <dd data-sidebar="u_withdraw">
+          </li>
+          <li class="list-navbar">
             <a
               href="#"
               id="withDrawClick"
               @click.prevent="setNavShowName('applyforwithdrawal',$event)"
             >{{ apply_for_withdrawal }}</a>
-          </dd>
-          <dd data-sidebar="u_self_rebate">
+          </li>
+          <li class="list-navbar">
             <a
               href="#"
               @click.prevent="setNavShowName('selfservicewashing',$event)"
             >{{ self_service_rolling }}</a>
-          </dd>
-        </dl>
-        <dl>
-          <dt>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3 px-0 bg-navbar">
+        <ul class="p-0">
+          <lh class="nav-title">
             <i class="tim-icons icon-wallet-43"></i>
             {{ customer_information }}
-          </dt>
-          <dd data-sidebar="u_person_pwdIndex">
-            <a href="#" @click.prevent="setNavShowName('changepassword',$event)">{{ change_password }}</a>
-          </dd>
-          <dd data-sidebar="u_bank">
+          </lh>
+        </ul>
+        <ul class="list-group-navbar">
+          <li class="list-navbar">
+            <a
+              href="#"
+              @click.prevent="setNavShowName('changepassword',$event)"
+            >{{ change_password }}</a>
+          </li>
+          <li class="list-navbar">
             <a
               href="#"
               id="bankinfoclick"
               @click.prevent="setNavShowName('bankinfo',$event)"
             >{{ bank_info }}</a>
-          </dd>
-          <dd data-sidebar="u_person_phoneIndex">
+          </li>
+          <li class="list-navbar">
             <a href="#" @click.prevent="setNavShowName('modifyphone',$event)">{{ modify_phone }}</a>
-          </dd>
-        </dl>
-        <dl class="border-0">
-          <dt class="active">
-            <i class="tim-icons icon-bulb-63"></i>{{ customer_care }}
-          </dt>
-          <dd data-sidebar="u_sms_subscribeIndex">
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3 pl-0 bg-navbar">
+        <ul class="p-0">
+          <lh class="nav-title">
+            <i class="tim-icons icon-bulb-63"></i>
+            {{ customer_care }}
+          </lh>
+        </ul>
+        <ul class="list-group-navbar">
+          <li class="list-navbar">
             <a href="#" @click.prevent="setNavShowName('subscription',$event)">{{ msmsubscription }}</a>
-          </dd>
-          <dd data-sidebar="u_station_letter" class="active">
+          </li>
+          <li class="list-navbar active">
             <a href="#" @click.prevent="setNavShowName('message',$event)">
               {{ my_message }}
               <!--<shiro:hasAnyRoles name="customer:type:1">-->
               <em class="badge letter" style>2</em>
               <!--</shiro:hasAnyRoles>-->
             </a>
-          </dd>
-        </dl>
+          </li>
+        </ul>
       </div>
     </div>
+    <div class="u-wrap">
+      <div class="bg-secondary pr-3 py-1">
+        <nav aria-label="breadcrumb" role="navigation">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="#">
+                <i class="tim-icons icon-chat-33 icon-default"></i>Message
+              </a>
+            </li>
+            <li class="breadcrumb-item active text-capitalize" aria-current="page">{{navShowName}}</li>
+          </ol>
+        </nav>
+        <div class="u-content" v-if="navShowName ==='myaccount'">
+          <myaccount></myaccount>
+        </div>
+        <div class="u-content" v-if="navShowName ==='recommedndedfriends'">
+          <recommedndedfriends></recommedndedfriends>
+        </div>
+        <div class="u-content" v-if="navShowName ==='transactionrecord'">
+          <transactionrecord></transactionrecord>
+        </div>
+        <div class="u-content" v-if="navShowName ==='instantrecharge'">
+          <instantrecharge></instantrecharge>
+        </div>
+        <div class="u-content" v-if="navShowName ==='applyforwithdrawal'">
+          <applyforwithdrawal></applyforwithdrawal>
+        </div>
+        <div class="u-content" v-if="navShowName ==='selfservicewashing'">
+          <selfservicewashing></selfservicewashing>
+        </div>
 
-
-    <div class="bg-secondary pr-3 py-2 ">
-      <nav aria-label="breadcrumb" role="navigation">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="#">Home</a>
-          </li>
-          <li class="breadcrumb-item">
-            <a href="#">
-              <i class="tim-icons icon-chat-33 icon-default"></i>Message
-            </a>
-          </li>
-          <li class="breadcrumb-item active text-capitalize" aria-current="page">{{navShowName}}</li>
-        </ol>
-      </nav>
-      <div class="u-content" v-if="navShowName ==='myaccount'">
-        <myaccount></myaccount>
-      </div>
-      <div class="u-content" v-if="navShowName ==='recommedndedfriends'">
-        <recommedndedfriends></recommedndedfriends>
-      </div>
-      <div class="u-content" v-if="navShowName ==='transactionrecord'">
-        <transactionrecord></transactionrecord>
-      </div>
-      <div class="u-content" v-if="navShowName ==='instantrecharge'">
-        <instantrecharge></instantrecharge>
-      </div>
-      <div class="u-content" v-if="navShowName ==='applyforwithdrawal'">
-        <applyforwithdrawal></applyforwithdrawal>
-      </div>
-      <div class="u-content" v-if="navShowName ==='selfservicewashing'">
-        <selfservicewashing></selfservicewashing>
-      </div>
-
-      <div class="u-content" v-if="navShowName ==='changepassword'">
-        <changepassword></changepassword>
-      </div>
-      <div class="u-content" v-if="navShowName ==='bankinfo'">
-        <bankinfo></bankinfo>
-      </div>
-      <div class="u-content" v-if="navShowName ==='modifyphone'">
-        <modifyphone></modifyphone>
-      </div>
-      <div class="u-content" v-if="navShowName ==='subscription'">
-        <subscription></subscription>
-      </div>
-      <div class="u-content" v-if="navShowName ==='message'">
-        <message></message>
+        <div class="u-content" v-if="navShowName ==='changepassword'">
+          <changepassword></changepassword>
+        </div>
+        <div class="u-content" v-if="navShowName ==='bankinfo'">
+          <bankinfo></bankinfo>
+        </div>
+        <div class="u-content" v-if="navShowName ==='modifyphone'">
+          <modifyphone></modifyphone>
+        </div>
+        <div class="u-content" v-if="navShowName ==='subscription'">
+          <subscription></subscription>
+        </div>
+        <div class="u-content" v-if="navShowName ==='message'">
+          <message></message>
+        </div>
       </div>
     </div>
   </div>
@@ -182,7 +200,7 @@ export default {
   methods: {
     setNavShowName(value, e) {
       this.navShowName = value;
-      $("dd").removeClass("active");
+      $("ul li").removeClass("active");
       $(e.target.parentElement).addClass("active");
     },
     getct() {

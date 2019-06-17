@@ -15,9 +15,11 @@ use App\access_token;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\userdetail;
+use DateTime;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
-
+use League\Flysystem\Exception;
 
 class MasterController extends Controller
 {
@@ -26,8 +28,105 @@ class MasterController extends Controller
     protected $urlforlocal8003 = 'http://localhost:8003'; //1 use this if you are running on localhost
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
     protected $data = [];
+
+
+
+    public function topupbalance(Request $req)
+    {
+        $amount = $req->amount;
+        try {
+            DB::enableQueryLog();
+            date_default_timezone_set("Asia/Shanghai");
+            $ids = Auth::user()->user_id;
+            $date2 = new DateTime;
+            $date2->modify('-30 second');
+            $formatted_date = $date2->format('Y-m-d H:i:s');
+            $latesttopuop =  Reqst::where([['userId', '=', $ids], ['created_at', '>=', '' . $formatted_date . '']])->orderby('created_at', 'desc')->limit(1)->get();
+            $checkbefore = $latesttopuop->count();
+            if ($checkbefore > 0) {
+                $tn = strtotime('now');
+                $now = strtotime($latesttopuop->pluck('created_at')[0]);
+                $second = $tn - $now;
+                return $this->returncode(203,[$now,$tn], 'Wait for 30 second');
+            } else {
+                $id = Auth::user()->id;
+                $check =  userdetail::where('id', '=', $id)->pluck('bankAccount');
+                if ($check !== '[""]') {
+                    $user =  userdetail::where('id', '=', $id)->get();
+                    $desc = array(
+                        'cardno' => $user->pluck('cardNumber')[0],
+                        'regcity' => $user->pluck('registerCity')[0],
+                        'regprovince' => $user->pluck('registerProvince')[0],
+                        'branch' => $user->pluck('branch')[0],
+                    );
+                    $insert = array(
+                        'userId' => Auth::user()->user_id,
+                        'requestDetail' => 'Top up',
+                        'amount' => $req->amount,
+                        'method' => $user->pluck('methodId')[0],
+                        'detail' => json_encode($desc),
+                        'requestTime' => date('Y-m-d H:i:s'),
+                        'ip' => \Request::getClientIp(),
+                        'status' => 'false',
+                    );
+                    $save = Reqst::create($insert);
+                    if ($save) {
+                        return $this->returncode(200, 'No data', 'success');
+                    } else {
+                        return $this->returncode(300, '', DB::getQueryLog()); //query error
+                    }
+                } else {
+                    return $this->returncode(0, '', 'empty');
+                }
+            }
+        } catch (\Exception $e) {
+            return $this->returncode(500, '', $e->getMessage()); //internal server eeror
+        }
+    }
+    public function savecarddetail(Request $req)
+    {
+        try {
+            $id = Auth::user()->id;
+
+            $update = array(
+                'bankAccount' => $req->bankccount,
+                'cardNumber' => $req->cardnumber,
+                'methodId' => $req->method,
+                'registerProvince' => $req->province,
+                'registerCity' => $req->city,
+                'branch' => $req->branch,
+                'desc' => $req->desc
+            );
+            DB::enableQueryLog();
+            $code = $req->code;
+            $check =  userdetail::where('id', '=', '' . $id . '')->pluck('bankAccount');
+            if ($check !== '[""]' && $code == 200) {
+                return $this->returncode(100, 'No data', 'aleady exist');
+            }
+            if ($code == 202 || $code == 200) {
+                $save = userdetail::where('id', '=', '' . $id . '')->update($update);
+                if ($save) {
+                    return $this->returncode(200, 'No data', 'success');
+                } else {
+                    return $this->returncode(300, '', DB::getQueryLog()); //query error
+                }
+            }
+        } catch (\Exception $e) {
+            return $this->returncode(500, '', $e->getMessage()); //internal server eeror
+        }
+    }
     public function returncode($code, $data, $msg)
     {
+        //100 already exist
+        //200 success 
+        //500 internal erorr
+        //300 query error
+        //99 not enough
+        //0 empty
+        //202  request
+        //203 wait for $second
+        //419 no access
+        // 303 cacle
         return ['code' => $code, 'data' => $data, 'msg' => $msg];
     }
     public function checkuser(array $data)
@@ -118,28 +217,25 @@ class MasterController extends Controller
                 'amount' => $req->amount,
                 'user_id' => $userid,
             ];
-            $response = $http->get($this->urlforlocal8003.'/api/transfermoney/'.$userid.'/'. $req->amount, [ //replace url with $this->urlforserver
+            $response = $http->get($this->urlforlocal8003 . '/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
                 'headers' => $header,
             ]);
             $accessdata = json_decode((string)$response->getBody(), true);
-            if($accessdata['code']==200){
+            if ($accessdata['code'] == 200) {
                 DB::enableQueryLog(); // Enable query log
-                try{
-                    $qr = DB::UPDATE('UPDATE users SET userBalance = userBalance - '.$req->amount.' WHERE user_id ="'.Auth::user()->user_id.'"');
-                    if($qr){
-                        return $this->returncode($accessdata['code'],$accessdata['data'], $accessdata['msg']); 
-                    }else{
-                        return $this->returncode(300,'',DB::getQueryLog());
+                try {
+                    $qr = DB::UPDATE('UPDATE users SET userBalance = userBalance - ' . $req->amount . ' WHERE user_id ="' . Auth::user()->user_id . '"');
+                    if ($qr) {
+                        return $this->returncode($accessdata['code'], $accessdata['data'], $accessdata['msg']);
+                    } else {
+                        return $this->returncode(300, '', DB::getQueryLog()); //query error
                     }
-                }catch(Exception $ex){
-                    return $this->returncode(500,'',$ex->getMessage()); //empty
+                } catch (\Exception $ex) {
+                    return $this->returncode(500, '', $ex->getMessage()); //empty
                 }
-                
-            }else{
-                return $this->returncode($accessdata['code'],$accessdata['data'], $accessdata['msg']); //empty
+            } else {
+                return $this->returncode($accessdata['code'], $accessdata['data'], $accessdata['msg']); //empty
             }
-            
-            
         }
     }
     public function checkconnection()

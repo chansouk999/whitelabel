@@ -18,6 +18,10 @@ export default {
     borderColor: {
       type: String,
       required: true
+    },
+    number_data: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -76,7 +80,7 @@ export default {
             borderWidth: 2,
             borderDash: [],
             borderDashOffset: 0.0,
-            Color:"#ff0000",
+            Color: "#ff0000",
             pointBackgroundColor: "#ff0000",
             pointBorderColor: "rgba(255,255,255,0)",
             pointHoverBackgroundColor: "#00c0ef",
@@ -169,25 +173,27 @@ export default {
         animation: {
           duration: 1,
           onComplete: function() {
-            var chartInstance = this.chart,
-              ctx = chartInstance.ctx;
-            ctx.font = Chart.helpers.fontString(
-              Chart.defaults.global.defaultFontSize,
-              Chart.defaults.global.defaultFontStyle,
-              Chart.defaults.global.defaultFontFamily,
-              Chart.defaults.global.defaultColor
-            );
-            ctx.textAlign = "center";
-            ctx.textBaseline = "bottom";
+            if (this.number_data == true) {
+              var chartInstance = this.chart,
+                ctx = chartInstance.ctx;
+              ctx.font = Chart.helpers.fontString(
+                Chart.defaults.global.defaultFontSize,
+                Chart.defaults.global.defaultFontStyle,
+                Chart.defaults.global.defaultFontFamily,
+                Chart.defaults.global.defaultColor
+              );
+              ctx.textAlign = "center";
+              ctx.textBaseline = "bottom";
 
-            this.data.datasets.forEach(function(dataset, i) {
-              var meta = chartInstance.controller.getDatasetMeta(i);
-              meta.data.forEach(function(bar, index) {
-                var data = dataset.data[index];
-                ctx.fillText(data, bar._model.x, bar._model.y + 7);
-                ctx.fillStyle = "#ffffff";
+              this.data.datasets.forEach(function(dataset, i) {
+                var meta = chartInstance.controller.getDatasetMeta(i);
+                meta.data.forEach(function(bar, index) {
+                  var data = dataset.data[index];
+                  ctx.fillText(data, bar._model.x, bar._model.y + 7);
+                  ctx.fillStyle = "#ffffff";
+                });
               });
-            });
+            }
           }
         }
       }

@@ -13,5 +13,12 @@ class userdetail extends Model
         'lang',	
         'TotalRolling',	
         'AvailableRolling',
+        'bankAccount',
+        'cardNumber',
+        'methodId',
+        'registerProvince',
+        'registerCity',
+        'branch',
+        'desc',
     ];
 }

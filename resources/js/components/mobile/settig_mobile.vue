@@ -38,7 +38,9 @@
           </li>
           <li class="button-container mt-4 pb-0 d-flex justify-content-center">
             <a href="#" class="btn btn-warning btn-ms">在线咨询</a>
-            <a href="/logout" class="btn btn-warning btn-ms">Log Out</a>
+            <span v-if="checkuser == 'true'">
+              <a href="javascript:void(0);" @click="logout()" class="btn btn-warning btn-ms">Log Out</a>
+            </span>
           </li>
         </ul>
       </div>
@@ -46,7 +48,56 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      csrf: document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content"),
+      checkuser: document.querySelector(".checkuser").getAttribute("value")
+    };
+  },
+  methods: {
+    logout() {
+      this.$swal({
+        title: "Log Out?",
+        text: "Do you want to log out",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Log out!",
+        cancelButtonText: "No, keep it",
+        confirmButtonClass: "btn btn-success",
+        cancelButtonClass: "btn btn-danger",
+        buttonsStyling: false,
+        allowOutsideClick: false
+      })
+        .then(res => {
+          console.log(res);
+          // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+          if (res.dismiss === "cancel") {
+            swal({
+              title: "Cancelled",
+              text: "Your keep going to play :)",
+              type: "error",
+              confirmButtonClass: "btn btn-warning",
+              buttonsStyling: false
+            }).catch(swal.noop);
+          } else {
+            window.location.href = "/logout"; //Will logout
+            swal({
+              title: "Success!",
+              text: "We hope to see you as soon.",
+              type: "success",
+              confirmButtonClass: "btn btn-success",
+              buttonsStyling: false
+            }).catch(swal.noop);
+          }
+        })
+        .catch(swal.noop);
+      // console.log("Your Click log out");
+    }
+  }
+};
 </script>
 <style scoped>
 </style>
