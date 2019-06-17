@@ -36,11 +36,13 @@ export default {
     };
   },
   mounted() {
+      let _this = this;
     if (this.checkpcormb == "mb") {
       this.typechart = "line";
       this.number_data = "off";
       this.borderColor = "red";
       this.backgroundcolor = "#ff8d728a";
+      this.backgroundcolors = "#e86211";
       (this.pointBorderWidth = 5),
         (this.pointHoverRadius = 5),
         (this.pointHoverBorderWidth = 5),
@@ -50,55 +52,62 @@ export default {
       this.number_data = "on";
       this.borderColor = "#ff6c00";
       this.backgroundcolor = "#ffc1b3a8";
+      this.backgroundcolors = "#e86211";
       (this.pointBorderWidth = 20),
         (this.pointHoverRadius = 10),
         (this.pointHoverBorderWidth = 15),
         (this.pointRadius = 10);
     }
-    // this.api = "onlinehistory";
-    // axios({
-    //   method: "get",
-    //   url: this.api
-    // })
-    //   .then(response => {
-    //     let dataGet = response.data.onlineHistory;
-    //     dataGet.forEach(element => {
-    //       let date = new Date(element.created_at.replace(/-/g, "/"));
-    //       let dd1 = date.getDate();
-    //       let dd = dd1 < 10 ? "0" + dd1 : dd1;
-    //       let mm1 = date.getMonth() + 1;
-    //       let mm = mm1 < 10 ? "0" + mm1 : mm1;
-    //       let yyyy = date.getFullYear();
-    //       let dates = yyyy + "/" + mm + "/" + dd ;
+    var jsonfile = {
+        "data": [{
+            "writetime": "1",
+            "PT": "200"
+        }, {
+            "writetime": "2",
+            "PT": "300"
+        }, {
+            "writetime": "3",
+            "PT": "400"
+        }, {
+            "writetime": "4",
+            "PT": "1000"
+        }, {
+            "writetime": "5",
+            "PT": "2000"
+        }, {
+            "writetime": "6",
+            "PT": "4000"
+        }, {
+            "writetime": "7",
+            "PT": "6000"
+        },]
+    };
+    var labels = jsonfile.data.map(function(e) {
+        return e.writetime;
+    });
+    var data = jsonfile.data.map(function(e) {
+        return e.PT;
+    });;
+    var datacolor = jsonfile.data.map(function(e) {
+        return e.PT == 2000 ? _this.backgroundcolors : _this.backgroundcolor;
+    });;
 
-    //       this.stockname.push(dates);
 
-    //       let sec_num = parseInt(element.time_online);
-    //    var hours1 = Math.floor(sec_num / 3600);
-    //     //   var minutes1 = Math.floor((sec_num - hours1 * 3600) / 60);
-    //     //   var seconds1 = sec_num - hours1 * 3600 - minutes1 * 60;
-    //     // this.gettimeshow = hours1+':'+minutes1+':'+seconds1;
-
-    //       let minutes = Math.floor(sec_num / 60);
-    //       let seconds = (sec_num % 60) % 60;
-
-    //       this.betwon.push(parseFloat(minutes + "." + seconds));
-    //     });
-    let _this = this;
     let ctx = document.getElementById("chart");
     let myChart = new Chart(ctx, {
       // type: "bar",
       type: this.typechart,
       responsive: true,
       data: {
-        labels: this.stockname,
+        labels: labels,
         datasets: [
           {
             label: "minutes",
-            data: this.betwon,
+            data: data,
             fill: true,
             borderColor: "#ff8d72",
-            backgroundColor: this.backgroundcolor,
+            backgroundColor: datacolor,
+            // backgroundColor: this.backgroundcolor,
             borderWidth: 2,
             borderDash: [],
             borderDashOffset: 0.0,
