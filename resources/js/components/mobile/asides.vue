@@ -17,31 +17,31 @@
         </div>
         <ul class="nav">
           <li class="nav-aside active">
-            <a href="http://finance.sina.com.cn/realstock/company/sh000001/nc.shtml">
+            <a href="#">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p class="text-aside">{{stock1}}</p>
             </a>
           </li>
           <li class="nav-aside">
-            <a href="http://finance.sina.com.cn/realstock/company/sz399001/nc.shtml">
+            <a href="#">
               <i class="tim-icons icon-money-coins"></i>
               <p class="text-aside">{{stock2}}</p>
             </a>
           </li>
           <li class="nav-aside">
-            <a href="http://finance.sina.com.cn/realstock/company/sh000300/nc.shtml">
+            <a href="#">
               <i class="tim-icons icon-user-run"></i>
               <p class="text-aside">{{stock3}}</p>
             </a>
           </li>
           <li class="nav-aside">
-            <a href="http://finance.sina.com.cn/realstock/company/sz399415/nc.shtml">
+            <a href="#">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p class="text-aside">{{stock4}}</p>
             </a>
           </li>
           <li class="nav-aside">
-            <a href="https://finance.sina.com.cn/money/forex/hq/DINIW.shtml">
+            <a href="#">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p class="text-aside">{{stock5}}</p>
             </a>
@@ -57,31 +57,19 @@
             <div class="collapse" id="pagesExamples">
               <ul class="nav">
                 <li>
-                  <a href="https://www.hbg.com/en-us/exchange/#s=btc_usdt">
+                  <a href="#">
                     <span class="sidebar-mini-icon">1</span>
                     <span class="sidebar-normal">1 Minutes</span>
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.hbg.com/en-us/exchange/#s=btc_usdt">
+                  <a href="#">
                     <span class="sidebar-mini-icon">5</span>
                     <span class="sidebar-normal">5 Minutes</span>
                   </a>
                 </li>
               </ul>
             </div>
-          </li>
-          <li class="nav-aside">
-            <div class="qr-wrap">
-              <div class="ocrloader">
-                <em></em>
-                <div>
-                  <img src="/assets/img/qrcode.png" width="127px">
-                </div>
-                <span></span>
-              </div>
-            </div>
-            <p>扫一扫 下载手机亚游</p>
           </li>
         </ul>
       </div>

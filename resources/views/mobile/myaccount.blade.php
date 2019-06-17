@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
-    <title>Whitlabel </title>
+    <title>我的 | 亚游 </title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -45,7 +45,7 @@
          cryptocurrencies="@lang('home.cryptocurrencies')" 
          chines_stock="@lang('home.chines_stock')" 
          lobby="@lang('home.lobby')"
-          stock1="@lang('home.stock1')"
+        stock1="@lang('home.stock1')"
         stock2="@lang('home.stock2')"
         stock3="@lang('home.stock3')"
         stock4="@lang('home.stock4')"
