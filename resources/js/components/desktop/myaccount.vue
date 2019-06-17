@@ -79,13 +79,13 @@
                   <i class="tim-icons icon-refresh-02"></i>刷新额度
                 </a>
                 <hr>id
-<!-- user_id
+                <!-- user_id
 provider_name
 balance
 pro_id
 name
 email
-login_at -->
+                login_at-->
                 <strong>
                   <i class="fa fa-pencil mr-1"></i> 总余额
                 </strong>
@@ -109,7 +109,11 @@ login_at -->
               <div class="card-header p-2">
                 <ul class="nav nav-pills nav-pills-primary" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link active" href="#activity" data-toggle="tab">Activity</a>
+                    <a
+                      class="nav-link active"
+                      href="#activity"
+                      data-toggle="tab"
+                    >My Level Performance</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a>
@@ -128,33 +132,11 @@ login_at -->
                   <div class="active tab-pane" id="activity">
                     <div class="col-lg-12">
                       <p>我的会员星级 (加入尊贵的VIP行列,坐享星级礼遇、超级特权，让您乐在源源不绝的惊喜优惠中)</p>
-                      <app-chart 
-                      typechart="bar"
-                      backgroundcolor="transparent"
-                      borderColor="#ff6c00"
+                      <app-chart
+                        typechart="bar"
+                        backgroundcolor="transparent"
+                        bordercolor="#ff6c00"
                       ></app-chart>
-                      <div class="card shadow p-3 mb-5 bg-light rounded">
-                        <div class="card-body text-left">
-                          <h4 class="card-title">晋升星级投注额统计周期：北京时间周一00:00:00至周日23:59:59</h4>
-                          <p
-                            class="card-text"
-                          >晋级奖金发放时间：成功晋升星级后，奖金将自动进行派发，请在收到奖金派发通知后点击领取即可（奖金领取有效期为30天，过期失效）.</p>
-                        </div>
-                      </div>
-
-                      <div class="card shadow p-3 mb-5 bg-light rounded">
-                        <div class="card-body text-left">
-                          <h4 class="card-title font-weight-bolder text-custome">1343296</h4>
-                          <p class="card-text">推荐朋友可享受朋友产生有效投注额0.1%的奖金，即投即送，上不封顶.</p>
-                          <div class="row">
-                            <div class="col-2">推荐方式：</div>
-                            <div class="col-10">
-                              1.让您的朋友在注册账号的时候填写左侧数字推荐码
-                              <br>2.点击右侧复制链接，将推荐链接发送给您的朋友注册账号
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                   <!-- /.tab-pane -->

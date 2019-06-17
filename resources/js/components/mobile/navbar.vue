@@ -348,8 +348,11 @@
         <nav class="mobile-bottom-nav">
           <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
             <div class="mobile-bottom-nav__item-content">
-              <i class="tim-icons icon-badge"></i>
-              <!-- Recommed Friends -->
+              <a href="#">
+                <i class="tim-icons icon-bank"></i>
+                <p>Home</p>
+                <!-- Recommed Friends -->
+              </a>
             </div>
           </div>
           <div class="mobile-bottom-nav__item">
@@ -358,8 +361,11 @@
               data-toggle="modal"
               data-target="#loginModal"
             >
-              <i class="tim-icons icon-single-02 icon-default"></i>
-              <!-- Login -->
+              <a href="#">
+                <i class="tim-icons icon-single-02 icon-default"></i>
+                <p>Login</p>
+                <!-- Login -->
+              </a>
             </div>
           </div>
           <div class="mobile-bottom-nav__item">
@@ -368,14 +374,20 @@
               data-toggle="modal"
               data-target="#register"
             >
-              <i class="fa fa-user-plus"></i>
-              <!-- Register -->
+              <a href="#">
+                <i class="fa fa-user-plus"></i>
+                <p>Register</p>
+                <!-- Register -->
+              </a>
             </div>
           </div>
           <div class="mobile-bottom-nav__item">
             <div class="mobile-bottom-nav__item-content">
-              <i class="tim-icons icon-settings-gear-63"></i>
-              <!-- Change language -->
+              <a href="#">
+                <i class="tim-icons icon-settings-gear-63"></i>
+                <p>Setting</p>
+                <!-- Change language -->
+              </a>
             </div>
           </div>
         </nav>
@@ -386,14 +398,18 @@
         <nav class="mobile-bottom-nav">
           <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
             <div class="mobile-bottom-nav__item-content">
-              <i class="tim-icons icon-bank"></i>
-              <!--My Account -->
+              <a :href="welcome">
+                <i class="tim-icons icon-bank"></i>
+                <p>{{home}}</p>
+                <!--My Account -->
+              </a>
             </div>
           </div>
           <div class="mobile-bottom-nav__item">
             <div class="mobile-bottom-nav__item-content">
               <a href="#">
                 <i class="tim-icons icon-chat-33 icon-default"></i>
+                <p>{{forum}}</p>
               </a>
               <!-- riviledge -->
             </div>
@@ -402,6 +418,7 @@
             <div class="mobile-bottom-nav__item-content">
               <a href="#">
                 <i class="tim-icons icon-coins icon-default"></i>
+                <p>{{washcode}}</p>
               </a>
               <!-- Recharge -->
             </div>
@@ -409,7 +426,8 @@
           <div class="mobile-bottom-nav__item">
             <div class="mobile-bottom-nav__item-content">
               <a href="#">
-                <i class="tim-icons icon-money-coins icon-default"></i>
+                <i class="tim-icons icon-credit-card"></i>
+                <p>{{recharge}}</p>
               </a>
               <!-- WithDraw -->
             </div>
@@ -419,6 +437,7 @@
             <div class="mobile-bottom-nav__item-content">
               <a href="/myaccount">
                 <i class="tim-icons icon-single-02"></i>
+                <p>{{mine}}</p>
               </a>
               <!-- Profile -->
             </div>
@@ -452,6 +471,7 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
+
   watch: {
     reg_email(data) {
       let vm = this;
@@ -650,7 +670,11 @@ export default {
     "currentlang",
     "login",
     "register",
-    "free_trial"
+    "free_trial",
+    "home",
+"forum",
+"washcode",
+"mine",
   ]
 };
 </script>

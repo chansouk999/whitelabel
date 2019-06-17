@@ -1,6 +1,13 @@
 <template>
   <div>
-    <navbars></navbars>
+    <navbars
+    :home ="home"
+    :forum ="forum"
+    :washcode ="washcode"
+    :recharge ="recharge"
+    :mine ="mine"
+
+    ></navbars>
     <div class="container">
       <div class="row">
         <div class="col-2">
@@ -213,6 +220,7 @@
                   bordercolor="red"
                   typechart="line"
                   number_data="false"
+                  :checkpcormb="checkpcormb"
                 ></chartjs>
                 <div class="row d-flex justify-content-between py-2">
                   <div class="d-flex">
@@ -451,7 +459,7 @@
         </div>
       </div>
     </div>
-    <setting></setting>
+    <setting :logout="logout"></setting>
   </div>
 </template>
 <script>
@@ -495,7 +503,8 @@ export default {
       return this.$refs.mySwiper.swiper;
     }
   },
-  mounted() {},
+  mounted() {
+      },
   methods: {
     next() {
       this.$refs.flickity.next();
@@ -513,6 +522,7 @@ export default {
     rechargeClick() {
       $("#recharge")[0].click();
     }
+
   },
   props: [
     "recommend_friends",
@@ -535,7 +545,13 @@ export default {
     "stock3",
     "stock4",
     "stock5",
-    "stock6"
+    "stock6",
+    "checkpcormb",
+    "home",
+    "forum",
+    "washcode",
+    "mine",
+    "logout"
   ]
 };
 </script>

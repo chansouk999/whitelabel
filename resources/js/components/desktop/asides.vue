@@ -17,26 +17,26 @@
         </div>
         <span v-if="checkuser == 'false'">
           <ul class="nav">
-            <li class="nav-aside active">
-              <a href="http://finance.sina.com.cn/realstock/company/sh000001/nc.shtml">
+            <li class="nav-aside">
+              <a href="#">
                 <img src="assets/img/us_flag.png" alt>
                 <p class="text-aside">{{us_stock}}</p>
               </a>
             </li>
             <li class="nav-aside">
-              <a href="http://finance.sina.com.cn/realstock/company/sz399001/nc.shtml">
+              <a href="#">
                 <img src="assets/img/bitcoin.png" alt>
                 <p class="text-aside">{{cryptocurrencies}}</p>
               </a>
             </li>
             <li class="nav-aside">
-              <a href="http://finance.sina.com.cn/realstock/company/sh000300/nc.shtml">
+              <a href="#">
                 <img src="assets/img/china_flag.png" alt>
                 <p class="text-aside">{{chines_stock}}</p>
               </a>
             </li>
             <li class="nav-aside">
-              <a href="http://finance.sina.com.cn/realstock/company/sz399415/nc.shtml">
+              <a href="#">
                 <img src="assets/img/Aragon-icon.png" alt>
                 <p class="text-aside">{{lobby}}</p>
               </a>
@@ -57,32 +57,32 @@
         </span>
         <span v-if="checkuser == 'true'">
           <ul class="nav">
-            <li class="nav-aside active">
-              <a href="http://finance.sina.com.cn/realstock/company/sh000001/nc.shtml">
+            <li class="nav-aside ">
+              <a href="#">
                 <img src="assets/img/Aeternity-icon.png" alt>
                 <p class="text-aside">{{stock1}}</p>
               </a>
             </li>
             <li class="nav-aside">
-              <a href="http://finance.sina.com.cn/realstock/company/sz399001/nc.shtml">
+              <a href="#">
                 <img src="assets/img/Canada-eCoin-icon.png" alt>
                 <p class="text-aside">{{stock2}}</p>
               </a>
             </li>
             <li class="nav-aside">
-              <a href="http://finance.sina.com.cn/realstock/company/sh000300/nc.shtml">
+              <a href="#">
                 <img src="assets/img/Ark-icon.png" alt>
                 <p class="text-aside">{{stock3}}</p>
               </a>
             </li>
             <li class="nav-aside">
-              <a href="http://finance.sina.com.cn/realstock/company/sz399415/nc.shtml">
+              <a href="#">
                 <img src="assets/img/Augur-icon.png" alt>
                 <p class="text-aside">{{stock4}}</p>
               </a>
             </li>
             <li class="nav-aside">
-              <a href="https://finance.sina.com.cn/money/forex/hq/DINIW.shtml">
+              <a href="#">
                 <img src="assets/img/us_flag.png" alt>
                 <p class="text-aside">{{stock5}}</p>
               </a>
@@ -98,31 +98,19 @@
               <div class="collapse" id="pagesExamples">
                 <ul class="nav">
                   <li>
-                    <a href="https://www.hbg.com/en-us/exchange/#s=btc_usdt">
+                    <a href="#">
                       <span class="sidebar-mini-icon">1</span>
                       <span class="sidebar-normal">1 Minutes</span>
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.hbg.com/en-us/exchange/#s=btc_usdt">
+                    <a href="#">
                       <span class="sidebar-mini-icon">5</span>
                       <span class="sidebar-normal">5 Minutes</span>
                     </a>
                   </li>
                 </ul>
               </div>
-            </li>
-            <li class="nav-aside">
-              <div class="qr-wrap">
-                <div class="ocrloader">
-                  <em></em>
-                  <div>
-                    <img src="/assets/img/qrcode.png" width="127px">
-                  </div>
-                  <span></span>
-                </div>
-              </div>
-              <p>扫一扫 下载手机亚游</p>
             </li>
           </ul>
         </span>

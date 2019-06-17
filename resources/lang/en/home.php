@@ -34,6 +34,25 @@ return [
     "cryptocurrencies"=>"cryptocurrencies",
     "chines_stock"=>"Chines Stock",
     "lobby"=>"Lobby",
+    "phoneverification"=>"Phone Verification",
+    "mytask"=>"My task",
+    "recommendfriends"=>"Recommend friends",
+    "bankinfo"=>"Bank info",
+    "transactionrecord"=>"Transaction Record",
+    "accountsettings"=>"account settings",
+    "unverified"=>"Unverified",
+    "totalbalance"=>"Total balance",
+    "yuan"=>"yuan",
+    "gamebalance"=>"Game balance",
+    "localbalance"=>"Local balance",
+    "fastrecharge"=>"Fast recharge",
+    "applyforwithdrawal"=>"Apply for withdrawal",
+    "selfservicerolling"=>"Self-service Rolling",
+    "home"=>"Home",
+    "forum"=>"Forum",
+    "washcode"=>"Wash Code",
+    "mine"=>"Mine",
+    "logout"=>"Log Out"
 
 
 ];
