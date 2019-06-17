@@ -17,7 +17,7 @@
         </div>
         <span v-if="checkuser == 'false'">
           <ul class="nav">
-            <li class="nav-aside active">
+            <li class="nav-aside">
               <a href="#">
                 <img src="assets/img/us_flag.png" alt>
                 <p class="text-aside">{{us_stock}}</p>
@@ -57,7 +57,7 @@
         </span>
         <span v-if="checkuser == 'true'">
           <ul class="nav">
-            <li class="nav-aside active">
+            <li class="nav-aside ">
               <a href="#">
                 <img src="assets/img/Aeternity-icon.png" alt>
                 <p class="text-aside">{{stock1}}</p>

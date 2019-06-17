@@ -40,7 +40,7 @@
                 <li data-target="#myCarousel" data-slide-to="2" class>
                   <img src="assets/img/lobby3.jpg">
                 </li>
-              </ol> -->
+              </ol>-->
 
               <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -105,7 +105,7 @@
               <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
                 <img src="assets/img/arrow-right.png">
                 <span class="sr-only">Next</span>
-              </a> -->
+              </a>-->
             </div>
           </div>
           <!-- Sidebar -->
@@ -118,7 +118,6 @@
                       <div class="clash-card__image clash-card__image--barbarian">
                         <img src="assets/img/barbarian.png" alt="barbarian">
                       </div>
-                      <div class="clash-card__level clash-card__level--barbarian">竞咪</div>
                       <div class="clash-card__unit-name">竞咪</div>
                       <div
                         class="clash-card__unit-description barbarian-description"
@@ -134,6 +133,12 @@
                           </div>
                           <div class="stat-value">Training</div>
                         </div>
+                        <a href>
+                          <div class="w-75">
+                            <div class="stat">16</div>
+                            <div class="stat-value">Speed</div>
+                          </div>
+                        </a>
                       </div>
                     </div>
                     <!-- end clash-card barbarian-->
@@ -146,7 +151,6 @@
                       <div class="clash-card__image clash-card__image--archer">
                         <img src="assets/img/archer.png" alt="archer">
                       </div>
-                      <div class="clash-card__level clash-card__level--archer">包桌</div>
                       <div class="clash-card__unit-name">包桌</div>
                       <div
                         class="clash-card__unit-description archer-description"
@@ -160,6 +164,16 @@
                           </div>
                           <div class="stat-value">Training</div>
                         </div>
+
+                        <div class="one-third">
+                          <div class="stat">24</div>
+                          <div class="stat-value">Speed</div>
+                        </div>
+
+                        <div class="one-third no-border">
+                          <div class="stat">300</div>
+                          <div class="stat-value">Cost</div>
+                        </div>
                       </div>
                     </div>
                     <!-- end clash-card archer-->
@@ -172,7 +186,6 @@
                       <div class="clash-card__image clash-card__image--giant">
                         <img src="assets/img/giant.png" alt="giant">
                       </div>
-                      <div class="clash-card__level clash-card__level--giant">多台</div>
                       <div class="clash-card__unit-name">多台</div>
                       <div
                         class="clash-card__unit-description giant-description"
@@ -185,6 +198,16 @@
                             <sup>M</sup>
                           </div>
                           <div class="stat-value">Training</div>
+                        </div>
+
+                        <div class="one-third">
+                          <div class="stat">12</div>
+                          <div class="stat-value">Speed</div>
+                        </div>
+
+                        <div class="one-third no-border">
+                          <div class="stat">2250</div>
+                          <div class="stat-value">Cost</div>
                         </div>
                       </div>
                     </div>
