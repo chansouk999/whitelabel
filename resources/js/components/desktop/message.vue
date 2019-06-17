@@ -77,6 +77,7 @@ export default {
     if (myParam == "recharge") {
       $("#recharge")[0].click();
     }
+    console.log(this.checkpcormb+"kkkkkkkkkkkk")
   },
   components: {
     "app-navbar": navbar,
@@ -111,7 +112,8 @@ export default {
     "stock3",
     "stock4",
     "stock5",
-    "stock6"
+    "stock6",
+    "checkpcormb"
   ]
 };
 </script>

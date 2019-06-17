@@ -50,9 +50,10 @@
             cryptocurrencies="@lang('home.cryptocurrencies')"
             chines_stock="@lang('home.chines_stock')"
             lobby="@lang('home.lobby')"
+            checkpcormb="{{$checkpcormb}}"
 
             ></app-desktop>
-            
+
     </div>
     @include('sweetalert::alert')
 

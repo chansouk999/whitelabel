@@ -248,7 +248,8 @@ export default {
     "us_stock",
     "cryptocurrencies",
     "chines_stock",
-    "lobby"
+    "lobby",
+    "checkpcormb"
   ],
   mounted() {},
 

@@ -7,21 +7,24 @@ import VueCharts from "vue-chartjs";
 export default {
   extends: Bar,
   props: {
-    backgroundcolor: {
-      default: "#003679",
+    // backgroundcolor: {
+    //   default: "#003679",
+    //   type: String
+    // },
+    // typechart: {
+    //   type: String,
+    //   required: true
+    // },
+    // borderColor: {
+    //   type: String,
+    //   required: true
+    // },
+    // number_data: {
+    //   type: String,
+    //   required: true
+    // },
+    checkpcormb: {
       type: String
-    },
-    typechart: {
-      type: String,
-      required: true
-    },
-    borderColor: {
-      type: String,
-      required: true
-    },
-    number_data: {
-      type: String,
-      required: true
     }
   },
   data() {
@@ -33,6 +36,25 @@ export default {
     };
   },
   mounted() {
+    if (this.checkpcormb == "mb") {
+      this.typechart = "line";
+      this.number_data = "off";
+      this.borderColor = "red";
+      this.backgroundcolor = "#ff8d728a";
+      (this.pointBorderWidth = 5),
+        (this.pointHoverRadius = 5),
+        (this.pointHoverBorderWidth = 5),
+        (this.pointRadius = 4);
+    } else {
+      this.typechart = "bar";
+      this.number_data = "on";
+      this.borderColor = "#ff6c00";
+      this.backgroundcolor = "#ffc1b3a8";
+      (this.pointBorderWidth = 20),
+        (this.pointHoverRadius = 10),
+        (this.pointHoverBorderWidth = 15),
+        (this.pointRadius = 10);
+    }
     // this.api = "onlinehistory";
     // axios({
     //   method: "get",
@@ -62,7 +84,7 @@ export default {
 
     //       this.betwon.push(parseFloat(minutes + "." + seconds));
     //     });
-
+    let _this = this;
     let ctx = document.getElementById("chart");
     let myChart = new Chart(ctx, {
       // type: "bar",
@@ -84,10 +106,10 @@ export default {
             pointBackgroundColor: "#ff0000",
             pointBorderColor: "rgba(255,255,255,0)",
             pointHoverBackgroundColor: "#00c0ef",
-            pointBorderWidth: 20,
-            pointHoverRadius: 10,
-            pointHoverBorderWidth: 15,
-            pointRadius: 10
+            pointBorderWidth: this.pointBorderWidth,
+            pointHoverRadius: this.pointHoverRadius,
+            pointHoverBorderWidth: this.pointHoverBorderWidth,
+            pointRadius: this.pointRadius
           }
         ]
       },
@@ -147,8 +169,7 @@ export default {
               ticks: {
                 display: true,
                 callback: function(value, index, values) {
-                  console.log("Value " + value);
-                  return Math.round(value).toString() + " K";
+                  return Math.round(value).toString() + "K";
                 }
               }
             }
@@ -170,27 +191,29 @@ export default {
             }
           ]
         },
+        tooltips: {
+          enabled: false
+        },
         animation: {
           duration: 1,
           onComplete: function() {
-            if (this.number_data == true) {
-              var chartInstance = this.chart,
-                ctx = chartInstance.ctx;
-              ctx.font = Chart.helpers.fontString(
-                Chart.defaults.global.defaultFontSize,
-                Chart.defaults.global.defaultFontStyle,
-                Chart.defaults.global.defaultFontFamily,
-                Chart.defaults.global.defaultColor
-              );
-              ctx.textAlign = "center";
-              ctx.textBaseline = "bottom";
-
+            var chartInstance = this.chart,
+              ctx = chartInstance.ctx;
+            ctx.font = Chart.helpers.fontString(
+              (Chart.defaults.global.defaultFontSize = 14),
+              Chart.defaults.global.defaultFontStyle,
+              Chart.defaults.global.defaultFontFamily,
+              Chart.defaults.global.defaultColor
+            );
+            ctx.textAlign = "center";
+            ctx.textBaseline = "bottom";
+            if (_this.number_data == "on") {
               this.data.datasets.forEach(function(dataset, i) {
-                var meta = chartInstance.controller.getDatasetMeta(i);
+                let meta = chartInstance.controller.getDatasetMeta(i);
                 meta.data.forEach(function(bar, index) {
                   var data = dataset.data[index];
-                  ctx.fillText(data, bar._model.x, bar._model.y + 7);
-                  ctx.fillStyle = "#ffffff";
+                  ctx.fillStyle = "#ff6c00";
+                  ctx.fillText(data + "%", bar._model.x, bar._model.y - 5);
                 });
               });
             }
