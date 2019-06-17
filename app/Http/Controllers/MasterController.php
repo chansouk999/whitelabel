@@ -26,9 +26,9 @@ class MasterController extends Controller
     protected $urlforlocal8003 = 'http://localhost:8003'; //1 use this if you are running on localhost
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
     protected $data = [];
-    public function returncode($data)
+    public function returncode($code, $data, $msg)
     {
-        return ['code' => $data];
+        return ['code' => $code, 'data' => $data, 'msg' => $msg];
     }
     public function checkuser(array $data)
     {
@@ -40,9 +40,9 @@ class MasterController extends Controller
         ]);
         $accessdata = json_decode((string)$response->getBody(), true);
         if ($accessdata['code'] == 0) {
-            return $this->returncode(0);
+            return $this->returncode(0, '', 'empty');
         } else {
-            return $this->returncode(200);
+            return $this->returncode(200, '', 'success');
         }
     }
     public function getfreshtoken()
@@ -79,12 +79,13 @@ class MasterController extends Controller
             if ($check < 1) {
                 access_token::create([
                     'user_id' =>  $id,
-                    'access_token' => $accessdata['access_token']
+                    'access_token' => $accessdata
                 ]);
             }
-            return ['token'=>$accessdata['access_token'],$checkuser];
-        }else{
-            return $this->returncode(0);
+            // return ['token'=>$accessdata['access_token']];
+            return $this->returncode(200, $accessdata, 'empty');
+        } else {
+            return $this->returncode(0, '', 'empty');
         }
     }
     public function transfertoapi(Request $req)
@@ -93,33 +94,52 @@ class MasterController extends Controller
         $http = new Client;
         $accesstoken = access_token::where('user_id', '=', '' . $userid . '')->limit(1)->get();
         $countcheck = $accesstoken->count();
-        if ($countcheck < 1) {
-            $token = $this->getfreshtoken()['token'];
-        } else {
+        $resulttoekn = $this->getfreshtoken();
+        // return $resulttoekn['token'];
+        if ($resulttoekn['code'] == 0) {
+            return $this->returncode(0, '', 'empty'); //empty
+        }
+        if ($countcheck < 1 || $resulttoekn['code'] == 200) {
+            $token = $this->getfreshtoken()['data']['access_token'];
+        }
+        if ($countcheck > 0) {
             $token =   $accesstoken->pluck('access_token')[0];
         }
         $userbl = Auth::user()->userBalance;
-        $res =$this->getfreshtoken();
-        return $res;
-        if ($req->amount > $userbl) {
-            return $this->returncode(99);//not enough
-        }elseif($res['code']==0){
-            return $this->returncode(0);
-        }
-        else {
+        if ($req->amount > $userbl || $req->amount == 0) {
+            return $this->returncode(99, '', 'not enough money minimum at 100'); //not enough
+        } else {
             $header = [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $token
             ];
-            // return $header;
-            $response = $http->post($this->urlforlocal8003 . '/api/transfertoapi', [ //replace url with $this->urlforserver
-                'form_params' => [
-                    'amount' => $req->amount,
-                    'user_id' => $userid,
-                ], 'headers' => $header
+            $formdata = [
+                'amount' => $req->amount,
+                'user_id' => $userid,
+            ];
+            $response = $http->get($this->urlforlocal8003.'/api/transfermoney/'.$userid.'/'. $req->amount, [ //replace url with $this->urlforserver
+                'headers' => $header,
             ]);
-            return $accessdata = json_decode((string)$response->getBody(), true);
+            $accessdata = json_decode((string)$response->getBody(), true);
+            if($accessdata['code']==200){
+                DB::enableQueryLog(); // Enable query log
+                try{
+                    $qr = DB::UPDATE('UPDATE users SET userBalance = userBalance - '.$req->amount.' WHERE user_id ="'.Auth::user()->user_id.'"');
+                    if($qr){
+                        return $this->returncode($accessdata['code'],$accessdata['data'], $accessdata['msg']); 
+                    }else{
+                        return $this->returncode(300,'',DB::getQueryLog());
+                    }
+                }catch(Exception $ex){
+                    return $this->returncode(500,'',$ex->getMessage()); //empty
+                }
+                
+            }else{
+                return $this->returncode($accessdata['code'],$accessdata['data'], $accessdata['msg']); //empty
+            }
+            
+            
         }
     }
     public function checkconnection()

@@ -50,3 +50,159 @@ array (
   ),
 )
 ------------------
+2019-06-15 13:05:03
+array (
+  'response' => false,
+)
+------------------
+2019-06-15 13:05:03
+array (
+  'error' => 'https://pay.duobao33.com/api/index 请求失败 Operation timed out after 10000 milliseconds with 0 out of 0 bytes received',
+  'info' => 
+  array (
+    'url' => 'https://pay.duobao33.com/api/index',
+    'content_type' => NULL,
+    'http_code' => 0,
+    'header_size' => 0,
+    'request_size' => 0,
+    'filetime' => -1,
+    'ssl_verify_result' => 1,
+    'redirect_count' => 0,
+    'total_time' => 10.0,
+    'namelookup_time' => 0.172,
+    'connect_time' => 5.313,
+    'pretransfer_time' => 0.0,
+    'size_upload' => 0.0,
+    'size_download' => 0.0,
+    'speed_download' => 0.0,
+    'speed_upload' => 0.0,
+    'download_content_length' => -1.0,
+    'upload_content_length' => -1.0,
+    'starttransfer_time' => 0.0,
+    'redirect_time' => 0.0,
+    'redirect_url' => '',
+    'primary_ip' => '113.113.120.182',
+    'certinfo' => 
+    array (
+    ),
+    'primary_port' => 443,
+    'local_ip' => '192.168.1.134',
+    'local_port' => 65075,
+    'http_version' => 0,
+    'protocol' => 2,
+    'ssl_verifyresult' => 0,
+    'scheme' => 'HTTPS',
+    'appconnect_time_us' => 0,
+    'connect_time_us' => 5313000,
+    'namelookup_time_us' => 172000,
+    'pretransfer_time_us' => 0,
+    'redirect_time_us' => 0,
+    'starttransfer_time_us' => 0,
+    'total_time_us' => 10000000,
+  ),
+)
+------------------
+2019-06-15 13:05:41
+array (
+  'response' => false,
+)
+------------------
+2019-06-15 13:05:41
+array (
+  'error' => 'https://pay.duobao33.com/api/index 请求失败 Failed to connect to pay.duobao33.com port 443: Timed out',
+  'info' => 
+  array (
+    'url' => 'https://pay.duobao33.com/api/index',
+    'content_type' => NULL,
+    'http_code' => 0,
+    'header_size' => 0,
+    'request_size' => 0,
+    'filetime' => -1,
+    'ssl_verify_result' => 0,
+    'redirect_count' => 0,
+    'total_time' => 7.125,
+    'namelookup_time' => 0.234,
+    'connect_time' => 0.0,
+    'pretransfer_time' => 0.0,
+    'size_upload' => 0.0,
+    'size_download' => 0.0,
+    'speed_download' => 0.0,
+    'speed_upload' => 0.0,
+    'download_content_length' => -1.0,
+    'upload_content_length' => -1.0,
+    'starttransfer_time' => 0.0,
+    'redirect_time' => 0.0,
+    'redirect_url' => '',
+    'primary_ip' => '',
+    'certinfo' => 
+    array (
+    ),
+    'primary_port' => 0,
+    'local_ip' => '',
+    'local_port' => 0,
+    'http_version' => 0,
+    'protocol' => 0,
+    'ssl_verifyresult' => 0,
+    'scheme' => '',
+    'appconnect_time_us' => 0,
+    'connect_time_us' => 0,
+    'namelookup_time_us' => 234000,
+    'pretransfer_time_us' => 0,
+    'redirect_time_us' => 0,
+    'starttransfer_time_us' => 0,
+    'total_time_us' => 7125000,
+  ),
+)
+------------------
+2019-06-15 15:34:34
+array (
+  'response' => false,
+)
+------------------
+2019-06-15 15:34:34
+array (
+  'error' => 'https://pay.duobao33.com/api/index 请求失败 Failed to connect to pay.duobao33.com port 443: Timed out',
+  'info' => 
+  array (
+    'url' => 'https://pay.duobao33.com/api/index',
+    'content_type' => NULL,
+    'http_code' => 0,
+    'header_size' => 0,
+    'request_size' => 0,
+    'filetime' => -1,
+    'ssl_verify_result' => 0,
+    'redirect_count' => 0,
+    'total_time' => 7.156,
+    'namelookup_time' => 0.297,
+    'connect_time' => 0.0,
+    'pretransfer_time' => 0.0,
+    'size_upload' => 0.0,
+    'size_download' => 0.0,
+    'speed_download' => 0.0,
+    'speed_upload' => 0.0,
+    'download_content_length' => -1.0,
+    'upload_content_length' => -1.0,
+    'starttransfer_time' => 0.0,
+    'redirect_time' => 0.0,
+    'redirect_url' => '',
+    'primary_ip' => '',
+    'certinfo' => 
+    array (
+    ),
+    'primary_port' => 0,
+    'local_ip' => '',
+    'local_port' => 0,
+    'http_version' => 0,
+    'protocol' => 0,
+    'ssl_verifyresult' => 0,
+    'scheme' => '',
+    'appconnect_time_us' => 0,
+    'connect_time_us' => 0,
+    'namelookup_time_us' => 297000,
+    'pretransfer_time_us' => 0,
+    'redirect_time_us' => 0,
+    'starttransfer_time_us' => 0,
+    'total_time_us' => 7156000,
+  ),
+)
+------------------

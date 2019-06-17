@@ -128,7 +128,8 @@ Route::get('/redirectback', function () {
         $gotpwd[] = substr($p, -1, 1);
     }
     $realpwd = implode('', $gotpwd);
- $dehashed =  $realpwd; //GOTED PASSWORD
+    $dehashed =  $realpwd; //GOTED PASSWORD
+    
     // }
     // return $dehashed;
 

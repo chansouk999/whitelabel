@@ -15,7 +15,7 @@
         <li class="nav-item">
           <a class="nav-link" href="#transfertoapi" role="tab" data-toggle="tab">
             <i class="tim-icons icon-settings"></i>
-            Transfer
+            Transfer Balance to API game
           </a>
         </li>
         <!-- <li class="nav-item">
@@ -242,7 +242,7 @@
                   <div class="col-lg-4 text-right">
                     <!-- <label class="text-dark p-2">充值方式：</label> -->
                     <!-- 支付金额: -->
-                    <label class="text-dark p-2">Transfer amount:</label>
+                    <label class="text-dark p-2"> amount:</label>
                   </div>
                   <div class="col-lg-3">
                     <input
@@ -263,7 +263,7 @@
                       id="submit1"
                       lay-submit
                       lay-filter="submit1"
-                    >Confirm</button>
+                    >Send to lec68.com</button>
                   </div>
                 </div>
               </form>
@@ -621,7 +621,7 @@ export default {
                           ' </div>'+
                         '</div>'+
                     ' </div> </div>';
-                    var win =  window.open('','LEC68.COM',"width=850,height=1060");
+                    var win = window.open('','LEC68.COM',"width=850px,height=1060px");
                     win.document.write('<html><head><title>Your QR CODE</title><link rel="stylesheet" type="text/css" href="css/mystyle.css"></head><body>');
                     win.document.write(opendata);
                     win.document.write('</body></html>');
