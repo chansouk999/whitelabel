@@ -1,6 +1,12 @@
 <template>
   <div>
-    <navbars></navbars>
+    <navbars
+    :home ="home"
+    :forum ="forum"
+    :washcode ="washcode"
+    :recharge ="recharge"
+    :mine ="mine"
+    ></navbars>
     <div class="container">
       <div class="row">
         <div class="col-2">
@@ -38,21 +44,21 @@
                       <div class="card-description p-0 m-0">
                         <div class="card color-bg py-0 my-0">
                           <div class="card-body h-0">
-                            <h4 class="card-title">Total balance (yuan) (元)</h4>
+                            <h4 class="card-title">{{totalbalance}}({{yuan}})</h4>
                             <span class="bala-num">
                               ￥
                               <span id="tBalance">0.00</span>
                             </span>
                             <div class="card-footer">
                               <a href="#" class="card-link">
-                                Game balance
+                                {{gamebalance}}
                                 <span class="bala-num-below">
                                   ￥
                                   <span id="gBalance">0.00</span>
                                 </span>
                               </a>
                               <a href="#" class="card-link">
-                                Local balance
+                                {{localbalance}}
                                 <span class="bala-num-below">
                                   ￥
                                   <span id="lBalance">0.00</span>
@@ -70,19 +76,19 @@
                             <div class="w-33">
                               <div class="info-icon text-center icon-warning shadow-warning">
                                 <i class="tim-icons icon-credit-card"></i>
-                                <p>Fast recharge</p>
+                                <p>{{fastrecharge}}</p>
                               </div>
                             </div>
                             <div class="w-33">
                               <div class="info-icon text-center icon-danger shadow-danger">
                                 <i class="tim-icons icon-coins icon-default"></i>
-                                <p>Apply for withdrawal</p>
+                                <p>{{applyforwithdrawal}}</p>
                               </div>
                             </div>
                             <div class="w-33">
                               <div class="info-icon text-center icon-success shadow-success">
                                 <i class="tim-icons icon-single-02"></i>
-                                <p>Self-service Rolling</p>
+                                <p>{{selfservicerolling}}</p>
                               </div>
                             </div>
                           </div>
@@ -94,7 +100,7 @@
                 <div class="col-md-8 mb-5 bg-light px-1">
                   <div class="card py-0 my-2">
                     <div class="card-header mb-2">
-                      <h5 class="title">My Account</h5>
+                      <h5 class="title">{{myaccount_tra}}</h5>
                       <i class="tim-icons icon-align-left-2"></i>
                     </div>
                     <div class="card-body px-4 py-0">
@@ -103,12 +109,12 @@
                           <i class="tim-icons icon-notes"></i>
 
                           <span class="game_rBox">
-                            <p>Phone verification</p>
+                            <p>{{phoneverification}}</p>
                           </span>
                         </div>
                         <p class="mycolor-icon">
                           <a href>
-                            Unverified
+                            {{mytask}}
                             <i class="tim-icons icon-minimal-right"></i>
                           </a>
                         </p>
@@ -122,7 +128,7 @@
                           <i class="tim-icons icon-badge"></i>
                           <span class="game_rBox">
                             <p>
-                              My task
+                              {{recommendfriends}}
                               <span class="badge badge-warning">8</span>
                             </p>
                           </span>
@@ -138,7 +144,7 @@
                         <div class="d-flex">
                           <i class="tim-icons icon-single-02"></i>
                           <span class="game_rBox">
-                            <p>Recommend friends</p>
+                            <p>{{bankinfo}}</p>
                           </span>
                         </div>
                         <p class="mycolor-icon">
@@ -156,7 +162,7 @@
                         <div class="d-flex">
                           <i class="tim-icons icon-email-85"></i>
                           <span class="game_rBox">
-                            <p>Bank info</p>
+                            <p>{{transactionrecord}}</p>
                           </span>
                         </div>
                         <p class="mycolor-icon">
@@ -170,7 +176,7 @@
                         <div class="d-flex">
                           <i class="tim-icons icon-coins"></i>
                           <span class="game_rBox">
-                            <p>Transaction Record</p>
+                            <p>{{accountsettings}}</p>
                           </span>
                         </div>
                         <p class="mycolor-icon">
@@ -184,7 +190,7 @@
                         <div class="d-flex">
                           <i class="tim-icons icon-settings-gear-63"></i>
                           <span class="game_rBox">
-                            <p>account settings</p>
+                            <p>{{unverified}}</p>
                           </span>
                         </div>
                         <p class="mycolor-icon">
@@ -285,7 +291,25 @@ export default {
     "stock3",
     "stock4",
     "stock5",
-    "stock6"
+    "stock6",
+    "phoneverification",
+    "mytask",
+    "recommendfriends",
+    "bankinfo",
+    "transactionrecord",
+    "accountsettings",
+    'unverified',
+    "totalbalance",
+    "yuan",
+"gamebalance",
+"localbalance",
+"fastrecharge",
+"applyforwithdrawal",
+"selfservicerolling",
+    "home",
+"forum",
+"washcode",
+"mine",
   ]
 };
 </script>

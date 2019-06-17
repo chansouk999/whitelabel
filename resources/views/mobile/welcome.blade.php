@@ -52,6 +52,11 @@
         stock5="@lang('home.stock5')"
         stock6="@lang('home.stock6')"
         checkpcormb="{{$checkpcormb}}"
+        home="@lang('home.home')"
+        forum="@lang('home.forum')"
+        washcode="@lang('home.washcode')"
+        mine="@lang('home.mine')"
+        logout="@lang('home.logout')"
             ></app-mobile>
     </div>
     @include('sweetalert::alert')

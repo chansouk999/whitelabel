@@ -35,4 +35,26 @@ return [
     "chines_stock" => "中国股市",
     "lobby" => "游戏大厅",
 
+    "phoneverification"=>"手机验证",
+    "mytask"=>"我的任务",
+    "recommendfriends"=>"推荐好友",
+    "bankinfo"=>"银行资料",
+    "transactionrecord"=>"交易记录",
+    "accountsettings"=>"账户设置",
+    "unverified"=>"未验证",
+
+    "totalbalance"=>"总余额",
+    "yuan"=>"元",
+    "gamebalance"=>"游戏余额",
+    "localbalance"=>"本地余额",
+    "fastrecharge"=>"快速充值",
+    "applyforwithdrawal"=>"申请提现",
+    "selfservicerolling"=>"自助洗码",
+
+    "home"=>"首页",
+    "forum"=>"论坛",
+    "washcode"=>"洗码",
+    "mine"=>"我的",
+    "logout"=>"安全退出"
+
 ];

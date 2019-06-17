@@ -400,7 +400,7 @@
             <div class="mobile-bottom-nav__item-content">
               <a :href="welcome">
                 <i class="tim-icons icon-bank"></i>
-                <p>Home</p>
+                <p>{{home}}</p>
                 <!--My Account -->
               </a>
             </div>
@@ -409,7 +409,7 @@
             <div class="mobile-bottom-nav__item-content">
               <a href="#">
                 <i class="tim-icons icon-chat-33 icon-default"></i>
-                <p>Forum</p>
+                <p>{{forum}}</p>
               </a>
               <!-- riviledge -->
             </div>
@@ -418,7 +418,7 @@
             <div class="mobile-bottom-nav__item-content">
               <a href="#">
                 <i class="tim-icons icon-coins icon-default"></i>
-                <p>Wash Code</p>
+                <p>{{washcode}}</p>
               </a>
               <!-- Recharge -->
             </div>
@@ -427,7 +427,7 @@
             <div class="mobile-bottom-nav__item-content">
               <a href="#">
                 <i class="tim-icons icon-credit-card"></i>
-                <p>Recharge</p>
+                <p>{{recharge}}</p>
               </a>
               <!-- WithDraw -->
             </div>
@@ -437,7 +437,7 @@
             <div class="mobile-bottom-nav__item-content">
               <a href="/myaccount">
                 <i class="tim-icons icon-single-02"></i>
-                <p>Mine</p>
+                <p>{{mine}}</p>
               </a>
               <!-- Profile -->
             </div>
@@ -471,6 +471,7 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
+
   watch: {
     reg_email(data) {
       let vm = this;
@@ -669,7 +670,11 @@ export default {
     "currentlang",
     "login",
     "register",
-    "free_trial"
+    "free_trial",
+    "home",
+"forum",
+"washcode",
+"mine",
   ]
 };
 </script>

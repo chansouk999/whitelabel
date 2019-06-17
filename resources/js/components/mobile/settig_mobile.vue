@@ -39,7 +39,7 @@
           <li class="button-container mt-4 pb-0 d-flex justify-content-center">
             <a href="#" class="btn btn-warning btn-ms">在线咨询</a>
             <span v-if="checkuser == 'true'">
-              <a href="javascript:void(0);" @click="logout()" class="btn btn-warning btn-ms">Log Out</a>
+              <a href="javascript:void(0);" @click="logout()" class="btn btn-warning btn-ms">logout</a>
             </span>
           </li>
         </ul>
@@ -57,6 +57,7 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
+  props: ["logout"],
   methods: {
     logout() {
       this.$swal({

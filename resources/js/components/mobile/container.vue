@@ -1,6 +1,13 @@
 <template>
   <div>
-    <navbars></navbars>
+    <navbars
+    :home ="home"
+    :forum ="forum"
+    :washcode ="washcode"
+    :recharge ="recharge"
+    :mine ="mine"
+
+    ></navbars>
     <div class="container">
       <div class="row">
         <div class="col-2">
@@ -452,7 +459,7 @@
         </div>
       </div>
     </div>
-    <setting></setting>
+    <setting :logout="logout"></setting>
   </div>
 </template>
 <script>
@@ -539,7 +546,12 @@ export default {
     "stock4",
     "stock5",
     "stock6",
-    "checkpcormb"
+    "checkpcormb",
+    "home",
+    "forum",
+    "washcode",
+    "mine",
+    "logout"
   ]
 };
 </script>
