@@ -527,7 +527,7 @@ export default {
         if(code==500){
           alert(msg)
         }
-      })
+      }).catch(e=>{console.log(e.response)})
 
     },
     paginate(method) {

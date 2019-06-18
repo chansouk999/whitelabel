@@ -699,7 +699,7 @@ export default {
   },
   methods:{
     topupbalance(code){
-        axios.post('topupbalance',{amount:this.topupbalannceamount}).then(res=>{
+        axios.post('topupbalance',{amount:this.topupbalannceamount,detail:'topup'}).then(res=>{
             console.log(res.data)
             code = res.data.code 
             if(code==200){alert('success')}

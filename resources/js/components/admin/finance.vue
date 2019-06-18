@@ -64,12 +64,12 @@
             <tr>
               <td class="text-center">1</td>
               <td>08/08/2019 14:26:39</td>
-              <td>userID/AgentID</td>
+              <td>AgentID</td>
               <td>e.g $500</td>
               <td>top-up USD</td>
               <td>MethodID</td>
               <td>AdminID</td>
-              <td>WithdrawID/top-upID/commisionID</td>
+              <td>commisionID</td>
               <td class="td-actions">
                 <span data-toggle="modal" data-target=".view-evidence">
                   <button
@@ -167,7 +167,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-3">
-                    <p class="text-white text-right">UserID</p>
+                    <p class="text-white text-right">AgentID</p>
                   </div>
                   <div class="col-md-3">
                     <div class="input-group">
@@ -197,7 +197,7 @@
                 </div>
                 <div class="row">
                    <div class="col-md-3">
-                    <p class="text-white text-right">UserID</p>
+                    <p class="text-white text-right">AgentID</p>
                   </div>
                    <div class="col-md-3">
                     <div class="input-group">

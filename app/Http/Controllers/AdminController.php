@@ -70,6 +70,17 @@ class AdminController extends Controller
         }
     }
     // public function withtop($)
+    public function getwithdrwaid($data){
+        try{
+            $date =date('Ymd');
+            $serial = Eventhistory::all();
+            $count = $serial->count();
+            $id = $count.'88'.$data.$date;
+            return $this->returncode(200, $id, 'success');
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
     public function actionprocess(Request $req)
     {
         try {
@@ -78,17 +89,27 @@ class AdminController extends Controller
                 $reqdata = Reqst::where('id', '=', $req->id)->get()[0];
                 $userbl = User::where('user_id', '=', '' . $reqdata['userId'] . '')->get()->pluck('userBalance')[0];
                 $detail = json_decode($reqdata['detail'], true);
-                if($reqdata['requestDetail']=='Top up'){$evnt = $userbl + $reqdata['amount'];$e = '+';}
-                if($reqdata['requestDetail']=='Withdraw'){$evnt = $userbl - $reqdata['amount'];$e = '-';}
+                if($reqdata['requestDetail']=='topup'){
+                    $evnt = $userbl + $reqdata['amount'];$e = '+';
+                    $wtid = strtotime('now');
+                }
+                if($reqdata['requestDetail']=='Withdraw'){
+                    $evnt = $userbl - $reqdata['amount'];$e = '-';
+                    $wtid = $this->getwithdrwaid($reqdata['amount'])['data'];
+                }
+                // $data\
+                // return $evnt;
+                $cc = ',"method":"'.$reqdata['method'].'"}';
+                $datacc= str_replace('}',$cc,$reqdata['detail']);
                 $insertdata = array(
                     'Time' => date('Y-m-d H:i:s'),
                     'user_id' => $reqdata['userId'],
                     'event' => $reqdata['requestDetail'],
-                    'reference' => $reqdata['method'],
+                    'reference' => $wtid,
                     'balance_before_event' => $userbl,
                     'amount' => $reqdata['amount'],
                     'balance_after_event' =>$evnt ,
-                    'deatil' => $reqdata['detail'],
+                    'deatil' => $datacc,
                     'served_by' => Auth::user()->user_id,
                 );
                 $save = Eventhistory::create($insertdata); //DB::getQueryLog()
@@ -114,7 +135,7 @@ class AdminController extends Controller
                 return $this->viewuser($req->userid);
             }
         } catch (\Exception $ex) {
-            return $this->returncode(500, $save, $ex->getMessage());
+            return $this->returncode(500, '', $ex->getMessage());
         }
     }
     public function gettoken()

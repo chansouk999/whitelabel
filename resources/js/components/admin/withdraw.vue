@@ -83,7 +83,7 @@
               <td>{{data.balance_before_event}}</td>
               <td>{{data.amount}}</td>
               <td>{{data.balance_after_event}}</td>
-              <td>{{ JSON.parse(data.deatil).cardno }} ,registerCity : {{ JSON.parse(data.deatil).regcity }} ,RegisterProvince : {{ JSON.parse(data.deatil).regprovince }} ,Branch : {{ JSON.parse(data.deatil).branch }}</td>
+              <td>method : {{ JSON.parse(data.deatil).method }} ,{{ JSON.parse(data.deatil).cardno }} ,registerCity : {{ JSON.parse(data.deatil).regcity }} ,RegisterProvince : {{ JSON.parse(data.deatil).regprovince }} ,Branch : {{ JSON.parse(data.deatil).branch }}</td>
               <td>{{data.served_by}}</td>
             </tr>
           </tbody>
