@@ -2764,19 +2764,20 @@ ul.list-group-navbar {
     border-right: 1px solid #309eff;
 }
 
-.u-content .container .card {
+.u-content .container .card.ml-auto,
+.u-content .container .card.mr-auto {
     border-radius: 10px;
     border: 1px dashed #d54fd8
 }
 
-.u-content .container .p-bank {
+.u-wrap .bg-secondary .u-content .container .p-bank {
     text-align: center;
     justify-content: center;
     top: 32%;
     padding: 20%;
 }
 
-.u-content .container .card img {
+.container .card.mr-auto img {
     width: 10%;
     border-top-left-radius: calc(0.2857rem - 0.0625rem);
     border-top-right-radius: calc(0.2857rem - 0.0625rem);

@@ -121,9 +121,6 @@ email
                   <li class="nav-item">
                     <a class="nav-link" href="#settings" data-toggle="tab">Settings</a>
                   </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="#bankcardsettings" data-toggle="tab">Bank Card Detail</a>
-                  </li>
                 </ul>
               </div>
               <!-- /.card-header -->
@@ -383,164 +380,6 @@ email
                     </div>
                   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                  <div class="tab-pane" id="bankcardsettings">
-                    <div class="header text-center">
-                      <h3 class="title">bank card settings</h3>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-8">
-                        <div class="card">
-                          <div class="card-header">
-                          </div>
-                          <div class="card-body">
-                            <form>
-                              <div class="row">
-                             
-                                <div class="col-md-3 px-md-1">
-                                  <div class="form-group">
-                                    <label>Bank Account</label>
-                                    <input type="text" class="form-control" value=""  placeholder="Bank Account" v-model="bankccount">
-                                  </div>
-                                </div>
-                                <div class="col-md-4 pl-md-1">
-                                  <div class="form-group">
-                                    <label>Card Number</label>
-                                    <input v-model="cardnumber"
-                                      type="email"
-                                      class="form-control"
-                                      placeholder="Card Number"
-                                    >
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                               
-                                <div class="col-md-6 pr-md-1">methodid
-                                   <div class="form-group">
-                                    <select class="selectpicker " data-style="select-with-transition" title="Single Select" data-size="7" v-model="methodid">
-                                      <option value="AP">AliPay</option>
-                                      <option value="BC">Bank China</option>
-                                    </select>
-                                  </div>
-                                  <div class="form-group">
-                                    <label>Branch</label>
-                                    <input type="text" class="form-control" value="" placeholder="Branch" v-model="branch">
-                                   
-                                  </div>
-                                </div>
-                                <div class="col-md-6 pl-md-1">
-                                  <div class="form-group">
-                                    <label>Province</label>
-                                    <input type="text" class="form-control" value="" placeholder="Province" v-model="province">
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div class="form-group">
-                                    <label>City</label>
-                                    <input
-                                    v-model="city"
-                                      type="text"
-                                      class="form-control"
-                                      placeholder="City"
-                                      value=""
-                                    >
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- <div class="row">
-                                <div class="col-md-4 pr-md-1">
-                                  <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" class="form-control" value="Mike">
-                                  </div>
-                                </div>
-                                <div class="col-md-4 px-md-1">
-                                  <div class="form-group">
-                                    <label>Country</label>
-                                    <input type="text" class="form-control" value="Andrew">
-                                  </div>
-                                </div>
-                                <div class="col-md-4 pl-md-1">
-                                  <div class="form-group">
-                                    <label>Postal Code</label>
-                                    <input
-                                      type="number"
-                                      class="form-control"
-                                      placeholder="ZIP Code"
-                                    >
-                                  </div>
-                                </div>
-                              </div> -->
-                              <!-- <div class="row">
-                                <div class="col-md-8">
-                                  <div class="form-group">
-                                    <label>About Me</label>
-                                    <textarea rows="4" cols="80" class="form-control">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                  </div>
-                                </div>
-                              </div> -->
-                            </form>
-                          </div>
-                          <div class="card-footer">
-                            <button type="submit" class="btn btn-fill btn-primary" @click="savecarddetail">Save</button>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- < -->
-                    </div>
-                  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                   <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
@@ -562,12 +401,12 @@ import chartJS from "./chartjs";
 export default {
   data() {
     return {
-      methodid:null,
-      bankccount:null,
-      cardnumber:null,
-      branch:null,
-      province:null,
-      city:null,
+      methodid: null,
+      bankccount: null,
+      cardnumber: null,
+      branch: null,
+      province: null,
+      city: null,
       id: null,
       user_id: null,
       provider_name: null,
@@ -582,40 +421,43 @@ export default {
     "app-chart": chartJS
   },
   mounted() {
-    
     this.userdata();
   },
   methods: {
-    savecarddetail(data,code=200){
-      let vm = this
+    savecarddetail(data, code = 200) {
+      let vm = this;
       data = {
-          bankccount:vm.bankccount,
-          cardnumber:vm.cardnumber,
-          branch:vm.branch,
-          province:vm.province,
-          city:vm.city,
-          method:vm.methodid,
-          desc:'no data',
-          code:code
-      }
-      axios.post('savecarddetail',data).then(res=>{
-        let code = res.data.code
-        console.log(res.data)
-        if(code==200){
-          alert('success')
-        }
-        if(code==300){
-           alert('Query Error')
-        }
-        if(code==100){
-            if(confirm(res.data.msg+'Do You wanna edit?')){
-              data.code=202
-              this.savecarddetail(data,code=202);
-        console.log(data)
-
+        bankccount: vm.bankccount,
+        cardnumber: vm.cardnumber,
+        branch: vm.branch,
+        province: vm.province,
+        city: vm.city,
+        method: vm.methodid,
+        desc: "no data",
+        code: code
+      };
+      axios
+        .post("savecarddetail", data)
+        .then(res => {
+          let code = res.data.code;
+          console.log(res.data);
+          if (code == 200) {
+            alert("success");
+          }
+          if (code == 300) {
+            alert("Query Error");
+          }
+          if (code == 100) {
+            if (confirm(res.data.msg + "Do You wanna edit?")) {
+              data.code = 202;
+              this.savecarddetail(data, (code = 202));
+              console.log(data);
             }
-        }
-      }).catch(e=>{console.log(e.response)})
+          }
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
     },
     refresh() {
       this.userdata();

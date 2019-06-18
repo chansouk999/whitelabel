@@ -538,7 +538,7 @@ export default {
           vm.reg_password = null;
           vm.reg_password_confirm = null;
           alert("Password not Match");
-        } else if (vm.reg_password.length < 7) {
+        } else if (vm.reg_password.length < 7) {  
           vm.reg_password = null;
           vm.reg_password_confirm = null;
           alert("Password Must be Bigger Than 7 Character");

@@ -266,6 +266,9 @@ class MasterController extends Controller
             return ['success' => 'success'];
         }
     }
+
+
+
     public function payment()
     {
         return "HELLO THIS PAYMENT FUNCTION";
