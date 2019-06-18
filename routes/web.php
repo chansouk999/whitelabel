@@ -227,3 +227,7 @@ Route::get('/coding',function(Request $req){
 });
 Route::get('/notify','PaymentController@notify');
 Route::post('actionpayment', 'PaymentController@actionpayment');
+
+
+// New Controller
+Route::post('/addcard', 'CardController@addcard');

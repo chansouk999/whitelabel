@@ -840,7 +840,14 @@ export default {
         vm.reg_password === null ||
         vm.reg_password_confirm === null
       ) {
-        alert("Please Complete the form");
+        this.$swal({
+          type: "warning",
+          title: "Error",
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-success",
+          text: "Please Complete the form!"
+        }).catch(swal.noop);
+        // alert("Please Complete the form");
       } else {
         let com = vm.reg_email.split("@");
         let gotcom = com[1].split(".")[1];
@@ -886,7 +893,14 @@ export default {
       if (data.email == null || data.pwd == null) {
         alert("Please Complete the form");
       } else if (!vm.email.includes("@") || !vm.email.includes(".com")) {
-        alert('Check your email "@xxxxx.com" before submit ');
+        this.$swal({
+          type: "warning",
+          title: "Error",
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-success",
+          text: "Please Complete the form!"
+        }).catch(swal.noop);
+        // alert('Check your email "@xxxxx.com" before submit ');
       } else {
         axios
           .post("checklogin", data)

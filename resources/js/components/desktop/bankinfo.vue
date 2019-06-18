@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container my-5">
+    <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="blockquote">
@@ -60,7 +60,7 @@
     >
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <form class="form-horizontal" method="post" action>
+          <form class="form-horizontal" method="post" action="addcard">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Add a new bank card</h5>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -76,10 +76,12 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <input
+                            v-model="name"
                             type="text"
                             name="namecard"
                             class="form-control"
                             placeholder="Name on Card..."
+                            required
                           >
                         </div>
                       </div>
@@ -89,10 +91,12 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <input
+                            v-model="cardnumber"
                             type="email"
                             name="cardNumber"
                             class="form-control"
                             placeholder="Card Number..."
+                            required
                           >
                         </div>
                       </div>
@@ -101,9 +105,9 @@
                       <label class="col-md-3 col-form-label">Bank</label>
                       <div class="col-md-9">
                         <div class="form-group">
-                          <select id="inputState" name="bank" class="form-control">
-                            <option selected>Choose...</option>
-                            <option>...</option>
+                          <select id="inputState" v-model="bank" name="bank" class="form-control">
+                            <option value="AL">ALipay</option>
+                            <option value="BC">BCELOne</option>
                           </select>
                         </div>
                       </div>
@@ -113,7 +117,8 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <input
-                            type="email"
+                            v-model="province"
+                            type="text"
                             name="registerProvince"
                             class="form-control"
                             placeholder="Registered Province..."
@@ -126,7 +131,8 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <input
-                            type="email"
+                            v-model="city"
+                            type="text"
                             name="registedCity"
                             class="form-control"
                             placeholder="Registered City..."
@@ -139,10 +145,12 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <input
-                            type="email"
+                            v-model="branch"
+                            type="text"
                             name="branch"
                             class="form-control"
                             placeholder="Branch..."
+                            required
                           >
                         </div>
                       </div>
@@ -151,9 +159,18 @@
                 </div>
               </div>
             </div>
+            <!-- {{name}}
+            {{cardnumber}}
+            {{province}}
+            {{city}}
+            {{branch}}-->
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary">Save & Continue</button>
+              <button
+                type="submit"
+                class="btn btn-primary addcard"
+                @click.prevent="addcard()"
+              >Save & Continue</button>
             </div>
           </form>
         </div>
@@ -162,7 +179,57 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      name: "",
+      cardnumber: "",
+      province: "",
+      city: "",
+      bank: "",
+      branch: ""
+    };
+  },
+  methods: {
+    addcard() {
+      let vm = this;
+      let data = {
+        name: vm.name,
+        cardnumber: vm.cardnumber,
+        province: vm.province,
+        city: vm.city,
+        branch: vm.branch
+      };
+      // console.log(data);
+      if (
+        data.name == "" ||
+        data.bank == "" ||
+        data.cardnumber == "" ||
+        data.province == "" ||
+        data.city == "" ||
+        data.branch == ""
+      ) {
+        this.$swal({
+          type: "warning",
+          title: "Please Fill in it",
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-success",
+          html: "Please check the box that you fill in"
+        });
+      } else {
+        // alert("Your are right");
+        axios
+          .post("/addcard", data)
+          .then(res => {
+            console.log(res.data);
+          })
+          .catch(er => {
+            console.log(er.res);
+          });
+      }
+    }
+  }
+};
 </script>
 <style scoped>
 </style>
