@@ -33,6 +33,7 @@ Auth::routes();
 
 
 
+Route::get('/getevnthistory', 'AdminController@getevnthistory');
 Route::post('/actionprocess', 'AdminController@actionprocess');
 Route::get('/getreuest', 'AdminController@getreuest');
 Route::get('/getdata', 'AdminController@getuserdata');

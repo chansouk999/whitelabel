@@ -11,16 +11,24 @@ export const adminmixin = {
           config:{},
           gamehistory:[],
           gameresult:[],
+          getevnthistorydata:[],
         };
       },
       mounted() {
         
           this.gettoken()
           this.userdata();
+          this.getevnthistory()
           // this.gamehistory()
           
       },
       methods: {
+        getevnthistory(){
+          axios.get('/getevnthistory').then(res=>{
+              this.getevnthistorydata =res.data.data.data
+              console.log(res.data)
+          })
+        },
         gettoken(){
           axios.get('/gettoken').then(res=>{
           this.token=res.data.token
