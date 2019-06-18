@@ -52,6 +52,9 @@ Route::get('/gettoken', 'AdminController@gettoken');
 Route::get('/home', function () {
     return view('home');
 });
+Route::get('/stocklist', function () {
+    return view('desktop.stocklist');
+});
 // Route::get('/',)
 Route::get('/', 'MasterController@welcome')->name('home');
 Route::get('/checkconnection', 'MasterController@checkconnection');
@@ -168,11 +171,11 @@ Route::get('/redirectback', function () {
 //     //     'redirect_uri' => 'http://localhost:8004/callback',
 //     //     'response_type' => 'code',
 //     //     'scope' => '',
-//     // ]);   
+//     // ]);
 //     //  return redirect('http://localhost:8003/oauth/authorize?'.$query);
 // })->name('get.token');
 // Route::get('/callback', function (Request $request) {
-    
+
 //     $http = new GuzzleHttp\Client;
 //     $response = $http->post('http://localhost:8003/oauth/token', [
 //         'form_params' => [
@@ -201,7 +204,7 @@ Route::get('/redirectback', function () {
 //     }
 //     return redirect('http://localhost:8003/getlogin');
 // //     // return [$accessdata,$data];
-    
+
 // });
 
 /////timer

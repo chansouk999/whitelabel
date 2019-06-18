@@ -57,32 +57,33 @@
         </span>
         <span v-if="checkuser == 'true'">
           <ul class="nav">
-            <li class="nav-aside ">
-              <a href="#">
+            <li class="nav-aside" id="SH0000015">
+              <a href="/stocklist?stockname=SH000001&loop=5&country=china">
                 <img src="assets/img/Aeternity-icon.png" alt>
                 <p class="text-aside">{{stock1}}</p>
               </a>
             </li>
-            <li class="nav-aside">
-              <a href="#">
+
+            <li class="nav-aside" id="SZ3990015">
+              <a href="/stocklist?stockname=SZ399001&loop=5&country=china">
                 <img src="assets/img/Canada-eCoin-icon.png" alt>
                 <p class="text-aside">{{stock2}}</p>
               </a>
             </li>
-            <li class="nav-aside">
-              <a href="#">
+            <li class="nav-aside" id="SH003005">
+              <a href="/stocklist?stockname=SH00300&loop=5&country=china">
                 <img src="assets/img/Ark-icon.png" alt>
                 <p class="text-aside">{{stock3}}</p>
               </a>
             </li>
-            <li class="nav-aside">
-              <a href="#">
+            <li class="nav-aside" id="SZ3994155">
+              <a href="/stocklist?stockname=SZ399415&loop=5&country=china">
                 <img src="assets/img/Augur-icon.png" alt>
                 <p class="text-aside">{{stock4}}</p>
               </a>
             </li>
-            <li class="nav-aside">
-              <a href="#">
+            <li class="nav-aside" id="USdollarIndex5">
+              <a href="/stocklist?stockname=USdollarIndex&loop=5&country=usa">
                 <img src="assets/img/us_flag.png" alt>
                 <p class="text-aside">{{stock5}}</p>
               </a>
@@ -94,22 +95,23 @@
                   {{stock6}}
                   <b class="caret"></b>
                 </p>
-              </a>
+               </a>
               <div class="collapse" id="pagesExamples">
-                <ul class="nav">
-                  <li>
-                    <a href="#">
+                <ul class="nav-aside active">
+                  <li class="nav-aside" id="BTCUSDT1">
+                    <a href="/stocklist?stockname=BTCUSDT&loop=1&country=cypto">
                       <span class="sidebar-mini-icon">1</span>
                       <span class="sidebar-normal">1 Minutes</span>
                     </a>
                   </li>
-                  <li>
-                    <a href="#">
+                  <li class="nav-aside " id="BTCUSDT5">
+                    <a href="/stocklist?stockname=BTCUSDT&loop=5&country=cypto">
                       <span class="sidebar-mini-icon">5</span>
                       <span class="sidebar-normal">5 Minutes</span>
                     </a>
                   </li>
                 </ul>
+
               </div>
             </li>
           </ul>
@@ -122,6 +124,9 @@
 export default {
   data() {
     return {
+      //   stockname: "",
+      //   loop: "",
+      //   country: "",
       csrf: document
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content"),
@@ -138,9 +143,22 @@ export default {
     "us_stock",
     "cryptocurrencies",
     "chines_stock",
-    "lobby"
-  ]
+    "lobby",
+    "stockname",
+    "loop",
+    "country"
+  ],
+  mounted() {
+    let idactive= this.stockname + "" + this.loop;
+
+        $("#"+idactive+"").addClass("nav-aside active");
+
+  },
+  methods: {
+
+  }
 };
+
 </script>
 <style scoped>
 </style>
