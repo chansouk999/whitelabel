@@ -81,10 +81,13 @@ export default {
        topupbalannceamount:0,
      }
    },
+   mounted(){
+    //  this.getagentinfo()
+   },
   methods:{
      topupbalance(code){
         axios.post('topupbalance',{amount:this.topupbalannceamount,detail:'Withdraw'}).then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             code = res.data.code 
             if(code==200){alert('success')}
             if(code==300){alert('query error')}

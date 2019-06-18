@@ -12,6 +12,7 @@ export const adminmixin = {
           gamehistory:[],
           gameresult:[],
           getevnthistorydata:[],
+          agentinfo:[],
         };
       },
       mounted() {
@@ -19,14 +20,19 @@ export const adminmixin = {
           this.gettoken()
           this.userdata();
           this.getevnthistory()
-          // this.gamehistory()
+          this.getagentinfo()
           
       },
       methods: {
+        getagentinfo(){
+          axios.get('/getagentinfo').then(res=>{
+            this.agentinfo=res.data.data.data
+          }).catch(e=>{console.log(e.response)})
+        },
         getevnthistory(){
           axios.get('/getevnthistory').then(res=>{
               this.getevnthistorydata =res.data.data.data
-              console.log(res.data)
+              // console.log(res.data)
           })
         },
         gettoken(){
@@ -51,7 +57,7 @@ export const adminmixin = {
 
                 this.gamehistory =res.data.gamehistory
                 this.gameresult =res.data.gameresult
-                console.log(this.gameresult)
+                // console.log(this.gameresult)
 
             
             
@@ -93,7 +99,7 @@ export const adminmixin = {
           axios
             .get(url)
             .then(res => {
-              console.log(res.data.userdata);
+              // console.log(res.data.userdata);
               if (res.data.userdata == "") {
                 alert("ok");
               }

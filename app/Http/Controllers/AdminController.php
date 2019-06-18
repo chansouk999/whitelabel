@@ -11,7 +11,9 @@ use App\Request as Reqst;
 use App\access_token;
 use Illuminate\Support\Facades\DB;
 use function GuzzleHttp\json_decode;
-
+use App\Agent;
+use App\AgenTransaction;
+use App\Shareholder;
 class AdminController extends Controller
 {
     public function returncode($code, $data, $msg)
@@ -28,6 +30,106 @@ class AdminController extends Controller
         // 303 cacle
         // 777 manage
         return ['code' => $code, 'data' => $data, 'msg' => $msg];
+    }
+    public function getshareholder(Request $req){
+        try{
+            $data = Shareholder::orderby('created_at','desc')->paginate(20);
+            if($data){
+                return $this->returncode(200, $data, 'success');
+            }else{
+                return $this->returncode(300, $data, DB::getQueryLog()); 
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+
+    public function savetransfer(Request $req){
+        try{
+            DB::enableQueryLog();
+            $insertdata = array(
+                'Time'=>date('Y-m-d H:i:s'),
+                'agentId'=>$req->agentid,
+                'amount'=>$req->amount,
+                'currency'=>$req->currency,
+                'methodId'=>0,
+                'assitid'=>Auth::user()->id,
+                'reference'=>strtotime('now').date('ymd'),
+            );
+            $save = AgenTransaction::create($insertdata);
+            if($save){
+                return $this->returncode(200, $save, 'success');
+            }else{
+                return $this->returncode(300, $save, DB::getQueryLog()); 
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+
+    public function saveshareholder(Request $req){
+        try{
+            DB::enableQueryLog();
+            $insertdata = array(
+                'share_id'=>strtotime('now'),
+                'name'=>$req->shareholdername,
+                'accessPermission'=>$req->shareholderpermision,
+            );
+            $save = Shareholder::create($insertdata);
+            if($save){
+                return $this->returncode(200, $save, 'success');
+            }else{
+                return $this->returncode(300, $save, DB::getQueryLog()); 
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function getagentinfo(Request $req){
+        try{
+            $data = Agent::orderby('created_at','desc')->paginate(20);
+            if($data){
+                return $this->returncode(200, $data, 'success');
+            }else{
+                return $this->returncode(300, $data, DB::getQueryLog()); 
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function getagentid(){
+        $agent = Agent::all();
+        $serial = $agent->count();
+        $agentid = $serial.Auth::user()->id;
+        return $agentid;
+    }
+    public function saveagent(Request $req){
+        try{
+            DB::enableQueryLog();
+            $insertdata = array(
+                'agentId'=>$this->getagentid(),
+                'typeId'=>100,
+                'joinTime'=>date('Y-m-d H:i:s'),
+                'numberPlayer'=>0,
+                'subAgent'=>0,
+                'balance'=>0,
+                'percentage'=>0,
+                'totalIncome'=>0,
+                'name'=>$req->agentname,
+                'bankAccount'=>$req->agentbankacc,
+                'province'=>$req->agentprovince,
+                'city'=>$req->agentcity,
+                'branch'=>$req->agentbranch,
+            );
+            $save =Agent::create($insertdata);
+            if($save){
+                return $this->returncode(200, $save, 'success');
+            }else{
+                return $this->returncode(300, $save, DB::getQueryLog()); 
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
     }
     public function denyreq($id)
     {

@@ -161,7 +161,12 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Transfer Amount">
+                      <input
+                        type="text"
+                        v-model="amounttransfer"
+                        class="form-control"
+                        placeholder="Transfer Amount"
+                      >
                     </div>
                   </div>
                 </div>
@@ -176,26 +181,111 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Type here...">
+                      <input
+                        v-model="gotagentid"
+                        type="text"
+                        class="form-control"
+                        placeholder="Type here..."
+                      >
                     </div>
                   </div>
                   <div class="col-md-2">
                     <p class="text-white text-right">Search for list</p>
                   </div>
                   <div class="col-md-4">
-                    <select
+                    <!-- <select
                       class="selectpicker"
-                      data-size="7"
                       data-style="btn btn-primary"
                       title="Single Select"
                     >
-                      <option disabled selected>Single Option</option>
-                      <option value="2">Foobar</option>
-                      <option value="3">Is great</option>
+                    <option v-for="data in agentinfo">{{data.agentId}}</option>
+                    </select>-->
+                    <select
+                      name
+                      id
+                      class="form-control"
+                      data-style="btn btn-primary"
+                      title="Single Select"
+                      v-model="gotagentid"
+                    >
+                      <option v-for="data in agentinfo">{{data.agentId}}</option>
+                    </select>
+                  </div>
+
+
+
+                  <div class="col-md-2">
+                    <p class="text-white text-right">Currency id</p>
+                  </div>
+                  <div class="col-md-4">
+                    <!-- <select
+                      class="selectpicker"
+                      data-style="btn btn-primary"
+                      title="Single Select"
+                    >
+                    <option v-for="data in agentinfo">{{data.agentId}}</option>
+                    </select>-->
+                    <select
+                      name
+                      id
+                      class="form-control"
+                      data-style="btn btn-primary"
+                      title="Single Select"
+                      v-model="getcurrency"
+                    >
+                      <option value="USD">USD</option>
+                      <option value="RMB">RMB</option>
+                      <option value="CHB">CHB</option>
+                      <option value="BTC">BTC</option>
+                      <option value="THB">THB</option>
+                      <option value="LAK">LAK</option>
                     </select>
                   </div>
                 </div>
-                <div class="row">
+
+
+
+
+
+
+
+                <div class="col-md-2">
+                    <p class="text-white text-right">Method</p>
+                  </div>
+                  <div class="col-md-4">
+                    <!-- <select
+                      class="selectpicker"
+                      data-style="btn btn-primary"
+                      title="Single Select"
+                    >
+                    <option v-for="data in agentinfo">{{data.agentId}}</option>
+                    </select>-->
+                    <select
+                      name
+                      id
+                      class="form-control"
+                      data-style="btn btn-primary"
+                      title="Single Select"
+                      v-model="methodid"
+                    >
+                      <option value="AL">Alipay</option>
+                      <option value="BC">BankChina</option>
+                      <option value="BC">BCEL One</option>
+                      <option value="PP">PAYPAL</option>
+                    </select>
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+                <!-- <div class="row">
                    <div class="col-md-3">
                     <p class="text-white text-right">AgentID</p>
                   </div>
@@ -224,7 +314,7 @@
                       <option value="3">Is great</option>
                     </select>
                   </div>
-                </div>
+                </div>-->
                 <hr>
               </div>
             </div>
@@ -424,7 +514,50 @@
   </div>
 </template>
 <script>
-export default {};
+import { adminmixin } from "./adminmixin.js";
+export default {
+  mixins: [adminmixin],
+  data() {
+    return {
+      amounttransfer: null,
+      gotagentid: null,
+      agenttranss: [],
+      getcurrency:null,
+    };
+  },
+  methods: {
+    agenttransaction() {
+      axios.get("/agenttransaction").then(res => {
+        // console.log(res.data)
+        this.agenttranss = res.data.data.data;
+      });
+    },
+    savetransfer(data) {
+      data = {
+        amount: this.amounttransfer,
+        agentid: this.gotagentid
+      };
+      axios
+        .post("/savetransfer", data)
+        .then(res => {
+          // console.log(res.data)
+          let code = res.data.code;
+          let msg = res.data.msg;
+          let data = res.data.data;
+          if (code == 200) {
+            this.getagentinfo();
+          }
+          alert(msg);
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    }
+  },
+  mounted() {
+    // this.agenttransaction()
+  }
+};
 </script>
 
 <style scoped>
