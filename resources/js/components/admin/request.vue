@@ -85,7 +85,7 @@
               <td>{{ data.ip }}</td>
               <td class="td-actions">
                 <span data-toggle="modal" data-target=".approv">
-                  <button @click="actionmethod(method='approve',data.id)"
+                  <button @click="actionmethod(method='approve',data.id,data.userId)"
                     type="button"
                     data-toggle="tooltip"
                     data-placement="bottom"
@@ -96,7 +96,7 @@
                   </button>
                 </span>
                 <span data-toggle="modal" data-target=".deny">
-                  <button @click="actionmethod(method='deny',data.id)"
+                  <button @click="actionmethod(method='deny',data.id,data.userId)"
                     type="button"
                     data-toggle="tooltip"
                     data-placement="bottom"
@@ -107,7 +107,7 @@
                   </button>
                 </span>
                 <span data-toggle="modal" data-target=".view-user">
-                  <button
+                  <button @click="actionmethod(method='viewuser',data.id,data.userId)"
                     type="button"
                     data-toggle="tooltip"
                     data-placement="bottom"
@@ -118,7 +118,7 @@
                   </button>
                 </span>
                 <span data-toggle="modal" data-target=".message-user">
-                  <button
+                  <button @click="actionmethod(method='muser',data.id,data.userId)"
                     type="button"
                     data-toggle="tooltip"
                     data-placement="bottom"
@@ -488,18 +488,25 @@ export default {
     this.getrequestdata();
   },
   methods: {
-    actionmethod(method,id){
+    actionmethod(method,id,userid){
       let code = 0;
       if(method=='approve'){
          code=200 // success
       }
       if(method=='deny'){
-        code==303 // no access
+        code=303 // no access
+      }
+      if(method=='viewuser'){
+        code=202 // no access
+      }
+      if(method=='muser'){
+        code=777 // no access
       }
       let data = {
           method:method,
           code:code,
-          id:id
+          id:id,
+          userid:userid,
       }
       axios.post('/actionprocess',data).then(res=>{
         let code = res.data.code
@@ -507,16 +514,18 @@ export default {
         let data = res.data.data
         console.log(res.data)
         if(code==200){
-          console.log(msg)
+          this.getevnthistory()
+          this.getrequestdata();
+          alert(msg)
         }
         if(code==100){
-          console.log(msg)
+          alert(msg)
         }
         if(code==300){
-          console.log(msg)
+          alert(msg)
         }
         if(code==500){
-          console.log(msg)
+          alert(msg)
         }
       })
 
