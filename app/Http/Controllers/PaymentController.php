@@ -275,7 +275,7 @@ class PaymentController extends Controller
       $user = Auth::user()->user_id;
       if
       (
-        $user=='8VuyowfUfk' ||  $user=='dYo3gNCBsB'
+        $user=='8VuyowfUfk' ||  $user=='dYo3gNCBsB' || $user =='580104xlc4Pgw'
       ){
 
 

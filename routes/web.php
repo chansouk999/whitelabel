@@ -33,6 +33,9 @@ Auth::routes();
 
 
 
+Route::get('/getevnthistory', 'AdminController@getevnthistory');
+Route::post('/actionprocess', 'AdminController@actionprocess');
+Route::get('/getreuest', 'AdminController@getreuest');
 Route::get('/getdata', 'AdminController@getuserdata');
 Route::get('/gettoken', 'AdminController@gettoken');
 
@@ -57,7 +60,9 @@ Route::get('/stocklist', function () {
 });
 // Route::get('/',)
 Route::get('/', 'MasterController@welcome')->name('home');
+Route::post('/topupbalance', 'MasterController@topupbalance');
 Route::get('/checkconnection', 'MasterController@checkconnection');
+Route::post('/savecarddetail', 'MasterController@savecarddetail');
 Route::post('/transfertoapi', 'MasterController@transfertoapi');
 
 Route::post('/checkreigster', 'MasterController@checkreigster');
@@ -68,6 +73,7 @@ Route::post('/payment', 'MasterController@payment');
 // Route::get('/login', 'MasterController@welcome')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logoutuser');
 Route::get('updatemoney/{id}', 'API/Apicontroller@updatemoney');
+Route::get('testcode', 'API\Apicontroller@testcode');
 Route::get('/getlogin', function () {
 
     $http = new GuzzleHttp\Client();
@@ -131,7 +137,8 @@ Route::get('/redirectback', function () {
         $gotpwd[] = substr($p, -1, 1);
     }
     $realpwd = implode('', $gotpwd);
- $dehashed =  $realpwd; //GOTED PASSWORD
+    $dehashed =  $realpwd; //GOTED PASSWORD
+
     // }
     // return $dehashed;
 

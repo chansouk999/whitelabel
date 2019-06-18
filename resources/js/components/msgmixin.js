@@ -47,18 +47,30 @@ export const msgmixin = {
           },
             
     transfermoney(){
+      
+      this.loading=false
+      let x = 0
         axios.post('/transfertoapi',{amount:this.transferamount}).then(res=>{
           console.log(res.data)
+          // this.loading=true
           if(res.data.code==99){
-              alert('Money not enought ')
+            x=1
+            alert(res.data.msg)
           }
           if(res.data.code==0){
-             alert('You need to register user Api by Entering the game on Lobby page')
+             x=1
+             alert(res.data.msg)
              location.href = '/lobby'
           }
-          else{
-             alert('successful')
+          if(res.data.code==200){
+            x=1
+            this.userdatasecond()
+            alert(res.data.msg)
+          } 
+          if(x==1){
+              this.loading=true
           }
+         
         }).catch(e=>{console.log(e.response)})
       },
       payment(data){
@@ -67,7 +79,7 @@ export const msgmixin = {
   
   
   
-        // this.loading=false
+        this.loading=false
         let vm = this
           data ={
             money : vm.paymentamount,
@@ -91,16 +103,17 @@ export const msgmixin = {
                   vm.order_sn = res.data.data.order_sn
                   vm.remake = res.data.data.remark;
                   vm.qrcode = res.data.data.qrcode;
-                    this.gotar()
+                   
   
                 }
                 
               }else{
                 vm.loading=true
-                 vm.qr_pop=true;
+                vm.qr_pop=true;
                  vm.remake = res.data.msg;
               }
             }
+            this.gotar()
           }).catch(er=>{console.log(er.response)})
       }
     },

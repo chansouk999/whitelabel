@@ -19,9 +19,10 @@ class CreateRequestsTable extends Migration
             $table->string('requestDetail',100);
             $table->double('amount',20,2);
             $table->string('method',2);
-            $table->string('detail',100);
+            $table->text('detail');
             $table->dateTime('requestTime');
             $table->string('ip',20);
+           
             $table->timestamps();
         });
     }

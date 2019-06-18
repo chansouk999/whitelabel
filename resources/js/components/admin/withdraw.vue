@@ -74,17 +74,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="text-center">1</td>
-              <td>DATETIME</td>
-              <td>userID</td>
-              <td>e.g top/up/withdraw</td>
-              <td>top-up ID/withdrawID</td>
-              <td>e.g +$300</td>
-              <td>e.g +$500</td>
-              <td>$e.g $800</td>
-              <td>methodID/Bank Account Number</td>
-              <td>AdminID</td>
+            <tr v-for="(data,index) in getevnthistorydata" v-if="index >= A && index <= B">
+              <td class="text-center">{{index+1}}</td>
+              <td>{{data.Time}}</td>
+              <td>{{data.user_id}}</td>
+              <td>{{data.event}}</td>
+              <td>{{data.reference}}</td>
+              <td>{{data.balance_before_event}}</td>
+              <td>{{data.amount}}</td>
+              <td>{{data.balance_after_event}}</td>
+              <td>{{ JSON.parse(data.deatil).cardno }} ,registerCity : {{ JSON.parse(data.deatil).regcity }} ,RegisterProvince : {{ JSON.parse(data.deatil).regprovince }} ,Branch : {{ JSON.parse(data.deatil).branch }}</td>
+              <td>{{data.served_by}}</td>
             </tr>
           </tbody>
         </table>
@@ -101,8 +101,8 @@
             <option value="3">4</option>
           </select>
         </li>
-        <li class="page-item disabled">
-          <span class="page-link">Previous</span>
+        <li class="page-item ">
+          <span class="page-link" @click="paginate(method='previous')">Previous</span>
         </li>
         <li class="page-item">
           <a class="page-link" href="#">1</a>
@@ -117,14 +117,43 @@
           <a class="page-link" href="#">3</a>
         </li>
         <li class="page-item">
-          <a class="page-link" href="#">Next</a>
+          <a class="page-link" href="#" @click="paginate(method='next')">Next</a>
         </li>
       </ul>
     </nav>
   </div>
 </template>
 <script>
-export default {};
+import { adminmixin } from "./adminmixin.js";
+export default {
+  mixins: [adminmixin],
+  data(){
+    return{
+      A: 0,
+      B: 19,
+    }
+  },
+  methods:{
+    paginate(method) {
+      let vm = this;
+      if (method == "previous") {
+        if (vm.A > 0) {
+          vm.A -= 20;
+          vm.B -= 20;
+        }
+      } else {
+        if (vm.B < vm.getevnthistorydata.length) {
+          vm.A += 20;
+          vm.B += 20;
+        }
+      }
+    },
+  },
+  mounted(){
+
+  },
+
+};
 </script>
 
 <style scoped>
