@@ -11,8 +11,7 @@ use App\access_token;
 use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
-    public function actionprocess(Request $req){
-        return $req;
+    public function actionprocess(Request $req){ 
         try{
             $return = new App\Http\Controllers\MasterController;
             // return $return->returncode(200, 'No data', 'success');
