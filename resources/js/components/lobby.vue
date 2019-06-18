@@ -52,11 +52,12 @@
                   >
                   <div class="container">
                     <div class="slide-caption">
-                      <h2 class="slide-caption__title">Mussum Ipsum</h2>
-                      <p class="slide-caption__desc">Mé faiz elementum girarzis, nisi eros vermeio.</p>
                       <div class="d-flex">
-                        <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                        <a href="#" class="btn btn-danger btn-simple">Learn More</a>
+                        <a href="#" class="btn btn-danger animation-on-hover">免费试玩</a>
+                        <a href="#" class="btn btn-danger btn-simple">
+                          进入游戏
+                          <i class="tim-icons icon-double-right"></i>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -70,11 +71,9 @@
                   >
                   <div class="container">
                     <div class="slide-captiontwo">
-                      <h2 class="slide-caption__title">Mussum Ipsum</h2>
-                      <p class="slide-caption__desc">Mé faiz elementum girarzis, nisi eros vermeio.</p>
                       <div class="d-flex">
-                        <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                        <a href="#" class="btn btn-danger btn-simple">Learn More</a>
+                        <a href="#" class="btn btn-danger animation-on-hover">免费试玩</a>
+                        <a href="#" class="btn btn-danger btn-simple">进入游戏</a>
                       </div>
                     </div>
                   </div>
@@ -88,11 +87,9 @@
                   >
                   <div class="container">
                     <div class="slide-captiontwo">
-                      <h2 class="slide-caption__title">Mussum Ipsum</h2>
-                      <p class="slide-caption__desc">Mé faiz elementum girarzis, nisi eros vermeio.</p>
                       <div class="d-flex">
-                        <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                        <a href="#" class="btn btn-danger btn-simple">Learn More</a>
+                        <a href="#" class="btn btn-danger animation-on-hover">免费试玩</a>
+                        <a href="#" class="btn btn-danger btn-simple">进入游戏</a>
                       </div>
                     </div>
                   </div>
@@ -127,18 +124,9 @@
                         class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix"
                       >
                         <div class="one-third">
-                          <div class="stat">
-                            20
-                            <sup>S</sup>
-                          </div>
-                          <div class="stat-value">Training</div>
+                          <div class="stat">20</div>
                         </div>
-                        <a href>
-                          <div class="w-75">
-                            <div class="stat">16</div>
-                            <div class="stat-value">Speed</div>
-                          </div>
-                        </a>
+                        <a href class="lobby-link">Quick Start</a>
                       </div>
                     </div>
                     <!-- end clash-card barbarian-->
@@ -158,22 +146,9 @@
 
                       <div class="clash-card__unit-stats clash-card__unit-stats--archer clearfix">
                         <div class="one-third">
-                          <div class="stat">
-                            25
-                            <sup>S</sup>
-                          </div>
-                          <div class="stat-value">Training</div>
+                          <div class="stat">20</div>
                         </div>
-
-                        <div class="one-third">
-                          <div class="stat">24</div>
-                          <div class="stat-value">Speed</div>
-                        </div>
-
-                        <div class="one-third no-border">
-                          <div class="stat">300</div>
-                          <div class="stat-value">Cost</div>
-                        </div>
+                        <a href class="lobby-link">Multiple Game</a>
                       </div>
                     </div>
                     <!-- end clash-card archer-->
@@ -182,33 +157,20 @@
                 </div>
                 <div class="col-md-4 mb-5">
                   <div class="wrapper">
-                    <div class="clash-card giant">
-                      <div class="clash-card__image clash-card__image--giant">
-                        <img src="assets/img/giant.png" alt="giant">
+                    <div class="clash-card wizard">
+                      <div class="clash-card__image clash-card__image--wizard">
+                        <img src="assets/img/wizard.png" alt="giant">
                       </div>
                       <div class="clash-card__unit-name">多台</div>
                       <div
                         class="clash-card__unit-description giant-description"
                       >私人定制不同类型的游戏同时投注，随心所欲，多张桌枱任意切换。</div>
 
-                      <div class="clash-card__unit-stats clash-card__unit-stats--giant clearfix">
+                      <div class="clash-card__unit-stats clash-card__unit-stats--wizard clearfix">
                         <div class="one-third">
-                          <div class="stat">
-                            2
-                            <sup>M</sup>
-                          </div>
-                          <div class="stat-value">Training</div>
+                          <div class="stat">20</div>
                         </div>
-
-                        <div class="one-third">
-                          <div class="stat">12</div>
-                          <div class="stat-value">Speed</div>
-                        </div>
-
-                        <div class="one-third no-border">
-                          <div class="stat">2250</div>
-                          <div class="stat-value">Cost</div>
-                        </div>
+                        <a href="javascript:void()" class="lobby-link" @click="runwindow">Full Screen</a>
                       </div>
                     </div>
                     <!-- end clash-card giant-->
@@ -218,53 +180,6 @@
               </div>
             </div>
             <!-- end container -->
-          </div>
-          <div class="row content">
-            <div class="col-4">
-              <div class="ft-recipe">
-                <div class="ft-recipe__thumb">
-                  <h3>Today's Featured Recipe</h3>
-                  <img
-                    src="https://zippypaws.com/app/uploads/2018/05/strawberry-waffles-1024x668.jpg"
-                    alt="Strawberry Waffle"
-                  >
-                </div>
-                <div class="ft-recipe__content">
-                  <header class="content__header">
-                    <div class="row-wrapper">
-                      <h2 class="recipe-title">Strawberry Waffle</h2>
-                      <div class="user-rating"></div>
-                    </div>
-                    <ul class="recipe-details">
-                      <li class="recipe-details-item time">
-                        <i class="ion ion-ios-clock-outline"></i>
-                        <span class="value">20</span>
-                        <span class="title">Minutes</span>
-                      </li>
-                      <li class="recipe-details-item ingredients">
-                        <i class="ion ion-ios-book-outline"></i>
-                        <span class="value">5</span>
-                        <span class="title">Ingredients</span>
-                      </li>
-                      <li class="recipe-details-item servings">
-                        <i class="ion ion-ios-person-outline"></i>
-                        <span class="value">4-6</span>
-                        <span class="title">Serving</span>
-                      </li>
-                    </ul>
-                  </header>
-                  <p
-                    class="description"
-                  >There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries...</p>
-                  <footer class="content__footer">
-                    <a @click="runwindow">
-                      <h1>Play Lec68</h1>
-                    </a>
-                    <button @click="runwindow">PLAY</button>
-                  </footer>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="row">
             <app-footer></app-footer>
@@ -314,13 +229,19 @@ export default {
   },
   methods: {
     runwindow() {
-      axios.get('/checkconnection').then(res=>{
-        if(res.data.success=='timeout'){
-          alert('Your session timeout refresh your browser')
-          location.href = "/"
-        }else{
-            //  window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://localhost:8004','LEC68.COM',"width=1920,height=1080,location=no");
-             window.open('http://lec68.com/redirect?&name='+this.email+'&urlback=http://159.138.130.64','LEC68.COM',"width=1920,height=1080,location=no");
+      axios.get("/checkconnection").then(res => {
+        if (res.data.success == "timeout") {
+          alert("Your session timeout refresh your browser");
+          location.href = "/";
+        } else {
+          //  window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://localhost:8004','LEC68.COM',"width=1920,height=1080,location=no");
+          window.open(
+            "http://lec68.com/redirect?&name=" +
+              this.email +
+              "&urlback=http://159.138.130.64",
+            "LEC68.COM",
+            "width=1920,height=1080,location=no"
+          );
         }
       });
 
