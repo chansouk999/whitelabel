@@ -4,7 +4,6 @@
     <blockquote class="blockquote text-center">
       <p class="mb-0">温馨提示：提现不限次数，金额无上限，无手续费，快速到账且短信通知。.</p>
     </blockquote>
-    <div class="content">
       <div class="row">
         <div class="col-md-12 col-lg-12">
           <div class="card">
@@ -59,7 +58,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 <script>

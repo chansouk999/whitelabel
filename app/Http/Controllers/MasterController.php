@@ -47,7 +47,7 @@ class MasterController extends Controller
                 $tn = strtotime('now');
                 $now = strtotime($latesttopuop->pluck('created_at')[0]);
                 $second = $tn - $now;
-                return $this->returncode(203,[$now,$tn], 'Wait for 30 second');
+                return $this->returncode(203, [$now, $tn], 'Wait for 30 second');
             } else {
                 $id = Auth::user()->id;
                 $check =  userdetail::where('id', '=', $id)->pluck('bankAccount');
@@ -262,6 +262,9 @@ class MasterController extends Controller
             return ['success' => 'success'];
         }
     }
+
+
+
     public function payment()
     {
         return "HELLO THIS PAYMENT FUNCTION";
