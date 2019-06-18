@@ -2543,7 +2543,7 @@ ul.list-group-navbar {
 .clash-card__image {
     position: relative;
     height: 230px;
-    margin-bottom: 35px;
+    /* margin-bottom: 35px; */
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
 }
@@ -2615,7 +2615,7 @@ ul.list-group-navbar {
 }
 
 .clash-card__level--archer {
-    color: #ee5487;
+    \ color: #ee5487;
 }
 
 .clash-card__level--giant {
@@ -2632,6 +2632,7 @@ ul.list-group-navbar {
 .clash-card__unit-description {
     padding: 20px;
     margin-bottom: 10px;
+    height: 100px;
 }
 
 .clash-card__unit-stats--barbarian {
@@ -2684,8 +2685,10 @@ ul.list-group-navbar {
 
 .clash-card__unit-stats .stat {
     position: relative;
-    font-size: 24px;
+    font-size: 2rem;
     margin-bottom: 10px;
+    font-weight: 700;
+    text-align: center;
 }
 
 .clash-card__unit-stats .stat-value {
@@ -2733,8 +2736,63 @@ ul.list-group-navbar {
     color: #f6901a;
 }
 
-.clash-card__unit-stats.clash-card__unit-stats--barbarian.clearfix a.third {
+.clash-card__unit-stats.clash-card__unit-stats--barbarian.clearfix a.lobby-link,
+.clash-card__unit-stats--archer.clearfix a.lobby-link,
+.clash-card__unit-stats.clash-card__unit-stats--wizard.clearfix a.lobby-link {
     color: #fff;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 88px;
+    text-transform: capitalize
+}
+
+.clash-card__level--wizard {
+    color: #4facff;
+}
+
+.clash-card__unit-stats a.lobby-link .w-75 .stat .stat-value {
+    position: relative;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.clash-card__unit-stats--wizard {
+    background: #4facff;
+}
+
+.clash-card__unit-stats--wizard .one-third {
+    border-right: 1px solid #309eff;
+}
+
+.u-content .container .card {
+    border-radius: 10px;
+    border: 1px dashed #d54fd8
+}
+
+.u-content .container .p-bank {
+    text-align: center;
+    justify-content: center;
+    top: 32%;
+    padding: 20%;
+}
+
+.u-content .container .card img {
+    width: 10%;
+    border-top-left-radius: calc(0.2857rem - 0.0625rem);
+    border-top-right-radius: calc(0.2857rem - 0.0625rem);
+    left: 0;
+    position: absolute;
+}
+
+.u-content .blockquote {
+    border-left: none;
+    border: 1px dashed #d64fd7;
+    padding: 22px;
+    font-size: 0.9625rem;
+    line-height: 1.8;
+    border-radius: 10px;
+    margin: 10px 46px;
+    text-align: center;
 }
 
 @media(min-width: 900px) {

@@ -113,7 +113,8 @@ export default {
     "stock5",
     "stock6",
     "checkpcormb"
-  ]
+  ],
+
 };
 </script>
 <style scoped>
