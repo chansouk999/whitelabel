@@ -53,6 +53,7 @@ export const msgmixin = {
         axios.post('/transfertoapi',{amount:this.transferamount}).then(res=>{
           console.log(res.data)
           // this.loading=true
+          x=1
           if(res.data.code==99){
             x=1
             alert(res.data.msg)
@@ -87,7 +88,6 @@ export const msgmixin = {
             pay_type : vm.paymenttype
           }
           console.log(data)
-         
           axios.post('actionpayment',{data}).then(res=>{
             console.log(res.data)
             if(res.data.code == 419){

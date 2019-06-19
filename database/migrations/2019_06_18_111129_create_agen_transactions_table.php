@@ -4,28 +4,28 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFinancesTable extends Migration
+class CreateAgenTransactionsTable extends Migration
 {
     /**
-     * Run the migrations.  
+     * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('agent_transaction', function (Blueprint $table) {
+        Schema::create('agen_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->dateTime('Time');
-            $table->string('agent_id',20);
+            $table->string('agentId');
             $table->double('amount',20,2);
-            $table->string('currency',20);
-            $table->string('method',2);
-            $table->string('assistAdmin',20);
-            $table->string('reference',20);
+            $table->string('currency',10);
+            $table->string('methodId',2);
+            $table->string('assitid',30);
+            $table->string('reference',30);
             $table->timestamps();
         });
     }
-    // TIME	USER	AMOUNT	CURRENCY	METHOD	AAIST ADMIN	REFERENCE	ACTION
+
     /**
      * Reverse the migrations.
      *
@@ -33,6 +33,6 @@ class CreateFinancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('finances');
+        Schema::dropIfExists('agen_transactions');
     }
 }
