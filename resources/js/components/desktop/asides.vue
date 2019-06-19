@@ -59,26 +59,26 @@
           <ul class="nav">
             <li class="nav-aside" id="SH0000015">
               <a href="/stocklist?stockname=SH000001&loop=5&country=china">
-                <img src="assets/img/china_logo.png" alt>
+                  <img src="assets/img/china_flag.png" alt>
                 <p class="text-aside">{{stock1}}</p>
               </a>
             </li>
 
             <li class="nav-aside" id="SZ3990015">
               <a href="/stocklist?stockname=SZ399001&loop=5&country=china">
-                <img src="assets/img/Canada-eCoin-icon.png" alt>
+                  <img src="assets/img/china_flag.png" alt>
                 <p class="text-aside">{{stock2}}</p>
               </a>
             </li>
             <li class="nav-aside" id="SH003005">
               <a href="/stocklist?stockname=SH00300&loop=5&country=china">
-                <img src="assets/img/Ark-icon.png" alt>
+                   <img src="assets/img/china_flag.png" alt>
                 <p class="text-aside">{{stock3}}</p>
               </a>
             </li>
             <li class="nav-aside" id="SZ3994155">
               <a href="/stocklist?stockname=SZ399415&loop=5&country=china">
-                <img src="assets/img/Augur-icon.png" alt>
+                   <img src="assets/img/china_flag.png" alt>
                 <p class="text-aside">{{stock4}}</p>
               </a>
             </li>
