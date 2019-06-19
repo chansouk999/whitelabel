@@ -9,7 +9,7 @@
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
               <div class="card-header bg-primary">
-                <h3 class="card-title text-white">Profile</h3>
+                <h3 class="card-title text-white">Profile</h3>\
               </div>
               <div class="card-body box-profile">
                 <div class="text-center">
