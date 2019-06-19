@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use GuzzleHttp\Client;
 use App\Eventhistory;
 use Exception;
 use App\Request as Reqst;
@@ -16,6 +17,37 @@ use App\AgenTransaction;
 use App\Shareholder;
 class AdminController extends Controller
 {
+    protected $urlserver = 'http://lec68.com';
+    protected $url8003 = 'http://localhost:8003';
+    public function deashed(){
+        // function dehash(){
+            $data = Auth::user()->pwdhashed;
+            $pwd = explode('-', $data);
+            $gotpwd = [];
+            foreach ($pwd as $p) {
+                $gotpwd[] = substr($p, -1, 1);
+            }
+            $realpwd = implode('', $gotpwd);
+            $dehashed =  $realpwd; //GOTED PASSWORD
+            // }
+            return $dehashed;
+    }
+    public function getgamehistory(Request $req){
+        $http =new Client;
+        $user_id = Auth::user()->user_id;
+        $gettoken = trim(access_token::where('user_id', 'like', '%' . $user_id . '%')->orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token'), '["]');
+        $response = $http->post($this->url8003.'/requestuserdata', [
+            'form_params' => [
+                'method' => 'password',
+                'client_id' => '2',
+                'client_secret' => 'n7ZrJ7VGv4b6QuQjZ1AKWZ4w4AuvX88JuxzlPjGu',
+                'username' => Auth::user()->email,
+                'password' => $this->deashed(),
+                'scope' => '',
+            ],
+        ]);
+        $accessdata = json_decode((string)$response->getBody(), true);
+    }
     public function returncode($code, $data, $msg)
     {
         //100 already exist
@@ -43,7 +75,18 @@ class AdminController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-
+    public function agenttransaction(Request $req){
+        try{
+            $data = AgenTransaction::orderby('created_at','desc')->paginate(20);
+            if($data){
+                return $this->returncode(200, $data, 'success');
+            }else{
+                return $this->returncode(300, $data, DB::getQueryLog()); 
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
     public function savetransfer(Request $req){
         try{
             DB::enableQueryLog();
@@ -52,7 +95,7 @@ class AdminController extends Controller
                 'agentId'=>$req->agentid,
                 'amount'=>$req->amount,
                 'currency'=>$req->currency,
-                'methodId'=>0,
+                'methodId'=>$req->methodid,
                 'assitid'=>Auth::user()->id,
                 'reference'=>strtotime('now').date('ymd'),
             );

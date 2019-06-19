@@ -286,7 +286,7 @@ class MasterController extends Controller
             return view('mobile.welcome', compact('checkpcormb'));
             // return view('mobile.message', compact('checkpcormb'));
         } else {
-            //  Alert::success('Desktop', 'Desktop Mode');
+            //  Alert::success('Desktop', 'Desktop Mode');  
             $checkpcormb = "pc";
             return view('desktop.welcome', compact('checkpcormb'));
             // return view('desktop.message', compact('checkpcormb'));

@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div>
     <app-navbar
       :recommend_friends="recommend_friends"
@@ -10,6 +10,8 @@
       :withdraw="withdraw"
       :currentlang="currentlang"
     ></app-navbar>
+
+
     <div class="container">
       <div class="row">
         <div class="col-2">
@@ -223,7 +225,7 @@ export default {
     };
   },
   mounted() {
-    console.log("HELELEOEO");
+  console.log("HELELEOEO");
   let filename = window.location.href
   filename.split('/')
   console.log("+++++++++++++++++++++++")
@@ -240,8 +242,8 @@ export default {
           alert('Your session timeout refresh your browser')
           location.href = "/"
         }else{
-             window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://'+filename.split('/')[2],'LEC68.COM',"width=1920,height=1080,location=no");
-            //  window.open('http://lec68.com/redirect?&name='+this.email+'&urlback=http://'+filename.split('/')[2],'LEC68.COM',"width=1920,height=1080,location=no");
+            //  window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://'+filename.split('/')[2],'LEC68.COM',"width=1920,height=1080,location=no");
+             window.open('http://lec68.com/redirect?&name='+this.email+'&urlback=http://'+filename.split('/')[2],'LEC68.COM',"width=1920,height=1080,location=no");
         }
       });
 
