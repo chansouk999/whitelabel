@@ -104,10 +104,24 @@ export const livechart = {
                     }
                 }
                 if (this.checkpcormb == 'mb') {
-                    this.onoff = "x"
+                    this.onoff = "x";
+                    this.pointBorderWidth = 2.2;
+                    this.pointHoverRadius = 2.2;
+                    this.pointHoverBorderWidth = 2.2;
+                    this.pointRadius = 2.2;
+                    this.backgroundColor = "#ffc1b3a8";
+                    this.pointBackgroundColor = "red";
+                    this.borderColor = "#ff8d72";
                 } else {
-                    this.onoff = "xy"
-                }
+                    this.onoff = "xy";
+                    this.pointBorderWidth = 0;
+                    this.pointHoverRadius = 0;
+                    this.pointHoverBorderWidth = 0;
+                    this.pointRadius = 0;
+                    this.backgroundColor = ""
+                    this.pointBackgroundColor = "#00c0ef";
+                    this.borderColor = "#00c0ef";
+                };
                 // console.log(maxs + "maxs");
                 // console.log(mins + "mins");
 
@@ -120,17 +134,19 @@ export const livechart = {
                             data: datas,
                             label: "value",
                             fill: true,
+                            backgroundColor: this.backgroundColor,
+                            borderColor: this.borderColor,
                             // backgroundColor: "#00c0ef",
-                            borderColor: "#00c0ef",
+                            // borderColor: "#00c0ef",
                             borderWidth: 1.5,
                             borderDashOffset: 0.0,
-                            pointBackgroundColor: "#00c0ef",
+                            pointBackgroundColor: this.pointBackgroundColor,
                             pointBorderColor: "rgba(255,255,255,0)",
                             pointHoverBackgroundColor: "#00c0ef",
-                            pointBorderWidth: 0,
-                            pointHoverRadius: 0,
-                            pointHoverBorderWidth: 0,
-                            pointRadius: 0
+                            pointBorderWidth: this.pointBorderWidth,
+                            pointHoverRadius: this.pointHoverRadius,
+                            pointHoverBorderWidth: this.pointHoverBorderWidth,
+                            pointRadius: this.pointRadius
                         }]
                     },
                     options: {

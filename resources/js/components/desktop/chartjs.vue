@@ -43,10 +43,10 @@ export default {
       this.borderColor = "red";
       this.backgroundcolor = "#ff8d728a";
       this.backgroundcolors = "#e86211";
-      this.pointBorderWidth = 2.5,
-        this.pointHoverRadius = 2.5,
-        this.pointHoverBorderWidth = 2.5,
-        this.pointRadius = 2.5;
+      this.pointBorderWidth = 2.2,
+        this.pointHoverRadius = 2.2,
+        this.pointHoverBorderWidth = 2.2,
+        this.pointRadius = 2.2;
     } else {
       this.typechart = "bar";
       this.number_data = "on";

@@ -1,13 +1,6 @@
 <template>
   <div>
-    <navbars
-    :home ="home"
-    :forum ="forum"
-    :washcode ="washcode"
-    :recharge ="recharge"
-    :mine ="mine"
-
-    ></navbars>
+    <navbars :home="home" :forum="forum" :washcode="washcode" :recharge="recharge" :mine="mine"></navbars>
     <div class="container">
       <div class="row">
         <div class="col-2">
@@ -221,14 +214,65 @@
                   typechart="line"
                   number_data="false"
                   :checkpcormb="checkpcormb"
-                ></chartjs>
-                <livechartmb :checkpcormb="checkpcormb" stockname = "SH000001" loop ='5'  country ='china'/>
-                <livechartmb :checkpcormb="checkpcormb" stockname = "SZ399001" loop ='5'  country ='china'/>
-                <livechartmb :checkpcormb="checkpcormb" stockname = "SH00300" loop ='5'  country ='china'/>
-                <livechartmb :checkpcormb="checkpcormb" stockname = "SZ399415" loop = '5'  country ='china'/>
-                <livechartmb :checkpcormb="checkpcormb" stockname = "USdollarIndex" loop = '5'  country = 'usa'/>
-                <livechartmb :checkpcormb="checkpcormb" stockname = "BTCUSDT" loop = '1'  country = 'cypto'/>
-                <livechartmb :checkpcormb="checkpcormb" stockname = "BTCUSDT" loop = '5'  country = 'cypto'/>
+                />
+                <div v-if="setNumber >=0">
+                  <livechartmb
+                    :checkpcormb="checkpcormb"
+                    stockname="SH000001"
+                    loop="5"
+                    country="china"
+                  />
+                </div>
+                <div v-if="setNumber >=1">
+                  <livechartmb
+                    :checkpcormb="checkpcormb"
+                    stockname="SZ399001"
+                    loop="5"
+                    country="china"
+                  />
+                </div>
+                <div v-if="setNumber >=2">
+                  <livechartmb
+                    :checkpcormb="checkpcormb"
+                    stockname="SH00300"
+                    loop="5"
+                    country="china"
+                  />
+                </div>
+                <div v-if="setNumber >=3">
+                  <livechartmb
+                    :checkpcormb="checkpcormb"
+                    stockname="SZ399415"
+                    loop="5"
+                    country="china"
+                  />
+                </div>
+                <div v-if="setNumber >=4">
+                  <livechartmb
+                    :checkpcormb="checkpcormb"
+                    stockname="USdollarIndex"
+                    loop="5"
+                    country="usa"
+                  />
+                </div>
+                <div v-if="setNumber >=5">
+                  <livechartmb
+                    :checkpcormb="checkpcormb"
+                    stockname="BTCUSDT"
+                    loop="1"
+                    country="cypto"
+                  />
+                </div>
+                <div v-if="setNumber >=6">
+                  <livechartmb
+                    :checkpcormb="checkpcormb"
+                    stockname="BTCUSDT"
+                    loop="5"
+                    country="cypto"
+                  />
+
+                </div>
+                <button class="btn btn-warning animation-on-hover" v-on:click="setNumber += 1" >load more...</button>
                 <div class="row d-flex justify-content-between py-2">
                   <div class="d-flex">
                     <span class="game_rBox">
@@ -458,7 +502,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <input type="text" class="form-control"  placeholder="SEARCH">
+            <input type="text" class="form-control" placeholder="SEARCH">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
@@ -466,7 +510,7 @@
         </div>
       </div>
     </div>
-    <setting ></setting>
+    <setting></setting>
   </div>
 </template>
 <script>
@@ -476,7 +520,7 @@ import navbars from "./navbar";
 import asides from "./asides";
 import footers from "./footers";
 import chartjs from "../desktop/chartjs";
-import livechartmb from "../chart-list/livechart-mb.vue"
+import livechartmb from "../chart-list/livechart-mb.vue";
 export default {
   components: {
     setting,
@@ -493,11 +537,13 @@ export default {
         initialIndex: 3,
         prevNextButtons: false,
         pageDots: false,
-        wrapAround: true
+        wrapAround: true,
+
 
         // any options from Flickity can be used
       },
       ismenu: false,
+      setNumber: 0,
       messages: "./index",
       promote: "./promote",
       welcome: "/",
@@ -512,8 +558,7 @@ export default {
       return this.$refs.mySwiper.swiper;
     }
   },
-  mounted() {
-      },
+  mounted() {},
   methods: {
     next() {
       this.$refs.flickity.next();
@@ -531,7 +576,6 @@ export default {
     rechargeClick() {
       $("#recharge")[0].click();
     }
-
   },
   props: [
     "recommend_friends",
@@ -559,7 +603,7 @@ export default {
     "home",
     "forum",
     "washcode",
-    "mine",
+    "mine"
     // "logout"
   ]
 };
