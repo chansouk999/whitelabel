@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use GuzzleHttp\Client;
 use App\Eventhistory;
 use Exception;
 use App\Request as Reqst;
@@ -16,6 +17,9 @@ use App\AgenTransaction;
 use App\Shareholder;
 class AdminController extends Controller
 {
+    public function getgamehistory(Request $req){
+        $http =new Client;
+    }
     public function returncode($code, $data, $msg)
     {
         //100 already exist

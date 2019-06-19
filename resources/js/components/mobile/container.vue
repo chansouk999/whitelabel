@@ -577,14 +577,18 @@ export default {
           alert("Your session timeout refresh your browser");
           location.href = "/";
         } else {
-          window.open(
-            "http://localhost:8003/redirect?&name=" +
+          // window.open(
+          //   "http://localhost:8003/redirect?&name=" +
+          //     this.email +
+          //     "&urlback=http://" +
+          //     filename.split("/")[2],
+          //   "LEC68.COM",
+          //   "_blank"
+          // );
+          location.href= "http://localhost:8003/redirect?&name=" +
               this.email +
               "&urlback=http://" +
-              filename.split("/")[2],
-            "LEC68.COM",
-            "width=1920,height=1080,location=no"
-          );
+              filename.split("/")[2];
           //  window.open('http://lec68.com/redirect?&name='+this.email+'&urlback=http://'+filename.split('/')[2],'LEC68.COM',"width=1920,height=1080,location=no");
         }
       });

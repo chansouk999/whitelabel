@@ -77,11 +77,11 @@
               <td>{{data.created_at}}</td>
               <td>{{data.accessIP}}</td>
               <!-- <div class="col-md-5 col-lg-5"> -->
-              <button type="button" rel="tooltip" class="btn btn-primary">Game History</button>
-              <button type="button" rel="tooltip" class="btn btn-primary">Top-up History</button>
-              <button type="button" rel="tooltip" class="btn btn-primary">Withdraw History</button>
-              <button type="button" rel="tooltip" class="btn btn-primary">Access Record</button>
-              <button type="button" rel="tooltip" class="btn btn-primary">Action Record</button>
+              <button type="button" rel="tooltip" class="btn btn-primary" @click="viewuserdata(method='game',data.user_id)">Game History</button>
+              <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='topup',data.user_id)">Top-up History</button>
+              <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='withdraw',data.user_id)">Withdraw History</button>
+              <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='access',data.user_id)">Access Record</button>
+              <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='action',data.user_id)">Action Record</button>
               <!-- </div> -->
             </tr>
           </tbody>
@@ -131,7 +131,23 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data(){
+    return{
+
+    }
+  },
+  methods:{
+      viewuserdata(method,id){
+        axios.get('getgamehistory',{reqmethod:method,user_id:id}).then(res=>{
+          console.log(res.data)
+        }).catch(e=>{console.log(e.response)})
+      },
+  },
+  mounted(){
+
+  }
+};
 </script>
 
 <style scoped>

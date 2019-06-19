@@ -18,12 +18,26 @@ use App\User;
 use App\withdraw_methods;
 use App\userdetail;
 use DateTime;
+use Exception;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
-use League\Flysystem\Exception;
+// use League\Flysystem\Exception;
 
 class CardController extends Controller
 {
+    public function getcardinfo()
+    {
+        try {
+            $data = withdraw_methods::orderby('created_at', 'desc')->get();
+            if ($data) {
+                return $this->returncode(200, $data, 'success');
+            } else {
+                return $this->returncode(300, '', DB::getQueryLog()); //query error
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
+        }
+    }
     // Vong Create add Card
     public function addcard(Request $request)
     {
@@ -43,7 +57,7 @@ class CardController extends Controller
             DB::enableQueryLog();
             $code = $request->code;
             $check =  withdraw_methods::where('bankAccount', '=', '' . $update['bankAccount'] . '')->get()->count();
-            if ($check > 0 ) {
+            if ($check > 0) {
                 return $this->returncode(100, 'No data', 'aleady exist');
             } else {
                 $save = withdraw_methods::create($update);
