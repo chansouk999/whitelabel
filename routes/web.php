@@ -33,7 +33,7 @@ Auth::routes();
 
 
 
-Route::get('/getgamehistory', 'AdminController@getgamehistory');
+Route::post('/getgamehistory', 'AdminController@getgamehistory');
 Route::get('/agenttransaction', 'AdminController@agenttransaction');
 Route::post('/savetransfer', 'AdminController@savetransfer');
 Route::get('/getshareholder', 'AdminController@getshareholder');

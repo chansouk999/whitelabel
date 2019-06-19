@@ -183,6 +183,15 @@
                                   <td>{{data.created_at}}</td>
                                   <td>{{data.accessIP}}</td>
                                   <td class="td-actions text-right">
+
+
+
+
+
+
+
+
+
                                     <span data-toggle="modal" data-target=".gamble-history">
                                       <button
                                         type="button"
@@ -190,13 +199,15 @@
                                         data-placement="bottom"
                                         title="Game History"
                                         class="btn btn-info btn-sm btn-icon"
-                                        @click="viewgamehistory()"
+                                        
+                                        @click="viewuserdata(method='game',data.user_id,data.name)"
                                       >
                                         <i class="tim-icons icon-trophy"></i>
                                       </button>
                                     </span>
                                     <span data-toggle="modal" data-target=".top-up-history">
                                       <button
+                                      @click="viewuserdata(method='topup',data.user_id,data.name)"
                                         type="button"
                                         data-toggle="tooltip"
                                         data-placement="bottom"
@@ -206,8 +217,9 @@
                                         <i class="tim-icons icon-video-66"></i>
                                       </button>
                                     </span>
-                                    <span data-toggle="modal" data-target=".withdraw-history">
+                                    <span data-toggle="modal" data-target=".top-up-history">
                                       <button
+                                      @click="viewuserdata(method='withdraw',data.user_id,data.name)"
                                         type="button"
                                         data-toggle="tooltip"
                                         data-placement="bottom"
@@ -219,6 +231,7 @@
                                     </span>
                                     <span data-toggle="modal" data-target=".access-record">
                                       <button
+                                      @click="viewuserdata(method='access',data.user_id,data.name)"
                                         type="button"
                                         data-toggle="tooltip"
                                         data-placement="bottom"
@@ -230,6 +243,7 @@
                                     </span>
                                     <span data-toggle="modal" data-target=".action-record">
                                       <button
+                                      @click="viewuserdata(method='action',data.user_id,data.name)"
                                         type="button"
                                         data-toggle="tooltip"
                                         data-placement="bottom"
@@ -239,6 +253,23 @@
                                         <i class="tim-icons icon-coins"></i>
                                       </button>
                                     </span>
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <!-- <button type="button" rel="tooltip" class="btn btn-primary" @click="viewuserdata(method='game',data.user_id,data.name)">Game History</button>
+              <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='topup',data.user_id,data.name)">Top-up History</button>
+              <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='withdraw',data.user_id,data.name)">Withdraw History</button>
+              <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='access',data.user_id,data.name)">Access Record</button>
+              <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='action',data.user_id,data.name)">Action Record</button> -->
                                   </td>
                                 </tr>
                               </tbody>
@@ -246,6 +277,167 @@
                           </div>
                           <!-- < -->
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div
+      class="modal fade gamble-history"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">PlayerID</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card card-nav-tabs">
+              <div class="card-header card-header-success">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th>Game</th>
+                      <th>Reference</th>
+                      <th>Amout</th>
+                      <th>Payout</th>
+                      <th>Rolling</th>
+                      <th class="text-right">Payout status</th>
+                      <th class="text-right">Bet Place time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(data ,index ) in gotuserhistory" v-if="popup==true && index >= A && index <= B ">
+                      <td class="text-center">{{index+1}}</td>
+                      <td>{{data.gameID}}</td>
+                      <td>{{data.betID}}</td>
+                      <td>{{data.betAmount}}</td>
+                      <td>{{data.payoutAmount}}</td>
+                      <td>{{data.rollingAmount}}</td>
+                      <td class="text-right">{{data.betStatus}}</td>
+                      <td class="text-right">{{data.betTime}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+           
+            <button class="btn btn-secondary" @click="paginate(method='previous')">Previous</button>
+            <button class="btn btn-secondary" href="#" @click="paginate(method='next')">Next</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+<div
+      class="modal fade top-up-history"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">PlayerID</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card card-nav-tabs">
+              <div class="card-header card-header-success">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th>Time</th>
+                      <th>Reference</th>
+                      <th>Amout<mm::/th></th>
+                      <th class="text-right">Method</th>
+                    </tr>
+                  </thead>
+                  <tbody v-if="reqmethod=='topup' || reqmethod =='withdraw'">
+                    <tr v-for="(data ,index ) in gotuserhistory" v-if="popup==true && index >= A && index <= B">
+                      <td class="text-center">{{index+1}}</td>
+                      <td>{{data.Time}}</td>
+                      <td>{{data.reference}}</td>
+                      <td>{{data.amount}}</td>
+                      <td class="text-right" v-if="data.detail !== ''">{{JSON.parse(data.deatil)['method'] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <!-- PLAYER INFO -->
                         <nav aria-label="...">
                           <ul class="pagination">
@@ -363,6 +555,12 @@ import modal from "./modal";
 
 export default {
   mixins: [adminmixin],
+  data(){
+    return{
+      A:0,
+      B:9,
+    }
+  },
   components: {
     "app-aside": aside,
     "app-navbar": navbar,
@@ -382,6 +580,35 @@ export default {
     "app-announcement": announcement,
     "app-managerecord": managerecord,
     "app-modal": modal
+  },
+  watch:{
+    popup(e){
+      alert(e)
+      if(e==true){
+          this.A=0
+          this.B=9
+          console.log(this.A)
+          console.log(this.B)
+      }
+    }
+  },
+  methods:{
+     paginate(method) {
+      let vm = this;
+      console.log(vm.A)
+      console.log(vm.B)
+      if (method == "previous") {
+        if (vm.A > 0) {
+          vm.A -= 10;
+          vm.B -= 10;
+        }
+      } else {
+        if (vm.B < vm.gotuserhistory.length) {
+          vm.A += 10;
+          vm.B += 10;
+        }
+      }
+    },
   }
 };
 </script>

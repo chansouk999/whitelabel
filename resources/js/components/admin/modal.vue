@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Modal Game History -->
-    <div
+    <!-- <div
       class="modal fade gamble-history"
       tabindex="-1"
       role="dialog"
@@ -33,15 +33,15 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="text-center">1</td>
-                      <td>GmaeID</td>
-                      <td>BetID</td>
-                      <td>Amount</td>
-                      <td>PayAmount</td>
-                      <td>Rolling Amount</td>
-                      <td class="text-right">Clear/pending</td>
-                      <td class="text-right">02/09/2019 19:232:23</td>
+                    <tr v-for="(data ,index ) in gotuserhistory" v-if="popup==true">
+                      <td class="text-center">{{index+1}}</td>
+                      <td>{{data.gameID}}</td>
+                      <td>{{data.betID}}</td>
+                      <td>{{data.betAmount}}</td>
+                      <td>{{data.payoutAmount}}</td>
+                      <td>{{data.rollingAmount}}</td>
+                      <td class="text-right">{{data.betStatus}}</td>
+                      <td class="text-right">{{data.betTime}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -54,11 +54,11 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- /Modal Game History -->
 
     <!--modal top up history -->
-    <div
+    <!-- <div
       class="modal fade top-up-history"
       tabindex="-1"
       role="dialog"
@@ -105,7 +105,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--/modal top up history -->
 
     <!--modal withdraw history -->
@@ -323,7 +323,11 @@
   </div>
 </template>
 <script>
-export default {};
+import { adminmixin } from "./adminmixin.js";
+
+export default {
+    mixins: [adminmixin],
+};
 </script>
  <style scoped>
 </style>

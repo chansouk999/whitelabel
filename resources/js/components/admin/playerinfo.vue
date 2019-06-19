@@ -34,8 +34,9 @@
               <th>PlayerID</th>
               <th>Name</th>
               <th>Balance</th>
+                <th>online hour</th>
               <th>Currency</th>
-              <th>online hour</th>
+            
               <th>Language</th>
               <th>Total rolling</th>
               <th>Available Rolling</th>
@@ -68,11 +69,11 @@
               <td>{{data.user_id}}</td>
               <td>{{data.name}}</td>
               <td>{{data.userBalance}}</td>
-              <td>{{data.totalOnlineHour}}</td>
-              <td>{{data.id}}</td>
-              <td>{{data.userBalance}}</td>
-              <td>{{data.userBalance}}</td>
-              <td>{{data.userBalance}}</td>
+              <td>{{ Math.floor(data.totalOnlineHour / 3600)}}</td>
+              <td>{{data.currency}}</td>
+              <td>{{data.lang}}</td>
+              <td>{{data.TotalRolling}}</td>
+              <td>{{data.AvailableRolling}}</td>
               <td>{{data.userStatus}}</td>
               <td>{{data.created_at}}</td>
               <td>{{data.accessIP}}</td>
