@@ -223,7 +223,7 @@ export default {
     };
   },
   mounted() {
-    console.log("HELELEOEO");
+  console.log("HELELEOEO");
   let filename = window.location.href
   filename.split('/')
   console.log("+++++++++++++++++++++++")

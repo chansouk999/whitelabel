@@ -137,7 +137,7 @@
                   </a>
                 </div>
                 <div class="w-25">
-                  <a href>
+                  <a href="#">
                     <div class="info-icon text-center icon-danger shadow-success">
                       <img src="assets/img/china_flag.png" alt>
                       <p>{{chines_stock}}</p>
@@ -145,7 +145,7 @@
                   </a>
                 </div>
                 <div class="w-25">
-                  <a href>
+                  <a href="javascript:void()" @click="runwindow()">
                     <div class="info-icon text-center icon-success shadow-danger">
                       <img src="assets/img/Aragon-icon.png" alt>
                       <!-- <i class="tim-icons icon-palette"></i> -->
@@ -270,9 +270,11 @@
                     loop="5"
                     country="cypto"
                   />
-
                 </div>
-                <button class="btn btn-warning animation-on-hover" v-on:click="setNumber += 1" >load more...</button>
+                <button
+                  class="btn btn-warning animation-on-hover"
+                  v-on:click="setNumber += 1"
+                >load more...</button>
                 <div class="row d-flex justify-content-between py-2">
                   <div class="d-flex">
                     <span class="game_rBox">
@@ -537,8 +539,7 @@ export default {
         initialIndex: 3,
         prevNextButtons: false,
         pageDots: false,
-        wrapAround: true,
-
+        wrapAround: true
 
         // any options from Flickity can be used
       },
@@ -558,8 +559,38 @@ export default {
       return this.$refs.mySwiper.swiper;
     }
   },
-  mounted() {},
+  mounted() {
+    console.log("HELELEOEO");
+    let filename = window.location.href;
+    filename.split("/");
+    console.log("+++++++++++++++++++++++");
+    console.log(filename.split("/")[2]);
+    console.log("+++++++++++++++++++++++");
+    this.userdata();
+  },
   methods: {
+    runwindow() {
+      let filename = window.location.href;
+
+      axios.get("/checkconnection").then(res => {
+        if (res.data.success == "timeout") {
+          alert("Your session timeout refresh your browser");
+          location.href = "/";
+        } else {
+          window.open(
+            "http://localhost:8003/redirect?&name=" +
+              this.email +
+              "&urlback=http://" +
+              filename.split("/")[2],
+            "LEC68.COM",
+            "width=1920,height=1080,location=no"
+          );
+          //  window.open('http://lec68.com/redirect?&name='+this.email+'&urlback=http://'+filename.split('/')[2],'LEC68.COM',"width=1920,height=1080,location=no");
+        }
+      });
+
+      //  window.open('http://lec68.com/redirect?&name='+this.email+'&urlback=http://159.138.130.64','LEC68.COM',"width=1920,height=1080,location=no");
+    },
     next() {
       this.$refs.flickity.next();
     },
