@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="col-md-4 text-right">
-        <button class="btn btn-link"  data-toggle="modal" data-target=".withdraw">
+        <button class="btn btn-link" id="withdraw" data-toggle="modal" data-target=".withdraw">
           <i class="tim-icons icon-zoom-split"></i>
           <span class="d-lg-none d-md-block">Search</span>
         </button>
@@ -43,7 +43,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  
+                  id="withdraw"
                   placeholder="userapiID/refernce/gameID"
                 >
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -83,7 +83,7 @@
               <td>{{data.balance_before_event}}</td>
               <td>{{data.amount}}</td>
               <td>{{data.balance_after_event}}</td>
-              <td>method : {{ JSON.parse(data.deatil).method }} ,{{ JSON.parse(data.deatil).cardno }} ,registerCity : {{ JSON.parse(data.deatil).regcity }} ,RegisterProvince : {{ JSON.parse(data.deatil).regprovince }} ,Branch : {{ JSON.parse(data.deatil).branch }}</td>
+              <td>{{ JSON.parse(data.deatil).cardno }} ,registerCity : {{ JSON.parse(data.deatil).regcity }} ,RegisterProvince : {{ JSON.parse(data.deatil).regprovince }} ,Branch : {{ JSON.parse(data.deatil).branch }}</td>
               <td>{{data.served_by}}</td>
             </tr>
           </tbody>

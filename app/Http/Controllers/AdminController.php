@@ -11,9 +11,7 @@ use App\Request as Reqst;
 use App\access_token;
 use Illuminate\Support\Facades\DB;
 use function GuzzleHttp\json_decode;
-use App\Agent;
-use App\AgenTransaction;
-use App\Shareholder;
+
 class AdminController extends Controller
 {
     public function returncode($code, $data, $msg)
@@ -30,117 +28,6 @@ class AdminController extends Controller
         // 303 cacle
         // 777 manage
         return ['code' => $code, 'data' => $data, 'msg' => $msg];
-    }
-    public function getshareholder(Request $req){
-        try{
-            $data = Shareholder::orderby('created_at','desc')->paginate(20);
-            if($data){
-                return $this->returncode(200, $data, 'success');
-            }else{
-                return $this->returncode(300, $data, DB::getQueryLog()); 
-            }
-        }catch(\Exception $ex){
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
-    public function agenttransaction(Request $req){
-        try{
-            $data = AgenTransaction::orderby('created_at','desc')->paginate(20);
-            if($data){
-                return $this->returncode(200, $data, 'success');
-            }else{
-                return $this->returncode(300, $data, DB::getQueryLog()); 
-            }
-        }catch(\Exception $ex){
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
-    public function savetransfer(Request $req){
-        try{
-            DB::enableQueryLog();
-            $insertdata = array(
-                'Time'=>date('Y-m-d H:i:s'),
-                'agentId'=>$req->agentid,
-                'amount'=>$req->amount,
-                'currency'=>$req->currency,
-                'methodId'=>$req->methodid,
-                'assitid'=>Auth::user()->id,
-                'reference'=>strtotime('now').date('ymd'),
-            );
-            $save = AgenTransaction::create($insertdata);
-            if($save){
-                return $this->returncode(200, $save, 'success');
-            }else{
-                return $this->returncode(300, $save, DB::getQueryLog()); 
-            }
-        }catch(\Exception $ex){
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
-
-    public function saveshareholder(Request $req){
-        try{
-            DB::enableQueryLog();
-            $insertdata = array(
-                'share_id'=>strtotime('now'),
-                'name'=>$req->shareholdername,
-                'accessPermission'=>$req->shareholderpermision,
-            );
-            $save = Shareholder::create($insertdata);
-            if($save){
-                return $this->returncode(200, $save, 'success');
-            }else{
-                return $this->returncode(300, $save, DB::getQueryLog()); 
-            }
-        }catch(\Exception $ex){
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
-    public function getagentinfo(Request $req){
-        try{
-            $data = Agent::orderby('created_at','desc')->paginate(20);
-            if($data){
-                return $this->returncode(200, $data, 'success');
-            }else{
-                return $this->returncode(300, $data, DB::getQueryLog()); 
-            }
-        }catch(\Exception $ex){
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
-    public function getagentid(){
-        $agent = Agent::all();
-        $serial = $agent->count();
-        $agentid = $serial.Auth::user()->id;
-        return $agentid;
-    }
-    public function saveagent(Request $req){
-        try{
-            DB::enableQueryLog();
-            $insertdata = array(
-                'agentId'=>$this->getagentid(),
-                'typeId'=>100,
-                'joinTime'=>date('Y-m-d H:i:s'),
-                'numberPlayer'=>0,
-                'subAgent'=>0,
-                'balance'=>0,
-                'percentage'=>0,
-                'totalIncome'=>0,
-                'name'=>$req->agentname,
-                'bankAccount'=>$req->agentbankacc,
-                'province'=>$req->agentprovince,
-                'city'=>$req->agentcity,
-                'branch'=>$req->agentbranch,
-            );
-            $save =Agent::create($insertdata);
-            if($save){
-                return $this->returncode(200, $save, 'success');
-            }else{
-                return $this->returncode(300, $save, DB::getQueryLog()); 
-            }
-        }catch(\Exception $ex){
-            return $this->returncode(500, '', $ex->getMessage());
-        }
     }
     public function denyreq($id)
     {
@@ -183,17 +70,6 @@ class AdminController extends Controller
         }
     }
     // public function withtop($)
-    public function getwithdrwaid($data){
-        try{
-            $date =date('Ymd');
-            $serial = Eventhistory::all();
-            $count = $serial->count();
-            $id = $count.'88'.$data.$date;
-            return $this->returncode(200, $id, 'success');
-        }catch(\Exception $ex){
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
     public function actionprocess(Request $req)
     {
         try {
@@ -202,27 +78,17 @@ class AdminController extends Controller
                 $reqdata = Reqst::where('id', '=', $req->id)->get()[0];
                 $userbl = User::where('user_id', '=', '' . $reqdata['userId'] . '')->get()->pluck('userBalance')[0];
                 $detail = json_decode($reqdata['detail'], true);
-                if($reqdata['requestDetail']=='topup'){
-                    $evnt = $userbl + $reqdata['amount'];$e = '+';
-                    $wtid = strtotime('now');
-                }
-                if($reqdata['requestDetail']=='Withdraw'){
-                    $evnt = $userbl - $reqdata['amount'];$e = '-';
-                    $wtid = $this->getwithdrwaid($reqdata['amount'])['data'];
-                }
-                // $data\
-                // return $evnt;
-                $cc = ',"method":"'.$reqdata['method'].'"}';
-                $datacc= str_replace('}',$cc,$reqdata['detail']);
+                if($reqdata['requestDetail']=='Top up'){$evnt = $userbl + $reqdata['amount'];$e = '+';}
+                if($reqdata['requestDetail']=='Withdraw'){$evnt = $userbl - $reqdata['amount'];$e = '-';}
                 $insertdata = array(
                     'Time' => date('Y-m-d H:i:s'),
                     'user_id' => $reqdata['userId'],
                     'event' => $reqdata['requestDetail'],
-                    'reference' => $wtid,
+                    'reference' => $reqdata['method'],
                     'balance_before_event' => $userbl,
                     'amount' => $reqdata['amount'],
                     'balance_after_event' =>$evnt ,
-                    'deatil' => $datacc,
+                    'deatil' => $reqdata['detail'],
                     'served_by' => Auth::user()->user_id,
                 );
                 $save = Eventhistory::create($insertdata); //DB::getQueryLog()
@@ -248,7 +114,7 @@ class AdminController extends Controller
                 return $this->viewuser($req->userid);
             }
         } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage());
+            return $this->returncode(500, $save, $ex->getMessage());
         }
     }
     public function gettoken()

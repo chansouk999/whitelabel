@@ -31,7 +31,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  
+                  id="withdraw"
                   placeholder="WebID/currency/adminID/transferID"
                 >
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -61,15 +61,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(data,index) in agenttranss" v-if="index >= A && index <= B">
-              <td class="text-center">{{index+1}}</td>
-              <td>{{data.Time}}</td>
-              <td>{{data.agentId}}</td>
-              <td>{{data.amount}}</td>
-              <td>{{data.currency}}</td>
-              <td>{{data.methodId}}</td>
-              <td>{{data.assitid}}</td>
-              <td>{{data.reference}}</td>
+            <tr>
+              <td class="text-center">1</td>
+              <td>08/08/2019 14:26:39</td>
+              <td>userID/AgentID</td>
+              <td>e.g $500</td>
+              <td>top-up USD</td>
+              <td>MethodID</td>
+              <td>AdminID</td>
+              <td>WithdrawID/top-upID/commisionID</td>
               <td class="td-actions">
                 <span data-toggle="modal" data-target=".view-evidence">
                   <button
@@ -110,8 +110,8 @@
             <option value="3">4</option>
           </select>
         </li>
-        <li class="page-item ">
-          <span class="page-link" @click="paginate(method='previous')">Previous</span>
+        <li class="page-item disabled">
+          <span class="page-link">Previous</span>
         </li>
         <li class="page-item">
           <a class="page-link" href="#">1</a>
@@ -126,7 +126,7 @@
           <a class="page-link" href="#">3</a>
         </li>
         <li class="page-item">
-          <a class="page-link" href="#"  @click="paginate(method='next')">Next</a>
+          <a class="page-link" href="#">Next</a>
         </li>
       </ul>
     </nav>
@@ -161,18 +161,13 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input
-                        type="text"
-                        v-model="amounttransfer"
-                        class="form-control"
-                        placeholder="Transfer Amount"
-                      >
+                      <input type="text" class="form-control" placeholder="Transfer Amount">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-3">
-                    <p class="text-white text-right">AgentID</p>
+                    <p class="text-white text-right">UserID</p>
                   </div>
                   <div class="col-md-3">
                     <div class="input-group">
@@ -181,114 +176,28 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input
-                        v-model="gotagentid"
-                        type="text"
-                        class="form-control"
-                        placeholder="Type here..."
-                      >
+                      <input type="text" class="form-control" placeholder="Type here...">
                     </div>
                   </div>
                   <div class="col-md-2">
                     <p class="text-white text-right">Search for list</p>
                   </div>
                   <div class="col-md-4">
-                    <!-- <select
-                      class="selectpicker"
-                      data-style="btn btn-primary"
-                      title="Single Select"
-                    >
-                    <option v-for="data in agentinfo">{{data.agentId}}</option>
-                    </select>-->
                     <select
-                      name
-                      id
-                      class="form-control"
+                      class="selectpicker"
+                      data-size="7"
                       data-style="btn btn-primary"
                       title="Single Select"
-                      v-model="gotagentid"
                     >
-                      <option v-for="data in agentinfo">{{data.agentId}}</option>
+                      <option disabled selected>Single Option</option>
+                      <option value="2">Foobar</option>
+                      <option value="3">Is great</option>
                     </select>
                   </div>
-
-
-
-                  <div class="col-md-2">
-                    <p class="text-white text-right">Currency id</p>
-                  </div>
-                  <div class="col-md-4">
-                    <!-- <select
-                      class="selectpicker"
-                      data-style="btn btn-primary"
-                      title="Single Select"
-                    >
-                    <option v-for="data in agentinfo">{{data.agentId}}</option>
-                    </select>-->
-                    <select
-                      name
-                      id
-                      class="form-control"
-                      data-style="btn btn-primary"
-                      title="Single Select"
-                      v-model="getcurrency"
-                    >
-                      <option value="USD">USD</option>
-                      <option value="RMB">RMB</option>
-                      <option value="CHB">CHB</option>
-                      <option value="BTC">BTC</option>
-                      <option value="THB">THB</option>
-                      <option value="LAK">LAK</option>
-                    </select>
-                  </div>
-            
-
-
-
-
-
-
-
-                <div class="col-md-2">
-                    <p class="text-white text-right">Method</p>
-                  </div>
-                  <div class="col-md-4">
-                    <!-- <select
-                      class="selectpicker"
-                      data-style="btn btn-primary"
-                      title="Single Select"
-                    >
-                    <option v-for="data in agentinfo">{{data.agentId}}</option>
-                    </select>-->
-                    <select
-                      name
-                      id
-                      class="form-control"
-                      data-style="btn btn-primary"
-                      title="Single Select"
-                      v-model="methodid"
-                    >
-                      <option value="AL">Alipay</option>
-                      <option value="BC">BankChina</option>
-                      <option value="BC">BCEL One</option>
-                      <option value="PP">PAYPAL</option>
-                    </select>
-                  </div>
-                      </div>
-
-
-
-
-
-
-
-
-
-
-
-                <!-- <div class="row">
+                </div>
+                <div class="row">
                    <div class="col-md-3">
-                    <p class="text-white text-right">AgentID</p>
+                    <p class="text-white text-right">UserID</p>
                   </div>
                    <div class="col-md-3">
                     <div class="input-group">
@@ -315,14 +224,14 @@
                       <option value="3">Is great</option>
                     </select>
                   </div>
-                </div>-->
+                </div>
                 <hr>
               </div>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" @click.prevent="savetransfer">Confirm</button>
+            <button type="button" class="btn btn-primary">Confirm</button>
           </div>
         </div>
       </div>
@@ -515,69 +424,7 @@
   </div>
 </template>
 <script>
-import { adminmixin } from "./adminmixin.js";
-export default {
-  mixins: [adminmixin],
-  data() {
-    return {
-      amounttransfer: null,
-      gotagentid: null,
-      agenttranss: [],
-      methodid:null,
-      getcurrency:null,
-      A:0,
-      B:19,
-    };
-  },
-  methods: {
-    paginate(method) {
-      let vm = this;
-      if (method == "previous") {
-        if (vm.A > 0) {
-          vm.A -= 20;
-          vm.B -= 20;
-        }
-      } else {
-        if (vm.B < vm.agenttranss.length) {
-          vm.A += 20;
-          vm.B += 20;
-        }
-      }
-    },
-    agenttransaction() {
-      axios.get("/agenttransaction").then(res => {
-        console.log(res.data)
-        this.agenttranss = res.data.data.data;
-      });
-    },
-    savetransfer(data) {
-      data = {
-        amount: this.amounttransfer,
-        agentid: this.gotagentid,
-        methodid:this.methodid,
-        currency:this.getcurrency,
-      };
-      axios
-        .post("/savetransfer", data)
-        .then(res => {
-          // console.log(res.data)
-          let code = res.data.code;
-          let msg = res.data.msg;
-          let data = res.data.data;
-          if (code == 200) {
-            this.agenttransaction();
-          }
-          alert(msg);
-        })
-        .catch(e => {
-          console.log(e.response);
-        });
-    }
-  },
-  mounted() {
-    this.agenttransaction()
-  }
-};
+export default {};
 </script>
 
 <style scoped>

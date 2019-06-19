@@ -59,11 +59,9 @@ class MasterController extends Controller
                         'regprovince' => $user->pluck('registerProvince')[0],
                         'branch' => $user->pluck('branch')[0],
                     );
-                    if($req->detail=='Withdraw'){$reqdetail='Withdraw';}
-                    if($req->detail=='topup'){$reqdetail='topup';}
                     $insert = array(
                         'userId' => Auth::user()->user_id,
-                        'requestDetail' => $reqdetail,
+                        'requestDetail' => 'Top up',
                         'amount' => $req->amount,
                         'method' => $user->pluck('methodId')[0],
                         'detail' => json_encode($desc),
@@ -180,7 +178,7 @@ class MasterController extends Controller
             if ($check < 1) {
                 access_token::create([
                     'user_id' =>  $id,
-                    'access_token' => $accessdata['access_token']
+                    'access_token' => $accessdata
                 ]);
             }
             // return ['token'=>$accessdata['access_token']];
@@ -191,55 +189,53 @@ class MasterController extends Controller
     }
     public function transfertoapi(Request $req)
     {
-        try {
-            $userid = Auth::user()->pro_id . '_' . Auth::user()->user_id;
-            $http = new Client;
-            $accesstoken = access_token::where('user_id', '=', '' . $userid . '')->limit(1)->get();
-            $countcheck = $accesstoken->count();
-            $resulttoekn = $this->getfreshtoken();
-            // return $resulttoekn;
-            if ($resulttoekn['code'] == 0) {
-                return $this->returncode(0, '', 'empty'); //empty
-            }
-            if ($countcheck < 1 || $resulttoekn['code'] == 200) {
-                $token = $this->getfreshtoken()['data']['access_token'];
-            }
-            
-            if ($countcheck > 0) {
-                $token =   $accesstoken->pluck('access_token')[0];
-            }
-            
-            $userbl = Auth::user()->userBalance;
-            if ($req->amount > $userbl || $req->amount == 0) {
-                return $this->returncode(99, '', 'not enough money minimum at 100'); //not enough
-            } else {
-                $header = [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Bearer ' . $token
-                ];
-                $formdata = [
-                    'amount' => $req->amount,
-                    'user_id' => $userid,
-                ];
-                $response = $http->get($this->urlforlocal8003 . '/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
-                    'headers' => $header,
-                ]);
-                $accessdata = json_decode((string)$response->getBody(), true);
-                if ($accessdata['code'] == 200) {
-                    DB::enableQueryLog(); // Enable query log
+        $userid = Auth::user()->pro_id . '_' . Auth::user()->user_id;
+        $http = new Client;
+        $accesstoken = access_token::where('user_id', '=', '' . $userid . '')->limit(1)->get();
+        $countcheck = $accesstoken->count();
+        $resulttoekn = $this->getfreshtoken();
+        // return $resulttoekn['token'];
+        if ($resulttoekn['code'] == 0) {
+            return $this->returncode(0, '', 'empty'); //empty
+        }
+        if ($countcheck < 1 || $resulttoekn['code'] == 200) {
+            $token = $this->getfreshtoken()['data']['access_token'];
+        }
+        if ($countcheck > 0) {
+            $token =   $accesstoken->pluck('access_token')[0];
+        }
+        $userbl = Auth::user()->userBalance;
+        if ($req->amount > $userbl || $req->amount == 0) {
+            return $this->returncode(99, '', 'not enough money minimum at 100'); //not enough
+        } else {
+            $header = [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . $token
+            ];
+            $formdata = [
+                'amount' => $req->amount,
+                'user_id' => $userid,
+            ];
+            $response = $http->get($this->urlforlocal8003 . '/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
+                'headers' => $header,
+            ]);
+            $accessdata = json_decode((string)$response->getBody(), true);
+            if ($accessdata['code'] == 200) {
+                DB::enableQueryLog(); // Enable query log
+                try {
                     $qr = DB::UPDATE('UPDATE users SET userBalance = userBalance - ' . $req->amount . ' WHERE user_id ="' . Auth::user()->user_id . '"');
                     if ($qr) {
                         return $this->returncode($accessdata['code'], $accessdata['data'], $accessdata['msg']);
                     } else {
                         return $this->returncode(300, '', DB::getQueryLog()); //query error
                     }
-                } else {
-                    return $this->returncode($accessdata['code'], $accessdata['data'], $accessdata['msg']); //empty
+                } catch (\Exception $ex) {
+                    return $this->returncode(500, '', $ex->getMessage()); //empty
                 }
+            } else {
+                return $this->returncode($accessdata['code'], $accessdata['data'], $accessdata['msg']); //empty
             }
-        } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage()); //empty
         }
     }
     public function checkconnection()
@@ -286,7 +282,7 @@ class MasterController extends Controller
             return view('mobile.welcome', compact('checkpcormb'));
             // return view('mobile.message', compact('checkpcormb'));
         } else {
-            //  Alert::success('Desktop', 'Desktop Mode');
+            //  Alert::success('Desktop', 'Desktop Mode');  
             $checkpcormb = "pc";
             return view('desktop.welcome', compact('checkpcormb'));
             // return view('desktop.message', compact('checkpcormb'));
