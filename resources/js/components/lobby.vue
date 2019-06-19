@@ -11,7 +11,7 @@
       :currentlang="currentlang"
     ></app-navbar>
 
-    
+
     <div class="container">
       <div class="row">
         <div class="col-2">
