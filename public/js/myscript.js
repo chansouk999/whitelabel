@@ -156,7 +156,7 @@ $(document).ready(function() {
 
 
 $("form input[name='redirect']").val("/activity/promote");
-$(document).ready(function() {
+$(document).ready(function(pn) {
 
     if (parseInt(pn.userLevel) >= 6 || parseInt(pn.userLevel) === 0) {
         $('.pbc').hide();

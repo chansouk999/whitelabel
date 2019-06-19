@@ -33,23 +33,17 @@ Auth::routes();
 
 
 
+Route::get('/agenttransaction', 'AdminController@agenttransaction');
+Route::post('/savetransfer', 'AdminController@savetransfer');
+Route::get('/getshareholder', 'AdminController@getshareholder');
+Route::get('/getagentinfo', 'AdminController@getagentinfo');
+Route::post('saveshareholder', 'AdminController@saveshareholder');
 Route::get('/getevnthistory', 'AdminController@getevnthistory');
 Route::post('/actionprocess', 'AdminController@actionprocess');
+Route::post('/saveagent', 'AdminController@saveagent');
 Route::get('/getreuest', 'AdminController@getreuest');
 Route::get('/getdata', 'AdminController@getuserdata');
 Route::get('/gettoken', 'AdminController@gettoken');
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Route::get('/home', function () {

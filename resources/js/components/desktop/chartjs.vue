@@ -43,10 +43,10 @@ export default {
       this.borderColor = "red";
       this.backgroundcolor = "#ff8d728a";
       this.backgroundcolors = "#e86211";
-      (this.pointBorderWidth = 5),
-        (this.pointHoverRadius = 5),
-        (this.pointHoverBorderWidth = 5),
-        (this.pointRadius = 4);
+      this.pointBorderWidth = 2.2,
+        this.pointHoverRadius = 2.2,
+        this.pointHoverBorderWidth = 2.2,
+        this.pointRadius = 2.2;
     } else {
       this.typechart = "bar";
       this.number_data = "on";
@@ -88,9 +88,15 @@ export default {
     var data = jsonfile.data.map(function(e) {
         return e.PT;
     });;
-    var datacolor = jsonfile.data.map(function(e) {
+    if (this.checkpcormb == "mb") {
+        this.datacolor = this.backgroundcolor
+    }else{
+      this.datacolor = jsonfile.data.map(function(e) {
         return e.PT == 2000 ? _this.backgroundcolors : _this.backgroundcolor;
+
     });;
+    }
+
 
 
     let ctx = document.getElementById("chart");
@@ -106,7 +112,7 @@ export default {
             data: data,
             fill: true,
             borderColor: "#ff8d72",
-            backgroundColor: datacolor,
+            backgroundColor: this.datacolor,
             // backgroundColor: this.backgroundcolor,
             borderWidth: 2,
             borderDash: [],

@@ -30,7 +30,7 @@
           <dd data-sidebar="u_withdraw">
             <a
               href="#"
-              id="withdraw"
+              
               @click="setNavShowName('applyforwithdrawal',$event)"
             >Apply for withdrawal</a>
           </dd>
