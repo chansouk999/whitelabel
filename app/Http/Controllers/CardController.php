@@ -38,7 +38,8 @@ class CardController extends Controller
                 'registerCity' => $request->city,
                 'branch' => $request->branch,
                 'user_id'=> Auth::user()->id
-            );
+                // forbank
+            );  
             DB::enableQueryLog();
             $code = $request->code;
             $check =  withdraw_methods_model::where('cardNumber', '=', '' . $cardNumber . '')->pluck('bankAccount');

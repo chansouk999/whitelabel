@@ -13,10 +13,10 @@ class CreateFinancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('agent_transaction', function (Blueprint $table) {
+        Schema::create('finances', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->dateTime('Time');
-            $table->string('agent_id',20);
+            $table->string('user_id',20);
             $table->double('amount',20,2);
             $table->string('currency',20);
             $table->string('method',2);

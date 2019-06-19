@@ -35,7 +35,7 @@
                     <input
                       type="text"
                       class="form-control"
-                     
+                      id="inlineFormInputGroup"
                       placeholder="SEARCH"
                     >
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -149,7 +149,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      
+                      id="inlineFormInputGroup"
                       placeholder="SEARCH"
                     >
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

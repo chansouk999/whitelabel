@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterEvthistory extends Migration
+class CreateAgentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +13,10 @@ class AlterEvthistory extends Migration
      */
     public function up()
     {
-        DB::statement('ALTER TABLE `eventhistories` CHANGE `reference` `reference` VARCHAR(38) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL');
+        Schema::create('agents', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -24,6 +26,6 @@ class AlterEvthistory extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('agents');
     }
 }

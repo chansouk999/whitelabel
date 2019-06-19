@@ -13,12 +13,8 @@ class CreateShareholdersTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('shareholders');
         Schema::create('shareholders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('share_id');
-            $table->string('name',50);
-            $table->string('accessPermission',30);
             $table->timestamps();
         });
     }

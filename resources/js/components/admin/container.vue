@@ -60,7 +60,7 @@
                             <a class="nav-link" href="#shhinfo" data-toggle="tab">SH Info</a>
                           </li>
                           <li class="nav-item w-8">
-                            <a class="nav-link" href="#finance" data-toggle="tab">Agent Transactions</a>
+                            <a class="nav-link" href="#finance" data-toggle="tab">Finance</a>
                           </li>
                           <li class="nav-item w-8">
                             <a class="nav-link" href="#request" data-toggle="tab">Request</a>
@@ -108,7 +108,7 @@
                                     <input
                                       type="text"
                                       class="form-control"
-                                      
+                                      id="inlineFormInputGroup"
                                       placeholder="SEARCH"
                                     >
                                     <button

@@ -28,7 +28,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  
+                  id="withdraw"
                   placeholder="WebID/currency/adminID/transferID"
                 >
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
