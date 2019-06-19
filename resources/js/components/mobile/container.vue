@@ -585,7 +585,14 @@ export default {
           //   "LEC68.COM",
           //   "_blank"
           // );
-          location.href= "http://localhost:8003/redirect?&name=" +
+          // location.href= "http://localhost:8003/redirect?&name=" +
+          //     this.email +
+          //     "&urlback=http://" +
+          //     filename.split("/")[2];
+
+
+
+              location.href= "http://lec68.com/redirect?&name=" +
               this.email +
               "&urlback=http://" +
               filename.split("/")[2];

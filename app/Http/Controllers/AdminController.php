@@ -17,8 +17,36 @@ use App\AgenTransaction;
 use App\Shareholder;
 class AdminController extends Controller
 {
+    protected $urlserver = 'http://lec68.com';
+    protected $url8003 = 'http://localhost:8003';
+    public function deashed(){
+        // function dehash(){
+            $data = Auth::user()->pwdhashed;
+            $pwd = explode('-', $data);
+            $gotpwd = [];
+            foreach ($pwd as $p) {
+                $gotpwd[] = substr($p, -1, 1);
+            }
+            $realpwd = implode('', $gotpwd);
+            $dehashed =  $realpwd; //GOTED PASSWORD
+            // }
+            return $dehashed;
+    }
     public function getgamehistory(Request $req){
         $http =new Client;
+        $user_id = Auth::user()->user_id;
+        $gettoken = trim(access_token::where('user_id', 'like', '%' . $user_id . '%')->orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token'), '["]');
+        $response = $http->post($this->url8003.'/requestuserdata', [
+            'form_params' => [
+                'method' => 'password',
+                'client_id' => '2',
+                'client_secret' => 'n7ZrJ7VGv4b6QuQjZ1AKWZ4w4AuvX88JuxzlPjGu',
+                'username' => Auth::user()->email,
+                'password' => $this->deashed(),
+                'scope' => '',
+            ],
+        ]);
+        $accessdata = json_decode((string)$response->getBody(), true);
     }
     public function returncode($code, $data, $msg)
     {
