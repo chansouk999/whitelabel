@@ -55,19 +55,35 @@
             </li>
           </ul>
         </span>
+
+
+
+
+
+    <div class="pop-up" id="pop-up">
+       <livechart></livechart>
+    </div>
+
+    <div class="pop-up" id="pop-up2">
+       <livechart stockname="SH00300"
+                    loop="5"
+                    country="china"></livechart>
+    </div>
+
+
         <span v-if="checkuser == 'true'">
           <ul class="nav">
             <li class="nav-aside" id="SH0000015">
-              <a href="/stocklist?stockname=SH000001&loop=5&country=china">
+              <a href="/stocklist?stockname=SH000001&loop=5&country=china" >
                 <img src="assets/img/Aeternity-icon.png" alt>
-                <p class="text-aside">{{stock1}}</p>
+                <p class="text-aside" id="trigger">{{stock1}}</p>
               </a>
             </li>
 
             <li class="nav-aside" id="SZ3990015">
-              <a href="/stocklist?stockname=SZ399001&loop=5&country=china">
+              <a href="/stocklist?stockname=SZ399001&loop=5&country=china" >
                 <img src="assets/img/Canada-eCoin-icon.png" alt>
-                <p class="text-aside">{{stock2}}</p>
+                <p class="text-aside" id="trigger2">{{stock2}}</p>
               </a>
             </li>
             <li class="nav-aside" id="SH003005">
@@ -95,7 +111,7 @@
                   {{stock6}}
                   <b class="caret"></b>
                 </p>
-               </a>
+              </a>
               <div class="collapse" id="pagesExamples">
                 <ul class="nav-aside active">
                   <li class="nav-aside" id="BTCUSDT1">
@@ -104,14 +120,13 @@
                       <span class="sidebar-normal">1 Minutes</span>
                     </a>
                   </li>
-                  <li class="nav-aside " id="BTCUSDT5">
+                  <li class="nav-aside" id="BTCUSDT5">
                     <a href="/stocklist?stockname=BTCUSDT&loop=5&country=cypto">
                       <span class="sidebar-mini-icon">5</span>
                       <span class="sidebar-normal">5 Minutes</span>
                     </a>
                   </li>
                 </ul>
-
               </div>
             </li>
           </ul>
@@ -121,7 +136,16 @@
   </div>
 </template>
 <script>
+import Vue from "vue";
+import Popover from "vue-js-popover";
+Vue.use(Popover);
+
+import livechart from "../chart-list/livechart";
+
 export default {
+    components: {
+        livechart
+    },
   data() {
     return {
       //   stockname: "",
@@ -149,16 +173,46 @@ export default {
     "country"
   ],
   mounted() {
-    let idactive= this.stockname + "" + this.loop;
+    let idactive = this.stockname + "" + this.loop;
 
-        $("#"+idactive+"").addClass("nav-aside active");
-
+    $("#" + idactive + "").addClass("nav-aside active");
   },
-  methods: {
-
-  }
+  methods: {}
 };
+ $(function() {
+   var moveLeft = 20;
+   var moveDown = 10;
 
+   $('#trigger').hover(function(e) {
+     $('div#pop-up').show();
+   }, function() {
+     $('div#pop-up').hide();
+   });
+   $('#trigger').mousemove(function(e) {
+     $("div#pop-up").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
+   });
+
+     $('#trigger2').hover(function(e) {
+     $('div#pop-up2').show();
+   }, function() {
+     $('div#pop-up2').hide();
+   });
+   $('#trigger2').mousemove(function(e) {
+     $("div#pop-up2").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
+   });
+ });
 </script>
 <style scoped>
+ div.pop-up {
+   display: none;
+   position: fixed;
+   width: 280px;
+   padding: 10px;
+   background: #eeeeee;
+   color: #000000;
+   border: 1px solid #1a1a1a;
+   font-size: 90%;
+   text-align: center
+
+ }
 </style>
