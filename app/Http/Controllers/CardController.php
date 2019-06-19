@@ -15,6 +15,7 @@ use App\access_token;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\withdraw_methods_model;
 use App\userdetail;
 use DateTime;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -27,24 +28,27 @@ class CardController extends Controller
     public function addcard(Request $request)
     {
         try {
-            $id = Auth::user()->id;
             $update = array(
                 'desc' => $request->desc,
-                'bankAccount' => $request->name,
+                'userName' => $request->name,
+                'bankAccount' => $request->bankAccount,
                 'cardNumber' => $request->cardnumber,
                 'methodId' => $request->bank,
                 'registerProvince' => $request->province,
                 'registerCity' => $request->city,
-                'branch' => $request->branch
+                'branch' => $request->branch,
+                'user_id'=> Auth::user()->id
             );
             DB::enableQueryLog();
             $code = $request->code;
-            $check =  userdetail::where('id', '=', '' . $id . '')->pluck('bankAccount');
+            $check =  withdraw_methods_model::where('cardNumber', '=', '' . $cardNumber . '')->pluck('bankAccount');
+
+
             if ($check !== '[""]' && $code == 200) {
                 return $this->returncode(100, 'No data', 'aleady exist');
             }
             if ($code == 202 || $code == 200) {
-                $save = userdetail::where('id', '=', '' . $id . '')->update($update);
+                $save = userdetail::create($update);
                 if ($save) {
                     return $this->returncode(200, 'No data', 'success');
                 } else {

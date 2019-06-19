@@ -221,11 +221,11 @@ Route::get('locale/{locale}', function ($locale) {
 });
 
 
-
-
-
 Route::get('/coding',function(Request $req){
     return $req->getHttpHost();
 });
 Route::get('/notify','PaymentController@notify');
 Route::post('actionpayment', 'PaymentController@actionpayment');
+
+Route::post('/addcard', 'CardController@addcard');
+

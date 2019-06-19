@@ -105,7 +105,7 @@
                       <label class="col-md-3 col-form-label">Bank</label>
                       <div class="col-md-9">
                         <div class="form-group">
-                          <select id="inputState" v-model="bank" name="bank" class="form-control">
+                          <select id="inputState" v-model="bankAccount" name="bankAccount" class="form-control">
                             <option value="AL">ALipay</option>
                             <option value="BC">BCELOne</option>
                           </select>
@@ -186,7 +186,7 @@ export default {
       cardnumber: "",
       province: "",
       city: "",
-      bank: "",
+      bankAccount: "",
       branch: ""
     };
   },
@@ -203,11 +203,11 @@ export default {
       // console.log(data);
       if (
         data.name == "" ||
-        data.bank == "" ||
+        data.bankAccount == "" ||
         data.cardnumber == "" ||
         data.province == "" ||
         data.city == "" ||
-        data.branch == ""
+        data.branch == "" 
       ) {
         this.$swal({
           type: "warning",
