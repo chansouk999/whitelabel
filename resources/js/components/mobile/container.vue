@@ -222,6 +222,13 @@
                   number_data="false"
                   :checkpcormb="checkpcormb"
                 ></chartjs>
+                <livechartmb :checkpcormb="checkpcormb" stockname = "SH000001" loop ='5'  country ='china'/>
+                <livechartmb :checkpcormb="checkpcormb" stockname = "SZ399001" loop ='5'  country ='china'/>
+                <livechartmb :checkpcormb="checkpcormb" stockname = "SH00300" loop ='5'  country ='china'/>
+                <livechartmb :checkpcormb="checkpcormb" stockname = "SZ399415" loop = '5'  country ='china'/>
+                <livechartmb :checkpcormb="checkpcormb" stockname = "USdollarIndex" loop = '5'  country = 'usa'/>
+                <livechartmb :checkpcormb="checkpcormb" stockname = "BTCUSDT" loop = '1'  country = 'cypto'/>
+                <livechartmb :checkpcormb="checkpcormb" stockname = "BTCUSDT" loop = '5'  country = 'cypto'/>
                 <div class="row d-flex justify-content-between py-2">
                   <div class="d-flex">
                     <span class="game_rBox">
@@ -459,7 +466,7 @@
         </div>
       </div>
     </div>
-    <setting :logout="logout"></setting>
+    <setting ></setting>
   </div>
 </template>
 <script>
@@ -469,6 +476,7 @@ import navbars from "./navbar";
 import asides from "./asides";
 import footers from "./footers";
 import chartjs from "../desktop/chartjs";
+import livechartmb from "../chart-list/livechart-mb.vue"
 export default {
   components: {
     setting,
@@ -476,7 +484,8 @@ export default {
     asides,
     footers,
     chartjs,
-    Flickity
+    Flickity,
+    livechartmb
   },
   data() {
     return {
@@ -551,7 +560,7 @@ export default {
     "forum",
     "washcode",
     "mine",
-    "logout"
+    // "logout"
   ]
 };
 </script>
