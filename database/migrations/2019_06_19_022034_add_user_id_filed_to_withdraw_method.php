@@ -14,9 +14,9 @@ class AddUserIdFiledToWithdrawMethod extends Migration
     public function up()
     {
         Schema::table('withdraw_methods', function (Blueprint $table) {
-            // $table->string('user_id', 20);
+            $table->string('user_id', 20);
             $table->string('methodId', 2);
-            $table->text('desc');
+            $table->text('desc')->nullable();
         });
     }
 

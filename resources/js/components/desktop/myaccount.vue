@@ -20,7 +20,7 @@
                   >
                 </div>
 
-                <h3 class="profile-username text-center">{{ email }}</h3>
+                <h3 class="profile-username text-center">{{ user_id }}</h3>
 
                 <p class="text-muted text-center">{{name}}</p>
 

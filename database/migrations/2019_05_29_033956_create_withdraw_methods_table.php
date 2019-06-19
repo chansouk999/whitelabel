@@ -14,10 +14,10 @@ class CreateWithdrawMethodsTable extends Migration
     public function up()
     {
         Schema::create('withdraw_methods', function (Blueprint $table) {
-            $table->string('userName',5);
+            $table->string('userName',30);
             $table->integer('bankAccount');
-            $table->string('registerProvince',5);
-            $table->string('registerCity',10);
+            $table->string('registerProvince',50);
+            $table->string('registerCity',50);
             $table->string('branch',50);
             $table->primary(['bankAccount']);
             $table->timestamps();

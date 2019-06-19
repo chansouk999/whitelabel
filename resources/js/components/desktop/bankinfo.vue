@@ -105,7 +105,12 @@
                       <label class="col-md-3 col-form-label">Bank</label>
                       <div class="col-md-9">
                         <div class="form-group">
-                          <select id="inputState" v-model="bankAccount" name="bankAccount" class="form-control">
+                          <select
+                            id="inputState"
+                            v-model="bankAccount"
+                            name="bankAccount"
+                            class="form-control"
+                          >
                             <option value="AL">ALipay</option>
                             <option value="BC">BCELOne</option>
                           </select>
@@ -198,7 +203,8 @@ export default {
         cardnumber: vm.cardnumber,
         province: vm.province,
         city: vm.city,
-        branch: vm.branch
+        branch: vm.branch,
+        bankAccount: vm.bankAccount
       };
       // console.log(data);
       if (
@@ -207,7 +213,7 @@ export default {
         data.cardnumber == "" ||
         data.province == "" ||
         data.city == "" ||
-        data.branch == "" 
+        data.branch == ""
       ) {
         this.$swal({
           type: "warning",
@@ -222,6 +228,24 @@ export default {
           .post("/addcard", data)
           .then(res => {
             console.log(res.data);
+            if (res.data.code == 200) {
+              this.$swal({
+                type: "success",
+                title: res.data.msg,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                html: "Please check the box that you fill in"
+              });
+            }
+            if (res.data.code == 100) {
+              this.$swal({
+                type: "warning",
+                title: res.data.msg,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                html: "Please check the box that you fill in"
+              });
+            }
           })
           .catch(er => {
             console.log(er.res);
