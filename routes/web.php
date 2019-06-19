@@ -33,6 +33,7 @@ Auth::routes();
 
 
 
+Route::get('/getgamehistory', 'AdminController@getgamehistory');
 Route::get('/agenttransaction', 'AdminController@agenttransaction');
 Route::post('/savetransfer', 'AdminController@savetransfer');
 Route::get('/getshareholder', 'AdminController@getshareholder');
@@ -222,4 +223,5 @@ Route::get('/notify','PaymentController@notify');
 Route::post('actionpayment', 'PaymentController@actionpayment');
 
 Route::post('/addcard', 'CardController@addcard');
+Route::get('/getcardinfo', 'CardController@getcardinfo');
 

@@ -13,6 +13,7 @@ class CreateWithdrawMethodsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('withdraw_methods');
         Schema::create('withdraw_methods', function (Blueprint $table) {
             $table->string('userName',30);
             $table->integer('bankAccount');

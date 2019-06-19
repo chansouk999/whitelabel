@@ -192,10 +192,22 @@ export default {
       province: "",
       city: "",
       bankAccount: "",
-      branch: ""
+      branch: "",
+      gotcardinfo:[]
     };
   },
+  mounted(){
+    this.getcardinfo()
+  },
   methods: {
+    getcardinfo(){
+        axios.get('/getcardinfo').then(res=>{
+          console.log("PPPPPPPPP")
+          console.log(res.data)
+          console.log("PPPPPPPPP")
+            this.gotcardinfo = res.data.data
+        })
+    },
     addcard() {
       let vm = this;
       let data = {
