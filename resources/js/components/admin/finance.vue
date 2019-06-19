@@ -31,7 +31,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="withdraw"
+                  
                   placeholder="WebID/currency/adminID/transferID"
                 >
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -61,15 +61,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="text-center">1</td>
-              <td>08/08/2019 14:26:39</td>
-              <td>AgentID</td>
-              <td>e.g $500</td>
-              <td>top-up USD</td>
-              <td>MethodID</td>
-              <td>AdminID</td>
-              <td>commisionID</td>
+            <tr v-for="(data,index) in agenttranss" v-if="index >= A && index <= B">
+              <td class="text-center">{{index+1}}</td>
+              <td>{{data.Time}}</td>
+              <td>{{data.agentId}}</td>
+              <td>{{data.amount}}</td>
+              <td>{{data.currency}}</td>
+              <td>{{data.methodId}}</td>
+              <td>{{data.assitid}}</td>
+              <td>{{data.reference}}</td>
               <td class="td-actions">
                 <span data-toggle="modal" data-target=".view-evidence">
                   <button
@@ -110,8 +110,8 @@
             <option value="3">4</option>
           </select>
         </li>
-        <li class="page-item disabled">
-          <span class="page-link">Previous</span>
+        <li class="page-item ">
+          <span class="page-link" @click="paginate(method='previous')">Previous</span>
         </li>
         <li class="page-item">
           <a class="page-link" href="#">1</a>
@@ -126,7 +126,7 @@
           <a class="page-link" href="#">3</a>
         </li>
         <li class="page-item">
-          <a class="page-link" href="#">Next</a>
+          <a class="page-link" href="#"  @click="paginate(method='next')">Next</a>
         </li>
       </ul>
     </nav>
@@ -241,7 +241,7 @@
                       <option value="LAK">LAK</option>
                     </select>
                   </div>
-                </div>
+            
 
 
 
@@ -274,6 +274,7 @@
                       <option value="PP">PAYPAL</option>
                     </select>
                   </div>
+                      </div>
 
 
 
@@ -321,7 +322,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-primary" @click.prevent="savetransfer">Confirm</button>
           </div>
         </div>
       </div>
@@ -522,20 +523,39 @@ export default {
       amounttransfer: null,
       gotagentid: null,
       agenttranss: [],
+      methodid:null,
       getcurrency:null,
+      A:0,
+      B:19,
     };
   },
   methods: {
+    paginate(method) {
+      let vm = this;
+      if (method == "previous") {
+        if (vm.A > 0) {
+          vm.A -= 20;
+          vm.B -= 20;
+        }
+      } else {
+        if (vm.B < vm.agenttranss.length) {
+          vm.A += 20;
+          vm.B += 20;
+        }
+      }
+    },
     agenttransaction() {
       axios.get("/agenttransaction").then(res => {
-        // console.log(res.data)
+        console.log(res.data)
         this.agenttranss = res.data.data.data;
       });
     },
     savetransfer(data) {
       data = {
         amount: this.amounttransfer,
-        agentid: this.gotagentid
+        agentid: this.gotagentid,
+        methodid:this.methodid,
+        currency:this.getcurrency,
       };
       axios
         .post("/savetransfer", data)
@@ -545,7 +565,7 @@ export default {
           let msg = res.data.msg;
           let data = res.data.data;
           if (code == 200) {
-            this.getagentinfo();
+            this.agenttransaction();
           }
           alert(msg);
         })
@@ -555,7 +575,7 @@ export default {
     }
   },
   mounted() {
-    // this.agenttransaction()
+    this.agenttransaction()
   }
 };
 </script>

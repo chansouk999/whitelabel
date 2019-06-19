@@ -33,7 +33,8 @@ Auth::routes();
 
 
 
-Route::get('/savetransfer', 'AdminController@savetransfer');
+Route::get('/agenttransaction', 'AdminController@agenttransaction');
+Route::post('/savetransfer', 'AdminController@savetransfer');
 Route::get('/getshareholder', 'AdminController@getshareholder');
 Route::get('/getagentinfo', 'AdminController@getagentinfo');
 Route::post('saveshareholder', 'AdminController@saveshareholder');

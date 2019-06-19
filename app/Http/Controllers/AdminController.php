@@ -43,7 +43,18 @@ class AdminController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-
+    public function agenttransaction(Request $req){
+        try{
+            $data = AgenTransaction::orderby('created_at','desc')->paginate(20);
+            if($data){
+                return $this->returncode(200, $data, 'success');
+            }else{
+                return $this->returncode(300, $data, DB::getQueryLog()); 
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
     public function savetransfer(Request $req){
         try{
             DB::enableQueryLog();
@@ -52,7 +63,7 @@ class AdminController extends Controller
                 'agentId'=>$req->agentid,
                 'amount'=>$req->amount,
                 'currency'=>$req->currency,
-                'methodId'=>0,
+                'methodId'=>$req->methodid,
                 'assitid'=>Auth::user()->id,
                 'reference'=>strtotime('now').date('ymd'),
             );
