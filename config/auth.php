@@ -76,6 +76,10 @@ return [
 
         
 
+        
+
+        
+
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -153,6 +157,10 @@ return [
 
         
 
+        
+
+        
+
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
@@ -191,6 +199,10 @@ return [
             'table'    => 'password_resets',
             'expire'   => 60,
         ],
+
+        
+
+        
 
         
 

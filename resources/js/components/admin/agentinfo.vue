@@ -66,21 +66,21 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="text-center">1</td>
-              <td>genID</td>
-              <td>TypeID</td>
-              <td>DATATIME</td>
-              <td>e.g 100</td>
-              <td>e.g 12</td>
-              <td>e.g $200</td>
-              <td>e.g 6%</td>
-              <td>e.g $967.76</td>
-              <td>Bank account number</td>
-              <td>name on card</td>
-              <td>register province</td>
-              <td>city</td>
-              <td>Branch</td>
+            <tr v-for="(data,index) in agentinfo" v-if="index >= A && index <= B">
+              <td class="text-center">{{ index+1 }}</td>
+              <td>{{data.agentId}}</td>
+              <td>{{data.typeId}}</td>
+              <td>{{data.joinTime}}</td>
+              <td>{{data.numberPlayer}}</td>
+              <td>{{data.subAgent}}</td>
+              <td>{{data.balance}}</td>
+              <td>{{data.percentage}}</td>
+              <td>{{data.totalIncome}}</td>
+              <td>{{data.bankAccount}}</td>
+              <td>{{data.name}}</td>
+              <td>{{data.province}}</td>
+              <td>{{data.city}}</td>
+              <td>{{data.branch}}</td>
               <td class="td-actions">
                 <span data-toggle="modal" data-target=".sub-agent">
                   <button
@@ -121,8 +121,8 @@
             <option value="3">4</option>
           </select>
         </li>
-        <li class="page-item disabled">
-          <span class="page-link">Previous</span>
+        <li class="page-item ">
+          <span class="page-link" @click="paginate(method='previous')">Previous</span>
         </li>
         <li class="page-item">
           <a class="page-link" href="#">1</a>
@@ -137,7 +137,7 @@
           <a class="page-link" href="#">3</a>
         </li>
         <li class="page-item">
-          <a class="page-link" href="#">Next</a>
+          <a class="page-link" href="#" @click="paginate(method='next')">Next</a>
         </li>
       </ul>
     </nav>
@@ -256,7 +256,7 @@
                       <label class="col-md-3 col-form-label">Name</label>
                       <div class="col-md-9">
                         <div class="form-group">
-                          <input type="text" name="name" class="form-control" placeholder="Name...">
+                          <input type="text" name="name" class="form-control" v-model="agentname" placeholder="Name...">
                         </div>
                       </div>
                     </div>
@@ -265,6 +265,7 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <input
+                            v-model="agentbankacc"
                             type="email"
                             name="bankaccount"
                             class="form-control"
@@ -278,6 +279,7 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <input
+                          v-model="agentprovince"
                             type="email"
                             name="Provice"
                             class="form-control"
@@ -291,6 +293,7 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <input
+                          v-model="agentcity"
                             type="email"
                             name="city"
                             class="form-control"
@@ -304,6 +307,7 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <input
+                          v-model="agentbranch"
                             type="email"
                             name="branch"
                             class="form-control"
@@ -318,7 +322,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary">Save & Continue</button>
+              <button type="submit" class="btn btn-primary" @click.prevent="saveagent">Save & Continue</button>
             </div>
           </form>
         </div>
@@ -327,7 +331,61 @@
   </div>
 </template>
 <script>
-export default {};
+import { adminmixin } from "./adminmixin.js";
+export default {
+  mixins: [adminmixin],
+  data(){
+    return{
+      agentname:null,
+      agentbankacc:null,
+      agentprovince:null,
+      agentcity:null,
+      agentbranch:null,
+      A:0,
+      B:19
+    }
+  },
+  mounted(){
+    this.getagentinfo()
+  },
+  methods:{
+     paginate(method) {
+      let vm = this;
+      if (method == "previous") {
+        if (vm.A > 0) {
+          vm.A -= 20;
+          vm.B -= 20;
+        }
+      } else {
+        if (vm.B < vm.agentinfo.length) {
+          vm.A += 20;
+          vm.B += 20;
+        }
+      }
+    },
+      saveagent(data){
+        // asdasdasdasd
+         let vm = this
+         data = {
+            agentname:vm.agentname,
+            agentbankacc:vm.agentbankacc,
+            agentprovince:vm.agentprovince,
+            agentcity:vm.agentcity,
+            agentbranch:vm.agentbranch
+         }
+         axios.post('/saveagent',data).then(res=>{
+            // console.log(res.data)
+            let code = res.data.code
+            let msg = res.data.msg
+            let data = res.data.data
+            if(code==200){
+               this.getagentinfo()
+            }
+            alert(msg)
+         }).catch(e=>{console.log(e.response)})
+      }
+  }
+};
 </script>
 
 <style scoped>

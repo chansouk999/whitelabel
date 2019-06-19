@@ -57,7 +57,7 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
-  props: ["logout"],
+//   props: ["logout"],
   methods: {
     logout() {
       this.$swal({
