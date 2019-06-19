@@ -59,7 +59,7 @@
           <ul class="nav">
             <li class="nav-aside" id="SH0000015">
               <a href="/stocklist?stockname=SH000001&loop=5&country=china">
-                <img src="assets/img/Aeternity-icon.png" alt>
+                <img src="assets/img/china_logo.png" alt>
                 <p class="text-aside">{{stock1}}</p>
               </a>
             </li>
