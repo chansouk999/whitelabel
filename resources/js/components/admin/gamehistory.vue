@@ -166,16 +166,16 @@
       aria-labelledby="mySmallModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+      <div class="modal-dialog modal-sm" v-if="reqmethod=='viewuser'">
+        <div class="modal-content" v-for="data in gotuserhistory " >
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Player userID</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Player userID: {{data.user_id}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
           </div>
-          <div class="modal-body"  v-if="reqmethod=='viewuser'">
-            <div class="card card-nav-tabs" v-for="data in gotuserhistory ">
+          <div class="modal-body"  >
+            <div class="card card-nav-tabs">
               <div class="card-header">User name:{{data.name}}</div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
@@ -205,37 +205,36 @@
       aria-labelledby="mySmallModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+      <div class="modal-dialog modal-sm" v-if="reqmethod=='viewgameresult'">
+        <div class="modal-content" v-for="(data,index) in gotuserhistory" v-if="index < 1">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">GamID</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">GamID : {{data.gameID}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
           </div>
           <div class="modal-body">
             <div class="card card-nav-tabs">
-              <div class="card-header">User name:</div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                   Game ResultT :
-                  <span class="text-warning">e.g 33</span>
+                  <span class="text-warning">{{data.gameresult}}</span>
                 </li>
                 <li class="list-group-item">
                   Total bets :
-                  <span class="text-warning">e.g 777</span>
+                  <span class="text-warning">{{data.totalbet}}</span>
                 </li>
                 <li class="list-group-item">
                   Total number of player :
-                  <span class="text-warning">e.g 588</span>
+                  <span class="text-warning">{{data.totalplayer}}</span>
                 </li>
                 <li class="list-group-item">
-                  Incom detai9300.78ls :
-                  <span class="text-warning">e.g $</span>
+                  Incom detail:
+                  <span class="text-warning">{{data.income}}</span>
                 </li>
                 <li class="list-group-item">
                   Result time :
-                  <span class="text-warning">e.g 20/02/2019 19:29:43</span>
+                  <span class="text-warning">{{data.resulttime}}</span>
                 </li>
               </ul>
             </div>

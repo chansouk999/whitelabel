@@ -62,7 +62,8 @@
               <td>{{data.gameresult}}</td>
               <td>{{data.totalbet}}</td>
               <td>{{data.totalplayer}}</td>
-              <td>{{data.totalpayout}}</td>
+              <td v-if="data.income == null">0</td>
+              <td v-else>{{data.income}}</td>
               <td>{{data.totalpayout}}</td>
               <td>{{data.resulttime}}</td>
               <td class="td-actions">
@@ -73,6 +74,7 @@
                     data-placement="bottom"
                     title="View Details"
                     class="btn btn-info btn-sm btn-icon"
+                    @click="getuserbet(data.gameID)"
                   >
                     <i class="tim-icons icon-video-66"></i>
                   </button>
@@ -126,10 +128,10 @@
       aria-labelledby="mySmallModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+      <div class="modal-dialog modal-lg"  >
+        <div class="modal-content" v-for="(data,index) in getfiler">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">PlayerID</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">GameID: {{ data.gameID }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
@@ -140,14 +142,14 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th class="text-center">#</th>
-                      <th>UserID</th>
-                      <th>BetID</th>
-                      <th>Amout</th>
-                      <th>Payyout</th>
-                      <th>Rolling</th>
-                      <th class="text-right">Payout status</th>
-                      <th class="text-right">Bet Place Time</th>
+                      <th class="text-center">{{index+1}}</th>
+                      <th>{{data.token}}</th>
+                      <th>{{data.betID}}</th>
+                      <th>{{data.betAmount}}</th>
+                      <th>{{data.payoutAmount}}</th>
+                      <th>{{data.rollingAmount}}</th>
+                      <th class="text-right">{{data.betStatus}}/th>
+                      <th class="text-right">{{data.betTime}}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -175,22 +177,34 @@
     </div>
   </div>
 </template>
-<script>  import { adminmixin } from "./adminmixin.js";
+<script>  
+import { adminmixin } from "./adminmixin.js";
 
 
 export default {
  mixins: [adminmixin],
  data(){
    return{
+     dataserached:null,
      gamehistorystart:0,
      gamehistoryend:20,
      gamehistorypagenum:1,
      gamehistorysearch:null,
+     getfiler:[]
 
    }
  },
+ watch:{
+    dataserached(e){
+      alert(e)
+    }
+ },
 methods:{
-  
+   getuserbet(gameid){
+       return this.gamehistory.filter(post => {
+          return post.gameID==this.dataserached;
+      });
+   },
   gamehistorypage(methods){
         if(methods=='previous'){
           if(this.gamehistorystart > 0){
@@ -209,6 +223,11 @@ methods:{
     }
   },
   computed:{
+  //  dataserachedfilter(){
+  //     return this.gamehistory.filter(post => {
+  //         post.gameID=this.gameid
+  //     });
+  //  },
     customFilter(){
       if(this.gamehistorysearch){
         return this.gameresult.filter(post => {

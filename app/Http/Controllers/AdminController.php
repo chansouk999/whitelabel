@@ -111,13 +111,14 @@ class AdminController extends Controller
         try {
             $user_id = explode('_',$userid);
             if(array_key_exists(1,$user_id)){
-                $useridex = $userid[1];
+                $useridex = $user_id[1];
             }else{
                 $useridex = $userid;
             }
             $data = DB::table('users')
             ->join('userdetails', 'users.id', '=', 'userdetails.id')
             ->where('users.user_id','like','%'.$useridex.'%')
+            ->orwhere('users.name','like','%'.$useridex.'%')
             ->get();
             if ($data) {
                 return $this->returncode(200, $data, 'success');
@@ -148,15 +149,14 @@ class AdminController extends Controller
         try {
             $method = $req->reqmethod;
             $user_id = $req->user_id;
+            $gettoken = trim(access_token::where('user_id', 'like', '%' . Auth::user()->user_id . '%')->orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token'), '["]');
+            $header = [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . $gettoken
+            ];
+            // return $req;
+            $http = new Client;
             if ($method == 'game') {
-
-                $gettoken = trim(access_token::where('user_id', 'like', '%' . Auth::user()->user_id . '%')->orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token'), '["]');
-                $header = [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Bearer ' . $gettoken
-                ];
-                // return $req;
-                $http = new Client;
                 $response = $http->post($this->url8003 . '/api/requestuserdata', [
                     'form_params' => [
                         'method' => $req->reqmethod,
@@ -180,10 +180,28 @@ class AdminController extends Controller
             if ($method == 'viewuser') { 
                 return $this->getuserdetaildta($user_id);
             }
-            if ($method == 'viewgameresult') { }
+            if ($method == 'viewgameresult') {
+                return $this->getgameresult($method,$req->name,$header);
+             }
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
+    }
+    public function getgameresult($method,$gmaeid,$header){
+        try{
+            $http = new Client;
+            $response = $http->post($this->url8003 . '/api/requestuserdata', [
+                'form_params' => [
+                    'method' => $method,
+                    'gameid' => $gmaeid,
+                ], 'headers' => $header
+            ]);
+            $accessdata = json_decode((string)$response->getBody(), true);
+            return $this->returncode(200, $accessdata['data'], 'success');
+        
+    }catch(\Exception $ex){
+        return $this->returncode(500, '', $ex->getMessage());
+    }
     }
     public function returncode($code, $data, $msg)
     {
