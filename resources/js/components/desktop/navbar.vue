@@ -124,7 +124,7 @@
                   {{myaccount_tra}}
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a ref="promote" :href="promote" class="button nav-link d-flex float-left">
                   <div class="icons">
                     <i class="tim-icons icon-trophy icon-default"></i>
@@ -132,7 +132,7 @@
                   </div>
                   {{myprivilege}}
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a ref="lobby" :href="lobby" class="button nav-link d-flex float-left">
                   <div class="icons">

@@ -9,7 +9,6 @@
       :recharge="recharge"
       :withdraw="withdraw"
       :currentlang="currentlang"
-
     ></app-navbar>
     <div class="container">
       <div class="row">
@@ -32,23 +31,29 @@
         </div>
 
         <div class="col-xl-10 col-sm-12">
-              <div class="content">
+          <div class="content">
             <!-- <h1>Stockname: {{stockname}} => Loop: {{loop}} => Country: {{country}}</h1> -->
             <livechart :stockname="stockname" :loop="loop" :country="country"/>
-          </div>
+            <div class="row">
+              <div class="col-md-12">
+                <app-tabletren></app-tabletren>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- Sidebar -->
-
-        <div class="row">
-          <!-- <app-footer></app-footer> -->
-          <!-- <app-alertsidebar></app-alertsidebar> -->
-        </div>
-        <!-- /.row -->
       </div>
+      <!-- Sidebar -->
+
+      <div class="row">
+        <!-- <app-footer></app-footer> -->
+        <!-- <app-alertsidebar></app-alertsidebar> -->
+      </div>
+      <!-- /.row -->
     </div>
+  </div>
 </template>
 <script>
+import tabletren from './table_trend_map/container_table_trend';
 import navbar from "./desktop/navbar";
 import aside from "./desktop/asides";
 // import alertsidebar from "./alertsidebar";
@@ -59,17 +64,16 @@ export default {
   components: {
     "app-navbar": navbar,
     "app-aside": aside,
+    "app-tabletren":tabletren,
     // "app-footer": footers,
     // "app-alertsidebar": alertsidebar,
     livechart
-
   },
   data() {
     return {
-        stockname:"",
-        loop:"",
-        country:"",
-
+      stockname: "",
+      loop: "",
+      country: ""
     };
   },
   created() {
@@ -79,9 +83,7 @@ export default {
     this.country = urlParams.get("country");
     // console.log(this.stockname +"=>"+this.loop +"=>"+this.country)
   },
-  methods: {
-
-  },
+  methods: {},
   props: [
     "recommend_friends",
     "message",
@@ -103,7 +105,7 @@ export default {
     "us_stock",
     "cryptocurrencies",
     "chines_stock",
-    "lobby",
+    "lobby"
   ]
 };
 </script>

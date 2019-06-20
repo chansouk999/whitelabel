@@ -10,7 +10,7 @@
         <div class="col-md-6">
           <div class="card ml-auto" style="width: 20rem;">
             <div class="card-body p-bank">
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addnewcard">
+              <a href="#" class="btn btn-primary bg-custome" data-toggle="modal" data-target="#addnewcard">
                 <i class="tim-icons icon-simple-add"></i> 添加银行卡
               </a>
             </div>
@@ -19,7 +19,7 @@
         <div class="col-md-6">
           <div class="card mr-auto" style="width: 20rem;">
             <div class="card-body p-bank">
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addnewcard">
+              <a href="#" class="btn btn-primary bg-custome" data-toggle="modal" data-target="#addnewcard">
                 <i class="tim-icons icon-simple-add"></i> 添加银行卡
               </a>
             </div>
@@ -30,7 +30,7 @@
         <div class="col-md-6">
           <div class="card ml-auto" style="width: 20rem;">
             <div class="card-body p-bank">
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addnewcard">
+              <a href="#" class="btn btn-primary bg-custome" data-toggle="modal" data-target="#addnewcard">
                 <i class="tim-icons icon-simple-add"></i> 添加银行卡
               </a>
             </div>
@@ -40,7 +40,7 @@
           <div class="card mr-auto" style="width: 20rem;">
             <img src="assets/img/bitcoin.png" alt="Card image cap">
             <div class="card-body p-bank">
-              <a href="#" class="btn btn-primary">
+              <a href="#" class="btn btn-primary bg-custome">
                 <i class="tim-icons icon-simple-add"></i> 添加比特币钱包
               </a>
             </div>

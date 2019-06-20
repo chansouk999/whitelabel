@@ -128,7 +128,7 @@
                         <div class="one-third">
                           <div class="stat">20</div>
                         </div>
-                        <a href class="lobby-link">Quick Start</a>
+                        <a href class="lobby-link" @click="runwindow,gamemode='quickstart'">Quick Start</a>
                       </div>
                     </div>
                     <!-- end clash-card barbarian-->
@@ -150,7 +150,7 @@
                         <div class="one-third">
                           <div class="stat">20</div>
                         </div>
-                        <a href class="lobby-link">Multiple Game</a>
+                        <a href class="lobby-link" @click="runwindow,gamemode='multiple'">Multiple Game</a>
                       </div>
                     </div>
                     <!-- end clash-card archer-->
@@ -172,7 +172,7 @@
                         <div class="one-third">
                           <div class="stat">20</div>
                         </div>
-                        <a href="javascript:void()" class="lobby-link" @click="runwindow">Full Screen</a>
+                        <a href="javascript:void()" class="lobby-link" @click="runwindow,gamemode='classic'">Full Screen</a>
                       </div>
                     </div>
                     <!-- end clash-card giant-->
@@ -208,6 +208,7 @@ export default {
   },
   data() {
     return {
+      gamemode:null,
       val: "",
       id: null,
       provider_name: null,
