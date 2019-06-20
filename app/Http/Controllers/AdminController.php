@@ -177,15 +177,34 @@ class AdminController extends Controller
             }
             if ($method == 'access') { }
             if ($method == 'action') { }
+            if ($method == 'viewgameuser') { 
+                return $this->getbetdataid($method,$user_id,$header);
+            }
             if ($method == 'viewuser') { 
                 return $this->getuserdetaildta($user_id);
             }
+            
             if ($method == 'viewgameresult') {
                 return $this->getgameresult($method,$req->name,$header);
              }
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
+    }
+    public function getbetdataid($method,$gmaeid,$header){
+         try{
+            $http = new Client;
+            $response = $http->post($this->url8003 . '/api/requestuserdata', [
+                'form_params' => [
+                    'method' => $method,
+                    'gameid' => $gmaeid,
+                ], 'headers' => $header
+            ]);
+            $accessdata = json_decode((string)$response->getBody(), true);
+            return $this->returncode(200, $accessdata['data'], 'success');
+    }catch(\Exception $ex){
+        return $this->returncode(500, '', $ex->getMessage());
+    }
     }
     public function getgameresult($method,$gmaeid,$header){
         try{
