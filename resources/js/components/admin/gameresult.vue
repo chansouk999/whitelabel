@@ -196,10 +196,15 @@ export default {
  },
  watch:{
     dataserached(e){
-      alert(e)
+      this.getfiler = this.filterByStock(e)
     }
  },
 methods:{
+  filterByStock(id) {
+      return this.gamehistory.filter(element => {
+         return element.gameID == id;
+      });
+    },
    getuserbet(gameid){
        return this.gamehistory.filter(post => {
           return post.gameID==this.dataserached;

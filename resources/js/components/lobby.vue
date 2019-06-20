@@ -157,6 +157,7 @@
                   </div>
                   <!-- end wrapper -->
                 </div>
+                <a :href="gamelink" class="lobby-link">Full Screen</a>
                 <div class="col-md-4 mb-5">
                   <div class="wrapper">
                     <div class="clash-card wizard">
@@ -172,7 +173,7 @@
                         <div class="one-third">
                           <div class="stat">20</div>
                         </div>
-                        <a href="javascript:void()" class="lobby-link" @click="runwindow,gamemode='classic'">Full Screen</a>
+                        <a :href="gamelink" class="lobby-link" target="_blank">Full Screen</a>
                       </div>
                     </div>
                     <!-- end clash-card giant-->
@@ -208,6 +209,7 @@ export default {
   },
   data() {
     return {
+      gamelink:null,
       gamemode:null,
       val: "",
       id: null,
@@ -233,6 +235,7 @@ export default {
   console.log(filename.split('/')[2])
   console.log("+++++++++++++++++++++++")
     this.userdata();
+  
   },
   methods: {
     runwindow() {
@@ -244,7 +247,7 @@ export default {
           location.href = "/"
         }else{
             //  window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://'+filename.split('/')[2],"_blank");
-             window.open('http://lec68.com/redirect?&name='+this.email+'&urlback=http://'+filename.split('/')[2]+'&gamemode='+this.gamemode,"_blank");
+            
         }
       });
 
@@ -279,6 +282,7 @@ export default {
         });
     },
     userdata() {
+      
       axios
         .get("/userdetaildata")
         .then(res => {
@@ -292,6 +296,8 @@ export default {
           this.email = res.data[0].email;
           this.firstname = res.data[0].id;
           this.lastname = res.data[0].secret;
+          let filename = window.location.href
+            this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
           // $('.id').val(this.id);
           // $('.provider_name').val(this.provider_name);
           // $('.balance').val(this.balance);
