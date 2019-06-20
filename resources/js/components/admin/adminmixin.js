@@ -13,6 +13,9 @@ export const adminmixin = {
           gameresult:[],
           getevnthistorydata:[],
           agentinfo:[],
+          gotuserhistory:[],
+          popup:false,
+          reqmethod:null,
         };
       },
       mounted() {
@@ -24,6 +27,19 @@ export const adminmixin = {
           
       },
       methods: {
+        viewuserdata(method,id,name){
+          this.reqmethod=method
+          this.A=0
+          this.B=9
+          this.gotuserhistory=[]
+          axios.post('getgamehistory',{reqmethod:method,user_id:id,name:name}).then(res=>{
+            console.log(res.data)
+            this.popup=true
+            if(res.data.code==200){
+              this.gotuserhistory =res.data.data
+            }
+          }).catch(e=>{console.log(e.response)})
+        },
         getagentinfo(){
           axios.get('/getagentinfo').then(res=>{
             this.agentinfo=res.data.data.data

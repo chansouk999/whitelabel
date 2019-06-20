@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-end" v-if="!isMenu">
       <i class="fa fa-undo something btn btn-outline-primary btn-sm"></i>
       <div class="zoom btn btn-outline-primary btn-sm" id="zomm-switch" title="Zoom">
         <i class="fa fa-search-minus"></i>
@@ -16,7 +16,7 @@
 import { livechart } from "./mixinschart.js";
 export default {
   mixins: [livechart],
-  props: ["stockname", "loop", "country"]
+  props: ["stockname", "loop", "country","isMenu"]
 };
 </script>
 

@@ -34,8 +34,9 @@
               <th>PlayerID</th>
               <th>Name</th>
               <th>Balance</th>
+                <th>online hour</th>
               <th>Currency</th>
-              <th>online hour</th>
+            
               <th>Language</th>
               <th>Total rolling</th>
               <th>Available Rolling</th>
@@ -68,20 +69,20 @@
               <td>{{data.user_id}}</td>
               <td>{{data.name}}</td>
               <td>{{data.userBalance}}</td>
-              <td>{{data.totalOnlineHour}}</td>
-              <td>{{data.id}}</td>
-              <td>{{data.userBalance}}</td>
-              <td>{{data.userBalance}}</td>
-              <td>{{data.userBalance}}</td>
+              <td>{{ Math.floor(data.totalOnlineHour / 3600)}}</td>
+              <td>{{data.currency}}</td>
+              <td>{{data.lang}}</td>
+              <td>{{data.TotalRolling}}</td>
+              <td>{{data.AvailableRolling}}</td>
               <td>{{data.userStatus}}</td>
               <td>{{data.created_at}}</td>
               <td>{{data.accessIP}}</td>
               <!-- <div class="col-md-5 col-lg-5"> -->
-              <button type="button" rel="tooltip" class="btn btn-primary">Game History</button>
-              <button type="button" rel="tooltip" class="btn btn-primary">Top-up History</button>
-              <button type="button" rel="tooltip" class="btn btn-primary">Withdraw History</button>
-              <button type="button" rel="tooltip" class="btn btn-primary">Access Record</button>
-              <button type="button" rel="tooltip" class="btn btn-primary">Action Record</button>
+              <button type="button" rel="tooltip" class="btn btn-primary" @click="viewuserdata(method='game',data.user_id)">Game History</button>
+              <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='topup',data.user_id)">Top-up History</button>
+              <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='withdraw',data.user_id)">Withdraw History</button>
+              <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='access',data.user_id)">Access Record</button>
+              <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='action',data.user_id)">Action Record</button>
               <!-- </div> -->
             </tr>
           </tbody>
@@ -131,7 +132,23 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data(){
+    return{
+
+    }
+  },
+  methods:{
+      viewuserdata(method,id){
+        axios.get('getgamehistory',{reqmethod:method,user_id:id}).then(res=>{
+          console.log(res.data)
+        }).catch(e=>{console.log(e.response)})
+      },
+  },
+  mounted(){
+
+  }
+};
 </script>
 
 <style scoped>

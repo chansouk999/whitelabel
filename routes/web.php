@@ -33,7 +33,9 @@ Auth::routes();
 
 
 
-Route::get('/savetransfer', 'AdminController@savetransfer');
+Route::post('/getgamehistory', 'AdminController@getgamehistory');
+Route::get('/agenttransaction', 'AdminController@agenttransaction');
+Route::post('/savetransfer', 'AdminController@savetransfer');
 Route::get('/getshareholder', 'AdminController@getshareholder');
 Route::get('/getagentinfo', 'AdminController@getagentinfo');
 Route::post('saveshareholder', 'AdminController@saveshareholder');
@@ -214,11 +216,12 @@ Route::get('locale/{locale}', function ($locale) {
 });
 
 
-
-
-
 Route::get('/coding',function(Request $req){
     return $req->getHttpHost();
 });
 Route::get('/notify','PaymentController@notify');
 Route::post('actionpayment', 'PaymentController@actionpayment');
+
+Route::post('/addcard', 'CardController@addcard');
+Route::get('/getcardinfo', 'CardController@getcardinfo');
+

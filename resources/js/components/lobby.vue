@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div>
     <app-navbar
       :recommend_friends="recommend_friends"
@@ -10,6 +10,8 @@
       :withdraw="withdraw"
       :currentlang="currentlang"
     ></app-navbar>
+
+
     <div class="container">
       <div class="row">
         <div class="col-2">
@@ -223,7 +225,7 @@ export default {
     };
   },
   mounted() {
-    console.log("HELELEOEO");
+  console.log("HELELEOEO");
   let filename = window.location.href
   filename.split('/')
   console.log("+++++++++++++++++++++++")

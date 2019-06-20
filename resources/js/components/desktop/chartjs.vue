@@ -43,10 +43,10 @@ export default {
       this.borderColor = "red";
       this.backgroundcolor = "#ff8d728a";
       this.backgroundcolors = "#e86211";
-      this.pointBorderWidth = 2.5,
-        this.pointHoverRadius = 2.5,
-        this.pointHoverBorderWidth = 2.5,
-        this.pointRadius = 2.5;
+      this.pointBorderWidth = 2.2,
+        this.pointHoverRadius = 2.2,
+        this.pointHoverBorderWidth = 2.2,
+        this.pointRadius = 2.2;
     } else {
       this.typechart = "bar";
       this.number_data = "on";
@@ -60,25 +60,22 @@ export default {
     }
     var jsonfile = {
         "data": [{
-            "writetime": "1",
+            "writetime": "VIP1",
             "PT": "200"
         }, {
-            "writetime": "2",
+            "writetime": "VIP2",
             "PT": "300"
         }, {
-            "writetime": "3",
+            "writetime": "VIP3",
             "PT": "400"
         }, {
-            "writetime": "4",
+            "writetime": "VIP4",
             "PT": "1000"
         }, {
-            "writetime": "5",
+            "writetime": "VIP5",
             "PT": "2000"
         }, {
-            "writetime": "6",
-            "PT": "4000"
-        }, {
-            "writetime": "7",
+            "writetime": "VIP6",
             "PT": "6000"
         },]
     };

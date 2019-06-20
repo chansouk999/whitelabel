@@ -94,6 +94,12 @@
               <!-- /.card-body -->
               <div class="card-footer text-center">
                 <a href="#" class="btn btn-rose btn-round">View my activity</a>
+                <a
+                  href="#"
+                  class="btn btn-rose btn-round"
+                  data-toggle="modal"
+                  data-target="#addnewadmin"
+                >Create New Admin</a>
               </div>
               <!-- /.card-footer -->
             </div>
@@ -297,6 +303,290 @@
       </div>
     </div>
     <!--/modal action record -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addnewadmin"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-default">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Create new admin</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-2">
+                  <h5>admin name:</h5>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="addnewadminder"
+                    placeholder="Type here...."
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-2">
+                  <h5>Type:</h5>
+                </div>
+                <div class="col-10">
+                  <select name id v-model="admintype">
+                    <option selected v-bind:value="{ siti: 'root' }">root</option>
+                    <option selected v-bind:value="{ siti: 'Normal' }">Normal</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-xs-5">
+                <table class="table table-unruled">
+                  <thead>
+                    <tr>
+                      <th>role:</th>
+                      <th>Player</th>
+                      <th>
+                        <div class="form-check">
+                          <input type="radio" value="viewonly_player" v-model="r_player">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </th>
+                      <th>
+                        <div class="form-check">
+                          <input type="radio" value="editable_player" v-model="r_player">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </th>
+                      <th>
+                        <div class="form-check">
+                          <input type="radio" value="noaccess_player" v-model="r_player">
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td>Gameble</td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="viewonly_gamble" v-model="gameble">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="editable_gamble" v-model="gameble">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input
+                            type="radio"
+                            checked="checked"
+                            value="noaccess_gamble"
+                            v-model="gameble"
+                          >
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>Game</td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="viewonly_game" v-model="r_game">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="editable_game" v-model="r_game">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input
+                            type="radio"
+                            checked="checked"
+                            value="noaccess_game"
+                            v-model="r_game"
+                          >
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>Portal provider</td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="viewonly_pt" v-model="r_pt">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="editable_pt" v-model="r_pt">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" checked="checked" value="noaccess_pt" v-model="r_pt">
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>admin</td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="viewonly_admin" v-model="r_admin">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="editable_admin" v-model="r_admin">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input
+                            type="radio"
+                            checked="checked"
+                            value="noaccess_admin"
+                            v-model="r_admin"
+                          >
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>TimeLine</td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="viewonly_timeline" v-model="r_timeline">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="editable_timeline" v-model="r_timeline">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input
+                            type="radio"
+                            checked="checked"
+                            value="noaccess_timeline"
+                            v-model="r_timeline"
+                          >
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>Stock</td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="viewonly_stock" v-model="r_stock">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="editable_stock" v-model="r_stock">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input
+                            type="radio"
+                            checked="checked"
+                            value="noaccess_stock"
+                            v-model="r_stock"
+                          >
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>Finance</td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="viewonly_finance" v-model="r_finance">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="editable_finance" v-model="r_finance">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input
+                            type="radio"
+                            checked="checked"
+                            value="noaccess_finance"
+                            v-model="r_finance"
+                          >
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="row">
+                <div class="col-2">
+                  <h5>Password:</h5>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="addnewpassword"
+                    placeholder="Type here...."
+                  >
+                </div>
+              </div>
+              <div class="row d-flex justify-content-center p-3">
+                <button type="button" class="btn btn-primary mr-2" @click="addnewadmin">Create</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>

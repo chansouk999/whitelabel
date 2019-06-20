@@ -100,6 +100,7 @@
                     data-placement="bottom"
                     title="View Player"
                     class="btn btn-info btn-sm btn-icon"
+                    @click="viewuserdata(method='viewuser',data.token,data.token)"
                   >
                     <i class="tim-icons icon-trophy"></i>
                   </button>
@@ -111,6 +112,7 @@
                     data-placement="bottom"
                     title="View Game Result"
                     class="btn btn-success btn-sm btn-icon"
+                     @click="viewuserdata(method='viewgameresult',data.token,data.gameID)"
                   >
                     <i class="tim-icons icon-video-66"></i>
                   </button>
@@ -172,21 +174,21 @@
               <i class="tim-icons icon-simple-remove"></i>
             </button>
           </div>
-          <div class="modal-body">
-            <div class="card card-nav-tabs">
-              <div class="card-header">User name:</div>
+          <div class="modal-body"  v-if="reqmethod=='viewuser'">
+            <div class="card card-nav-tabs" v-for="data in gotuserhistory ">
+              <div class="card-header">User name:{{data.name}}</div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                   Language :
-                  <span class="text-warning">Chinese</span>
+                  <span class="text-warning">{{data.lang}}</span>
                 </li>
                 <li class="list-group-item">
                   Balance :
-                  <span class="text-warning">$496.33</span>
+                  <span class="text-warning">${{data.userBalance}}</span>
                 </li>
                 <li class="list-group-item">
                   Total rolling :
-                  <span class="text-warning">$1565.84</span>
+                  <span class="text-warning">${{data.TotalRolling}}</span>
                 </li>
               </ul>
             </div>

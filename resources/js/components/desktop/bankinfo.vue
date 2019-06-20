@@ -10,7 +10,7 @@
         <div class="col-md-6">
           <div class="card ml-auto" style="width: 20rem;">
             <div class="card-body p-bank">
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addnewcard">
+              <a href="#" class="btn btn-primary bg-custome" data-toggle="modal" data-target="#addnewcard">
                 <i class="tim-icons icon-simple-add"></i> 添加银行卡
               </a>
             </div>
@@ -19,7 +19,7 @@
         <div class="col-md-6">
           <div class="card mr-auto" style="width: 20rem;">
             <div class="card-body p-bank">
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addnewcard">
+              <a href="#" class="btn btn-primary bg-custome" data-toggle="modal" data-target="#addnewcard">
                 <i class="tim-icons icon-simple-add"></i> 添加银行卡
               </a>
             </div>
@@ -30,7 +30,7 @@
         <div class="col-md-6">
           <div class="card ml-auto" style="width: 20rem;">
             <div class="card-body p-bank">
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addnewcard">
+              <a href="#" class="btn btn-primary bg-custome" data-toggle="modal" data-target="#addnewcard">
                 <i class="tim-icons icon-simple-add"></i> 添加银行卡
               </a>
             </div>
@@ -40,7 +40,7 @@
           <div class="card mr-auto" style="width: 20rem;">
             <img src="assets/img/bitcoin.png" alt="Card image cap">
             <div class="card-body p-bank">
-              <a href="#" class="btn btn-primary">
+              <a href="#" class="btn btn-primary bg-custome">
                 <i class="tim-icons icon-simple-add"></i> 添加比特币钱包
               </a>
             </div>
@@ -105,7 +105,12 @@
                       <label class="col-md-3 col-form-label">Bank</label>
                       <div class="col-md-9">
                         <div class="form-group">
-                          <select id="inputState" v-model="bank" name="bank" class="form-control">
+                          <select
+                            id="inputState"
+                            v-model="bankAccount"
+                            name="bankAccount"
+                            class="form-control"
+                          >
                             <option value="AL">ALipay</option>
                             <option value="BC">BCELOne</option>
                           </select>
@@ -186,11 +191,23 @@ export default {
       cardnumber: "",
       province: "",
       city: "",
-      bank: "",
-      branch: ""
+      bankAccount: "",
+      branch: "",
+      gotcardinfo:[]
     };
   },
+  mounted(){
+    this.getcardinfo()
+  },
   methods: {
+    getcardinfo(){
+        axios.get('/getcardinfo').then(res=>{
+          console.log("PPPPPPPPP")
+          console.log(res.data)
+          console.log("PPPPPPPPP")
+            this.gotcardinfo = res.data.data
+        })
+    },
     addcard() {
       let vm = this;
       let data = {
@@ -198,12 +215,13 @@ export default {
         cardnumber: vm.cardnumber,
         province: vm.province,
         city: vm.city,
-        branch: vm.branch
+        branch: vm.branch,
+        bankAccount: vm.bankAccount
       };
       // console.log(data);
       if (
         data.name == "" ||
-        data.bank == "" ||
+        data.bankAccount == "" ||
         data.cardnumber == "" ||
         data.province == "" ||
         data.city == "" ||
@@ -222,6 +240,24 @@ export default {
           .post("/addcard", data)
           .then(res => {
             console.log(res.data);
+            if (res.data.code == 200) {
+              this.$swal({
+                type: "success",
+                title: res.data.msg,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                html: "Please check the box that you fill in"
+              });
+            }
+            if (res.data.code == 100) {
+              this.$swal({
+                type: "warning",
+                title: res.data.msg,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                html: "Please check the box that you fill in"
+              });
+            }
           })
           .catch(er => {
             console.log(er.res);

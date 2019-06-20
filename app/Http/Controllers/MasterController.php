@@ -15,6 +15,7 @@ use App\access_token;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\withdraw_methods;
 use App\userdetail;
 use DateTime;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -49,12 +50,13 @@ class MasterController extends Controller
                 $second = $tn - $now;
                 return $this->returncode(203, [$now, $tn], 'Wait for 30 second');
             } else {
-                $id = Auth::user()->id;
-                $check =  userdetail::where('id', '=', $id)->pluck('bankAccount');
-                if ($check !== '[""]') {
-                    $user =  userdetail::where('id', '=', $id)->get();
+                $id = Auth::user()->user_id;
+                $check =  withdraw_methods::where('user_id', '=', $id)->pluck('bankAccount');
+                // return  $check;
+                if ($check != '[]') {
+                    $user =  withdraw_methods::where('user_id', '=', $id)->get();
                     $desc = array(
-                        'cardno' => $user->pluck('cardNumber')[0],
+                        'cardno' => $user->pluck('bankAccount')[0],
                         'regcity' => $user->pluck('registerCity')[0],
                         'regprovince' => $user->pluck('registerProvince')[0],
                         'branch' => $user->pluck('branch')[0],
@@ -286,7 +288,7 @@ class MasterController extends Controller
             return view('mobile.welcome', compact('checkpcormb'));
             // return view('mobile.message', compact('checkpcormb'));
         } else {
-            //  Alert::success('Desktop', 'Desktop Mode');
+            //  Alert::success('Desktop', 'Desktop Mode');  
             $checkpcormb = "pc";
             return view('desktop.welcome', compact('checkpcormb'));
             // return view('desktop.message', compact('checkpcormb'));

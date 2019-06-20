@@ -1,41 +1,26 @@
 <?php
 
-    Route::GET('/home', 'AdminController@index')->name('admin.home');
-    // Login and Logout
-    Route::GET('/', 'LoginController@showLoginForm')->name('admin.login');
-    Route::POST('/', 'LoginController@login');
-    Route::POST('/logout', 'LoginController@logout')->name('admin.logout');
+Route::group(['namespace' => 'Admin'], function() {
+    Route::get('/', 'HomeController@index')->name('admin.dashboard');
 
-    // Password Resets
-    Route::POST('/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
-    Route::GET('/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
-    Route::POST('/password/reset', 'ResetPasswordController@reset');
-    Route::GET('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('admin.password.reset');
-    Route::GET('/password/change', 'AdminController@showChangePasswordForm')->name('admin.password.change');
-    Route::POST('/password/change', 'AdminController@changePassword');
+    // Login
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('admin.login');
+    Route::post('login', 'Auth\LoginController@login');
+    Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');
 
-    // Register Admins
-    Route::get('/register', 'RegisterController@showRegistrationForm')->name('admin.register');
-    Route::post('/register', 'RegisterController@register');
-    Route::get('/{admin}/edit', 'RegisterController@edit')->name('admin.edit');
-    Route::delete('/{admin}', 'RegisterController@destroy')->name('admin.delete');
-    Route::patch('/{admin}', 'RegisterController@update')->name('admin.update');
+    // Register
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('admin.register');
+    Route::post('register', 'Auth\RegisterController@register');
 
-    // Admin Lists
-    Route::get('/show', 'AdminController@show')->name('admin.show');
+    // Passwords
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('admin.password.reset');
 
-    // Admin Roles
-    Route::post('/{admin}/role/{role}', 'AdminRoleController@attach')->name('admin.attach.roles');
-    Route::delete('/{admin}/role/{role}', 'AdminRoleController@detach');
+    // Must verify email
+    Route::get('email/resend','Auth\VerificationController@resend')->name('admin.verification.resend');
+    Route::get('email/verify','Auth\VerificationController@show')->name('admin.verification.notice');
+    Route::get('email/verify/{id}','Auth\VerificationController@verify')->name('admin.verification.verify');
 
-    // Roles
-    Route::get('/roles', 'RoleController@index')->name('admin.roles');
-    Route::get('/role/create', 'RoleController@create')->name('admin.role.create');
-    Route::post('/role/store', 'RoleController@store')->name('admin.role.store');
-    Route::delete('/role/{role}', 'RoleController@destroy')->name('admin.role.delete');
-    Route::get('/role/{role}/edit', 'RoleController@edit')->name('admin.role.edit');
-    Route::patch('/role/{role}', 'RoleController@update')->name('admin.role.update');
-
-    Route::fallback(function () {
-        return abort(404);
-    });
+});
