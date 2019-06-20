@@ -8,8 +8,8 @@
           <div class="col-md-3 px-0">
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
-              <div class="card-header bg-primary">
-                <h3 class="card-title text-white">Profile</h3>\
+              <div class="card-header bg-custome">
+                <h3 class="card-title text-white">Profile</h3>
               </div>
               <div class="card-body box-profile">
                 <div class="text-center">
@@ -39,7 +39,7 @@
                   </li>
                 </ul>
 
-                <a href="#" class="btn btn-primary btn-block">
+                <a href="#" class="btn btn-primary bg-custome btn-block">
                   <b>刷新额度</b>
                 </a>
               </div>
@@ -49,7 +49,7 @@
 
             <!-- About Me Box -->
             <div class="card card-primary">
-              <div class="card-header bg-primary">
+              <div class="card-header bg-custome">
                 <h3 class="card-title text-white">About Me</h3>
               </div>
               <!-- /.card-header -->
@@ -75,7 +75,7 @@
                 </strong>
 
                 <p class="text-custome font-weight-bolder">${{balance}}</p>
-                <a href class="btn btn-primary btn-block">
+                <a href class="btn btn-primary bg-custome btn-block">
                   <i class="tim-icons icon-refresh-02"></i>刷新额度
                 </a>
                 <hr>id
@@ -90,11 +90,11 @@ email
                   <i class="fa fa-pencil mr-1"></i> 总余额
                 </strong>
                 <p class="text-custome font-weight-bolder">${{balance}}</p>
-                <a href class="btn btn-primary">
+                <a href class="btn btn-primary bg-custome ">
                   <i class="tim-icons icon-badge"></i>立即充值
                   <span>Deposit Now</span>
                 </a>
-                <a href class="btn btn-primary">
+                <a href class="btn btn-primary bg-custome">
                   <i class="tim-icons icon-credit-card"></i>申请提现
                   <span>Withdraw Now</span>
                 </a>
@@ -107,7 +107,7 @@ email
           <div class="col-md-9 pr-0">
             <div class="card">
               <div class="card-header p-2">
-                <ul class="nav nav-pills nav-pills-primary" role="tablist">
+                <ul class="nav nav-pills nav-pills-primary " role="tablist">
                   <li class="nav-item">
                     <a
                       class="nav-link active"

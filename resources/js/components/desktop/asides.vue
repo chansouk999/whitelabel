@@ -24,6 +24,7 @@
               </a>
             </li>
             <li class="nav-aside">
+
               <a href="#">
                 <img src="assets/img/bitcoin.png" alt>
                 <p class="text-aside">{{cryptocurrencies}}</p>
@@ -56,53 +57,62 @@
           </ul>
         </span>
 
-
-
-
-
-    <div class="pop-up" id="pop-up">
-       <livechart></livechart>
-    </div>
-
-    <div class="pop-up" id="pop-up2">
-       <livechart stockname="SH00300"
-                    loop="5"
-                    country="china"></livechart>
-    </div>
-
-
         <span v-if="checkuser == 'true'">
           <ul class="nav">
             <li class="nav-aside" id="SH0000015">
-              <a href="/stocklist?stockname=SH000001&loop=5&country=china" >
-                <img src="assets/img/Aeternity-icon.png" alt>
-                <p class="text-aside" id="trigger">{{stock1}}</p>
-              </a>
+              <popper trigger="hover" :options="myPopper">
+                <div class="popper">
+                  <livechart stockname="SH000001" loop="5" country="china" :isMenu="true"></livechart>
+                </div>
+                <a href="/stocklist?stockname=SH000001&loop=5&country=china" slot="reference">
+                  <img src="assets/img/Aeternity-icon.png" alt>
+                  <p class="text-aside" id="trigger">{{stock1}}</p>
+                </a>
+              </popper>
             </li>
-
             <li class="nav-aside" id="SZ3990015">
-              <a href="/stocklist?stockname=SZ399001&loop=5&country=china" >
-                <img src="assets/img/Canada-eCoin-icon.png" alt>
-                <p class="text-aside" id="trigger2">{{stock2}}</p>
-              </a>
+              <popper trigger="hover" :options="myPopper">
+                <div class="popper">
+                  <livechart stockname="SZ399001" loop="5" country="china" :isMenu="true"></livechart>
+                </div>
+                <a href="/stocklist?stockname=SZ399001&loop=5&country=china" slot="reference">
+                  <img src="assets/img/Canada-eCoin-icon.png" alt>
+                  <p class="text-aside" id="trigger2">{{stock2}}</p>
+                </a>
+              </popper>
             </li>
             <li class="nav-aside" id="SH003005">
-              <a href="/stocklist?stockname=SH00300&loop=5&country=china">
-                   <img src="assets/img/china_flag.png" alt>
-                <p class="text-aside">{{stock3}}</p>
-              </a>
+              <popper trigger="hover" :options="myPopper">
+                <div class="popper">
+                  <livechart stockname="SH00300" loop="5" country="china" :isMenu="true"></livechart>
+                </div>
+                <a href="/stocklist?stockname=SH00300&loop=5&country=china" slot="reference">
+                  <img src="assets/img/china_flag.png" alt>
+                  <p class="text-aside">{{stock3}}</p>
+                </a>
+              </popper>
             </li>
             <li class="nav-aside" id="SZ3994155">
-              <a href="/stocklist?stockname=SZ399415&loop=5&country=china">
-                   <img src="assets/img/china_flag.png" alt>
-                <p class="text-aside">{{stock4}}</p>
-              </a>
+              <popper trigger="hover" :options="myPopper">
+                <div class="popper">
+                  <livechart stockname="SZ399415" loop="5" country="china" :isMenu="true"></livechart>
+                </div>
+                <a href="/stocklist?stockname=SZ399415&loop=5&country=china" slot="reference">
+                  <img src="assets/img/china_flag.png" alt>
+                  <p class="text-aside">{{stock4}}</p>
+                </a>
+              </popper>
             </li>
             <li class="nav-aside" id="USdollarIndex5">
-              <a href="/stocklist?stockname=USdollarIndex&loop=5&country=usa">
-                <img src="assets/img/us_flag.png" alt>
-                <p class="text-aside">{{stock5}}</p>
-              </a>
+              <popper trigger="hover" :options="myPopper">
+                <div class="popper">
+                  <livechart stockname="USdollarIndex" loop="5" country="china" :isMenu="true"></livechart>
+                </div>
+                <a href="/stocklist?stockname=USdollarIndex&loop=5&country=usa" slot="reference">
+                  <img src="assets/img/us_flag.png" alt>
+                  <p class="text-aside">{{stock5}}</p>
+                </a>
+              </popper>
             </li>
             <li class="img-btc">
               <a data-toggle="collapse" href="#pagesExamples">
@@ -115,16 +125,26 @@
               <div class="collapse" id="pagesExamples">
                 <ul class="nav-aside active">
                   <li class="nav-aside" id="BTCUSDT1">
-                    <a href="/stocklist?stockname=BTCUSDT&loop=1&country=cypto">
-                      <span class="sidebar-mini-icon">1</span>
-                      <span class="sidebar-normal">1 Minutes</span>
-                    </a>
+                    <popper trigger="hover" :options="myPopper">
+                      <div class="popper">
+                        <livechart stockname="BTCUSDT" loop="1" country="china" :isMenu="true"></livechart>
+                      </div>
+                      <a href="/stocklist?stockname=BTCUSDT&loop=1&country=cypto" slot="reference">
+                        <span class="sidebar-mini-icon">1</span>
+                        <span class="sidebar-normal">1 Minutes</span>
+                      </a>
+                    </popper>
                   </li>
                   <li class="nav-aside" id="BTCUSDT5">
-                    <a href="/stocklist?stockname=BTCUSDT&loop=5&country=cypto">
-                      <span class="sidebar-mini-icon">5</span>
-                      <span class="sidebar-normal">5 Minutes</span>
-                    </a>
+                    <popper trigger="hover" :options="myPopper">
+                      <div class="popper">
+                        <livechart stockname="BTCUSDT" loop="1" country="china" :isMenu="true"></livechart>
+                      </div>
+                      <a href="/stocklist?stockname=BTCUSDT&loop=5&country=cypto" slot="reference">
+                        <span class="sidebar-mini-icon">5</span>
+                        <span class="sidebar-normal">5 Minutes</span>
+                      </a>
+                    </popper>
                   </li>
                 </ul>
               </div>
@@ -136,6 +156,8 @@
   </div>
 </template>
 <script>
+import Popper from "vue-popperjs";
+import "vue-popperjs/dist/vue-popper.css";
 import Vue from "vue";
 import Popover from "vue-js-popover";
 Vue.use(Popover);
@@ -143,11 +165,16 @@ Vue.use(Popover);
 import livechart from "../chart-list/livechart";
 
 export default {
-    components: {
-        livechart
-    },
+  components: {
+    livechart,
+    popper: Popper
+  },
   data() {
     return {
+      myPopper: {
+        placement: "right",
+        modifiers: { offset: { offset: "0,10px" } }
+      },
       //   stockname: "",
       //   loop: "",
       //   country: "",
@@ -174,45 +201,39 @@ export default {
   ],
   mounted() {
     let idactive = this.stockname + "" + this.loop;
-
     $("#" + idactive + "").addClass("nav-aside active");
-  },
-  methods: {}
+  }
 };
- $(function() {
-   var moveLeft = 20;
-   var moveDown = 10;
-
-   $('#trigger').hover(function(e) {
-     $('div#pop-up').show();
-   }, function() {
-     $('div#pop-up').hide();
-   });
-   $('#trigger').mousemove(function(e) {
-     $("div#pop-up").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
-   });
-
-     $('#trigger2').hover(function(e) {
-     $('div#pop-up2').show();
-   }, function() {
-     $('div#pop-up2').hide();
-   });
-   $('#trigger2').mousemove(function(e) {
-     $("div#pop-up2").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
-   });
- });
 </script>
 <style scoped>
- div.pop-up {
-   display: none;
-   position: fixed;
-   width: 280px;
-   padding: 10px;
-   background: #eeeeee;
-   color: #000000;
-   border: 1px solid #1a1a1a;
-   font-size: 90%;
-   text-align: center
-
- }
+.popper {
+  width: 600px;
+  background-color: #fafafa;
+  color: #212121;
+  text-align: center;
+  padding: 2px;
+  display: inline-block;
+  border-radius: 3px;
+  position: absolute;
+  font-size: 14px;
+  font-weight: normal;
+  border: 1px #ebebeb solid;
+  z-index: 200000;
+  box-shadow: rgb(58, 58, 58) 0 0 6px 0;
+}
+div.pop-up {
+  display: none;
+  position: fixed;
+  width: 280px;
+  padding: 10px;
+  background: #eeeeee;
+  color: #000000;
+  border: 1px solid #1a1a1a;
+  font-size: 90%;
+  text-align: center;
+}
+.sidebar .sidebar-wrapper,
+.off-canvas-sidebar .sidebar-wrapper {
+  overflow: unset !important;
+}
 </style>
