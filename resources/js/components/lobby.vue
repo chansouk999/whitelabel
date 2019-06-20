@@ -157,7 +157,7 @@
                   </div>
                   <!-- end wrapper -->
                 </div>
-                <a :href="gamelink" class="lobby-link">Full Screen</a>
+                <!-- <a :href="gamelink" class="lobby-link">Full Screen</a> -->
                 <div class="col-md-4 mb-5">
                   <div class="wrapper">
                     <div class="clash-card wizard">
