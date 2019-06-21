@@ -36,7 +36,28 @@
             <livechart :stockname="stockname" :loop="loop" :country="country"/>
             <div class="row">
               <div class="col-md-12">
-                <app-tabletren></app-tabletren>
+                <app-tabletren
+                  :lastGameID="lastGameID"
+                  :isFullScreen="true"
+                  :timeGame="timeGame"
+                  :countTable="1"
+                  firstdigit="firstdigit"
+                  lastdigit="lastdigit"
+                  bothdigit="bothdigit"
+                  twodigit="twodigit"
+                  :stockname="stockname"
+                  :loop="loop"
+                  name="first"
+                  :tbdatachart="lastdraw"
+                  :isFirstTime="isFirstTime"
+                  b="b"
+                  s="s"
+                  o="o"
+                  e="e"
+                  u="u"
+                  m="m"
+                  l="l"
+                ></app-tabletren>
               </div>
             </div>
           </div>
@@ -53,7 +74,7 @@
   </div>
 </template>
 <script>
-import tabletren from './table_trend_map/container_table_trend';
+import tabletren from "./table_trend_map/container_table_trend";
 import navbar from "./desktop/navbar";
 import aside from "./desktop/asides";
 // import alertsidebar from "./alertsidebar";
@@ -64,17 +85,26 @@ export default {
   components: {
     "app-navbar": navbar,
     "app-aside": aside,
-    "app-tabletren":tabletren,
+    "app-tabletren": tabletren,
     // "app-footer": footers,
     // "app-alertsidebar": alertsidebar,
     livechart
   },
   data() {
     return {
+      isFirstTime: 0,
+      lastGameID: "",
+      timeGame: "",
+      lastdraw: "",
       stockname: "",
       loop: "",
       country: ""
     };
+  },
+  mounted() {
+    this.sleep(100).then(() => {
+      this.getLastDraw();
+    });
   },
   created() {
     let urlParams = new URLSearchParams(window.location.search);
@@ -83,7 +113,49 @@ export default {
     this.country = urlParams.get("country");
     // console.log(this.stockname +"=>"+this.loop +"=>"+this.country)
   },
-  methods: {},
+  methods: {
+     sleep(milliseconds) {
+      return new Promise(resolve => setTimeout(resolve, milliseconds));
+    },
+    getLastDraw() {
+      // console.log("final......................" + this.stockname);
+      // this.$store.state.getstockid = this.stockname;
+      // this.firsttime = this.firsttime + 1;
+
+      // let name = this.stockname.replace("/", "");
+      // if (name === "BTCUSDT" && this.loop === "1") {
+      //   name += this.loop;
+      // }
+      axios
+        .get(`http://159.138.54.214/api/datahistory/BTCUSDT`)
+        .then(responses => {
+          //do not add new data to table trent chart when first run
+          this.isFirstTime = this.isFirstTime + 1;
+          // alert(responses.data);
+          // let nFloat = responses.data.data[responses.data.data.length - 1].PT
+          // let nInt = parseInt(responses.data.data[responses.data.data.length - 1].PT)
+
+          // alert(`${nFloat} - ${nInt}= ${nFloat - nInt}`)
+          let result = responses.data[responses.data.length - 1].PT;
+          this.lastGameID = responses.data[responses.data.length - 1].gameid;
+          this.timeGame = responses.data[responses.data.length - 1].created_at;
+
+          if (this.stockname === "US dollar Index") {
+            this.lastdraw = parseFloat(result)
+              .toFixed(4)
+              .toString();
+          } else {
+            this.lastdraw = parseFloat(result)
+              .toFixed(2)
+              .toString();
+          }
+          console.log(this.lastdraw)
+          console.log(this.lastGameID)
+          console.log(this.timeGame)
+        });
+      // this.getOutCome();
+    }
+  },
   props: [
     "recommend_friends",
     "message",
