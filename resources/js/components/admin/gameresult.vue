@@ -62,7 +62,8 @@
               <td>{{data.gameresult}}</td>
               <td>{{data.totalbet}}</td>
               <td>{{data.totalplayer}}</td>
-              <td>{{data.totalpayout}}</td>
+              <td v-if="data.income == null">0</td>
+              <td v-else>{{data.income}}</td>
               <td>{{data.totalpayout}}</td>
               <td>{{data.resulttime}}</td>
               <td class="td-actions">
@@ -73,6 +74,7 @@
                     data-placement="bottom"
                     title="View Details"
                     class="btn btn-info btn-sm btn-icon"
+                     @click="viewuserdata(method='viewgameuser',data.gameID,data.token)"
                   >
                     <i class="tim-icons icon-video-66"></i>
                   </button>
@@ -126,10 +128,10 @@
       aria-labelledby="mySmallModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-lg" v-if="reqmethod =='viewgameuser'" >
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">PlayerID</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle"  v-for="(data,index) in gotuserhistory" v-if="index < 1">GameID: {{ data.gameID }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
@@ -141,25 +143,25 @@
                   <thead>
                     <tr>
                       <th class="text-center">#</th>
-                      <th>UserID</th>
-                      <th>BetID</th>
-                      <th>Amout</th>
-                      <th>Payyout</th>
-                      <th>Rolling</th>
-                      <th class="text-right">Payout status</th>
-                      <th class="text-right">Bet Place Time</th>
+                      <th>name</th>
+                      <th>betID</th>
+                      <th>betAmount</th>
+                      <th>payoutAmount</th>
+                      <th>rollingAmount</th>
+                      <th class="text-right">betStatus/th>
+                      <th class="text-right">betTime</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="text-center">1</td>
-                      <td>UserID</td>
-                      <td>BetID</td>
-                      <td>BetAmount</td>
-                      <td>PayoutAmount</td>
-                      <td>Rolling Amount</td>
-                      <td>Clear/pending</td>
-                      <td class="text-right">04/09/208 19:38:57</td>
+                    <tr  v-for="(data,index) in gotuserhistory">
+                     <td class="text-center">{{index+1}}</td>
+                      <td>{{data.token}}</td>
+                      <td>{{data.betID}}</td>
+                      <td>{{data.betAmount}}</td>
+                      <td>{{data.payoutAmount}}</td>
+                      <td>{{data.rollingAmount}}</td>
+                      <td class="text-right">{{data.betStatus}}/td>
+                      <td class="text-right">{{data.betTime}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -175,22 +177,35 @@
     </div>
   </div>
 </template>
-<script>  import { adminmixin } from "./adminmixin.js";
+<script>  
+import { adminmixin } from "./adminmixin.js";
 
 
 export default {
  mixins: [adminmixin],
  data(){
    return{
+     dataserached:null,
      gamehistorystart:0,
      gamehistoryend:20,
      gamehistorypagenum:1,
      gamehistorysearch:null,
+     getfiler:[]
 
    }
  },
+ watch:{
+    dataserached(e){
+      // this.getfiler = this.filterByStock(e)
+      console.log(e)
+    }
+ },
 methods:{
-  
+  filterByStock(id) {
+      return this.gamehistory.filter(element => {
+         return element.gameID == id;
+      });
+    },
   gamehistorypage(methods){
         if(methods=='previous'){
           if(this.gamehistorystart > 0){
@@ -209,6 +224,11 @@ methods:{
     }
   },
   computed:{
+  //  dataserachedfilter(){
+  //     return this.gamehistory.filter(post => {
+  //         post.gameID=this.gameid
+  //     });
+  //  },
     customFilter(){
       if(this.gamehistorysearch){
         return this.gameresult.filter(post => {
