@@ -10,33 +10,33 @@
             <button
               @click="setSwichShowTable('first')"
               class="btn text-uppercase button_type"
-            >first digit</button>
+            >{{firstdigit}}</button>
             <div class="arrow-right1" v-show="swichShowTable=='first'"></div>
           </div>
           <div class="d-flex">
             <button
               @click="setSwichShowTable('last')"
               class="btn text-uppercase button_type"
-            >last digit</button>
+            >{{lastdigit}}</button>
             <div class="arrow-right2" v-show="swichShowTable=='last'"></div>
           </div>
           <div class="d-flex">
             <button
               @click="setSwichShowTable('both')"
               class="btn text-uppercase button_type"
-            >both digit</button>
+            >{{bothdigit}}</button>
             <div class="arrow-right3" v-show="swichShowTable=='both'"></div>
           </div>
           <div class="d-flex">
             <button
               @click="setSwichShowTable('two')"
               class="btn text-uppercase button_type"
-            >two digit</button>
+            >{{twodigit}}</button>
             <div class="arrow-right4" v-show="swichShowTable=='two'"></div>
           </div>
         </div>
       </div>
-      <div class="col-11 mobile-margin">
+      <div class="col-11 mobile-margin" >
         <div v-if="swichShowTable=='first'">
           <tableTrentChartFirst
             :lastGameID="lastGameID"
@@ -47,13 +47,13 @@
             :stockname="stockname"
             :loop="loop"
             name="first"
-            b="b"
-            s="s"
-            o="o"
-            e="e"
-            u="u"
-            m="m"
-            l="l"
+            :b="b"
+            :s="s"
+            :o="o"
+            :e="e"
+            :u="u"
+            :m="m"
+            :l="l"
           ></tableTrentChartFirst>
         </div>
         <div id="last" v-if="swichShowTable=='last'">
@@ -66,13 +66,13 @@
             :stockname="stockname"
             :loop="loop"
             name="last"
-            b="b"
-            s="s"
-            o="o"
-            e="e"
-            u="u"
-            m="m"
-            l="l"
+            :b="b"
+            :s="s"
+            :o="o"
+            :e="e"
+            :u="u"
+            :m="m"
+            :l="l"
           ></tableTrentChartLast>
         </div>
         <div id="both" v-if="swichShowTable=='both'">
@@ -85,13 +85,13 @@
             :loop="loop"
             name="both"
             :tbdatachart="tbdatachart"
-            b="b"
-            s="s"
-            o="o"
-            e="e"
-            u="u"
-            m="m"
-            l="l"
+            :b="b"
+            :s="s"
+            :o="o"
+            :e="e"
+            :u="u"
+            :m="m"
+            :l="l"
           ></tableTrentChartBoth>
         </div>
         <div id="two" v-if="swichShowTable=='two'">
@@ -100,21 +100,23 @@
             :timeGame="timeGame"
             :rowTable="rowTable"
             :isFirstTime="isFirstTime"
-            stockname="btc/usdt"
-            loop="1"
+            :stockname="stockname"
+            :loop="loop"
             name="two"
             :tbdatachart="tbdatachart"
-            b="b"
-            s="s"
-            o="o"
-            e="e"
-            u="u"
-            m="m"
-            l="l"
+            :b="b"
+            :s="s"
+            :o="o"
+            :e="e"
+            :u="u"
+            :m="m"
+            :l="l"
           ></tableTrentChartTwo>
         </div>
       </div>
     </div>
+
+    <div class="row"></div>
   </div>
 </template>
 <script>
@@ -171,6 +173,7 @@ export default {
   //   }
   // },
   mounted() {
+     console.log("tt"+ this.tbdatachart)
     if (this.countTable == 1) {
       this.swichShowTable = "first";
     } else if (this.countTable == 2) {
@@ -204,7 +207,7 @@ export default {
   methods: {
     setSwichShowTable(value) {
       this.swichShowTable = value;
-    }
+    },
     //table trend chart for mobile
     // showfirsttable() {
     //   (this.isshowfirsttable = true),
@@ -235,4 +238,3 @@ export default {
   }
 };
 </script>
-
