@@ -327,7 +327,7 @@
                   </div>
                   <div class="card-footer">
                     <button
-                      class="btn btn-default animation-on-hover btn-lg btn-block mb-3"
+                      class="btn btn-default animation-on-hover btn-lg btn-block mb-3 bg-custome"
                       @click.prevent="checklogin"
                     >Login</button>
                     <button
