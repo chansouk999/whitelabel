@@ -31,12 +31,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <input
-                  type="text"
-                  class="form-control"
-                  
-                  placeholder="SEARCH"
-                >
+                <input type="text" class="form-control" placeholder="SEARCH">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <i class="tim-icons icon-simple-remove"></i>
                 </button>
@@ -52,29 +47,33 @@
         <div class="card card-timeline card-plain">
           <div class="card-body">
             <ul class="timeline timeline-simple">
-              <li class="timeline-inverted">
+              <!-- loop -->
+              <li class="timeline-inverted" v-for="data in logdata">
                 <div class="timeline-badge danger">
                   <i class="tim-icons icon-bag-16"></i>
                 </div>
+
+                <!--  -->
                 <div class="timeline-panel text-left">
                   <div class="timeline-heading">
-                    <span class="badge badge-pill badge-success">22/11/2018</span>
+                    <span class="badge badge-pill badge-success">{{ JSON.parse(data.detail).Time }}</span>
                   </div>
                   <div class="timeline-body">
                     <p class="text-primary">
-                   PlayerID
+                      PlayerID
                       <span class="text-info">Changed his Password</span>
                       <span class="text-warning">17:42:33</span>
                     </p>
                     <p class="text-primary">
-                   PlayerID
-                      <span class="text-info">withdm rolling, approved by </span>
+                      PlayerID
+                      <span class="text-info">withdm rolling, approved by</span>
                       <span class="text-primary">adminID</span>
                       <span class="text-warning">17:42:33</span>
                     </p>
                   </div>
                 </div>
               </li>
+              <!-- loop -->
               <li class="timeline-inverted">
                 <div class="timeline-badge success">
                   <i class="tim-icons icon-calendar-60"></i>
@@ -85,24 +84,24 @@
                   </div>
                   <div class="timeline-body">
                     <p class="text-primary">
-                   PlayerID
+                      PlayerID
                       <span class="text-info">Requested (withdraw $200 from rolling )</span>
                       <span class="text-warning">17:42:33</span>
                     </p>
                     <p class="text-primary">
-                   PlayerID
+                      PlayerID
                       <span class="text-info">Placed $20 bet ot in n small-Firs</span>
                       <span class="text-primary">gameID</span>
                       <span class="text-warning">17:42:33</span>
                     </p>
                     <p class="text-primary">
-                   PlayerID
-                      <span class="text-info">Lost $100 by betting on number-7-First in </span>
-                       <span class="text-primary">gameID</span>
+                      PlayerID
+                      <span class="text-info">Lost $100 by betting on number-7-First in</span>
+                      <span class="text-primary">gameID</span>
                       <span class="text-warning">17:42:33</span>
                     </p>
                     <p class="text-primary">
-                   PlayerID
+                      PlayerID
                       <span class="text-info">Top up $1000 to balance by</span>
                       <span class="text-primary">methodID</span>
                       <span class="text-warning">17:42:33</span>
@@ -150,7 +149,14 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      logdata: [],
+      date: null
+    };
+  },
   mounted() {
+    this.gotactivitylog();
     $(document).ready(function() {
       // initialise Datetimepicker and Sliders
       blackDashboard.initDateTimePicker();
@@ -158,6 +164,21 @@ export default {
         demo.initSliders();
       }
     });
+  },
+  methods: {
+    gotactivitylog() {
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, "0");
+      let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      let yyyy = today.getFullYear();
+
+      today =  yyyy + "-" + mm + "-" + dd ;
+      alert(today)
+      axios.get("getlog").then(res => {
+        console.log(res.data);
+        this.logdata = res.data.data.data;
+      });
+    }
   }
 };
 </script>

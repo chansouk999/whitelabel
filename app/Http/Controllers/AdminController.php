@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use GuzzleHttp\Client;
+use App\Http\Controllers\ActivityLogController as ActivityLog;
 use App\Eventhistory;
 use Exception;
+use App\activityLog as modelog;
 use App\Request as Reqst;
 use App\access_token;
 use Illuminate\Support\Facades\DB;
@@ -48,6 +50,19 @@ class AdminController extends Controller
                 'user_id' => $user_id,
                 'access_token' => $acctoken
             ]);
+        }
+    }
+    public function getlog(Request $req){
+        try{
+            $data = modelog::where('method','=','Playerrecord')->orderby('created_at','desc')->paginate();
+            if ($data) {
+                return $this->returncode(200, $data, 'success');
+            } else {
+                return $this->returncode(300, $data, DB::getQueryLog());
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+            
         }
     }
     public function getfreshtoken()
@@ -420,11 +435,13 @@ class AdminController extends Controller
                 $detail = json_decode($reqdata['detail'], true);
                 if ($reqdata['requestDetail'] == 'topup') {
                     $evnt = $userbl + $reqdata['amount'];
+                    $msgreqlog = 'Top up request Approved by';
                     $e = '+';
                     $wtid = strtotime('now');
                 }
                 if ($reqdata['requestDetail'] == 'Withdraw') {
                     $evnt = $userbl - $reqdata['amount'];
+                    $msgreqlog = 'Withdraw request Approved by';
                     $e = '-';
                     $wtid = $this->getwithdrwaid($reqdata['amount'])['data'];
                 }
@@ -448,6 +465,21 @@ class AdminController extends Controller
                     $del = Reqst::where('id', '=', $req->id)->delete();
                     $userupdate = User::where('user_id', '=', '' . $reqdata['userId'] . '')->update(['userBalance' => $evnt]);
                     if ($del && $userupdate) {
+
+
+                        $method = 'Playerrecord';
+                        $data = array(
+                            'user_id'=>$reqdata['userId'],
+                            'event'=> $msgreqlog,
+                            'serveby'=> Auth::user()->user_id,
+                            'amount'=>$reqdata['amount'],
+                            'eventid'=>'',
+                            'Time'=>date('Y-m-d'),
+                        );
+                        $Log = new ActivityLog();
+                        $Log->storeLog($method,$data);
+
+
                         return $this->returncode(200, '', 'success');
                     } else {
                         return $this->returncode(300, '', DB::getQueryLog());

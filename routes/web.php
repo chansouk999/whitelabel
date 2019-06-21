@@ -34,6 +34,7 @@ Auth::routes();
 
 
 Route::post('/getgamehistory', 'AdminController@getgamehistory');
+Route::get('/getlog', 'AdminController@getlog');
 Route::get('/agenttransaction', 'AdminController@agenttransaction');
 Route::post('/savetransfer', 'AdminController@savetransfer');
 Route::get('/getshareholder', 'AdminController@getshareholder');
@@ -56,6 +57,7 @@ Route::get('/stocklist', function () {
 // Route::get('/',)
 Route::get('/', 'MasterController@welcome')->name('home');
 Route::post('/topupbalance', 'MasterController@topupbalance');
+Route::post('/reqchangepwd', 'MasterController@reqchangepwd');
 Route::get('/checkconnection', 'MasterController@checkconnection');
 Route::post('/savecarddetail', 'MasterController@savecarddetail');
 Route::post('/transfertoapi', 'MasterController@transfertoapi');

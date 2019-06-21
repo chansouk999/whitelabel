@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\ActivityLogController as ActivityLog;
+  
 use Illuminate\Http\Request;
 use App\Request as Reqst;
 use Auth;
@@ -31,7 +32,7 @@ class MasterController extends Controller
     protected $data = [];
 
 
-
+    // public 
     public function topupbalance(Request $req)
     {
         $amount = $req->amount;
@@ -61,8 +62,19 @@ class MasterController extends Controller
                         'regprovince' => $user->pluck('registerProvince')[0],
                         'branch' => $user->pluck('branch')[0],
                     );
-                    if($req->detail=='Withdraw'){$reqdetail='Withdraw';}
-                    if($req->detail=='topup'){$reqdetail='topup';}
+                    if ($req->detail == 'Withdraw') {
+                        $reqdetail = 'Withdraw';
+                        $logdt = 'Request Withdraw';
+                        $evlogid ='';
+                    }
+                    if ($req->detail == 'topup') {
+                        $reqdetail = 'topup';
+                        $logdt = 'Request Top up balance to';
+                        $evlogid = $user->pluck('methodId')[0];
+                    }
+
+                    $userbance = Auth::user()->userBalance;
+                    if($userbance > $req->amount){
                     $insert = array(
                         'userId' => Auth::user()->user_id,
                         'requestDetail' => $reqdetail,
@@ -75,10 +87,28 @@ class MasterController extends Controller
                     );
                     $save = Reqst::create($insert);
                     if ($save) {
+                        
+                        $method = 'Playerrecord';
+                        $data = array(
+                            'user_id'=> Auth::user()->user_id,
+                            'event'=> $logdt,
+                            'serveby'=>'',
+                            'amount'=>$req->amount,
+                            'eventid'=>$evlogid,
+                            'Time'=>date('Y-m-d'),
+                        );
+                        $Log = new ActivityLog();
+                        $Log->storeLog($method,$data);
                         return $this->returncode(200, 'No data', 'success');
                     } else {
                         return $this->returncode(300, '', DB::getQueryLog()); //query error
                     }
+                }else{
+                    return $this->returncode(99, '', 'not enough');
+                }
+
+
+
                 } else {
                     return $this->returncode(0, '', 'empty');
                 }
@@ -119,6 +149,116 @@ class MasterController extends Controller
             return $this->returncode(500, '', $e->getMessage()); //internal server eeror
         }
     }
+
+    public function reqchangepwd(Request $req)
+    {
+        try {
+            if ($req->code == 202) {
+                if (Hash::check($req->pwd, Auth::user()->password)) {
+                    return $this->returncode(200, 'No data', 'success');
+                } else {
+                    return $this->returncode(300, 'No data', 'not match');
+                }
+            }
+            if ($req->code == 200) {
+                return $this->splitchangepwd($req->newpassword, $req->cfnewpassword);
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
+        }
+    }
+    public function splitchangepwd($newpwd, $cfpwd)
+    {
+        try{
+            
+        $Log = new ActivityLog();
+        $id = Auth::user()->user_id;
+        if ($newpwd == $cfpwd) {
+            $hash = $this->hashpwd($newpwd);
+            if ($hash['code'] == 200) {
+                $save = User::where('user_id', '=', '' . $id . '')->update(['password' => Hash::make($newpwd), 'pwdhashed' => $hash['data']]);
+                if ($save) {
+                    $code = 200;
+                    $msg = 'success';
+                } else {
+                    $code = 300;
+                    $msg = 'query error';
+                }
+                if ($code == 200) {
+                   
+                    $method = 'Playerrecord';
+                    $data = array(
+                        'user_id'=> Auth::user()->user_id,
+                        'event'=> 'Change Password',
+                        'serveby'=>'',
+                        'amount'=>'',
+                        'eventid'=>'',
+                        'Time'=>date('Y-m-d'),
+                    );
+                    
+                    $Log->storeLog($method,$data);
+
+
+                    $res = $this->changepwdtopai($id, $newpwd);
+                    if($res['code']==200){
+                        $code = 200;
+                        $msg = 'success with api';
+                    }else{
+                        $code = 200;
+                        $msg = 'success';
+                    }
+                    return $this->returncode($code, '', $msg);
+                }
+            }
+        } else {
+            return $this->returncode(300, 'No data', 'not match');
+        }
+    }catch(\Exception $ex){
+        return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
+    }   
+    }
+    public function changepwdtopai($id, $pwd)
+    {
+        try{
+            $checkaccess = access_token::where('user_id','like','%'.$id.'%')->get()->count();
+            if($checkaccess>0){
+                return $this->returncode(200, '', 'access');
+            }else{
+                return $this->returncode(419, '', 'No access');
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
+        }
+       
+    }
+    public function hashpwd($pwduser)
+    {
+        try {
+            function generateRandomString($length = 7)
+            {
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $charactersLength = strlen($characters);
+                $randomString = '';
+                for ($i = 0; $i < $length; $i++) {
+                    $randomString .= $characters[rand(0, $charactersLength - 1)];
+                }
+                return $randomString;
+            }
+
+            $password = $pwduser;
+            $hashpassword = str_split($password);
+            $count = count($hashpassword);
+            $hash = [];
+            foreach ($hashpassword as $pwd) {
+                $hash[] =  generateRandomString() . "" . $pwd . "";
+            }
+            $datas = implode('-', $hash);
+            $insertpwd = $datas;
+            return $this->returncode(200, $insertpwd, 'success');
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
+        }
+    }
     public function returncode($code, $data, $msg)
     {
         //100 already exist
@@ -133,6 +273,8 @@ class MasterController extends Controller
         // 303 cacle
         return ['code' => $code, 'data' => $data, 'msg' => $msg];
     }
+
+    // pwdhashed
     public function checkuser(array $data)
     {
         $http = new Client;
@@ -206,11 +348,11 @@ class MasterController extends Controller
             if ($countcheck < 1 || $resulttoekn['code'] == 200) {
                 $token = $this->getfreshtoken()['data']['access_token'];
             }
-            
+
             if ($countcheck > 0) {
                 $token =   $accesstoken->pluck('access_token')[0];
             }
-            
+
             $userbl = Auth::user()->userBalance;
             if ($req->amount > $userbl || $req->amount == 0) {
                 return $this->returncode(99, '', 'not enough money minimum at 100'); //not enough
