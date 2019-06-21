@@ -110,51 +110,23 @@ export default {
     };
   },
   mounted() {
+   
     //  $("#isshowtwotable").hide()
-    this.sleep(100).then(() => {
+    this.sleep(1000).then(() => {
       this.trent = [];
       this.trentNumber = [];
       this.trentOE = [];
       this.trentUML = [];
-      this.setUrlMixin(this.stockname, this.loop);
-      this.getTableChartBS();
+       this.setUrlMixin(this.stockname, this.loop);
+       this.getTableChartBS();
     this.autoScroll();
     });
   },
   watch: {
-    // which_one() {
-    //   if (this.which_one == "B/S") {
-    //     this.is_show_bs = true;
-    //     this.is_show_oe = false;
-    //     this.is_show_hml = false;
-    //     this.is_show_num = false;
-    //   } else if (this.which_one == "O/E") {
-    //     this.is_show_bs = false;
-    //     this.is_show_oe = true;
-    //     this.is_show_hml = false;
-    //     this.is_show_num = false;
-    //   } else if (this.which_one == "U/L") {
-    //     this.is_show_bs = false;
-    //     this.is_show_oe = false;
-    //     this.is_show_hml = true;
-    //     this.is_show_num = false;
-    //   } else if (this.which_one == "NUM") {
-    //     this.is_show_bs = false;
-    //     this.is_show_oe = false;
-    //     this.is_show_hml = false;
-    //     this.is_show_num = true;
-    //   } else {
-    //     // this.is_show_bs = true;
-    //   }
-    // },
     tbdatachart() {
       if (this.isFirstTime == 1) {
         return;
       }
-      // let numberT =
-      //   parseInt(this.tbdatachart.substring(5, 6)) +""+
-      //   parseInt(this.tbdatachart.substring(6));
-      //   this.number = parseInt(numberT)
 
       this.number = this.tbdatachart[this.tbdatachart.length - 2];
 
@@ -182,13 +154,15 @@ export default {
       return new Promise(resolve => setTimeout(resolve, milliseconds));
     },
     getTableChartBS() {
+      console.log("go.............")
       let name = this.stockname.replace("/", "");
       if (name === "BTCUSDT" && this.loop === "1") {
         name += this.loop;
       }
-      this.axios
+      axios
         .get(`http://159.138.54.214/api/datahistory/${name}`)
         .then(response => {
+          console.log(response)
           let dataGet = response.data;
           let n = 0;
           let firstlast = "";
@@ -871,7 +845,7 @@ export default {
                 console.log(
                   (this.$refs.sortNumber.children[k].textContent = `${
                     sortable[k][0]
-                  } => ${sortable[k][1]}`)
+                  } = ${sortable[k][1]}`)
                 );
               }
             }
@@ -1055,3 +1029,5 @@ p {
 
 
 </style>
+
+

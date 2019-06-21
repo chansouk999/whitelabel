@@ -188,7 +188,7 @@ export default {
       if (name === "BTCUSDT" && this.loop === "1") {
         name += this.loop;
       }
-      this.axios
+      axios
         .get(`http://159.138.54.214/api/datahistory/${name}`)
         .then(response => {
           let dataGet = response.data;
