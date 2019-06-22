@@ -256,8 +256,7 @@ export default {
     gotogame() {
       // console.log(this.firstname+this.lastname)
 
-      let config = {
-        headers: { "X-CSRF-TOKEN": this.csrf }
+      let config = {headers: { "X-CSRF-TOKEN": this.csrf }
       };
       axios
         .post(
@@ -297,7 +296,9 @@ export default {
           this.firstname = res.data[0].id;
           this.lastname = res.data[0].secret;
           let filename = window.location.href
-            this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
+            // this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
+            this.gamelink = `http://localhost:8003/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
+
           // $('.id').val(this.id);
           // $('.provider_name').val(this.provider_name);
           // $('.balance').val(this.balance);

@@ -32,6 +32,7 @@
 
         <div class="col-xl-10 col-sm-12">
           <div class="content">
+            
             <!-- <h1>Stockname: {{stockname}} => Loop: {{loop}} => Country: {{country}}</h1> -->
             <livechart :stockname="stockname" :loop="loop" :country="country"/>
             <div class="row">

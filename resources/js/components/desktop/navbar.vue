@@ -207,7 +207,7 @@
                           </div>
                         </div>
                         <!-- logout -->
-                        <a href="javascript:void(0);" @click="logout()" class="btn-logout">
+                        <a href="javascript:void(0);" @click="logout()" class="btn-logout bg-custome">
                           <i class="fa fa-power-off"></i>Log Out
                         </a>
                       </div>

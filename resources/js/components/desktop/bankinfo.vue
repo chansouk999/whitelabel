@@ -198,6 +198,7 @@ export default {
   },
   mounted(){
     this.getcardinfo()
+    this.cardinfo()
   },
   methods: {
     getcardinfo(){
