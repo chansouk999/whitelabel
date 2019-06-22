@@ -11,9 +11,19 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Http\Controllers\ActivityLogController as ActivityLog;
 use App\userdetail;
+use function GuzzleHttp\json_decode;
+
 class Apicontroller extends Controller
 {
     public function testcode(){
+
+
+
+        // https://api.huobi.pro/market/trade?symbol=btcusdt
+        $url = 'https://api.huobi.pro/market/trade?symbol=btcusdt';
+        $data = file_get_contents($url);
+        $data = json_decode($data);
+        return [$data];
         $Log = new ActivityLog();
         $method = 'Playerrecord or Adminrecord';
         $data = array(
