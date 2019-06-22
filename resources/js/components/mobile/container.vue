@@ -184,7 +184,7 @@
                 href="#link1"
                 role="tablist"
                 aria-expanded="true"
-              >热门游戏</a>
+              >Live Game </a>
             </li>
             <li class="nav-item w-33">
               <a
@@ -193,7 +193,7 @@
                 href="#link2"
                 role="tablist"
                 aria-expanded="false"
-              >真人视讯</a>
+              >Popular game </a>
             </li>
             <li class="nav-item w-33">
               <a
@@ -202,7 +202,7 @@
                 href="#link3"
                 role="tablist"
                 aria-expanded="false"
-              >电子游戏</a>
+              >All Game</a>
             </li>
           </ul>
           <div class="tab-content tab-space p-0">

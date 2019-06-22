@@ -157,7 +157,7 @@
                     <button
                     @click.prevent="payment"
                       type="submit"
-                      class="btn btn-custome"
+                      class="btn btn-warning bg-custome"
                       id="submit1"
                       lay-submit
                       lay-filter="submit1"
@@ -265,7 +265,7 @@
                     ><br> <button
                     @click.prevent="transfermoney"
                       type="submit"
-                      class="btn btn-custome"
+                      class="btn btn-warning bg-custome"
                       id="submit1"
                       lay-submit
                       lay-filter="submit1"
@@ -347,7 +347,7 @@
                     ><br> <button
                     @click.prevent="topupbalance"
                       type="submit"
-                      class="btn btn-custome"
+                      class="btn btn-warning bg-custome"
                       id="submit1"
                       lay-submit
                       lay-filter="submit1"

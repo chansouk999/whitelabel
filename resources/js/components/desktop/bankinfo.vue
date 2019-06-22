@@ -1,48 +1,70 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container" v-if="isLoadCardDone">
       <div class="row">
         <div class="col-md-12">
           <div class="blockquote">
             <p class="mb-0">温馨提示：玩家可绑定3张银行卡和1个虚拟币钱包，若您需要修改资料信息，请先删除该资料并重新添加即可。.</p>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="card ml-auto" style="width: 20rem;">
-            <div class="card-body p-bank">
-              <a href="#" class="btn btn-primary bg-custome" data-toggle="modal" data-target="#addnewcard">
-                <i class="tim-icons icon-simple-add"></i> 添加银行卡
-              </a>
+        <div class="row ml-25">
+          <div class="col-md-6" v-for="(data,index) in getcCardinfo">
+            <div class="card border-bankinfo" style="width: 20rem;">
+              <div class="card-body p-bank">
+                <a href="#" class="btn btn-primary bg-custome">{{ data.bankAccount }}</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card mr-auto" style="width: 20rem;">
-            <div class="card-body p-bank">
-              <a href="#" class="btn btn-primary bg-custome" data-toggle="modal" data-target="#addnewcard">
-                <i class="tim-icons icon-simple-add"></i> 添加银行卡
-              </a>
+          <div class="col-md-6" v-if="getcCardinfo.length <= 0">
+            <div class="card border-bankinfo" style="width: 20rem;">
+              <div class="card-body p-bank">
+                <a
+                  href="#"
+                  class="btn btn-primary bg-custome"
+                  data-toggle="modal"
+                  data-target="#addnewcard"
+                >
+                  <i class="tim-icons icon-simple-add"></i> 添加银行卡
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card ml-auto" style="width: 20rem;">
-            <div class="card-body p-bank">
-              <a href="#" class="btn btn-primary bg-custome" data-toggle="modal" data-target="#addnewcard">
-                <i class="tim-icons icon-simple-add"></i> 添加银行卡
-              </a>
+          <div class="col-md-6" v-if="getcCardinfo.length <= 1">
+            <div class="card mr-cutome" style="width: 20rem;">
+              <div class="card-body p-bank">
+                <a
+                  href="#"
+                  class="btn btn-primary bg-custome"
+                  data-toggle="modal"
+                  data-target="#addnewcard"
+                >
+                  <i class="tim-icons icon-simple-add"></i> 添加银行卡
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card mr-auto" style="width: 20rem;">
-            <img src="assets/img/bitcoin.png" alt="Card image cap">
-            <div class="card-body p-bank">
-              <a href="#" class="btn btn-primary bg-custome">
-                <i class="tim-icons icon-simple-add"></i> 添加比特币钱包
-              </a>
+          <div class="col-md-6" v-if="getcCardinfo.length <= 2">
+            <div class="card mr-cutome" style="width: 20rem;">
+              <div class="card-body p-bank">
+                <a
+                  href="#"
+                  class="btn btn-primary bg-custome"
+                  data-toggle="modal"
+                  data-target="#addnewcard"
+                >
+                  <i class="tim-icons icon-simple-add"></i> 添加银行卡
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" v-if="getcCardinfo.length <= 3">
+            <div class="card border-bankinfo" style="width: 20rem;">
+              <img src="assets/img/bitcoin.png" alt="Card image cap">
+              <div class="card-body p-bank">
+                <a href="#" class="btn btn-primary bg-custome">
+                  <i class="tim-icons icon-simple-add"></i> 添加比特币钱包
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -187,27 +209,29 @@
 export default {
   data() {
     return {
+      isLoadCardDone: false,
       name: "",
       cardnumber: "",
       province: "",
       city: "",
       bankAccount: "",
       branch: "",
-      gotcardinfo:[]
+      gotcardinfo: [],
+      getcCardinfo: []
     };
   },
-  mounted(){
-    this.getcardinfo()
-    this.cardinfo()
+  mounted() {
+    this.getcardinfo();
+    this.cardinfo();
   },
   methods: {
-    getcardinfo(){
-        axios.get('/getcardinfo').then(res=>{
-          console.log("PPPPPPPPP")
-          console.log(res.data)
-          console.log("PPPPPPPPP")
-            this.gotcardinfo = res.data.data
-        })
+    getcardinfo() {
+      axios.get("/getcardinfo").then(res => {
+        console.log("PPPPPPPPP");
+        console.log(res.data);
+        console.log("PPPPPPPPP");
+        this.gotcardinfo = res.data.data;
+      });
     },
     addcard() {
       let vm = this;
@@ -264,6 +288,17 @@ export default {
             console.log(er.res);
           });
       }
+    },
+    cardinfo() {
+      axios
+        .get("/getcardinfo")
+        .then(res => {
+          this.getcCardinfo = res.data.data;
+          this.isLoadCardDone = true;
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
     }
   }
 };

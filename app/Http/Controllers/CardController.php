@@ -22,13 +22,12 @@ use Exception;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
 // use League\Flysystem\Exception;
-
-class CardController extends Controller
+  class CardController extends Controller
 {
-    public function getcardinfo()
+    public function getcardinfo()  
     {
         try {
-            $data = withdraw_methods::orderby('created_at', 'desc')->get();
+            $data = withdraw_methods::orderby('created_at', 'asc')->get();
             if ($data) {
                 return $this->returncode(200, $data, 'success');
             } else {

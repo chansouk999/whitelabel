@@ -2376,7 +2376,7 @@ div.radio.switcher label input:checked+span small {
 
 .content-wrapper .card .box-profile img {
     width: 100px;
-    border: 3px solid #e14eca;
+    border: 4px solid #362d2d;
     border-radius: 57px;
     box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 6px;
     margin: 0px 0px 20px 0px;
@@ -2786,8 +2786,8 @@ ul.list-group-navbar {
     border-right: 1px solid #309eff;
 }
 
-.u-content .container .card.ml-auto,
-.u-content .container .card.mr-auto {
+.u-content .container .card.border-bankinfo,
+.u-content .container .mr-cutome {
     border-radius: 10px;
     border: 1px dashed #d54fd8
 }
@@ -2799,7 +2799,7 @@ ul.list-group-navbar {
     padding: 20%;
 }
 
-.container .card.mr-auto img {
+.container .card.border-bankinfo img {
     width: 10%;
     border-top-left-radius: calc(0.2857rem - 0.0625rem);
     border-top-right-radius: calc(0.2857rem - 0.0625rem);
@@ -2833,6 +2833,16 @@ ul.list-group-navbar {
 .breadcrumb {
     /* background-color: #1d253b; */
     background-color: #362d2d !important;
+}
+
+.ml-25 {
+    width: 44%;
+    margin-left: 25% !important;
+}
+
+.alert.alert-with-icon {
+    padding-left: 65px;
+    top: 80px !important;
 }
 
 @media(min-width: 900px) {
