@@ -9,10 +9,22 @@ use App\Request as Reqst;
 use DateTime;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\Http\Controllers\ActivityLogController as ActivityLog;
 use App\userdetail;
 class Apicontroller extends Controller
 {
     public function testcode(){
+        $Log = new ActivityLog();
+        $method = 'Playerrecord or Adminrecord';
+        $data = array(
+            'user_id'=> Auth::user()->user_id,
+            'event'=> 'Change Password',
+            'serveby'=>'Your Admin id',
+            'amount'=>5000,
+            'eventid'=>'gameic etc..',
+            'Time'=>date('Y-m-d'),
+        );
+        return $Log->storeLog($method,$data);
         $id = Auth::user()->user_id;
         // date_default_timezone_set("Asia/Shanghai");
         $date2 = new DateTime;

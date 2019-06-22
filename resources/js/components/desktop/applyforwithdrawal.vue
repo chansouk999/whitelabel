@@ -88,9 +88,11 @@ export default {
         axios.post('topupbalance',{amount:this.topupbalannceamount,detail:'Withdraw'}).then(res=>{
             // console.log(res.data)
             code = res.data.code 
-            if(code==200){alert('success')}
-            if(code==300){alert('query error')}
-            if(code==500){alert('internal error')}
+            console.log(code)
+            if(code==200){
+
+            }
+            alert(res.data.msg)
         }).catch(e=>{console.log(e.response)})
     },
     bankInfoClick(){
