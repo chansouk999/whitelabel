@@ -300,4 +300,7 @@ div.pop-up {
 .off-canvas-sidebar .sidebar-wrapper {
   overflow: unset !important;
 }
+.active{
+    background-color: #a75a3f
+}
 </style>
