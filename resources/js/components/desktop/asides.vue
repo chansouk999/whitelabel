@@ -52,7 +52,12 @@
                   <livechart stockname="SH000001" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
                 <!-- <a href="/stocklist?stockname=SH000001&loop=5&country=china" slot="reference" target="_blank"> -->
-                <a :href="stocklist" @click="getstock('SH000001',5,'china')" slot="reference" target="_blank">
+                <a
+                  :href="stocklist"
+                  @click="getstock('SH000001',5,'china')"
+                  slot="reference"
+                  target="_blank"
+                >
                   <img src="assets/img/Aeternity-icon.png" alt>
                   <p class="text-aside" id="trigger">{{stock1}}</p>
                 </a>
@@ -61,10 +66,15 @@
             <li class="nav-aside" id="SZ3990015">
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">
-                  <livechart stockname="SZ399001" loop="5" country="china" :isMenu="true"></livechart>
+                  <livechart stockname="SZ3990015" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
                 <!-- <a href="/stocklist?stockname=SZ399001&loop=5&country=china" slot="reference" target="_blank"> -->
-                <a :href="stocklist" @click="getstock('SZ399001',5,'china')" slot="reference" target="_blank">
+                <a
+                  :href="stocklist"
+                  @click="getstock('SZ399001',5,'china')"
+                  slot="reference"
+                  target="_blank"
+                >
                   <img src="assets/img/Canada-eCoin-icon.png" alt>
                   <p class="text-aside" id="trigger2">{{stock2}}</p>
                 </a>
@@ -75,7 +85,12 @@
                 <div class="popper">
                   <livechart stockname="SH00300" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
-                <a :href="stocklist" @click="getstock('SH00300',5,'china')" slot="reference" target="_blank">
+                <a
+                  :href="stocklist"
+                  @click="getstock('SH00300',5,'china')"
+                  slot="reference"
+                  target="_blank"
+                >
                   <!-- <a href="/stocklist?stockname=SH00300&loop=5&country=china" slot="reference" target="_blank"> -->
                   <img src="assets/img/china_flag.png" alt>
                   <p class="text-aside">{{stock3}}</p>
@@ -87,7 +102,12 @@
                 <div class="popper">
                   <livechart stockname="SZ399415" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
-                <a :href="stocklist" @click="getstock('SZ399415',5,'china')" slot="reference" target="_blank">
+                <a
+                  :href="stocklist"
+                  @click="getstock('SZ399415',5,'china')"
+                  slot="reference"
+                  target="_blank"
+                >
                   <!-- <a href="/stocklist?stockname=SZ399415&loop=5&country=china" slot="reference" target="_blank"> -->
                   <img src="assets/img/china_flag.png" alt>
                   <p class="text-aside">{{stock4}}</p>
@@ -99,7 +119,12 @@
                 <div class="popper">
                   <livechart stockname="USdollarIndex" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
-                <a :href="stocklist" @click="getstock('USdollarIndex',5,'china')" slot="reference" target="_blank">
+                <a
+                  :href="stocklist"
+                  @click="getstock('USdollarIndex',5,'china')"
+                  slot="reference"
+                  target="_blank"
+                >
                   <!-- <a href="/stocklist?stockname=USdollarIndex&loop=5&country=usa" slot="reference" target="_blank"> -->
                   <img src="assets/img/us_flag.png" alt>
                   <p class="text-aside">{{stock5}}</p>
@@ -121,7 +146,12 @@
                       <div class="popper">
                         <livechart stockname="BTCUSDT" loop="1" country="china" :isMenu="true"></livechart>
                       </div>
-                      <a :href="stocklist" @click="getstock('BTCUSDT',1,'cypto')" slot="reference" target="_blank">
+                      <a
+                        :href="stocklist"
+                        @click="getstock('BTCUSDT',1,'cypto')"
+                        slot="reference"
+                        target="_blank"
+                      >
                         <!-- <a href="/stocklist?stockname=BTCUSDT&loop=1&country=cypto" slot="reference" target="_blank"> -->
                         <!-- <span class="sidebar-mini-icon">1</span> -->
                         <span class="sidebar-normal">1 Minutes</span>
@@ -133,7 +163,12 @@
                       <div class="popper">
                         <livechart stockname="BTCUSDT" loop="1" country="china" :isMenu="true"></livechart>
                       </div>
-                      <a :href="stocklist" @click="getstock('BTCUSDT',5,'cypto')" slot="reference" target="_blank">
+                      <a
+                        :href="stocklist"
+                        @click="getstock('BTCUSDT',5,'cypto')"
+                        slot="reference"
+                        target="_blank"
+                      >
                         <!-- <a href="/stocklist?stockname=BTCUSDT&loop=5&country=cypto" slot="reference" target="_blank"> -->
                         <!-- <span class="sidebar-mini-icon">5</span> -->
                         <span class="sidebar-normal">5 Minutes</span>
@@ -225,8 +260,8 @@ export default {
       }&urlback=http://${filename.split("/")[2]}&stockname=${
         this.stocknameder
       }&loop=${this.loopstock}&country=${this.countrystock}`;
-      alert(stocknameder + loppstock + countrystock);
-    window.open(this.stocklist,'_blank')
+      // alert(stocknameder + loppstock + countrystock);
+      window.open(this.stocklist, "_blank");
     },
     userdata() {
       axios
@@ -288,7 +323,7 @@ div.pop-up {
 .off-canvas-sidebar .sidebar-wrapper {
   overflow: unset !important;
 }
-.active{
-    background-color: #a75a3f
+.active {
+  background-color: #a75a3f;
 }
 </style>

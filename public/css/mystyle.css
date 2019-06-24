@@ -2792,11 +2792,31 @@ ul.list-group-navbar {
     border: 1px dashed #d54fd8
 }
 
+.u-content .container .card.card.border-bankinfo-data,
+.u-content .container .mr-cutome {
+    border-radius: 10px;
+    border: 1px solid #d54fd8;
+}
+
 .u-wrap .bg-secondary .u-content .container .p-bank {
     text-align: center;
     justify-content: center;
     top: 32%;
     padding: 20%;
+}
+
+.u-content .card .card-body .bankinfo img {
+    width: 10%;
+    border-top-left-radius: calc(0.2857rem - 0.0625rem);
+    border-top-right-radius: calc(0.2857rem - 0.0625rem);
+    left: 8px;
+    position: absolute;
+}
+
+.u-content .card .card-body .bankinfo p {
+    margin-left: 30px;
+    position: relative;
+    top: 5px;
 }
 
 .container .card.border-bankinfo img {
@@ -2843,6 +2863,12 @@ ul.list-group-navbar {
 .alert.alert-with-icon {
     padding-left: 65px;
     top: 80px !important;
+}
+
+.u-content .card .addreess .btn.badge.badge-warning {
+    margin: 0px 0px 0px 20px;
+    position: relative;
+    font-size: 10px;
 }
 
 @media(min-width: 900px) {

@@ -9,9 +9,56 @@
         </div>
         <div class="row ml-25">
           <div class="col-md-6" v-for="(data,index) in getcCardinfo">
-            <div class="card border-bankinfo" style="width: 20rem;">
-              <div class="card-body p-bank">
-                <a href="#" class="btn btn-primary bg-custome">{{ data.bankAccount }}</a>
+            <div class="card border-bankinfo-data" style="width: 20rem;">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div class="bankinfo">
+                    <img src="assets/img/bitcoin.png" alt="Card image cap">
+                    <p>{{data.methodId}}</p>
+                  </div>
+                  <div class="addreess">
+                    <button class="btn badge badge-warning" @click="CardDelete(data.id)">
+                      <i class="tim-icons icon-trash-simple"></i>
+                    </button>
+                    <p>{{data.registerProvince}}</p>
+                    <p>{{data.registerCity}}</p>
+                  </div>
+                </div>
+                <p>{{data.user_id}}</p>
+                <div class="d-flex justify-content-between">
+                  <p class="card-text">{{ data.userName }}.</p>
+                  <p class="card-text">{{ data.bankAccount | bankAccount}}</p>
+                </div>
+                <div class="form-check float-right">
+                  <label class="form-check-label" v-if="data.status=='use'">
+                    <input
+                      class="form-check-input checkuse"
+                      type="checkbox"
+                      :name="'usecard'+data.id"
+                      :value="data.status"
+                      disabled
+                      checked="checked"
+                      @change="useCard(data.id)"
+                    >
+                    {{data.branch}}
+                    <span class="form-check-sign">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                  <label class="form-check-label" v-else>
+                    <input
+                      class="form-check-input"
+                      :name="'usecard'+data.id"
+                      :value="data.status"
+                      type="checkbox"
+                      @click="useCard(data.id)"
+                    >
+                    {{data.branch}}
+                    <span class="form-check-sign">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                </div>
               </div>
             </div>
           </div>
@@ -209,6 +256,7 @@
 export default {
   data() {
     return {
+      checked: true,
       isLoadCardDone: false,
       name: "",
       cardnumber: "",
@@ -224,7 +272,85 @@ export default {
     this.getcardinfo();
     this.cardinfo();
   },
+  filters: {
+    bankAccount(value) {
+      let val = value.toString();
+      let valLength = val.length;
+      let a1 = val[valLength - 2];
+      let a2 = val[valLength - 1];
+      let dot = "";
+      for (let i = 0; i < valLength - 2; i++) {
+        dot = dot + "*";
+      }
+      let result = dot + "" + a1 + "" + a2;
+      return result;
+    }
+  },
   methods: {
+    useCard(data) {
+      let name = $(".checkuse").attr("name");
+      alert(name);
+      axios
+        .post("/useCard", { id: data })
+        .then(res => {
+          console.log(res);
+          if (res.data.code == 200) {
+            this.cardinfo();
+          }
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    },
+    CardDelete(id) {
+      this.$swal({
+        title: "Deleted?",
+        text: "Are you sure need to delete this card",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        confirmButtonClass: "btn btn-success",
+        cancelButtonClass: "btn btn-danger",
+        buttonsStyling: false,
+        allowOutsideClick: false
+      })
+        .then(res => {
+          console.log(res);
+          // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+          if (res.dismiss === "cancel") {
+            swal({
+              title: "Cancelled",
+              text: "Your card cancelled to delete)",
+              type: "error",
+              confirmButtonClass: "btn btn-warning",
+              timer: 1000,
+              buttonsStyling: false
+            }).catch(swal.noop);
+          } else {
+            axios
+              .post("/CardDelete/" + id)
+              .then(res => {
+                console.log(res);
+              })
+              .catch(e => {
+                console.log(e.response);
+              });
+            // window.location.href = "/logout"; //Will logout
+            swal({
+              title: "Success!",
+              text: "We hope to see you as soon.",
+              type: "success",
+              confirmButtonClass: "btn btn-success",
+              timer: 1000,
+              buttonsStyling: false
+            }).catch(swal.noop);
+            this.cardinfo();
+          }
+        })
+        .catch(swal.noop);
+      // alert(id, index);
+    },
     getcardinfo() {
       axios.get("/getcardinfo").then(res => {
         console.log("PPPPPPPPP");
@@ -266,12 +392,16 @@ export default {
           .then(res => {
             console.log(res.data);
             if (res.data.code == 200) {
+              this.cardinfo();
+              // HIDE
+              $("#addnewcard").modal("hide");
               this.$swal({
                 type: "success",
                 title: res.data.msg,
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-success",
-                html: "Please check the box that you fill in"
+                html: "Please check the box that you fill in",
+                timer: 1000
               });
             }
             if (res.data.code == 100) {
@@ -280,7 +410,8 @@ export default {
                 title: res.data.msg,
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-success",
-                html: "Please check the box that you fill in"
+                html: "Please check the box that you fill in",
+                timer: 1000
               });
             }
           })

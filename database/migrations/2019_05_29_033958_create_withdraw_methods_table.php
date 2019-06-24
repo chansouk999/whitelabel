@@ -15,15 +15,15 @@ class CreateWithdrawMethodsTable extends Migration
     {
         Schema::dropIfExists('withdraw_methods');
         Schema::create('withdraw_methods', function (Blueprint $table) {
-            $table->string('userName',30);
-            $table->integer('bankAccount');
-            $table->string('registerProvince',50);
-            $table->string('registerCity',50);
-            $table->string('branch',50);
-            $table->primary(['bankAccount']);
+            $table->bigIncrements('id');
+            $table->string('userName', 30);
+            $table->string('bankAccount', 30);
+            $table->string('registerProvince', 50);
+            $table->string('registerCity', 50);
+            $table->string('branch', 50);
+            $table->enum('status', ['use', 'not use'])->default('not use');
             $table->timestamps();
         });
-         DB::statement('ALTER TABLE withdraw_methods CHANGE bankAccount bankAccount INT(25) NOT NULL');
     }
 
     /**
