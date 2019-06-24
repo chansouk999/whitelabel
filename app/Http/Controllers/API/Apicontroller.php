@@ -54,20 +54,23 @@ class Apicontroller extends Controller
     public function Logdata(Request $req)
     {
         try {
-           
+
             $return = new Admincontroller();
-            // $method = 'Playerrecord';
-            // $data = array(
-            //     'user_id'=>$reqdata['userId'],
-            //     'event'=> $msgreqlog,
-            //     'serveby'=> Auth::user()->user_id,
-            //     'amount'=>$reqdata['amount'],
-            //     'eventid'=>'',
-            //     'Time'=>date('Y-m-d'),
-            // );
-            // $Log = new ActivityLog();
-            // $Log->storeLog($method,$data);
-            return $req;
+            $databet = $req->data[0];
+            foreach ($databet as $bet) {
+                $method = 'Playerrecord';
+                $data = array(
+                    'user_id' => $req->data[2],
+                    'event' => 'Place Bet on '.$bet['id'].' stock '.$req->data[1] ,
+                    'serveby' => '',
+                    'amount' => $bet['price'] ,
+                    'eventid' => $req->data[3],
+                    'Time' => date('Y-m-d'),
+                );
+                $Log = new ActivityLog();
+                $Log->storeLog($method, $data);
+            }
+
         } catch (\Exception $ex) {
             return $return->returncode(500, '', $ex->getMessage());
         }
