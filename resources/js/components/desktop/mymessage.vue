@@ -3,7 +3,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 pr-0">
           <div class="card card-nav-tabs">
             <div class="card-header bg-custome p-2 text-white">Featured</div>
             <ul class="list-group list-group-flush text-left">
@@ -138,16 +138,6 @@
         <!-- /.col -->
       </div>
     </div>
-    <button
-      type="button"
-      class="btn btn-lg btn-danger"
-      data-toggle="popover"
-      data-container="body"
-      data-original-title="Popover Title"
-      data-content="And here's some amazing content. It's very engaging. Right?"
-      data-color="primary"
-    >Click to toggle popover</button>
-    <!-- /.content-wrapper -->
     <!-- start your code here! -->
   </div>
 </template>

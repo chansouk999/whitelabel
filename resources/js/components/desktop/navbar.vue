@@ -207,7 +207,7 @@
                           </div>
                         </div>
                         <!-- logout -->
-                        <a href="javascript:void(0);" @click="logout()" class="btn-logout">
+                        <a href="javascript:void(0);" @click="logout()" class="btn-logout bg-custome">
                           <i class="fa fa-power-off"></i>Log Out
                         </a>
                       </div>
@@ -327,7 +327,7 @@
                   </div>
                   <div class="card-footer">
                     <button
-                      class="btn btn-default animation-on-hover btn-lg btn-block mb-3"
+                      class="btn btn-default animation-on-hover btn-lg btn-block mb-3 bg-custome"
                       @click.prevent="checklogin"
                     >Login</button>
                     <button

@@ -256,8 +256,7 @@ export default {
     gotogame() {
       // console.log(this.firstname+this.lastname)
 
-      let config = {
-        headers: { "X-CSRF-TOKEN": this.csrf }
+      let config = {headers: { "X-CSRF-TOKEN": this.csrf }
       };
       axios
         .post(

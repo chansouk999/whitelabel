@@ -143,7 +143,7 @@ Route::get('/redirectback', function () {
         'form_params' => [
             'grant_type' => 'password',
             'client_id' => '2',
-            'client_secret' => 'n7ZrJ7VGv4b6QuQjZ1AKWZ4w4AuvX88JuxzlPjGu',
+            'client_secret' => 'GPpStetV84Hi61VzjdP4ViG0Hkqh7Hhlcm9qHYWo',
             'username' => \Auth::user()->email,
             'password' => $dehashed,
             'scope' => '',

@@ -37,7 +37,7 @@
                   </div>
                   <div class="col-md-9 pr-md-1 col-lg-5">
                     <div class="form-group">
-                      <button class="btn btn-dribbble btn-block" @click="bankInfoClick()">
+                      <button class="btn btn-warning bg-custome btn-block" @click="bankInfoClick()">
                         <!-- <i class="fab fa-dribbble float-left"></i>新增银行卡 -->
                         <i class="fab fa-dribbble float-left"></i>Add a bank card
                         <i class="tim-icons icon-simple-add float-right"></i>
@@ -63,7 +63,7 @@
             </div>
             <div class="card-footer">
               <!-- <button type="button" class="btn btn-fill btn-primary">提 交</button> -->
-              <button type="button" class="btn btn-fill btn-primary" @click.prevent="topupbalance">Confirm</button>
+              <button type="button" class="btn btn-fill btn-warning bg-custome" @click.prevent="topupbalance">Confirm</button>
             </div>
           </div>
         </div>

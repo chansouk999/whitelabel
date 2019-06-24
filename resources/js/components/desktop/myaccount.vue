@@ -30,76 +30,32 @@
                     <a class="float-right">${{balance}}</a>
                   </li>
                   <li class="list-group-item d-flex justify-content-between">
-                    <b>Following</b>
-                    <a class="float-right">543</a>
+                    <b>最近登录时间</b>
+                    <a class="float-right">{{ login_at }}</a>
                   </li>
-                  <li class="list-group-item d-flex justify-content-between">
-                    <b>Friends</b>
-                    <a class="float-right">13,287</a>
-                  </li>
+                  <a href="#">
+                    <li class="list-group-item d-flex justify-content-between">
+                      <b>立即充值</b>
+                      <a class="float-right">15: 05 : 0111</a>
+                    </li>
+                  </a>
+                  <a href="#">
+                    <li class="list-group-item d-flex justify-content-between">
+                      <b>申请提现</b>
+                      <a class="float-right">15: 05 : 0111</a>
+                    </li>
+                  </a>
                 </ul>
 
-                <a href="#" class="btn btn-primary bg-custome btn-block" data-toggle="modal" data-target="#changepwdmodal" >
+                <a
+                  href="#"
+                  class="btn btn-warning bg-custome btn-block"
+                  data-toggle="modal"
+                  data-target="#changepwdmodal"
+                >
                   <b>Change Password</b>
                 </a>
               </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- About Me Box -->
-            <div class="card card-primary">
-              <div class="card-header bg-custome">
-                <h3 class="card-title text-white">About Me</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <strong>
-                  <i class="fa fa-clock mr-1"></i>最近登录时间:
-                </strong>
-
-                <p class="text-muted">{{ login_at }}</p>
-
-                <hr>
-
-                <strong>
-                  <i class="fa fa-map-marker mr-1"></i> 您的周有效投注额 已超过用户
-                </strong>
-
-                <p class="text-custome font-weight-bolder">0%</p>
-
-                <hr>
-
-                <strong>
-                  <i class="fa fa-pencil mr-1"></i> 总余额
-                </strong>
-
-                <p class="text-custome font-weight-bolder">${{balance}}</p>
-                <a href class="btn btn-primary bg-custome btn-block">
-                  <i class="tim-icons icon-refresh-02"></i>刷新额度
-                </a>
-                <hr>id
-                <!-- user_id
-provider_name
-balance
-pro_id
-name
-email
-                login_at-->
-                <strong>
-                  <i class="fa fa-pencil mr-1"></i> 总余额
-                </strong>
-                <p class="text-custome font-weight-bolder">${{balance}}</p>
-                <a href class="btn btn-primary bg-custome ">
-                  <i class="tim-icons icon-badge"></i>立即充值
-                  <span>Deposit Now</span>
-                </a>
-                <a href class="btn btn-primary bg-custome">
-                  <i class="tim-icons icon-credit-card"></i>申请提现
-                  <span>Withdraw Now</span>
-                </a>
-              </div>
-              <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
@@ -107,7 +63,7 @@ email
           <div class="col-md-9 pr-0">
             <div class="card">
               <div class="card-header p-2">
-                <ul class="nav nav-pills nav-pills-primary " role="tablist">
+                <ul class="nav nav-pills nav-pills-primary" role="tablist">
                   <li class="nav-item">
                     <a
                       class="nav-link active"
@@ -396,46 +352,90 @@ email
 
       <!-- model -->
       <!-- Classic Modal -->
-                    <div class="modal fade" id="changepwdmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header justify-content-center">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                              <i class="tim-icons icon-simple-remove"></i>
-                            </button>
-                            <h6 class="title title-up">Change Password</h6>
-                          </div>
-                          <div class="modal-body">
-                             <div class="card-body">
+      <div
+        class="modal fade"
+        id="changepwdmodal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header justify-content-center">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+              <h6 class="title title-up">Change Password</h6>
+            </div>
+            <div class="modal-body">
+              <div class="card-body">
                 <form action="#" v-if="currentpwdcode==300">
                   <label>Enter Your Old Password</label>
                   <div class="form-group">
-                    <input type="password" class="form-control chnagepwd" placeholder="old password" v-model="currentpassword">
+                    <input
+                      type="password"
+                      id="autofocus"
+                      class="form-control chnagepwd"
+                      placeholder="old password"
+                      v-model="currentpassword"
+                      required
+                      autofocus
+                    >
                   </div>
                 </form>
-                 <form action="#" v-if="currentpwdcode==200">
-
+                <form action="#" v-if="currentpwdcode==200">
                   <label>New Password</label>
                   <div class="form-group">
-                    <input type="password" class="form-control chnagepwd" placeholder="Password" v-model="newpassword">
+                    <input
+                      type="password"
+                      class="form-control chnagepwd"
+                      placeholder="Password"
+                      v-model="newpassword"
+                    >
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control chnagepwd" placeholder="Confirm password" v-model="cfnewpassword">
+                    <input
+                      type="password"
+                      class="form-control chnagepwd"
+                      placeholder="Confirm password"
+                      v-model="cfnewpassword"
+                    >
                   </div>
                 </form>
               </div>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" @click="changepwd" v-if="oldpwd200==false">Next Step</button>
-                            <button type="button" class="btn btn-default" @click="savenewpwd" v-if="oldpwd200==true">Save</button>
-                            <button type="button" class="btn btn-default" @click="showpassword(method='show')" v-if="showpwd==false">Show password</button>
-                            <button type="button" class="btn btn-default" @click="showpassword(method='hide')" v-if="showpwd==true">hide password</button>
-                            <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--  End Modal -->
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-warning bg-custome"
+                @click="changepwd"
+                v-if="oldpwd200==false"
+              >Next Step</button>
+              <button
+                type="button"
+                class="btn btn-warning bg-custome"
+                @click="savenewpwd"
+                v-if="oldpwd200==true"
+              >Save</button>
+              <button
+                type="button"
+                class="btn btn-warning bg-custome"
+                @click="showpassword(method='show')"
+                v-if="showpwd==false"
+              >Show password</button>
+              <button
+                type="button"
+                class="btn btn-warning bg-custome"
+                @click="showpassword(method='hide')"
+                v-if="showpwd==true"
+              >hide password</button>
+              <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  End Modal -->
     </div>
   </div>
 </template>
@@ -444,15 +444,15 @@ import chartJS from "./chartjs";
 export default {
   data() {
     return {
-      oldpwd200:false,
-      showpwd:false,
-      newpassword:null,
-      cfnewpassword:null,
-      currentpassword:null,
-      currentpwdcode:300,
-      rescode:null,
-      resmsg:null,
-      resdata:null,
+      oldpwd200: false,
+      showpwd: false,
+      newpassword: null,
+      cfnewpassword: null,
+      currentpassword: null,
+      currentpwdcode: 300,
+      rescode: null,
+      resmsg: null,
+      resdata: null,
       methodid: null,
       bankccount: null,
       cardnumber: null,
@@ -476,52 +476,84 @@ export default {
     this.userdata();
   },
   methods: {
-    showpassword(method){
-      if(method=='show'){
-        this.showpwd=true
-          $('.chnagepwd').attr('type','email');
-      }else{
-        this.showpwd=false
-          $('.chnagepwd').attr('type','password');
-      }
-    
-    },
-    savenewpwd(){
-      let data = {
-        newpassword : this.newpassword,
-        cfnewpassword : this.cfnewpassword,
-        code : 200,
-      }
-      if(data.newpassword !== data.cfnewpassword){
-          alert('Password not match')
-      }else{
-         axios.post('reqchangepwd',data).then(res=>{
-              console.log(res.data)
-              this.rescode = res.data.code;
-          this.resmsg = res.data.msg;
-          this.resdata = res.data.data;
-             alert(this.resmsg);
-              if(this.rescode==200){
-                 alert('You need to login again')
-                 location.href = '/login'
-              }
-         }).catch(e=>{console.log(e.response)})
-      }
-     
-    },
-    changepwd(){
-      axios.post('reqchangepwd',{pwd:this.currentpassword,code:202}).then(res=>{
-          console.log(res.data)
-          this.rescode = res.data.code;
-          this.resmsg = res.data.msg;
-          this.resdata = res.data.data;
-          alert(this.resmsg);
-          if(this.rescode==200){
-            this.oldpwd200=true
-            this.currentpwdcode=200
+    showNotification(from, align) {
+      let color = Math.floor(Math.random() * 4 + 1);
+      $.notify(
+        {
+          icon: "tim-icons icon-bell-55",
+          message: "Please try old password first"
+        },
+        {
+          type: type[color],
+          timer: 1000,
+          placement: {
+            from: from,
+            align: align
           }
-      }).catch(e=>{console.log(e.response)})
-
+        }
+      );
+    },
+    showpassword(method) {
+      if (method == "show") {
+        this.showpwd = true;
+        $(".chnagepwd").attr("type", "email");
+      } else {
+        this.showpwd = false;
+        $(".chnagepwd").attr("type", "password");
+      }
+    },
+    savenewpwd() {
+      let data = {
+        newpassword: this.newpassword,
+        cfnewpassword: this.cfnewpassword,
+        code: 200
+      };
+      if (data.newpassword !== data.cfnewpassword) {
+        alert("Password not match");
+      } else {
+        axios
+          .post("reqchangepwd", data)
+          .then(res => {
+            console.log(res.data);
+            this.rescode = res.data.code;
+            this.resmsg = res.data.msg;
+            this.resdata = res.data.data;
+            alert(this.resmsg);
+            if (this.rescode == 200) {
+              alert("You need to login again");
+              location.href = "/login";
+            }
+          })
+          .catch(e => {
+            console.log(e.response);
+          });
+      }
+    },
+    changepwd() {
+      axios
+        .post("reqchangepwd", { pwd: this.currentpassword, code: 202 })
+        .then(res => {
+          console.log(res.data);
+          if (this.currentpassword == null) {
+            this.showNotification("top", "right");
+            element.required = true;
+            if (!("autofocus" in document.createElement("input"))) {
+              document.getElementById("autofocus").focus();
+            }
+          } else {
+            this.rescode = res.data.code;
+            this.resmsg = res.data.msg;
+            this.resdata = res.data.data;
+          }
+          alert(this.resmsg);
+          if (this.rescode == 200) {
+            this.oldpwd200 = true;
+            this.currentpwdcode = 200;
+          }
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
     },
     savecarddetail(data, code = 200) {
       let vm = this;

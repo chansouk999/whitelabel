@@ -35,7 +35,7 @@
             <button
               type="button"
               rel="tooltip"
-              class="btn btn-primary btn-lg"
+              class="btn btn-warning bg-custome btn-lg"
               data-original-title
               title
             >提交</button>
