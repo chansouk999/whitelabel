@@ -22,9 +22,9 @@ use Exception;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
 // use League\Flysystem\Exception;
-  class CardController extends Controller
+class CardController extends Controller
 {
-    public function getcardinfo()  
+    public function getcardinfo()
     {
         try {
             $data = withdraw_methods::orderby('created_at', 'asc')->get();
@@ -83,5 +83,21 @@ use SebastianBergmann\Environment\Console;
         //419 no access
         // 303 cacle
         return ['code' => $code, 'data' => $data, 'msg' => $msg];
+    }
+    public function CardDelete($id)
+    {
+        $deleteCard = withdraw_methods::find($id)->delete();
+        //   dd($deleteCard);
+    }
+    public function useCard(Request $request)
+    {
+        DB::enableQueryLog();
+        $updateData = withdraw_methods::where('status', '=', 'use')->update(['status' => 'not use']);
+        $request = withdraw_methods::where('id', '=', $request->id)->update(['status' => 'use']);
+        if ($request) {
+            return $this->returncode(200, 'No data', 'success');
+        } else {
+            return $this->returncode(300, '', DB::getQueryLog()); //query error
+        }
     }
 }

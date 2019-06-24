@@ -68,23 +68,65 @@ export const livechart = {
                 _this.sumfl = datalastdraw.first + datalastdraw.last;
 
                 // this post id drives the example data
-                let mindate = labelss[labelss.length - 20];
+                let mindate = labelss[labelss.length - 100];
                 let mindates = labelss[labelss.length - 299];
 
-                let max = datas[0];
-                let min = datas[0];
+                let maxdates20 = datas[datas.length - 20];
+                let maxdate19 = datas[datas.length - 19];
+                let maxdate18 = datas[datas.length - 18];
+                let maxdate17 = datas[datas.length - 17];
+                let maxdate16 = datas[datas.length - 16];
+                let maxdates15 = datas[datas.length - 15];
+                let maxdates14 = datas[datas.length - 14];
+                let maxdates13 = datas[datas.length - 13];
+                let maxdates12 = datas[datas.length - 12];
+                let maxdates11 = datas[datas.length - 11];
+                let maxdates10 = datas[datas.length - 10];
+                let maxdates9 = datas[datas.length - 9];
+                let maxdates8 = datas[datas.length - 8];
+                let maxdates7 = datas[datas.length - 7];
+                let maxdates6 = datas[datas.length - 6];
+                let maxdates5 = datas[datas.length - 5];
+                let maxdates4 = datas[datas.length - 4];
+                let maxdates3 = datas[datas.length - 3];
+                let maxdates2 = datas[datas.length - 2];
+                let maxdates1 = datas[datas.length - 1];
+
+                let maxValue = [
+                    maxdates20,
+                    maxdate19,
+                    maxdate18,
+                    maxdate17,
+                    maxdate16,
+                    maxdates15,
+                    maxdates14,
+                    maxdates13,
+                    maxdates12,
+                    maxdates11,
+                    maxdates10,
+                    maxdates9,
+                    maxdates8,
+                    maxdates7,
+                    maxdates6,
+                    maxdates5,
+                    maxdates4,
+                    maxdates3,
+                    maxdates2,
+                    maxdates1
+                ];
+                let max = maxValue[0];
+                let min = maxValue[0];
                 let maxs, mins, stepVal;
 
-                for (let counter = 1; counter < datas.length; counter++) {
+                for (let counter = 1; counter < maxValue.length; counter++) {
                     //  get max
-                    if (datas[counter] > max) {
-                        max = datas[counter];
+                    if (maxValue[counter] > max) {
+                        max = maxValue[counter];
                     }
                     // get min
-                    if (datas[counter] < min) {
-                        min = datas[counter];
+                    if (maxValue[counter] < min) {
+                        min = maxValue[counter];
                     }
-
                     if (this.stockname === "USdollarIndex") {
                         maxs = parseFloat(max);
                         mins = parseFloat(min);
@@ -216,7 +258,7 @@ export const livechart = {
                                         position: "left",
                                         beginAtZero: true,
                                         // stepSize: 5,
-                                        // stepValue: maxDataValue,
+                                        // stepValue: stepVal,
                                         // max: maxs,
                                         suggestedMin: mins,
                                         suggestedMax: maxs,

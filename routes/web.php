@@ -156,7 +156,7 @@ Route::get('/redirectback', function () {
         'Authorization' => 'Bearer ' . $accessdata['access_token']
     ];
     $resuser = $http->get('http://localhost:8003/api/users', ['headers' => $header]);
-   $data =  json_decode((string)$resuser->getBody(), true);
+    $data =  json_decode((string)$resuser->getBody(), true);
     $date = date('Y-m-d');
     $check = access_token::where([['created_at', 'like', '%' . $date . '%'], ['user_id', '=', '' . $data['user_id'] . '']])->get()->count();
     if ($check < 1) {
@@ -218,12 +218,15 @@ Route::get('locale/{locale}', function ($locale) {
 });
 
 
-Route::get('/coding',function(Request $req){
+Route::get('/coding', function (Request $req) {
     return $req->getHttpHost();
 });
-Route::get('/notify','PaymentController@notify');
+Route::get('/notify', 'PaymentController@notify');
 Route::post('actionpayment', 'PaymentController@actionpayment');
 
 Route::post('/addcard', 'CardController@addcard');
 Route::get('/getcardinfo', 'CardController@getcardinfo');
 
+Route::post('/CardDelete/{id}', 'CardController@CardDelete');
+
+Route::post('/useCard', 'CardController@useCard');
