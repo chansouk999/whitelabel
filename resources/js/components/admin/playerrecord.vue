@@ -48,67 +48,30 @@
           <div class="card-body">
             <ul class="timeline timeline-simple">
               <!-- loop -->
-              <li class="timeline-inverted" v-for="data in logdata">
+              <li class="timeline-inverted" >
                 <div class="timeline-badge danger">
                   <i class="tim-icons icon-bag-16"></i>
                 </div>
 
                 <!--  -->
                 <div class="timeline-panel text-left">
-                  <div class="timeline-heading">
+                  <!-- <div class="timeline-heading">
                     <span class="badge badge-pill badge-success">{{ JSON.parse(data.detail).Time }}</span>
-                  </div>
-                  <div class="timeline-body">
-                    <p class="text-primary">
-                      PlayerID
-                      <span class="text-info">Changed his Password</span>
-                      <span class="text-warning">17:42:33</span>
-                    </p>
-                    <p class="text-primary">
-                      PlayerID
-                      <span class="text-info">withdm rolling, approved by</span>
-                      <span class="text-primary">adminID</span>
-                      <span class="text-warning">17:42:33</span>
+                  </div> -->
+                  <!-- "{"user_id":"090659ZK4Z8le","event":"Top up request Approved by","serveby":"090659ZK4Z8le","amount":5000,"eventid":"","Time":"2019-06-21 18:55:17"}" -->
+                  <div class="timeline-body" v-for="data in logdata" >
+                    <p class="text-primary" >
+                      {{ JSON.parse(data.detail).user_id }}
+                      <span class="text-info"> {{ JSON.parse(data.detail).event }}</span>
+                      <span class="text-info"> {{ JSON.parse(data.detail).eventid }}</span>
+                      <span class="text-info">  {{ JSON.parse(data.detail).amount }}</span>
+                      <span class="text-warning">{{ JSON.parse(data.detail).Time }}</span>
                     </p>
                   </div>
                 </div>
               </li>
               <!-- loop -->
-              <li class="timeline-inverted">
-                <div class="timeline-badge success">
-                  <i class="tim-icons icon-calendar-60"></i>
-                </div>
-                <div class="timeline-panel text-left">
-                  <div class="timeline-heading">
-                    <span class="badge badge-pill badge-success">22/11/2018</span>
-                  </div>
-                  <div class="timeline-body">
-                    <p class="text-primary">
-                      PlayerID
-                      <span class="text-info">Requested (withdraw $200 from rolling )</span>
-                      <span class="text-warning">17:42:33</span>
-                    </p>
-                    <p class="text-primary">
-                      PlayerID
-                      <span class="text-info">Placed $20 bet ot in n small-Firs</span>
-                      <span class="text-primary">gameID</span>
-                      <span class="text-warning">17:42:33</span>
-                    </p>
-                    <p class="text-primary">
-                      PlayerID
-                      <span class="text-info">Lost $100 by betting on number-7-First in</span>
-                      <span class="text-primary">gameID</span>
-                      <span class="text-warning">17:42:33</span>
-                    </p>
-                    <p class="text-primary">
-                      PlayerID
-                      <span class="text-info">Top up $1000 to balance by</span>
-                      <span class="text-primary">methodID</span>
-                      <span class="text-warning">17:42:33</span>
-                    </p>
-                  </div>
-                </div>
-              </li>
+              
             </ul>
           </div>
         </div>
