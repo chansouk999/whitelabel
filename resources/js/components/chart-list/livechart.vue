@@ -9,7 +9,7 @@
         <i class="fa fa-unlock"></i>
       </div>
     </div>
-    <canvas ref="myChart" height="100" width="400"></canvas>
+    <canvas ref="myChart" height="130" width="400"></canvas>
   </div>
 </template>
 <script>

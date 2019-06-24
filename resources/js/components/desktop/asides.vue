@@ -97,9 +97,9 @@
             <li class="nav-aside" id="USdollarIndex5">
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">
-                  <livechart stockname="USdollarIndex" loop="5" country="china" :isMenu="true"></livechart>
+                  <livechart stockname="USdollarIndex" loop="5" country="usa" :isMenu="true"></livechart>
                 </div>
-                <a :href="stocklist" @click="getstock('USdollarIndex',5,'china')" slot="reference" target="_blank">
+                <a :href="stocklist" @click="getstock('USdollarIndex',5,'usa')" slot="reference" target="_blank">
                   <!-- <a href="/stocklist?stockname=USdollarIndex&loop=5&country=usa" slot="reference" target="_blank"> -->
                   <img src="assets/img/us_flag.png" alt>
                   <p class="text-aside">{{stock5}}</p>
@@ -119,7 +119,7 @@
                   <li class="nav-aside" id="BTCUSDT1">
                     <popper trigger="hover" :options="myPopper">
                       <div class="popper">
-                        <livechart stockname="BTCUSDT" loop="1" country="china" :isMenu="true"></livechart>
+                        <livechart stockname="BTCUSDT" loop="1" country="cypto" :isMenu="true"></livechart>
                       </div>
                       <a :href="stocklist" @click="getstock('BTCUSDT',1,'cypto')" slot="reference" target="_blank">
                         <!-- <a href="/stocklist?stockname=BTCUSDT&loop=1&country=cypto" slot="reference" target="_blank"> -->
@@ -131,7 +131,7 @@
                   <li class="nav-aside" id="BTCUSDT5">
                     <popper trigger="hover" :options="myPopper">
                       <div class="popper">
-                        <livechart stockname="BTCUSDT" loop="1" country="china" :isMenu="true"></livechart>
+                        <livechart stockname="BTCUSDT" loop="5" country="cypto" :isMenu="true"></livechart>
                       </div>
                       <a :href="stocklist" @click="getstock('BTCUSDT',5,'cypto')" slot="reference" target="_blank">
                         <!-- <a href="/stocklist?stockname=BTCUSDT&loop=5&country=cypto" slot="reference" target="_blank"> -->
