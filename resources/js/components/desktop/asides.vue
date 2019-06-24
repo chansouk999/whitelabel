@@ -117,14 +117,18 @@
             <li class="nav-aside" id="USdollarIndex5">
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">
-                  <livechart stockname="USdollarIndex" loop="5" country="china" :isMenu="true"></livechart>
+                  <livechart stockname="USdollarIndex" loop="5" country="usa" :isMenu="true"></livechart>
                 </div>
+<<<<<<< HEAD
                 <a
                   :href="stocklist"
                   @click="getstock('USdollarIndex',5,'china')"
                   slot="reference"
                   target="_blank"
                 >
+=======
+                <a :href="stocklist" @click="getstock('USdollarIndex',5,'usa')" slot="reference" target="_blank">
+>>>>>>> 78849228867300729166014f72e585b03f35a8a4
                   <!-- <a href="/stocklist?stockname=USdollarIndex&loop=5&country=usa" slot="reference" target="_blank"> -->
                   <img src="assets/img/us_flag.png" alt>
                   <p class="text-aside">{{stock5}}</p>
@@ -144,7 +148,7 @@
                   <li class="nav-aside" id="BTCUSDT1">
                     <popper trigger="hover" :options="myPopper">
                       <div class="popper">
-                        <livechart stockname="BTCUSDT" loop="1" country="china" :isMenu="true"></livechart>
+                        <livechart stockname="BTCUSDT" loop="1" country="cypto" :isMenu="true"></livechart>
                       </div>
                       <a
                         :href="stocklist"
@@ -161,7 +165,7 @@
                   <li class="nav-aside" id="BTCUSDT5">
                     <popper trigger="hover" :options="myPopper">
                       <div class="popper">
-                        <livechart stockname="BTCUSDT" loop="1" country="china" :isMenu="true"></livechart>
+                        <livechart stockname="BTCUSDT" loop="5" country="cypto" :isMenu="true"></livechart>
                       </div>
                       <a
                         :href="stocklist"
