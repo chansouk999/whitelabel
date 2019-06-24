@@ -549,9 +549,7 @@ export default {
       promote: "./promote",
       welcome: "/",
       lobby: "./lobby",
-      csrf: document
-        .querySelector('meta[name="csrf-token"]')
-        .getAttribute("content")
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },
   computed: {
