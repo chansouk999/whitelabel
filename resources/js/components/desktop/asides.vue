@@ -41,18 +41,6 @@
                 <p class="text-aside">{{lobby}}</p>
               </a>
             </li>
-            <li class="nav-aside">
-              <div class="qr-wrap">
-                <div class="ocrloader">
-                  <em></em>
-                  <div>
-                    <img src="/assets/img/qrcode.png" width="127px">
-                  </div>
-                  <span></span>
-                </div>
-              </div>
-              <p>扫一扫 下载手机亚游</p>
-            </li>
           </ul>
         </span>
 
