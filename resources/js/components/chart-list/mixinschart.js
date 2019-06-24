@@ -239,7 +239,7 @@ export const livechart = {
 
                             callbacks: {
                                 label: function(tooltipItem, data) {
-                                    if (_this.stockname === "US dollar Index") {
+                                    if (_this.stockname === "USdollarIndex") {
                                         return " value: " + tooltipItem.yLabel.toFixed(4);
                                     } else {
                                         return " value: " + tooltipItem.yLabel.toFixed(2);
@@ -346,7 +346,7 @@ export const livechart = {
                             TimeCount1 == 50 ||
                             TimeCount1 == 55
                         ) {
-                            axios.post("http://192.168.1.165:8000/api/checktimeclose", {
+                            axios.post("http://159.138.54.214/api/checktimeclose", {
                                 code: "jnaosr78q3hn4aoidfsj1543570997985646a9wr15"
                             }).then(ress => {
                                 _this.checkstockss = ress.data;
