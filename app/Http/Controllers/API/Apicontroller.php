@@ -61,7 +61,7 @@ class Apicontroller extends Controller
                 $method = 'Playerrecord';
                 $data = array(
                     'user_id' => $req->data[2],
-                    'event' => 'Place Bet on '.$bet['id'].' stock '.$req->data[1] ,
+                    'event' => $req->data[4].' '.$bet['id'].' stock '.$req->data[1] ,
                     'serveby' => '',
                     'amount' => $bet['price'] ,
                     'eventid' => $req->data[3],
