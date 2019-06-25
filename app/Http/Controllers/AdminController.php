@@ -54,7 +54,7 @@ class AdminController extends Controller
     }
     public function getlog(Request $req){
         try{
-            $data = modelog::where('method','=','Playerrecord')->orderby('created_at','desc')->paginate();
+            $data = modelog::where('method','=','Playerrecord')->orderby('created_at','desc')->paginate(10000);
             if ($data) {
                 return $this->returncode(200, $data, 'success');
             } else {
