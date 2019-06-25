@@ -22,6 +22,49 @@ class AdminController extends Controller
 {
     protected $urlserver = 'http://lec68.com';
     protected $url8003 = 'http://localhost:8003';
+
+
+
+
+
+    public function getallresultadmin(){
+        try{
+            $token =$this->getfreshtoken();
+            $header = $this->getcleanheader($token);
+            $http = new Client;
+            $response = $http->get('http://localhost:8003/api/getallresultadmin', ['headers'=>$header]);
+            $accessdata = json_decode((string)$response->getBody(), true);
+            return $accessdata;
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getcleanheader($token){
+        $header = [
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . $token['token']
+        ];
+        return $header;
+    }
+    public function index(){
+        return view('admin.welcomes');
+    }
     public function getheader($user_id)
     {
         $gettoken = trim(access_token::where('user_id', 'like', '%' . $user_id . '%')->orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token'), '["]');
@@ -169,7 +212,9 @@ class AdminController extends Controller
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $gettoken
             ];
+
             // return $req;
+
             $http = new Client;
             if ($method == 'game') {
                 $response = $http->post($this->url8003 . '/api/requestuserdata', [

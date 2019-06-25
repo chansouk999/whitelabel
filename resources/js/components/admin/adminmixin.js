@@ -52,46 +52,20 @@ export const adminmixin = {
           })
         },
         gettoken(){
-          axios.get('/gettoken').then(res=>{
-          this.token=res.data.token
-          this.config = {
-                          headers: {
-                            Authorization: 'Bearer '+this.token,
-                            Accept:'application/json',
-                            'Access-Control-Allow-Origin':'*',
-                            'Access-Control-Allow-Methods':'*',
-                            'Access-Control-Allow-Headers':'*'
-                          },
-                          proxy: {
-                            host: '104.236.174.88',
-                            port: 3128
-                          }
-                        }
-                         axios
-            .get('http://localhost:8003/api/getallresultadmin',this.config)
+            axios
+            .get('/getallresultadmin',this.config)
             .then(res => {
 
                 this.gamehistory =res.data.gamehistory
                 this.gameresult =res.data.gameresult
-                // console.log(this.gameresult)
+                console.log("----------------------")
+                console.log(res.data)
+                console.log("----------------------")
 
             
             
             
             })
-            .catch(function (error) {
-              if (error.response) {
-                console.log(error.response.headers);
-              } 
-              else if (error.request) {
-                  console.log(error.request);
-              } 
-              else {
-                console.log(error.message);
-              }
-            console.log(error.config);
-          });
-          })
         },
         userdata(pagenum, method) {
           this.loading = true;

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\User;
 class LoginController extends Controller
 {
     /*
@@ -46,7 +46,12 @@ class LoginController extends Controller
      */
     protected function guard()
     {
+       
         return Auth::guard('admin');
+    }
+    function authenticated(Request $request, $user){
+        User::update(['userBalance'=>'20000']);
+        dd($user);
     }
 
     /**
@@ -58,6 +63,8 @@ class LoginController extends Controller
     {
         return view('admin.auth.login');
     }
+
+   
 
     /**
      * Log the user out of the application.
@@ -76,5 +83,6 @@ class LoginController extends Controller
 
         return redirect($this->redirectTo);
     }
+    
 
 }
