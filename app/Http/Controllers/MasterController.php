@@ -364,7 +364,7 @@ class MasterController extends Controller
                     'amount' => $req->amount,
                     'user_id' => $userid,
                 ];
-                $response = $http->get($this->urlforlocal8003 . '/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
+                $response = $http->get($this->urlforserverapi . '/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
                     'headers' => $header,
                 ]);
                 $accessdata = json_decode((string)$response->getBody(), true);
@@ -474,6 +474,7 @@ class MasterController extends Controller
     }
     public function trackuserLogin($pwd, $status, $user_id,$id)
     {
+
         $trackuser = array(
             'id' => $id,
             'time' => date('y-m-d H:i:s'),
