@@ -364,7 +364,8 @@ class MasterController extends Controller
                     'amount' => $req->amount,
                     'user_id' => $userid,
                 ];
-                $response = $http->get($this->urlforserverapi . '/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
+                // checkkcckk
+                $response = $http->get('http://lec68.com/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
                     'headers' => $header,
                 ]);
                 $accessdata = json_decode((string)$response->getBody(), true);
