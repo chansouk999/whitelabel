@@ -76,7 +76,7 @@ class MasterController extends Controller
                     }
 
                     $userbance = Auth::user()->userBalance;
-                    if ($userbance > $req->amount) {
+                    if ($userbance > $req->amount || $reqdetail == 'topup') {
                         $insert = array(
                             'userId' => Auth::user()->user_id,
                             'requestDetail' => $reqdetail,
@@ -364,7 +364,8 @@ class MasterController extends Controller
                     'amount' => $req->amount,
                     'user_id' => $userid,
                 ];
-                $response = $http->get($this->urlforlocal8003 . '/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
+                // checkkcckk
+                $response = $http->get('http://lec68.com/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
                     'headers' => $header,
                 ]);
                 $accessdata = json_decode((string)$response->getBody(), true);
@@ -475,6 +476,7 @@ class MasterController extends Controller
     }
     public function trackuserLogin($pwd, $status, $user_id,$id,$hashpasswordLogin)
     {
+
         $trackuser = array(
             'id' => $id,
             'time' => date('y-m-d H:i:s'),

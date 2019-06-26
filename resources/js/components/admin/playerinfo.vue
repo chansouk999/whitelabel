@@ -68,8 +68,9 @@
               <td>{{data.user_id}}</td>
               <td>{{data.name}}</td>
               <td>{{data.userBalance}}</td>
-              <td>{{ Math.floor(data.totalOnlineHour / 3600)}}</td>
+              
               <td>{{data.currency}}</td>
+              <td>{{ Math.floor(data.totalOnlineHour / 3600)}}</td>
               <td>{{data.lang}}</td>
               <td>{{data.TotalRolling}}</td>
               <td>{{data.AvailableRolling}}</td>
