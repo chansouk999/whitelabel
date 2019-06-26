@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'sweetalert' => \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
         'cors' => \App\Http\Middleware\Cors::class, 
+        'admin' => \App\Http\Middleware\Admin::class, 
     ];
 
     /**

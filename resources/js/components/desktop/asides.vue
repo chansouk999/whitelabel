@@ -119,7 +119,7 @@
                 <div class="popper">
                   <livechart stockname="USdollarIndex" loop="5" country="usa" :isMenu="true"></livechart>
                 </div>
-                <a :href="stocklist" @click="getstock('USdollarIndex',5,'usa')" slot="reference" target="_blank">
+                <a :href="stocklist" @click="getstock('US dollar Index',5,'usa')" slot="reference" target="_blank">
                   <!-- <a href="/stocklist?stockname=USdollarIndex&loop=5&country=usa" slot="reference" target="_blank"> -->
                   <img src="assets/img/us_flag.png" alt>
                   <p class="text-aside">{{stock5}}</p>
@@ -143,7 +143,7 @@
                       </div>
                       <a
                         :href="stocklist"
-                        @click="getstock('BTCUSDT',1,'cypto')"
+                        @click="getstock('BTC/USDT',1,'cypto')"
                         slot="reference"
                         target="_blank"
                       >
@@ -160,7 +160,7 @@
                       </div>
                       <a
                         :href="stocklist"
-                        @click="getstock('BTCUSDT',5,'cypto')"
+                        @click="getstock('BTC/USDT',5,'cypto')"
                         slot="reference"
                         target="_blank"
                       >
@@ -245,16 +245,13 @@ export default {
   },
   methods: {
     getstock(stocknameder, loppstock, countrystock) {
-      this.stocknameder = stocknameder;
-      this.loppstock = loppstock;
-      this.countrystock = countrystock;
       let filename = window.location.href;
       // this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
-      this.stocklist = `http://localhost:8003/redirect?&name=${
+      this.stocklist = `http://lec68.com/redirect?&name=${
         this.email
       }&urlback=http://${filename.split("/")[2]}&stockname=${
-        this.stocknameder
-      }&loop=${this.loopstock}&country=${this.countrystock}`;
+        stocknameder
+      }&loop=${loppstock}&country=${countrystock}`;
       // alert(stocknameder + loppstock + countrystock);
       window.open(this.stocklist, "_blank");
     },
@@ -274,7 +271,7 @@ export default {
           this.lastname = res.data[0].secret;
           let filename = window.location.href;
           // this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
-          this.stocklist = `http://localhost:8003/redirect?&name=${
+          this.stocklist = `http://lec68.com/redirect?&name=${
             this.email
           }&urlback=http://${filename.split("/")[2]}&stockname=${
             this.stocknameder

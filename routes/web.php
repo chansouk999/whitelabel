@@ -29,10 +29,12 @@ Auth::routes();
 
 
 
+// Route::get('/admins', 'HomeController@admin');
+Route::get('administrator', 'AdminController@index')->middleware('admin');
 
 
 
-
+Route::get('/getallresultadmin', 'AdminController@getallresultadmin');
 Route::post('/getgamehistory', 'AdminController@getgamehistory');
 Route::get('/getlog', 'AdminController@getlog');
 Route::get('/agenttransaction', 'AdminController@agenttransaction');
@@ -69,7 +71,7 @@ Route::post('/sendsms', 'MasterController@sendsms');
 Route::post('/payment', 'MasterController@payment');
 // Route::get('/login', 'MasterController@welcome')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logoutuser');
-Route::get('updatemoney/{id}', 'API/Apicontroller@updatemoney');
+Route::get('updatemoney/{id}', 'API\Apicontroller@updatemoney');
 Route::get('testcode', 'API\Apicontroller@testcode');
 Route::get('/getlogin', function () {
 
@@ -230,3 +232,7 @@ Route::get('/getcardinfo', 'CardController@getcardinfo');
 Route::post('/CardDelete/{id}', 'CardController@CardDelete');
 
 Route::post('/useCard', 'CardController@useCard');
+
+
+
+

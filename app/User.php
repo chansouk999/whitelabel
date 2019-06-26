@@ -31,7 +31,8 @@ class User extends Authenticatable
         'last_activity',
         'accessTime',
         'accessIP',
-        'pwdhashed'
+        'pwdhashed',
+        'is_admin'
     ];
 
     /**
