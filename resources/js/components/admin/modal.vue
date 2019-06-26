@@ -1,114 +1,5 @@
 <template>
   <div>
-    <!-- Modal Game History -->
-    <!-- <div
-      class="modal fade gamble-history"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myLargeModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">PlayerID</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              <i class="tim-icons icon-simple-remove"></i>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="card card-nav-tabs">
-              <div class="card-header card-header-success">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th class="text-center">#</th>
-                      <th>Game</th>
-                      <th>Reference</th>
-                      <th>Amout</th>
-                      <th>Payout</th>
-                      <th>Rolling</th>
-                      <th class="text-right">Payout status</th>
-                      <th class="text-right">Bet Place time</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(data ,index ) in gotuserhistory" v-if="popup==true">
-                      <td class="text-center">{{index+1}}</td>
-                      <td>{{data.gameID}}</td>
-                      <td>{{data.betID}}</td>
-                      <td>{{data.betAmount}}</td>
-                      <td>{{data.payoutAmount}}</td>
-                      <td>{{data.rollingAmount}}</td>
-                      <td class="text-right">{{data.betStatus}}</td>
-                      <td class="text-right">{{data.betTime}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <!-- /Modal Game History -->
-
-    <!--modal top up history -->
-    <!-- <div
-      class="modal fade top-up-history"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myLargeModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">PlayerID</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              <i class="tim-icons icon-simple-remove"></i>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="card card-nav-tabs">
-              <div class="card-header card-header-success">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th class="text-center">#</th>
-                      <th>Time</th>
-                      <th>Reference</th>
-                      <th>Amout<mm::/th></th>
-                      <th class="text-right">Method</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="text-center">1</td>
-                      <td>hh:mm dd/mm/yyy</td>
-                      <td>top-up reference</td>
-                      <td>$500</td>
-                      <td class="text-right">e.g ailpay</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <!--/modal top up history -->
-
-    <!--modal withdraw history -->
     <div
       class="modal fade withdraw-history"
       tabindex="-1"
@@ -160,58 +51,7 @@
 
     <!--/modal withdraw history -->
 
-    <!--modal access record -->
-    <div
-      class="modal fade access-record"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myLargeModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">PlayerID</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              <i class="tim-icons icon-simple-remove"></i>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="card card-nav-tabs">
-              <div class="card-header card-header-success">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th class="text-center">#</th>
-                      <th>Time</th>
-                      <th>Passwor Entered</th>
-                      <th>Login status</th>
-                      <th class="text-right">login IP</th>
-                      <th class="text-right">Online period</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="text-center">1</td>
-                      <td>hh:mm dd/mm/yyy</td>
-                      <td>Password entered by user</td>
-                      <td>Failure/success</td>
-                      <td class="text-right">192.2121.2323</td>
-                      <td class="text-right">e.g 4hrs 23min</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--/modal access record -->
+  
 
     <!--modal action record -->
     <div
@@ -324,9 +164,17 @@
 </template>
 <script>
 import { adminmixin } from "./adminmixin.js";
-  
+
 export default {
-    mixins: [adminmixin],
+  mixins: [adminmixin],
+  data() {
+    return {
+    
+    };
+  },
+  methods: {
+
+  }
 };
 </script>
  <style scoped>

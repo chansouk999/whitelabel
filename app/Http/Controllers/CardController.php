@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\withdraw_methods;
+use App\access_record;
 use App\userdetail;
 use DateTime;
 use Exception;
@@ -70,6 +71,19 @@ class CardController extends Controller
             return $this->returncode(500, '', $e->getMessage()); //internal server eeror
         }
     }
+    public function ShowCardUse()
+    {
+        try {
+            $data = withdraw_methods::where('status', '=', 'use')->get();
+            if ($data) {
+                return $this->returncode(200, $data, 'success');
+            } else {
+                return $this->returncode(300, '', DB::getQueryLog()); //query error
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
+        }
+    }
     public function returncode($code, $data, $msg)
     {
         //100 already exist
@@ -99,5 +113,10 @@ class CardController extends Controller
         } else {
             return $this->returncode(300, '', DB::getQueryLog()); //query error
         }
+    }
+    public function trackuserLogin($id)
+    {
+        $getTrackUser = access_record::where('user_id', '=', '' . $id . '')->get();
+        return $getTrackUser;
     }
 }

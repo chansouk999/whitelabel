@@ -9,29 +9,52 @@
         </div>
         <div class="row ml-25">
           <div class="col-md-6" v-for="(data,index) in getcCardinfo">
+            <div class="cover atvImg">
+              <div class="atvImg-layer">
+                <img src="http://robindelaporte.fr/codepen/visa-bg.jpg" alt>
+              </div>
+              <div class="atvImg-layer">
+                <img src="http://robindelaporte.fr/codepen/visa.png" alt>
+                <div class="d-flex justify-content-between">
+                  <h2>{{data.methodId}}</h2>
+                  <div class="addreess">
+                    <button class="btn badge badge-warning" @click="CardDelete(data.id)">
+                      <i class="tim-icons icon-trash-simple"></i>
+                    </button>
+                    <p class="text-white">{{data.registerProvince}}</p>
+                    <p class="text-white">{{data.registerCity}}</p>
+                  </div>
+                  <div class="user_id">{{data.user_id}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row ml-25">
+          <div class="col-md-6" v-for="(data,index) in getcCardinfo">
             <div class="card border-bankinfo-data" style="width: 20rem;">
-              <div class="card-body">
+              <div class="card-body bg-card">
                 <div class="d-flex justify-content-between">
                   <div class="bankinfo">
                     <img src="assets/img/bitcoin.png" alt="Card image cap">
-                    <p>{{data.methodId}}</p>
+                    <p class="text-white">{{data.methodId}}</p>
                   </div>
                   <div class="addreess">
                     <button class="btn badge badge-warning" @click="CardDelete(data.id)">
                       <i class="tim-icons icon-trash-simple"></i>
                     </button>
-                    <p>{{data.registerProvince}}</p>
-                    <p>{{data.registerCity}}</p>
+                    <p class="text-white">{{data.registerProvince}}</p>
+                    <p class="text-white">{{data.registerCity}}</p>
                   </div>
                 </div>
                 <!-- <p>{{data.user_id}}</p> -->
                 <br>
                 <div class="d-flex justify-content-between">
-                  <p class="card-text">{{ data.userName | userName}}.</p>
-                  <p class="card-text">{{ data.bankAccount | bankAccount}}</p>
+                  <p class="card-text text-white">{{ data.userName | userName}}.</p>
+                  <p class="card-text text-white">{{ data.bankAccount | bankAccount}}</p>
                 </div>
                 <div class="form-check float-right">
-                  <label class="form-check-label">
+                  <label class="form-check-label text-white">
                     <input
                       class="form-check-input checkuse"
                       type="checkbox"
