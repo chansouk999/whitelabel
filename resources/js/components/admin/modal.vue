@@ -324,7 +324,7 @@
 </template>
 <script>
 import { adminmixin } from "./adminmixin.js";
-
+  
 export default {
     mixins: [adminmixin],
 };

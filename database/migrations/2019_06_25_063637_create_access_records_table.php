@@ -15,16 +15,17 @@ class CreateAccessRecordsTable extends Migration
     {
         Schema::dropIfExists('access_records');
         Schema::create('access_records', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->integer('id');
             $table->dateTime('time')->nullable();
             $table->string('password');
             $table->string('login_status');
             $table->string('login_IP', 25)->nullable();
             $table->string('online_period');
             $table->string('user_id', 20);
-            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
+        // DB::statement('ALTER TABLE `access_records` CHANGE `id` `id` int(11)');
     }
 
     /**

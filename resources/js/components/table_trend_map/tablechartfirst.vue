@@ -1,20 +1,26 @@
 <template>
   <div>
     <div class="row mobile-modern">
-      <div class="col-12 col-md-12 col-lg-6 col-sm-12 full-screen col-mobile" v-show="which_one=='B/S' || which_one==true ">
+      <div
+        class="col-12 col-md-12 col-lg-6 col-sm-12 full-screen col-mobile"
+        v-show="which_one=='B/S' || which_one==true "
+      >
         <div v-if="isFullScreen">
           <span class="countBigFirst text-white"></span>
           <span class="countSmallFirst text-white"></span>
         </div>
         <div class="my-coltabledivlast">
-          <table class="table-responsive" ref="tablebsTwo" >
+          <table class="table-responsive" ref="tablebsTwo">
             <tr v-for="tr in rowTable">
-              <td  v-for="td in 300" style="border:1px solid #000000;"></td>
+              <td v-for="td in 300" style="border:1px solid #000000;"></td>
             </tr>
           </table>
         </div>
       </div>
-      <div class="col-12 col-md-12 col-lg-6 col-sm-12 full-screen col-mobile" v-show="which_one=='O/E' || which_one==true">
+      <div
+        class="col-12 col-md-12 col-lg-6 col-sm-12 full-screen col-mobile"
+        v-show="which_one=='O/E' || which_one==true"
+      >
         <div v-if="isFullScreen">
           <span class="countOddFirst text-white"></span>
           <span class="countEvenFirst text-white"></span>
@@ -22,14 +28,17 @@
         <div class="my-coltabledivlast">
           <table class="table-responsive" ref="tableOETwo">
             <tr v-for="tr in rowTable">
-              <td  v-for="td in 300" style="border:1px solid #000000;"></td>
+              <td v-for="td in 300" style="border:1px solid #000000;"></td>
             </tr>
           </table>
         </div>
       </div>
     </div>
     <div class="row mobile-modern">
-      <div class="col-12 col-md-12 col-lg-6 col-sm-12 full-screen col-mobile" v-show="which_one=='U/L' || which_one==true">
+      <div
+        class="col-12 col-md-12 col-lg-6 col-sm-12 full-screen col-mobile"
+        v-show="which_one=='U/L' || which_one==true"
+      >
         <div v-if="isFullScreen">
           <span class="countUpperFirst text-white"></span>
           <span class="countMiddleFirst text-white"></span>
@@ -38,12 +47,15 @@
         <div class="my-coltabledivlast">
           <table class="table-responsive" ref="tablebUMLTwo">
             <tr v-for="tr in rowTable">
-              <td  v-for="td in 900" style="border:1px solid #000000;"></td>
+              <td v-for="td in 900" style="border:1px solid #000000;"></td>
             </tr>
           </table>
         </div>
       </div>
-      <div class="col-12 col-md-12 col-lg-6 col-sm-12 full-screen col-mobile" v-show="which_one=='NUM' || which_one==true">
+      <div
+        class="col-12 col-md-12 col-lg-6 col-sm-12 full-screen col-mobile"
+        v-show="which_one=='NUM' || which_one==true"
+      >
         <div v-if="isFullScreen" ref="sortNumber">
           <span class="text-white"></span>
           <span class="text-white"></span>
@@ -55,7 +67,7 @@
         <div class="my-coltabledivlast">
           <table class="table-responsive" ref="tableNumberTwo">
             <tr v-for="tr in rowTable">
-              <td  v-for="td in 100" style="border:1px solid #000000;"></td>
+              <td v-for="td in 100" style="border:1px solid #000000;"></td>
             </tr>
           </table>
         </div>
@@ -78,9 +90,9 @@ export default {
     stockname: String,
     loop: String,
     isFirstTime: Number,
-    which_one:{
-      default:true
-    } ,
+    which_one: {
+      default: true
+    },
     b: String,
     s: String,
     o: String,
@@ -102,7 +114,7 @@ export default {
       trentNumber: [],
       trentOE: [],
       trentUML: [],
-      gameID: [],
+      gameID: []
       // is_show_bs: true,
       // is_show_oe: true,
       // is_show_hml: true,
@@ -110,16 +122,15 @@ export default {
     };
   },
   mounted() {
-   
     //  $("#isshowtwotable").hide()
     this.sleep(1000).then(() => {
       this.trent = [];
       this.trentNumber = [];
       this.trentOE = [];
       this.trentUML = [];
-       this.setUrlMixin(this.stockname, this.loop);
-       this.getTableChartBS();
-    this.autoScroll();
+      this.setUrlMixin(this.stockname, this.loop);
+      this.getTableChartBS();
+      this.autoScroll();
     });
   },
   watch: {
@@ -139,22 +150,29 @@ export default {
       let _this = this;
       // $(".table-responsive").scrollLeft(0)
       setTimeout(function() {
-        let lop = $(".my-coltabledivlast").first().width()/2
-        let valuebs = $(_this.$refs.tablebsTwo).find(".mystylelast")[0].offsetLeft
-        let valueoe = $(_this.$refs.tableOETwo).find(".oestylelast")[0].offsetLeft
-        let valueuml = $(_this.$refs.tablebUMLTwo).find(".umlstylelast")[0].offsetLeft
-        let valuenum = $(_this.$refs.tableNumberTwo).find(".numScroll")[0].offsetLeft
-        $(_this.$refs.tablebsTwo).scrollLeft(valuebs-lop)
-        $(_this.$refs.tableOETwo).scrollLeft(valueoe-lop)
-        $(_this.$refs.tablebUMLTwo).scrollLeft(valueuml-lop)
-        $(_this.$refs.tableNumberTwo).scrollLeft(valuenum-lop)
+        let lop =
+          $(".my-coltabledivlast")
+            .first()
+            .width() / 2;
+        let valuebs = $(_this.$refs.tablebsTwo).find(".mystylelast")[0]
+          .offsetLeft;
+        let valueoe = $(_this.$refs.tableOETwo).find(".oestylelast")[0]
+          .offsetLeft;
+        let valueuml = $(_this.$refs.tablebUMLTwo).find(".umlstylelast")[0]
+          .offsetLeft;
+        let valuenum = $(_this.$refs.tableNumberTwo).find(".numScroll")[0]
+          .offsetLeft;
+        $(_this.$refs.tablebsTwo).scrollLeft(valuebs - lop);
+        $(_this.$refs.tableOETwo).scrollLeft(valueoe - lop);
+        $(_this.$refs.tablebUMLTwo).scrollLeft(valueuml - lop);
+        $(_this.$refs.tableNumberTwo).scrollLeft(valuenum - lop);
       }, 1000);
     },
     sleep(milliseconds) {
       return new Promise(resolve => setTimeout(resolve, milliseconds));
     },
     getTableChartBS() {
-      console.log("go.............")
+      console.log("go.............");
       let name = this.stockname.replace("/", "");
       if (name === "BTCUSDT" && this.loop === "1") {
         name += this.loop;
@@ -162,7 +180,7 @@ export default {
       axios
         .get(`http://159.138.54.214/api/datahistory/${name}`)
         .then(response => {
-          console.log(response)
+          console.log(response);
           let dataGet = response.data;
           let n = 0;
           let firstlast = "";
@@ -384,7 +402,7 @@ export default {
         this.newdataOE(data);
         this.newdataUML(data);
         this.newdataNumber(data);
-         this.autoScroll();
+        this.autoScroll();
       }
     },
     newdataNumber(n) {
@@ -927,107 +945,105 @@ td[title]:hover::before {
 } */
 
 table {
-    border-collapse: collapse;
-    background-color: #fff;
+  border-collapse: collapse;
+  background-color: #fff;
 }
 
 td,
 tr {
-    /* border: 1px solid black; */
-    min-width: 26px;
-    height: 26px;
-    text-align: center;
+  /* border: 1px solid black; */
+  min-width: 26px;
+  height: 26px;
+  text-align: center;
 }
 
 .text-edit {
-    background-color: transparent;
-    color: #003e70;
+  background-color: transparent;
+  color: #003e70;
 }
 
 table.table,
 tr,
 td,
 p {
-    color: #003e70;
-    font-weight: 500;
+  color: #003e70;
+  font-weight: 500;
 }
 
 .red {
-    text-align: center;
-    color: #fff;
-    /* font-weight: bold; */
-    height: 24px;
-    width: 24px;
-    background-color: red;
-    border-radius: 5rem !important;
-    display: inline-block;
-    font-size: 17px;
-    padding: 0px;
+  text-align: center;
+  color: #fff;
+  /* font-weight: bold; */
+  height: 24px;
+  width: 24px;
+  background-color: red;
+  border-radius: 5rem !important;
+  display: inline-block;
+  font-size: 17px;
+  padding: 0px;
 }
 
 .blue {
-    text-align: center;
-    color: #fff;
-    /* font-weight: bold; */
-    height: 24px;
-    width: 24px;
-    background-color: #003f70;
-    border-radius: 5rem !important;
-    display: inline-block;
-    font-size: 17px;
-    padding: 0px;
+  text-align: center;
+  color: #fff;
+  /* font-weight: bold; */
+  height: 24px;
+  width: 24px;
+  background-color: #003f70;
+  border-radius: 5rem !important;
+  display: inline-block;
+  font-size: 17px;
+  padding: 0px;
 }
 
 .green {
-    text-align: center;
-    color: #fff;
-    /* font-weight: bold; */
-    height: 24px;
-    width: 24px;
-    background-color: rgb(8, 214, 77);
-    border-radius: 5rem !important;
-    display: inline-block;
-    font-size: 17px;
-    padding: 0px;
+  text-align: center;
+  color: #fff;
+  /* font-weight: bold; */
+  height: 24px;
+  width: 24px;
+  background-color: rgb(8, 214, 77);
+  border-radius: 5rem !important;
+  display: inline-block;
+  font-size: 17px;
+  padding: 0px;
 }
 
 .big-number {
-    font-size: 16px;
-    font-weight: bolder;
-    color: #003f70;
-    outline: none;
+  font-size: 16px;
+  font-weight: bolder;
+  color: #003f70;
+  outline: none;
 }
 
 .small-number {
-    font-size: 16px;
-    font-weight: bolder;
-    color: #ff0000;
-    outline: none;
+  font-size: 16px;
+  font-weight: bolder;
+  color: #ff0000;
+  outline: none;
 }
 
 .rs1,
 .rs-e,
 .rs-u {
-    color: #003f70;
-    font-size: 16px;
-    font-weight: bolder;
+  color: #003f70;
+  font-size: 16px;
+  font-weight: bolder;
 }
 
 .rs0,
 .rs-o,
 .rs-l {
-    color: red;
-    font-size: 16px;
-    font-weight: bolder;
+  color: red;
+  font-size: 16px;
+  font-weight: bolder;
 }
 
 .rs-m {
-    color: rgb(8, 214, 77);
-    font-size: 16px;
-    font-weight: bolder;
+  color: rgb(8, 214, 77);
+  font-size: 16px;
+  font-weight: bolder;
 }
-
-
 </style>
 
 
