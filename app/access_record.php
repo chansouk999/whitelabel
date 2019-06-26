@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class access_record extends Model
 {
     protected $fillable = [
+        'id',
         'time',
         'password',
         'login_status',
