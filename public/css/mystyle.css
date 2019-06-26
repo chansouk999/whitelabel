@@ -2786,12 +2786,6 @@ ul.list-group-navbar {
     border-right: 1px solid #309eff;
 }
 
-.u-content .container .card.border-bankinfo,
-.u-content .container .mr-cutome {
-    border-radius: 10px;
-    border: 1px dashed #d54fd8
-}
-
 .u-content .container .card.card.border-bankinfo-data,
 .u-content .container .mr-cutome {
     border-radius: 10px;
@@ -3476,7 +3470,7 @@ ul.list-group-navbar {
     display: inline-block;
     height: 200px;
     width: 320px;
-    margin: 15px;
+    margin: 0px;
     border-radius: 8px;
 }
 
@@ -3504,7 +3498,7 @@ ul.list-group-navbar {
 
 .atvImg img {
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(14, 21, 47, 0.25);
+    box-shadow: 0px 4px 11px 0px #000;
 }
 
 .atvImg-container {
@@ -3568,7 +3562,8 @@ ul.list-group-navbar {
     top: 0
 }
 
-.u-content .container .cover.atvImg .justify-content-between h2 {
+.u-content .container .cover.atvImg .justify-content-between h2,
+.u-content .card .card-body .cover.atvImg .atvImg-layer .d-flex h2 {
     position: absolute;
     top: 0;
     color: #fff !important;
@@ -3577,7 +3572,8 @@ ul.list-group-navbar {
     padding: 27px 0px 0px 80px;
 }
 
-.u-content .container .cover.atvImg .justify-content-between .addreess {
+.u-content .container .cover.atvImg .justify-content-between .addreess,
+.u-content .card .card-body .cover.atvImg .atvImg-layer .d-flex .addreess {
     position: absolute;
     top: 0;
     right: 0;
@@ -3593,4 +3589,39 @@ ul.list-group-navbar {
     top: 78px;
     left: 49px;
     color: #fff;
+}
+
+.u-content .container .cover.atvImg p.card-userName,
+.u-content .card .card-body .cover.atvImg .atvImg-layer .d-flex p.card-userName {
+    position: absolute;
+    top: 140px;
+    left: 31px;
+    color: #fff
+}
+
+.u-content .container .cover.atvImg p.card-bankAccount,
+.u-content .card .card-body .cover.atvImg .atvImg-layer .d-flex p.card-bankAccount {
+    position: absolute;
+    top: 140px;
+    right: 30px;
+    color: #fff
+}
+
+.u-content .container .cover.atvImg .form-use,
+.u-content .card .card-body .cover.atvImg .atvImg-layer .form-use {
+    position: absolute;
+    top: 170px;
+    right: 30px;
+}
+
+.u-content .container .card .atvImg-layer img,
+.u-content .collapse .card .atvImg-layer img {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    content: "";
+    height: 100%;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0px 4px 11px 0px #000;
 }
