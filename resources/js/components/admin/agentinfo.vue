@@ -104,6 +104,29 @@
                     <i class="tim-icons icon-video-66"></i>
                   </button>
                 </span>
+
+                <span data-toggle="modal" data-target="#income">
+                  <button
+                    type="button"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Income "
+                    class="btn btn-info btn-sm btn-icon"
+                  >
+                    <i class="tim-icons icon-trophy"></i>
+                  </button>
+                </span>
+                <span data-toggle="modal" data-target="#commission">
+                  <button
+                    type="button"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Commission"
+                    class="btn btn-success btn-sm btn-icon"
+                  >
+                    <i class="tim-icons icon-video-66"></i>
+                  </button>
+                </span>
               </td>
             </tr>
           </tbody>
@@ -121,7 +144,7 @@
             <option value="3">4</option>
           </select>
         </li>
-        <li class="page-item ">
+        <li class="page-item">
           <span class="page-link" @click="paginate(method='previous')">Previous</span>
         </li>
         <li class="page-item">
@@ -256,7 +279,13 @@
                       <label class="col-md-3 col-form-label">Name</label>
                       <div class="col-md-9">
                         <div class="form-group">
-                          <input type="text" name="name" class="form-control" v-model="agentname" placeholder="Name...">
+                          <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            v-model="agentname"
+                            placeholder="Name..."
+                          >
                         </div>
                       </div>
                     </div>
@@ -279,7 +308,7 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <input
-                          v-model="agentprovince"
+                            v-model="agentprovince"
                             type="email"
                             name="Provice"
                             class="form-control"
@@ -293,7 +322,7 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <input
-                          v-model="agentcity"
+                            v-model="agentcity"
                             type="email"
                             name="city"
                             class="form-control"
@@ -307,11 +336,25 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <input
-                          v-model="agentbranch"
+                            v-model="agentbranch"
                             type="email"
                             name="branch"
                             class="form-control"
                             placeholder="Branch..."
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Percentage</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="percentage"
+                            type="email"
+                            name="branch"
+                            class="form-control"
+                            placeholder="Percentage..."
                           >
                         </div>
                       </div>
@@ -322,9 +365,99 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary" @click.prevent="saveagent">Save & Continue</button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                @click.prevent="saveagent"
+              >Save & Continue</button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+
+    <!--  -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="income"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-default">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">AgentID</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Player</th>
+                  <th>Bet amount</th>
+                  <th>Bet time</th>
+                  <th>Rolling</th>
+                  <th>%</th>
+                  <th>Commission</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>PlayerID</td>
+                  <td>e.g $30</td>
+                  <td>DATATIME</td>
+                  <td>e.g $30</td>
+                  <td>e.g 5%</td>
+                  <td>$ 1.5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="commission"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-default">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">AgentID</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>WithDrawID</th>
+                  <th>Commssion Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>DATATIME</td>
+                  <td>WithDrawID</td>
+                  <td>e.g $45687</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -334,22 +467,24 @@
 import { adminmixin } from "./adminmixin.js";
 export default {
   mixins: [adminmixin],
-  data(){
-    return{
-      agentname:null,
-      agentbankacc:null,
-      agentprovince:null,
-      agentcity:null,
-      agentbranch:null,
-      A:0,
-      B:19
-    }
+  data() {
+    return {
+      agentname: null,
+      agentbankacc: null,
+      agentprovince: null,
+      agentcity: null,
+      agentbranch: null,
+      percentage: null,
+
+      A: 0,
+      B: 19
+    };
   },
-  mounted(){
-    this.getagentinfo()
+  mounted() {
+    this.getagentinfo();
   },
-  methods:{
-     paginate(method) {
+  methods: {
+    paginate(method) {
       let vm = this;
       if (method == "previous") {
         if (vm.A > 0) {
@@ -363,27 +498,33 @@ export default {
         }
       }
     },
-      saveagent(data){
-        // asdasdasdasd`
-         let vm = this
-         data = {
-            agentname:vm.agentname,
-            agentbankacc:vm.agentbankacc,
-            agentprovince:vm.agentprovince,
-            agentcity:vm.agentcity,
-            agentbranch:vm.agentbranch
-         }
-         axios.post('/saveagent',data).then(res=>{
-            // console.log(res.data)
-            let code = res.data.code
-            let msg = res.data.msg
-            let data = res.data.data
-            if(code==200){
-               this.getagentinfo()
-            }
-            alert(msg)
-         }).catch(e=>{console.log(e.response)})
-      }
+    saveagent(data) {
+      // asdasdasdasd`
+      let vm = this;
+      data = {
+        agentname: vm.agentname,
+        agentbankacc: vm.agentbankacc,
+        agentprovince: vm.agentprovince,
+        agentcity: vm.agentcity,
+        agentbranch: vm.agentbranch,
+        percentage: vm.percentage
+      };
+      axios
+        .post("/saveagent", data)
+        .then(res => {
+          // console.log(res.data);
+          let code = res.data.code;
+          let msg = res.data.msg;
+          let data = res.data.data;
+          if (code == 200) {
+            this.getagentinfo();
+          }
+          alert(msg);
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    }
   }
 };
 </script>

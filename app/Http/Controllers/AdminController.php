@@ -52,17 +52,17 @@ class AdminController extends Controller
             ]);
         }
     }
-    public function getlog(Request $req){
-        try{
-            $data = modelog::where('method','=','Playerrecord')->orderby('created_at','desc')->paginate();
+    public function getlog(Request $req)
+    {
+        try {
+            $data = modelog::where('method', '=', 'Playerrecord')->orderby('created_at', 'desc')->paginate();
             if ($data) {
                 return $this->returncode(200, $data, 'success');
             } else {
                 return $this->returncode(300, $data, DB::getQueryLog());
             }
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
-            
         }
     }
     public function getfreshtoken()
@@ -122,19 +122,19 @@ class AdminController extends Controller
 
     public function getuserdetaildta($userid)
     {
-       
+
         try {
-            $user_id = explode('_',$userid);
-            if(array_key_exists(1,$user_id)){
+        $user_id = explode('_', $userid);
+            if (array_key_exists(1, $user_id)) {
                 $useridex = $user_id[1];
-            }else{
+            } else {
                 $useridex = $userid;
             }
             $data = DB::table('users')
-            ->join('userdetails', 'users.id', '=', 'userdetails.id')
-            ->where('users.user_id','like','%'.$useridex.'%')
-            ->orwhere('users.name','like','%'.$useridex.'%')
-            ->get();
+                ->join('userdetails', 'users.id', '=', 'userdetails.id')
+                ->where('users.user_id', 'like', '%' . $useridex . '%')
+                ->orwhere('users.name', 'like', '%' . $useridex . '%')
+                ->get();
             if ($data) {
                 return $this->returncode(200, $data, 'success');
             } else {
@@ -148,7 +148,7 @@ class AdminController extends Controller
     public function gettopuphis($userid, $event)
     {
         try {
-           
+
             $data = Eventhistory::where([['user_id', 'like', '%' . $userid . '%'], ['event', 'like', '' . $event . '']])->latest()->get();
             if ($data) {
                 return $this->returncode(200, $data, 'success');
@@ -192,22 +192,23 @@ class AdminController extends Controller
             }
             if ($method == 'access') { }
             if ($method == 'action') { }
-            if ($method == 'viewgameuser') { 
-                return $this->getbetdataid($method,$user_id,$header);
+            if ($method == 'viewgameuser') {
+                return $this->getbetdataid($method, $user_id, $header);
             }
-            if ($method == 'viewuser') { 
+            if ($method == 'viewuser') {
                 return $this->getuserdetaildta($user_id);
             }
-            
+
             if ($method == 'viewgameresult') {
-                return $this->getgameresult($method,$req->name,$header);
-             }
+                return $this->getgameresult($method, $req->name, $header);
+            }
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function getbetdataid($method,$gmaeid,$header){
-         try{
+    public function getbetdataid($method, $gmaeid, $header)
+    {
+        try {
             $http = new Client;
             $response = $http->post($this->url8003 . '/api/requestuserdata', [
                 'form_params' => [
@@ -217,12 +218,13 @@ class AdminController extends Controller
             ]);
             $accessdata = json_decode((string)$response->getBody(), true);
             return $this->returncode(200, $accessdata['data'], 'success');
-    }catch(\Exception $ex){
-        return $this->returncode(500, '', $ex->getMessage());
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
     }
-    }
-    public function getgameresult($method,$gmaeid,$header){
-        try{
+    public function getgameresult($method, $gmaeid, $header)
+    {
+        try {
             $http = new Client;
             $response = $http->post($this->url8003 . '/api/requestuserdata', [
                 'form_params' => [
@@ -232,10 +234,9 @@ class AdminController extends Controller
             ]);
             $accessdata = json_decode((string)$response->getBody(), true);
             return $this->returncode(200, $accessdata['data'], 'success');
-        
-    }catch(\Exception $ex){
-        return $this->returncode(500, '', $ex->getMessage());
-    }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
     }
     public function returncode($code, $data, $msg)
     {
@@ -352,7 +353,7 @@ class AdminController extends Controller
                 'numberPlayer' => 0,
                 'subAgent' => 0,
                 'balance' => 0,
-                'percentage' => 0,
+                'percentage' => $req->percentage,
                 'totalIncome' => 0,
                 'name' => $req->agentname,
                 'bankAccount' => $req->agentbankacc,
@@ -469,15 +470,15 @@ class AdminController extends Controller
 
                         $method = 'Playerrecord';
                         $data = array(
-                            'user_id'=>$reqdata['userId'],
-                            'event'=> $msgreqlog,
-                            'serveby'=> Auth::user()->user_id,
-                            'amount'=>$reqdata['amount'],
-                            'eventid'=>'',
-                            'Time'=>date('Y-m-d'),
+                            'user_id' => $reqdata['userId'],
+                            'event' => $msgreqlog,
+                            'serveby' => Auth::user()->user_id,
+                            'amount' => $reqdata['amount'],
+                            'eventid' => '',
+                            'Time' => date('Y-m-d'),
                         );
                         $Log = new ActivityLog();
-                        $Log->storeLog($method,$data);
+                        $Log->storeLog($method, $data);
 
 
                         return $this->returncode(200, '', 'success');
