@@ -34,7 +34,7 @@ class MasterController extends Controller
     protected $data = [];
 
 
-    // public 
+    // public
     public function topupbalance(Request $req)
     {
         $amount = $req->amount;
@@ -260,7 +260,7 @@ class MasterController extends Controller
     public function returncode($code, $data, $msg)
     {
         //100 already exist
-        //200 success 
+        //200 success
         //500 internal erorr
         //300 query error
         //99 not enough
@@ -428,7 +428,7 @@ class MasterController extends Controller
             return view('mobile.welcome', compact('checkpcormb'));
             // return view('mobile.message', compact('checkpcormb'));
         } else {
-            //  Alert::success('Desktop', 'Desktop Mode');  
+            //  Alert::success('Desktop', 'Desktop Mode');
             $checkpcormb = "pc";
             return view('desktop.welcome', compact('checkpcormb'));
             // return view('desktop.message', compact('checkpcormb'));
@@ -455,6 +455,7 @@ class MasterController extends Controller
         $password = $req->pwd;
         $check = User::where('email', '=', '' . $email . '')->get();
         $user_id = $check->pluck('user_id')[0];
+        $id = $check->pluck('id')[0];
         $count = $check->count();
         // return $check;
         if ($count < 1) {
@@ -463,17 +464,18 @@ class MasterController extends Controller
         } else {
             $checkpwd = $check->pluck('password')[0];
             if (!Hash::check($password, $checkpwd)) {
-                $this->trackuserLogin($password, 'Failure', $user_id);
+                $this->trackuserLogin($password, 'Failure', $user_id,$id);
                 return ['success' => 'passwordnotmatch'];
             } else {
-                $this->trackuserLogin($password, 'Success', $user_id);
+                $this->trackuserLogin($password, 'Success', $user_id,$id);
                 return ['success' => 'success'];
             }
         }
     }
-    public function trackuserLogin($pwd, $status, $user_id)
+    public function trackuserLogin($pwd, $status, $user_id,$id)
     {
         $trackuser = array(
+            'id' => $id,
             'time' => date('y-m-d H:i:s'),
             'login_IP' => \Request::getClientIp(),
             'password' => $pwd,
