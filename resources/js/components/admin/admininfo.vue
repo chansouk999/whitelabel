@@ -3,7 +3,7 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-2">
             <div class="card card-user">
               <div class="card-body">
                 <p class="card-text"></p>
@@ -104,7 +104,7 @@
               <!-- /.card-footer -->
             </div>
           </div>
-          <div class="col-md-8">
+          <div class="col-md-10">
             <div class="row">
               <div class="col-md-12 text-right">
                 <button
@@ -189,6 +189,7 @@
                         <i class="tim-icons icon-video-66"></i>
                       </button>
                     </span>
+
                   </td>
                 </tr>
               </tbody>
@@ -587,6 +588,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 <script>

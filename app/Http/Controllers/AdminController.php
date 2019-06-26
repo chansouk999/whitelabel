@@ -401,7 +401,7 @@ class AdminController extends Controller
                 'numberPlayer' => 0,
                 'subAgent' => 0,
                 'balance' => 0,
-                'percentage' => 0,
+                'percentage' => $req->percentage,
                 'totalIncome' => 0,
                 'name' => $req->agentname,
                 'bankAccount' => $req->agentbankacc,

@@ -43,7 +43,6 @@
                 <input
                   type="text"
                   class="form-control"
-                  
                   placeholder="WebID/currency/adminID/transferID"
                 >
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -85,7 +84,8 @@
               <td>{{ data.ip }}</td>
               <td class="td-actions">
                 <span data-toggle="modal" data-target=".approv">
-                  <button @click="actionmethod(method='approve',data.id,data.userId)"
+                  <button
+                    @click="actionmethod(method='approve',data.id,data.userId)"
                     type="button"
                     data-toggle="tooltip"
                     data-placement="bottom"
@@ -96,7 +96,8 @@
                   </button>
                 </span>
                 <span data-toggle="modal" data-target=".deny">
-                  <button @click="actionmethod(method='deny',data.id,data.userId)"
+                  <button
+                    @click="actionmethod(method='deny',data.id,data.userId)"
                     type="button"
                     data-toggle="tooltip"
                     data-placement="bottom"
@@ -107,7 +108,8 @@
                   </button>
                 </span>
                 <span data-toggle="modal" data-target=".view-user">
-                  <button @click="actionmethod(method='viewuser',data.id,data.userId)"
+                  <button
+                    @click="actionmethod(method='viewuser',data.id,data.userId)"
                     type="button"
                     data-toggle="tooltip"
                     data-placement="bottom"
@@ -118,7 +120,8 @@
                   </button>
                 </span>
                 <span data-toggle="modal" data-target=".message-user">
-                  <button @click="actionmethod(method='muser',data.id,data.userId)"
+                  <button
+                    @click="actionmethod(method='muser',data.id,data.userId)"
                     type="button"
                     data-toggle="tooltip"
                     data-placement="bottom"
@@ -488,47 +491,51 @@ export default {
     this.getrequestdata();
   },
   methods: {
-    actionmethod(method,id,userid){
+    actionmethod(method, id, userid) {
       let code = 0;
-      if(method=='approve'){
-         code=200 // success
+      if (method == "approve") {
+        code = 200; // success
       }
-      if(method=='deny'){
-        code=303 // no access
+      if (method == "deny") {
+        code = 303; // no access
       }
-      if(method=='viewuser'){
-        code=202 // no access
+      if (method == "viewuser") {
+        code = 202; // no access
       }
-      if(method=='muser'){
-        code=777 // no access
+      if (method == "muser") {
+        code = 777; // no access
       }
       let data = {
-          method:method,
-          code:code,
-          id:id,
-          userid:userid,
-      }
-      axios.post('/actionprocess',data).then(res=>{
-        let code = res.data.code
-        let msg = res.data.msg
-        let data = res.data.data
-        console.log(res.data)
-        if(code==200){
-          this.getevnthistory()
-          this.getrequestdata();
-          alert(msg)
-        }
-        if(code==100){
-          alert(msg)
-        }
-        if(code==300){
-          alert(msg)
-        }
-        if(code==500){
-          alert(msg)
-        }
-      }).catch(e=>{console.log(e.response)})
-
+        method: method,
+        code: code,
+        id: id,
+        userid: userid
+      };
+      axios
+        .post("/actionprocess", data)
+        .then(res => {
+          let code = res.data.code;
+          let msg = res.data.msg;
+          let data = res.data.data;
+          console.log(res.data);
+          if (code == 200) {
+            this.getevnthistory();
+            this.getrequestdata();
+            alert(msg);
+          }
+          if (code == 100) {
+            alert(msg);
+          }
+          if (code == 300) {
+            alert(msg);
+          }
+          if (code == 500) {
+            alert(msg);
+          }
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
     },
     paginate(method) {
       let vm = this;

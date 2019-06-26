@@ -24,28 +24,28 @@
                     <p>{{data.registerCity}}</p>
                   </div>
                 </div>
-                <p>{{data.user_id}}</p>
+                <!-- <p>{{data.user_id}}</p> -->
+                <br>
                 <div class="d-flex justify-content-between">
-                  <p class="card-text">{{ data.userName }}.</p>
+                  <p class="card-text">{{ data.userName | userName}}.</p>
                   <p class="card-text">{{ data.bankAccount | bankAccount}}</p>
                 </div>
                 <div class="form-check float-right">
-                  <label class="form-check-label" v-if="data.status=='use'">
+                  <label class="form-check-label">
                     <input
                       class="form-check-input checkuse"
                       type="checkbox"
                       :name="'usecard'+data.id"
-                      :value="data.status"
-                      disabled
-                      checked="checked"
-                      @change="useCard(data.id)"
+                      @click="useCard(data.id)"
+                      :disabled="data.status=='use'"
+                      :checked="data.status=='use'"
                     >
                     {{data.branch}}
                     <span class="form-check-sign">
                       <span class="check"></span>
                     </span>
                   </label>
-                  <label class="form-check-label" v-else>
+                  <!-- <label class="form-check-label" v-else>
                     <input
                       class="form-check-input"
                       :name="'usecard'+data.id"
@@ -57,7 +57,7 @@
                     <span class="form-check-sign">
                       <span class="check"></span>
                     </span>
-                  </label>
+                  </label>-->
                 </div>
               </div>
             </div>
@@ -263,6 +263,7 @@ export default {
       province: "",
       city: "",
       bankAccount: "",
+      userName: "",
       branch: "",
       gotcardinfo: [],
       getcCardinfo: []
@@ -284,12 +285,25 @@ export default {
       }
       let result = dot + "" + a1 + "" + a2;
       return result;
+    },
+
+    userName(value) {
+      let val = value.toString();
+      let valLength = val.length;
+      let a1 = val[0];
+      let a2 = val[valLength - 1];
+      let dot = "";
+      for (let i = 0; i < valLength - 1; i++) {
+        dot = dot + "*";
+      }
+      let result = a1 + dot;
+      return result;
     }
   },
   methods: {
     useCard(data) {
       let name = $(".checkuse").attr("name");
-      alert(name);
+      // alert(name);
       axios
         .post("/useCard", { id: data })
         .then(res => {

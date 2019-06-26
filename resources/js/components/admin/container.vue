@@ -174,17 +174,15 @@
                                   <td>{{data.user_id}}</td>
                                   <td>{{data.name}}</td>
                                   <td>{{data.userBalance}}</td>
-                                  <td>{{data.totalOnlineHour}} Hours {{ }}</td>
-                                  <td>{{data.id}}</td>
-                                  <td>{{data.userBalance}}</td>
-                                  <td>{{data.userBalance}}</td>
-                                  <td>{{data.userBalance}}</td>
-                                  <td>{{data.userStatus}}</td>
-                                  <td>{{data.created_at}}</td>
+                                  <td>{{data.currency}}</td>
+                                  <td>{{ Math.floor(data.totalOnlineHour / 3600)}}</td>
+                                  <td>{{data.lang}}</td>
+                                     <td>{{data.TotalRolling}}</td>
+              <td>{{data.AvailableRolling}}</td>
+              <td>{{data.userStatus}}</td>
+              <td>{{data.created_at}}</td>
                                   <td>{{data.accessIP}}</td>
                                   <td class="td-actions text-right">
-
-
 
 
 
