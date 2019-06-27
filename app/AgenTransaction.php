@@ -13,6 +13,9 @@ class AgenTransaction extends Model
         'currency',
         'methodId',
         'assitid',
-        'reference'
+        'reference',
+        'imgid',
+        'imgname',
+        'imgdesc'
     ];
 }

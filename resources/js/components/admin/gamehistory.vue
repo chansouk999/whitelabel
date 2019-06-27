@@ -260,9 +260,6 @@ export default {
 methods:{
   
   gamehistorypage(methods){
-    console.log(this.gamehistory.length)
-    console.log(this.gamehistorystart)
-    console.log(this.gamehistoryend)
         if(methods=='previous'){
           if(this.gamehistorystart > 0){
              this.gamehistorystart -= 20
@@ -272,8 +269,8 @@ methods:{
         }else{
            if(this.gamehistoryend < this.gamehistory.length){
               this.gamehistorystart += 20
-          this.gamehistoryend += 20
-          this.gamehistorypagenum += 1
+              this.gamehistoryend += 20
+              this.gamehistorypagenum += 1
           }
          
         }

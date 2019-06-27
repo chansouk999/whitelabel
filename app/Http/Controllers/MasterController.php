@@ -339,7 +339,6 @@ class MasterController extends Controller
             $accesstoken = access_token::where('user_id', '=', '' . $userid . '')->limit(1)->get();
             $countcheck = $accesstoken->count();
             $resulttoekn = $this->getfreshtoken();
-            // return $resulttoekn;
             if ($resulttoekn['code'] == 0) {
                 return $this->returncode(0, '', 'empty'); //empty
             }
@@ -365,6 +364,7 @@ class MasterController extends Controller
                     'user_id' => $userid,
                 ];
                 // checkkcckk
+                // return $header;
                 $response = $http->get('http://lec68.com/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
                     'headers' => $header,
                 ]);

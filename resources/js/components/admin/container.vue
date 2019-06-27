@@ -443,7 +443,7 @@
                               <select
                                 class="browser-default custom-select"
                                 v-model="userdetailselectpage"
-                                @change="userdata(userdetailselectpage,method='listpage')"
+                                @change=" (userdetailselectpage,method='listpage')"
                               >
                                 <option v-for="page in userdetailpg.last_page" :value="page">
                                   <span>{{ page }}</span>
@@ -578,6 +578,26 @@ export default {
     "app-announcement": announcement,
     "app-managerecord": managerecord,
     "app-modal": modal
+  },
+  filters:{
+    // dehasedpwd(e){
+    //   let sp = e.split('-');
+    //   console.log(sp.join())
+    //   let pwd = [];
+    //   sp.forEach(el => {
+    //       //  console.log(")))))))))))))")
+    //       // console.log()
+    //       // console.log(")))))))))))))")
+    //       let im = el[el.length-1]
+    //       pwd = im
+          
+    //   });
+    //   console.log(pwd)
+
+      
+     
+
+    // }
   },
   watch:{
     popup(e){

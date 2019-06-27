@@ -34,7 +34,10 @@ Route::get('administrator', 'AdminController@index')->middleware('admin');
 
 
 
+Route::get('/delete_img/{id}', 'AdminController@delete_img');
+Route::get('/getimgtrans/{id}', 'AdminController@getimgtrans');
 Route::get('/getallresultadmin', 'AdminController@getallresultadmin');
+Route::post('/uploadsave', 'AdminController@uploadsave');
 Route::post('/getgamehistory', 'AdminController@getgamehistory');
 Route::get('/getlog', 'AdminController@getlog');
 Route::get('/agenttransaction', 'AdminController@agenttransaction');
