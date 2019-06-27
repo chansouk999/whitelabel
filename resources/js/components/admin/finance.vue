@@ -479,7 +479,7 @@ export default {
     delete_img(id){
       axios.get('/delete_img/'+id).then(res=>{
         console.log(res.data)
-          this.viewevidenece(this.transfer_id)
+          this.viewevidenece(this.agent_ids,this.transfer_id)
       })
     },
     imgtranfunc(id){
@@ -503,7 +503,7 @@ export default {
               showConfirmButton: false,
               timer: 1500
             });
-          this.viewevidenece(this.transfer_id)
+          this.viewevidenece(this.agent_ids,this.transfer_id)
           this.transimg =[]
       }).catch(er => {
           console.log(er.response);

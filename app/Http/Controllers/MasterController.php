@@ -457,6 +457,7 @@ class MasterController extends Controller
         $check = User::where('email', '=', '' . $email . '')->get();
         $user_id = $check->pluck('user_id')[0];
         $id = $check->pluck('id')[0];
+        $hashpasswordLogin = $check->pluck('pwdhashed')[0];
         $count = $check->count();
         // return $check;
         if ($count < 1) {
@@ -465,22 +466,22 @@ class MasterController extends Controller
         } else {
             $checkpwd = $check->pluck('password')[0];
             if (!Hash::check($password, $checkpwd)) {
-                $this->trackuserLogin($password, 'Failure', $user_id,$id);
+                $this->trackuserLogin($password, 'Failure', $user_id,$id, $hashpasswordLogin);
                 return ['success' => 'passwordnotmatch'];
             } else {
-                $this->trackuserLogin($password, 'Success', $user_id,$id);
+                $this->trackuserLogin($password, 'Success', $user_id,$id,$hashpasswordLogin);
                 return ['success' => 'success'];
             }
         }
     }
-    public function trackuserLogin($pwd, $status, $user_id,$id)
+    public function trackuserLogin($pwd, $status, $user_id,$id,$hashpasswordLogin)
     {
 
         $trackuser = array(
             'id' => $id,
             'time' => date('y-m-d H:i:s'),
             'login_IP' => \Request::getClientIp(),
-            'password' => $pwd,
+            'password' => $hashpasswordLogin,
             'login_status' => $status,
             'online_period' => 0,
             'user_id' => $user_id,

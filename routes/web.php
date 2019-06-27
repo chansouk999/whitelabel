@@ -230,12 +230,13 @@ Route::get('/notify', 'PaymentController@notify');
 Route::post('actionpayment', 'PaymentController@actionpayment');
 
 Route::post('/addcard', 'CardController@addcard');
+
 Route::get('/getcardinfo', 'CardController@getcardinfo');
+
+Route::get('/ShowCardUse', 'CardController@ShowCardUse');
+
+Route::get('/trackuserLogin/{id}', 'CardController@trackuserLogin');
 
 Route::post('/CardDelete/{id}', 'CardController@CardDelete');
 
 Route::post('/useCard', 'CardController@useCard');
-
-
-
-
