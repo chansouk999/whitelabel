@@ -19,6 +19,7 @@ use App\withdraw_methods;
 use App\access_record;
 use App\userdetail;
 use DateTime;
+use App\activityLog;
 use Exception;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
@@ -125,4 +126,12 @@ class CardController extends Controller
         $getuserdetail = userdetail::where('user_id', '=', '' . $user_id . '')->get();
         return $getuserdetail;
     }
+    public function getPlayerRecord()
+    {
+        $playerRecoard  = Auth::user()->user_id;
+        $getuserdetail = activityLog::where('detail', 'like', '%user_id":"' .$playerRecoard. '%')->get();
+        return $getuserdetail;
+    }
+
+    
 }

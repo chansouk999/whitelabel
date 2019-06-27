@@ -8,21 +8,14 @@
               <tr>
                 <th>Available Rolling</th>
                 <th>Total Bets</th>
-                <th>Total</th>
+                <th>Total Rolling</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="data in Userdetail">
-                <td class="td-number text-left">
-                 {{data.AvailableRolling}}
-                </td>
-                <td class="td-number text-left">
-                     <!-- {{data.AvailableRolling}} -->
-                     1213435
-                </td>
-                <td class="td-number text-left">
-                     {{data.TotalRolling}}
-                </td>
+                <td class="td-number text-left">{{data.AvailableRolling}}</td>
+                <td class="td-number text-left">{{data.Totalbet}}</td>
+                <td class="td-number text-left">{{data.TotalRolling}}</td>
               </tr>
             </tbody>
           </table>
@@ -50,7 +43,7 @@ export default {
   },
   methods: {
     getUserDetail() {
-      axios.get("/getuserdetail").then(res => {
+      axios.get("/getUserBet").then(res => {
         // console.log(res.data);
         this.Userdetail = res.data;
       });
