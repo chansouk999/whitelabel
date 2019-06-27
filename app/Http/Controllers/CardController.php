@@ -119,4 +119,10 @@ class CardController extends Controller
         $getTrackUser = access_record::where('user_id', '=', '' . $id . '')->get();
         return $getTrackUser;
     }
+    public function getuserdetail()
+    {
+        $user_id = Auth::user()->user_id;
+        $getuserdetail = userdetail::where('user_id', '=', '' . $user_id . '')->get();
+        return $getuserdetail;
+    }
 }
