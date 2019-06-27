@@ -18,9 +18,6 @@ class Apicontroller extends Controller
 {
     public function testcode()
     {
-
-
-
         // https://api.huobi.pro/market/trade?symbol=btcusdt
         $url = 'https://api.huobi.pro/market/trade?symbol=btcusdt';
         $data = file_get_contents($url);
@@ -92,6 +89,7 @@ class Apicontroller extends Controller
         User::where('user_id', '=', '' . $gotid . '')->update(['last_activity' => $date]);
         if ($status == 'cutmoney') {
             DB::UPDATE('UPDATE users SET userBalance = userBalance - ' . $bl . ' WHERE user_id = "' . $gotid . '" ');
+            DB::update('UPDATE userdetails SET TotalBet = TotalBet + '.$bl.' WHERE user_id = "'.$gotid.'" ');
         } elseif ($status == 'userstatus') {
             User::where('user_id', '=', '' . $gotid . '')->update(['userStatus' => '' . $userstatus . '']);
         } elseif ($status == 'onlinehours') {

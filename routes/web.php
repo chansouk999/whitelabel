@@ -60,6 +60,7 @@ Route::get('/stocklist', function () {
     return view('desktop.stocklist');
 });
 // Route::get('/',)
+Route::get('getUserBet', 'MasterController@getUserBet');
 Route::get('/', 'MasterController@welcome')->name('home');
 Route::post('/topupbalance', 'MasterController@topupbalance');
 Route::post('/reqchangepwd', 'MasterController@reqchangepwd');
