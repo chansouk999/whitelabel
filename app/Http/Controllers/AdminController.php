@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use GuzzleHttp\Client;
+use App\ImageTransfer;
 use App\Http\Controllers\ActivityLogController as ActivityLog;
 use App\Eventhistory;
 use Exception;
@@ -579,5 +580,95 @@ class AdminController extends Controller
     {
         $data = Reqst::orderby('created_at', 'desc')->paginate(20);
         return ['data' => $data];
+    }
+
+
+
+
+
+
+
+
+
+
+    public function uploadsave(Request $r)
+    {
+        // $adminid = Auth::user()->id;
+        // $date = date('ymdHis');
+        // $datetime = date('ymdHis');
+        try {
+            DB::enableQueryLog();
+            $UID = $r->agentid;
+            $referid = $r->refer;
+            $namesave = $r->name;
+            $path = "evidence/";
+            $dir = public_path("evidence/");
+            // $imgaeid = $UID . $adminid . $date;
+            if ($r->img) {
+                if (!\File::isDirectory($dir)) {
+                    mkdir($dir, 666, true);
+                }
+                $image = $r->img[0];
+                $name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+                $namecheck = explode('.', $name);
+                $filetype = $namecheck[1];
+                \Image::make($image)->save(public_path($path) . $name);
+            }
+            $save = ImageTransfer::create(
+                [
+                    'agent_id' => $UID,
+                    'imgid' => strtotime('now'),
+                    'imgname' => $name,
+                    'refer'=>$referid
+                ]
+            );
+            if ($save) {
+                return $this->returncode(200, '', 'success');
+            } else {
+                return $this->returncode(300, '', DB::getQueryLog());
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+        // $ev = new Evidence;
+        // $ev->transferImage = $namesave;
+        // $ev->imageName = $UID . $name;
+        // $ev->imageID = $imgaeid;
+        // $ev->imageDiscription = 'null';
+        // $ev->uploadTime = $datetime;
+        // $ev->transfer_id = $UID;
+        // $ev->save();
+        // if ($ev == true) {
+        //     return ['success' => 'success'];
+        // } else {
+        //     return ['success' => 'false'];
+        // }
+        // return $r->img[0];
+    }
+    public function getimgtrans($id)
+    {
+        try {
+            DB::enableQueryLog();
+            $data = ImageTransfer::where('refer', $id)->paginate(100);
+            if ($data) {
+                return $this->returncode(200, $data, 'success');
+            } else {
+                return $this->returncode(300, '', DB::getQueryLog());
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function delete_img($id)
+    {
+        try {
+            $gotname = ImageTransfer::where('id', '=', $id)->get()->pluck('imgname')[0];
+            $path = "evidence/" . $gotname;
+            $evi = ImageTransfer::where('id', '=', $id)->delete();
+            unlink($path);
+            return $this->returncode(200, '', 'success');
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
     }
 }

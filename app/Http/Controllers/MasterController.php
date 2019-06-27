@@ -6,6 +6,7 @@ use App\Http\Controllers\ActivityLogController as ActivityLog;
 
 use Illuminate\Http\Request;
 use App\Request as Reqst;
+use App\Selfservice;
 use Auth;
 use GuzzleHttp\Client;
 use Jenssegers\Agent\Agent;
@@ -339,7 +340,6 @@ class MasterController extends Controller
             $accesstoken = access_token::where('user_id', '=', '' . $userid . '')->limit(1)->get();
             $countcheck = $accesstoken->count();
             $resulttoekn = $this->getfreshtoken();
-            // return $resulttoekn;
             if ($resulttoekn['code'] == 0) {
                 return $this->returncode(0, '', 'empty'); //empty
             }
@@ -365,6 +365,7 @@ class MasterController extends Controller
                     'user_id' => $userid,
                 ];
                 // checkkcckk
+                // return $header;
                 $response = $http->get('http://lec68.com/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
                     'headers' => $header,
                 ]);
@@ -466,15 +467,15 @@ class MasterController extends Controller
         } else {
             $checkpwd = $check->pluck('password')[0];
             if (!Hash::check($password, $checkpwd)) {
-                $this->trackuserLogin($password, 'Failure', $user_id,$id, $hashpasswordLogin);
+                $this->trackuserLogin($password, 'Failure', $user_id, $id, $hashpasswordLogin);
                 return ['success' => 'passwordnotmatch'];
             } else {
-                $this->trackuserLogin($password, 'Success', $user_id,$id,$hashpasswordLogin);
+                $this->trackuserLogin($password, 'Success', $user_id, $id, $hashpasswordLogin);
                 return ['success' => 'success'];
             }
         }
     }
-    public function trackuserLogin($pwd, $status, $user_id,$id,$hashpasswordLogin)
+    public function trackuserLogin($pwd, $status, $user_id, $id, $hashpasswordLogin)
     {
 
         $trackuser = array(
@@ -540,5 +541,26 @@ class MasterController extends Controller
         ])->send();
 
         dd($response->getMessage());
+    }
+    public function getUserBet()
+    {
+        
+        $update  = userdetail::where('user_id',Auth::user()->user_id)->get();
+        $Totalbet = $update->pluck('Totalbet')[0];
+        $rolling = Selfservice::where('Amount','<=',$Totalbet)->limit(1)->orderby('Amount','desc')->get();
+        $per = Selfservice::all();
+        foreach($rolling as $rl){
+            $res = ($Totalbet * $rl->percentage) / 100;
+            $ud = userdetail::where('user_id',Auth::user()->user_id)->update(['TotalRolling'=>$res,'AvailableRolling'=>$res]);
+        }
+        return $update;
+        // return $rolling;
+        // foreach($per as $p){
+        //     return DB::select('SELECT Amount,level,title,(percentage * '.$Totalbet.') / 100 as persc FROM selfservices ' );
+        // }
+
+
+        
+        
     }
 }

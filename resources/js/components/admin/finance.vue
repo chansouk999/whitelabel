@@ -78,6 +78,7 @@
                     data-placement="bottom"
                     title="View Evidence "
                     class="btn btn-info btn-sm btn-icon"
+                    @click="viewevidenece(data.agentId,data.reference)"
                   >
                     <i class="tim-icons icon-trophy"></i>
                   </button>
@@ -89,6 +90,7 @@
                     data-placement="bottom"
                     title="Edit Evidence"
                     class="btn btn-success btn-sm btn-icon"
+                    @click="viewevidenece(data.agentId,data.reference)"
                   >
                     <i class="tim-icons icon-video-66"></i>
                   </button>
@@ -341,33 +343,23 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">TransferID</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Transfer {{ transfer_id }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
           </div>
           <div class="modal-body">
-            <div class="card bg-dark text-white">
-              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+            <div class="card bg-dark text-white" v-for="data in gottransimg">
+              <img class="card-img" :src="'evidence/'+data.imgname" alt="Card image">
               <div class="card-img-overlay">
-                <h4 class="card-title">Card title</h4>
+                <!-- <h4 class="card-title">Card title</h4> -->
                 <p
                   class="card-text"
-                >This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text">Last updated 3 mins ago</p>
+                >{{data.imgdesc}}</p>
+                <p class="card-text">{{data.created_at}}</p>
               </div>
             </div>
-            <hr>
-            <div class="card bg-dark text-white">
-              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
-              <div class="card-img-overlay">
-                <h4 class="card-title">Card title</h4>
-                <p
-                  class="card-text"
-                >This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text">Last updated 3 mins ago</p>
-              </div>
-            </div>
+          
           </div>
 
           <div class="modal-footer">
@@ -397,9 +389,9 @@
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-6" v-for="data in gottransimg">
                 <div class="card bg-dark text-white">
-                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+                  <img class="card-img" :src="'evidence/'+data.imgname" alt="Card image">
                 </div>
                 <div class="card-footer">
                   <button
@@ -407,7 +399,9 @@
                     data-placement="bottom"
                     title="Edit Evidence"
                     type="button"
+                     @click="imgtranfunc(data.id)"
                     class="btn btn-secondary btn-sm btn-icon"
+                    
                     data-dismiss="modal"
                   >
                     <i class="tim-icons icon-pencil"></i>
@@ -418,96 +412,43 @@
                     class="btn btn-primary btn-sm btn-icon"
                     data-toggle="tooltip"
                     data-placement="bottom"
+                    @click="imgtranfunc(data.id)"
                     title="Delete Evidence"
                   >
-                    <i class="tim-icons icon-trash-simple"></i>
+                    <i class="tim-icons icon-trash-simple"  @click="delete_img(data.id,data.agent_id)"></i>
                   </button>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="card bg-dark text-white">
-                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
-                </div>
-                <div class="card-footer">
-                  <button
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Edit Evidence"
-                    type="button"
-                    class="btn btn-secondary btn-sm btn-icon"
-                    data-dismiss="modal"
-                  >
-                    <i class="tim-icons icon-pencil"></i>
-                  </button>
-
-                  <button
-                    type="button"
-                    class="btn btn-primary btn-sm btn-icon"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Delete Evidence"
-                  >
-                    <i class="tim-icons icon-trash-simple"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="card bg-dark text-white">
-                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
-                </div>
-                <div class="card-footer">
-                  <button
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Edit Evidence"
-                    type="button"
-                    class="btn btn-secondary btn-sm btn-icon"
-                    data-dismiss="modal"
-                  >
-                    <i class="tim-icons icon-pencil"></i>
-                  </button>
-
-                  <button
-                    type="button"
-                    class="btn btn-primary btn-sm btn-icon"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Delete Evidence"
-                  >
-                    <i class="tim-icons icon-trash-simple"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="col-md-6">
+               <div class="col-md-6">
                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                  <div class="fileinput-new thumbnail">
-                    <img src="assetsadmin/img/img-opacity.png" alt="...">
-                  </div>
+                
                   <div class="fileinput-preview fileinput-exists thumbnail"></div>
                   <div>
                     <span class="btn btn-rose btn-round btn-file">
-                      <span class="fileinput-new">Select image</span>
-                      <span class="fileinput-exists">Change</span>
-                      <input type="file" name="...">
+                      <span class="fileinput-new" >Add Image</span>
+                      <input type="file" name="..." @change="addimg">
                     </span>
                     <a
                       href="#pablo"
                       class="btn btn-danger btn-round fileinput-exists"
                       data-dismiss="fileinput"
+                     
                     >
                       <i class="fa fa-times"></i> Remove
                     </a>
                   </div>
                 </div>
               </div>
+              
+            </div>
+             <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" @click="saveevivend()">Save changes</button>
+          </div>
+            
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+         
         </div>
       </div>
     </div>
@@ -526,10 +467,58 @@ export default {
       methodid:null,
       getcurrency:null,
       A:0,
+      transferimganme:null,
       B:19,
+      transimg:[],
+      gottransimg:[],
+      transfer_id:null,
+      agent_ids:null,
     };
   },
   methods: {
+    delete_img(id){
+      axios.get('/delete_img/'+id).then(res=>{
+        console.log(res.data)
+          this.viewevidenece(this.agent_ids,this.transfer_id)
+      })
+    },
+    imgtranfunc(id){
+
+    },
+    addimg(e){
+       let vm = this
+       vm.transimg =[]
+      const files = e.target.files[0]
+      const img = new Image(),
+            reader = new FileReader();
+            reader.onload = (e) => vm.transimg.push(e.target.result);
+            reader.readAsDataURL(files);
+            vm.transferimganme = files.name
+    },
+    saveevivend(){
+      axios.post('uploadsave',{name:this.transferimganme,img:this.transimg,agentid:this.agent_ids,refer:this.transfer_id}).then(res=>{
+          console.log(res.data)
+           this.$swal("", "Complete!", "success", {
+              button: false,
+              showConfirmButton: false,
+              timer: 1500
+            });
+          this.viewevidenece(this.agent_ids,this.transfer_id)
+          this.transimg =[]
+      }).catch(er => {
+          console.log(er.response);
+        });
+    },
+    viewevidenece(id,refe){
+      this.transfer_id = refe
+      this.agent_ids = id
+      alert(id)
+        axios.get('/getimgtrans/'+refe).then(res=>{
+        this.gottransimg = res.data.data.data
+        console.log(this.gottransimg)
+        
+      })
+    },
     paginate(method) {
       let vm = this;
       if (method == "previous") {

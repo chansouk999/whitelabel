@@ -197,7 +197,6 @@ export default {
  watch:{
     dataserached(e){
       // this.getfiler = this.filterByStock(e)
-      console.log(e)
     }
  },
 methods:{

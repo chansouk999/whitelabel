@@ -178,16 +178,6 @@
               <td>{{data.created_at}}</td>
                                   <td>{{data.accessIP}}</td>
                                   <td class="td-actions text-right">
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
->>>>>>> b83278e97ab141dc840aa50f9415362eb66512f2
                                     <span data-toggle="modal" data-target=".gamble-history">
                                       <button
                                         type="button"
@@ -409,7 +399,7 @@
                               <select
                                 class="browser-default custom-select"
                                 v-model="userdetailselectpage"
-                                @change="userdata(userdetailselectpage,method='listpage')"
+                                @change=" (userdetailselectpage,method='listpage')"
                               >
                                 <option v-for="page in userdetailpg.last_page" :value="page">
                                   <span>{{ page }}</span>
@@ -598,14 +588,34 @@ export default {
     "app-managerecord": managerecord,
     "app-modal": modal
   },
-  watch: {
-    popup(e) {
-      alert(e);
-      if (e == true) {
-        this.A = 0;
-        this.B = 9;
-        console.log(this.A);
-        console.log(this.B);
+  filters:{
+    // dehasedpwd(e){
+    //   let sp = e.split('-');
+    //   console.log(sp.join())
+    //   let pwd = [];
+    //   sp.forEach(el => {
+    //       //  console.log(")))))))))))))")
+    //       // console.log()
+    //       // console.log(")))))))))))))")
+    //       let im = el[el.length-1]
+    //       pwd = im
+          
+    //   });
+    //   console.log(pwd)
+
+      
+     
+
+    // }
+  },
+  watch:{
+    popup(e){
+      alert(e)
+      if(e==true){
+          this.A=0
+          this.B=9
+          console.log(this.A)
+          console.log(this.B)
       }
     }
   },

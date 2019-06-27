@@ -56,11 +56,8 @@ export const adminmixin = {
                 .get('/getallresultadmin', this.config)
                 .then(res => {
 
-                    this.gamehistory = res.data.gamehistory
-                    this.gameresult = res.data.gameresult
-                    console.log("----------------------")
-                    console.log(res.data)
-                    console.log("----------------------")
+                this.gamehistory =res.data.gamehistory
+                this.gameresult =res.data.gameresult
 
 
 
