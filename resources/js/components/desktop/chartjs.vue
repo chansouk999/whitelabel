@@ -36,17 +36,17 @@ export default {
     };
   },
   mounted() {
-      let _this = this;
+    let _this = this;
     if (this.checkpcormb == "mb") {
       this.typechart = "line";
       this.number_data = "off";
       this.borderColor = "red";
       this.backgroundcolor = "#ff8d728a";
       this.backgroundcolors = "#e86211";
-      this.pointBorderWidth = 2.2,
-        this.pointHoverRadius = 2.2,
-        this.pointHoverBorderWidth = 2.2,
-        this.pointRadius = 2.2;
+      (this.pointBorderWidth = 2.2),
+        (this.pointHoverRadius = 2.2),
+        (this.pointHoverBorderWidth = 2.2),
+        (this.pointRadius = 2.2);
     } else {
       this.typechart = "bar";
       this.number_data = "on";
@@ -59,42 +59,70 @@ export default {
         (this.pointRadius = 10);
     }
     var jsonfile = {
-        "data": [{
-            "writetime": "VIP1",
-            "PT": "200"
-        }, {
-            "writetime": "VIP2",
-            "PT": "300"
-        }, {
-            "writetime": "VIP3",
-            "PT": "400"
-        }, {
-            "writetime": "VIP4",
-            "PT": "1000"
-        }, {
-            "writetime": "VIP5",
-            "PT": "2000"
-        }, {
-            "writetime": "VIP6",
-            "PT": "6000"
-        },]
+      data: [
+        {
+          writetime: "One star",
+          PT: "50000",
+          PTS: "0.60%",
+          PTS2: "0.40%"
+        },
+        {
+          writetime: "Two stars",
+          PT: "100000",
+          PTS: "0.60%",
+          PTS2: "0.40%"
+        },
+        {
+          writetime: "Three Star",
+          PT: "500000",
+          PTS: "0.60%",
+          PTS2: "0.60%"
+        },
+        {
+          writetime: "VIP4",
+          PT: "1000000",
+          PTS: "0.70%",
+          PTS2: "0.60%"
+        },
+        {
+          writetime: "VIP5",
+          PT: "3000000",
+          PTS: "0.80%",
+          PTS2: "0.80%"
+        },
+        {
+          writetime: "VIP6",
+          PT: "6000000",
+          PTS: "0.90%",
+          PTS2: "0.80%"
+        }
+      ]
     };
     var labels = jsonfile.data.map(function(e) {
-        return e.writetime;
+      return e.writetime;
     });
     var data = jsonfile.data.map(function(e) {
-        return e.PT;
-    });;
-    if (this.checkpcormb == "mb") {
-        this.datacolor = this.backgroundcolor
-    }else{
-      this.datacolor = jsonfile.data.map(function(e) {
-        return e.PT == 2000 ? _this.backgroundcolors : _this.backgroundcolor;
-
-    });;
+      return e.PT;
+    });
+let step = 1;
+    if (step == 1) {
+         var datas = jsonfile.data.map(function(e) {
+      return e.PTS;
+    });
+    } else {
+        var datas = jsonfile.data.map(function(e) {
+      return e.PTS2;
+    });
     }
 
 
+    if (this.checkpcormb == "mb") {
+      this.datacolor = this.backgroundcolor;
+    } else {
+      this.datacolor = jsonfile.data.map(function(e) {
+        return e.PT == 3000000 ? _this.backgroundcolors : _this.backgroundcolor;
+      });
+    }
 
     let ctx = document.getElementById("chart");
     let myChart = new Chart(ctx, {
@@ -181,7 +209,7 @@ export default {
               ticks: {
                 display: true,
                 callback: function(value, index, values) {
-                  return Math.round(value).toString() + "K";
+                  return Math.round(value).toString() + "k";
                 }
               }
             }
@@ -225,7 +253,17 @@ export default {
                 meta.data.forEach(function(bar, index) {
                   var data = dataset.data[index];
                   ctx.fillStyle = "#ff6c00";
-                  ctx.fillText(data / 100 + "%", bar._model.x, bar._model.y - 5);
+                  ctx.fillText(
+                    data < 1000000
+                      ? datas[0]
+                      : data < 3000000
+                      ? datas[3]
+                      : data < 6000000
+                      ? datas[4]
+                      : datas[5],
+                    bar._model.x,
+                    bar._model.y - 5
+                  );
                 });
               });
             }
