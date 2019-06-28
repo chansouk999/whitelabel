@@ -553,7 +553,7 @@ class MasterController extends Controller
             $res = ($Totalbet * $rl->percentage) / 100;
             $ud = userdetail::where('user_id',Auth::user()->user_id)->update(['TotalRolling'=>$res,'AvailableRolling'=>$res]);
         }
-        return $update;
+        return['totalbet'=> $Totalbet,$per];
         // return $rolling;
         // foreach($per as $p){
         //     return DB::select('SELECT Amount,level,title,(percentage * '.$Totalbet.') / 100 as persc FROM selfservices ' );
