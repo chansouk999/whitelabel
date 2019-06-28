@@ -208,6 +208,10 @@ Route::get('/trackuserLogin/{id}', 'CardController@trackuserLogin');
 
 Route::post('/CardDelete/{id}', 'CardController@CardDelete');
 
+Route::get('/getPlayerRecord', 'CardController@getPlayerRecord');
+
+Route::get('/getuserdetail', 'CardController@getuserdetail');
+
 Route::post('/useCard', 'CardController@useCard');
 
 

@@ -14,13 +14,13 @@ class AddClToUserdetail extends Migration
     public function up()
     {
         Schema::table('userdetails', function (Blueprint $table) {
-            $table->string('bankAccount',50)->nullable();
-            $table->string('cardNumber',50)->nullable();
-            $table->string('methodId',2)->nullable();
-            $table->string('registerProvince',50)->nullable();
-            $table->string('registerCity',50)->nullable();
-            $table->string('branch',50)->nullable();
-            $table->text('desc')->nullable();
+            // $table->string('bankAccount',50)->nullable();
+            // $table->string('cardNumber',50)->nullable();
+            // $table->string('methodId',2)->nullable();
+            // $table->string('registerProvince',50)->nullable();
+            // $table->string('registerCity',50)->nullable();
+            // $table->string('branch',50)->nullable();
+            // $table->text('desc')->nullable();
             $table->double('Totalbet',20,2)->default(0);
         });
     }
