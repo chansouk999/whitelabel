@@ -52,7 +52,7 @@ class MasterController extends Controller
                 $tn = strtotime('now');
                 $now = strtotime($latesttopuop->pluck('created_at')[0]);
                 $second = $tn - $now;
-                return $this->returncode(203, [$now, $tn], 'Wait for 30 second');
+                return $this->returncode(203, [$now, $tn,$second], 'Wait for '.$second.' second');
             } else {
                 $id = Auth::user()->user_id;
                 $check =  withdraw_methods::where('user_id', '=', $id)->pluck('bankAccount');

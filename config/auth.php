@@ -36,58 +36,58 @@ return [
     */
 
     'guards' => [
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        'admin' => [
+
+
+
+
+
+
+
+        'administrator' => [
             'driver'   => 'session',
-            'provider' => 'admins',
+            'provider' => 'administrator',
         ],
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         'web' => [
             'driver' => 'session',
@@ -118,66 +118,66 @@ return [
     */
 
     'providers' => [
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        'admins' => [
+
+
+
+
+
+
+
+        'administrator' => [
             'driver' => 'eloquent',
             'model'  => App\Admin::class,
         ],
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         'users' => [
             'driver' => 'eloquent',
@@ -206,73 +206,67 @@ return [
     */
 
     'passwords' => [
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        'admins' => [
-            'provider' => 'admins',
+
+
+
+
+
+
+
+        'administrator' => [
+            'provider' => 'administrator',
             'table'    => 'password_resets',
             'expire'   => 60,
         ],
 
-        'admins' => [
-            'provider' => 'admins',
-            'table'    => 'password_resets',
-            'expire'   => 60,
-        ],
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         'users' => [
             'provider' => 'users',

@@ -30,10 +30,12 @@ Auth::routes();
 
 
 // Route::get('/admins', 'HomeController@admin');
-Route::get('administrator', 'AdminController@index')->middleware('admin');
+// Route::get('administrator', 'AdminController@index')->middleware('admin');
 
 
 
+Route::post('/addnewadmin', 'AdminController@addnewadmin');
+Route::get('/getadmininfo', 'AdminController@getadmininfo');
 Route::get('/delete_img/{id}', 'AdminController@delete_img');
 Route::get('/getimgtrans/{id}', 'AdminController@getimgtrans');
 Route::get('/getallresultadmin', 'AdminController@getallresultadmin');
@@ -214,13 +216,21 @@ Route::get('/getuserdetail', 'CardController@getuserdetail');
 
 Route::post('/useCard', 'CardController@useCard');
 
+Route::prefix('/administrator')->namespace('Admins')->group(function(){
+   
+        //Login Routes
+        Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
+        Route::post('/login','Auth\LoginController@login');
+        
+        Route::get('/','HomeController@index');
+        Route::get('/logout','Auth\LoginController@logout')->name('logout');
+        //Forgot Password Routes
+        // Route::get('/password/reset','ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        // Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        // //Reset Password Routes
+        // Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset');
+        // Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
+    // });
+  });
 
-
-
-    Route::get('adminer/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
-
-    Route::post('adminer/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-
-    Route::get('adminer/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
-
-     Route::get('/adminer/', 'AdminController@index')->name('admin.dashboard');
+  

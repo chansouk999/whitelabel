@@ -107,7 +107,7 @@
                     <i class="tim-icons icon-video-66"></i>
                   </button>
                 </span>
-                <span data-toggle="modal" data-target=".view-user">
+                <span data-toggle="modal" data-target="#view-player">
                   <button
                     @click="actionmethod(method='viewuser',data.id,data.userId)"
                     type="button"
@@ -458,7 +458,110 @@
         </div>
       </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!--/modal edit evidence -->
+
+
+
+
+
+
+
+
+
+
+<div
+      class="modal fade view-player"
+      tabindex="-1"
+      id="view-player"
+      role="dialog"
+      aria-labelledby="mySmallModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content" v-for="data in playerdata " >
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Player userID: {{data.user_id}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+          </div>
+          <div class="modal-body"  >
+            <div class="card card-nav-tabs">
+              <div class="card-header">User name:{{data.name}}</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  Language :
+                  <span class="text-warning">{{data.lang}}</span>
+                </li>
+                <li class="list-group-item">
+                  Balance :
+                  <span class="text-warning">${{data.userBalance}}</span>
+                </li>
+                <li class="list-group-item">
+                  Total rolling :
+                  <span class="text-warning">${{data.TotalRolling}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
 </template>
 <script>
@@ -469,7 +572,8 @@ export default {
     return {
       A: 0,
       B: 19,
-      requestdata: []
+      requestdata: [],
+      playerdata:[]
     };
   },
   computed: {
@@ -517,6 +621,7 @@ export default {
           let code = res.data.code;
           let msg = res.data.msg;
           let data = res.data.data;
+          this.playerdata = res.data.data
           console.log(res.data);
           if (code == 200) {
             this.getevnthistory();

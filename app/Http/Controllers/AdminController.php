@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
 use GuzzleHttp\Client;
@@ -12,9 +13,10 @@ use App\Eventhistory;
 use Exception;
 use App\activityLog as modelog;
 use App\Request as Reqst;
+use App\Admin;
 use App\access_token;
 use Illuminate\Support\Facades\DB;
-use function GuzzleHttp\json_decode;
+use App\admin_access;
 use App\Agent;
 use App\AgenTransaction;
 use App\Shareholder;
@@ -25,13 +27,17 @@ class AdminController extends Controller
     protected $url8003 = 'http://localhost:8003';
 
 
+    public function __construct()
+    {
+        $this->middleware('auth:administrator');
+    }
 
 
 
     public function getallresultadmin()
     {
         try {
-            $token = $this->getfreshtoken();
+            $token = access_token::orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token')[0];
             $header = $this->getcleanheader($token);
             $http = new Client;
             $response = $http->get('http://localhost:8003/api/getallresultadmin', ['headers' => $header]);
@@ -61,7 +67,7 @@ class AdminController extends Controller
         $header = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-            'Authorization' => 'Bearer ' . $token['token']
+            'Authorization' => 'Bearer ' . $token
         ];
         return $header;
     }
@@ -71,7 +77,7 @@ class AdminController extends Controller
     }
     public function getheader($user_id)
     {
-        $gettoken = trim(access_token::where('user_id', 'like', '%' . $user_id . '%')->orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token'), '["]');
+        $gettoken = access_token::orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token')[0];
         $header = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
@@ -211,7 +217,8 @@ class AdminController extends Controller
         try {
             $method = $req->reqmethod;
             $user_id = $req->user_id;
-            $gettoken = trim(access_token::where('user_id', 'like', '%' . Auth::user()->user_id . '%')->orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token'), '["]');
+            // $gettoken = trim(access_token::where('user_id', 'like', '%' . Auth::user()->user_id . '%')->orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token'), '["]');
+            $gettoken = access_token::orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token')[0];
             $header = [
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $gettoken
@@ -338,7 +345,7 @@ class AdminController extends Controller
                 'amount' => $req->amount,
                 'currency' => $req->currency,
                 'methodId' => $req->methodid,
-                'assitid' => Auth::user()->id,
+                'assitid' => Auth::guard('administrator')->user()->id,
                 'reference' => strtotime('now') . date('ymd'),
             );
             $save = AgenTransaction::create($insertdata);
@@ -388,7 +395,7 @@ class AdminController extends Controller
     {
         $agent = Agent::all();
         $serial = $agent->count();
-        $agentid = $serial . Auth::user()->id;
+        $agentid = $serial . Auth::guard('administrator')->user()->id;
         return $agentid;
     }
     public function saveagent(Request $req)
@@ -412,6 +419,17 @@ class AdminController extends Controller
             );
             $save = Agent::create($insertdata);
             if ($save) {
+                $method = 'Adminrecord';
+                        $data = array(
+                            'user_id' => $this->getagentid(),
+                            'event' => 'Create new Agent',
+                            'serveby' => Auth::guard('administrator')->user()->id,
+                            'amount' =>'',
+                            'eventid' => '',
+                            'Time' => date('Y-m-d'),
+                        );
+                        $Log = new ActivityLog();
+                        $Log->storeLog($method, $data);
                 return $this->returncode(200, $save, 'success');
             } else {
                 return $this->returncode(300, $save, DB::getQueryLog());
@@ -426,6 +444,7 @@ class AdminController extends Controller
             DB::enableQueryLog();
             $del = Reqst::where('id', '=', $id)->delete();
             if ($del) {
+                
                 return $this->returncode(200, $del, 'success');
             } else {
                 return $this->returncode(300, $del, DB::getQueryLog());
@@ -438,7 +457,12 @@ class AdminController extends Controller
     {
         try {
             DB::enableQueryLog();
-            $getuser = User::where('user_id', '=', '' . $id . '')->get();
+            // $getuser = User::where('user_id', '=', '' . $id . '')->get();
+            $getuser = DB::table('users')
+            ->join('userdetails','users.user_id','=','userdetails.user_id')
+            ->where('users.user_id', '=', '' . $id . '')
+            ->get();
+
             if ($getuser) {
                 return $this->returncode(200, $getuser, 'success');
             } else {
@@ -508,7 +532,7 @@ class AdminController extends Controller
                     'amount' => $reqdata['amount'],
                     'balance_after_event' => $evnt,
                     'deatil' => $datacc,
-                    'served_by' => Auth::user()->user_id,
+                    'served_by' => Auth::guard('administrator')->user()->id,
                 );
                 $save = Eventhistory::create($insertdata); //DB::getQueryLog()
                 if ($save) {
@@ -517,11 +541,11 @@ class AdminController extends Controller
                     if ($del && $userupdate) {
 
 
-                        $method = 'Playerrecord';
+                        $method = 'Adminrecord';
                         $data = array(
                             'user_id' => $reqdata['userId'],
                             'event' => $msgreqlog,
-                            'serveby' => Auth::user()->user_id,
+                            'serveby' => Auth::guard('administrator')->user()->id,
                             'amount' => $reqdata['amount'],
                             'eventid' => '',
                             'Time' => date('Y-m-d'),
@@ -553,8 +577,7 @@ class AdminController extends Controller
     }
     public function gettoken()
     {
-        $user_id = Auth::user()->user_id;
-        $gettoken = trim(access_token::where('user_id', 'like', '%' . $user_id . '%')->orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token'), '["]');
+        $gettoken = access_token::orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token')[0];
         session(['access_token' => $gettoken]);
         return ['token' => $gettoken];
     }
@@ -671,4 +694,78 @@ class AdminController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-}
+    public function getadmininfo(){
+        try{
+
+            $id = Auth::guard('administrator')->user()->id;
+
+            $data = DB::table('admins')
+            ->join('admin_accesses','admins.id','=','admin_accesses.admin_id')
+            ->where('admins.id','=',$id)
+            ->get();
+            $data1 = DB::table('admins')
+            ->join('admin_accesses','admins.id','=','admin_accesses.admin_id')
+            ->paginate(1000);
+
+            if($data) {
+                return $this->returncode(200, ['auth'=>$data,'all'=>$data1], 'success');
+            } else {
+                return $this->returncode(300, '', DB::getQueryLog());
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+      
+    }
+    public function addnewadmin(Request $req){
+        // admin_access
+        try{
+            DB::enableQueryLog();
+            if($req->admintype == 'normal' ){$req->admintype=1;}
+            else{$req->admintype=0;}
+            $id = substr(strtotime('now'),-5,5);
+            $resid = $id. Admin::count() + 1;
+
+            $insertdata0 = array(
+                'id'=>$resid,
+                'name' => $req->addnewadminder,
+                'email' => $req->addnewadminder,
+                'password'=> Hash::make($req->addnewpassword),
+                'TotalOnline'=>0,
+                'active'=>0,
+                'role_id'=>$req->admintype
+
+            );
+            $save = Admin::create($insertdata0);
+            $insertdata1 = array(
+                'admin_id'=>$resid,
+                'Player'=>$req->r_player,
+                'Gameble'=>$req->gamble,
+                'Gameresult'=>$req->r_gameresult,
+                'Withdraw_topup'=>$req->r_withtop,
+                'Timeline'=>$req->r_timeline,
+                'playerrecord'=>$req->r_playerrecord,
+                'agentInfo'=>$req->r_agentinfo,
+                'SHinfo'=>$req->r_shinfo,
+                'agenttransaction'=>$req->r_agenttstion,
+                'Request'=>$req->r_request,
+                'Anouncement'=>$req->r_announcement,
+                'ManageRecord'=>$req->r_managerecord,
+                'SelfRolling'=>$req->r_selfrolling
+            );
+            $save = admin_access::create($insertdata1);
+           
+            
+            if ($save) {
+                return $this->returncode(200, $save, 'success');
+            } else {
+                return $this->returncode(300, '', DB::getQueryLog());
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    } 
+    public function insertadmin(){
+        
+    }
+}   

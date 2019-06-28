@@ -807,11 +807,12 @@ export default {
           }
           if (code == 203) {
             let Time = new Date().getTime();
-            let sec = res.data.data[0] - parseInt(res.data.data[1]);
-            let n = 0
+            let sec = res.data.data[3]
+            let n = 30
             setInterval(() => {
-              n++
-              console.log(sec);
+              sec++
+              n--
+              console.log(n-sec);
             }, 1000);
           }
         });
