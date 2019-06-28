@@ -28,32 +28,32 @@
           <ul class="amount pull-left">
             <li>
               <font class="verticalalign">
-                <font class="verticalalign" style="font-size: 13px;">6000000</font>
+                <font class="verticalalign" style="font-size: 13px;">{{Amount5}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">3000000</font>
+                <font class="verticalalign">{{Amount4}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">1000000</font>
+                <font class="verticalalign">{{Amount3}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">500000</font>
+                <font class="verticalalign">{{Amount2}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">100,000</font>
+                <font class="verticalalign">{{Amount1}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign" style="font-size: 13px;">Open an account</font>
+                <font class="verticalalign" style="font-size: 13px;">{{Amount0}}</font>
               </font>
             </li>
           </ul>
@@ -64,7 +64,7 @@
             <li>
               <em>
                 <font class="verticalalign">
-                  <font class="verticalalign">0.60%</font>
+                  <font class="verticalalign">{{percentage0}}%</font>
                 </font>
               </em>
               <span class="tip-message">
@@ -72,18 +72,18 @@
                   <!-- <font class="verticalalign">can enjoy the wash code</font> -->
                 </font>
               </span>
-              <span class="bar null" style="height: 30px;"></span>
+              <span :class="[ totalbet>=0 && totalbet < 100000 ? 'bar null orange' : 'bar null' ]" style="height: 30px;"></span>
               <span class="level">
                 <i class="crown crown-1"></i>
                 <font class="verticalalign">
-                  <font class="verticalalign" style="font-size: 13px;">One star</font>
+                  <font class="verticalalign" style="font-size: 13px;">{{title0}}</font>
                 </font>
               </span>
             </li>
             <li>
               <em>
                 <font class="verticalalign">
-                  <font class="verticalalign">0.60%</font>
+                  <font class="verticalalign">{{percentage1}}%</font>
                 </font>
               </em>
               <span class="tip-message">
@@ -91,18 +91,18 @@
                   <!-- <font class="verticalalign">can enjoy the wash code</font> -->
                 </font>
               </span>
-              <span class="bar null" style="height: 60px;"></span>
+              <span :class="[ totalbet>=100000 && totalbet < 500000? 'bar null orange' : 'bar null' ]" style="height: 60px;"></span>
               <span class="level">
                 <i class="crown crown-2"></i>
                 <font class="verticalalign">
-                  <font class="verticalalign" style="font-size: 13px;">Two stars</font>
+                  <font class="verticalalign" style="font-size: 13px;">{{title1}}</font>
                 </font>
               </span>
             </li>
             <li>
               <em>
                 <font class="verticalalign">
-                  <font class="verticalalign">0.60%</font>
+                  <font class="verticalalign">{{percentage2}}%</font>
                 </font>
               </em>
               <span class="tip-message">
@@ -110,18 +110,18 @@
                   <!-- <font class="verticalalign" style="font-size: 13px;">can enjoy the wash code</font> -->
                 </font>
               </span>
-              <span class="bar null" style="height: 90px;"></span>
+              <span :class="[ totalbet>=500000 && totalbet < 1000000? 'bar null orange' : 'bar null' ]" style="height: 90px;"></span>
               <span class="level">
                 <i class="crown"></i>
                 <font class="verticalalign">
-                  <font class="verticalalign" style="font-size: 13px;">Three Star</font>
+                  <font class="verticalalign" style="font-size: 13px;">{{title2}}</font>
                 </font>
               </span>
             </li>
             <li>
               <em>
                 <font class="verticalalign">
-                  <font class="verticalalign">0.70%</font>
+                  <font class="verticalalign">{{percentage3}}%</font>
                 </font>
               </em>
               <span class="tip-message">
@@ -129,18 +129,18 @@
                   <!-- <font class="verticalalign">can enjoy the wash code</font> -->
                 </font>
               </span>
-              <span class="bar null" style="height: 120px;"></span>
+              <span :class="[ totalbet>=1000000 && totalbet < 3000000 ? 'bar null orange' : 'bar null' ]" style="height: 120px;"></span>
               <span class="level">
                 <i class="crown"></i>
                 <font class="verticalalign">
-                  <font class="verticalalign">VIP4</font>
+                  <font class="verticalalign">{{title3}}</font>
                 </font>
               </span>
             </li>
             <li>
               <em>
                 <font class="verticalalign">
-                  <font class="verticalalign">0.80%</font>
+                  <font class="verticalalign">{{percentage4}}%</font>
                 </font>
               </em>
               <span class="tip-message">
@@ -148,18 +148,18 @@
                   <!-- <font class="verticalalign">can enjoy the wash code</font> -->
                 </font>
               </span>
-              <span class="bar null" style="height: 150px;"></span>
+              <span :class="[ totalbet>=3000000 && totalbet < 6000000 ? 'bar null orange' : 'bar null' ]" style="height: 150px;"></span>
               <span class="level">
                 <i class="crown"></i>
                 <font class="verticalalign">
-                  <font class="verticalalign">VIP5</font>
+                  <font class="verticalalign">{{title4}}</font>
                 </font>
               </span>
             </li>
             <li>
               <em>
                 <font class="verticalalign">
-                  <font class="verticalalign">0.90%</font>
+                  <font class="verticalalign">{{percentage5}}%</font>
                 </font>
               </em>
               <span class="tip-message">
@@ -167,11 +167,11 @@
                   <!-- <font class="verticalalign">can enjoy the wash code</font> -->
                 </font>
               </span>
-              <span class="bar null" style="height: 180px;"></span>
+              <span :class="[ totalbet >= 6000000 ? 'bar null orange' : 'bar null' ]" style="height: 180px;"></span>
               <span class="level">
                 <i class="crown"></i>
                 <font class="verticalalign">
-                  <font class="verticalalign">VIP6</font>
+                  <font class="verticalalign">{{title5}}</font>
                 </font>
               </span>
             </li>
@@ -182,15 +182,73 @@
   </div>
 </template>
 <script>
+import axios, * as others from "axios";
 export default {
   data() {
-    return {};
+    return {
+    totalbet:"",
+      Amount0: "",
+      Amount1: "",
+      Amount2: "",
+      Amount3: "",
+      Amount4: "",
+      Amount5: "",
+      title0: "",
+      title1: "",
+      title2: "",
+      title3: "",
+      title4: "",
+      title5: "",
+      percentage0: "",
+      percentage1: "",
+      percentage2: "",
+      percentage3: "",
+      percentage4: "",
+      percentage5: ""
+    };
   },
-  mounted() {}
+  mounted() {
+    this.getuserbet();
+  },
+  methods: {
+    getuserbet() {
+      axios.get("/getUserBet").then(response => {
+
+        let responses = response.data[0];
+        this.totalbet = response.data["totalbet"];
+        this.Amount0 = responses[0].Amount;
+        this.Amount1 = responses[1].Amount;
+        this.Amount2 = responses[2].Amount;
+        this.Amount3 = responses[3].Amount;
+        this.Amount4 = responses[4].Amount;
+        this.Amount5 = responses[5].Amount;
+
+        this.title0 = responses[0].title;
+        this.title1 = responses[1].title;
+        this.title2 = responses[2].title;
+        this.title3 = responses[3].title;
+        this.title4 = responses[4].title;
+        this.title5 = responses[5].title;
+
+        this.percentage0 = responses[0].percentage;
+        this.percentage1 = responses[1].percentage;
+        this.percentage2 = responses[2].percentage;
+        this.percentage3 = responses[3].percentage;
+        this.percentage4 = responses[4].percentage;
+        this.percentage5 = responses[5].percentage;
+
+      });
+    }
+  }
 };
 </script>
 <style scoped>
 @charset "UTF-8";
+.orange{
+    background-color: orange !important;
+}
+
+
 .vertical-align {
   vertical-align: inherit;
 }
@@ -616,7 +674,8 @@ export default {
 }
 
 .u-account .section-2 .chart-wrap {
-  background: url("https://ag124.com/assets/images/user/chart_bg.jpg") no-repeat 162px top;
+  background: url("https://ag124.com/assets/images/user/chart_bg.jpg") no-repeat
+    162px top;
   position: relative;
   height: 315px;
   margin-top: 25px;
@@ -668,7 +727,7 @@ export default {
 
 .u-account .section-2 .chart-wrap ul.amount {
   padding-top: 62px;
-  width: initial;
+  width: 155px;
   text-align: right;
   float: left;
 }
