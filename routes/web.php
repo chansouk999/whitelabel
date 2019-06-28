@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
@@ -89,7 +90,7 @@ Route::get('/getlogin', function () {
         ]
     ]);
     return 'Hello World';
-    return $datacheckresult = json_decode((string)$resposnse->getBody(), true);
+    return $datacheckresult = json_decode((string) $resposnse->getBody(), true);
     // return redirect('http://localhost:8001/getlogin');
 });
 
@@ -136,7 +137,7 @@ Route::get('/redirectback', function () {
         'response_type' => 'code',
         'scope' => '',
     ]);
-    return redirect('http://localhost:8003/oauth/authorize?'.$query);
+    return redirect('http://localhost:8003/oauth/authorize?' . $query);
     // // asdasd
     // $id = \Auth::user()->pro_id . '_' . \Auth::user()->user_id;
     // $http = new GuzzleHttp\Client();
@@ -213,3 +214,14 @@ Route::get('/getPlayerRecord', 'CardController@getPlayerRecord');
 Route::get('/getuserdetail', 'CardController@getuserdetail');
 
 Route::post('/useCard', 'CardController@useCard');
+
+Route::get('/ActionRecord/{id}', 'CardController@ActionRecord');
+
+Route::get('/Selfservice', 'CardController@Selfservice');
+
+Route::post('/editlevel/{id}', 'CardController@editlevel');
+
+Route::post('/saveLavel', 'CardController@saveLavel');
+
+Route::post('/deleteLevel/{id}', 'CardController@deleteLevel');
+

@@ -72,6 +72,9 @@
                           <li class="nav-item w-8">
                             <a class="nav-link" href="#managerecord" data-toggle="tab">Manage Record</a>
                           </li>
+                          <li class="nav-item w-8">
+                            <a class="nav-link" href="#levelchange" data-toggle="tab">Level Change</a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -172,10 +175,10 @@
                                   <td>{{data.currency}}</td>
                                   <td>{{ Math.floor(data.totalOnlineHour / 3600)}}</td>
                                   <td>{{data.lang}}</td>
-                                     <td>{{data.TotalRolling}}</td>
-              <td>{{data.AvailableRolling}}</td>
-              <td>{{data.userStatus}}</td>
-              <td>{{data.created_at}}</td>
+                                  <td>{{data.TotalRolling}}</td>
+                                  <td>{{data.AvailableRolling}}</td>
+                                  <td>{{data.userStatus}}</td>
+                                  <td>{{data.created_at}}</td>
                                   <td>{{data.accessIP}}</td>
                                   <td class="td-actions text-right">
                                     <span data-toggle="modal" data-target=".gamble-history">
@@ -228,7 +231,7 @@
                                     </span>
                                     <span data-toggle="modal" data-target=".action-record">
                                       <button
-                                        @click="viewuserdata(method='action',data.user_id,data.name)"
+                                        @click="GetPlayerRecore(data.user_id)"
                                         type="button"
                                         data-toggle="tooltip"
                                         data-placement="bottom"
@@ -472,6 +475,9 @@
                       <div class="tab-pane" id="managerecord" aria-expanded="false">
                         <app-managerecord></app-managerecord>
                       </div>
+                      <div class="tab-pane" id="levelchange" aria-expanded="false">
+                        <app-levelchange></app-levelchange>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -536,6 +542,104 @@
       </div>
     </div>
     <!--/modal access record -->
+    <!--modal action record -->
+    <div
+      class="modal fade action-record"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">PlayerID</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card card-nav-tabs">
+              <div class="content">
+                <div class="header text-center">
+                  <h3 class="title">My Timeline</h3>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="card card-timeline card-plain">
+                      <div class="card-body">
+                        <ul class="timeline">
+                          <li
+                            class="timeline-inverted"
+                            v-for="(data,index) in playerRecord"
+                            v-if="index % 2 == 0 "
+                          >
+                            <div class="timeline-badge danger">
+                              <i class="tim-icons icon-planet"></i>
+                            </div>
+                            <div class="timeline-panel">
+                              <div class="timeline-heading">
+                                <span class="badge badge-pill badge-danger">Some Title</span>
+                              </div>
+                              <div class="timeline-body">
+                                <p>{{ JSON.parse(data.detail).event }}</p>
+                              </div>
+                              <h6 class="text-dark">
+                                <i class="ti-time"></i>
+                                {{data.created_at}}
+                              </h6>
+                            </div>
+                          </li>
+                          <li v-for="(data,index) in playerRecord" v-if="index % 2 !== 0 ">
+                            <div class="timeline-badge danger">
+                              <i class="tim-icons icon-planet"></i>
+                            </div>
+                            <div class="timeline-panel">
+                              <div class="timeline-heading">
+                                <span class="badge badge-pill badge-danger">Some Title</span>
+                              </div>
+                              <div class="timeline-body">
+                                <p>{{ JSON.parse(data.detail).event }}</p>
+                              </div>
+                              <h6>
+                                <i class="ti-time"></i>
+                                {{data.created_at}}
+                              </h6>
+                            </div>
+                          </li>
+                          <li v-if="playerRecord.length == 0 ">
+                            <div class="timeline-badge danger">
+                              <i class="tim-icons icon-planet"></i>
+                            </div>
+                            <div class="timeline-panel">
+                              <div class="timeline-heading">
+                                <span class="badge badge-pill badge-danger">Some Title</span>
+                              </div>
+                              <div class="timeline-body">
+                                <p>NO DATA HERER</p>
+                              </div>
+                              <h6>
+                                <i class="ti-time"></i>
+                                NO DATA HERER
+                              </h6>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/modal action record -->
   </div>
 </template>
 <script>
@@ -557,6 +661,7 @@ import finance from "./finance";
 import request from "./request";
 import announcement from "./announcement";
 import managerecord from "./managerecord";
+import levelchange from "./levelchange";
 import modal from "./modal";
 
 export default {
@@ -564,6 +669,7 @@ export default {
   data() {
     return {
       trackuser: [],
+      playerRecord: [],
       A: 0,
       B: 9
     };
@@ -586,9 +692,10 @@ export default {
     "app-request": request,
     "app-announcement": announcement,
     "app-managerecord": managerecord,
+    "app-levelchange": levelchange,
     "app-modal": modal
   },
-  filters:{
+  filters: {
     // dehasedpwd(e){
     //   let sp = e.split('-');
     //   console.log(sp.join())
@@ -599,28 +706,34 @@ export default {
     //       // console.log(")))))))))))))")
     //       let im = el[el.length-1]
     //       pwd = im
-          
     //   });
     //   console.log(pwd)
-
-      
-     
-
     // }
   },
-  watch:{
-    popup(e){
-      alert(e)
-      if(e==true){
-          this.A=0
-          this.B=9
-          console.log(this.A)
-          console.log(this.B)
+  watch: {
+    popup(e) {
+      alert(e);
+      if (e == true) {
+        this.A = 0;
+        this.B = 9;
+        console.log(this.A);
+        console.log(this.B);
       }
     }
   },
   mounted() {},
   methods: {
+    GetPlayerRecore(id) {
+      axios
+        .get("/ActionRecord/" + id)
+        .then(res => {
+          console.log(res.data);
+          this.playerRecord = res.data;
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    },
     trackusers(id) {
       axios
         .get("/trackuserLogin/" + id)

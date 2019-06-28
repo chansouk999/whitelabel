@@ -10,6 +10,7 @@ class Selfservice extends Model
         'id',
         'title',
         'level',
+        'Amount',
         'percentage'
     ];
 }

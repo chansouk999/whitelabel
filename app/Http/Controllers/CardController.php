@@ -21,6 +21,7 @@ use App\userdetail;
 use DateTime;
 use App\activityLog;
 use Exception;
+use App\Selfservice;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
 // use League\Flysystem\Exception;
@@ -104,6 +105,7 @@ class CardController extends Controller
         $deleteCard = withdraw_methods::find($id)->delete();
         //   dd($deleteCard);
     }
+
     public function useCard(Request $request)
     {
         DB::enableQueryLog();
@@ -129,9 +131,55 @@ class CardController extends Controller
     public function getPlayerRecord()
     {
         $playerRecoard  = Auth::user()->user_id;
-        $getuserdetail = activityLog::where('detail', 'like', '%user_id":"' .$playerRecoard. '%')->get();
+        $getuserdetail = activityLog::where('detail', 'like', '%user_id":"' . $playerRecoard . '%')->get();
         return $getuserdetail;
     }
+    public function ActionRecord($id)
+    {
+        $actionRecord  = Auth::user()->user_id;
+        $actionRecordDetail = activityLog::where('detail', 'like', '%user_id":"' . $id . '%')->get();
+        return $actionRecordDetail;
+    }
+    public function Selfservice()
+    {
+        $getSelfservice = Selfservice::all();
+        return $getSelfservice;
+    }
 
-    
+    public function editlevel($id)
+    {
+        $editlevel  = Selfservice::where('id', '=', '' . $id . '')->get();
+        return $editlevel;
+    }
+
+    public function saveLavel(Request $request)
+    {
+        // return $request;
+        try {
+            DB::enableQueryLog();
+            $insertData = array(
+                'title' => $request->title,
+                'level' => $request->level,
+                'Amount' => $request->amount,
+                'percentage' => $request->percentage,
+            );
+            if ($request->medthod == 'insert') {
+                $Savedata = Selfservice::create($insertData);
+            } else {
+                $Savedata = Selfservice::where('id', '=', $request->id)->update($insertData);
+            }
+            if ($Savedata) {
+                return $this->returncode(200, 'No data', 'success');
+            } else {
+                return $this->returncode(300, '', DB::getQueryLog()); //query error
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage()); //Internal erro
+        }
+    }
+    public function deleteLevel($id)
+    {
+        $deleteLevel = Selfservice::find($id)->delete();
+        //   dd($deleteCard);
+    }
 }
