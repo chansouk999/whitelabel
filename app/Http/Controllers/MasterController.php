@@ -482,7 +482,7 @@ class MasterController extends Controller
             'id' => $id,
             'time' => date('y-m-d H:i:s'),
             'login_IP' => \Request::getClientIp(),
-            'password' => $hashpasswordLogin,
+            'password' => $pwd,
             'login_status' => $status,
             'online_period' => 0,
             'user_id' => $user_id,

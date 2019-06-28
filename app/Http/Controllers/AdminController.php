@@ -67,7 +67,7 @@ class AdminController extends Controller
     }
     public function index()
     {
-        return view('admin.welcomes');
+        return view('auth.admin_login');
     }
     public function getheader($user_id)
     {

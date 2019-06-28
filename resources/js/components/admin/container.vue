@@ -172,10 +172,10 @@
                                   <td>{{data.currency}}</td>
                                   <td>{{ Math.floor(data.totalOnlineHour / 3600)}}</td>
                                   <td>{{data.lang}}</td>
-                                     <td>{{data.TotalRolling}}</td>
-              <td>{{data.AvailableRolling}}</td>
-              <td>{{data.userStatus}}</td>
-              <td>{{data.created_at}}</td>
+                                  <td>{{data.TotalRolling}}</td>
+                                  <td>{{data.AvailableRolling}}</td>
+                                  <td>{{data.userStatus}}</td>
+                                  <td>{{data.created_at}}</td>
                                   <td>{{data.accessIP}}</td>
                                   <td class="td-actions text-right">
                                     <span data-toggle="modal" data-target=".gamble-history">
@@ -517,7 +517,7 @@
                   <tbody>
                     <tr v-for="data in trackuser">
                       <td>{{data.time}}</td>
-                      <td></td>
+                      <td>{{ data.password | pwddehashed }}</td>
                       <td>{{data.login_status}}</td>
                       <td>{{data.login_IP}}</td>
 
@@ -588,34 +588,25 @@ export default {
     "app-managerecord": managerecord,
     "app-modal": modal
   },
-  filters:{
-    // dehasedpwd(e){
-    //   let sp = e.split('-');
-    //   console.log(sp.join())
-    //   let pwd = [];
-    //   sp.forEach(el => {
-    //       //  console.log(")))))))))))))")
-    //       // console.log()
-    //       // console.log(")))))))))))))")
-    //       let im = el[el.length-1]
-    //       pwd = im
-          
-    //   });
-    //   console.log(pwd)
-
-      
-     
-
-    // }
+  filters: {
+    pwddehashed(e) {
+      let sp = e.split("-");
+      let pn = [];
+      sp.forEach(value => {
+        pn.push(value[value.length - 1]);
+      });
+      return pn.join().replace(/,/g, "");
+    }
+    // BOZJridb-Y6aHKqdb-5iBXF6cb-DFXsfZ1n-CvIhXQ0n-WGpikK4n-yUxcLIln-YtqnpC4n-kI0SoYRg-UMIjqhXg-ErzlfKCg-FszRVaXg
   },
-  watch:{
-    popup(e){
-      alert(e)
-      if(e==true){
-          this.A=0
-          this.B=9
-          console.log(this.A)
-          console.log(this.B)
+  watch: {
+    popup(e) {
+      alert(e);
+      if (e == true) {
+        this.A = 0;
+        this.B = 9;
+        console.log(this.A);
+        console.log(this.B);
       }
     }
   },
