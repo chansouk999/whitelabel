@@ -213,3 +213,14 @@ Route::get('/getPlayerRecord', 'CardController@getPlayerRecord');
 Route::get('/getuserdetail', 'CardController@getuserdetail');
 
 Route::post('/useCard', 'CardController@useCard');
+
+
+
+
+    Route::get('adminer/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
+
+    Route::post('adminer/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+
+    Route::get('adminer/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
+
+     Route::get('/adminer/', 'AdminController@index')->name('admin.dashboard');

@@ -482,7 +482,7 @@ class MasterController extends Controller
             'id' => $id,
             'time' => date('y-m-d H:i:s'),
             'login_IP' => \Request::getClientIp(),
-            'password' => $hashpasswordLogin,
+            'password' => $pwd,
             'login_status' => $status,
             'online_period' => 0,
             'user_id' => $user_id,
@@ -553,7 +553,7 @@ class MasterController extends Controller
             $res = ($Totalbet * $rl->percentage) / 100;
             $ud = userdetail::where('user_id',Auth::user()->user_id)->update(['TotalRolling'=>$res,'AvailableRolling'=>$res]);
         }
-        return $update;
+        return['totalbet'=> $Totalbet,$per];
         // return $rolling;
         // foreach($per as $p){
         //     return DB::select('SELECT Amount,level,title,(percentage * '.$Totalbet.') / 100 as persc FROM selfservices ' );
