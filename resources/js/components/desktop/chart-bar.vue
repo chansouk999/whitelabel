@@ -72,7 +72,10 @@
                   <!-- <font class="verticalalign">can enjoy the wash code</font> -->
                 </font>
               </span>
-              <span :class="[ totalbet>=0 && totalbet < 100000 ? 'bar null orange' : 'bar null' ]" style="height: 30px;"></span>
+              <span
+                :class="[ totalbet>=0 && totalbet < 100000 ? 'bar null orange' : 'bar null' ]"
+                style="height: 30px;"
+              ></span>
               <span class="level">
                 <i class="crown crown-1"></i>
                 <font class="verticalalign">
@@ -91,7 +94,10 @@
                   <!-- <font class="verticalalign">can enjoy the wash code</font> -->
                 </font>
               </span>
-              <span :class="[ totalbet>=100000 && totalbet < 500000? 'bar null orange' : 'bar null' ]" style="height: 60px;"></span>
+              <span
+                :class="[ totalbet>=100000 && totalbet < 500000? 'bar null orange' : 'bar null' ]"
+                style="height: 60px;"
+              ></span>
               <span class="level">
                 <i class="crown crown-2"></i>
                 <font class="verticalalign">
@@ -110,7 +116,10 @@
                   <!-- <font class="verticalalign" style="font-size: 13px;">can enjoy the wash code</font> -->
                 </font>
               </span>
-              <span :class="[ totalbet>=500000 && totalbet < 1000000? 'bar null orange' : 'bar null' ]" style="height: 90px;"></span>
+              <span
+                :class="[ totalbet>=500000 && totalbet < 1000000? 'bar null orange' : 'bar null' ]"
+                style="height: 90px;"
+              ></span>
               <span class="level">
                 <i class="crown"></i>
                 <font class="verticalalign">
@@ -129,7 +138,10 @@
                   <!-- <font class="verticalalign">can enjoy the wash code</font> -->
                 </font>
               </span>
-              <span :class="[ totalbet>=1000000 && totalbet < 3000000 ? 'bar null orange' : 'bar null' ]" style="height: 120px;"></span>
+              <span
+                :class="[ totalbet>=1000000 && totalbet < 3000000 ? 'bar null orange' : 'bar null' ]"
+                style="height: 120px;"
+              ></span>
               <span class="level">
                 <i class="crown"></i>
                 <font class="verticalalign">
@@ -148,7 +160,10 @@
                   <!-- <font class="verticalalign">can enjoy the wash code</font> -->
                 </font>
               </span>
-              <span :class="[ totalbet>=3000000 && totalbet < 6000000 ? 'bar null orange' : 'bar null' ]" style="height: 150px;"></span>
+              <span
+                :class="[ totalbet>=3000000 && totalbet < 6000000 ? 'bar null orange' : 'bar null' ]"
+                style="height: 150px;"
+              ></span>
               <span class="level">
                 <i class="crown"></i>
                 <font class="verticalalign">
@@ -167,7 +182,10 @@
                   <!-- <font class="verticalalign">can enjoy the wash code</font> -->
                 </font>
               </span>
-              <span :class="[ totalbet >= 6000000 ? 'bar null orange' : 'bar null' ]" style="height: 180px;"></span>
+              <span
+                :class="[ totalbet >= 6000000 ? 'bar null orange' : 'bar null' ]"
+                style="height: 180px;"
+              ></span>
               <span class="level">
                 <i class="crown"></i>
                 <font class="verticalalign">
@@ -186,7 +204,7 @@ import axios, * as others from "axios";
 export default {
   data() {
     return {
-    totalbet:"",
+      totalbet: "",
       Amount0: "",
       Amount1: "",
       Amount2: "",
@@ -204,7 +222,7 @@ export default {
       percentage2: "",
       percentage3: "",
       percentage4: "",
-      percentage5: ""
+      percentage5: "",
     };
   },
   mounted() {
@@ -213,30 +231,29 @@ export default {
   methods: {
     getuserbet() {
       axios.get("/getUserBet").then(response => {
-
         let responses = response.data[0];
         this.totalbet = response.data["totalbet"];
+        // Amount
         this.Amount0 = responses[0].Amount;
         this.Amount1 = responses[1].Amount;
         this.Amount2 = responses[2].Amount;
         this.Amount3 = responses[3].Amount;
         this.Amount4 = responses[4].Amount;
         this.Amount5 = responses[5].Amount;
-
+        // title
         this.title0 = responses[0].title;
         this.title1 = responses[1].title;
         this.title2 = responses[2].title;
         this.title3 = responses[3].title;
         this.title4 = responses[4].title;
         this.title5 = responses[5].title;
-
-        this.percentage0 = responses[0].percentage;
-        this.percentage1 = responses[1].percentage;
-        this.percentage2 = responses[2].percentage;
-        this.percentage3 = responses[3].percentage;
-        this.percentage4 = responses[4].percentage;
-        this.percentage5 = responses[5].percentage;
-
+        // percentage
+        this.percentage0 = responses[0].percentage.toFixed(2);
+        this.percentage1 = responses[1].percentage.toFixed(2);
+        this.percentage2 = responses[2].percentage.toFixed(2);
+        this.percentage3 = responses[3].percentage.toFixed(2);
+        this.percentage4 = responses[4].percentage.toFixed(2);
+        this.percentage5 = responses[5].percentage.toFixed(2);
       });
     }
   }
@@ -244,10 +261,9 @@ export default {
 </script>
 <style scoped>
 @charset "UTF-8";
-.orange{
-    background-color: orange !important;
+.orange {
+  background-color: orange !important;
 }
-
 
 .vertical-align {
   vertical-align: inherit;
