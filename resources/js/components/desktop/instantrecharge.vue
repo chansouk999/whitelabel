@@ -18,7 +18,7 @@
             Transfer Balance to API game
           </a>
         </li>
-         <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="#topupbalacne" role="tab" data-toggle="tab">
             <i class="tim-icons icon-settings"></i>
             Top-Up
@@ -41,40 +41,89 @@
             <i class="tim-icons icon-atom"></i>
             比特币支付
           </a>
-        </li> -->
+        </li>-->
       </ul>
       <div class="tab-content tab-space">
         <div class="tab-pane active" id="alipay">
           <div class="card">
             <div class="card-body">
-               <div class="row py-3">
-                    <div class="col-lg-4 text-right">
-                      <label class="text-dark p-2">Amount:</label>
-                    </div>
-                    <div class="col-lg-8 form-row text-left">
-                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 1" value="1" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 100" value="100" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 200" value="200" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 500" value="500" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 1000" value="1,000" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 2000" value="2,000" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="paymentamount = 5000" value="5,000" readonly="readonly">
-                      </div>
-                    </div>
+              <div class="row py-3">
+                <div class="col-lg-4 text-right">
+                  <label class="text-dark p-2">Amount:</label>
+                </div>
+                <div class="col-lg-8 form-row text-left">
+                  <div class="form-group col-lg-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputZip"
+                      @click="paymentamount = 1"
+                      value="1"
+                      readonly="readonly"
+                    >
                   </div>
+                  <div class="form-group col-lg-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputZip"
+                      @click="paymentamount = 100"
+                      value="100"
+                      readonly="readonly"
+                    >
+                  </div>
+                  <div class="form-group col-lg-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputZip"
+                      @click="paymentamount = 200"
+                      value="200"
+                      readonly="readonly"
+                    >
+                  </div>
+                  <div class="form-group col-lg-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputZip"
+                      @click="paymentamount = 500"
+                      value="500"
+                      readonly="readonly"
+                    >
+                  </div>
+                  <div class="form-group col-lg-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputZip"
+                      @click="paymentamount = 1000"
+                      value="1,000"
+                      readonly="readonly"
+                    >
+                  </div>
+                  <div class="form-group col-lg-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputZip"
+                      @click="paymentamount = 2000"
+                      value="2,000"
+                      readonly="readonly"
+                    >
+                  </div>
+                  <div class="form-group col-lg-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputZip"
+                      @click="paymentamount = 5000"
+                      value="5,000"
+                      readonly="readonly"
+                    >
+                  </div>
+                </div>
+              </div>
               <form class="layui-form layui-field-box" id="form1">
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
@@ -88,8 +137,8 @@
                       id="money"
                       name="money"
                       required
-   readonly="readonly"
-   style="background:#fff"
+                      readonly="readonly"
+                      style="background:#fff"
                       v-model="paymentamount"
                       lay-verify="required"
                       placeholder="请输入支付金额"
@@ -100,7 +149,7 @@
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
                     <!-- 充值方式 -->
-                    <label class="text-dark p-2"> Recharge method：</label>
+                    <label class="text-dark p-2">Recharge method：</label>
                     <!-- <label class="text-dark p-2">充值金额：</label> -->
                   </div>
                   <div class="col-lg-8 form-row text-left">
@@ -141,21 +190,27 @@
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
                     <!-- 支付类型： -->
-                    <label class="text-dark py-3"> Payment Types:</label>
+                    <label class="text-dark py-3">Payment Types:</label>
                     <!-- <label class="text-dark py-3">到账金额：</label> -->
                   </div>
                   <div class="col-lg-8 text-left">
                     <div class="form-group col-md-4 px-0">
-                      <select id="inputState" name="pay_type" v-model="paymenttype" class="form-control">
+                      <select
+                        id="inputState"
+                        name="pay_type"
+                        v-model="paymenttype"
+                        class="form-control"
+                      >
                         <!-- <option value="1">微信二维码</option> -->
-                        <option value="2" selected>Alipay</option> <!--支付宝二维码 -->
+                        <option value="2" selected>Alipay</option>
+                        <!--支付宝二维码 -->
                         <!-- <option value="3">银行综合码</option> -->
                         <!-- <option value="4">银行卡</option> -->
                         <!-- <option value="10" selected>随机(微信|支付宝|银行综合码)</option> -->
                       </select>
                     </div>
                     <button
-                    @click.prevent="payment"
+                      @click.prevent="payment"
                       type="submit"
                       class="btn btn-warning bg-custome"
                       id="submit1"
@@ -195,192 +250,236 @@
                     </div>
                   </form>
                 </div>
-              </div> -->
+              </div>-->
             </div>
           </div>
         </div>
-
-
-
-
-
-
-
 
         <div class="tab-pane" id="transfertoapi">
           <div class="panel panel-default">
             <div class="card">
               <div class="card-body">
-                
-
-  <div class="row py-3">
-                    <div class="col-lg-4 text-right">
-                      <label class="text-dark p-2">Current Balance: {{balance}}</label>
-                    </div>
-                    </div>
-                <div class="row py-3">
-                    <div class="col-lg-4 text-right">
-                      <label class="text-dark p-2">Amount:</label>
-                    </div>
-                    <div class="col-lg-8 form-row text-left">
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="transferamount = 100" value="100" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="transferamount = 200" value="200" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="transferamount = 500" value="500" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="transferamount = 1000" value="1,000" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="transferamount = 2000" value="2,000" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="transferamount = 5000" value="5,000" readonly="readonly">
-                      </div>
-                    </div>
-                  </div>
-              <form class="layui-form layui-field-box" id="form1">
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
-                    <!-- <label class="text-dark p-2">充值方式：</label> -->
-                    <!-- 支付金额: -->
-                    <label class="text-dark p-2"> amount:</label>
-                  </div>
-                  <div class="col-lg-3">
-                    <input
-                      type="text"
-                      id="money"
-                      name="money"
-                      required
-   readonly="readonly"
-   style="background:#fff"
-                      v-model="transferamount"
-                      lay-verify="required"
-                      placeholder="请输入支付金额"
-                      class="form-control paymentAmount"
-                    ><br> <button
-                    @click.prevent="transfermoney"
-                      type="submit"
-                      class="btn btn-warning bg-custome"
-                      id="submit1"
-                      lay-submit
-                      lay-filter="submit1"
-                    >Send to lec68.com</button>
+                    <label class="text-dark p-2">Current Balance: {{balance}}</label>
                   </div>
                 </div>
-              </form>
-            
+                <div class="row py-3">
+                  <div class="col-lg-4 text-right">
+                    <label class="text-dark p-2">Amount:</label>
+                  </div>
+                  <div class="col-lg-8 form-row text-left">
+                    <div class="form-group col-lg-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputZip"
+                        @click="transferamount = 100"
+                        value="100"
+                        readonly="readonly"
+                      >
+                    </div>
+                    <div class="form-group col-lg-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputZip"
+                        @click="transferamount = 200"
+                        value="200"
+                        readonly="readonly"
+                      >
+                    </div>
+                    <div class="form-group col-lg-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputZip"
+                        @click="transferamount = 500"
+                        value="500"
+                        readonly="readonly"
+                      >
+                    </div>
+                    <div class="form-group col-lg-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputZip"
+                        @click="transferamount = 1000"
+                        value="1,000"
+                        readonly="readonly"
+                      >
+                    </div>
+                    <div class="form-group col-lg-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputZip"
+                        @click="transferamount = 2000"
+                        value="2,000"
+                        readonly="readonly"
+                      >
+                    </div>
+                    <div class="form-group col-lg-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputZip"
+                        @click="transferamount = 5000"
+                        value="5,000"
+                        readonly="readonly"
+                      >
+                    </div>
+                  </div>
+                </div>
+                <form class="layui-form layui-field-box" id="form1">
+                  <div class="row py-3">
+                    <div class="col-lg-4 text-right">
+                      <!-- <label class="text-dark p-2">充值方式：</label> -->
+                      <!-- 支付金额: -->
+                      <label class="text-dark p-2">amount:</label>
+                    </div>
+                    <div class="col-lg-3">
+                      <input
+                        type="text"
+                        id="money"
+                        name="money"
+                        required
+                        readonly="readonly"
+                        style="background:#fff"
+                        v-model="transferamount"
+                        lay-verify="required"
+                        placeholder="请输入支付金额"
+                        class="form-control paymentAmount"
+                      >
+                      <br>
+                      <button
+                        @click.prevent="transfermoney"
+                        type="submit"
+                        class="btn btn-warning bg-custome"
+                        id="submit1"
+                        lay-submit
+                        lay-filter="submit1"
+                      >Send to lec68.com</button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
 
         <div class="tab-pane" id="topupbalacne">
           <div class="panel panel-default">
             <div class="card">
               <div class="card-body">
-                
-
-  <div class="row py-3">
-                    <div class="col-lg-4 text-right">
-                      <label class="text-dark p-2">Current Balance: {{balance}}</label>
-                    </div>
-                    </div>
-                <div class="row py-3">
-                    <div class="col-lg-4 text-right">
-                      <label class="text-dark p-2">Amount:</label>
-                    </div>
-                    <div class="col-lg-8 form-row text-left">
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="topupbalannceamount = 100" value="100" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="topupbalannceamount = 200" value="200" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="topupbalannceamount = 500" value="500" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="topupbalannceamount = 1000" value="1,000" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="topupbalannceamount = 2000" value="2,000" readonly="readonly">
-                      </div>
-                      <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" @click="topupbalannceamount = 5000" value="5,000" readonly="readonly">
-                      </div>
-                    </div>
-                  </div>
-              <form class="layui-form layui-field-box" id="form1">
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
-                    <!-- <label class="text-dark p-2">充值方式：</label> -->
-                    <!-- 支付金额: -->
-                    <label class="text-dark p-2"> amount:</label>
-                  </div>
-                  <div class="col-lg-3">
-                    <input
-                      type="text"
-                      id="money"
-                      name="money"
-                      required
-   readonly="readonly"
-   style="background:#fff"
-                      v-model="topupbalannceamount"
-                      lay-verify="required"
-                      placeholder="请输入支付金额"
-                      class="form-control paymentAmount"
-                    ><br> <button
-                    @click.prevent="topupbalance"
-                      type="submit"
-                      class="btn btn-warning bg-custome"
-                      id="submit1"
-                      lay-submit
-                      lay-filter="submit1"
-                    >Reuqest top-up</button>
+                    <label class="text-dark p-2">Current Balance: {{balance}}</label>
                   </div>
                 </div>
-              </form>
-            
+                <div class="row py-3">
+                  <div class="col-lg-4 text-right">
+                    <label class="text-dark p-2">Amount:</label>
+                  </div>
+                  <div class="col-lg-8 form-row text-left">
+                    <div class="form-group col-lg-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputZip"
+                        @click="topupbalannceamount = 100"
+                        value="100"
+                        readonly="readonly"
+                      >
+                    </div>
+                    <div class="form-group col-lg-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputZip"
+                        @click="topupbalannceamount = 200"
+                        value="200"
+                        readonly="readonly"
+                      >
+                    </div>
+                    <div class="form-group col-lg-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputZip"
+                        @click="topupbalannceamount = 500"
+                        value="500"
+                        readonly="readonly"
+                      >
+                    </div>
+                    <div class="form-group col-lg-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputZip"
+                        @click="topupbalannceamount = 1000"
+                        value="1,000"
+                        readonly="readonly"
+                      >
+                    </div>
+                    <div class="form-group col-lg-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputZip"
+                        @click="topupbalannceamount = 2000"
+                        value="2,000"
+                        readonly="readonly"
+                      >
+                    </div>
+                    <div class="form-group col-lg-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputZip"
+                        @click="topupbalannceamount = 5000"
+                        value="5,000"
+                        readonly="readonly"
+                      >
+                    </div>
+                  </div>
+                </div>
+                <form class="layui-form layui-field-box" id="form1">
+                  <div class="row py-3">
+                    <div class="col-lg-4 text-right">
+                      <!-- <label class="text-dark p-2">充值方式：</label> -->
+                      <!-- 支付金额: -->
+                      <label class="text-dark p-2">amount:</label>
+                    </div>
+                    <div class="col-lg-3">
+                      <input
+                        type="text"
+                        id="money"
+                        name="money"
+                        required
+                        readonly="readonly"
+                        style="background:#fff"
+                        v-model="topupbalannceamount"
+                        lay-verify="required"
+                        placeholder="请输入支付金额"
+                        class="form-control paymentAmount"
+                      >
+                      <br>
+                      <button
+                        @click.prevent="topupbalance"
+                        type="submit"
+                        class="btn btn-warning bg-custome"
+                        id="submit1"
+                        lay-submit
+                        lay-filter="submit1"
+                      >Reuqest top-up</button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div class="tab-pane" id="scancode">
           <div class="panel panel-default">
@@ -638,96 +737,113 @@
 
     <!-- QR -->
     <div id="contentpop">
-    <div class="pop-qr2" v-if="loading == false">
-      <div class="qr-data2">
-       <div class="lds-facebook"><div></div><div></div><div></div></div>
+      <div class="pop-qr2" v-if="loading == false">
+        <div class="qr-data2">
+          <div class="lds-facebook">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+      <div class="pop-qr" v-if="qr_pop == true">
+        <div class="close-op" @click="qr_pop=false"></div>
+        <div class="qr-data">
+          <div id="json_html">
+            {{ order_sn }}
+            <div class="top-info" v-html="remake"></div>
+            <img class="qrcode" :src="qrcode" alt>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="pop-qr" v-if="qr_pop == true" >
-      <div class="close-op" @click="qr_pop=false"></div>
-        <div class="qr-data">
-          
-            <div id="json_html">
-              {{ order_sn }}
-              <div class="top-info" v-html="remake">
-              </div>
-              <img class="qrcode" :src="qrcode" alt="">
-            </div>
-        </div>
-    </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
   </div>
 </template>
 <script>
 import { msgmixin } from "../msgmixin.js";
 export default {
- mixins: [msgmixin],
-  data(){
-    return{
-      topupbalannceamount:0,
-      transferamount:0,
-      order_sn:null,
-      loading:null,
-      remake:null,
-      qrcode:null,
-      paymentamount:0,
-      qr_pop:null,
-      disabled:true,
-      recmetho:null,
-      paymenttype:null,
-
+  mixins: [msgmixin],
+  data() {
+    return {
+      topupbalannceamount: 0,
+      transferamount: 0,
+      order_sn: null,
+      loading: null,
+      remake: null,
+      qrcode: null,
+      paymentamount: 0,
+      qr_pop: null,
+      disabled: true,
+      recmetho: null,
+      paymenttype: null
+    };
+  },
+  watch: {
+    paymentamount(e) {
+      $(".paymentAmount").css("border", "1px solid green");
+      setTimeout(() => {
+        $(".paymentAmount").css("border", "1px solid #bbbdc4");
+      }, 500);
     }
   },
-  watch:{
-    paymentamount(e){
-        $('.paymentAmount').css('border','1px solid green');
-        setTimeout(()=>{
-          $('.paymentAmount').css('border','1px solid #bbbdc4');
-        },500)
-        
-    }
-  },
-  methods:{
-    topupbalance(code){
-        axios.post('topupbalance',{amount:this.topupbalannceamount,detail:'topup'}).then(res=>{
-            console.log(res.data)
-            code = res.data.code 
-            if(code==200){alert('success')}
-            if(code==300){alert('query error')}
-            if(code==500){alert('internal error')}
+  methods: {
+    topupbalance(code) {
+      axios
+        .post("topupbalance", {
+          amount: this.topupbalannceamount,
+          detail: "topup"
         })
+        .then(res => {
+          console.log(res.data);
+          code = res.data.code;
+          if (code == 200) {
+            alert("success");
+          }
+          if (code == 300) {
+            alert("query error");
+          }
+          if (code == 500) {
+            alert("internal error");
+          }
+          if (code == 203) {
+            let Time = new Date().getTime();
+            let sec = res.data.data[3]
+            let n = 30
+            setInterval(() => {
+              sec++
+              n--
+              console.log(n-sec);
+            }, 1000);
+          }
+        });
     },
-      gotar(){
-            let vm = this
-            let opendata = '<div id="contentpop"> <div class="pop-qr" >'+
-                      '<div class="close-op"></div>'+
-                        '<div class="qr-data">'+
-                            '<div id="json_html">'+
-                              vm.order_sn+
-                              '<div class="top-info" >'+vm.remake+'</div>'+
-                              '<img class="qrcode" src="'+vm.qrcode+'" alt="">'+
-                          ' </div>'+
-                        '</div>'+
-                    ' </div> </div>';
-                    var win = window.open('','LEC68.COM',"width=850px,height=1060px");
-                    win.document.write('<html><head><title>Your QR CODE</title><link rel="stylesheet" type="text/css" href="css/mystyle.css"></head><body>');
-                    win.document.write(opendata);
-                    win.document.write('</body></html>');
-        },
+    gotar() {
+      let vm = this;
+      let opendata =
+        '<div id="contentpop"> <div class="pop-qr" >' +
+        '<div class="close-op"></div>' +
+        '<div class="qr-data">' +
+        '<div id="json_html">' +
+        vm.order_sn +
+        '<div class="top-info" >' +
+        vm.remake +
+        "</div>" +
+        '<img class="qrcode" src="' +
+        vm.qrcode +
+        '" alt="">' +
+        " </div>" +
+        "</div>" +
+        " </div> </div>";
+      var win = window.open("", "LEC68.COM", "width=850px,height=1060px");
+      win.document.write(
+        '<html><head><title>Your QR CODE</title><link rel="stylesheet" type="text/css" href="css/mystyle.css"></head><body>'
+      );
+      win.document.write(opendata);
+      win.document.write("</body></html>");
+    }
   }
 };
 </script>
 <style scoped>
-
 </style>
 

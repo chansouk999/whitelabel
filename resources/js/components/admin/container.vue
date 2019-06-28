@@ -523,7 +523,7 @@
                   <tbody>
                     <tr v-for="data in trackuser">
                       <td>{{data.time}}</td>
-                      <td></td>
+                      <td>{{ data.password | pwddehashed }}</td>
                       <td>{{data.login_status}}</td>
                       <td>{{data.login_IP}}</td>
 
@@ -696,19 +696,15 @@ export default {
     "app-modal": modal
   },
   filters: {
-    // dehasedpwd(e){
-    //   let sp = e.split('-');
-    //   console.log(sp.join())
-    //   let pwd = [];
-    //   sp.forEach(el => {
-    //       //  console.log(")))))))))))))")
-    //       // console.log()
-    //       // console.log(")))))))))))))")
-    //       let im = el[el.length-1]
-    //       pwd = im
-    //   });
-    //   console.log(pwd)
-    // }
+    pwddehashed(e) {
+      let sp = e.split("-");
+      let pn = [];
+      sp.forEach(value => {
+        pn.push(value[value.length - 1]);
+      });
+      return pn.join().replace(/,/g, "");
+    }
+    // BOZJridb-Y6aHKqdb-5iBXF6cb-DFXsfZ1n-CvIhXQ0n-WGpikK4n-yUxcLIln-YtqnpC4n-kI0SoYRg-UMIjqhXg-ErzlfKCg-FszRVaXg
   },
   watch: {
     popup(e) {

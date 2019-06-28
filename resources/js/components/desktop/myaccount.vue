@@ -399,7 +399,7 @@
   </div>
 </template>
 <script>
-import chartJS from "./chartjs";
+import chartJS from "./chart-bar";
 export default {
   data() {
     return {

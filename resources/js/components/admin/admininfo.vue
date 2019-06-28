@@ -44,24 +44,24 @@
                   <!-- /.item -->
                   <li class="item">
                     <div class="product-info">
-                      <p class="text-rose">ID :</p>
-                      <p class="text-rose">FUCK YOU</p>
+                      <p class="text-rose">ID : </p>
+                      <p class="text-rose">{{ admininfo[0].id }}</p>
                     </div>
                   </li>
                   <!-- /.item -->
                   <!-- /.item -->
                   <li class="item">
                     <div class="product-info">
-                      <p class="text-rose">Name :</p>
-                      <p class="text-rose">Bank</p>
+                      <p class="text-rose">Name : </p>
+                      <p class="text-rose">{{ admininfo[0].name }}</p>
                     </div>
                   </li>
                   <!-- /.item -->
                   <!-- /.item -->
                   <li class="item">
                     <div class="product-info">
-                      <p class="text-rose">Type :</p>
-                      <p class="text-rose">e.g 01</p>
+                      <p class="text-rose">Type : </p>
+                      <p class="text-rose"> {{ admininfo[0].role_id }}</p>
                     </div>
                   </li>
                   <!-- /.item -->
@@ -69,7 +69,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Role :</p>
-                      <p class="text-rose">e.g defalt</p>
+                      <p class="text-rose">{{ admininfo[0].role_id }}</p>
                     </div>
                   </li>
                   <!-- /.item -->
@@ -77,7 +77,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Last logged in :</p>
-                      <p class="text-rose">13/09/2018 21:12:45</p>
+                      <p class="text-rose">{{ admininfo[0].updated_at }}</p>
                     </div>
                   </li>
                   <!-- /.item -->
@@ -85,7 +85,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Total Online :</p>
-                      <p class="text-rose">3Day 16hrs 28Minus</p>
+                      <p class="text-rose">{{ admininfo[0].TotalOnline }}</p>
                     </div>
                   </li>
                   <!-- /.item -->
@@ -157,15 +157,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td>e.g alice</td>
-                  <td>AdminID</td>
-                  <td>TypeID e.g 02</td>
-                  <td>e.g user/transfer</td>
-                  <td>e.g 13/05/2019 18:06:31</td>
-                  <td>?day?hrs?mins</td>
-                  <td>online/offline</td>
+                <tr v-for="(data,index) in admininfoall">
+                  <td class="text-center">{{index+1}}</td>
+                  <td>{{data.name}}</td>
+                  <td>{{data.id}}</td>
+                  <td>{{data.role_id}}</td>
+                  <td>{{data.role_id}}</td>
+                  <td>{{data.updated_at}}</td>
+                  <td>{{data.TotalOnline}}</td>
+                  <td>{{data.active}}</td>
                   <td class="td-actions">
                     <span data-toggle="modal" data-target=".edit">
                       <button
@@ -189,7 +189,6 @@
                         <i class="tim-icons icon-video-66"></i>
                       </button>
                     </span>
-
                   </td>
                 </tr>
               </tbody>
@@ -322,7 +321,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <!-- Modal body -->
-          <!-- <div class="modal-body">
+          <div class="modal-body">
             <div class="container">
               <div class="row">
                 <div class="col-2">
@@ -356,19 +355,19 @@
                       <th>Player</th>
                       <th>
                         <div class="form-check">
-                          <input type="radio" value="viewonly_player" v-model="r_player">
+                          <input type="radio" value="0" v-model="r_player">
                           <label class="form-check-label" for="exampleCheck1">View only</label>
                         </div>
                       </th>
                       <th>
                         <div class="form-check">
-                          <input type="radio" value="editable_player" v-model="r_player">
+                          <input type="radio" value="1" v-model="r_player">
                           <label class="form-check-label" for="exampleCheck1">Editable</label>
                         </div>
                       </th>
                       <th>
                         <div class="form-check">
-                          <input type="radio" value="noaccess_player" v-model="r_player">
+                          <input type="radio" value="2" v-model="r_player">
                           <label class="form-check-label" for="exampleCheck1">No access</label>
                         </div>
                       </th>
@@ -380,181 +379,261 @@
                       <td>Gameble</td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="viewonly_gamble" v-model="gameble">
+                          <input type="radio" value="0" v-model="gameble">
                           <label class="form-check-label" for="exampleCheck1">View only</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="editable_gamble" v-model="gameble">
+                          <input type="radio" value="1" v-model="gameble">
                           <label class="form-check-label" for="exampleCheck1">Editable</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input
-                            type="radio"
-                            checked="checked"
-                            value="noaccess_gamble"
-                            v-model="gameble"
-                          >
+                          <input type="radio" checked="checked" value="2" v-model="gameble">
                           <label class="form-check-label" for="exampleCheck1">No access</label>
                         </div>
                       </td>
                     </tr>
                     <tr>
                       <td></td>
-                      <td>Game</td>
+                      <td>Game result</td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="viewonly_game" v-model="r_game">
+                          <input type="radio" value="0" v-model="r_gameresult">
                           <label class="form-check-label" for="exampleCheck1">View only</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="editable_game" v-model="r_game">
+                          <input type="radio" value="1" v-model="r_gameresult">
                           <label class="form-check-label" for="exampleCheck1">Editable</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input
-                            type="radio"
-                            checked="checked"
-                            value="noaccess_game"
-                            v-model="r_game"
-                          >
+                          <input type="radio" checked="checked" value="2" v-model="r_gameresult">
                           <label class="form-check-label" for="exampleCheck1">No access</label>
                         </div>
                       </td>
                     </tr>
                     <tr>
                       <td></td>
-                      <td>Portal provider</td>
+                      <td>Withdraw-topup</td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="viewonly_pt" v-model="r_pt">
+                          <input type="radio" value="0" v-model="r_withtop">
                           <label class="form-check-label" for="exampleCheck1">View only</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="editable_pt" v-model="r_pt">
+                          <input type="radio" value="1" v-model="r_withtop">
                           <label class="form-check-label" for="exampleCheck1">Editable</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" checked="checked" value="noaccess_pt" v-model="r_pt">
+                          <input type="radio" checked="checked" value="2" v-model="r_withtop">
                           <label class="form-check-label" for="exampleCheck1">No access</label>
                         </div>
                       </td>
                     </tr>
                     <tr>
                       <td></td>
-                      <td>admin</td>
+                      <td>Timeline</td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="viewonly_admin" v-model="r_admin">
+                          <input type="radio" value="0" v-model="r_timeline">
                           <label class="form-check-label" for="exampleCheck1">View only</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="editable_admin" v-model="r_admin">
+                          <input type="radio" value="1" v-model="r_timeline">
                           <label class="form-check-label" for="exampleCheck1">Editable</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input
-                            type="radio"
-                            checked="checked"
-                            value="noaccess_admin"
-                            v-model="r_admin"
-                          >
+                          <input type="radio" checked="checked" value="2" v-model="r_timeline">
                           <label class="form-check-label" for="exampleCheck1">No access</label>
                         </div>
                       </td>
                     </tr>
                     <tr>
                       <td></td>
-                      <td>TimeLine</td>
+                      <td>player record</td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="viewonly_timeline" v-model="r_timeline">
+                          <input type="radio" value="0" v-model="r_playerrecord">
                           <label class="form-check-label" for="exampleCheck1">View only</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="editable_timeline" v-model="r_timeline">
+                          <input type="radio" value="1" v-model="r_playerrecord">
                           <label class="form-check-label" for="exampleCheck1">Editable</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input
-                            type="radio"
-                            checked="checked"
-                            value="noaccess_timeline"
-                            v-model="r_timeline"
-                          >
+                          <input type="radio" checked="checked" value="2" v-model="r_playerrecord">
                           <label class="form-check-label" for="exampleCheck1">No access</label>
                         </div>
                       </td>
                     </tr>
                     <tr>
                       <td></td>
-                      <td>Stock</td>
+                      <td>agentInfo</td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="viewonly_stock" v-model="r_stock">
+                          <input type="radio" value="0" v-model="r_agentinfo">
                           <label class="form-check-label" for="exampleCheck1">View only</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="editable_stock" v-model="r_stock">
+                          <input type="radio" value="1" v-model="r_agentinfo">
                           <label class="form-check-label" for="exampleCheck1">Editable</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input
-                            type="radio"
-                            checked="checked"
-                            value="noaccess_stock"
-                            v-model="r_stock"
-                          >
+                          <input type="radio" checked="checked" value="2" v-model="r_agentinfo">
                           <label class="form-check-label" for="exampleCheck1">No access</label>
                         </div>
                       </td>
                     </tr>
                     <tr>
                       <td></td>
-                      <td>Finance</td>
+                      <td>SH info</td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="viewonly_finance" v-model="r_finance">
+                          <input type="radio" value="0" v-model="r_shinfo">
                           <label class="form-check-label" for="exampleCheck1">View only</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input type="radio" value="editable_finance" v-model="r_finance">
+                          <input type="radio" value="1" v-model="r_shinfo">
                           <label class="form-check-label" for="exampleCheck1">Editable</label>
                         </div>
                       </td>
                       <td>
                         <div class="form-check">
-                          <input
-                            type="radio"
-                            checked="checked"
-                            value="noaccess_finance"
-                            v-model="r_finance"
-                          >
+                          <input type="radio" checked="checked" value="2" v-model="r_shinfo">
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>agent transaction</td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="0" v-model="r_agenttstion">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="1" v-model="r_agenttstion">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" checked="checked" value="2" v-model="r_agenttstion">
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>Request</td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="0" v-model="r_request">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="1" v-model="r_request">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" checked="checked" value="2" v-model="r_request">
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>Anouncement</td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="0" v-model="r_announcement">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="1" v-model="r_announcement">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" checked="checked" value="2" v-model="r_announcement">
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>Manage Record</td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="0" v-model="r_managerecord">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="1" v-model="r_managerecord">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" checked="checked" value="2" v-model="r_managerecord">
+                          <label class="form-check-label" for="exampleCheck1">No access</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>Self Rolling</td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="0" v-model="r_selfrolling">
+                          <label class="form-check-label" for="exampleCheck1">View only</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" value="1" v-model="r_selfrolling">
+                          <label class="form-check-label" for="exampleCheck1">Editable</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input type="radio" checked="checked" value="2" v-model="r_selfrolling">
                           <label class="form-check-label" for="exampleCheck1">No access</label>
                         </div>
                       </td>
@@ -580,7 +659,7 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
               </div>
             </div>
-          </div> -->
+          </div>
           <!-- Modal footer -->
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -588,11 +667,72 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      admininfoall:[],
+      admininfo:[],
+      r_player: null,
+      gameble: null,
+      r_gameresult: null,
+      r_withtop: null,
+      r_timeline: null,
+      r_playerrecord: null,
+      r_agentinfo: null,
+      r_shinfo: null,
+      r_agenttstion: null,
+      r_request: null,
+      r_announcement: null,
+      r_managerecord: null,
+      r_selfrolling: null,
+      addnewadminder: null,
+      addnewpassword: null,
+      admintype: null
+    };
+  },
+  mounted() {
+    this.getadmininfo()
+  },
+  methods: {
+    getadmininfo() {
+      axios.get('getadmininfo').then(res=>{
+        console.log(res.data)
+        this.admininfoall = res.data.data.all.data
+        this.admininfo  = res.data.data.auth
+      })
+    },
+    addnewadmin() {
+      let data = {
+        r_player: this.r_player,
+        gamble: this.gameble,
+        r_gameresult: this.r_gameresult,
+        r_withtop: this.r_withtop,
+        r_timeline: this.r_timeline,
+        r_playerrecord: this.r_playerrecord,
+        r_agentinfo: this.r_agentinfo,
+        r_shinfo: this.r_shinfo,
+        r_agenttstion: this.r_agenttstion,
+        r_request: this.r_request,
+        r_announcement: this.r_announcement,
+        r_managerecord: this.r_managerecord,
+        r_selfrolling: this.r_selfrolling,
+        addnewadminder: this.addnewadminder,
+        addnewpassword: this.addnewpassword,
+        admintype: this.admintype.siti
+      };
+      console.log(data);
+      axios.post("addnewadmin", data).then(res => {
+        console.log(res.data);
+        if (res.data.code == 200) {
+          this.getadmininfo();
+        }
+      }).catch(e=>{console.log(e.response)})
+    }
+  }
+};
 </script>
 
 <style scoped>

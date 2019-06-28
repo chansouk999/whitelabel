@@ -1,12 +1,6 @@
 <template>
   <div>
-    <navbars
-    :home ="home"
-    :forum ="forum"
-    :washcode ="washcode"
-    :recharge ="recharge"
-    :mine ="mine"
-    ></navbars>
+    <navbars :home="home" :forum="forum" :washcode="washcode" :recharge="recharge" :mine="mine"></navbars>
     <div class="container">
       <div class="row">
         <div class="col-2">
@@ -113,10 +107,8 @@
                           </span>
                         </div>
                         <p class="mycolor-icon">
-                          <a href>
-                            {{mytask}}
-                            <i class="tim-icons icon-minimal-right"></i>
-                          </a>
+                          {{unverified}}
+                          <i class="tim-icons icon-minimal-right"></i>
                         </p>
                       </div>
                     </div>
@@ -128,15 +120,13 @@
                           <i class="tim-icons icon-badge"></i>
                           <span class="game_rBox">
                             <p>
-                              {{recommendfriends}}
+                              {{mytask}}
                               <span class="badge badge-warning">8</span>
                             </p>
                           </span>
                         </div>
                         <p class="mycolor-icon">
-                          <a href>
-                            <i class="tim-icons icon-minimal-right"></i>
-                          </a>
+                          <i class="tim-icons icon-minimal-right"></i>
                         </p>
                       </div>
                       <hr class="hr-mobile">
@@ -144,13 +134,11 @@
                         <div class="d-flex">
                           <i class="tim-icons icon-single-02"></i>
                           <span class="game_rBox">
-                            <p>{{bankinfo}}</p>
+                            <p>{{recommendfriends}}</p>
                           </span>
                         </div>
                         <p class="mycolor-icon">
-                          <a href>
-                            <i class="tim-icons icon-minimal-right"></i>
-                          </a>
+                          <i class="tim-icons icon-minimal-right"></i>
                         </p>
                       </div>
                     </div>
@@ -162,41 +150,37 @@
                         <div class="d-flex">
                           <i class="tim-icons icon-email-85"></i>
                           <span class="game_rBox">
+                            <p>{{bankinfo}}</p>
+                          </span>
+                        </div>
+                        <p class="mycolor-icon">
+                          <i class="tim-icons icon-minimal-right"></i>
+                        </p>
+                      </div>
+                      <hr class="hr-mobile">
+
+                      <div class="row d-flex justify-content-between py-3">
+                        <div class="d-flex">
+                          <i class="tim-icons icon-coins"></i>
+                          <span class="game_rBox">
                             <p>{{transactionrecord}}</p>
                           </span>
                         </div>
                         <p class="mycolor-icon">
-                          <a href>
-                            <i class="tim-icons icon-minimal-right"></i>
-                          </a>
+                          <i class="tim-icons icon-minimal-right"></i>
                         </p>
                       </div>
                       <hr class="hr-mobile">
+
                       <div class="row d-flex justify-content-between py-3">
                         <div class="d-flex">
-                          <i class="tim-icons icon-coins"></i>
+                          <i class="tim-icons icon-settings-gear-63"></i>
                           <span class="game_rBox">
                             <p>{{accountsettings}}</p>
                           </span>
                         </div>
                         <p class="mycolor-icon">
-                          <a href>
-                            <i class="tim-icons icon-minimal-right"></i>
-                          </a>
-                        </p>
-                      </div>
-                      <hr class="hr-mobile">
-                      <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-settings-gear-63"></i>
-                          <span class="game_rBox">
-                            <p>{{unverified}}</p>
-                          </span>
-                        </div>
-                        <p class="mycolor-icon">
-                          <a href>
-                            <i class="tim-icons icon-minimal-right"></i>
-                          </a>
+                          <i class="tim-icons icon-minimal-right"></i>
                         </p>
                       </div>
                     </div>
@@ -298,18 +282,18 @@ export default {
     "bankinfo",
     "transactionrecord",
     "accountsettings",
-    'unverified',
+    "unverified",
     "totalbalance",
     "yuan",
-"gamebalance",
-"localbalance",
-"fastrecharge",
-"applyforwithdrawal",
-"selfservicerolling",
+    "gamebalance",
+    "localbalance",
+    "fastrecharge",
+    "applyforwithdrawal",
+    "selfservicerolling",
     "home",
-"forum",
-"washcode",
-"mine",
+    "forum",
+    "washcode",
+    "mine"
   ]
 };
 </script>

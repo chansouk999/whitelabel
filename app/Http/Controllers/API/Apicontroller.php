@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\access_token;
 use App\Request as Reqst;
 use DateTime;
 use App\Http\Controllers\Controller;
@@ -22,7 +23,7 @@ class Apicontroller extends Controller
         $url = 'https://api.huobi.pro/market/trade?symbol=btcusdt';
         $data = file_get_contents($url);
         $data = json_decode($data);
-        return [$data];
+        return $gettoken = access_token::orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token')[0];
         $Log = new ActivityLog();
         $method = 'Playerrecord or Adminrecord';
         $data = array(

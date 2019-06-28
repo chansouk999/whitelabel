@@ -13,18 +13,24 @@
             <a
               href="#"
               id="myaccountlink"
+              :data-names="myaccount_tra"
+              :data-name="myaccount_tra"
               @click.prevent="setNavShowName('myaccount',$event)"
             >{{ myaccount_tra }}</a>
           </li>
           <li class="list-navbar">
             <a
               href="#"
+              :data-names="myaccount_tra"
+              :data-name="recommend_friends"
               @click.prevent="setNavShowName('recommedndedfriends',$event)"
             >{{ recommend_friends }}</a>
           </li>
           <li class="list-navbar">
             <a
               href="#"
+              :data-names="myaccount_tra"
+              :data-name="transaction_record"
               @click.prevent="setNavShowName('transactionrecord',$event)"
             >{{ transaction_record }}</a>
           </li>
@@ -42,6 +48,8 @@
             <a
               href="#"
               id="recharge"
+              :data-names="financial_center"
+              :data-name="instant_recharge"
               @click.prevent="setNavShowName('instantrecharge',$event)"
             >{{ instant_recharge }}</a>
           </li>
@@ -49,12 +57,16 @@
             <a
               href="#"
               id="withDrawClick"
+              :data-names="financial_center"
+              :data-name="apply_for_withdrawal"
               @click.prevent="setNavShowName('applyforwithdrawal',$event)"
             >{{ apply_for_withdrawal }}</a>
           </li>
           <li class="list-navbar">
             <a
               href="#"
+              :data-names="financial_center"
+              :data-name="self_service_rolling"
               @click.prevent="setNavShowName('selfservicewashing',$event)"
             >{{ self_service_rolling }}</a>
           </li>
@@ -71,6 +83,8 @@
           <li class="list-navbar">
             <a
               href="#"
+              :data-names="customer_information"
+              :data-name="change_password"
               @click.prevent="setNavShowName('changepassword',$event)"
             >{{ change_password }}</a>
           </li>
@@ -78,11 +92,18 @@
             <a
               href="#"
               id="bankinfoclick"
+              :data-names="customer_information"
+              :data-name="bank_info"
               @click.prevent="setNavShowName('bankinfo',$event)"
             >{{ bank_info }}</a>
           </li>
           <li class="list-navbar">
-            <a href="#" @click.prevent="setNavShowName('modifyphone',$event)">{{ modify_phone }}</a>
+            <a
+              href="#"
+              :data-names="customer_information"
+              :data-name="modify_phone"
+              @click.prevent="setNavShowName('modifyphone',$event)"
+            >{{ modify_phone }}</a>
           </li>
         </ul>
       </div>
@@ -95,13 +116,25 @@
         </ul>
         <ul class="list-group-navbar">
           <li class="list-navbar">
-            <a href="#" @click.prevent="setNavShowName('subscription',$event)">{{ msmsubscription }}</a>
+            <a
+              href="#"
+              :data-names="customer_care"
+              :data-name="msmsubscription"
+              @click.prevent="setNavShowName('subscription',$event)"
+            >{{ msmsubscription }}</a>
           </li>
           <li class="list-navbar active">
-            <a href="#" @click.prevent="setNavShowName('message',$event)">
+            <a
+              href="#"
+              :data-names="customer_care"
+              :data-name="my_message"
+              @click.prevent="setNavShowName('message',$event)"
+            >
               {{ my_message }}
               <!--<shiro:hasAnyRoles name="customer:type:1">-->
-              <em class="badge letter" style>2</em>
+              <em class="badge letter" :data-names="customer_care"
+              :data-name="my_message"
+              @click.prevent="setNavShowName('message',$event)">2</em>
               <!--</shiro:hasAnyRoles>-->
             </a>
           </li>
@@ -112,15 +145,14 @@
       <div class="bg-secondary pr-3 py-1">
         <nav aria-label="breadcrumb" role="navigation">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">
+            <!-- <li class="breadcrumb-item">
               <a href="#">Home</a>
-            </li>
-            <li class="breadcrumb-item">
-              <a href="#">
-                <i class="tim-icons icon-chat-33 icon-default"></i>Message
-              </a>
-            </li>
-            <li class="breadcrumb-item active text-capitalize" aria-current="page">{{navShowName}}</li>
+            </li> -->
+            <!-- <li class="breadcrumb-item" v-if="page!= null ">
+              <a href="#">{{page}}</a>
+            </li> -->
+            <li class="breadcrumb-item" ><a href="#">{{navNames}}</a></li>
+            <li class="breadcrumb-item active text-capitalize" aria-current="page">{{navName}}</li>
           </ol>
         </nav>
         <div class="u-content" v-if="navShowName ==='myaccount'">
@@ -178,6 +210,8 @@ export default {
   data() {
     return {
       navShowName: "message",
+      navNames: "",
+      navName: "",
       country: []
     };
   },
@@ -195,10 +229,18 @@ export default {
     message
   },
   mounted() {
+    let urlParams = new URLSearchParams(window.location.search);
+    this.page = urlParams.get("page");
+
+    this.navNames = this.customer_care;
+    this.navName = this.my_message;
+
     this.getct();
   },
   methods: {
     setNavShowName(value, e) {
+      this.navNames = e.target.dataset.names;
+      this.navName = e.target.dataset.name;
       this.navShowName = value;
       $("ul li").removeClass("active");
       $(e.target.parentElement).addClass("active");
