@@ -277,7 +277,7 @@ class MasterController extends Controller
     public function checkuser(array $data)
     {
         $http = new Client;
-        $response = $http->post($this->urlforlocal8003 . '/api/checkuser', [ //replace url with $this->urlforserver
+        $response = $http->post($this->urlforserverapi . '/api/checkuser', [ //replace url with $this->urlforserver
             'form_params' => [
                 'user_email' => $data['email'],
             ],
@@ -307,7 +307,7 @@ class MasterController extends Controller
         $checkit['email'] = Auth::user()->email;
         $checkuser  = $this->checkuser($checkit);
         if ($checkuser['code'] == 200) {
-            $response = $http->post('http://localhost:8003/oauth/token', [
+            $response = $http->post($this->urlforserverapi.'/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'password',
                     'client_id' => '2',
