@@ -17,9 +17,9 @@ class LoginController extends Controller
     // {
     //     $this->middleware('guest:administrator')->except('logout');
     // }
-    public function headerr(){
-        echo "HELLOEOEOEO";
-    }
+    // public function index(){
+    //     return view('auth.admin_login');
+    // }
     public function showLoginForm()
     {
         return view('auth.admin_login', [
