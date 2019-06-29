@@ -16,21 +16,21 @@ class RedirectBackController extends Controller
 
         $query = http_build_query([
             'client_id' => '3',
-            'redirect_uri' => 'http://localhost:8004/callback',
+            'redirect_uri' => 'http://www.ecg9.com/callback',
             'response_type' => 'code',
             'scope' => '',
         ]);
-        return redirect('http://localhost:8003/oauth/authorize?' . $query);
+        return redirect('http://lec68.com/oauth/authorize?' . $query);
     }
     public function callback(Request $request)
     {
         $http = new Client;
-        $response = $http->post('http://localhost:8003/oauth/token', [
+        $response = $http->post('http://lec68.com/oauth/token', [
             'form_params' => [
                 'grant_type' => 'authorization_code',
                 'client_id' => '3',
                 'client_secret' => 'XhW9xjDWoh3ieRwmECmSm82iDJ7Gv2OOkGi6HU2W',
-                'redirect_uri' => 'http://localhost:8004/callback',
+                'redirect_uri' => 'http://www.ecg9.com/callback',
                 'code' => $request->code,
             ],
         ]);
@@ -40,7 +40,7 @@ class RedirectBackController extends Controller
             'Accept' => 'application/json',
             'Authorization' => 'Bearer ' . $accessdata['access_token']
         ];
-        $resuser = $http->get('http://localhost:8003/api/users', ['headers' => $header]);
+        $resuser = $http->get('http://lec68.com/api/users', ['headers' => $header]);
         $data =  json_decode((string) $resuser->getBody(), true);
         $date = date('Y-m-d');
         $check = access_token::where([['created_at', 'like', '%' . $date . '%'], ['user_id', '=', '' . $data['user_id'] . '']])->get()->count();
@@ -51,7 +51,7 @@ class RedirectBackController extends Controller
             ]);
         }
 
-        return redirect('http://localhost:8003/igotologin');
+        return redirect('http://lec68.com/igotologin');
         //     // return [$accessdata,$data];
 
     }
