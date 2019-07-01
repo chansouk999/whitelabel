@@ -245,3 +245,4 @@ Route::prefix('/administrator')->namespace('Admins')->group(function(){
   });
 
   
+Route::get('getRequets', 'CardController@getRequets');

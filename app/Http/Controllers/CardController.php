@@ -146,6 +146,7 @@ class CardController extends Controller
         return $getSelfservice;
     }
 
+    
     public function editlevel($id)
     {
         $editlevel  = Selfservice::where('id', '=', '' . $id . '')->get();
@@ -181,5 +182,11 @@ class CardController extends Controller
     {
         $deleteLevel = Selfservice::find($id)->delete();
         //   dd($deleteCard);
+    }
+    public function getRequets()
+    { 
+        $rq  = Auth::user()->user_id;
+        $Getdata = Reqst::where('userId','=',$rq )->get();
+        return $Getdata;
     }
 }
