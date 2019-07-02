@@ -30,6 +30,7 @@ Auth::routes();
 
 
 
+Route::get('/getadmininfotimeline', 'AdminController@getadmininfotimeline');
 Route::post('/addnewadmin', 'AdminController@addnewadmin');
 Route::get('/getadmininfo', 'AdminController@getadmininfo');
 Route::get('/delete_img/{id}', 'AdminController@delete_img');
@@ -217,23 +218,25 @@ Route::post('/saveLavel', 'CardController@saveLavel');
 Route::post('/deleteLevel/{id}', 'CardController@deleteLevel');
 
 Route::prefix('/administrator')->namespace('Admins')->group(function () {
-
-    //Login Routes
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('/login', 'Auth\LoginController@login');
-
     Route::get('/', 'HomeController@index');
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-  
-    //Forgot Password Routes
-    // Route::get('/password/reset','ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    // Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    // //Reset Password Routes
-    // Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset');
-    // Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
-    // });
 });
 
+Route::prefix('/agent')->namespace('Agent')->group(function () {
+    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('/login', 'Auth\LoginController@login');
+    Route::get('/', 'HomeController@index');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+});
+
+Route::prefix('/shareholder')->namespace('Shareholder')->group(function () {
+    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('/login', 'Auth\LoginController@login');
+    Route::get('/', 'HomeController@index');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+});
 // admin
 Route::get('/admins', 'HomeController@admin');
 //  Mobile

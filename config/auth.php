@@ -46,16 +46,23 @@ return [
 
 
 
+        
+        'shareholders' => [
+            'driver'   => 'session',
+            'provider' => 'shareholders',
+        ],
 
-
-
+        'agents' => [
+            'driver'   => 'session',
+            'provider' => 'agents',
+        ],
 
         'administrator' => [
             'driver'   => 'session',
             'provider' => 'administrator',
         ],
 
-
+        
 
 
 
@@ -129,8 +136,17 @@ return [
 
 
 
+        
+        'shareholders' => [
+            'driver' => 'eloquent',
+            'model'  => App\Shareholder_login::class,
+        ],
 
 
+        'agents' => [
+            'driver' => 'eloquent',
+            'model'  => App\Agent_login::class,
+        ],
 
         'administrator' => [
             'driver' => 'eloquent',
@@ -206,67 +222,22 @@ return [
     */
 
     'passwords' => [
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
+        'shareholders' => [
+            'provider' => 'shareholders',
+            'table'    => 'password_resets',
+            'expire'   => 60,
+        ],
+        'agents' => [
+            'provider' => 'agents',
+            'table'    => 'password_resets',
+            'expire'   => 60,
+        ],
         'administrator' => [
             'provider' => 'administrator',
             'table'    => 'password_resets',
             'expire'   => 60,
         ],
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         'users' => [
             'provider' => 'users',

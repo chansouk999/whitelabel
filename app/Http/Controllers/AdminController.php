@@ -32,6 +32,21 @@ class AdminController extends Controller
         $this->middleware('auth:administrator');
     }
 
+    public function getadmininfotimeline(){
+        try{
+            $adminid = Auth::guard('administrator')->user()->id;
+            $dataall = modelog::where('method','Adminrecord')->get();
+            $datamy = modelog::where([['method','Adminrecord'],['detail','like','%"serveby":'.$adminid.'%']])->get();
+            if ($datamy && $dataall) {
+                return $this->returncode(200, ['my'=>$datamy,'all'=>$dataall], 'success');
+            } else {
+                return $this->returncode(300, ['my'=>$datamy,'all'=>$dataall], DB::getQueryLog());
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }   
+
 
 
     public function getallresultadmin()
@@ -40,27 +55,13 @@ class AdminController extends Controller
             $token = access_token::orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token')[0];
             $header = $this->getcleanheader($token);
             $http = new Client;
-            $response = $http->get($this->urlserver.'/api/getallresultadmin', ['headers' => $header]);
+            $response = $http->get($this->url8003.'/api/getallresultadmin', ['headers' => $header]);
             $accessdata = json_decode((string)$response->getBody(), true);
             return $accessdata;
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function getcleanheader($token)
     {
@@ -121,7 +122,7 @@ class AdminController extends Controller
     public function getfreshtoken()
     {
         $http = new Client;
-        $response = $http->post($this->urlserver.'/oauth/token', [
+        $response = $http->post($this->url8003.'/oauth/token', [
             'form_params' => [
                 'grant_type' => 'password',
                 'client_id' => '2',
@@ -228,7 +229,7 @@ class AdminController extends Controller
 
             $http = new Client;
             if ($method == 'game') {
-                $response = $http->post($this->urlserver . '/api/requestuserdata', [
+                $response = $http->post($this->url8003 . '/api/requestuserdata', [
                     'form_params' => [
                         'method' => $req->reqmethod,
                         'user_id' => $user_id,
@@ -266,7 +267,7 @@ class AdminController extends Controller
     {
         try {
             $http = new Client;
-            $response = $http->post($this->urlserver . '/api/requestuserdata', [
+            $response = $http->post($this->url8003 . '/api/requestuserdata', [
                 'form_params' => [
                     'method' => $method,
                     'gameid' => $gmaeid,
@@ -282,7 +283,7 @@ class AdminController extends Controller
     {
         try {
             $http = new Client;
-            $response = $http->post($this->urlserver . '/api/requestuserdata', [
+            $response = $http->post($this->url8003 . '/api/requestuserdata', [
                 'form_params' => [
                     'method' => $method,
                     'gameid' => $gmaeid,
@@ -438,13 +439,23 @@ class AdminController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function denyreq($id)
+    public function denyreq($id,$userid,$msglog,$reqdata)
     {
         try {
             DB::enableQueryLog();
             $del = Reqst::where('id', '=', $id)->delete();
             if ($del) {
-                
+                $method = 'Adminrecord';
+                        $data = array(
+                            'user_id' => $userid,
+                            'event' => $msglog,
+                            'serveby' => Auth::guard('administrator')->user()->id,
+                            'amount' =>$reqdata['amount'],
+                            'eventid' => '',
+                            'Time' => date('Y-m-d'),
+                        );
+                        $Log = new ActivityLog();
+                        $Log->storeLog($method, $data);
                 return $this->returncode(200, $del, 'success');
             } else {
                 return $this->returncode(300, $del, DB::getQueryLog());
@@ -502,23 +513,25 @@ class AdminController extends Controller
     public function actionprocess(Request $req)
     {
         try {
+            DB::enableQueryLog();
+            $reqdata = Reqst::where('id', '=', $req->id)->get()[0];
+            $userbl = User::where('user_id', '=', '' . $reqdata['userId'] . '')->get()->pluck('userBalance')[0];
+            $detail = json_decode($reqdata['detail'], true);
+            if ($reqdata['requestDetail'] == 'topup') {
+                $evnt = $userbl + $reqdata['amount'];
+                $msgreqlog = 'Top up request Approved by';
+                $msgreqlogdeny = ' Deny Top up request of user';
+                $e = '+';
+                $wtid = strtotime('now');
+            }
+            if ($reqdata['requestDetail'] == 'Withdraw') {
+                $evnt = $userbl - $reqdata['amount'];
+                $msgreqlog = 'Withdraw request Approved by';
+                $msgreqlogdeny = ' Deny Withdraw request of user';
+                $e = '-';
+                $wtid = $this->getwithdrwaid($reqdata['amount'])['data'];
+            }
             if ($req->code == 200) {
-                DB::enableQueryLog();
-                $reqdata = Reqst::where('id', '=', $req->id)->get()[0];
-                $userbl = User::where('user_id', '=', '' . $reqdata['userId'] . '')->get()->pluck('userBalance')[0];
-                $detail = json_decode($reqdata['detail'], true);
-                if ($reqdata['requestDetail'] == 'topup') {
-                    $evnt = $userbl + $reqdata['amount'];
-                    $msgreqlog = 'Top up request Approved by';
-                    $e = '+';
-                    $wtid = strtotime('now');
-                }
-                if ($reqdata['requestDetail'] == 'Withdraw') {
-                    $evnt = $userbl - $reqdata['amount'];
-                    $msgreqlog = 'Withdraw request Approved by';
-                    $e = '-';
-                    $wtid = $this->getwithdrwaid($reqdata['amount'])['data'];
-                }
                 // $data\
                 // return $evnt;
                 $cc = ',"method":"' . $reqdata['method'] . '"}';
@@ -563,7 +576,7 @@ class AdminController extends Controller
                 }
             }
             if ($req->code == 303) { //deny
-                return $this->denyreq($req->id);
+                return $this->denyreq($req->id,$req->userid,$msgreqlogdeny,$reqdata);
             }
             if ($req->code == 202) {
                 return $this->viewuser($req->userid);
