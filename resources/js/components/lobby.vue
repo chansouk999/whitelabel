@@ -299,7 +299,7 @@ export default {
           this.firstname = res.data[0].id;
           this.lastname = res.data[0].secret;
           let filename = window.location.href
-            this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
+            this.gamelink = `http://159.138.54.214/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
             // this.gamelink = `http://localhost:8003/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
           // $('.id').val(this.id);
           // $('.provider_name').val(this.provider_name);
