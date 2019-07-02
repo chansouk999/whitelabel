@@ -63,9 +63,9 @@
                         </div>
                       </div>
                       <div class="col-md-6">
-                        <div class="info-area info-horizontal mt-5">
+                        <div class="info-area info-horizontal">
                           <div class="icon icon-light mt-0">
-                            <i class="tim-icons icon-wifi"></i>
+                            <i class="tim-icons icon-wifi mt-3"></i>
                           </div>
                           <div class="description">
                             <h3 class="info-title">Details</h3>
@@ -75,7 +75,7 @@
                             <p class="description">Usage ::</p>
                           </div>
                         </div>
-                        <div class="d-flex justify-content-lg-between">
+                        <div class="d-flex justify-content-lg-between ps-custome">
                           <button type="button" class="btn btn-warning btn-sm btn-icon">
                             <i class="tim-icons icon-pencil"></i>
                           </button>

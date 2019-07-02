@@ -85,3 +85,13 @@
 .main-panel {
     border-top: 2px solid #fe8c72 !important;
 }
+
+.ps-custome {
+    bottom: 0 !important;
+    position: relative !important;
+    margin-top: 30px !important;
+}
+
+.info-horizontal .description {
+    padding: 10px 0px;
+}
