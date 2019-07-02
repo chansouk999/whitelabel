@@ -29,61 +29,61 @@
 
 <body class="login-page register-page">
 
-  <nav class="navbar navbar-expand-lg bg-warning">
+  {{-- <nav class="navbar navbar-expand-lg bg-warning">
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="{{url('/')}}">{{ config('app.name', 'TNK') }}</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  </div>
 
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav">
-          @guest
-          <li class="nav-item active">
-            <a href="{{ route('login') }}" class="nav-link">{{ __('Login ') }}</a>
-          </li>
-          @if (Route::has('register'))
-          <li class="nav-item">
-            <a href="{{ route('register') }}" class="nav-link">{{ __('Register') }}</a>
-          </li>
-          @endif
-          @else
-          <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" v-pre>
-              {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav">
+      @guest
+      <li class="nav-item active">
+        <a href="{{ route('login') }}" class="nav-link">{{ __('Login ') }}</a>
+      </li>
+      @if (Route::has('register'))
+      <li class="nav-item">
+        <a href="{{ route('register') }}" class="nav-link">{{ __('Register') }}</a>
+      </li>
+      @endif
+      @else
+      <li class="nav-item dropdown">
+        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" v-pre>
+          {{ Auth::user()->name }} <span class="caret"></span>
+        </a>
 
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                    document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-              </a>
+            {{ __('Logout') }}
+          </a>
 
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-              </form>
-            </div>
-          </li>
-          @endguest
-        </ul>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+        </div>
+      </li>
+      @endguest
+    </ul>
 
-        <form class="form-inline ml-auto">
-          <div class="form-group no-border">
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-          <button type="submit" class="btn btn-link btn-icon btn-round">
-            <i class="tim-icons icon-zoom-split"></i>
-          </button>
-        </form>
+    <form class="form-inline ml-auto">
+      <div class="form-group no-border">
+        <input type="text" class="form-control" placeholder="Search">
       </div>
-    </div>
-  </nav>
+      <button type="submit" class="btn btn-link btn-icon btn-round">
+        <i class="tim-icons icon-zoom-split"></i>
+      </button>
+    </form>
+  </div>
+  </div>
+  </nav> --}}
   <div class="container">
     <div class="row mt-50">
       <div class="col-md-12">
@@ -94,7 +94,7 @@
             </a>
           </div>
           <div class="card-body">
-            <h2>
+            <h2 class=" text-capitalize">
               Please choose your account type to login
             </h2>
           </div>
@@ -105,7 +105,7 @@
       <div class="col-md-4">
         <div class="card card-testimonial">
           <div class="card-header card-header-avatar">
-            <a href="/shareholder">
+            <a href="{{url('/shareholder/login')}}">
               <img class="img img-raised" src="../assets/img/Shareholder.png" alt="Card image">
             </a>
           </div>
@@ -118,9 +118,9 @@
             </div>
           </div>
           <div class="card-footer">
-            <button class="btn btn-warning">
-              <i class="tim-icons icon-time-alarm"></i> Login
-            </button>
+            <a href="{{url('/shareholder/login')}}" class="btn btn-warning">
+              <i class="tim-icons icon-lock-circle"></i> Login
+            </a>
           </div>
         </div>
       </div>
@@ -140,16 +140,16 @@
             </div>
           </div>
           <div class="card-footer">
-            <button class="btn btn-warning">
-              <i class="tim-icons icon-time-alarm"></i> Login
-            </button>
+            <a href="{{url('/agent/login')}}" class="btn btn-warning">
+              <i class="tim-icons icon-lock-circle"></i> Login
+            </a>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card card-testimonial">
           <div class="card-header card-header-avatar">
-            <a href="/administrator/admin">
+            <a href="/administrator/login">
               <img class="img img-raised" src="../assets/img/admin.png" alt="Card image">
             </a>
           </div>
@@ -162,9 +162,9 @@
             </div>
           </div>
           <div class="card-footer">
-            <button class="btn btn-warning">
-              <i class="tim-icons icon-time-alarm"></i> Login
-            </button>
+            <a href="{{url('/administrator/login')}}" class="btn btn-warning">
+              <i class="tim-icons icon-lock-circle"></i> Login
+            </a>
           </div>
         </div>
       </div>
