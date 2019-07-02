@@ -7,7 +7,7 @@
       </div>
       <div class="col-md-4">
         <button
-          class="btn btn-primary btn-round"
+          class="btn btn-warning btn-round"
           data-toggle="modal"
           data-target="#MakenewAgent"
         >Make new Agent</button>
