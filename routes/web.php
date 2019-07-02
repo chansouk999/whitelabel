@@ -64,6 +64,9 @@ Route::get('/stocklist', function () {
     return view('desktop.stocklist');
 });
 // Route::get('/',)
+
+Route::post('requestdata', 'MasterController@requestdata');
+Route::get('fullscreengame', 'MasterController@fullscreengame');
 Route::get('getUserBet', 'MasterController@getUserBet');
 Route::get('/', 'MasterController@welcome')->name('home');
 Route::post('/topupbalance', 'MasterController@topupbalance');
