@@ -25,11 +25,6 @@ Route::get('/lobby', 'HomeController@lobby');
 Route::post('/updatemoney', 'MasterController@updatemoney');
 Auth::routes();
 
-
-
-
-
-
 // Route::get('/admins', 'HomeController@admin');
 // Route::get('administrator', 'AdminController@index')->middleware('admin');
 
@@ -97,12 +92,6 @@ Route::get('/getlogin', function () {
 });
 
 
-// admin
-Route::get('/admins', 'HomeController@admin');
-
-//  Mobile
-Route::get('/wlmobile', 'HomeController@whitelabel_mobile');
-Route::get('/myaccount', 'HomeController@myaccount');
 
 //  Route::domain('{m}.localhost:8004')->group(function () {
 //     Route::get('/', function () {
@@ -227,22 +216,29 @@ Route::post('/saveLavel', 'CardController@saveLavel');
 
 Route::post('/deleteLevel/{id}', 'CardController@deleteLevel');
 
-Route::prefix('/administrator')->namespace('Admins')->group(function(){
-   
-        //Login Routes
-        Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
-        Route::post('/login','Auth\LoginController@login');
-        
-        Route::get('/','HomeController@index');
-        Route::get('/logout','Auth\LoginController@logout')->name('logout');
-        //Forgot Password Routes
-        // Route::get('/password/reset','ForgotPasswordController@showLinkRequestForm')->name('password.request');
-        // Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-        // //Reset Password Routes
-        // Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset');
-        // Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
-    // });
-  });
+Route::prefix('/administrator')->namespace('Admins')->group(function () {
 
+    //Login Routes
+    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('/login', 'Auth\LoginController@login');
+
+    Route::get('/', 'HomeController@index');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
   
+    //Forgot Password Routes
+    // Route::get('/password/reset','ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    // Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    // //Reset Password Routes
+    // Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset');
+    // Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
+    // });
+});
+
+// admin
+Route::get('/admins', 'HomeController@admin');
+//  Mobile
+Route::get('/wlmobile', 'HomeController@whitelabel_mobile');
+Route::get('/myaccount', 'HomeController@myaccount');
+
 Route::get('getRequets', 'CardController@getRequets');
+Route::get('/shareholder', 'HomeController@shareholder');

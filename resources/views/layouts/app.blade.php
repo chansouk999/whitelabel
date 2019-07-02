@@ -2,127 +2,222 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Larave') }}</title>
+  <title>{{ config('app.name', 'Larave') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+  <!-- Scripts -->
+  <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <!-- Styles -->
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <!-- Nucleo Icons -->
-    <link href="assets/css/nucleo-icons.css" rel="stylesheet" /> <!-- CSS Files -->
-    <link href="{{asset('../assetsadmin/css/black-dashboard.css?v=1.0.0')}}" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{asset('../assetsadmin/css/main.css')}}" rel="stylesheet" />
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+  <!-- Styles -->
+  <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <link href="assets/css/nucleo-icons.css" rel="stylesheet" /> <!-- CSS Files -->
+  <link href="{{asset('../assetsadmin/css/black-dashboard.css?v=1.0.0')}}" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="{{asset('../assetsadmin/css/main.css')}}" rel="stylesheet" />
 </head>
 
 <body class="login-page register-page">
-    <nav class="navbar navbar-expand-lg bg-primary">
-        <div class="container">
-            <div class="navbar-translate">
-                <a class="navbar-brand" href="{{url('/')}}">{{ config('app.name', 'TNK') }}</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    <span class="navbar-toggler-icon"></span>
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+
+  <nav class="navbar navbar-expand-lg bg-warning">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="{{url('/')}}">{{ config('app.name', 'TNK') }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          @guest
+          <li class="nav-item active">
+            <a href="{{ route('login') }}" class="nav-link">{{ __('Login ') }}</a>
+          </li>
+          @if (Route::has('register'))
+          <li class="nav-item">
+            <a href="{{ route('register') }}" class="nav-link">{{ __('Register') }}</a>
+          </li>
+          @endif
+          @else
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" v-pre>
+              {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+              </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
             </div>
+          </li>
+          @endguest
+        </ul>
 
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    @guest
-                    <li class="nav-item active">
-                        <a href="{{ route('login') }}" class="nav-link">{{ __('Login') }}</a>
-                    </li>
-                    @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a href="{{ route('register') }}" class="nav-link">{{ __('Register') }}</a>
-                    </li>
-                    @endif
-                    @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                    @endguest
-                </ul>
-            </div>
+        <form class="form-inline ml-auto">
+          <div class="form-group no-border">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-link btn-icon btn-round">
+            <i class="tim-icons icon-zoom-split"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row mt-50">
+      <div class="col-md-12">
+        <div class="card card-testimonial">
+          <div class="card-header card-header-avatar">
+            <a href="#pablo">
+              <img class="img img-raised" src="../assets/img/user_type.png" alt="Card image">
+            </a>
+          </div>
+          <div class="card-body">
+            <h2>
+              Please choose your account type to login
+            </h2>
+          </div>
         </div>
-    </nav>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card card-testimonial">
+          <div class="card-header card-header-avatar">
+            <a href="/shareholder">
+              <img class="img img-raised" src="../assets/img/Shareholder.png" alt="Card image">
+            </a>
+          </div>
+          <div class="card-body">
+            <p class="card-description">
+              Shareholder account
+            </p>
+            <div class="icon icon-warning">
+              <i class="fa fa-quote-right"></i>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-warning">
+              <i class="tim-icons icon-time-alarm"></i> Login
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-testimonial">
+          <div class="card-header card-header-avatar">
+            <a href="/administrator/agent">
+              <img class="img img-raised" src="../assets/img/agent.png" alt="Card image">
+            </a>
+          </div>
+          <div class="card-body">
+            <p class="card-description">
+              Agent Account
+            </p>
+            <div class="icon icon-warning">
+              <i class="fa fa-quote-right"></i>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-warning">
+              <i class="tim-icons icon-time-alarm"></i> Login
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-testimonial">
+          <div class="card-header card-header-avatar">
+            <a href="/administrator/admin">
+              <img class="img img-raised" src="../assets/img/admin.png" alt="Card image">
+            </a>
+          </div>
+          <div class="card-body">
+            <p class="card-description">
+              Admin Account
+            </p>
+            <div class="icon icon-warning">
+              <i class="fa fa-quote-right"></i>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-warning">
+              <i class="tim-icons icon-time-alarm"></i> Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main>
+    @yield('content')
+  </main>
+  <!--   Core JS Files   -->
+  <script src="../assetsadmin/js/core/jquery.min.js"></script>
+  <script src="../assetsadmin/js/core/popper.min.js"></script>
+  <script src="../assetsadmin/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="../assetsadmin/js/plugins/moment.min.js"></script>
+  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+  <script src="../assetsadmin/js/plugins/bootstrap-switch.js"></script>
+  <!--  Plugin for Sweet Alert -->
+  <script src="../assetsadmin/js/plugins/sweetalert2.min.js"></script>
+  <!--  Plugin for Sorting Tables -->
+  <script src="../assetsadmin/js/plugins/jquery.tablesorter.js"></script>
+  <!-- Forms Validations Plugin -->
+  <script src="../assetsadmin/js/plugins/jquery.validate.min.js"></script>
+  <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+  <script src="../assetsadmin/js/plugins/jquery.bootstrap-wizard.js"></script>
+  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+  <script src="../assetsadmin/js/plugins/bootstrap-selectpicker.js"></script>
+  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+  <script src="../assetsadmin/js/plugins/bootstrap-datetimepicker.js"></script>
+  <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
+  <script src="../assetsadmin/js/plugins/jquery.dataTables.min.js"></script>
+  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+  <script src="../assetsadmin/js/plugins/bootstrap-tagsinput.js"></script>
+  <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <script src="../assetsadmin/js/plugins/jasny-bootstrap.min.js"></script>
+  <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+  <script src="../assetsadmin/js/plugins/fullcalendar.min.js"></script>
+  <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+  <script src="../assetsadmin/js/plugins/jquery-jvectormap.js"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="../assetsadmin/js/plugins/nouislider.min.js"></script>
+  <!--  Google Maps Plugin    -->
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
+  <script src="../assetsadmin/js/core/bootstrap.min.js"></script>
 
-    <main>
-        @yield('content')
-    </main>
-    <!--   Core JS Files   -->
-    <script src="../assetsadmin/js/core/jquery.min.js"></script>
-    <script src="../assetsadmin/js/core/popper.min.js"></script>
-    <script src="../assetsadmin/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    <script src="../assetsadmin/js/plugins/moment.min.js"></script>
-    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-    <script src="../assetsadmin/js/plugins/bootstrap-switch.js"></script>
-    <!--  Plugin for Sweet Alert -->
-    <script src="../assetsadmin/js/plugins/sweetalert2.min.js"></script>
-    <!--  Plugin for Sorting Tables -->
-    <script src="../assetsadmin/js/plugins/jquery.tablesorter.js"></script>
-    <!-- Forms Validations Plugin -->
-    <script src="../assetsadmin/js/plugins/jquery.validate.min.js"></script>
-    <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-    <script src="../assetsadmin/js/plugins/jquery.bootstrap-wizard.js"></script>
-    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-    <script src="../assetsadmin/js/plugins/bootstrap-selectpicker.js"></script>
-    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-    <script src="../assetsadmin/js/plugins/bootstrap-datetimepicker.js"></script>
-    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
-    <script src="../assetsadmin/js/plugins/jquery.dataTables.min.js"></script>
-    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-    <script src="../assetsadmin/js/plugins/bootstrap-tagsinput.js"></script>
-    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    <script src="../assetsadmin/js/plugins/jasny-bootstrap.min.js"></script>
-    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-    <script src="../assetsadmin/js/plugins/fullcalendar.min.js"></script>
-    <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-    <script src="../assetsadmin/js/plugins/jquery-jvectormap.js"></script>
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="../assetsadmin/js/plugins/nouislider.min.js"></script>
-    <!--  Google Maps Plugin    -->
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
-    <script src="../assetsadmin/js/core/bootstrap.min.js"></script>
-
-    <!-- Chart JS -->
-    <script src="../assetsadmin/js/plugins/chartjs.min.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="../assetsadmin/js/plugins/bootstrap-notify.js"></script>
-    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assetsadmin/js/black-dashboard.min.js?v=1.0.0"></script>
-    <!-- Black Dashboard DEMO methods, don't include it in your project! -->
-    <script src="../assetsadmin/demo/demo.js"></script>
-      <script>
+  <!-- Chart JS -->
+  <script src="../assetsadmin/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../assetsadmin/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assetsadmin/js/black-dashboard.min.js?v=1.0.0"></script>
+  <!-- Black Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../assetsadmin/demo/demo.js"></script>
+  <script>
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar');
