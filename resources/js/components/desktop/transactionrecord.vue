@@ -8,31 +8,19 @@
         <li class="nav-item">
           <a class="nav-link active" href="#withdrawalsrecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-atom"></i>
-            提现记录
+            withdrawals Record
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#rechargerecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-settings"></i>
-            充值记录
+            Rechange Recoard
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#washingrecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-bullet-list-67"></i>
-            洗码记录
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#offerecord" role="tab" data-toggle="tab">
-            <i class="tim-icons icon-atom"></i>
-            优惠记录
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#gamerecord" role="tab" data-toggle="tab">
-            <i class="tim-icons icon-settings"></i>
-            游戏记录
+            Wahing Record
           </a>
         </li>
       </ul>
@@ -44,11 +32,11 @@
                 <!-- input with datetimepicker -->
                 <div class="form-group">
                   <label class="label-control px-2">Date range</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
                 </div>
                 <div class="form-group">
                   <label class="label-control px-2">To</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
                 </div>
                 <label class="px-2">
                   <font style="vertical-align: inherit;">
@@ -78,31 +66,31 @@
                   data-toggle="modal"
                   data-target="#searchModal"
                 >
-                  <i class="fa fa-search"></i> 查询
+                  <i class="fa fa-search"></i> 查询\
                 </button>
               </div>
             </div>
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th>申请时间</th>
-                  <th>提现单号</th>
-                  <th>提现银行卡</th>
-                  <th>申请时间</th>
-                  <th>提现单号</th>
-                  <th>提现银行卡</th>
-                  <th>提现银行卡</th>
+                  <th>#</th>
+                  <th>User ID</th>
+                  <th>Event</th>
+                  <th>Serveby</th>
+                  <th>Amount</th>
+                  <th>Eventid</th>
+                  <th>DATA & TIME</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
+                <tr v-for="(data,index) in playerRecord">
+                  <td>{{index+1}}</td>
+                  <td>{{ JSON.parse(data.detail).user_id }}</td>
+                  <td>{{ JSON.parse(data.detail).event }}</td>
+                  <td>{{ JSON.parse(data.detail).serveby }}</td>
+                  <td>{{ JSON.parse(data.detail).amount }}</td>
+                  <td>{{ JSON.parse(data.detail).eventid }}</td>
+                  <td>{{ JSON.parse(data.detail).Time }}</td>
                 </tr>
               </tbody>
             </table>
@@ -124,7 +112,7 @@
                         <font style="vertical-align: inherit;">
                           <font style="vertical-align: inherit;">First</font>
                         </font>
-                        <input type="text" class="col-lg-2 form-control" placeholder value="0">
+                        <input type="text" class="col-lg-2 form-control" placeholder value="0" />
                         <span class="total_page_pl">
                           <font style="vertical-align: inherit;">
                             <font style="vertical-align: inherit;">Total 0 pages</font>
@@ -155,7 +143,7 @@
                     <font style="vertical-align: inherit;">
                       <font style="vertical-align: inherit;">yuan</font>
                     </font>
-                    <br>
+                    <br />
                     <b>
                       <font style="vertical-align: inherit;">
                         <font style="vertical-align: inherit;">total:</font>
@@ -180,98 +168,6 @@
                 </tr>
               </tbody>
             </table>
-            <!-- <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
-              <div class="card card-plain">
-                <div class="card-header" role="tab" id="headingOne">
-                  <a
-                    data-toggle="collapse"
-                    data-parent="#accordion"
-                    href="#process"
-                    aria-expanded="true"
-                    aria-controls="process"
-                  >
-                    提现申请状态“等待处理”？
-                    <i class="tim-icons icon-minimal-down"></i>
-                  </a>
-                </div>
-
-                <div
-                  id="process"
-                  class="collapse show"
-                  role="tabpanel"
-                  aria-labelledby="headingOne"
-                >
-                  <div class="card-body">
-                    <p>表示您的提现还在审核中，审核通过后即可进入支付流程。</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card card-plain">
-                <div class="card-header" role="tab" id="headingTwo">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordion"
-                    href="#payment"
-                    aria-expanded="false"
-                    aria-controls="payment"
-                  >
-                    提现申请状态“等待支付”？
-                    <i class="tim-icons icon-minimal-down"></i>
-                  </a>
-                </div>
-                <div id="payment" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                  <div class="card-body">
-                    <p>表示已经审核通过，进入了支付流程，会尽快为您支付到账。</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card card-plain">
-                <div class="card-header" role="tab" id="headingThree">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordion"
-                    href="#complated"
-                    aria-expanded="false"
-                    aria-controls="complated"
-                  >
-                    提现申请状态“支付完成”？
-                    <i class="tim-icons icon-minimal-down"></i>
-                  </a>
-                </div>
-                <div id="complated" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-                  <div class="card-body">
-                    <p>表示提现已完成，请您登录银行账户查询确认。注：银行转账的到账时间主要取决于银行，如遇节假日跨行转账可能会有延迟，提现到账也将会被延迟。</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card card-plain">
-                <div class="card-header" role="tab" id="headingThree">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordion"
-                    href="#cancelwithdraw"
-                    aria-expanded="false"
-                    aria-controls="cancelwithdraw"
-                  >
-                    如何取消提现？
-                    <i class="tim-icons icon-minimal-down"></i>
-                  </a>
-                </div>
-                <div
-                  id="cancelwithdraw"
-                  class="collapse"
-                  role="tabpanel"
-                  aria-labelledby="headingThree"
-                >
-                  <div class="card-body">
-                    <p>如您的提现是“等待处理”状态，可以点击“取消”按钮取消提现；如是“处理中”或“等待支付”状态，则需联系。</p>
-                  </div>
-                </div>
-              </div>
-            </div>-->
           </div>
         </div>
         <div class="tab-pane" id="rechargerecord">
@@ -281,11 +177,11 @@
                 <!-- input with datetimepicker -->
                 <div class="form-group">
                   <label class="label-control px-2">Date range</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
                 </div>
                 <div class="form-group">
                   <label class="label-control px-2">To</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
                 </div>
                 <label class="px-2">
                   <font style="vertical-align: inherit;">
@@ -322,28 +218,35 @@
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th>申请时间</th>
-                  <th>提现单号</th>
-                  <th>提现银行卡</th>
-                  <th>申请时间</th>
-                  <th>提现单号</th>
-                  <th>提现银行卡</th>
-                  <th>提现银行卡</th>
+                  <th>#</th>
+                  <th>User ID</th>
+                  <th>Request Detail</th>
+                  <th>Amount</th>
+                  <th>Card No</th>
+                  <th>City</th>
+                  <th>Province</th>
+                  <th>Branch</th>
+                  <th>Request Time</th>
+                  <th>Request IP</th>
+                  <th>DATA & TIME</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>test</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
+                <tr v-for="(data,index) in loppdataRequets">
+                  <td>{{index+1}}</td>
+                  <td>{{ data.userId }}</td>
+                  <td>{{ data.requestDetail }}</td>
+                  <td>{{ data.amount }}</td>
+                  <td>{{ JSON.parse(data.detail).cardno }}</td>
+                  <td>{{ JSON.parse(data.detail).regcity }}</td>
+                  <td>{{ JSON.parse(data.detail).regprovince }}</td>
+                  <td>{{ JSON.parse(data.detail).branch }}</td>
+                  <td>{{ data.requestTime }}</td>
+                  <td>{{ data.ip }}</td>
+                  <td>{{ data.created_at }}</td>
                 </tr>
               </tbody>
             </table>
-
             <table class="table table-striped col6">
               <tbody>
                 <tr class="last">
@@ -361,7 +264,7 @@
                         <font style="vertical-align: inherit;">
                           <font style="vertical-align: inherit;">First</font>
                         </font>
-                        <input type="text" class="col-lg-2 form-control" placeholder value="0">
+                        <input type="text" class="col-lg-2 form-control" placeholder value="0" />
                         <span class="total_page_pl">
                           <font style="vertical-align: inherit;">
                             <font style="vertical-align: inherit;">Total 0 pages</font>
@@ -392,7 +295,7 @@
                     <font style="vertical-align: inherit;">
                       <font style="vertical-align: inherit;">yuan</font>
                     </font>
-                    <br>
+                    <br />
                     <b>
                       <font style="vertical-align: inherit;">
                         <font style="vertical-align: inherit;">total:</font>
@@ -417,98 +320,6 @@
                 </tr>
               </tbody>
             </table>
-            <!-- <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
-              <div class="card card-plain">
-                <div class="card-header" role="tab" id="headingOne">
-                  <a
-                    data-toggle="collapse"
-                    data-parent="#accordion"
-                    href="#process"
-                    aria-expanded="true"
-                    aria-controls="process"
-                  >
-                    提现申请状态“等待处理”？test
-                    <i class="tim-icons icon-minimal-down"></i>
-                  </a>
-                </div>
-
-                <div
-                  id="process"
-                  class="collapse show"
-                  role="tabpanel"
-                  aria-labelledby="headingOne"
-                >
-                  <div class="card-body">
-                    <p>表示您的提现还在审核中，审核通过后即可进入支付流程。</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card card-plain">
-                <div class="card-header" role="tab" id="headingTwo">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordion"
-                    href="#payment"
-                    aria-expanded="false"
-                    aria-controls="payment"
-                  >
-                    提现申请状态“等待支付”？
-                    <i class="tim-icons icon-minimal-down"></i>
-                  </a>
-                </div>
-                <div id="payment" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                  <div class="card-body">
-                    <p>表示已经审核通过，进入了支付流程，会尽快为您支付到账。</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card card-plain">
-                <div class="card-header" role="tab" id="headingThree">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordion"
-                    href="#complated"
-                    aria-expanded="false"
-                    aria-controls="complated"
-                  >
-                    提现申请状态“支付完成”？
-                    <i class="tim-icons icon-minimal-down"></i>
-                  </a>
-                </div>
-                <div id="complated" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-                  <div class="card-body">
-                    <p>表示提现已完成，请您登录银行账户查询确认。注：银行转账的到账时间主要取决于银行，如遇节假日跨行转账可能会有延迟，提现到账也将会被延迟。</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card card-plain">
-                <div class="card-header" role="tab" id="headingThree">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordion"
-                    href="#cancelwithdraw"
-                    aria-expanded="false"
-                    aria-controls="cancelwithdraw"
-                  >
-                    如何取消提现？
-                    <i class="tim-icons icon-minimal-down"></i>
-                  </a>
-                </div>
-                <div
-                  id="cancelwithdraw"
-                  class="collapse"
-                  role="tabpanel"
-                  aria-labelledby="headingThree"
-                >
-                  <div class="card-body">
-                    <p>如您的提现是“等待处理”状态，可以点击“取消”按钮取消提现；如是“处理中”或“等待支付”状态，则需联系。</p>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
         <div class="tab-pane" id="washingrecord">
@@ -518,11 +329,11 @@
                 <!-- input with datetimepicker -->
                 <div class="form-group">
                   <label class="label-control px-2">Date range</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
                 </div>
                 <div class="form-group">
                   <label class="label-control px-2">To</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
+                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
                 </div>
                 <label class="px-2">
                   <font style="vertical-align: inherit;">
@@ -598,7 +409,7 @@
                         <font style="vertical-align: inherit;">
                           <font style="vertical-align: inherit;">First test</font>
                         </font>
-                        <input type="text" class="col-lg-2 form-control" placeholder value="0">
+                        <input type="text" class="col-lg-2 form-control" placeholder value="0" />
                         <span class="total_page_pl">
                           <font style="vertical-align: inherit;">
                             <font style="vertical-align: inherit;">Total 0 pages</font>
@@ -629,297 +440,7 @@
                     <font style="vertical-align: inherit;">
                       <font style="vertical-align: inherit;">yuan</font>
                     </font>
-                    <br>
-                    <b>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">total:</font>
-                      </font>
-                    </b>
-                    <span class="total-amount">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0</font>
-                      </font>
-                    </span>
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">yuan</font>
-                    </font>
-                  </td>
-                  <td colspan="2" style="width: 160px;">
-                    <span class="page_angle">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Display 0 to 0, total 0 records</font>
-                      </font>
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="tab-pane" id="offerecord">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div id="withdraw_form" class="form-inline">
-                <!-- input with datetimepicker -->
-                <div class="form-group">
-                  <label class="label-control px-2">Date range</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
-                </div>
-                <div class="form-group">
-                  <label class="label-control px-2">To</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
-                </div>
-                <label class="px-2">
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">status</font>
-                  </font>
-                </label>
-                <!-- Example single danger button -->
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-primary dropdown-toggle"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >All</button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                  </div>
-                </div>
-                <button
-                  class="btn btn-primary"
-                  id="search-button"
-                  data-toggle="modal"
-                  data-target="#searchModal"
-                >
-                  <i class="fa fa-search"></i> 查询
-                </button>
-              </div>
-            </div>
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>申请时间</th>
-                  <th>提现单号</th>
-                  <th>提现银行卡</th>
-                  <th>申请时间</th>
-                  <th>提现单号</th>
-                  <th>提现银行卡</th>
-                  <th>提现银行卡</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <table class="table table-striped col6">
-              <tbody>
-                <tr class="last">
-                  <td colspan="3" class="text-right">
-                    <div action class="pull-left form-inline">
-                      <div class="form-group">
-                        <button class="btn btn-default step-backward">
-                          <i class="fa fa-step-backward"></i>
-                        </button>
-                        <button class="btn btn-default backward">
-                          <i class="fa fa-backward"></i>
-                        </button>
-                      </div>
-                      <div class="form-group">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">First test</font>
-                        </font>
-                        <input type="text" class="col-lg-2 form-control" placeholder value="0">
-                        <span class="total_page_pl">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">Total 0 pages</font>
-                          </font>
-                        </span>
-                      </div>
-                      <div class="form-group">
-                        <button class="btn btn-default forward">
-                          <i class="fa fa-forward"></i>
-                        </button>
-                        <button class="btn btn-default step-forward">
-                          <i class="fa fa-step-forward"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="row2" style="width: 280px;">
-                    <b>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Subtotal:</font>
-                      </font>
-                    </b>
-                    <span class="subtotal-amount">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0</font>
-                      </font>
-                    </span>
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">yuan</font>
-                    </font>
-                    <br>
-                    <b>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">total:</font>
-                      </font>
-                    </b>
-                    <span class="total-amount">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0</font>
-                      </font>
-                    </span>
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">yuan</font>
-                    </font>
-                  </td>
-                  <td colspan="2" style="width: 160px;">
-                    <span class="page_angle">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Display 0 to 0, total 0 records</font>
-                      </font>
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="tab-pane" id="gamerecord">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div id="withdraw_form" class="form-inline">
-                <!-- input with datetimepicker -->
-                <div class="form-group">
-                  <label class="label-control px-2">Date range</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
-                </div>
-                <div class="form-group">
-                  <label class="label-control px-2">To</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018">
-                </div>
-                <label class="px-2">
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">status</font>
-                  </font>
-                </label>
-                <!-- Example single danger button -->
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-primary dropdown-toggle"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >All</button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                  </div>
-                </div>
-                <button
-                  class="btn btn-primary"
-                  id="search-button"
-                  data-toggle="modal"
-                  data-target="#searchModal"
-                >
-                  <i class="fa fa-search"></i> 查询
-                </button>
-              </div>
-            </div>
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>申请时间</th>
-                  <th>提现单号</th>
-                  <th>提现银行卡</th>
-                  <th>申请时间</th>
-                  <th>提现单号</th>
-                  <th>提现银行卡</th>
-                  <th>提现银行卡</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <table class="table table-striped col6">
-              <tbody>
-                <tr class="last">
-                  <td colspan="3" class="text-right">
-                    <div action class="pull-left form-inline">
-                      <div class="form-group">
-                        <button class="btn btn-default step-backward">
-                          <i class="fa fa-step-backward"></i>
-                        </button>
-                        <button class="btn btn-default backward">
-                          <i class="fa fa-backward"></i>
-                        </button>
-                      </div>
-                      <div class="form-group">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">First test</font>
-                        </font>
-                        <input type="text" class="col-lg-2 form-control" placeholder value="0">
-                        <span class="total_page_pl">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">Total 0 pages</font>
-                          </font>
-                        </span>
-                      </div>
-                      <div class="form-group">
-                        <button class="btn btn-default forward">
-                          <i class="fa fa-forward"></i>
-                        </button>
-                        <button class="btn btn-default step-forward">
-                          <i class="fa fa-step-forward"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="row2" style="width: 280px;">
-                    <b>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Subtotal:</font>
-                      </font>
-                    </b>
-                    <span class="subtotal-amount">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0</font>
-                      </font>
-                    </span>
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">yuan</font>
-                    </font>
-                    <br>
+                    <br />
                     <b>
                       <font style="vertical-align: inherit;">
                         <font style="vertical-align: inherit;">total:</font>
@@ -971,7 +492,7 @@
                     class="form-control date-input"
                     placeholder="2016-12-05 12:00:00"
                     readonly
-                  >
+                  />
                   <span class="input-group-btn">
                     <button
                       class="btn btn-default"
@@ -990,7 +511,7 @@
                     class="form-control date-input"
                     placeholder="2016-12-05 12:00:00"
                     readonly
-                  >
+                  />
                   <span class="input-group-btn">
                     <button
                       class="btn btn-default"
@@ -1043,7 +564,7 @@
                       </div>
                       <div class="form-group">
                         第
-                        <input type="text" class="form-control page-no" readonly>
+                        <input type="text" class="form-control page-no" readonly />
                         <span class="total_page_pl">共 0 页</span>
                       </div>
                       <div class="form-group">
@@ -1059,7 +580,7 @@
                   <td class="row2" style="width: 300px;">
                     <b>小计：</b>
                     <span class="subtotal-amount">0</span>元
-                    <br>
+                    <br />
                     <b>总计：</b>
                     <span class="total-amount">0</span>元
                   </td>
@@ -1088,7 +609,7 @@
                     </dt>
                     <dd>
                       确认您的银行卡是否已经扣款成功，短信不能作为出入账凭证哦；
-                      <br>如银行卡已扣款成功，请复制单号联系
+                      <br />如银行卡已扣款成功，请复制单号联系
                       <a href="javascript:;" class="text-orange as-cs-js">在线客服</a>
                     </dd>
                   </dl>
@@ -1197,7 +718,7 @@
                     class="form-control"
                     placeholder="2016-12-05 12:00:00"
                     readonly
-                  >
+                  />
                   <span class="input-group-btn">
                     <button
                       class="btn btn-default"
@@ -1216,7 +737,7 @@
                     class="form-control"
                     placeholder="2016-12-05 12:00:00"
                     readonly
-                  >
+                  />
                   <span class="input-group-btn">
                     <button
                       class="btn btn-default"
@@ -1257,7 +778,7 @@
                       </div>
                       <div class="form-group">
                         第
-                        <input type="text" class="form-control page-no" readonly>
+                        <input type="text" class="form-control page-no" readonly />
                         <span class="total_page_pl">共 0 页</span>
                       </div>
                       <div class="form-group">
@@ -1273,7 +794,7 @@
                   <td class="row2" style="width: 300px;">
                     <b>小计：</b>
                     <span class="subtotal-amount">0</span>元
-                    <br>
+                    <br />
                     <b>总计：</b>
                     <span class="total-amount">0</span>元
                   </td>
@@ -1297,7 +818,7 @@
                     class="form-control"
                     placeholder="2016-12-05 12:00:00"
                     readonly
-                  >
+                  />
                   <span class="input-group-btn">
                     <button
                       class="btn btn-default"
@@ -1316,7 +837,7 @@
                     class="form-control"
                     placeholder="2016-12-05 12:00:00"
                     readonly
-                  >
+                  />
                   <span class="input-group-btn">
                     <button
                       class="btn btn-default"
@@ -1352,7 +873,7 @@
                       </div>
                       <div class="form-group">
                         第
-                        <input type="text" class="form-control page-no" readonly>
+                        <input type="text" class="form-control page-no" readonly />
                         <span class="total_page_pl">共 0 页</span>
                       </div>
                       <div class="form-group">
@@ -1368,7 +889,7 @@
                   <td class="row2" style="width: 500px;">
                     <b>小计：</b>
                     <span class="subtotal-amount">0</span>元
-                    <br>
+                    <br />
                     <b>总计：</b>
                     <span class="total-amount">0</span>元
                   </td>
@@ -1387,7 +908,7 @@
               <form class="form-inline">
                 <label for="gameRecord_beginDateTime">日期范围</label>
                 <div class="input-group">
-                  <input id="gameRecord_beginDateTime" type="text" class="form-control" readonly>
+                  <input id="gameRecord_beginDateTime" type="text" class="form-control" readonly />
                   <span class="input-group-btn">
                     <button
                       class="btn btn-default"
@@ -1400,7 +921,7 @@
                 </div>
                 <label for="gameRecord_endDateTime">到</label>
                 <div class="input-group">
-                  <input id="gameRecord_endDateTime" type="text" class="form-control" readonly>
+                  <input id="gameRecord_endDateTime" type="text" class="form-control" readonly />
                   <span class="input-group-btn">
                     <button
                       class="btn btn-default"
@@ -1466,7 +987,7 @@
                         </div>
                         <div class="form-group">
                           第
-                          <input type="text" class="form-control page-no" readonly value="0"> 页 共0页
+                          <input type="text" class="form-control page-no" readonly value="0" /> 页 共0页
                         </div>
                         <div class="form-group">
                           <button class="btn btn-default">
@@ -1497,6 +1018,12 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      playerRecord: [],
+      loppdataRequets: []
+    };
+  },
   mounted() {
     $(".datetimepicker").datetimepicker({
       icons: {
@@ -1511,6 +1038,22 @@ export default {
         close: "fa fa-remove"
       }
     });
+    this.GetPlayerRecore();
+    this.getRequetUser();
+  },
+  methods: {
+    GetPlayerRecore() {
+      axios.get("/getPlayerRecord").then(res => {
+        console.log(res.data);
+        this.playerRecord = res.data;
+      });
+    },
+    getRequetUser() {
+      axios.get("/getRequets").then(res => {
+        console.log(res.data);
+        this.loppdataRequets = res.data;
+      });
+    }
   }
 };
 </script>

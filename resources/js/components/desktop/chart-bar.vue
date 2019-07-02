@@ -73,7 +73,7 @@
                 </font>
               </span>
               <span
-                :class="[ totalbet>=0 && totalbet < 100000 ? 'bar null orange' : 'bar null' ]"
+                :class="totalbet>=Amount0 && totalbet < Amount1 ? 'bar null orange' : 'bar null'"
                 style="height: 30px;"
               ></span>
               <span class="level">
@@ -95,7 +95,7 @@
                 </font>
               </span>
               <span
-                :class="[ totalbet>=100000 && totalbet < 500000? 'bar null orange' : 'bar null' ]"
+                :class="totalbet>=Amount1 && totalbet < Amount2? 'bar null orange' : 'bar null'"
                 style="height: 60px;"
               ></span>
               <span class="level">
@@ -117,7 +117,7 @@
                 </font>
               </span>
               <span
-                :class="[ totalbet>=500000 && totalbet < 1000000? 'bar null orange' : 'bar null' ]"
+                :class="totalbet>=Amount2 && totalbet < Amount3? 'bar null orange' : 'bar null'"
                 style="height: 90px;"
               ></span>
               <span class="level">
@@ -139,7 +139,7 @@
                 </font>
               </span>
               <span
-                :class="[ totalbet>=1000000 && totalbet < 3000000 ? 'bar null orange' : 'bar null' ]"
+                :class="totalbet>=Amount3 && totalbet < Amount4 ? 'bar null orange' : 'bar null'"
                 style="height: 120px;"
               ></span>
               <span class="level">
@@ -161,7 +161,7 @@
                 </font>
               </span>
               <span
-                :class="[ totalbet>=3000000 && totalbet < 6000000 ? 'bar null orange' : 'bar null' ]"
+                :class="totalbet>=Amount4 && totalbet < Amount5 ? 'bar null orange' : 'bar null'"
                 style="height: 150px;"
               ></span>
               <span class="level">
@@ -183,7 +183,7 @@
                 </font>
               </span>
               <span
-                :class="[ totalbet >= 6000000 ? 'bar null orange' : 'bar null' ]"
+                :class="totalbet >= Amount5 ? 'bar null orange' : 'bar null'"
                 style="height: 180px;"
               ></span>
               <span class="level">
@@ -222,7 +222,7 @@ export default {
       percentage2: "",
       percentage3: "",
       percentage4: "",
-      percentage5: "",
+      percentage5: ""
     };
   },
   mounted() {
@@ -231,8 +231,8 @@ export default {
   methods: {
     getuserbet() {
       axios.get("/getUserBet").then(response => {
-        let responses = response.data[0];
         this.totalbet = response.data["totalbet"];
+        let responses = response.data[0];
         // Amount
         this.Amount0 = responses[0].Amount;
         this.Amount1 = responses[1].Amount;
