@@ -31,7 +31,7 @@ class RedirectBackController extends Controller
             'form_params' => [
                 'grant_type' => 'authorization_code',
                 'client_id' => '3',
-                'client_secret' => 'XhW9xjDWoh3ieRwmECmSm82iDJ7Gv2OOkGi6HU2W',
+                'client_secret' => 'oQgDcSlxOr276pIJHsTQyoZxKdYUL8Ntkz38KSpE',
                 'redirect_uri' => \Request::root().'/callback',
                 'code' => $request->code,
             ],
