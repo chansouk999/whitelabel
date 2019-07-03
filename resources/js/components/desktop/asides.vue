@@ -47,7 +47,7 @@
         <span v-if="checkuser == 'true'">
           <ul class="nav">
             <li class="nav-aside" id="SH0000015">
-              <popper trigger="hover" :options="myPopper">
+              <popper  trigger="hover" :options="myPopper">
                 <div class="popper">
                   <livechart stockname="SH000001" loop="5" country="china" :isMenu="true"></livechart>
                 </div>

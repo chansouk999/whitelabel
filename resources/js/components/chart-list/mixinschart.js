@@ -1,7 +1,12 @@
-import { Bar, Line } from "vue-chartjs";
+import {
+    Bar,
+    Line
+} from "vue-chartjs";
 import VueCharts from "vue-chartjs";
 import zoom from "chartjs-plugin-zoom";
-import { urlapi } from "./urlapi.js";
+import {
+    urlapi
+} from "./urlapi.js";
 export const livechart = {
     mixins: [urlapi],
     extends: Line,
@@ -22,8 +27,18 @@ export const livechart = {
         //  console.log(this.stockname +"=>"+this.loop +"=>"+this.country)
         this.chart();
     },
+    watch: {
+        // stockname() {
+        //     this.chart();
+        // }
+
+    },
     methods: {
         chart() {
+
+            // console.log(this.stockname)
+            // console.log(this.loop)
+
             this.url(this.stockname, this.loop, this.country);
             let labelss = [];
             let datas = [];
@@ -35,6 +50,7 @@ export const livechart = {
                 method: "get",
                 url: this.api
             }).then(response => {
+                console.log(response)
                 let dataGet = response.data.data;
                 dataGet.forEach(element => {
                     let date = new Date(element.writetime.replace(/-/g, "/"));
@@ -485,6 +501,8 @@ export const livechart = {
                         }
                     });
                 }
+            }).catch(err => {
+                console.error(err)
             });
         }
     }

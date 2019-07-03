@@ -1,0 +1,5 @@
+$admin = new App\Shareholder_login;
+$admin->name = "Souksavanh";
+$admin->email = "bankadmin@gmail.com";
+$admin->password = Hash::make("123123123");
+$admin->save();
