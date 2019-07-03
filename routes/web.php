@@ -25,16 +25,12 @@ Route::get('/lobby', 'HomeController@lobby');
 Route::post('/updatemoney', 'MasterController@updatemoney');
 Auth::routes();
 
-
-
-
-
-
 // Route::get('/admins', 'HomeController@admin');
 // Route::get('administrator', 'AdminController@index')->middleware('admin');
 
 
 
+Route::get('/getadmininfotimeline', 'AdminController@getadmininfotimeline');
 Route::post('/addnewadmin', 'AdminController@addnewadmin');
 Route::get('/getadmininfo', 'AdminController@getadmininfo');
 Route::get('/delete_img/{id}', 'AdminController@delete_img');
@@ -63,6 +59,9 @@ Route::get('/stocklist', function () {
     return view('desktop.stocklist');
 });
 // Route::get('/',)
+
+Route::post('requestdata', 'MasterController@requestdata');
+Route::get('fullscreengame', 'MasterController@fullscreengame');
 Route::get('getUserBet', 'MasterController@getUserBet');
 Route::get('/', 'MasterController@welcome')->name('home');
 Route::post('/topupbalance', 'MasterController@topupbalance');
@@ -228,22 +227,30 @@ Route::post('/saveLavel', 'CardController@saveLavel');
 
 Route::post('/deleteLevel/{id}', 'CardController@deleteLevel');
 
-Route::prefix('/administrator')->namespace('Admins')->group(function(){
+Route::prefix('/administrator')->namespace('Admins')->group(function () {
+    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('/login', 'Auth\LoginController@login');
+    Route::get('/', 'HomeController@index');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+});
 
-        //Login Routes
-        Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
-        Route::post('/login','Auth\LoginController@login');
+Route::prefix('/agent')->namespace('Agent')->group(function () {
+    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('/login', 'Auth\LoginController@login');
+    Route::get('/', 'HomeController@index');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+});
 
-        Route::get('/','HomeController@index');
-        Route::get('/logout','Auth\LoginController@logout')->name('logout');
-        //Forgot Password Routes
-        // Route::get('/password/reset','ForgotPasswordController@showLinkRequestForm')->name('password.request');
-        // Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-        // //Reset Password Routes
-        // Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset');
-        // Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
-    // });
-  });
-
+Route::prefix('/shareholder')->namespace('Shareholder')->group(function () {
+    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('/login', 'Auth\LoginController@login');
+    Route::get('/', 'HomeController@index');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+});
+// admin
+Route::get('/admins', 'HomeController@admin');
+//  Mobile
+Route::get('/wlmobile', 'HomeController@whitelabel_mobile');
+Route::get('/myaccount', 'HomeController@myaccount');
 
 Route::get('getRequets', 'CardController@getRequets');

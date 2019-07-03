@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\Cache;
 use GuzzleHttp\Client;
 use App\ImageTransfer;
 use App\Http\Controllers\ActivityLogController as ActivityLog;
@@ -32,35 +33,35 @@ class AdminController extends Controller
         $this->middleware('auth:administrator');
     }
 
+    public function getadmininfotimeline(){
+        try{
+            $adminid = Auth::guard('administrator')->user()->id;
+            $dataall = modelog::where('method','Adminrecord')->get();
+            $datamy = modelog::where([['method','Adminrecord'],['detail','like','%"serveby":'.$adminid.'%']])->get();
+            if ($datamy && $dataall) {
+                return $this->returncode(200, ['my'=>$datamy,'all'=>$dataall], 'success');
+            } else {
+                return $this->returncode(300, ['my'=>$datamy,'all'=>$dataall], DB::getQueryLog());
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }   
+
 
 
     public function getallresultadmin()
     {
         try {
-            $token = access_token::orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token')[0];
-            $header = $this->getcleanheader($token);
+            $header = $this->getcleanheader(Cache::get('webToken') );
             $http = new Client;
-            $response = $http->get($this->urlserver.'/api/getallresultadmin', ['headers' => $header]);
+            $response = $http->get(Cache::get('mainUrl').'/api/getallresultadmin', ['headers' => $header]);
             $accessdata = json_decode((string)$response->getBody(), true);
             return $accessdata;
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function getcleanheader($token)
     {
@@ -77,11 +78,10 @@ class AdminController extends Controller
     }
     public function getheader($user_id)
     {
-        $gettoken = access_token::orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token')[0];
         $header = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-            'Authorization' => 'Bearer ' . $gettoken
+            'Authorization' => 'Bearer ' . Cache::get('webToken') 
         ];
         return $header;
     }
@@ -94,16 +94,9 @@ class AdminController extends Controller
 
 
     /////////////////////////////////////  SAVE TOEKN REFRESFED
-    public function savenewtoken($user_id, $acctoken)
+    public function savenewtoken($acctoken)
     {
-        $date = date('y-m-d');
-        $check = access_token::where([['created_at', 'like', '%' . $date . '%'], ['user_id', '=', '' . $user_id . '']])->get()->count();
-        if ($check < 1) {
-            access_token::create([
-                'user_id' => $user_id,
-                'access_token' => $acctoken
-            ]);
-        }
+        Cache::put('webToken',$acctoken,3714568);
     }
     public function getlog(Request $req)
     {
@@ -121,7 +114,7 @@ class AdminController extends Controller
     public function getfreshtoken()
     {
         $http = new Client;
-        $response = $http->post($this->urlserver.'/oauth/token', [
+        $response = $http->post(Cache::get('mainUrl').'/oauth/token', [
             'form_params' => [
                 'grant_type' => 'password',
                 'client_id' => '2',
@@ -132,7 +125,7 @@ class AdminController extends Controller
             ],
         ]);
         $accessdata = json_decode((string)$response->getBody(), true);
-        $this->savenewtoken(Auth::user()->user_id, $accessdata['access_token']);
+        $this->savenewtoken($accessdata);
         return ['token' => $accessdata['access_token']];
     }
     public function deashed()
@@ -217,18 +210,16 @@ class AdminController extends Controller
         try {
             $method = $req->reqmethod;
             $user_id = $req->user_id;
-            // $gettoken = trim(access_token::where('user_id', 'like', '%' . Auth::user()->user_id . '%')->orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token'), '["]');
-            $gettoken = access_token::orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token')[0];
             $header = [
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer ' . $gettoken
+                'Authorization' => 'Bearer ' . Cache::get('webToken') 
             ];
 
             // return $req;
 
             $http = new Client;
             if ($method == 'game') {
-                $response = $http->post($this->urlserver . '/api/requestuserdata', [
+                $response = $http->post(Cache::get('mainUrl') . '/api/requestuserdata', [
                     'form_params' => [
                         'method' => $req->reqmethod,
                         'user_id' => $user_id,
@@ -266,7 +257,7 @@ class AdminController extends Controller
     {
         try {
             $http = new Client;
-            $response = $http->post($this->urlserver . '/api/requestuserdata', [
+            $response = $http->post(Cache::get('mainUrl') . '/api/requestuserdata', [
                 'form_params' => [
                     'method' => $method,
                     'gameid' => $gmaeid,
@@ -282,7 +273,7 @@ class AdminController extends Controller
     {
         try {
             $http = new Client;
-            $response = $http->post($this->urlserver . '/api/requestuserdata', [
+            $response = $http->post(Cache::get('mainUrl') . '/api/requestuserdata', [
                 'form_params' => [
                     'method' => $method,
                     'gameid' => $gmaeid,
@@ -438,13 +429,23 @@ class AdminController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function denyreq($id)
+    public function denyreq($id,$userid,$msglog,$reqdata)
     {
         try {
             DB::enableQueryLog();
             $del = Reqst::where('id', '=', $id)->delete();
             if ($del) {
-                
+                $method = 'Adminrecord';
+                        $data = array(
+                            'user_id' => $userid,
+                            'event' => $msglog,
+                            'serveby' => Auth::guard('administrator')->user()->id,
+                            'amount' =>$reqdata['amount'],
+                            'eventid' => '',
+                            'Time' => date('Y-m-d'),
+                        );
+                        $Log = new ActivityLog();
+                        $Log->storeLog($method, $data);
                 return $this->returncode(200, $del, 'success');
             } else {
                 return $this->returncode(300, $del, DB::getQueryLog());
@@ -502,23 +503,25 @@ class AdminController extends Controller
     public function actionprocess(Request $req)
     {
         try {
+            DB::enableQueryLog();
+            $reqdata = Reqst::where('id', '=', $req->id)->get()[0];
+            $userbl = User::where('user_id', '=', '' . $reqdata['userId'] . '')->get()->pluck('userBalance')[0];
+            $detail = json_decode($reqdata['detail'], true);
+            if ($reqdata['requestDetail'] == 'topup') {
+                $evnt = $userbl + $reqdata['amount'];
+                $msgreqlog = 'Top up request Approved by';
+                $msgreqlogdeny = ' Deny Top up request of user';
+                $e = '+';
+                $wtid = strtotime('now');
+            }
+            if ($reqdata['requestDetail'] == 'Withdraw') {
+                $evnt = $userbl - $reqdata['amount'];
+                $msgreqlog = 'Withdraw request Approved by';
+                $msgreqlogdeny = ' Deny Withdraw request of user';
+                $e = '-';
+                $wtid = $this->getwithdrwaid($reqdata['amount'])['data'];
+            }
             if ($req->code == 200) {
-                DB::enableQueryLog();
-                $reqdata = Reqst::where('id', '=', $req->id)->get()[0];
-                $userbl = User::where('user_id', '=', '' . $reqdata['userId'] . '')->get()->pluck('userBalance')[0];
-                $detail = json_decode($reqdata['detail'], true);
-                if ($reqdata['requestDetail'] == 'topup') {
-                    $evnt = $userbl + $reqdata['amount'];
-                    $msgreqlog = 'Top up request Approved by';
-                    $e = '+';
-                    $wtid = strtotime('now');
-                }
-                if ($reqdata['requestDetail'] == 'Withdraw') {
-                    $evnt = $userbl - $reqdata['amount'];
-                    $msgreqlog = 'Withdraw request Approved by';
-                    $e = '-';
-                    $wtid = $this->getwithdrwaid($reqdata['amount'])['data'];
-                }
                 // $data\
                 // return $evnt;
                 $cc = ',"method":"' . $reqdata['method'] . '"}';
@@ -563,7 +566,7 @@ class AdminController extends Controller
                 }
             }
             if ($req->code == 303) { //deny
-                return $this->denyreq($req->id);
+                return $this->denyreq($req->id,$req->userid,$msgreqlogdeny,$reqdata);
             }
             if ($req->code == 202) {
                 return $this->viewuser($req->userid);
@@ -577,9 +580,8 @@ class AdminController extends Controller
     }
     public function gettoken()
     {
-        $gettoken = access_token::orderby('created_at', 'desc')->limit(1)->get()->pluck('access_token')[0];
-        session(['access_token' => $gettoken]);
-        return ['token' => $gettoken];
+        session(['access_token' => Cache::get('webToken') ]);
+        return ['token' => Cache::get('webToken') ];
     }
     public function getuserdata(Request $req)
     {

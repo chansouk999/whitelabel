@@ -25,6 +25,7 @@ use App\access_record;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
 use League\Flysystem\Exception;
+use App\OauthClient;
 
 class MasterController extends Controller
 {
@@ -35,7 +36,38 @@ class MasterController extends Controller
     protected $data = [];
 
 
-    // public
+    public function requestdata(Request $req){
+       
+        return OauthClient::where('id','=',$req->ClientID)->get()[0];
+    }
+    public function connectTogame($data){
+        $ClientID = $data->pluck('id')[0];
+        $ClientSecret = $data->pluck('secret')[0];
+        $Redirect = $data->pluck('redirect')[0];
+        return redirect('http://localhost:8003/redirect?clientid='.$ClientID.'&redirect='.\Request::root());
+    }
+    public function fullscreengame(){
+        try{
+
+            $check = OauthClient::where('name','=',\Request::root())->get();
+            if($check->count() < 1){
+                $uc = new OauthClient;
+                $uc->user_id = substr(strtotime('now'),-8,8);
+                $uc->name = \Request::root() ;
+                $uc->secret = str_random(43);;
+                $uc->redirect = 'http://localhost:8003/callback';
+                $uc->personal_access_client = 0;
+                $uc->password_client = 0;
+                $uc->revoked = 0;
+                $uc->save();
+            }
+            $check = OauthClient::where('name','=',\Request::root())->get();
+            return $this->connectTogame($check);
+            
+        }catch(\Eception $ex){
+            return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
+        }
+    }
     public function topupbalance(Request $req)
     {
         $amount = $req->amount;
@@ -450,6 +482,9 @@ class MasterController extends Controller
             ->join('oauth_clients', 'users.id', '=', 'oauth_clients.user_id')
             ->where('users.id', $id)
             ->orderby('oauth_clients.created_at', 'desc')->limit(1)->get();
+       
+
+        
     }
     public function checklogin(Request $req)
     {
