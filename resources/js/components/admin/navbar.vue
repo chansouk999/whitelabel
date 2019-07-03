@@ -79,7 +79,7 @@
             <li class="dropdown nav-item">
               <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 <div class="photo">
-                  <img src="assetsadmin/img/mike.jpg" alt="Profile Photo">
+                  <img src="assetsadmin/img/mike.jpg" alt="Profile Photo" />
                 </div>
                 <b class="caret d-none d-lg-block d-xl-block"></b>
                 <p class="d-lg-none">Log out</p>
@@ -98,7 +98,11 @@
                 </li>
                 <li class="dropdown-divider"></li>
                 <li class="nav-link">
-                  <a href="javascript:void(0)" class="nav-item dropdown-item">Log out</a>
+                  <a
+                    href="javascript:void(0);"
+                    @click="logout()"
+                    class="nav-item dropdown-item"
+                  >Log out</a>
                 </li>
               </ul>
             </li>
@@ -118,7 +122,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <input type="text" class="form-control"  placeholder="SEARCH">
+            <input type="text" class="form-control" placeholder="SEARCH" />
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
@@ -146,7 +150,7 @@
 
               <div class="header header-primary text-center">
                 <div class="modal-profile">
-                  <img src="assetsadmin/img/emilyz.jpg" alt="...">
+                  <img src="assetsadmin/img/emilyz.jpg" alt="..." />
                 </div>
               </div>
             </div>
@@ -165,7 +169,7 @@
                       id="current_password"
                       class="form-control"
                       placeholder="Current Password..."
-                    >
+                    />
                   </div>
 
                   <div class="input-group no-border form-control-lg">
@@ -180,7 +184,7 @@
                       id="new_password"
                       placeholder="New Password"
                       class="form-control"
-                    >
+                    />
                   </div>
 
                   <div class="input-group no-border form-control-lg">
@@ -195,7 +199,7 @@
                       id="confirm_password"
                       placeholder="Confirm Password"
                       class="form-control"
-                    >
+                    />
                   </div>
                 </div>
               </form>
@@ -211,7 +215,53 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  components: {},
+  mounted() {},
+  methods: {
+    logout() {
+      this.$swal({
+        title: "Log Out?",
+        text: "Do you want to log out",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Log out!",
+        cancelButtonText: "No, keep it",
+        confirmButtonClass: "btn btn-success",
+        cancelButtonClass: "btn btn-danger",
+        buttonsStyling: false,
+        allowOutsideClick: false
+      })
+        .then(res => {
+          console.log(res);
+          // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+          if (res.dismiss === "cancel") {
+            swal({
+              title: "Cancelled",
+              text: "Your keep going to play :)",
+              type: "error",
+              confirmButtonClass: "btn btn-warning",
+              buttonsStyling: false
+            }).catch(swal.noop);
+          } else {
+            window.location.href = "/administrator/logout"; //Will logout
+            swal({
+              title: "Success!",
+              text: "We hope to see you as soon.",
+              type: "success",
+              confirmButtonClass: "btn btn-success",
+              buttonsStyling: false
+            }).catch(swal.noop);
+          }
+        })
+        .catch(swal.noop);
+      // console.log("Your Click log out");
+    }
+  }
+};
 </script>
 <style scoped>
 </style>

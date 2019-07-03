@@ -7,7 +7,7 @@
       </div>
       <div class="col-md-4">
         <button
-          class="btn btn-primary btn-round"
+          class="btn btn-warning btn-round"
           data-toggle="modal"
           data-target="#shareholder"
         >Make shareholder</button>
@@ -32,7 +32,7 @@
                   class="form-control"
                   id="shinfo"
                   placeholder="userapiID/refernce/gameID"
-                >
+                />
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <i class="tim-icons icon-simple-remove"></i>
                 </button>
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <br>
+    <br />
     <div class="row">
       <div class="col-md-12 col-lg-12">
         <table class="table">
@@ -55,7 +55,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(data,index) in shareinfo"  v-if="index >= A && index <= B">
+            <tr v-for="(data,index) in shareinfo" v-if="index >= A && index <= B">
               <td class="text-center">{{ index+1 }}</td>
               <td>{{data.share_id}}</td>
               <td>{{data.name}}</td>
@@ -123,8 +123,14 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <!-- shareholdername
-shareholderpermision -->
-                          <input type="text" name="name" class="form-control" placeholder="Name..." v-model="shareholdername">
+                          shareholderpermision-->
+                          <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            placeholder="Name..."
+                            v-model="shareholdername"
+                          />
                         </div>
                       </div>
                     </div>
@@ -137,24 +143,27 @@ shareholderpermision -->
                             name="accesspermission"
                             
                             placeholder="ACCESS PERMISSION..."
-                          > -->
-                          <select name="" class="form-control" v-model="shareholderpermision" >
-                              <option value="777">All Permission</option>
-                              <option value="200">First Permission</option>
-                              <option value="300">Secondary Permission</option>
-                              <option value="400">Third Permission</option>
+                          >-->
+                          <select name class="form-control" v-model="shareholderpermision">
+                            <option value="777">All Permission</option>
+                            <option value="200">First Permission</option>
+                            <option value="300">Secondary Permission</option>
+                            <option value="400">Third Permission</option>
                           </select>
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary" @click.prevent="saveshareholder">Save & Continue</button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                @click.prevent="saveshareholder"
+              >Save & Continue</button>
             </div>
           </form>
         </div>
@@ -166,17 +175,17 @@ shareholderpermision -->
 import { adminmixin } from "./adminmixin.js";
 export default {
   mixins: [adminmixin],
-  data(){
-    return{
-      shareholdername:null,
-      shareholderpermision:null,
-      shareinfo:[],
-      A:0,
-      B:19,
-    }
+  data() {
+    return {
+      shareholdername: null,
+      shareholderpermision: null,
+      shareinfo: [],
+      A: 0,
+      B: 19
+    };
   },
-  methods:{
-     paginate(method) {
+  methods: {
+    paginate(method) {
       let vm = this;
       if (method == "previous") {
         if (vm.A > 0) {
@@ -190,31 +199,41 @@ export default {
         }
       }
     },
-      getshareholder(){
-         axios.get('/getshareholder').then(res=>{
-            // console.log(res.data)
-            this.shareinfo = res.data.data.data
-         }).catch(e=>{console.log(e.response)})
-      },
-      saveshareholder(data){
-        data = {
-          shareholdername:this.shareholdername,
-          shareholderpermision:this.shareholderpermision,
-        }
-        axios.post('saveshareholder',data).then(res=>{
-            console.log(res.data)
-            let code = res.data.code
-            let msg = res.data.msg
-            let data = res.data.data
-            if(code==200){
-              this.getshareholder()
-              alert(msg)
-            }
-        }).catch(e=>{console.log(e.response)})
-      }
+    getshareholder() {
+      axios
+        .get("/getshareholder")
+        .then(res => {
+          // console.log(res.data)
+          this.shareinfo = res.data.data.data;
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    },
+    saveshareholder(data) {
+      data = {
+        shareholdername: this.shareholdername,
+        shareholderpermision: this.shareholderpermision
+      };
+      axios
+        .post("saveshareholder", data)
+        .then(res => {
+          console.log(res.data);
+          let code = res.data.code;
+          let msg = res.data.msg;
+          let data = res.data.data;
+          if (code == 200) {
+            this.getshareholder();
+            alert(msg);
+          }
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    }
   },
-  mounted(){
-      this.getshareholder()
+  mounted() {
+    this.getshareholder();
   }
 };
 </script>

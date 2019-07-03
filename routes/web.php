@@ -25,11 +25,6 @@ Route::get('/lobby', 'HomeController@lobby');
 Route::post('/updatemoney', 'MasterController@updatemoney');
 Auth::routes();
 
-
-
-
-
-
 // Route::get('/admins', 'HomeController@admin');
 // Route::get('administrator', 'AdminController@index')->middleware('admin');
 
@@ -98,12 +93,6 @@ Route::get('/getlogin', function () {
 });
 
 
-// admin
-Route::get('/admins', 'HomeController@admin');
-
-//  Mobile
-Route::get('/wlmobile', 'HomeController@whitelabel_mobile');
-Route::get('/myaccount', 'HomeController@myaccount');
 
 //  Route::domain('{m}.localhost:8004')->group(function () {
 //     Route::get('/', function () {
@@ -248,3 +237,10 @@ Route::prefix('/shareholder')->namespace('Shareholder')->group(function () {
     Route::get('/', 'HomeController@index');
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });
+// admin
+Route::get('/admins', 'HomeController@admin');
+//  Mobile
+Route::get('/wlmobile', 'HomeController@whitelabel_mobile');
+Route::get('/myaccount', 'HomeController@myaccount');
+
+Route::get('getRequets', 'CardController@getRequets');

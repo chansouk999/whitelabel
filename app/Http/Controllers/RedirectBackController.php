@@ -9,28 +9,30 @@ use Illuminate\Support\Facades\Cache;
 
 class RedirectBackController extends Controller
 {
-    public function redirect()
+    public function redirect(Request $req)
     {
-        // return Cache::get('loginid');
+        Cache::put('mainUrl',$req->url,3714526);
+        // Cache::get('mainUrl');
         $http = new Client();
 
         $query = http_build_query([
             'client_id' => '3',
-            'redirect_uri' => 'http://localhost:8004/callback',
+            'redirect_uri' => \Request::root().'/callback',
             'response_type' => 'code',
             'scope' => '',
         ]);
-        return redirect('http://localhost:8003/oauth/authorize?' . $query);
+        // Cache::get('mainUrl');
+        return redirect(Cache::get('mainUrl').'/oauth/authorize?' . $query);
     }
     public function callback(Request $request)
     {
         $http = new Client;
-        $response = $http->post('http://localhost:8003/oauth/token', [
+        $response = $http->post( Cache::get('mainUrl').'/oauth/token', [
             'form_params' => [
                 'grant_type' => 'authorization_code',
                 'client_id' => '3',
                 'client_secret' => 'XhW9xjDWoh3ieRwmECmSm82iDJ7Gv2OOkGi6HU2W',
-                'redirect_uri' => 'http://localhost:8004/callback',
+                'redirect_uri' => \Request::root().'/callback',
                 'code' => $request->code,
             ],
         ]);
@@ -40,7 +42,9 @@ class RedirectBackController extends Controller
             'Accept' => 'application/json',
             'Authorization' => 'Bearer ' . $accessdata['access_token']
         ];
-        $resuser = $http->get('http://localhost:8003/api/users', ['headers' => $header]);
+        Cache::put('webToken',$accessdata['access_token'],3714526);
+
+        $resuser = $http->get(Cache::get('mainUrl').'/api/users', ['headers' => $header]);
         $data =  json_decode((string) $resuser->getBody(), true);
         $date = date('Y-m-d');
         $check = access_token::where([['created_at', 'like', '%' . $date . '%'], ['user_id', '=', '' . $data['user_id'] . '']])->get()->count();
@@ -51,7 +55,7 @@ class RedirectBackController extends Controller
             ]);
         }
 
-        return redirect('http://localhost:8003/igotologin');
+        return redirect(Cache::get('mainUrl').'/igotologin');
         //     // return [$accessdata,$data];
 
     }

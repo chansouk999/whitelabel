@@ -75,6 +75,9 @@
                           <li class="nav-item w-8">
                             <a class="nav-link" href="#levelchange" data-toggle="tab">Level Change</a>
                           </li>
+                          <li class="nav-item w-8">
+                            <a class="nav-link" href="#adminCard" data-toggle="tab">Admin Card</a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -108,7 +111,7 @@
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <input type="text" class="form-control" placeholder="SEARCH">
+                                    <input type="text" class="form-control" placeholder="SEARCH" />
                                     <button
                                       type="button"
                                       class="close"
@@ -123,7 +126,7 @@
                             </div>
                           </div>
                         </div>
-                        <br>
+                        <br />
                         <!-- PLAYER INFO -->
                         <div class="row">
                           <div class="col-md-12 col-lg-12">
@@ -478,6 +481,9 @@
                       <div class="tab-pane" id="levelchange" aria-expanded="false">
                         <app-levelchange></app-levelchange>
                       </div>
+                      <div class="tab-pane" id="adminCard" aria-expanded="false">
+                        <app-adminCard></app-adminCard>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -662,6 +668,7 @@ import request from "./request";
 import announcement from "./announcement";
 import managerecord from "./managerecord";
 import levelchange from "./levelchange";
+import adminCard from "./adminCard";
 import modal from "./modal";
 
 export default {
@@ -693,6 +700,7 @@ export default {
     "app-announcement": announcement,
     "app-managerecord": managerecord,
     "app-levelchange": levelchange,
+    "app-adminCard": adminCard,
     "app-modal": modal
   },
   filters: {
