@@ -29,7 +29,7 @@
                         <div class="block block-three"></div>
                         <div class="block block-four"></div>
                         <a href="javascript:void(0)">
-                          <img class="avatar" src="assets/img/emilyz.jpg" alt="...">
+                          <img class="avatar" src="assets/img/emilyz.jpg" alt="..." />
                           <h5 class="title">Mike Andrew</h5>
                         </a>
                         <p class="description">Ceo/Co-Founder</p>
@@ -92,7 +92,7 @@
                   </div>
                 </div>
                 <div class="col-md-8 mb-5 bg-light px-1">
-                  <div class="card py-0 my-2">
+                  <!-- <div class="card py-0 my-2">
                     <div class="card-header mb-2">
                       <h5 class="title">{{myaccount_tra}}</h5>
                       <i class="tim-icons icon-align-left-2"></i>
@@ -112,10 +112,10 @@
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </div>-->
                   <div class="card py-0 my-2">
                     <div class="card-body px-4 py-0">
-                      <div class="row d-flex justify-content-between py-3">
+                      <!-- <div class="row d-flex justify-content-between py-3">
                         <div class="d-flex">
                           <i class="tim-icons icon-badge"></i>
                           <span class="game_rBox">
@@ -128,61 +128,66 @@
                         <p class="mycolor-icon">
                           <i class="tim-icons icon-minimal-right"></i>
                         </p>
-                      </div>
-                      <hr class="hr-mobile">
-                      <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-single-02"></i>
-                          <span class="game_rBox">
-                            <p>{{recommendfriends}}</p>
-                          </span>
+                      </div>-->
+                      <hr class="hr-mobile" />
+                      <a href="/profile?page=recommendfriends">
+                        <div class="row d-flex justify-content-between py-3">
+                          <div class="d-flex">
+                            <i class="tim-icons icon-single-02"></i>
+                            <span class="game_rBox">
+                              <p>{{recommendfriends}}</p>
+                            </span>
+                          </div>
+                          <p class="mycolor-icon">
+                            <i class="tim-icons icon-minimal-right"></i>
+                          </p>
                         </div>
-                        <p class="mycolor-icon">
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </p>
-                      </div>
+                      </a>
                     </div>
                   </div>
-
                   <div class="card py-0 my-2">
                     <div class="card-body px-4 py-0">
-                      <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-email-85"></i>
-                          <span class="game_rBox">
-                            <p>{{bankinfo}}</p>
-                          </span>
+                      <a href="/profile?page=bankinfo">
+                        <div class="row d-flex justify-content-between py-3">
+                          <div class="d-flex">
+                            <i class="tim-icons icon-email-85"></i>
+                            <span class="game_rBox">
+                              <p>{{bankinfo}}</p>
+                            </span>
+                          </div>
+                          <p class="mycolor-icon">
+                            <i class="tim-icons icon-minimal-right"></i>
+                          </p>
                         </div>
-                        <p class="mycolor-icon">
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </p>
-                      </div>
-                      <hr class="hr-mobile">
-
-                      <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-coins"></i>
-                          <span class="game_rBox">
-                            <p>{{transactionrecord}}</p>
-                          </span>
+                      </a>
+                      <hr class="hr-mobile" />
+                      <a href="/profile?page=transactionrecord">
+                        <div class="row d-flex justify-content-between py-3">
+                          <div class="d-flex">
+                            <i class="tim-icons icon-coins"></i>
+                            <span class="game_rBox">
+                              <p>{{transactionrecord}}</p>
+                            </span>
+                          </div>
+                          <p class="mycolor-icon">
+                            <i class="tim-icons icon-minimal-right"></i>
+                          </p>
                         </div>
-                        <p class="mycolor-icon">
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </p>
-                      </div>
-                      <hr class="hr-mobile">
-
-                      <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-settings-gear-63"></i>
-                          <span class="game_rBox">
-                            <p>{{accountsettings}}</p>
-                          </span>
+                      </a>
+                      <hr class="hr-mobile" />
+                      <a href="/profile?page=accountsettings">
+                        <div class="row d-flex justify-content-between py-3">
+                          <div class="d-flex">
+                            <i class="tim-icons icon-settings-gear-63"></i>
+                            <span class="game_rBox">
+                              <p>{{accountsettings}}</p>
+                            </span>
+                          </div>
+                          <p class="mycolor-icon">
+                            <i class="tim-icons icon-minimal-right"></i>
+                          </p>
                         </div>
-                        <p class="mycolor-icon">
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </p>
-                      </div>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -192,7 +197,7 @@
         </div>
       </div>
     </div>
-    <setting></setting>
+    <setting />
   </div>
 </template>
 <script>

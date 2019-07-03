@@ -103,6 +103,7 @@ Route::get('/admins', 'HomeController@admin');
 //  Mobile
 Route::get('/wlmobile', 'HomeController@whitelabel_mobile');
 Route::get('/myaccount', 'HomeController@myaccount');
+Route::get('/profile', 'HomeController@tapsprofile');
 
 //  Route::domain('{m}.localhost:8004')->group(function () {
 //     Route::get('/', function () {
@@ -228,11 +229,11 @@ Route::post('/saveLavel', 'CardController@saveLavel');
 Route::post('/deleteLevel/{id}', 'CardController@deleteLevel');
 
 Route::prefix('/administrator')->namespace('Admins')->group(function(){
-   
+
         //Login Routes
         Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
         Route::post('/login','Auth\LoginController@login');
-        
+
         Route::get('/','HomeController@index');
         Route::get('/logout','Auth\LoginController@logout')->name('logout');
         //Forgot Password Routes
@@ -244,5 +245,5 @@ Route::prefix('/administrator')->namespace('Admins')->group(function(){
     // });
   });
 
-  
+
 Route::get('getRequets', 'CardController@getRequets');

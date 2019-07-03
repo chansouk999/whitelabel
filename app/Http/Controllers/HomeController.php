@@ -73,4 +73,9 @@ class HomeController extends Controller
     {
         return view('mobile.myaccount');
     }
+
+    public function tapsprofile()
+    {
+        return view('mobile.tapsprofile');
+    }
 }
