@@ -47,7 +47,7 @@
         <span v-if="checkuser == 'true'">
           <ul class="nav">
             <li class="nav-aside" id="SH0000015">
-              <popper trigger="hover" :options="myPopper">
+              <popper  trigger="hover" :options="myPopper">
                 <div class="popper">
                   <livechart stockname="SH000001" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
@@ -247,7 +247,7 @@ export default {
     getstock(stocknameder, loppstock, countrystock) {
       let filename = window.location.href;
       // this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
-      this.stocklist = `http://lec68.com/redirect?&name=${
+      this.stocklist = `http://127.0.0.1:8000/redirect?&name=${
         this.email
       }&urlback=http://${filename.split("/")[2]}&stockname=${
         stocknameder
@@ -271,7 +271,7 @@ export default {
           this.lastname = res.data[0].secret;
           let filename = window.location.href;
           // this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
-          this.stocklist = `http://lec68.com/redirect?&name=${
+          this.stocklist = `http://127.0.0.1:8000/redirect?&name=${
             this.email
           }&urlback=http://${filename.split("/")[2]}&stockname=${
             this.stocknameder
