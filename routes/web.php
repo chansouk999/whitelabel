@@ -96,6 +96,13 @@ Route::get('/getlogin', function () {
 });
 
 
+// admin
+Route::get('/admins', 'HomeController@admin');
+
+//  Mobile
+Route::get('/wlmobile', 'HomeController@whitelabel_mobile');
+Route::get('/myaccount', 'HomeController@myaccount');
+Route::get('/profile', 'HomeController@tapsprofile');
 
 //  Route::domain('{m}.localhost:8004')->group(function () {
 //     Route::get('/', function () {
