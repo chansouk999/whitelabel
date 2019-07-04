@@ -68,10 +68,10 @@
           <div class="modal-body px-2">
             <div class="col-lg-12 col-md-12 px-0">
               <form class="form" action="login" method="POST">
-                <input type="hidden" name="_token" :value="csrf">
+                <input type="hidden" name="_token" :value="csrf" />
                 <div class="card card-login card-white">
                   <div class="card-header">
-                    <img src="assets/img/card-primary.png" alt>
+                    <img src="assets/img/card-primary.png" alt />
                     <h1 class="card-title">Log in</h1>
                   </div>
                   <div class="card-body">
@@ -92,7 +92,7 @@
                         autocomplete="email"
                         autofocus
                         placeholder="Enter email"
-                      >
+                      />
                     </div>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -109,7 +109,7 @@
                         required
                         autocomplete="current-password"
                         placeholder="Enter Your Password"
-                      >
+                      />
                     </div>
                   </div>
                   <div class="card-footer">
@@ -163,7 +163,7 @@
                   <div class="card card-register card-white">
                     <form class="form" method="POST" action="register">
                       <div class="card-header">
-                        <img class="card-img" src="assets/img/card-primary.png" alt="Card image">
+                        <img class="card-img" src="assets/img/card-primary.png" alt="Card image" />
                         <h4 class="card-title text-capitalize">Register</h4>
                       </div>
                       <div class="card-body">
@@ -183,8 +183,8 @@
                             autocomplete="name"
                             autofocus
                             placeholder="Enter your name"
-                          >
-                          <input type="hidden" name="_token" :value="csrf">
+                          />
+                          <input type="hidden" name="_token" :value="csrf" />
                         </div>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -200,7 +200,7 @@
                             required
                             autocomplete="email"
                             placeholder="Enter email"
-                          >
+                          />
                         </div>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -216,8 +216,8 @@
                             required
                             autocomplete="new-password"
                             placeholder="Enter password"
-                          >
-                          <br>
+                          />
+                          <br />
                           <input
                             v-model="reg_password_confirm"
                             id="password-confirm"
@@ -227,14 +227,14 @@
                             required
                             autocomplete="new-password"
                             placeholder="password_confirmation"
-                          >
+                          />
                         </div>
                         <div class="form-check text-left">
                           <label class="form-check-label">{{msg}}</label>
                         </div>
                         <div class="form-check text-left">
                           <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox">
+                            <input class="form-check-input" type="checkbox" />
                             <span class="form-check-sign"></span>
                             I agree to the
                             <a
@@ -283,7 +283,7 @@
                 <div class="col-md-7 mr-auto">
                   <div class="card card-register card-white">
                     <div class="card-header">
-                      <img class="card-img" src="assets/img/card-primary.png" alt="Card image">
+                      <img class="card-img" src="assets/img/card-primary.png" alt="Card image" />
                       <h4 class="card-title text-title">12150</h4>
                     </div>
                     <div class="card-body">
@@ -294,11 +294,11 @@
                               <i class="tim-icons icon-single-02"></i>
                             </div>
                           </div>
-                          <input type="text" class="form-control" placeholder="Full Name">
+                          <input type="text" class="form-control" placeholder="Full Name" />
                         </div>
                         <div class="form-check text-left">
                           <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox">
+                            <input class="form-check-input" type="checkbox" />
                             <span class="form-check-sign"></span>
                             I agree to the
                             <a
@@ -331,7 +331,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <input type="text" class="form-control"  placeholder="SEARCH">
+            <input type="text" class="form-control" placeholder="SEARCH" />
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
@@ -396,7 +396,9 @@
       <!-- user Login -->
       <span v-else-if="checkuser == 'true'">
         <nav class="mobile-bottom-nav">
-          <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
+          <div
+            :class="page =='' ?'mobile-bottom-nav__item mobile-bottom-nav__item--active' : 'mobile-bottom-nav__item'"
+          >
             <div class="mobile-bottom-nav__item-content">
               <a :href="welcome">
                 <i class="tim-icons icon-bank"></i>
@@ -405,7 +407,9 @@
               </a>
             </div>
           </div>
-          <div class="mobile-bottom-nav__item">
+          <div
+            :class="page =='forum' ?'mobile-bottom-nav__item mobile-bottom-nav__item--active' : 'mobile-bottom-nav__item'"
+          >
             <div class="mobile-bottom-nav__item-content">
               <a href="#">
                 <i class="tim-icons icon-chat-33 icon-default"></i>
@@ -414,7 +418,9 @@
               <!-- riviledge -->
             </div>
           </div>
-          <div class="mobile-bottom-nav__item">
+          <div
+            :class="page =='washcode' ?'mobile-bottom-nav__item mobile-bottom-nav__item--active' : 'mobile-bottom-nav__item'"
+          >
             <div class="mobile-bottom-nav__item-content">
               <a href="#">
                 <i class="tim-icons icon-coins icon-default"></i>
@@ -423,7 +429,9 @@
               <!-- Recharge -->
             </div>
           </div>
-          <div class="mobile-bottom-nav__item">
+          <div
+            :class="page =='recharge' ?'mobile-bottom-nav__item mobile-bottom-nav__item--active' : 'mobile-bottom-nav__item'"
+          >
             <div class="mobile-bottom-nav__item-content">
               <a href="#">
                 <i class="tim-icons icon-credit-card"></i>
@@ -433,7 +441,9 @@
             </div>
           </div>
 
-          <div class="mobile-bottom-nav__item">
+          <div
+            :class="page =='myaccount' ?'mobile-bottom-nav__item mobile-bottom-nav__item--active' : 'mobile-bottom-nav__item'"
+          >
             <div class="mobile-bottom-nav__item-content">
               <a href="/myaccount">
                 <i class="tim-icons icon-single-02"></i>
@@ -449,8 +459,26 @@
 </template>
 <script>
 export default {
+  props: [
+    "recommend_friends",
+    "message",
+    "myaccount_tra",
+    "myprivilege",
+    "gamelobby",
+    "recharge",
+    "withdraw",
+    "currentlang",
+    "login",
+    "register",
+    "free_trial",
+    "home",
+    "forum",
+    "washcode",
+    "mine"
+  ],
   data() {
     return {
+      page: "",
       msg: "we are waiting for you",
       reg_name: null,
       reg_email: null,
@@ -471,7 +499,9 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
-
+  mounted() {
+    this.page = window.location.href.split("/")[3];
+  },
   watch: {
     reg_email(data) {
       let vm = this;
@@ -538,7 +568,7 @@ export default {
           vm.reg_password = null;
           vm.reg_password_confirm = null;
           alert("Password not Match");
-        } else if (vm.reg_password.length < 7) {  
+        } else if (vm.reg_password.length < 7) {
           vm.reg_password = null;
           vm.reg_password_confirm = null;
           alert("Password Must be Bigger Than 7 Character");
@@ -658,24 +688,7 @@ export default {
       $(e.target.parentElement).addClass("active");
       console.log(e);
     }
-  },
-  props: [
-    "recommend_friends",
-    "message",
-    "myaccount_tra",
-    "myprivilege",
-    "gamelobby",
-    "recharge",
-    "withdraw",
-    "currentlang",
-    "login",
-    "register",
-    "free_trial",
-    "home",
-"forum",
-"washcode",
-"mine",
-  ]
+  }
 };
 </script>
 <style scoped>

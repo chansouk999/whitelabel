@@ -108,29 +108,12 @@
         </div>
       </div>
     </div>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>日期范围,2019-05-27,到,2019-06-02</th>
-          <th></th>
-          <th></th>
-          <th>结算周期：每周一00:00~每周日23:59:59。于每周一24点前添加到账。</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="w-25">被推荐人</td>
-          <td class="w-25">推荐状态</td>
-          <td class="w-25">有效投注额</td>
-          <td class="w-25">奖金金额</td>
-        </tr>
-      </tbody>
-    </table>
+
 
     <table class="table table-striped col6">
       <tbody>
         <tr class="last">
-          <td colspan="3" class="text-right">
+          <td colspan="3" >
             <div action class="pull-left form-inline">
               <div class="form-group">
                 <button class="btn btn-default step-backward">
@@ -161,6 +144,8 @@
               </div>
             </div>
           </td>
+          </tr>
+          <tr class="last">
           <td class="row2" style="width: 280px;">
             <b>
               <font style="vertical-align: inherit;">

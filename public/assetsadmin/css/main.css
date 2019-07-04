@@ -225,3 +225,7 @@ h2.crs {
     position: absolute;
     right: 0;
 }
+.card label {
+    font-size: 0.75rem;
+    margin-bottom: 0px;
+}

@@ -11,12 +11,12 @@ Vue.component('app-container', require('./components/mobile/container.vue').defa
 
 // Admin
 Vue.component('app-containeradmin', require('./components/admin/container.vue').default);
+Vue.component('app-shareholder', require('./components/shareholder/container.vue').default);
 
 // Mobile
 Vue.component('app-mobile', require('./components/mobile/container.vue').default);
 Vue.component('app-myaccount', require('./components/mobile/profile.vue').default);
 Vue.component('app-taps', require('./components/mobile/taps.vue').default);
-
 
 Vue.component('app-container', require('./components/welcome/containerwelcome.vue').default);
 Vue.component('app-index', require('./components/index/index.vue').default);
@@ -50,8 +50,9 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 // require styles
 import 'swiper/dist/css/swiper.css'
 
+
 Vue.use(VueAwesomeSwiper, /* { default global options } */ )
 
 const app = new Vue({
     el: '#app',
-});
+})
