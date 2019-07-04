@@ -17,6 +17,9 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assetsadmin/demo/demo.css" rel="stylesheet" />
     <link href="../assetsadmin/css/main.css" rel="stylesheet" />
+
+    {{-- vuetify --}}
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
 </head>
 
 <body class="">
