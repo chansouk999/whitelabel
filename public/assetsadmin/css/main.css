@@ -220,3 +220,8 @@ h2.crs {
     font-weight: 700;
     padding: 27px 0px 0px 80px;
 }
+.fr{
+    float: right;
+    position: absolute;
+    right: 0;
+}

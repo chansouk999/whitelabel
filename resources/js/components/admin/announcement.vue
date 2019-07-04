@@ -70,7 +70,7 @@
                   <div class="tab-pane active" id="Promotion">
                     <div class="card">
                       <div class="card-body">
-                        <ul class="nav nav-pills nav-pills-primary">
+                        <ul class="nav nav-pills ml-auto nav-pills-primary">
                           <li class="nav-item">
                             <a
                               class="nav-link active"
@@ -80,6 +80,9 @@
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#History">History</a>
+                          </li>
+                          <li class="nav-item fr">
+                            <a class="nav-link" href="#" data-toggle="modal" data-target=".announcementpost">Add Post</a>
                           </li>
                         </ul>
                         <div class="tab-content tab-space">
@@ -441,6 +444,46 @@
       </div>
     </div>
     <!--/modal edit evidence -->
+
+    <!-- msg -->
+     <div
+          class="modal modal-search fade announcementpost"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="announcement"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <form action="#">
+                  <label>Email address</label>
+                  <div class="form-group">
+                    <input type="email" class="form-control">
+                  </div>
+                  <label>Password</label>
+                  <div class="form-group">
+                    <input type="password" class="form-control">
+                  </div>
+                  <div class="form-check mt-3">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox">
+                      <span class="form-check-sign"></span>
+                      Subscribe to newsletter
+                    </label>
+                  </div>
+                </form>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <i class="tim-icons icon-simple-remove"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- msg -->
+
+
+
   </div>
 </template>
 <script>
