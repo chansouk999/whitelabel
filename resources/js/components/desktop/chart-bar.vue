@@ -28,32 +28,32 @@
           <ul class="amount pull-left">
             <li>
               <font class="verticalalign">
-                <font class="verticalalign" style="font-size: 13px;">{{Amount5}}</font>
+                <font class="verticalalign">{{formatNumber(Amount5)}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">{{Amount4}}</font>
+                <font class="verticalalign">{{formatNumber(Amount4)}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">{{Amount3}}</font>
+                <font class="verticalalign">{{formatNumber(Amount3)}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">{{Amount2}}</font>
+                <font class="verticalalign">{{formatNumber(Amount2)}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">{{Amount1}}</font>
+                <font class="verticalalign">{{formatNumber(Amount1)}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign" style="font-size: 13px;">{{Amount0}}</font>
+                <font class="verticalalign">{{Amount0}}</font>
               </font>
             </li>
           </ul>
@@ -73,7 +73,7 @@
                 </font>
               </span>
               <span
-                :class="totalbet>=Amount0 && totalbet < Amount1 ? 'bar null orange' : 'bar null'"
+                :class="totalbet>0 && totalbet < Amount1 ? 'bar null orange' : 'bar null'"
                 style="height: 30px;"
               ></span>
               <span class="level">
@@ -211,12 +211,14 @@ export default {
       Amount3: "",
       Amount4: "",
       Amount5: "",
+
       title0: "",
       title1: "",
       title2: "",
       title3: "",
       title4: "",
       title5: "",
+
       percentage0: "",
       percentage1: "",
       percentage2: "",
@@ -227,6 +229,7 @@ export default {
   },
   mounted() {
     this.getuserbet();
+    // this.formatNumber();
   },
   methods: {
     getuserbet() {
@@ -234,16 +237,12 @@ export default {
         this.totalbet = response.data["totalbet"];
         let responses = response.data[0];
         // Amount
-        this.Amount0 = formatNumber(responses[0].Amount);
-        this.Amount1 = formatNumber(responses[1].Amount);
-        this.Amount2 = formatNumber(responses[2].Amount);
-        this.Amount3 = formatNumber(responses[3].Amount);
-        this.Amount4 = formatNumber(responses[4].Amount);
-        this.Amount5 = formatNumber(responses[5].Amount);
-
-        function formatNumber(num) {
-          return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-        }
+        this.Amount0 = responses[0].Amount;
+        this.Amount1 = responses[1].Amount;
+        this.Amount2 = responses[2].Amount;
+        this.Amount3 = responses[3].Amount;
+        this.Amount4 = responses[4].Amount;
+        this.Amount5 = responses[5].Amount;
 
         // title
         this.title0 = responses[0].title;
@@ -265,6 +264,9 @@ export default {
           return num.toFixed(2) + "%"; //.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
         }
       });
+    },
+    formatNumber(num) {
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     }
   }
 };
