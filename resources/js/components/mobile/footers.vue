@@ -4,7 +4,7 @@
       <!-- user Login -->
       <span v-if="checkuser == 'true'">
         <nav class="mobile-bottom-nav">
-          <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
+          <div class="mobile-bottom-nav__item ">
             <div class="mobile-bottom-nav__item-content">
               <a :href="welcome">
                 <i class="tim-icons icon-bank"></i>
@@ -41,7 +41,7 @@
             </div>
           </div>
 
-          <div class="mobile-bottom-nav__item">
+          <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
             <div class="mobile-bottom-nav__item-content">
               <a href="/myaccount">
                 <i class="tim-icons icon-single-02"></i>

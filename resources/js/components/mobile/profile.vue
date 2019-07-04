@@ -68,22 +68,27 @@
                         <div class="card-footer">
                           <div class="row">
                             <div class="w-33">
+                                <a href="/profile?page=fastrecharge">
                               <div class="info-icon text-center icon-warning shadow-warning">
                                 <i class="tim-icons icon-credit-card"></i>
                                 <p>{{fastrecharge}}</p>
                               </div>
+                              </a>
                             </div>
                             <div class="w-33">
+                                <a href="/profile?page=applyforwithdrawal">
                               <div class="info-icon text-center icon-danger shadow-danger">
                                 <i class="tim-icons icon-coins icon-default"></i>
                                 <p>{{applyforwithdrawal}}</p>
                               </div>
+                              </a>
                             </div>
                             <div class="w-33">
+                                <a href="/profile?page=selfservicerolling">
                               <div class="info-icon text-center icon-success shadow-success">
                                 <i class="tim-icons icon-single-02"></i>
                                 <p>{{selfservicerolling}}</p>
-                              </div>
+                              </div></a>
                             </div>
                           </div>
                         </div>

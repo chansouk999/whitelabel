@@ -564,7 +564,7 @@ export default {
     console.log("+++++++++++++++++++++++");
     console.log(filename.split("/")[2]);
     console.log("+++++++++++++++++++++++");
-    this.userdata();
+    // this.userdata();
   },
   methods: {
     runwindow() {

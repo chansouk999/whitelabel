@@ -10,6 +10,9 @@
             <p v-else-if=" page =='transactionrecord'">{{transactionrecord}}</p>
             <p v-else-if="page =='recommendfriends'">{{recommendfriends}}</p>
             <p v-else-if="page =='accountsettings'">{{accountsettings}}</p>
+            <p v-else-if="page =='fastrecharge'">{{fastrecharge}}</p>
+            <p v-else-if="page =='applyforwithdrawal'">{{applyforwithdrawal}}</p>
+            <p v-else-if="page =='selfservicerolling'">{{selfservicerolling}}</p>
 
         </div>
         <div class="col-xl-10 col-sm-12 px-2 pt-5 pb-5">
@@ -23,9 +26,19 @@
             <recommedndedfriends />
           </div>
           <div class="u-content" v-else-if="page =='accountsettings'"></div>
-          <!-- <div class="u-content">
-          <recommedndedfriends/>
-          </div>-->
+
+          <div class="u-content" v-else-if="page =='fastrecharge'">
+            <!-- <recommedndedfriends /> -->
+            <h1>Error 404 </h1>
+            <h1>This site can’t be reached</h1>
+
+          </div>
+          <div class="u-content" v-else-if="page =='applyforwithdrawal'">
+            <applyforwithdrawal />
+          </div>
+          <div class="u-content" v-else-if="page =='selfservicerolling'">
+          <selfservicewashing/>
+          </div>
         </div>
       </div>
     </div>
@@ -33,6 +46,9 @@
   </div>
 </template>
 <script>
+
+import applyforwithdrawal from "./applyforwithdrawal";
+import selfservicewashing from "./selfservicewashing";
 import recommedndedfriends from "./recommedndedfriends";
 import transactionrecord from "./transactionrecord";
 import bankinfo from "./bankinfo";
@@ -50,7 +66,9 @@ export default {
     Flickity,
     bankinfo,
     transactionrecord,
-    recommedndedfriends
+    recommedndedfriends,
+    selfservicewashing,
+    applyforwithdrawal
   },
   data() {
     return {
