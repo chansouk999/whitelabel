@@ -37,6 +37,7 @@ class MasterController extends Controller
 
 
     public function requestdata(Request $req){
+       
         return OauthClient::where('id','=',$req->ClientID)->get()[0];
     }
     public function connectTogame($data){
