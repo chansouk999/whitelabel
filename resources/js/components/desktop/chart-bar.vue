@@ -28,32 +28,32 @@
           <ul class="amount pull-left">
             <li>
               <font class="verticalalign">
-                <font class="verticalalign" style="font-size: 13px;">{{Amount5}}</font>
+                <font class="verticalalign">{{formatNumber(Amount5)}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">{{Amount4}}</font>
+                <font class="verticalalign">{{formatNumber(Amount4)}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">{{Amount3}}</font>
+                <font class="verticalalign">{{formatNumber(Amount3)}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">{{Amount2}}</font>
+                <font class="verticalalign">{{formatNumber(Amount2)}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">{{Amount1}}</font>
+                <font class="verticalalign">{{formatNumber(Amount1)}}</font>
               </font>
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign" style="font-size: 13px;">{{Amount0}}</font>
+                <font class="verticalalign">{{Amount0}}</font>
               </font>
             </li>
           </ul>
@@ -64,7 +64,7 @@
             <li>
               <em>
                 <font class="verticalalign">
-                  <font class="verticalalign">{{percentage0}}%</font>
+                  <font class="verticalalign">{{percentage0}}</font>
                 </font>
               </em>
               <span class="tip-message">
@@ -73,7 +73,7 @@
                 </font>
               </span>
               <span
-                :class="totalbet>=Amount0 && totalbet < Amount1 ? 'bar null orange' : 'bar null'"
+                :class="totalbet>0 && totalbet < Amount1 ? 'bar null orange' : 'bar null'"
                 style="height: 30px;"
               ></span>
               <span class="level">
@@ -86,7 +86,7 @@
             <li>
               <em>
                 <font class="verticalalign">
-                  <font class="verticalalign">{{percentage1}}%</font>
+                  <font class="verticalalign">{{percentage1}}</font>
                 </font>
               </em>
               <span class="tip-message">
@@ -108,7 +108,7 @@
             <li>
               <em>
                 <font class="verticalalign">
-                  <font class="verticalalign">{{percentage2}}%</font>
+                  <font class="verticalalign">{{percentage2}}</font>
                 </font>
               </em>
               <span class="tip-message">
@@ -130,7 +130,7 @@
             <li>
               <em>
                 <font class="verticalalign">
-                  <font class="verticalalign">{{percentage3}}%</font>
+                  <font class="verticalalign">{{percentage3}}</font>
                 </font>
               </em>
               <span class="tip-message">
@@ -152,7 +152,7 @@
             <li>
               <em>
                 <font class="verticalalign">
-                  <font class="verticalalign">{{percentage4}}%</font>
+                  <font class="verticalalign">{{percentage4}}</font>
                 </font>
               </em>
               <span class="tip-message">
@@ -174,7 +174,7 @@
             <li>
               <em>
                 <font class="verticalalign">
-                  <font class="verticalalign">{{percentage5}}%</font>
+                  <font class="verticalalign">{{percentage5}}</font>
                 </font>
               </em>
               <span class="tip-message">
@@ -211,12 +211,14 @@ export default {
       Amount3: "",
       Amount4: "",
       Amount5: "",
+
       title0: "",
       title1: "",
       title2: "",
       title3: "",
       title4: "",
       title5: "",
+
       percentage0: "",
       percentage1: "",
       percentage2: "",
@@ -227,6 +229,7 @@ export default {
   },
   mounted() {
     this.getuserbet();
+    // this.formatNumber();
   },
   methods: {
     getuserbet() {
@@ -240,6 +243,7 @@ export default {
         this.Amount3 = responses[3].Amount;
         this.Amount4 = responses[4].Amount;
         this.Amount5 = responses[5].Amount;
+
         // title
         this.title0 = responses[0].title;
         this.title1 = responses[1].title;
@@ -247,14 +251,22 @@ export default {
         this.title3 = responses[3].title;
         this.title4 = responses[4].title;
         this.title5 = responses[5].title;
+
         // percentage
-        this.percentage0 = responses[0].percentage.toFixed(2);
-        this.percentage1 = responses[1].percentage.toFixed(2);
-        this.percentage2 = responses[2].percentage.toFixed(2);
-        this.percentage3 = responses[3].percentage.toFixed(2);
-        this.percentage4 = responses[4].percentage.toFixed(2);
-        this.percentage5 = responses[5].percentage.toFixed(2);
+        this.percentage0 = currencyFormat(responses[0].percentage);
+        this.percentage1 = currencyFormat(responses[1].percentage);
+        this.percentage2 = currencyFormat(responses[2].percentage);
+        this.percentage3 = currencyFormat(responses[3].percentage);
+        this.percentage4 = currencyFormat(responses[4].percentage);
+        this.percentage5 = currencyFormat(responses[5].percentage);
+
+        function currencyFormat(num) {
+          return num.toFixed(2) + "%"; //.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
       });
+    },
+    formatNumber(num) {
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     }
   }
 };
