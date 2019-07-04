@@ -254,3 +254,5 @@ Route::get('/wlmobile', 'HomeController@whitelabel_mobile');
 Route::get('/myaccount', 'HomeController@myaccount');
 
 Route::get('getRequets', 'CardController@getRequets');
+
+Route::get('/shareholderTEST','Shareholder@index');
