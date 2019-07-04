@@ -12,7 +12,102 @@
         <app-navbar></app-navbar>
         <div class="content">
           <div class="container-fluid">
-           <h1>HELLO</h1>
+            <div class="row">
+              <div class="col-12">
+                <div class="card card-nav-tabs">
+                  <div class="card-header card-header-danger">
+                    <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                    <div class="nav-tabs-navigation">
+                      <div class="nav-tabs-wrapper">
+                        <ul class="nav nav-pills nav-pills-primary" role="tablist" data-tabs="tabs">
+                          <li class="nav-item w-25">
+                            <a
+                              class="nav-link active"
+                              href="#gameperfor"
+                              data-toggle="tab"
+                            >Game Perforamance</a>
+                          </li>
+                          <li class="nav-item w-25">
+                            <a
+                              class="nav-link"
+                              href="#agentperformant"
+                              data-toggle="tab"
+                            >Agent Performance</a>
+                          </li>
+                          <li class="nav-item w-25">
+                            <a class="nav-link" href="#adminlist" data-toggle="tab">Admin List</a>
+                          </li>
+                          <li class="nav-item w-25">
+                            <a class="nav-link" href="#finance" data-toggle="tab">Finance</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="tab-content text-center">
+                      <div class="tab-pane active" id="gameperfor" aria-expanded="true">
+                        <!-- <app-playerinfo></app-playerinfo> -->
+                        <div class="row">
+                          <div class="col-md-6 text-left">
+                            <p class="pl-5">Current Page : Page</p>
+                          </div>
+                          <div class="col-md-6 text-right">
+                            <button
+                              class="btn btn-link"
+                              id="search-button"
+                              data-toggle="modal"
+                              data-target="#spearchilayerinfo"
+                            >
+                              <i class="tim-icons icon-zoom-split"></i>
+                              <span class="d-lg-none d-md-block">Search</span>
+                            </button>
+                            <div
+                              class="modal modal-search fade"
+                              id="spearchilayerinfo"
+                              tabindex="-1"
+                              role="dialog"
+                              aria-labelledby="spearchilayerinfo"
+                              aria-hidden="true"
+                            >
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <input type="text" class="form-control" placeholder="SEARCH" />
+                                    <button
+                                      type="button"
+                                      class="close"
+                                      data-dismiss="modal"
+                                      aria-label="Close"
+                                    >
+                                      <i class="tim-icons icon-simple-remove"></i>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br />
+                        <!-- PLAYER INFO -->
+                      </div>
+                      <div class="tab-pane" id="agentperformant" aria-expanded="false">
+                        <app-agentperformant></app-agentperformant>
+                      </div>
+                      <div class="tab-pane" id="gameresult" aria-expanded="false">
+                        <app-adminlist></app-adminlist>
+                      </div>
+                      <div class="tab-pane" id="adminlist" aria-expanded="false">
+                        <app-finance></app-finance>
+                      </div>
+                      <div class="tab-pane" id="finance" aria-expanded="false">
+                        <app-finance></app-finance>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <app-footer></app-footer>
