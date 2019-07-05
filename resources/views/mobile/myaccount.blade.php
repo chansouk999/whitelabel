@@ -70,6 +70,11 @@
         washcode="@lang('home.washcode')"
         mine="@lang('home.mine')"
         logout="@lang('home.logout')"
+        changepassword="@lang('home.changepassword')"
+        modifyphone="@lang('home.modifyphone')"
+        smssubscription="@lang('home.smssubscription')"
+        loginsettings="@lang('home.loginsettings')"
+        nonactivated="@lang('home.nonactivated')"
             ></app-myaccount>
     </div>
     @include('sweetalert::alert')
