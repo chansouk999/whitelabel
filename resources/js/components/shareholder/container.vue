@@ -51,7 +51,7 @@
                         <table>
                           <tr>
                             <td colspan="6" style="text-align:right;padding:0">
-                              <button class="btn btn-blue-grey" style="right:0">daily detail</button>
+                              <button class="btn btn-blue-grey" style="right:0" data-toggle="modal" data-target=".daily-detail-record">daily detail</button>
                             </td>
                           </tr>
                           <tr>
@@ -78,7 +78,7 @@
                         <table>
                           <tr>
                             <td colspan="6" style="text-align:right;padding:0">
-                              <button class="btn btn-blue-grey" style="right:0">Commission history</button>
+                              <button class="btn btn-blue-grey" style="right:0" data-toggle="modal" data-target=".commission-history-record">Commission history</button>
                             </td>
                           </tr>
                           <tr>
@@ -93,7 +93,7 @@
                             <td>123</td>
                             <td>7</td>
                             <td>$ 123450.23</td>
-                            <td>4%</td>
+                            <td>4%</td> 
                           </tr>
                         </table>
                       </div>
@@ -102,7 +102,7 @@
                         <table>
                           <tr>
                             <td colspan="6" style="text-align:right;padding:0">
-                              <button class="btn btn-blue-grey" style="right:0">Manage records</button>
+                              <button class="btn btn-blue-grey" style="right:0" data-toggle="modal" data-target=".manage-record">Manage records</button>
                             </td>
                           </tr>
                           <tr>
@@ -159,7 +159,82 @@
     </div>
     <app-setting></app-setting>
     <app-modal></app-modal>
+
+    <!-- modal commission-history action -->
+    <div
+      class="modal fade  commission-history-record"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Date</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card card-nav-tabs">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal daiy-detail action -->
+    <div
+      class="modal fade daily-detail-record"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Date</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card card-nav-tabs">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal manage action -->
+    <div
+      class="modal fade manage-record"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Date</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card card-nav-tabs">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
 </template>
 <script>
 import aside from "../admin/asides";

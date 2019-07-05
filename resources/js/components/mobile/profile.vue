@@ -68,27 +68,28 @@
                         <div class="card-footer">
                           <div class="row">
                             <div class="w-33">
-                                <a href="/profile?page=fastrecharge">
-                              <div class="info-icon text-center icon-warning shadow-warning">
-                                <i class="tim-icons icon-credit-card"></i>
-                                <p>{{fastrecharge}}</p>
-                              </div>
+                              <a href="/profile?page=fastrecharge">
+                                <div class="info-icon text-center icon-warning shadow-warning">
+                                  <i class="tim-icons icon-credit-card"></i>
+                                  <p>{{fastrecharge}}</p>
+                                </div>
                               </a>
                             </div>
                             <div class="w-33">
-                                <a href="/profile?page=applyforwithdrawal">
-                              <div class="info-icon text-center icon-danger shadow-danger">
-                                <i class="tim-icons icon-coins icon-default"></i>
-                                <p>{{applyforwithdrawal}}</p>
-                              </div>
+                              <a href="/profile?page=applyforwithdrawal">
+                                <div class="info-icon text-center icon-danger shadow-danger">
+                                  <i class="tim-icons icon-coins icon-default"></i>
+                                  <p>{{applyforwithdrawal}}</p>
+                                </div>
                               </a>
                             </div>
                             <div class="w-33">
-                                <a href="/profile?page=selfservicerolling">
-                              <div class="info-icon text-center icon-success shadow-success">
-                                <i class="tim-icons icon-single-02"></i>
-                                <p>{{selfservicerolling}}</p>
-                              </div></a>
+                              <a href="/profile?page=selfservicerolling">
+                                <div class="info-icon text-center icon-success shadow-success">
+                                  <i class="tim-icons icon-single-02"></i>
+                                  <p>{{selfservicerolling}}</p>
+                                </div>
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -180,19 +181,101 @@
                         </div>
                       </a>
                       <hr class="hr-mobile" />
-                      <a href="/profile?page=accountsettings">
-                        <div class="row d-flex justify-content-between py-3">
-                          <div class="d-flex">
-                            <i class="tim-icons icon-settings-gear-63"></i>
-                            <span class="game_rBox">
-                              <p>{{accountsettings}}</p>
-                            </span>
+                      <div
+                        id="accordion"
+                        role="tablist"
+                        aria-multiselectable="true"
+                        class="card-collapse"
+                      >
+                        <div class="card card-plain">
+                          <div role="tab" id="headingOne">
+                            <a
+                              data-toggle="collapse"
+                              data-parent="#accordion"
+                              href="#collapseOne"
+                              aria-expanded="false"
+                              aria-controls="collapseOne"
+                            >
+                              <div class="row d-flex justify-content-between py-3">
+                                <div class="d-flex">
+                                  <i class="tim-icons icon-settings-gear-63"></i>
+                                  <span class="game_rBox">
+                                    <p>{{accountsettings}}</p>
+                                  </span>
+                                </div>
+                                <p class="mycolor-icon">
+                                  <i class="tim-icons icon-minimal-down"></i>
+                                </p>
+                              </div>
+                            </a>
                           </div>
-                          <p class="mycolor-icon">
-                            <i class="tim-icons icon-minimal-right"></i>
-                          </p>
+
+                          <div
+                            id="collapseOne"
+                            class="collapse"
+                            role="tabpanel"
+                            aria-labelledby="headingOne"
+                          >
+                            <div class="card-body">
+                              <hr class="hr-mobile" />
+                              <a href="/profile?page=changepassword">
+                                <div class="row d-flex justify-content-between py-2">
+                                  <div class="d-flex">
+                                    <span class="game_rBox ml-5">
+                                      <p>{{changepassword}}</p>
+                                    </span>
+                                  </div>
+                                  <p class="mycolor-icon">
+                                    <i class="tim-icons icon-minimal-right"></i>
+                                  </p>
+                                </div>
+                              </a>
+                              <hr class="hr-mobile" />
+                              <a href="/profile?page=modifyphone">
+                                <div class="row d-flex justify-content-between py-2">
+                                  <div class="d-flex">
+                                    <span class="game_rBox ml-5">
+                                      <p>{{modifyphone}}</p>
+                                    </span>
+                                  </div>
+                                  <p class="mycolor-icon">
+                                    <span class="text-smaller">186*******2</span>
+                                    <i class="tim-icons icon-minimal-right"></i>
+                                  </p>
+                                </div>
+                              </a>
+                              <hr class="hr-mobile" />
+                              <a href="/profile?page=smssubscription">
+                                <div class="row d-flex justify-content-between py-2">
+                                  <div class="d-flex">
+                                    <span class="game_rBox ml-5">
+                                      <p>{{smssubscription}}</p>
+                                    </span>
+                                  </div>
+                                  <p class="mycolor-icon">
+                                    <span class="text-smaller">{{nonactivated}}</span>
+                                    <i class="tim-icons icon-minimal-right"></i>
+                                  </p>
+                                </div>
+                              </a>
+                              <hr class="hr-mobile" />
+                              <a href="/profile?page=loginsettings">
+                                <div class="row d-flex justify-content-between py-2 ok">
+                                  <div class="d-flex">
+                                    <span class="game_rBox ml-5">
+                                      <p>{{loginsettings}}</p>
+                                    </span>
+                                  </div>
+                                  <p class="mycolor-icon">
+                                    <span class="text-smaller">{{nonactivated}}</span>
+                                    <i class="tim-icons icon-minimal-right"></i>
+                                  </p>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
                         </div>
-                      </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -202,6 +285,7 @@
         </div>
       </div>
     </div>
+
     <setting />
   </div>
 </template>
@@ -303,9 +387,28 @@ export default {
     "home",
     "forum",
     "washcode",
-    "mine"
+    "mine",
+    "changepassword",
+    "modifyphone",
+    "smssubscription",
+    "loginsettings",
+    "nonactivated"
   ]
 };
+
+$(function() {
+  $(".scroll-down").click(function() {
+    $("html, body").animate(
+      { scrollTop: $("section.ok").offset().top },
+      "slow"
+    );
+    return false;
+  });
+});
 </script>
 <style scoped>
+.text-smaller {
+  color: darkgray;
+  font-size: smaller;
+}
 </style>
