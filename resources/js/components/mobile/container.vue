@@ -548,7 +548,7 @@ export default {
       messages: "./index",
       promote: "./promote",
       welcome: "/",
-      lobby: "./lobby",
+    //   lobby: "./lobby",
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },

@@ -30,7 +30,7 @@
                         <div class="block block-four"></div>
                         <a href="javascript:void(0)">
                           <img class="avatar" src="assets/img/emilyz.jpg" alt="..." />
-                          <h5 class="title">Mike Andrew</h5>
+                          <h5 class="title">{{id}}</h5>
                         </a>
                         <p class="description">Ceo/Co-Founder</p>
                       </div>
@@ -41,7 +41,7 @@
                             <h4 class="card-title">{{totalbalance}}({{yuan}})</h4>
                             <span class="bala-num">
                               ￥
-                              <span id="tBalance">0.00</span>
+                              <span id="tBalance">{{balance}}</span>
                             </span>
                             <div class="card-footer">
                               <a href="#" class="card-link">
@@ -314,11 +314,13 @@ export default {
         wrapAround: true
         // any options from Flickity can be used
       },
+      id: "",
+      balance: "",
       ismenu: false,
       messages: "./index",
       promote: "./promote",
       welcome: "/",
-      lobby: "./lobby",
+      //   lobby: "./lobby",
       csrf: document
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content")
@@ -329,8 +331,34 @@ export default {
       return this.$refs.mySwiper.swiper;
     }
   },
-  mounted() {},
+  mounted() {
+    this.userdata();
+  },
   methods: {
+    userdata() {
+      axios
+        .get("/userdetaildata")
+        .then(res => {
+        //   console.log(res.data[0]);
+          this.id = res.data[0].id;
+          this.user_id = res.data[0].user_id;
+          this.provider_name = res.data[0].provider_name;
+          this.balance = res.data[0].userBalance;
+          this.pro_id = res.data[0].pro_id;
+          this.name = res.data[0].name;
+          this.email = res.data[0].email;
+          this.login_at = res.data[0].created_at;
+          $(".id").val(this.id);
+          $(".provider_name").val(this.provider_name);
+          $(".balance").val(this.balance);
+          $(".pro_id").val(this.pro_id);
+          $(".name").val(this.name);
+          $(".email").val(this.email);
+        })
+        .catch(er => {
+          console.log(er.res);
+        });
+    },
     next() {
       this.$refs.flickity.next();
     },
@@ -363,7 +391,7 @@ export default {
     "us_stock",
     "cryptocurrencies",
     "chines_stock",
-    "lobby",
+    // "lobby",
     "stock1",
     "stock2",
     "stock3",
