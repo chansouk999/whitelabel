@@ -55,7 +55,7 @@
                             </td>
                           </tr>
                           <tr>
-                            <th>Date</th>
+                          <th>Date</th>
                             <th>Number of bets</th>
                             <th>Number of players</th>
                             <th>Total in</th>
