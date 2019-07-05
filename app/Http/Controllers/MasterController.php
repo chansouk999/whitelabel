@@ -21,7 +21,7 @@ use App\User;
 use App\withdraw_methods;
 use App\userdetail;
 use DateTime;
-use App\access_record;
+use App\access_record;                                                                                    
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
 use League\Flysystem\Exception;
@@ -35,9 +35,12 @@ class MasterController extends Controller
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
     protected $data = [];
 
+    public function saveAnnounceMent(Reequest $req){
+        
+    }
 
     public function requestdata(Request $req){
-       
+
         return OauthClient::where('id','=',$req->ClientID)->get()[0];
     }
     public function connectTogame($data){
@@ -63,7 +66,7 @@ class MasterController extends Controller
             }
             $check = OauthClient::where('name','=',\Request::root())->get();
             return $this->connectTogame($check);
-            
+
         }catch(\Eception $ex){
             return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
         }
@@ -482,9 +485,9 @@ class MasterController extends Controller
             ->join('oauth_clients', 'users.id', '=', 'oauth_clients.user_id')
             ->where('users.id', $id)
             ->orderby('oauth_clients.created_at', 'desc')->limit(1)->get();
-       
 
-        
+
+
     }
     public function checklogin(Request $req)
     {
@@ -579,7 +582,7 @@ class MasterController extends Controller
     }
     public function getUserBet()
     {
-        
+
         $update  = userdetail::where('user_id',Auth::user()->user_id)->get();
         $Totalbet = $update->pluck('Totalbet')[0];
         $rolling = Selfservice::where('Amount','<=',$Totalbet)->limit(1)->orderby('Amount','desc')->get();
@@ -595,7 +598,7 @@ class MasterController extends Controller
         // }
 
 
-        
-        
+
+
     }
 }
