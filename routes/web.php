@@ -256,3 +256,5 @@ Route::get('/myaccount', 'HomeController@myaccount');
 Route::get('getRequets', 'CardController@getRequets');
 
 Route::get('/shareholderTEST','Shareholder@index');
+
+Route::post('/saveannounce', 'AdminController@saveannounce');

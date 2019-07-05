@@ -52,7 +52,12 @@ return [
     "forum"=>"Forum",
     "washcode"=>"Wash Code",
     "mine"=>"Mine",
-    "logout"=>"Log Out"
+    "logout"=>"Log Out",
+    "changepassword"=>"Change Password",
+    "modifyphone"=>"Modify Phone",
+    "smssubscription"=>"SMS Subscription",
+    "loginsettings"=>"Login Settings",
+    "nonactivated"=>"Nonactivated",
 
 
 ];
