@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\Cors::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Switchlang::class,
+            \App\Http\Middleware\RedirectifAdminAuthenticated::class,
             \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
         ],
 
@@ -70,6 +71,7 @@ class Kernel extends HttpKernel
         'sweetalert' => \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
         'cors' => \App\Http\Middleware\Cors::class, 
         'admin' => \App\Http\Middleware\Admin::class, 
+        'guest' => \App\Http\Middleware\RedirectifAdminAuthenticated::class, 
     ];
 
     /**
