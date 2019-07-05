@@ -123,12 +123,11 @@
                         <table>
                           <tr>
                             <td colspan="6" style="text-align:left;padding:0">
-                              <select id="soflow">
+                              <select id="soflow" v-model="byDay">
                                 <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
-                                <option>Select an Option</option>
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                                <option>Option 2</option>
+                                <option value="day">By day</option>
+                                <option value="week">By week</option>
+                                <option value="month">By month</option>
                               </select>
                             </td>
                           </tr>
@@ -174,6 +173,10 @@ export default {
     "app-navbar": navbar,
     "app-footer": footer,
     "app-setting": setting
+  },data(){
+    return{
+      byDay:"day",
+    }
   }
 };
 </script>
@@ -181,6 +184,9 @@ export default {
 table {
   border-collapse: collapse;
   width: 100%;
+}
+th{
+  background-color: rgb(0, 0, 0)
 }
 
 th,
@@ -190,7 +196,7 @@ td {
 }
 
 tr:nth-child(even) {
-  background-color: black;
+  background-color: rgb(66, 64, 64);
 }
 .styled-select select {
   background: transparent;
