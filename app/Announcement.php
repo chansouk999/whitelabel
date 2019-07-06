@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Announcement extends Model
 {
-    //
+    protected $fillable = [
+        'AnouncementID',
+        'method',
+        'message',
+        'addInDate'
+    ];
 }
