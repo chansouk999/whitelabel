@@ -107,21 +107,54 @@
                         </ul>
                         <div class="tab-content tab-space">
                           <div class="tab-pane active" id="Current">
+
+
+                            <div class="row">
+                  <div class="col-6 bg-card-admin">
+                    <div class="row">
+                    
+                      <div class="col-md-6"  v-for="data in announcementdata" >
+                        <div class="info-area info-horizontal">
+                          <div class="icon icon-light mt-0">
+                            <i class="tim-icons icon-wifi mt-3"></i>
+                          </div>
+                          <div class="description">
+                            <h3 class="info-title">{{JSON.parse(data.message).title}}</h3>
+                            <p class="description">Detail: {{ data.method}} ,{{JSON.parse(data.message).Promotion}}</p>
+                            <p>{{JSON.parse(data.message).msg}}</p>
+                            
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-lg-between ps-custome">
+                          <button type="button" class="btn btn-warning btn-sm btn-icon">
+                            <i class="tim-icons icon-pencil"></i>
+                          </button>
+                          <button type="button" class="btn btn-danger btn-sm btn-icon">
+                            <i class="tim-icons icon-trash-simple"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+
+
+
+                            
                             <ul class="timeline timeline-simple">
-                              <li class="timeline-inverted" v-for="data in announcementdata">
+                              <li class="timeline-inverted">
                                 <div class="timeline-badge danger">
-                                  <i class="tim-icons icon-bag-16"></i>Detail: {{ data.method}} ,{{JSON.parse(data.message).Promotion}}
+                                  <i class="tim-icons icon-bag-16"></i>
                                 </div>
                                 <div class="timeline-panel">
                                   <div class="timeline-heading">
-                                    <span class="badge badge-danger">{{JSON.parse(data.message).title}}</span>
+                                    <span class="badge badge-danger"></span>
                                   </div>
                                   <div class="timeline-body">
-                                    <p>{{JSON.parse(data.message).msg}}</p>
+                                    
                                   </div>
-                                  <h6>
-                                    <i class="ti-time"></i> {{data.created_at}}
-                                  </h6>
+                                 
                                 </div>
                               </li>
                             </ul>
