@@ -49,7 +49,7 @@
             <li class="nav-aside" id="SH0000015">
               <popper  trigger="hover" :options="myPopper">
                 <div class="popper">
-                  <livechart stockname="SH000001" loop="5" country="china" :isMenu="true"></livechart>
+                  <livechart :key="0"  stockname="SH000001" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
                 <!-- <a href="/stocklist?stockname=SH000001&loop=5&country=china" slot="reference" target="_blank"> -->
                 <a
@@ -66,7 +66,7 @@
             <li class="nav-aside" id="SZ3990015">
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">
-                  <livechart stockname="SZ3990015" loop="5" country="china" :isMenu="true"></livechart>
+                  <livechart :key="1" stockname="SZ3990015" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
                 <!-- <a href="/stocklist?stockname=SZ399001&loop=5&country=china" slot="reference" target="_blank"> -->
                 <a
@@ -83,7 +83,7 @@
             <li class="nav-aside" id="SH003005">
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">
-                  <livechart stockname="SH00300" loop="5" country="china" :isMenu="true"></livechart>
+                  <livechart :key="2" stockname="SH00300" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
                 <a
                   :href="stocklist"
@@ -100,7 +100,7 @@
             <li class="nav-aside" id="SZ3994155">
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">
-                  <livechart stockname="SZ399415" loop="5" country="china" :isMenu="true"></livechart>
+                  <livechart :key="3" stockname="SZ399415" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
                 <a
                   :href="stocklist"
@@ -117,7 +117,7 @@
             <li class="nav-aside" id="USdollarIndex5">
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">
-                  <livechart stockname="USdollarIndex" loop="5" country="usa" :isMenu="true"></livechart>
+                  <livechart :key="4" stockname="USdollarIndex" loop="5" country="usa" :isMenu="true"></livechart>
                 </div>
                 <a :href="stocklist" @click="getstock('US dollar Index',5,'usa')" slot="reference" target="_blank">
                   <!-- <a href="/stocklist?stockname=USdollarIndex&loop=5&country=usa" slot="reference" target="_blank"> -->
@@ -139,7 +139,7 @@
                   <li class="nav-aside" id="BTCUSDT1">
                     <popper trigger="hover" :options="myPopper">
                       <div class="popper">
-                        <livechart stockname="BTCUSDT" loop="1" country="cypto" :isMenu="true"></livechart>
+                        <livechart :key="5" stockname="BTCUSDT" loop="1" country="cypto" :isMenu="true"></livechart>
                       </div>
                       <a
                         :href="stocklist"
@@ -156,7 +156,7 @@
                   <li class="nav-aside" id="BTCUSDT5">
                     <popper trigger="hover" :options="myPopper">
                       <div class="popper">
-                        <livechart stockname="BTCUSDT" loop="5" country="cypto" :isMenu="true"></livechart>
+                        <livechart :key="6" stockname="BTCUSDT" loop="5" country="cypto" :isMenu="true"></livechart>
                       </div>
                       <a
                         :href="stocklist"
