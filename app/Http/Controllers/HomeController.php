@@ -62,7 +62,9 @@ class HomeController extends Controller
     {
         return view('admin.welcome');
     }
-
+    public function shareholder(){
+        return 'shareholder';
+    }
     //    Mobile
     public function whitelabel_mobile()
     {
@@ -72,5 +74,10 @@ class HomeController extends Controller
     public function myaccount()
     {
         return view('mobile.myaccount');
+    }
+
+    public function tapsprofile()
+    {
+        return view('mobile.tapsprofile');
     }
 }

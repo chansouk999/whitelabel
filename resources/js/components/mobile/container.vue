@@ -548,7 +548,7 @@ export default {
       messages: "./index",
       promote: "./promote",
       welcome: "/",
-      lobby: "./lobby",
+    //   lobby: "./lobby",
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },
@@ -564,7 +564,7 @@ export default {
     console.log("+++++++++++++++++++++++");
     console.log(filename.split("/")[2]);
     console.log("+++++++++++++++++++++++");
-    this.userdata();
+    // this.userdata();
   },
   methods: {
     runwindow() {

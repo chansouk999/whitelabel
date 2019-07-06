@@ -29,8 +29,8 @@
                         <div class="block block-three"></div>
                         <div class="block block-four"></div>
                         <a href="javascript:void(0)">
-                          <img class="avatar" src="assets/img/emilyz.jpg" alt="...">
-                          <h5 class="title">Mike Andrew</h5>
+                          <img class="avatar" src="assets/img/emilyz.jpg" alt="..." />
+                          <h5 class="title">{{id}}</h5>
                         </a>
                         <p class="description">Ceo/Co-Founder</p>
                       </div>
@@ -41,7 +41,7 @@
                             <h4 class="card-title">{{totalbalance}}({{yuan}})</h4>
                             <span class="bala-num">
                               ￥
-                              <span id="tBalance">0.00</span>
+                              <span id="tBalance">{{balance}}</span>
                             </span>
                             <div class="card-footer">
                               <a href="#" class="card-link">
@@ -68,22 +68,28 @@
                         <div class="card-footer">
                           <div class="row">
                             <div class="w-33">
-                              <div class="info-icon text-center icon-warning shadow-warning">
-                                <i class="tim-icons icon-credit-card"></i>
-                                <p>{{fastrecharge}}</p>
-                              </div>
+                              <a href="/profile?page=fastrecharge">
+                                <div class="info-icon text-center icon-warning shadow-warning">
+                                  <i class="tim-icons icon-credit-card"></i>
+                                  <p>{{fastrecharge}}</p>
+                                </div>
+                              </a>
                             </div>
                             <div class="w-33">
-                              <div class="info-icon text-center icon-danger shadow-danger">
-                                <i class="tim-icons icon-coins icon-default"></i>
-                                <p>{{applyforwithdrawal}}</p>
-                              </div>
+                              <a href="/profile?page=applyforwithdrawal">
+                                <div class="info-icon text-center icon-danger shadow-danger">
+                                  <i class="tim-icons icon-coins icon-default"></i>
+                                  <p>{{applyforwithdrawal}}</p>
+                                </div>
+                              </a>
                             </div>
                             <div class="w-33">
-                              <div class="info-icon text-center icon-success shadow-success">
-                                <i class="tim-icons icon-single-02"></i>
-                                <p>{{selfservicerolling}}</p>
-                              </div>
+                              <a href="/profile?page=selfservicerolling">
+                                <div class="info-icon text-center icon-success shadow-success">
+                                  <i class="tim-icons icon-single-02"></i>
+                                  <p>{{selfservicerolling}}</p>
+                                </div>
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -92,7 +98,7 @@
                   </div>
                 </div>
                 <div class="col-md-8 mb-5 bg-light px-1">
-                  <div class="card py-0 my-2">
+                  <!-- <div class="card py-0 my-2">
                     <div class="card-header mb-2">
                       <h5 class="title">{{myaccount_tra}}</h5>
                       <i class="tim-icons icon-align-left-2"></i>
@@ -112,10 +118,10 @@
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </div>-->
                   <div class="card py-0 my-2">
                     <div class="card-body px-4 py-0">
-                      <div class="row d-flex justify-content-between py-3">
+                      <!-- <div class="row d-flex justify-content-between py-3">
                         <div class="d-flex">
                           <i class="tim-icons icon-badge"></i>
                           <span class="game_rBox">
@@ -128,60 +134,147 @@
                         <p class="mycolor-icon">
                           <i class="tim-icons icon-minimal-right"></i>
                         </p>
-                      </div>
-                      <hr class="hr-mobile">
-                      <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-single-02"></i>
-                          <span class="game_rBox">
-                            <p>{{recommendfriends}}</p>
-                          </span>
+                      </div>-->
+                      <hr class="hr-mobile" />
+                      <a href="/profile?page=recommendfriends">
+                        <div class="row d-flex justify-content-between py-3">
+                          <div class="d-flex">
+                            <i class="tim-icons icon-single-02"></i>
+                            <span class="game_rBox">
+                              <p>{{recommendfriends}}</p>
+                            </span>
+                          </div>
+                          <p class="mycolor-icon">
+                            <i class="tim-icons icon-minimal-right"></i>
+                          </p>
                         </div>
-                        <p class="mycolor-icon">
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </p>
-                      </div>
+                      </a>
                     </div>
                   </div>
-
                   <div class="card py-0 my-2">
                     <div class="card-body px-4 py-0">
-                      <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-email-85"></i>
-                          <span class="game_rBox">
-                            <p>{{bankinfo}}</p>
-                          </span>
+                      <a href="/profile?page=bankinfo">
+                        <div class="row d-flex justify-content-between py-3">
+                          <div class="d-flex">
+                            <i class="tim-icons icon-email-85"></i>
+                            <span class="game_rBox">
+                              <p>{{bankinfo}}</p>
+                            </span>
+                          </div>
+                          <p class="mycolor-icon">
+                            <i class="tim-icons icon-minimal-right"></i>
+                          </p>
                         </div>
-                        <p class="mycolor-icon">
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </p>
-                      </div>
-                      <hr class="hr-mobile">
+                      </a>
+                      <hr class="hr-mobile" />
+                      <a href="/profile?page=transactionrecord">
+                        <div class="row d-flex justify-content-between py-3">
+                          <div class="d-flex">
+                            <i class="tim-icons icon-coins"></i>
+                            <span class="game_rBox">
+                              <p>{{transactionrecord}}</p>
+                            </span>
+                          </div>
+                          <p class="mycolor-icon">
+                            <i class="tim-icons icon-minimal-right"></i>
+                          </p>
+                        </div>
+                      </a>
+                      <hr class="hr-mobile" />
+                      <div
+                        id="accordion"
+                        role="tablist"
+                        aria-multiselectable="true"
+                        class="card-collapse"
+                      >
+                        <div class="card card-plain">
+                          <div role="tab" id="headingOne">
+                            <a
+                              data-toggle="collapse"
+                              data-parent="#accordion"
+                              href="#collapseOne"
+                              aria-expanded="false"
+                              aria-controls="collapseOne"
+                            >
+                              <div class="row d-flex justify-content-between py-3">
+                                <div class="d-flex">
+                                  <i class="tim-icons icon-settings-gear-63"></i>
+                                  <span class="game_rBox">
+                                    <p>{{accountsettings}}</p>
+                                  </span>
+                                </div>
+                                <p class="mycolor-icon">
+                                  <i class="tim-icons icon-minimal-down"></i>
+                                </p>
+                              </div>
+                            </a>
+                          </div>
 
-                      <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-coins"></i>
-                          <span class="game_rBox">
-                            <p>{{transactionrecord}}</p>
-                          </span>
+                          <div
+                            id="collapseOne"
+                            class="collapse"
+                            role="tabpanel"
+                            aria-labelledby="headingOne"
+                          >
+                            <div class="card-body">
+                              <hr class="hr-mobile" />
+                              <a href="/profile?page=changepassword">
+                                <div class="row d-flex justify-content-between py-2">
+                                  <div class="d-flex">
+                                    <span class="game_rBox ml-5">
+                                      <p>{{changepassword}}</p>
+                                    </span>
+                                  </div>
+                                  <p class="mycolor-icon">
+                                    <i class="tim-icons icon-minimal-right"></i>
+                                  </p>
+                                </div>
+                              </a>
+                              <hr class="hr-mobile" />
+                              <a href="/profile?page=modifyphone">
+                                <div class="row d-flex justify-content-between py-2">
+                                  <div class="d-flex">
+                                    <span class="game_rBox ml-5">
+                                      <p>{{modifyphone}}</p>
+                                    </span>
+                                  </div>
+                                  <p class="mycolor-icon">
+                                    <span class="text-smaller">186*******2</span>
+                                    <i class="tim-icons icon-minimal-right"></i>
+                                  </p>
+                                </div>
+                              </a>
+                              <hr class="hr-mobile" />
+                              <a href="/profile?page=smssubscription">
+                                <div class="row d-flex justify-content-between py-2">
+                                  <div class="d-flex">
+                                    <span class="game_rBox ml-5">
+                                      <p>{{smssubscription}}</p>
+                                    </span>
+                                  </div>
+                                  <p class="mycolor-icon">
+                                    <span class="text-smaller">{{nonactivated}}</span>
+                                    <i class="tim-icons icon-minimal-right"></i>
+                                  </p>
+                                </div>
+                              </a>
+                              <hr class="hr-mobile" />
+                              <a href="/profile?page=loginsettings">
+                                <div class="row d-flex justify-content-between py-2 ok">
+                                  <div class="d-flex">
+                                    <span class="game_rBox ml-5">
+                                      <p>{{loginsettings}}</p>
+                                    </span>
+                                  </div>
+                                  <p class="mycolor-icon">
+                                    <span class="text-smaller">{{nonactivated}}</span>
+                                    <i class="tim-icons icon-minimal-right"></i>
+                                  </p>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
                         </div>
-                        <p class="mycolor-icon">
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </p>
-                      </div>
-                      <hr class="hr-mobile">
-
-                      <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-settings-gear-63"></i>
-                          <span class="game_rBox">
-                            <p>{{accountsettings}}</p>
-                          </span>
-                        </div>
-                        <p class="mycolor-icon">
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -192,7 +285,8 @@
         </div>
       </div>
     </div>
-    <setting></setting>
+
+    <setting />
   </div>
 </template>
 <script>
@@ -220,11 +314,13 @@ export default {
         wrapAround: true
         // any options from Flickity can be used
       },
+      id: "",
+      balance: "",
       ismenu: false,
       messages: "./index",
       promote: "./promote",
       welcome: "/",
-      lobby: "./lobby",
+      //   lobby: "./lobby",
       csrf: document
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content")
@@ -235,8 +331,34 @@ export default {
       return this.$refs.mySwiper.swiper;
     }
   },
-  mounted() {},
+  mounted() {
+    this.userdata();
+  },
   methods: {
+    userdata() {
+      axios
+        .get("/userdetaildata")
+        .then(res => {
+        //   console.log(res.data[0]);
+          this.id = res.data[0].id;
+          this.user_id = res.data[0].user_id;
+          this.provider_name = res.data[0].provider_name;
+          this.balance = res.data[0].userBalance;
+          this.pro_id = res.data[0].pro_id;
+          this.name = res.data[0].name;
+          this.email = res.data[0].email;
+          this.login_at = res.data[0].created_at;
+          $(".id").val(this.id);
+          $(".provider_name").val(this.provider_name);
+          $(".balance").val(this.balance);
+          $(".pro_id").val(this.pro_id);
+          $(".name").val(this.name);
+          $(".email").val(this.email);
+        })
+        .catch(er => {
+          console.log(er.res);
+        });
+    },
     next() {
       this.$refs.flickity.next();
     },
@@ -269,7 +391,7 @@ export default {
     "us_stock",
     "cryptocurrencies",
     "chines_stock",
-    "lobby",
+    // "lobby",
     "stock1",
     "stock2",
     "stock3",
@@ -293,9 +415,28 @@ export default {
     "home",
     "forum",
     "washcode",
-    "mine"
+    "mine",
+    "changepassword",
+    "modifyphone",
+    "smssubscription",
+    "loginsettings",
+    "nonactivated"
   ]
 };
+
+$(function() {
+  $(".scroll-down").click(function() {
+    $("html, body").animate(
+      { scrollTop: $("section.ok").offset().top },
+      "slow"
+    );
+    return false;
+  });
+});
 </script>
 <style scoped>
+.text-smaller {
+  color: darkgray;
+  font-size: smaller;
+}
 </style>

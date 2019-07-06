@@ -55,6 +55,12 @@ return [
     "forum"=>"论坛",
     "washcode"=>"洗码",
     "mine"=>"我的",
-    "logout"=>"安全退出"
+    "logout"=>"安全退出",
+
+    "changepassword"=>"修改密码",
+    "modifyphone"=>"修改电话",
+    "smssubscription"=>"短信订阅",
+    "loginsettings"=>"登录设定",
+    "nonactivated"=>"未开通",
 
 ];

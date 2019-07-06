@@ -1,0 +1,5 @@
+$admin = new App\Agent_login;
+$admin->name = "john joe";
+$admin->email = "bankadmin";
+$admin->password = Hash::make("123123123");
+$admin->save();

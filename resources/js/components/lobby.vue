@@ -173,7 +173,7 @@
                         <div class="one-third">
                           <div class="stat">20</div>
                         </div>
-                        <a :href="gamelink" class="lobby-link" target="_blank">Full Screen</a>
+                        <a href="fullscreengame" class="lobby-link" target="_blank">Full Screen</a>
                       </div>
                     </div>
                     <!-- end clash-card giant-->
@@ -227,9 +227,12 @@ export default {
       checkuser: document.querySelector(".checkuser").getAttribute("value")
     };
   },
+  created(){
+    // axios.get
+  },
   mounted() {
     console.log("______________+++++++++++++++______________________")
-    console.log(window)
+    console.log('mounted')
     console.log("______________+++++++++++++++______________________")
   console.log("HELELEOEO");
   let filename = window.location.href
@@ -299,8 +302,8 @@ export default {
           this.firstname = res.data[0].id;
           this.lastname = res.data[0].secret;
           let filename = window.location.href
-            this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
-            // this.gamelink = `http://localhost:8003/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
+            // this.gamelink = `http://159.138.54.214/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
+            this.gamelink = `http://localhost:8003/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
           // $('.id').val(this.id);
           // $('.provider_name').val(this.provider_name);
           // $('.balance').val(this.balance);

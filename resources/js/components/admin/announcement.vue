@@ -28,9 +28,8 @@
                 <input
                   type="text"
                   class="form-control"
-                  
                   placeholder="WebID/currency/adminID/transferID"
-                >
+                />
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <i class="tim-icons icon-simple-remove"></i>
                 </button>
@@ -40,7 +39,7 @@
         </div>
       </div>
     </div>
-    <br>
+    <br />
     <div class="row">
       <div class="col-md-12 col-lg-12">
         <div class="card">
@@ -70,7 +69,7 @@
                   <div class="tab-pane active" id="Promotion">
                     <div class="card">
                       <div class="card-body">
-                        <ul class="nav nav-pills nav-pills-primary">
+                        <ul class="nav nav-pills ml-auto nav-pills-primary">
                           <li class="nav-item">
                             <a
                               class="nav-link active"
@@ -81,17 +80,25 @@
                           <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#History">History</a>
                           </li>
+                          <li class="nav-item fr">
+                            <a
+                              class="nav-link"
+                              href="#"
+                              data-toggle="modal"
+                              data-target=".announcementpost"
+                            >Add Post</a>
+                          </li>
                         </ul>
                         <div class="tab-content tab-space">
                           <div class="tab-pane active" id="Current">
                             Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
-                            <br>
-                            <br>Dramatically visualize customer directed convergence without revolutionary ROI.
+                            <br />
+                            <br />Dramatically visualize customer directed convergence without revolutionary ROI.
                           </div>
                           <div class="tab-pane" id="History">
                             Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
-                            <br>
-                            <br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                            <br />
+                            <br />Dramatically maintain clicks-and-mortar solutions without functional solutions.
                           </div>
                         </div>
                       </div>
@@ -99,18 +106,18 @@
                   </div>
                   <div class="tab-pane" id="Promotion2">
                     Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
-                    <br>
-                    <br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                    <br />
+                    <br />Dramatically maintain clicks-and-mortar solutions without functional solutions.
                   </div>
                   <div class="tab-pane" id="Promotion3">
                     Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
-                    <br>
-                    <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+                    <br />
+                    <br />Dynamically innovate resource-leveling customer service for state of the art customer service.
                   </div>
                   <div class="tab-pane" id="Promotion4">
                     Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
-                    <br>
-                    <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+                    <br />
+                    <br />Dynamically innovate resource-leveling customer service for state of the art customer service.
                   </div>
                 </div>
               </div>
@@ -181,7 +188,7 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Transfer Amount">
+                      <input type="text" class="form-control" placeholder="Transfer Amount" />
                     </div>
                   </div>
                 </div>
@@ -196,7 +203,7 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Type here...">
+                      <input type="text" class="form-control" placeholder="Type here..." />
                     </div>
                   </div>
                   <div class="col-md-2">
@@ -226,7 +233,7 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Type here...">
+                      <input type="text" class="form-control" placeholder="Type here..." />
                     </div>
                   </div>
                   <div class="col-md-2">
@@ -245,7 +252,7 @@
                     </select>
                   </div>
                 </div>
-                <hr>
+                <hr />
               </div>
             </div>
           </div>
@@ -277,7 +284,7 @@
           </div>
           <div class="modal-body">
             <div class="card bg-dark text-white">
-              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
               <div class="card-img-overlay">
                 <h4 class="card-title">Card title</h4>
                 <p
@@ -286,9 +293,9 @@
                 <p class="card-text">Last updated 3 mins ago</p>
               </div>
             </div>
-            <hr>
+            <hr />
             <div class="card bg-dark text-white">
-              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
               <div class="card-img-overlay">
                 <h4 class="card-title">Card title</h4>
                 <p
@@ -328,7 +335,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="card bg-dark text-white">
-                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
                 </div>
                 <div class="card-footer">
                   <button
@@ -355,7 +362,7 @@
               </div>
               <div class="col-md-6">
                 <div class="card bg-dark text-white">
-                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
                 </div>
                 <div class="card-footer">
                   <button
@@ -384,7 +391,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="card bg-dark text-white">
-                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
                 </div>
                 <div class="card-footer">
                   <button
@@ -412,14 +419,14 @@
               <div class="col-md-6">
                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                   <div class="fileinput-new thumbnail">
-                    <img src="assetsadmin/img/img-opacity.png" alt="...">
+                    <img src="assetsadmin/img/img-opacity.png" alt="..." />
                   </div>
                   <div class="fileinput-preview fileinput-exists thumbnail"></div>
                   <div>
                     <span class="btn btn-rose btn-round btn-file">
                       <span class="fileinput-new">Select image</span>
                       <span class="fileinput-exists">Change</span>
-                      <input type="file" name="...">
+                      <input type="file" name="..." />
                     </span>
                     <a
                       href="#pablo"
@@ -441,10 +448,108 @@
       </div>
     </div>
     <!--/modal edit evidence -->
+
+    <!-- msg -->
+    <!-- msg -->
+    <div
+      class="modal fade announcementpost"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <form class="form-horizontal" method="post" action="SaveAnnouncement">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">PlayerID</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Message</label>
+                    <textarea class="form-control" name="message" rows="5" v-model="message"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                @click.prevent="SaveAnnouncement"
+              >Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      message: null
+    };
+  },
+  mounted() {},
+  methods: {
+    SaveAnnouncement() {
+      let vm = this;
+      let data = {
+        message: vm.message
+      };
+      if (data.message == null ) {
+        this.$swal({
+          type: "warning",
+          title: "Please Fill in it",
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-success",
+          html: "Please check the box that you fill in"
+        });
+      } else {
+        // alert("Your are right");
+        axios
+          .post("/saveannounce", data)
+          .then(res => {
+            console.log(res.data);
+            if (res.data.code == 200) {
+              // this.cardinfo();
+              // HIDE
+              $(".announcementpost").modal("hide");
+              this.$swal({
+                type: "success",
+                title: res.data.msg,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                html: "Please check the box that you fill in",
+                timer: 1000
+              });
+            }
+            if (res.data.code == 100) {
+              this.$swal({
+                type: "warning",
+                title: res.data.msg,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                html: "Please check the box that you fill in",
+                timer: 1000
+              });
+            }
+          })
+          .catch(er => {
+            console.log(er.res);
+          });
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
