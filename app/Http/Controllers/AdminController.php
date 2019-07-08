@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Announcement;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
@@ -724,6 +725,19 @@ class AdminController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
+    public function checkQuery($save){
+        try{
+            DB::enableQueryLog();
+            if ($save) {
+                return $this->returncode(200, $save, 'success');
+            } else {
+                return $this->returncode(300, '', DB::getQueryLog());
+            }
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+       
+    }
     public function addnewadmin(Request $req)
     {
         // admin_access
@@ -778,16 +792,35 @@ class AdminController extends Controller
     }
     public function insertadmin()
     { }
+    public function getannounce($m1,$m2){
+        try{
+            $data = Announcement::where([['method','=',$m1],['message','like','%"type":"'.$m2.'%']])->orderby('created_at','desc')->get();
+            return $this->checkQuery($data);
+           
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
     public function saveannounce(Request $req)
     {
         try {
-            DB::enableQueryLog();
-            $message = array(
-              'title' => $req->pluck('title')[0],
-              'message' => $req->pluck('message')[0],  
-              'title' => $req->pluck('title')[0],  
-              'title' => $req->pluck('title')[0],  
+            $id = Announcement::count() + 1;
+            $msg = array(
+                'title'=>$req->title,
+                'msg'=>$req->message,
+                'type'=>$req->typeAN
             );
+            $message = array(
+                'AnouncementID'=>$req->method.$id,
+                'method'=>$req->method,
+                'message'=>json_encode($msg),
+                'addInDate'=>date('Y-m-d H:i:s'),
+            );
+           
+            $save = Announcement::create($message);
+            $res = $this->checkQuery($save);
+            return $res;
+            
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
