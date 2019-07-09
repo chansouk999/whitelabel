@@ -31,7 +31,7 @@ Auth::routes();
 
 
 
-Route::get('api/getbetHisoty', 'Shareholder\HomeController@getApi');
+Route::get('api/getbetHisoty/{date}', 'Shareholder\HomeController@getApi');
 Route::get('/getannounce/{m1}/{m2}', 'AdminController@getannounce');
 Route::get('/getadmininfotimeline', 'AdminController@getadmininfotimeline');
 Route::post('/addnewadmin', 'AdminController@addnewadmin');

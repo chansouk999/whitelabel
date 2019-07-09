@@ -16,10 +16,12 @@ class HomeController extends Controller
     public function index(){
         return view('admin.shareholder');
     }
-    public function getApi(){
+    public function getApi($date){
         try{
             $http = new Client;
-            $res =  $http->get('http://localhost:8003/api/getbetHisoty');
+            $res =  $http->post('http://localhost:8003/api/getbetHisoty',[
+                'form_params'=>['code'=>$date]
+            ]);
             return $accessdata = json_decode((string) $res->getBody(), true);
         }catch(\Exception $ex){
             return $this->returncode(500, '', $ex->getMessage());
