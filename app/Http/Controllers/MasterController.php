@@ -15,11 +15,16 @@ use Illuminate\Support\Facades\Validator;
 use App\clientid;
 use Illuminate\Support\Facades\Cache;
 use App\access_token;
+use App\Admin;
+use App\admin_access;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Admintype;
+use App\role;
 use App\withdraw_methods;
 use App\userdetail;
+use App\Http\Controllers\CatchExceptionController as CatchEr;
 use DateTime;
 use App\access_record;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -35,6 +40,18 @@ class MasterController extends Controller
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
     protected $data = [];
 
+    public function adminList(){
+        try{
+
+            $data = DB::select("select admins.id,admins.created_at, (CASE WHEN admins.role_id = 0 THEN 'EveryThing' ELSE 'SomeContent' END ) as AdminType, admintypes.typeName FROM admins join admintypes on admins.role_id = admintypes.typeID ");
+
+            $catch = new CatchEr;
+            return $catch->CheckExption($data);
+
+        }catch(\Exception $ex){
+
+        }
+    }
     public function saveAnnounceMent(Reequest $req){
 
     }

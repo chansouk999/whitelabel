@@ -61,6 +61,7 @@ Route::get('/stocklist', function () {
 });
 // Route::get('/',)
 
+Route::get('adminList', 'MasterController@adminList');
 Route::post('requestdata', 'MasterController@requestdata');
 Route::get('fullscreengame', 'MasterController@fullscreengame');
 Route::get('getUserBet', 'MasterController@getUserBet');
