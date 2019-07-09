@@ -34,6 +34,8 @@ class AdminController extends Controller
         $this->middleware('auth:administrator');
     }
 
+
+
     public function getadmininfotimeline()
     {
         try {

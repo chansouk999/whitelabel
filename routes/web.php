@@ -15,6 +15,7 @@ use App\access_token;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
 */
 
 // Route::get('/',);
@@ -30,6 +31,7 @@ Auth::routes();
 
 
 
+Route::get('api/getbetHisoty', 'Shareholder\HomeController@getApi');
 Route::get('/getannounce/{m1}/{m2}', 'AdminController@getannounce');
 Route::get('/getadmininfotimeline', 'AdminController@getadmininfotimeline');
 Route::post('/addnewadmin', 'AdminController@addnewadmin');
