@@ -97,6 +97,7 @@
                             <th>Sub-agent</th>
                             <th>Total rolling generated</th>
                             <th>Default percentage</th>
+                            <th></th>
                           </tr>
                           <tr v-for="a in 15">
                             <td>AgentID</td>
@@ -104,6 +105,14 @@
                             <td>7</td>
                             <td>$ 123450.23</td>
                             <td>4%</td>
+                            <td>
+                              <button
+                                class="btn btn-blue-grey"
+                                style="right:0"
+                                data-toggle="modal"
+                                data-target=".commission-history-record"
+                              >Commission history</button>
+                            </td>
                           </tr>
                         </table>
                       </div>
@@ -354,6 +363,7 @@ th,
 td {
   text-align: left;
   padding: 18px;
+  color: white;
 }
 
 tr:nth-child(even) {
