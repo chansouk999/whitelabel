@@ -97,7 +97,7 @@
 }
 
 .info-horizontal .description {
-    padding: 10px 0px;
+    padding: 0px 0px;
 }
 
 .atvImg {
@@ -220,12 +220,24 @@ h2.crs {
     font-weight: 700;
     padding: 27px 0px 0px 80px;
 }
-.fr{
+
+.fr {
     float: right;
     position: absolute;
     right: 0;
 }
+
 .card label {
     font-size: 0.75rem;
     margin-bottom: 0px;
+}
+
+.bg-baninfo {
+    background-image: url(assets/img/visa-bg.jpg);
+    position: relative;
+    border-radius: 9px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px !important;
+    height: 200px;
 }

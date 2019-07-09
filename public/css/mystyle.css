@@ -2811,6 +2811,15 @@ ul.list-group-navbar {
     font-size: 10px;
 }
 
+.bg-baninfo {
+    background-image: url(assets/img/visa-bg.jpg);
+    position: relative;
+    border-radius: 9px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px !important;
+}
+
 @media (max-width: 767px) {
     .cid-ro6uJJ0VM8 .media-container-row .social-list {
         -webkit-justify-content: center;

@@ -33,49 +33,39 @@
               ></a>
               <div class="row">
                 <div class="col-md-3 pr-md-1 text-right"></div>
-                <div class="col-md-9 col-lg-5">
-                  <div class="col-md-6 pb-3" v-for="data in ShowCard">
-                    <div class="cover atvImg">
-                      <div class="atvImg-layer">
-                        <img src="assets/img/visa-bg.jpg" alt>
-                      </div>
-                      <div class="atvImg-layer">
-                        <img src="assets/img/visa.png" alt>
-                        <div class="d-flex justify-content-between">
-                          <h2>{{data.methodId}}</h2>
-                          <div class="addreess">
-                            <button class="btn badge badge-warning" @click="CardDelete(data.id)">
-                              <i class="tim-icons icon-trash-simple"></i>
-                            </button>
-                            <p class="text-white">{{data.registerProvince}}</p>
-                            <p class="text-white">{{data.registerCity}}</p>
-                          </div>
-                          <div class="user_id">{{data.user_id}}</div>
-                          <!-- <p>{{data.user_id}}</p> -->
-                          <br>
-                          <div class="d-flex justify-content-between">
-                            <p class="card-userName">{{ data.userName | userName}}.</p>
-                            <p class="card-bankAccount">{{ data.bankAccount | bankAccount}}</p>
-                          </div>
-                          <div class="form-check form-use">
-                            <label class="form-check-label text-white">
-                              <input
-                                class="form-check-input checkuse"
-                                type="checkbox"
-                                :name="'usecard'+data.id"
-                                @click="useCard(data.id)"
-                                :disabled="data.status=='use'"
-                                :checked="data.status=='use'"
-                              >
-                              {{data.branch}}
-                              <span
-                                class="form-check-sign"
-                              >
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
+                <div class="col-md-9 col-lg-5" v-for="data in ShowCard">
+                  <div class="card" style="width: 20rem;">
+                    <div
+                      class="card-body bg-baninfo"
+                      style="background-image: url(assets/img/visa-bg.jpg);"
+                    >
+                      <div class="d-flex justify-content-between">
+                        <h2 class="text-white">{{data.methodId}}</h2>
+                        <div class="addreess">
+                          <p class="text-white">{{data.registerProvince}}</p>
+                          <p class="text-white">{{data.registerCity}}</p>
                         </div>
+                      </div>
+                      <div class="user_id text-white">{{data.user_id}}</div>
+                      <div class="d-flex justify-content-between">
+                        <p class="card-userName text-white">{{ data.userName | userName}}.</p>
+                        <p class="card-bankAccount text-white">{{ data.bankAccount | bankAccount}}</p>
+                      </div>
+                      <div class="form-check form-use float-right">
+                        <label class="form-check-label text-white">
+                          <input
+                            class="form-check-input checkuse"
+                            type="checkbox"
+                            :name="'usecard'+data.id"
+                            @click="useCard(data.id)"
+                            :disabled="data.status=='use'"
+                            :checked="data.status=='use'"
+                          />
+                          {{data.branch}}
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -102,50 +92,43 @@
                     <div class="collapse" id="addBank">
                       <div class="card card-body">
                         <div class="row">
-                          <div class="col-md-6 pb-3" v-for="(data,index) in getcCardinfo">
-                            <div class="cover atvImg">
-                              <div class="atvImg-layer">
-                                <img src="assets/img/visa-bg.jpg" alt>
-                              </div>
-                              <div class="atvImg-layer">
-                                <img src="assets/img/visa.png" alt>
+                          <div class="col-md-6" v-for="(data,index) in getcCardinfo">
+                            <div class="card">
+                              <div
+                                class="card-body bg-baninfo"
+                                style="background-image: url(assets/img/visa-bg.jpg);"
+                              >
                                 <div class="d-flex justify-content-between">
-                                  <h2>{{data.methodId}}</h2>
+                                  <h2 class="text-white">{{data.methodId}}</h2>
                                   <div class="addreess">
-                                    <button
-                                      class="btn badge badge-warning"
-                                      @click="CardDelete(data.id)"
-                                    >
-                                      <i class="tim-icons icon-trash-simple"></i>
-                                    </button>
                                     <p class="text-white">{{data.registerProvince}}</p>
                                     <p class="text-white">{{data.registerCity}}</p>
                                   </div>
-                                  <div class="user_id">{{data.user_id}}</div>
-                                  <!-- <p>{{data.user_id}}</p> -->
-                                  <br>
-                                  <div class="d-flex justify-content-between">
-                                    <p class="card-userName">{{ data.userName | userName}}.</p>
-                                    <p class="card-bankAccount">{{ data.bankAccount | bankAccount}}</p>
-                                  </div>
-                                  <div class="form-check form-use">
-                                    <label class="form-check-label text-white">
-                                      <input
-                                        class="form-check-input checkuse"
-                                        type="checkbox"
-                                        :name="'usecard'+data.id"
-                                        @click="useCard(data.id)"
-                                        :disabled="data.status=='use'"
-                                        :checked="data.status=='use'"
-                                      >
-                                      {{data.branch}}
-                                      <span
-                                        class="form-check-sign"
-                                      >
-                                        <span class="check"></span>
-                                      </span>
-                                    </label>
-                                  </div>
+                                </div>
+                                <div class="user_id text-white">{{data.user_id}}</div>
+                                <div class="d-flex justify-content-between">
+                                  <p class="card-userName text-white">{{ data.userName | userName}}.</p>
+                                  <p
+                                    class="card-bankAccount text-white"
+                                  >{{ data.bankAccount | bankAccount}}</p>
+                                </div>
+                                <div class="form-check form-use float-right">
+                                  <label class="form-check-label text-white">
+                                    <input
+                                      class="form-check-input checkuse"
+                                      type="checkbox"
+                                      :name="'usecard'+data.id"
+                                      @click="useCard(data.id)"
+                                      :disabled="data.status=='use'"
+                                      :checked="data.status=='use'"
+                                    />
+                                    {{data.branch}}
+                                    <span
+                                      class="form-check-sign"
+                                    >
+                                      <span class="check"></span>
+                                    </span>
+                                  </label>
                                 </div>
                               </div>
                             </div>
@@ -153,7 +136,7 @@
                           <div class="col-md-6 pb-3 pr-3" v-if="getcCardinfo.length <= 0">
                             <div class="card border-bankinfo">
                               <div class="atvImg-layer">
-                                <img src="assets/img/visa-bg.jpg" alt>
+                                <img src="assets/img/visa-bg.jpg" alt />
                               </div>
                               <div class="card-body p-bank">
                                 <a
@@ -170,7 +153,7 @@
                           <div class="col-md-6 pb-3 pl-3" v-if="getcCardinfo.length <= 1">
                             <div class="card border-bankinfo">
                               <div class="atvImg-layer">
-                                <img src="assets/img/visa-bg.jpg" alt>
+                                <img src="assets/img/visa-bg.jpg" alt />
                               </div>
                               <div class="card-body p-bank">
                                 <a
@@ -187,7 +170,7 @@
                           <div class="col-md-6 pb-3 pr-3" v-if="getcCardinfo.length <= 2">
                             <div class="card border-bankinfo">
                               <div class="atvImg-layer">
-                                <img src="assets/img/visa-bg.jpg" alt>
+                                <img src="assets/img/visa-bg.jpg" alt />
                               </div>
                               <div class="card-body p-bank">
                                 <a
@@ -204,9 +187,9 @@
                           <div class="col-md-6 pb-3 pl-3" v-if="getcCardinfo.length <= 3">
                             <div class="card border-bankinfo">
                               <div class="atvImg-layer">
-                                <img src="assets/img/visa-bg.jpg" alt>
+                                <img src="assets/img/visa-bg.jpg" alt />
                               </div>
-                              <img src="assets/img/bitcoin.png" alt="Card image cap">
+                              <img src="assets/img/bitcoin.png" alt="Card image cap" />
                               <div class="card-body p-bank">
                                 <a
                                   href="#"
@@ -225,7 +208,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <div class="row mt-4">
                 <div class="col-md-3 pr-md-1 text-right">
                   <!-- <label>提现金额：</label> -->
                   <label>Withdrawal Amount：</label>
@@ -239,7 +222,7 @@
                       class="form-control"
                       v-model="topupbalannceamount"
                       placeholder="Maximum 100"
-                    >
+                    />
                     <!-- <input type="text" class="form-control" value placeholder="最低提现金额100元 "> -->
                   </div>
                 </div>
