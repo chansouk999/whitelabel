@@ -23,25 +23,31 @@
                   <div class="col-6 bg-card-admin">
                     <div class="row">
                       <div class="col-md-6">
-                        <div class="cover atvImg">
-                          <div class="atvImg-layer">
-                            <img src="assets/img/visa-bg.jpg" alt />
-                          </div>
-                          <div class="atvImg-layer">
-                            <img src="assets/img/visa.png" alt />
+                        <div class="card">
+                          <div
+                            class="card-body bg-baninfo"
+                            style="background-image: url(assets/img/visa-bg.jpg);"
+                          >
                             <div class="d-flex justify-content-between">
-                              <h2 class="crs">1232512356</h2>
+                              <h2 class="text-white">13213232</h2>
                               <div class="addreess">
-                                <p class="text-white">LAOS</p>
-                                <p class="text-white">registerCity</p>
+                                <p class="text-white">132654123</p>
+                                <p class="text-white">Vientainer</p>
                               </div>
-                              <div class="user_id">user_id</div>
-                              <!-- <p>{{data.user_id}}</p> -->
-                              <br />
-                              <div class="d-flex justify-content-between">
-                                <p class="card-userName">userName.</p>
-                                <p class="card-bankAccount">bankAccount</p>
-                              </div>
+                            </div>
+                            <div class="user_id text-white">13242146+</div>
+                            <div class="d-flex justify-content-between">
+                              <p class="card-userName text-white">Vongkeo.</p>
+                              <p class="card-bankAccount text-white">Bank</p>
+                            </div>
+                            <div class="form-check form-use float-right">
+                              <label class="form-check-label text-white">
+                                <input class="form-check-input checkuse" type="checkbox" name />
+
+                                <span class="form-check-sign">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -174,7 +180,7 @@
                     title="in or in"
                     data-size="7"
                     tabindex="-98"
-                  >   
+                  >
                     <option value="15">in</option>
                     <option value="16">in or in</option>
                     <option value="17">in and not in</option>
@@ -237,44 +243,44 @@
                 </div>
               </div>
               <div class="col-2">
-              <div class="btn-group bootstrap-select show-tick">
-                <label for="exampleFormControlSelect2"></label>
-                <select
-                  class="selectpicker"
-                  data-style="btn btn-info"
-                  multiple
-                  title="$ 100"
-                  data-size="7"
-                  tabindex="-98"
-                >
-                  <option value="15">$ 100</option>
-                  <option value="15">$ 200</option>
-                  <option value="15">$ 300</option>
-                </select>
+                <div class="btn-group bootstrap-select show-tick">
+                  <label for="exampleFormControlSelect2"></label>
+                  <select
+                    class="selectpicker"
+                    data-style="btn btn-info"
+                    multiple
+                    title="$ 100"
+                    data-size="7"
+                    tabindex="-98"
+                  >
+                    <option value="15">$ 100</option>
+                    <option value="15">$ 200</option>
+                    <option value="15">$ 300</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="col-2">
-              <div class="btn-group bootstrap-select show-tick">
-                <label for="exampleFormControlSelect2"></label>
-                <select
-                  class="selectpicker"
-                  data-style="btn btn-info"
-                  multiple
-                  title="$ 100"
-                  data-size="7"
-                  tabindex="-98"
-                >
-                  <option value="15">$ 100</option>
-                  <option value="15">$ 200</option>
-                  <option value="15">$ 300</option>
-                </select>
+              <div class="col-2">
+                <div class="btn-group bootstrap-select show-tick">
+                  <label for="exampleFormControlSelect2"></label>
+                  <select
+                    class="selectpicker"
+                    data-style="btn btn-info"
+                    multiple
+                    title="$ 100"
+                    data-size="7"
+                    tabindex="-98"
+                  >
+                    <option value="15">$ 100</option>
+                    <option value="15">$ 200</option>
+                    <option value="15">$ 300</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
  <script>

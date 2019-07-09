@@ -30,6 +30,7 @@ Auth::routes();
 
 
 
+Route::get('/getannounce/{m1}/{m2}', 'AdminController@getannounce');
 Route::get('/getadmininfotimeline', 'AdminController@getadmininfotimeline');
 Route::post('/addnewadmin', 'AdminController@addnewadmin');
 Route::get('/getadmininfo', 'AdminController@getadmininfo');

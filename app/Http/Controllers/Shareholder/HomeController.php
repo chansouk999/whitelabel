@@ -14,7 +14,7 @@ class HomeController extends Controller
     }
 
     public function index(){
-        return "HELLO SHAREHOLDER";
+        return view('admin.shareholder');
     }
 
 }

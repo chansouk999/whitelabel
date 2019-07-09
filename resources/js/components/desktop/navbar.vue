@@ -1,6 +1,6 @@
 <template>
   <div>
-    <notifications group="foo"/>
+    <notifications group="foo" />
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top color-bg">
       <div class="container">
@@ -132,7 +132,7 @@
                   </div>
                   {{myprivilege}}
                 </a>
-              </li> -->
+              </li>-->
               <li class="nav-item">
                 <a ref="lobby" :href="lobby" class="button nav-link d-flex float-left">
                   <div class="icons">
@@ -182,11 +182,11 @@
                     <div class="dropdown-menu mt-3 p-0">
                       <div class="row p-4">
                         <div class="col-6">
-                          <img src="assets/img/user.png" alt>
+                          <img src="assets/img/user.png" alt />
                         </div>
                         <div class="col-6 bg-logout">
                           <em class="header-user-name">test</em>
-                          <br>
+                          <br />
                           <span class="header-user-level level-0">新会员</span>
                         </div>
                         <small class="header-before-login-date">最近登录时间：2019-04-24 14:25:40</small>
@@ -207,7 +207,11 @@
                           </div>
                         </div>
                         <!-- logout -->
-                        <a href="javascript:void(0);" @click="logout()" class="btn-logout bg-custome">
+                        <a
+                          href="javascript:void(0);"
+                          @click="logout()"
+                          class="btn-logout bg-custome"
+                        >
                           <i class="fa fa-power-off"></i>Log Out
                         </a>
                       </div>
@@ -281,10 +285,10 @@
           <div class="modal-body">
             <div class="col-lg-12 col-md-12">
               <form class="form" action="login" method="POST">
-                <input type="hidden" name="_token" :value="csrf">
+                <input type="hidden" name="_token" :value="csrf" />
                 <div class="card card-login card-white">
                   <div class="card-header">
-                    <img src="assets/img/card-primary.png" alt>
+                    <img src="assets/img/card-primary.png" alt />
                     <h1 class="card-title">Log in</h1>
                   </div>
                   <div class="card-body">
@@ -305,7 +309,7 @@
                         autocomplete="email"
                         autofocus
                         placeholder="Enter email"
-                      >
+                      />
                     </div>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -322,7 +326,7 @@
                         required
                         autocomplete="current-password"
                         placeholder="Enter Your Password"
-                      >
+                      />
                     </div>
                   </div>
                   <div class="card-footer">
@@ -430,8 +434,8 @@
                             autocomplete="name"
                             autofocus
                             placeholder="Enter your name"
-                          >
-                          <input type="hidden" name="_token" :value="csrf">
+                          />
+                          <input type="hidden" name="_token" :value="csrf" />
                         </div>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -447,7 +451,7 @@
                             required
                             autocomplete="email"
                             placeholder="Enter email"
-                          >
+                          />
                         </div>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -463,7 +467,7 @@
                             required
                             autocomplete="new-password"
                             placeholder="Enter password"
-                          >
+                          />
                         </div>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -480,7 +484,7 @@
                             required
                             autocomplete="new-password"
                             placeholder="password_confirmation"
-                          >
+                          />
                         </div>
                         <div class="form-check text-left">
                           <label class="form-check-label">{{msg}}</label>
@@ -526,7 +530,7 @@
                 <div class="col-md-7 mr-auto">
                   <div class="card card-register card-white">
                     <div class="card-header">
-                      <img class="card-img" src="assets/img/card-primary.png" alt="Card image">
+                      <img class="card-img" src="assets/img/card-primary.png" alt="Card image" />
                       <h4 class="card-title text-title">12150</h4>
                     </div>
                     <div class="card-body">
@@ -537,11 +541,11 @@
                               <i class="tim-icons icon-single-02"></i>
                             </div>
                           </div>
-                          <input type="text" class="form-control" placeholder="Full Name">
+                          <input type="text" class="form-control" placeholder="Full Name" />
                         </div>
                         <div class="form-check text-left">
                           <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox">
+                            <input class="form-check-input" type="checkbox" />
                             <span class="form-check-sign"></span>
                             I agree to the
                             <a
@@ -574,7 +578,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <input type="text" class="form-control"  placeholder="SEARCH">
+            <input type="text" class="form-control" placeholder="SEARCH" />
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
