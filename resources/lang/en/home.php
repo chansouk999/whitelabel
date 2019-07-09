@@ -16,7 +16,7 @@ return [
     'customer_information' => 'Customer Information',
     'bank_info' => ' Bank Info',
     'modify_phone' => ' Modity Phone',
-    'msmsubscription' => ' MSM Subscription',
+    'msmsubscription' => ' SMS Subscription',
     'my_message' => ' My Message',
     'change_password' => 'Change Password',
     'customer_care' => 'Customer Care',
