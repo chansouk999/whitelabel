@@ -26,6 +26,7 @@ use App\withdraw_methods;
 use App\userdetail;
 use App\Http\Controllers\CatchExceptionController as CatchEr;
 use DateTime;
+use App\Http\Controllers\CardController as CardController;
 use App\access_record;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
@@ -54,26 +55,27 @@ class MasterController extends Controller
     }
     public function saveAnnounceMent(Reequest $req){
 
-    }
+    public function requestdata(Request $req)
+    {
 
-    public function requestdata(Request $req){
-
-        return OauthClient::where('id','=',$req->ClientID)->get()[0];
+        return OauthClient::where('id', '=', $req->ClientID)->get()[0];
     }
-    public function connectTogame($data){
+    public function connectTogame($data)
+    {
         $ClientID = $data->pluck('id')[0];
         $ClientSecret = $data->pluck('secret')[0];
         $Redirect = $data->pluck('redirect')[0];
         return redirect('http://localhost:8003/redirect?clientid='.$ClientID.'&redirect='.\Request::root());
     }
-    public function fullscreengame(){
-        try{
+    public function fullscreengame()
+    {
+        try {
 
-            $check = OauthClient::where('name','=',\Request::root())->get();
-            if($check->count() < 1){
+            $check = OauthClient::where('name', '=', \Request::root())->get();
+            if ($check->count() < 1) {
                 $uc = new OauthClient;
-                $uc->user_id = substr(strtotime('now'),-8,8);
-                $uc->name = \Request::root() ;
+                $uc->user_id = substr(strtotime('now'), -8, 8);
+                $uc->name = \Request::root();
                 $uc->secret = str_random(43);;
                 $uc->redirect = 'http://localhost:8003/callback';
                 $uc->personal_access_client = 0;
@@ -81,10 +83,9 @@ class MasterController extends Controller
                 $uc->revoked = 0;
                 $uc->save();
             }
-            $check = OauthClient::where('name','=',\Request::root())->get();
+            $check = OauthClient::where('name', '=', \Request::root())->get();
             return $this->connectTogame($check);
-
-        }catch(\Eception $ex){
+        } catch (\Eception $ex) {
             return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
         }
     }
@@ -104,7 +105,7 @@ class MasterController extends Controller
                 $tn = strtotime('now');
                 $now = strtotime($latesttopuop->pluck('created_at')[0]);
                 $second = $tn - $now;
-                return $this->returncode(203, [$now, $tn,$second], 'Wait for '.$second.' second');
+                return $this->returncode(203, [$now, $tn, $second], 'Wait for ' . $second . ' second');
             } else {
                 $id = Auth::user()->user_id;
                 $check =  withdraw_methods::where('user_id', '=', $id)->pluck('bankAccount');
@@ -334,7 +335,7 @@ class MasterController extends Controller
                 'user_email' => $data['email'],
             ],
         ]);
-        $accessdata = json_decode((string)$response->getBody(), true);
+        $accessdata = json_decode((string) $response->getBody(), true);
         if ($accessdata['code'] == 0) {
             return $this->returncode(0, '', 'empty');
         } else {
@@ -359,7 +360,7 @@ class MasterController extends Controller
         $checkit['email'] = Auth::user()->email;
         $checkuser  = $this->checkuser($checkit);
         if ($checkuser['code'] == 200) {
-            $response = $http->post($this->urlforserverapi.'/oauth/token', [
+            $response = $http->post($this->urlforserverapi . '/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'password',
                     'client_id' => '2',
@@ -369,7 +370,7 @@ class MasterController extends Controller
                     'scope' => '',
                 ],
             ]);
-            $accessdata = json_decode((string)$response->getBody(), true);
+            $accessdata = json_decode((string) $response->getBody(), true);
             $date = date('Y-m-d');
             $check = access_token::where([['created_at', 'like', '%' . $date . '%'], ['user_id', '=', '' . $id . '']])->get()->count();
             if ($check < 1) {
@@ -421,7 +422,7 @@ class MasterController extends Controller
                 $response = $http->get('http://lec68.com/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
                     'headers' => $header,
                 ]);
-                $accessdata = json_decode((string)$response->getBody(), true);
+                $accessdata = json_decode((string) $response->getBody(), true);
                 if ($accessdata['code'] == 200) {
                     DB::enableQueryLog(); // Enable query log
                     $qr = DB::UPDATE('UPDATE users SET userBalance = userBalance - ' . $req->amount . ' WHERE user_id ="' . Auth::user()->user_id . '"');
@@ -502,9 +503,6 @@ class MasterController extends Controller
             ->join('oauth_clients', 'users.id', '=', 'oauth_clients.user_id')
             ->where('users.id', $id)
             ->orderby('oauth_clients.created_at', 'desc')->limit(1)->get();
-
-
-
     }
     public function checklogin(Request $req)
     {
@@ -526,6 +524,8 @@ class MasterController extends Controller
                 return ['success' => 'passwordnotmatch'];
             } else {
                 $this->trackuserLogin($password, 'Success', $user_id, $id, $hashpasswordLogin);
+                $getIpController = new CardController;
+                return $getIpController->GetuserAccessip();
                 return ['success' => 'success'];
             }
         }
@@ -600,15 +600,15 @@ class MasterController extends Controller
     public function getUserBet()
     {
 
-        $update  = userdetail::where('user_id',Auth::user()->user_id)->get();
+        $update  = userdetail::where('user_id', Auth::user()->user_id)->get();
         $Totalbet = $update->pluck('Totalbet')[0];
-        $rolling = Selfservice::where('Amount','<=',$Totalbet)->limit(1)->orderby('Amount','desc')->get();
+        $rolling = Selfservice::where('Amount', '<=', $Totalbet)->limit(1)->orderby('Amount', 'desc')->get();
         $per = Selfservice::all();
-        foreach($rolling as $rl){
+        foreach ($rolling as $rl) {
             $res = ($Totalbet * $rl->percentage) / 100;
-            $ud = userdetail::where('user_id',Auth::user()->user_id)->update(['TotalRolling'=>$res,'AvailableRolling'=>$res]);
+            $ud = userdetail::where('user_id', Auth::user()->user_id)->update(['TotalRolling' => $res, 'AvailableRolling' => $res]);
         }
-        return['totalbet'=> $Totalbet,$per];
+        return ['totalbet' => $Totalbet, $per];
         // return $rolling;
         // foreach($per as $p){
         //     return DB::select('SELECT Amount,level,title,(percentage * '.$Totalbet.') / 100 as persc FROM selfservices ' );
