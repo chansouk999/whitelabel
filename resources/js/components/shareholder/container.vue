@@ -50,30 +50,30 @@
                         <!-- <app-playerinfo></app-playerinfo> -->
                         <table>
                           <tr>
-                            <td colspan="6" style="text-align:right;padding:0">
-                              <button
-                                class="btn btn-blue-grey"
-                                style="right:0"
-                                data-toggle="modal"
-                                data-target=".daily-detail-record"
-                              >daily detail</button>
-                            </td>
-                          </tr>
-                          <tr>
                           <th>Date</th>
                             <th>Number of bets</th>
                             <th>Number of players</th>
                             <th>Total in</th>
                             <th>Total out</th>
                             <th>Net profit</th>
+                            <th></th>
                           </tr>
-                          <tr v-for="a in 15">
-                            <td>2019/10/10</td>
-                            <td>120</td>
-                            <td>50</td>
-                            <td>$ 50145</td>
-                            <td>$ 3254</td>
-                            <td>$ 2563</td>
+                          <tr v-for="data in dataGamePerformance">
+                            <td>{{data.date}}</td>
+                            <td>{{data.NumberOfBet}}</td>
+                            <td>{{data.NumberOfPlayer}}</td>
+                            <td>$ {{data.TotalIn}}</td>
+                            <td>$ {{data.TotalOut}}</td>
+                            <td>$ {{data.NetProfit}}</td>
+                             <td>
+                              <button
+                                class="btn btn-blue-grey"
+                                style="right:0"
+                                data-toggle="modal"
+                                data-target=".daily-detail-record"
+                                @click="getGamePerformanceDetail(data.date)"
+                              >daily detail</button>
+                            </td>
                           </tr>
                         </table>
 
@@ -200,12 +200,15 @@
                   <th>Net profit</th>
                   <th>Time</th>
                 </tr>
-                <tr v-for="a in 35">
-                  <td>playerID</td>
-                  <td>120</td>
-                  <td>50</td>
-                  <td>$50145</td>
-                  <td>datetime</td>
+               <tr v-for="data in dataGamePerformanceDetail" >
+                  <td>{{data.PlayerID}}</td>
+                  <td>{{data.BetAmount}}</td>
+                  <td>{{data.PayoutAmount}}</td>
+                  <td>{{data.NetProfit}}</td>
+                  <td>{{data.created_at}}</td>
+                </tr>
+                <tr v-if="dataGamePerformanceDetail.length <= 0">
+                  <td style="text-align: center" colspan="5">loading..</td>
                 </tr>
               </table>
             </div>
@@ -280,12 +283,12 @@
                   <th>Net profit</th>
                   <th>Time</th>
                 </tr>
-                <tr v-for="a in 35">
-                  <td>playerID</td>
-                  <td>120</td>
-                  <td>50</td>
-                  <td>$50145</td>
-                  <td>datetime</td>
+                <tr v-for="data in dataGamePerformanceDetail">
+                  <td>{{data.PlayerID}}</td>
+                  <td>{{data.Amount}}</td>
+                  <td>{{data.PayOutAmount}}</td>
+                  <td>{{data.NetProfit}}</td>
+                  <td>{{data.create_at}}</td>
                 </tr>
               </table>
             </div>
@@ -310,8 +313,31 @@ export default {
   },
   data() {
     return {
+      dataGamePerformance:[],
+      dataGamePerformanceDetail:[],
       byDay: "day"
     };
+  },
+  mounted(){
+    this.getGamePerformance()
+  },
+  methods:{
+    getGamePerformanceDetail(date){
+      this.dataGamePerformanceDetail =[]
+      axios.get(`http://localhost:8003/api/dailyBetHistory/${date}`).then(res=>{
+       this.dataGamePerformanceDetail = res.data[0].data
+       console.log(res.data[0].data)
+      }).catch(err=>{
+        alert("error get GamePerformance "+ err)
+      })
+    },
+    getGamePerformance(){
+      axios.get("http://localhost:8003/api/getbetHisoty").then(res=>{
+       this.dataGamePerformance = res.data[1].data
+      }).catch(err=>{
+        alert("error get GamePerformance "+ err)
+      })
+    }
   }
 };
 </script>

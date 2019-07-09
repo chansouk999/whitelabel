@@ -177,11 +177,21 @@
                 <!-- input with datetimepicker -->
                 <div class="form-group">
                   <label class="label-control px-2">Date range</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
+                  <input
+                    type="text"
+                    class="form-control datetimepicker"
+                    v-model="Firstdate"
+                    @change="dateRange('Firstdate')"
+                  />
                 </div>
                 <div class="form-group">
                   <label class="label-control px-2">To</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
+                  <input
+                    type="text"
+                    class="form-control datetimepicker"
+                    v-model="SecoundDate"
+                    @change="dateRange('SecoundDate')"
+                  />
                 </div>
                 <label class="px-2">
                   <font style="vertical-align: inherit;">
@@ -1020,6 +1030,8 @@
 export default {
   data() {
     return {
+      Firsdate: "",
+      SecoundDate: "",
       playerRecord: [],
       loppdataRequets: []
     };
@@ -1041,7 +1053,13 @@ export default {
     this.GetPlayerRecore();
     this.getRequetUser();
   },
+  watch:{
+  SecoundDate(e) {
+    alert(e)
+    },
+  },
   methods: {
+  
     GetPlayerRecore() {
       axios.get("/getPlayerRecord").then(res => {
         console.log(res.data);
