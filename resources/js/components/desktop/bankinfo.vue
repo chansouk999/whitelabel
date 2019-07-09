@@ -17,6 +17,9 @@
                 <div class="d-flex justify-content-between">
                   <h2 class="text-white">{{data.methodId}}</h2>
                   <div class="addreess">
+                    <button class="btn badge badge-warning" @click="CardDelete(data.id)">
+                      <i class="tim-icons icon-trash-simple"></i>
+                    </button>
                     <p class="text-white">{{data.registerProvince}}</p>
                     <p class="text-white">{{data.registerCity}}</p>
                   </div>
