@@ -344,7 +344,7 @@ export default {
     },
     getGamePerformanceDetail(date){
       this.dataGamePerformanceDetail =[]
-      axios.get(`api/dailyBetHistory/${date}`).then(res=>{
+      axios.get(`api/getbetHisoty/${date}`).then(res=>{
        this.dataGamePerformanceDetail = res.data[0].data
        console.log(res.data[0].data)
       }).catch(err=>{
@@ -352,8 +352,9 @@ export default {
       })
     },
     getGamePerformance(){
-      axios.get("api/getbetHisoty").then(res=>{
-       this.dataGamePerformance = res.data[1].data
+      axios.get("api/getbetHisoty/display").then(res=>{
+        console.log(res.data[0].data)
+       this.dataGamePerformance = res.data[0].data
       }).catch(err=>{
         alert("error get GamePerformance "+ err)
       })
