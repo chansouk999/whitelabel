@@ -29,6 +29,6 @@ class HomeController extends Controller
         }
     }
     public function getAgent(){
-        // return Agent::orderby('created_at')
+        return Agent::orderby('created_at','desc')->get();
     }
 }
