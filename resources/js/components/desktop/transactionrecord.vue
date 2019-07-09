@@ -1053,12 +1053,13 @@ export default {
     this.GetPlayerRecore();
     this.getRequetUser();
   },
-  watch: {
-   SecoundDate(selete){
-     console.log(selete);
-   }
+  watch:{
+  SecoundDate(e) {
+    alert(e)
+    },
   },
   methods: {
+  
     GetPlayerRecore() {
       axios.get("/getPlayerRecord").then(res => {
         console.log(res.data);

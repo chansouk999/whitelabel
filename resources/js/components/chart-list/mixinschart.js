@@ -50,7 +50,7 @@ export const livechart = {
                 method: "get",
                 url: this.api
             }).then(response => {
-                console.log(response)
+                // console.log(response)
                 let dataGet = response.data.data;
                 dataGet.forEach(element => {
                     let date = new Date(element.writetime.replace(/-/g, "/"));
