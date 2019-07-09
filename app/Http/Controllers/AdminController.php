@@ -608,16 +608,6 @@ class AdminController extends Controller
         $data = Reqst::orderby('created_at', 'desc')->paginate(20);
         return ['data' => $data];
     }
-
-
-
-
-
-
-
-
-
-
     public function uploadsave(Request $r)
     {
         // $adminid = Auth::user()->id;
