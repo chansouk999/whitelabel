@@ -34,6 +34,8 @@ class AdminController extends Controller
         $this->middleware('auth:administrator');
     }
 
+
+
     public function getadmininfotimeline()
     {
         try {
@@ -290,7 +292,7 @@ class AdminController extends Controller
     public function returncode($code, $data, $msg)
     {
         //100 already exist
-        //200 success 
+        //200 success
         //500 internal erorr
         //300 query error
         //99 not enough
@@ -662,7 +664,7 @@ class AdminController extends Controller
         // }
 
 
-        
+
         // return $r->img[0];
     }
     public function getimgtrans($id)
@@ -726,17 +728,18 @@ class AdminController extends Controller
         }catch(\Exception $ex){
             return $this->returncode(500, '', $ex->getMessage());
         }
-       
+
     }
     public function addnewadmin(Request $req)
     {
         // admin_access
         try {
             DB::enableQueryLog();
-            if ($req->admintype == 'normal') {
-                $req->admintype = 1;
+            // $roleid = 0;
+            if ($req->admintype == 'Normal') {
+                $roleid = 1;
             } else {
-                $req->admintype = 0;
+                $roleid = 0;
             }
             $id = substr(strtotime('now'), -5, 5);
             $resid = $id . Admin::count() + 1;
@@ -748,7 +751,7 @@ class AdminController extends Controller
                 'password' => Hash::make($req->addnewpassword),
                 'TotalOnline' => 0,
                 'active' => 0,
-                'role_id' => $req->admintype
+                'role_id' => $roleid
 
             );
             $save = Admin::create($insertdata0);
@@ -786,7 +789,7 @@ class AdminController extends Controller
         try{
             $data = Announcement::where([['method','=',$m1],['message','like','%"type":"'.$m2.'%']])->orderby('created_at','desc')->get();
             return $this->checkQuery($data);
-           
+
         }catch(\Exception $ex){
             return $this->returncode(500, '', $ex->getMessage());
         }
@@ -806,11 +809,11 @@ class AdminController extends Controller
                 'message'=>json_encode($msg),
                 'addInDate'=>date('Y-m-d H:i:s'),
             );
-           
+
             $save = Announcement::create($message);
             $res = $this->checkQuery($save);
             return $res;
-            
+
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }

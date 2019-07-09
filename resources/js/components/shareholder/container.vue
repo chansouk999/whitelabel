@@ -97,6 +97,7 @@
                             <th>Sub-agent</th>
                             <th>Total rolling generated</th>
                             <th>Default percentage</th>
+                            <th></th>
                           </tr>
                           <tr v-for="a in 15">
                             <td>AgentID</td>
@@ -104,6 +105,14 @@
                             <td>7</td>
                             <td>$ 123450.23</td>
                             <td>4%</td>
+                            <td>
+                              <button
+                                class="btn btn-blue-grey"
+                                style="right:0"
+                                data-toggle="modal"
+                                data-target=".commission-history-record"
+                              >Commission history</button>
+                            </td>
                           </tr>
                         </table>
                       </div>
@@ -126,11 +135,11 @@
                             <th>Type</th>
                             <th>Access permission</th>
                           </tr>
-                          <tr v-for="a in 15">
-                            <td>AdminID</td>
-                            <td>datetime</td>
-                            <td>type name</td>
-                            <td>access permission</td>
+                          <tr v-for="data in adminList">
+                            <td>{{data.id}}</td>
+                            <td>{{data.created_at}}</td>
+                            <td>{{data.typeName}}</td>
+                            <td>{{data.AdminType}}</td>
                           </tr>
                         </table>
                       </div>
@@ -315,16 +324,27 @@ export default {
     return {
       dataGamePerformance:[],
       dataGamePerformanceDetail:[],
+      adminList:[],
       byDay: "day"
     };
   },
   mounted(){
     this.getGamePerformance()
+    this.getAdminList()
   },
   methods:{
+  getAdminList(){
+      this.dataGamePerformanceDetail =[]
+      axios.get('adminList').then(res=>{
+       this.adminList = res.data.data
+       console.log(res.data.data)
+      }).catch(err=>{
+        alert("error get admin list "+ err)
+      })
+    },
     getGamePerformanceDetail(date){
       this.dataGamePerformanceDetail =[]
-      axios.get(`http://localhost:8003/api/dailyBetHistory/${date}`).then(res=>{
+      axios.get(`api/getbetHisoty/${date}`).then(res=>{
        this.dataGamePerformanceDetail = res.data[0].data
        console.log(res.data[0].data)
       }).catch(err=>{
@@ -332,8 +352,9 @@ export default {
       })
     },
     getGamePerformance(){
-      axios.get("http://localhost:8003/api/getbetHisoty").then(res=>{
-       this.dataGamePerformance = res.data[1].data
+      axios.get("api/getbetHisoty/display").then(res=>{
+        console.log(res.data[0].data)
+       this.dataGamePerformance = res.data[0].data
       }).catch(err=>{
         alert("error get GamePerformance "+ err)
       })
@@ -354,6 +375,7 @@ th,
 td {
   text-align: left;
   padding: 18px;
+  color: white;
 }
 
 tr:nth-child(even) {
