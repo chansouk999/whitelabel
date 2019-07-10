@@ -29,8 +29,7 @@ class blockIp
         $ip =  \Request::getClientIp();
         $countryCode = checkCountryCodebyIp('159.138.130.64');
         if($countryCode['countryName'] != 'Laos'){
-            \Log::warning("Unauthorized access, IP address was => ".\Request::getClientIp());
-            return response()->json(['Unauthorized!'],400);
+            return response()->json('Your Country ----> '.($countryCode['countryName']).' <---- has been block Go to Laos to access this site or contact vongkeo@gmail.com  ,Thank you');
         }
         return $next($request);
     }
