@@ -264,3 +264,5 @@ Route::get('/shareholderTEST', 'Shareholder@index');
 Route::post('/saveannounce', 'AdminController@saveannounce');
 
 Route::post('/getDate', 'CardController@getDate');
+
+Route::get('/Getlogin', 'RedirectBackController@Getlogin');

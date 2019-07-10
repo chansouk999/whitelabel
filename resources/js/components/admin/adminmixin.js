@@ -55,11 +55,9 @@ export const adminmixin = {
             axios
                 .get('/getallresultadmin', this.config)
                 .then(res => {
-                    console.log("777777777777777777")
                     console.log(res.data)
-                    console.log("777777777777777777")
-                this.gamehistory =res.data.gamehistory
-                this.gameresult =res.data.gameresult
+                    this.gamehistory = res.data.gamehistory
+                    this.gameresult = res.data.gameresult
 
 
 

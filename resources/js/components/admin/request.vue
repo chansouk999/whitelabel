@@ -8,7 +8,7 @@
       <div class="col-md-2 text-center d-flex">
         <div class="form-check mr-3">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value>
+            <input class="form-check-input" type="checkbox" value />
             Player
             <span class="form-check-sign">
               <span class="check"></span>
@@ -17,7 +17,7 @@
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value>
+            <input class="form-check-input" type="checkbox" value />
             Agent
             <span class="form-check-sign">
               <span class="check"></span>
@@ -44,7 +44,7 @@
                   type="text"
                   class="form-control"
                   placeholder="WebID/currency/adminID/transferID"
-                >
+                />
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <i class="tim-icons icon-simple-remove"></i>
                 </button>
@@ -54,7 +54,7 @@
         </div>
       </div>
     </div>
-    <br>
+    <br />
     <div class="row">
       <div class="col-md-12 col-lg-12">
         <table class="table">
@@ -199,7 +199,7 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Transfer Amount">
+                      <input type="text" class="form-control" placeholder="Transfer Amount" />
                     </div>
                   </div>
                 </div>
@@ -214,7 +214,7 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Type here...">
+                      <input type="text" class="form-control" placeholder="Type here..." />
                     </div>
                   </div>
                   <div class="col-md-2">
@@ -244,7 +244,7 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Type here...">
+                      <input type="text" class="form-control" placeholder="Type here..." />
                     </div>
                   </div>
                   <div class="col-md-2">
@@ -263,7 +263,7 @@
                     </select>
                   </div>
                 </div>
-                <hr>
+                <hr />
               </div>
             </div>
           </div>
@@ -295,7 +295,7 @@
           </div>
           <div class="modal-body">
             <div class="card bg-dark text-white">
-              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
               <div class="card-img-overlay">
                 <h4 class="card-title">Card title</h4>
                 <p
@@ -304,9 +304,9 @@
                 <p class="card-text">Last updated 3 mins ago</p>
               </div>
             </div>
-            <hr>
+            <hr />
             <div class="card bg-dark text-white">
-              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
               <div class="card-img-overlay">
                 <h4 class="card-title">Card title</h4>
                 <p
@@ -346,7 +346,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="card bg-dark text-white">
-                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
                 </div>
                 <div class="card-footer">
                   <button
@@ -373,7 +373,7 @@
               </div>
               <div class="col-md-6">
                 <div class="card bg-dark text-white">
-                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
                 </div>
                 <div class="card-footer">
                   <button
@@ -402,7 +402,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="card bg-dark text-white">
-                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
                 </div>
                 <div class="card-footer">
                   <button
@@ -430,14 +430,14 @@
               <div class="col-md-6">
                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                   <div class="fileinput-new thumbnail">
-                    <img src="assetsadmin/img/img-opacity.png" alt="...">
+                    <img src="assetsadmin/img/img-opacity.png" alt="..." />
                   </div>
                   <div class="fileinput-preview fileinput-exists thumbnail"></div>
                   <div>
                     <span class="btn btn-rose btn-round btn-file">
                       <span class="fileinput-new">Select image</span>
                       <span class="fileinput-exists">Change</span>
-                      <input type="file" name="...">
+                      <input type="file" name="..." />
                     </span>
                     <a
                       href="#pablo"
@@ -458,41 +458,8 @@
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!--/modal edit evidence -->
-
-
-
-
-
-
-
-
-
-
-<div
+    <div
       class="modal fade view-player"
       tabindex="-1"
       id="view-player"
@@ -501,14 +468,14 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-sm">
-        <div class="modal-content" v-for="data in playerdata " >
+        <div class="modal-content" v-for="data in playerdata ">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Player userID: {{data.user_id}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
           </div>
-          <div class="modal-body"  >
+          <div class="modal-body">
             <div class="card card-nav-tabs">
               <div class="card-header">User name:{{data.name}}</div>
               <ul class="list-group list-group-flush">
@@ -530,38 +497,6 @@
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </div>
 </template>
 <script>
@@ -572,8 +507,9 @@ export default {
     return {
       A: 0,
       B: 19,
+      length: null,
       requestdata: [],
-      playerdata:[]
+      playerdata: []
     };
   },
   computed: {
@@ -593,6 +529,7 @@ export default {
   },
   mounted() {
     this.getrequestdata();
+    alert(this.length)
   },
   methods: {
     actionmethod(method, id, userid) {
@@ -621,7 +558,7 @@ export default {
           let code = res.data.code;
           let msg = res.data.msg;
           let data = res.data.data;
-          this.playerdata = res.data.data
+          this.playerdata = res.data.data;
           console.log(res.data);
           if (code == 200) {
             this.getevnthistory();
@@ -661,6 +598,13 @@ export default {
       axios.get("/getreuest").then(res => {
         console.log(res.data.data);
         vm.requestdata = res.data.data.data;
+        let l = res.data.data.length;
+        if (l != this.length) {
+          console.log("TETSES Request");
+        } else {
+          l = this.length;
+        }
+        l = this.length;
         // let decode = JSON.parse(vm.requestdata).branch
         // console.log(decode)
       });
