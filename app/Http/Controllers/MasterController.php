@@ -53,7 +53,6 @@ class MasterController extends Controller
 
         }
     }
-    public function saveAnnounceMent(Reequest $req){
 
     public function requestdata(Request $req)
     {
