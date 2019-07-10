@@ -241,19 +241,19 @@ export default {
   console.log(filename.split('/')[2])
   console.log("+++++++++++++++++++++++")
     this.userdata();
-  
+
   },
   methods: {
     runwindow() {
       let filename = window.location.href
-      
+
       axios.get('/checkconnection').then(res=>{
         if(res.data.success=='timeout'){
           alert('Your session timeout refresh your browser')
           location.href = "/"
         }else{
             //  window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://'+filename.split('/')[2],"_blank");
-            
+
         }
       });
 
@@ -287,7 +287,7 @@ export default {
         });
     },
     userdata() {
-      
+
       axios
         .get("/userdetaildata")
         .then(res => {

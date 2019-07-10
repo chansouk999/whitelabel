@@ -5,6 +5,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
+use App\Agent;
 class HomeController extends Controller
 {
 
@@ -26,5 +27,8 @@ class HomeController extends Controller
         }catch(\Exception $ex){
             return $this->returncode(500, '', $ex->getMessage());
         }
+    }
+    public function getAgent(){
+        return Agent::orderby('created_at','desc')->get();
     }
 }
