@@ -45,7 +45,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">ID : </p>
-                      <p class="text-rose">{{ admininfo[0].id }}</p>
+                      <!-- <p class="text-rose">{{ admininfo[0].id }}</p> -->
                     </div>
                   </li>
                   <!-- /.item -->
@@ -53,7 +53,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Name : </p>
-                      <p class="text-rose">{{ admininfo[0].name }}</p>
+                      <!-- <p class="text-rose">{{ admininfo[0].name }}</p> -->
                     </div>
                   </li>
                   <!-- /.item -->
@@ -61,7 +61,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Type : </p>
-                      <p class="text-rose"> {{ admininfo[0].role_id }}</p>
+                      <!-- <p class="text-rose"> {{ admininfo[0].role_id }}</p> -->
                     </div>
                   </li>
                   <!-- /.item -->
@@ -69,7 +69,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Role :</p>
-                      <p class="text-rose">{{ admininfo[0].role_id }}</p>
+                      <!-- <p class="text-rose">{{ admininfo[0].role_id }}</p> -->
                     </div>
                   </li>
                   <!-- /.item -->
@@ -77,7 +77,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Last logged in :</p>
-                      <p class="text-rose">{{ admininfo[0].updated_at }}</p>
+                      <!-- <p class="text-rose">{{ admininfo[0].updated_at }}</p> -->
                     </div>
                   </li>
                   <!-- /.item -->
@@ -85,7 +85,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Total Online :</p>
-                      <p class="text-rose">{{ admininfo[0].TotalOnline }}</p>
+                      <!-- <p class="text-rose">{{ admininfo[0].TotalOnline }}</p> -->
                     </div>
                   </li>
                   <!-- /.item -->
