@@ -32,11 +32,16 @@
                 <!-- input with datetimepicker -->
                 <div class="form-group">
                   <label class="label-control px-2">Date range</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
+                  <input type="date" class="form-control" v-model="Firstdate" />
                 </div>
                 <div class="form-group">
                   <label class="label-control px-2">To</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
+                  <input
+                    type="date"
+                    class="form-control"
+                    v-model="SecoundDate"
+                    @change="withdraw('withdraw')"
+                  />
                 </div>
                 <label class="px-2">
                   <font style="vertical-align: inherit;">
@@ -45,23 +50,10 @@
                 </label>
                 <!-- Example single danger button -->
                 <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-primary dropdown-toggle"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >All</button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                  </div>
+                  <button type="button" class="btn bg-custome">All</button>
                 </div>
                 <button
-                  class="btn btn-primary"
+                  class="btn bg-custome"
                   id="search-button"
                   data-toggle="modal"
                   data-target="#searchModal"
@@ -177,11 +169,16 @@
                 <!-- input with datetimepicker -->
                 <div class="form-group">
                   <label class="label-control px-2">Date range</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
+                  <input type="date" class="form-control" v-model="Firstdate" />
                 </div>
                 <div class="form-group">
                   <label class="label-control px-2">To</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
+                  <input
+                    type="date"
+                    class="form-control"
+                    v-model="SecoundDate"
+                    @change="withdraw('rechange')"
+                  />
                 </div>
                 <label class="px-2">
                   <font style="vertical-align: inherit;">
@@ -190,28 +187,15 @@
                 </label>
                 <!-- Example single danger button -->
                 <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-primary dropdown-toggle"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >All</button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                  </div>
+                  <button type="button" class="btn bg-custome" @click="resetData()">All</button>
                 </div>
                 <button
-                  class="btn btn-primary"
+                  class="btn bg-custome"
                   id="search-button"
                   data-toggle="modal"
                   data-target="#searchModal"
                 >
-                  <i class="fa fa-search"></i> 查询
+                  <i class="fa fa-search"></i> 查询\
                 </button>
               </div>
             </div>
@@ -1020,28 +1004,48 @@
 export default {
   data() {
     return {
+      Firstdate: "",
+      SecoundDate: "",
       playerRecord: [],
       loppdataRequets: []
     };
   },
   mounted() {
-    $(".datetimepicker").datetimepicker({
-      icons: {
-        time: "tim-icons icon-watch-time",
-        date: "tim-icons icon-calendar-60",
-        up: "fa fa-chevron-up",
-        down: "fa fa-chevron-down",
-        previous: "tim-icons icon-minimal-left",
-        next: "tim-icons icon-minimal-right",
-        today: "fa fa-screenshot",
-        clear: "fa fa-trash",
-        close: "fa fa-remove"
-      }
-    });
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    let yyyy = today.getFullYear();
+    today = yyyy + "-" + mm + "-" + dd;
+    this.Firstdate = today;
+    this.SecoundDate = today;
     this.GetPlayerRecore();
     this.getRequetUser();
   },
   methods: {
+    withdraw(rechange) {
+      let data = {
+        fristdate: this.Firstdate,
+        secound: this.SecoundDate,
+        tab: rechange
+      };
+      axios
+        .post("/getDate", data)
+        .then(res => {
+          if (res.data.method == "Rechange") {
+            this.loppdataRequets = res.data.Data;
+          } else {
+            this.playerRecord = res.data.Data;
+          }
+          console.log(res.data);
+        })
+        .catch(res => {
+          console.log(res.respone);
+        });
+    },
+    resetData() {
+      this.getRequetUser();
+      console.log(this.loppdataRequets);
+    },
     GetPlayerRecore() {
       axios.get("/getPlayerRecord").then(res => {
         console.log(res.data);
@@ -1059,4 +1063,3 @@ export default {
 </script>
 <style scoped>
 </style>
-

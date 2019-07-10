@@ -42,7 +42,7 @@
     <br />
     <div class="row">
       <div class="col-md-12 col-lg-12">
-        <div class="card">
+        <div class="card card-timeline card-plain">
           <div class="card-body">
             <div class="row">
               <div class="col-lg-2 col-md-6">
@@ -51,16 +51,32 @@
                 -->
                 <ul class="nav nav-pills nav-pills-primary flex-column">
                   <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#Promotion">Pop-up Promotion</a>
+                    <a
+                      class="nav-link active"
+                      data-toggle="tab"                      
+                      @click="getannounce('PA','PM')"
+                    >Pop-up Promotion</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Promotion2">Normal Promotion</a>
+                    <a
+                      class="nav-link"
+                      data-toggle="tab"
+                      @click="getannounce('NA','PM')"
+                    >Normal Promotion</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Promotion3">Pop-up Announcement</a>
+                    <a
+                      class="nav-link"
+                      data-toggle="tab"
+                      @click="getannounce('PA','AN')"
+                    >Pop-up Announcement</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Promotion4">Normal Announcement</a>
+                    <a
+                      class="nav-link"
+                      data-toggle="tab"
+                      @click="getannounce('NA','AN')"
+                    >Normal Announcement</a>
                   </li>
                 </ul>
               </div>
@@ -91,20 +107,64 @@
                         </ul>
                         <div class="tab-content tab-space">
                           <div class="tab-pane active" id="Current">
-                            Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
-                            <br />
-                            <br />Dramatically visualize customer directed convergence without revolutionary ROI.
+
+
+                            <div class="row">
+                  <div class="col-6 bg-card-admin">
+                    <div class="row">
+                    
+                      <div class="col-md-6"  v-for="data in announcementdata" >
+                        <div class="info-area info-horizontal">
+                          <div class="icon icon-light mt-0">
+                            <i class="tim-icons icon-wifi mt-3"></i>
                           </div>
-                          <div class="tab-pane" id="History">
-                            Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
-                            <br />
-                            <br />Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                          <div class="description">
+                            <h3 class="info-title">{{JSON.parse(data.message).title}}</h3>
+                            <p class="description">Detail: {{ data.method}} ,{{JSON.parse(data.message).Promotion}}</p>
+                            <p>{{JSON.parse(data.message).msg}}</p>
+                            
                           </div>
+                        </div>
+                        <div class="d-flex justify-content-lg-between ps-custome">
+                          <button type="button" class="btn btn-warning btn-sm btn-icon">
+                            <i class="tim-icons icon-pencil"></i>
+                          </button>
+                          <button type="button" class="btn btn-danger btn-sm btn-icon">
+                            <i class="tim-icons icon-trash-simple"></i>
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="tab-pane" id="Promotion2">
+                  <div class="col-6"></div>
+                </div>
+
+
+
+                            
+                            <ul class="timeline timeline-simple">
+                              <li class="timeline-inverted">
+                                <div class="timeline-badge danger">
+                                  <i class="tim-icons icon-bag-16"></i>
+                                </div>
+                                <div class="timeline-panel">
+                                  <div class="timeline-heading">
+                                    <span class="badge badge-danger"></span>
+                                  </div>
+                                  <div class="timeline-body">
+                                    
+                                  </div>
+                                 
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="tab-pane" id="Promotion2">
                     Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
                     <br />
                     <br />Dramatically maintain clicks-and-mortar solutions without functional solutions.
@@ -118,7 +178,7 @@
                     Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
                     <br />
                     <br />Dynamically innovate resource-leveling customer service for state of the art customer service.
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -471,8 +531,26 @@
               <div class="card">
                 <div class="card-body">
                   <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Title</label>
+                    <input type="text" v-model="title" class="form-control bg-dark" />
+                    <select name class="form-control bg-dark" id v-model="typeAN">
+                      <option value="AN">Announcement</option>
+                      <option value="PM">Promotion</option>
+                    </select>
+                    <label for="exampleFormControlTextarea1">Type Announcement</label>
+                    <select name class="form-control bg-dark" id v-model="method">
+                      <option value="PA">Popup</option>
+                      <option value="NA">Normal</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
                     <label for="exampleFormControlTextarea1">Message</label>
-                    <textarea class="form-control" name="message" rows="5" v-model="message"></textarea>
+                    <textarea
+                      class="form-control bg-dark"
+                      name="message"
+                      rows="5"
+                      v-model="message"
+                    ></textarea>
                   </div>
                 </div>
               </div>
@@ -495,17 +573,37 @@
 export default {
   data() {
     return {
-      message: null
+      message: null,
+      method: null,
+      title: null,
+      typeAN: null,
+      announcementdata: [],
+      methodSelection: "PA",
+      typeSelection: "AN",
+      typeAnnounce: null
     };
   },
-  mounted() {},
+  watch: {},
+  mounted() {
+    this.getannounce("PA", "AN");
+  },
   methods: {
+    getannounce(m1, m2) {
+      axios.get("getannounce/" + m1 + "/" + m2).then(res => {
+        console.log(res.data);
+        this.announcementdata = res.data.data;
+      });
+    },
     SaveAnnouncement() {
       let vm = this;
       let data = {
-        message: vm.message
+        message: vm.message,
+        method: vm.method,
+        title: vm.title,
+        typeAN: vm.typeAN
       };
-      if (data.message == null ) {
+      console.log(data);
+      if (data.message == null) {
         this.$swal({
           type: "warning",
           title: "Please Fill in it",
@@ -532,16 +630,16 @@ export default {
                 timer: 1000
               });
             }
-            if (res.data.code == 100) {
-              this.$swal({
-                type: "warning",
-                title: res.data.msg,
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-success",
-                html: "Please check the box that you fill in",
-                timer: 1000
-              });
-            }
+            // if (res.data.code == 100) {
+            //   this.$swal({
+            //     type: "warning",
+            //     title: res.data.msg,
+            //     buttonsStyling: false,
+            //     confirmButtonClass: "btn btn-success",
+            //     html: "Please check the box that you fill in",
+            //     timer: 1000
+            //   });
+            // }
           })
           .catch(er => {
             console.log(er.res);

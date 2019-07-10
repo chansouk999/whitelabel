@@ -19,6 +19,7 @@ use App\withdraw_methods;
 use App\access_record;
 use App\userdetail;
 use DateTime;
+use App\AcceessIP;
 use App\activityLog;
 use Exception;
 use App\Selfservice;
@@ -146,7 +147,7 @@ class CardController extends Controller
         return $getSelfservice;
     }
 
-    
+
     public function editlevel($id)
     {
         $editlevel  = Selfservice::where('id', '=', '' . $id . '')->get();
@@ -184,9 +185,40 @@ class CardController extends Controller
         //   dd($deleteCard);
     }
     public function getRequets()
-    { 
+    {
         $rq  = Auth::user()->user_id;
-        $Getdata = Reqst::where('userId','=',$rq )->get();
+        $Getdata = Reqst::where('userId', '=', $rq)->get();
         return $Getdata;
+    }
+    public function getDate(Request $date)
+    {
+        $tabs = $date->tab;
+        if ($tabs == 'withdraw') {
+            $from = Reqst::whereBetween('created_at', [$date->fristdate, $date->secound])
+                ->where('requestDetail', '=', 'Withdraw')->get();
+            return ['method' => 'Withdraw', "Data" => $from];
+        } else {
+            $from = Reqst::whereBetween('created_at', [$date->fristdate, $date->secound])
+                ->where('requestDetail', '=', 'topup')->get();
+            return ['method' => 'Rechange', "Data" => $from];
+        }
+    }
+
+    public function GetuserAccessip()
+    {
+        try {
+            DB::enableQueryLog();
+            $userip = array(
+                'ip' => \Request::getClientIp(),
+            );
+            $save = AcceessIP::create($userip);
+            if ($save == true) {
+                return $save;
+            } else {
+                return "NOT GET IP";
+            }
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 }

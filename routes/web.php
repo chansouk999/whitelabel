@@ -15,6 +15,7 @@ use App\access_token;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
 */
 
 // Route::get('/',);
@@ -30,6 +31,9 @@ Auth::routes();
 
 
 
+Route::get('api/getAgent', 'Shareholder\HomeController@getAgent');
+Route::get('api/getbetHisoty/{date}', 'Shareholder\HomeController@getApi');
+Route::get('/getannounce/{m1}/{m2}', 'AdminController@getannounce');
 Route::get('/getadmininfotimeline', 'AdminController@getadmininfotimeline');
 Route::post('/addnewadmin', 'AdminController@addnewadmin');
 Route::get('/getadmininfo', 'AdminController@getadmininfo');
@@ -60,6 +64,7 @@ Route::get('/stocklist', function () {
 });
 // Route::get('/',)
 
+Route::get('adminList', 'MasterController@adminList');
 Route::post('requestdata', 'MasterController@requestdata');
 Route::get('fullscreengame', 'MasterController@fullscreengame');
 Route::get('getUserBet', 'MasterController@getUserBet');
@@ -255,6 +260,8 @@ Route::get('/myaccount', 'HomeController@myaccount');
 
 Route::get('getRequets', 'CardController@getRequets');
 
-Route::get('/shareholderTEST','Shareholder@index');
+Route::get('/shareholderTEST', 'Shareholder@index');
 
 Route::post('/saveannounce', 'AdminController@saveannounce');
+
+Route::post('/getDate', 'CardController@getDate');

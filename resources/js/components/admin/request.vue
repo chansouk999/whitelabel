@@ -661,6 +661,8 @@ export default {
       axios.get("/getreuest").then(res => {
         console.log(res.data.data);
         vm.requestdata = res.data.data.data;
+
+
         // let decode = JSON.parse(vm.requestdata).branch
         // console.log(decode)
       });

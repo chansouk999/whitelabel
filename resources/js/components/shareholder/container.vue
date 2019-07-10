@@ -50,30 +50,30 @@
                         <!-- <app-playerinfo></app-playerinfo> -->
                         <table>
                           <tr>
-                            <td colspan="6" style="text-align:right;padding:0">
-                              <button
-                                class="btn btn-blue-grey"
-                                style="right:0"
-                                data-toggle="modal"
-                                data-target=".daily-detail-record"
-                              >daily detail</button>
-                            </td>
-                          </tr>
-                          <tr>
                           <th>Date</th>
                             <th>Number of bets</th>
                             <th>Number of players</th>
                             <th>Total in</th>
                             <th>Total out</th>
                             <th>Net profit</th>
+                            <th></th>
                           </tr>
-                          <tr v-for="a in 15">
-                            <td>2019/10/10</td>
-                            <td>120</td>
-                            <td>50</td>
-                            <td>$ 50145</td>
-                            <td>$ 3254</td>
-                            <td>$ 2563</td>
+                          <tr v-for="data in dataGamePerformance">
+                            <td>{{data.date}}</td>
+                            <td>{{data.NumberOfBet}}</td>
+                            <td>{{data.NumberOfPlayer}}</td>
+                            <td>$ {{data.TotalIn}}</td>
+                            <td>$ {{data.TotalOut}}</td>
+                            <td>$ {{data.NetProfit}}</td>
+                             <td>
+                              <button
+                                class="btn btn-blue-grey"
+                                style="right:0"
+                                data-toggle="modal"
+                                data-target=".daily-detail-record"
+                                @click="getGamePerformanceDetail(data.date)"
+                              >daily detail</button>
+                            </td>
                           </tr>
                         </table>
 
@@ -97,6 +97,7 @@
                             <th>Sub-agent</th>
                             <th>Total rolling generated</th>
                             <th>Default percentage</th>
+                            <th></th>
                           </tr>
                           <tr v-for="a in 15">
                             <td>AgentID</td>
@@ -104,6 +105,14 @@
                             <td>7</td>
                             <td>$ 123450.23</td>
                             <td>4%</td>
+                            <td>
+                              <button
+                                class="btn btn-blue-grey"
+                                style="right:0"
+                                data-toggle="modal"
+                                data-target=".commission-history-record"
+                              >Commission history</button>
+                            </td>
                           </tr>
                         </table>
                       </div>
@@ -126,11 +135,11 @@
                             <th>Type</th>
                             <th>Access permission</th>
                           </tr>
-                          <tr v-for="a in 15">
-                            <td>AdminID</td>
-                            <td>datetime</td>
-                            <td>type name</td>
-                            <td>access permission</td>
+                          <tr v-for="data in adminList">
+                            <td>{{data.id}}</td>
+                            <td>{{data.created_at}}</td>
+                            <td>{{data.typeName}}</td>
+                            <td>{{data.AdminType}}</td>
                           </tr>
                         </table>
                       </div>
@@ -200,12 +209,15 @@
                   <th>Net profit</th>
                   <th>Time</th>
                 </tr>
-                <tr v-for="a in 35">
-                  <td>playerID</td>
-                  <td>120</td>
-                  <td>50</td>
-                  <td>$50145</td>
-                  <td>datetime</td>
+               <tr v-for="data in dataGamePerformanceDetail" >
+                  <td>{{data.PlayerID}}</td>
+                  <td>{{data.BetAmount}}</td>
+                  <td>{{data.PayoutAmount}}</td>
+                  <td>{{data.NetProfit}}</td>
+                  <td>{{data.created_at}}</td>
+                </tr>
+                <tr v-if="dataGamePerformanceDetail.length <= 0">
+                  <td style="text-align: center" colspan="5">loading..</td>
                 </tr>
               </table>
             </div>
@@ -280,12 +292,12 @@
                   <th>Net profit</th>
                   <th>Time</th>
                 </tr>
-                <tr v-for="a in 35">
-                  <td>playerID</td>
-                  <td>120</td>
-                  <td>50</td>
-                  <td>$50145</td>
-                  <td>datetime</td>
+                <tr v-for="data in dataGamePerformanceDetail">
+                  <td>{{data.PlayerID}}</td>
+                  <td>{{data.Amount}}</td>
+                  <td>{{data.PayOutAmount}}</td>
+                  <td>{{data.NetProfit}}</td>
+                  <td>{{data.create_at}}</td>
                 </tr>
               </table>
             </div>
@@ -310,8 +322,43 @@ export default {
   },
   data() {
     return {
+      dataGamePerformance:[],
+      dataGamePerformanceDetail:[],
+      adminList:[],
       byDay: "day"
     };
+  },
+  mounted(){
+    this.getGamePerformance()
+    this.getAdminList()
+  },
+  methods:{
+  getAdminList(){
+      this.dataGamePerformanceDetail =[]
+      axios.get('adminList').then(res=>{
+       this.adminList = res.data.data
+       console.log(res.data.data)
+      }).catch(err=>{
+        alert("error get admin list "+ err)
+      })
+    },
+    getGamePerformanceDetail(date){
+      this.dataGamePerformanceDetail =[]
+      axios.get(`api/getbetHisoty/${date}`).then(res=>{
+       this.dataGamePerformanceDetail = res.data[0].data
+       console.log(res.data[0].data)
+      }).catch(err=>{
+        alert("error get GamePerformance "+ err)
+      })
+    },
+    getGamePerformance(){
+      axios.get("api/getbetHisoty/display").then(res=>{
+        console.log(res.data[0].data)
+       this.dataGamePerformance = res.data[0].data
+      }).catch(err=>{
+        alert("error get GamePerformance "+ err)
+      })
+    }
   }
 };
 </script>
@@ -328,6 +375,7 @@ th,
 td {
   text-align: left;
   padding: 18px;
+  color: white;
 }
 
 tr:nth-child(even) {

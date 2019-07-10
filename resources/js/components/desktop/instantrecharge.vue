@@ -60,7 +60,7 @@
                       @click="paymentamount = 1"
                       value="1"
                       readonly="readonly"
-                    >
+                    />
                   </div>
                   <div class="form-group col-lg-1">
                     <input
@@ -70,7 +70,7 @@
                       @click="paymentamount = 100"
                       value="100"
                       readonly="readonly"
-                    >
+                    />
                   </div>
                   <div class="form-group col-lg-1">
                     <input
@@ -80,7 +80,7 @@
                       @click="paymentamount = 200"
                       value="200"
                       readonly="readonly"
-                    >
+                    />
                   </div>
                   <div class="form-group col-lg-1">
                     <input
@@ -90,7 +90,7 @@
                       @click="paymentamount = 500"
                       value="500"
                       readonly="readonly"
-                    >
+                    />
                   </div>
                   <div class="form-group col-lg-1">
                     <input
@@ -100,7 +100,7 @@
                       @click="paymentamount = 1000"
                       value="1,000"
                       readonly="readonly"
-                    >
+                    />
                   </div>
                   <div class="form-group col-lg-1">
                     <input
@@ -110,7 +110,7 @@
                       @click="paymentamount = 2000"
                       value="2,000"
                       readonly="readonly"
-                    >
+                    />
                   </div>
                   <div class="form-group col-lg-1">
                     <input
@@ -120,7 +120,7 @@
                       @click="paymentamount = 5000"
                       value="5,000"
                       readonly="readonly"
-                    >
+                    />
                   </div>
                 </div>
               </div>
@@ -143,7 +143,7 @@
                       lay-verify="required"
                       placeholder="请输入支付金额"
                       class="form-control paymentAmount"
-                    >
+                    />
                   </div>
                 </div>
                 <div class="row py-3">
@@ -164,7 +164,7 @@
                             v-model="recmetho"
                             title="JSON"
                             checked
-                          >
+                          />
                           JSON
                           <span class="form-check-sign"></span>
                         </label>
@@ -178,7 +178,7 @@
                             name="data_type"
                             value="h5"
                             title="H5收银台"
-                          >
+                          />
                           <!-- H5收银台 -->
                           H5 checkout counter
                           <span class="form-check-sign"></span>
@@ -277,7 +277,7 @@
                         @click="transferamount = 100"
                         value="100"
                         readonly="readonly"
-                      >
+                      />
                     </div>
                     <div class="form-group col-lg-1">
                       <input
@@ -287,7 +287,7 @@
                         @click="transferamount = 200"
                         value="200"
                         readonly="readonly"
-                      >
+                      />
                     </div>
                     <div class="form-group col-lg-1">
                       <input
@@ -297,7 +297,7 @@
                         @click="transferamount = 500"
                         value="500"
                         readonly="readonly"
-                      >
+                      />
                     </div>
                     <div class="form-group col-lg-1">
                       <input
@@ -307,7 +307,7 @@
                         @click="transferamount = 1000"
                         value="1,000"
                         readonly="readonly"
-                      >
+                      />
                     </div>
                     <div class="form-group col-lg-1">
                       <input
@@ -317,7 +317,7 @@
                         @click="transferamount = 2000"
                         value="2,000"
                         readonly="readonly"
-                      >
+                      />
                     </div>
                     <div class="form-group col-lg-1">
                       <input
@@ -327,7 +327,7 @@
                         @click="transferamount = 5000"
                         value="5,000"
                         readonly="readonly"
-                      >
+                      />
                     </div>
                   </div>
                 </div>
@@ -350,8 +350,8 @@
                         lay-verify="required"
                         placeholder="请输入支付金额"
                         class="form-control paymentAmount"
-                      >
-                      <br>
+                      />
+                      <br />
                       <button
                         @click.prevent="transfermoney"
                         type="submit"
@@ -390,7 +390,7 @@
                         @click="topupbalannceamount = 100"
                         value="100"
                         readonly="readonly"
-                      >
+                      />
                     </div>
                     <div class="form-group col-lg-1">
                       <input
@@ -400,7 +400,7 @@
                         @click="topupbalannceamount = 200"
                         value="200"
                         readonly="readonly"
-                      >
+                      />
                     </div>
                     <div class="form-group col-lg-1">
                       <input
@@ -410,7 +410,7 @@
                         @click="topupbalannceamount = 500"
                         value="500"
                         readonly="readonly"
-                      >
+                      />
                     </div>
                     <div class="form-group col-lg-1">
                       <input
@@ -420,7 +420,7 @@
                         @click="topupbalannceamount = 1000"
                         value="1,000"
                         readonly="readonly"
-                      >
+                      />
                     </div>
                     <div class="form-group col-lg-1">
                       <input
@@ -430,7 +430,7 @@
                         @click="topupbalannceamount = 2000"
                         value="2,000"
                         readonly="readonly"
-                      >
+                      />
                     </div>
                     <div class="form-group col-lg-1">
                       <input
@@ -440,11 +440,11 @@
                         @click="topupbalannceamount = 5000"
                         value="5,000"
                         readonly="readonly"
-                      >
+                      />
                     </div>
                   </div>
                 </div>
-                <form class="layui-form layui-field-box" id="form1">
+                <div class="layui-form layui-field-box" id="form1">
                   <div class="row py-3">
                     <div class="col-lg-4 text-right">
                       <!-- <label class="text-dark p-2">充值方式：</label> -->
@@ -463,24 +463,75 @@
                         lay-verify="required"
                         placeholder="请输入支付金额"
                         class="form-control paymentAmount"
-                      >
-                      <br>
+                      />
+                      <br />
                       <button
-                        @click.prevent="topupbalance"
-                        type="submit"
+                        data-toggle="modal"
+                        data-target="#showtopup"
                         class="btn btn-warning bg-custome"
-                        id="submit1"
-                        lay-submit
-                        lay-filter="submit1"
                       >Reuqest top-up</button>
                     </div>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
+        <div
+          class="modal fade"
+          id="showtopup"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="myModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header justify-content-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  <i class="tim-icons icon-simple-remove"></i>
+                </button>
+                <h6 class="title title-up">Modal title</h6>
+              </div>
+              <div class="modal-body">
+                <div class="col-md-12">
+                  <div class="card" style="width: 20rem;">
+                    <div
+                      class="card-body bg-baninfo"
+                      style="background-image: url(assets/img/visa-bg.jpg);"
+                    >
+                      <div class="d-flex justify-content-between">
+                        <h2 class="text-white">BCEL One</h2>
+                        <div class="addreess">
+                          <p class="text-white">Vientainer</p>
+                          <p class="text-white">Xaithany</p>
+                        </div>
+                      </div>
+                      <div class="user_id text-white">{{random}}</div>
+                      <div class="d-flex justify-content-between">
+                        <p class="card-userName text-white">TEST.</p>
+                        <p class="card-bankAccount text-white">TEST</p>
+                      </div>
+                      <div class="form-check form-use float-right">
+                        <label class="form-check-label text-white">
+                          <input class="form-check-input checkuse" type="checkbox" />
+                          Laos
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" @click.prevent="topupbalance">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="tab-pane" id="scancode">
           <div class="panel panel-default">
             <div class="card">
@@ -492,13 +543,13 @@
                     </div>
                     <div class="col-lg-8 form-row text-left">
                       <label>
-                        <input type="radio" name="test" value="small" checked>
-                        <img src="/assets/img/wechat.png">
+                        <input type="radio" name="test" value="small" checked />
+                        <img src="/assets/img/wechat.png" />
                       </label>
 
                       <label>
-                        <input type="radio" name="test" value="big">
-                        <img src="/assets/img/unionpay.png">
+                        <input type="radio" name="test" value="big" />
+                        <img src="/assets/img/unionpay.png" />
                       </label>
                     </div>
                   </div>
@@ -508,22 +559,22 @@
                     </div>
                     <div class="col-lg-8 form-row text-left">
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="100">
+                        <input type="text" class="form-control" id="inputZip" value="100" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="200">
+                        <input type="text" class="form-control" id="inputZip" value="200" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="500">
+                        <input type="text" class="form-control" id="inputZip" value="500" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="1,000">
+                        <input type="text" class="form-control" id="inputZip" value="1,000" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="2,000">
+                        <input type="text" class="form-control" id="inputZip" value="2,000" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="5,000">
+                        <input type="text" class="form-control" id="inputZip" value="5,000" />
                       </div>
                     </div>
                   </div>
@@ -538,7 +589,7 @@
                           class="form-control mt-2"
                           id="inputZip"
                           placeholder="请输入6位数验证码"
-                        >
+                        />
                         <button type="submit" class="btn btn-custome">发送验证码</button>
                       </div>
                     </div>
@@ -566,13 +617,13 @@
                     </div>
                     <div class="col-lg-8 form-row text-left">
                       <label>
-                        <input type="radio" name="test" value="small" checked>
-                        <img src="/assets/img/mastercard.png">
+                        <input type="radio" name="test" value="small" checked />
+                        <img src="/assets/img/mastercard.png" />
                       </label>
 
                       <label>
-                        <input type="radio" name="test" value="big">
-                        <img src="/assets/img/cardphone.png">
+                        <input type="radio" name="test" value="big" />
+                        <img src="/assets/img/cardphone.png" />
                       </label>
                     </div>
                   </div>
@@ -582,22 +633,22 @@
                     </div>
                     <div class="col-lg-8 form-row text-left">
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="100">
+                        <input type="text" class="form-control" id="inputZip" value="100" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="200">
+                        <input type="text" class="form-control" id="inputZip" value="200" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="500">
+                        <input type="text" class="form-control" id="inputZip" value="500" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="1,000">
+                        <input type="text" class="form-control" id="inputZip" value="1,000" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="2,000">
+                        <input type="text" class="form-control" id="inputZip" value="2,000" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="5,000">
+                        <input type="text" class="form-control" id="inputZip" value="5,000" />
                       </div>
                     </div>
                   </div>
@@ -612,7 +663,7 @@
                           class="form-control mt-2"
                           id="inputZip"
                           placeholder="请输入6位数验证码"
-                        >
+                        />
                         <button type="submit" class="btn btn-custome">发送验证码</button>
                       </div>
                     </div>
@@ -645,7 +696,7 @@
                           class="form-control"
                           aria-label
                           placeholder="单笔充值金额 0.01-15.6131 比特币"
-                        >
+                        />
                         <div class="input-group-append">
                           <span class="input-group-text bg-custome px-5 border-0">比特币</span>
                         </div>
@@ -663,7 +714,7 @@
                           class="form-control"
                           aria-label
                           placeholder="单笔充值金额 0.01-15.6131 比特币"
-                        >
+                        />
                         <div class="input-group-append">
                           <span class="input-group-text bg-custome px-5 border-0">比特币</span>
                         </div>
@@ -682,7 +733,7 @@
                           class="form-control"
                           aria-label
                           placeholder="首存即送 188 人民币"
-                        >
+                        />
                         <div class="input-group-append">
                           <span class="input-group-text bg-custome px-5 border-0">188元</span>
                         </div>
@@ -695,7 +746,7 @@
                     </div>
                     <div class="col-lg-5 form-row text-left">
                       <div class="input-group mb-3">
-                        <input type="text" class="form-control" aria-label placeholder="优惠金额无上限">
+                        <input type="text" class="form-control" aria-label placeholder="优惠金额无上限" />
                         <div class="input-group-append">
                           <span class="input-group-text bg-custome px-5 border-0">1%</span>
                         </div>
@@ -713,7 +764,7 @@
                           class="form-control"
                           aria-label
                           placeholder="充值金额 + 优惠金额"
-                        >
+                        />
                         <div class="input-group-append">
                           <span class="input-group-text bg-custome px-5 border-0">人民币</span>
                         </div>
@@ -752,7 +803,7 @@
           <div id="json_html">
             {{ order_sn }}
             <div class="top-info" v-html="remake"></div>
-            <img class="qrcode" :src="qrcode" alt>
+            <img class="qrcode" :src="qrcode" alt />
           </div>
         </div>
       </div>
@@ -765,6 +816,7 @@ export default {
   mixins: [msgmixin],
   data() {
     return {
+      random: "",
       topupbalannceamount: 0,
       transferamount: 0,
       order_sn: null,
@@ -786,36 +838,57 @@ export default {
       }, 500);
     }
   },
+  mounted() {
+    this.random = Math.random() * 100; //multiply to generate random number between 0, 100
+  },
   methods: {
     topupbalance(code) {
-      axios
-        .post("topupbalance", {
-          amount: this.topupbalannceamount,
-          detail: "topup"
-        })
-        .then(res => {
-          console.log(res.data);
-          code = res.data.code;
-          if (code == 200) {
-            alert("success");
-          }
-          if (code == 300) {
-            alert("query error");
-          }
-          if (code == 500) {
-            alert("internal error");
-          }
-          if (code == 203) {
-            let Time = new Date().getTime();
-            let sec = res.data.data[3]
-            let n = 30
-            setInterval(() => {
-              sec++
-              n--
-              console.log(n-sec);
-            }, 1000);
-          }
+      if (this.topupbalannceamount == 0) {
+        this.$swal({
+          type: "warning",
+          title: "Error",
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-success",
+          html: "Please Check your money amount",
+          timer: 1000
         });
+      } else {
+        axios
+          .post("topupbalance", {
+            amount: this.topupbalannceamount,
+            detail: "topup"
+          })
+          .then(res => {
+            console.log(res.data);
+            code = res.data.code;
+            if (code == 200) {
+              this.$swal({
+                type: "success",
+                title: res.data.msg,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                html: "Please check the box that you fill in",
+                timer: 1000
+              });
+            }
+            if (code == 300) {
+              alert("query error");
+            }
+            if (code == 500) {
+              alert("internal error");
+            }
+            if (code == 203) {
+              let Time = new Date().getTime();
+              let sec = res.data.data[3];
+              let n = 30;
+              setInterval(() => {
+                sec++;
+                n--;
+                console.log(n - sec);
+              }, 1000);
+            }
+          });
+      }
     },
     gotar() {
       let vm = this;
