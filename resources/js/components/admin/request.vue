@@ -598,7 +598,6 @@ export default {
       axios.get("/getreuest").then(res => {
         console.log(res.data.data);
         vm.requestdata = res.data.data.data;
-<<<<<<< HEAD
         let l = res.data.data.length;
         if (l != this.length) {
           console.log("TETSES Request");
@@ -606,10 +605,6 @@ export default {
           l = this.length;
         }
         l = this.length;
-=======
-
-
->>>>>>> bbe2a5ff54e522ccbcaadbf26b1f66fdf29d3700
         // let decode = JSON.parse(vm.requestdata).branch
         // console.log(decode)
       });
