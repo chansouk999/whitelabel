@@ -25,11 +25,12 @@ class blockIp
             ];
             return $data;
         }
-
         $ip =  \Request::getClientIp();
         $countryCode = checkCountryCodebyIp($ip);
-        if($countryCode['countryName'] != 'Laos'){
-            return response()->json('Your Country ----> '.($countryCode['countryName']).' <---- has been block Go to Laos to access this site or contact vongkeo@gmail.com  ,Thank you');
+        if($countryCode['countryName'] == 'Laos' || $ip=='127.0.0.1'){
+            return $next($request);
+        }else{
+            return response()->json('Your Country ----> '.($countryCode['countryName']).' <---- has been block , to access this site contact vongkeo@gmail.com  ,Thank you');
         }
         return $next($request);
     }
