@@ -66,10 +66,15 @@ class MasterController extends Controller
         $Redirect = $data->pluck('redirect')[0];
         return redirect('http://localhost:8003/redirect?clientid='.$ClientID.'&redirect='.\Request::root());
     }
-    public function fullscreengame()
+    public function fullscreengame(Request $req)
     {
         try {
-
+            $getiduser = Auth::user()->id;
+            Cache::put('userid',$getiduser,1212);
+            Cache::put('name', $req->stockname,1212);
+            Cache::put('loop', $req->loop,1212);
+            Cache::put('country', $req->country,1212);
+            // return [Session("name"),Session("loop"),Session("country"),Session("userid")];
             $check = OauthClient::where('name', '=', \Request::root())->get();
             if ($check->count() < 1) {
                 $uc = new OauthClient;

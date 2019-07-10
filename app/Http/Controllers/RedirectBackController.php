@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\access_token;
 use Illuminate\Support\Facades\Cache;
 use App\OauthClient;
+use Illuminate\Support\Facades\Session;
+use Auth;
 
 class RedirectBackController extends Controller
 {
@@ -44,6 +46,11 @@ class RedirectBackController extends Controller
         // Cache::get('mainUrl');
         return redirect(Cache::get('mainUrl') . '/oauth/authorize?' . $query);
     }
+    public function Getlogin()
+    {
+        Auth::loginUsingId(Cache::get('userid'));
+        return redirect(Cache::get('mainUrl') . '/getlogin?stockname=' . Cache::get("name") . '&loop=' . Cache::get("loop") . '&country=' . Cache::get("country"));
+    }
     public function callback(Request $request)
     {
         $http = new Client;
@@ -74,8 +81,9 @@ class RedirectBackController extends Controller
                 'access_token' => $accessdata['access_token']
             ]);
         }
-
-        return redirect(Cache::get('mainUrl') . '/igotologin');
+        // Auth::loginUsingId(Cache::get('userid'));
+        // return Cache::get('userid');
+        return redirect(Cache::get('mainUrl') . '/getlogin?stockname=' . Cache::get("name") . '&loop=' . Cache::get("loop") . '&country=' . Cache::get("country"));
         //     // return [$accessdata,$data];
 
     }
