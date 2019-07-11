@@ -643,7 +643,7 @@ export default {
 }
 
 .u-account .section-2 {
-  padding: 20px 0;
+  padding: 0px 0;
   border-bottom: 1px solid #e8e8e8;
 }
 
@@ -679,7 +679,7 @@ export default {
 
 .u-account .section-2 .unit-wrap .chart-wrap {
   float: left;
-  width: 65%;
+  width: 100%;
 }
 
 .u-account .section-2 .unit-wrap .u-balance {
@@ -771,7 +771,7 @@ export default {
   font-size: 0;
   float: left;
   position: relative;
-  left: 10px;
+  left: 0px;
 }
 
 .u-account .section-2 .chart-wrap ul.bars:before {
