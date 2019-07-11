@@ -103,7 +103,7 @@
                       <div class="card card-body">
                         <div class="row">
                           <div class="col-md-6 pb-3" v-for="(data,index) in getcCardinfo">
-                            <div class="cover atvImg">
+                            <div class="cover atvImg card_info">
                               <div class="atvImg-layer">
                                 <img src="assets/img/visa-bg.jpg" alt>
                               </div>
@@ -355,6 +355,10 @@ export default {
   margin-top: -31%;
   padding: 24px;
 } */
+.card_info{
+    margin-bottom: 65px;
+    max-width: 360px;
+}
 .atvImg-layer {
     position: absolute;
     top: 0;
