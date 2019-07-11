@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-10"></div>
         <div class="row ml-10">
-          <div class="col-md-6 pb-3" v-for="(data,index) in getcCardinfo">
+          <div class="col-md-6 pb-3 card_info" v-for="(data,index) in getcCardinfo">
             <div class="cover atvImg">
               <div class="atvImg-layer">
                 <img src="assets/img/visa-bg.jpg" alt />
@@ -459,6 +459,10 @@ export default {
   margin-top: -31%;
   padding: 24px;
 } */
+.card_info{
+    margin-bottom: 65px;
+    max-width: 360px;
+}
 .atvImg-layer {
     position: absolute;
     top: 0;
