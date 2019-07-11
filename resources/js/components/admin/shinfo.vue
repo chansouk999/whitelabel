@@ -7,7 +7,7 @@
       </div>
       <div class="col-md-4">
         <button
-          class="btn btn-warning btn-round"
+          class="btn btn-primary  btn-round"
           data-toggle="modal"
           data-target="#shareholder"
         >Make shareholder</button>

@@ -340,7 +340,7 @@ export default {
               title: "Cancelled",
               text: "Your card cancelled to delete)",
               type: "error",
-              confirmButtonClass: "btn btn-warning",
+              confirmButtonClass: "btn btn-primary ",
               timer: 1000,
               buttonsStyling: false
             }).catch(swal.noop);

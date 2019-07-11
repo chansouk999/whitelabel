@@ -239,7 +239,7 @@
                                         data-toggle="tooltip"
                                         data-placement="bottom"
                                         title="action record"
-                                        class="btn btn-warning btn-sm btn-icon"
+                                        class="btn btn-primary  btn-sm btn-icon"
                                       >
                                         <i class="tim-icons icon-coins"></i>
                                       </button>
@@ -716,7 +716,7 @@ export default {
   },
   watch: {
     popup(e) {
-      alert(e);
+      // alert(e);
       if (e == true) {
         this.A = 0;
         this.B = 9;

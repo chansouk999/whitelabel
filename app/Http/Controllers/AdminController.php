@@ -797,7 +797,7 @@ class AdminController extends Controller
     public function saveannounce(Request $req)
     {
         try {
-            
+
             $id = Announcement::count() + 1;
             $msg = array(
                 'title' => $req->title,
@@ -808,9 +808,9 @@ class AdminController extends Controller
                 'AnouncementID' => $req->method . $id,
                 'method' => $req->method,
                 'message' => json_encode($msg),
-                'userID' => $userID,
+                'userID' => json_encode($req->userID),
             );
-
+            // return  $message;
             $save = Announcement::create($message);
             $res = $this->checkQuery($save);
             return $res;

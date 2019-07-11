@@ -49,7 +49,7 @@
 
                 <a
                   href="#"
-                  class="btn btn-warning bg-custome btn-block"
+                  class="btn btn-primary  bg-custome btn-block"
                   data-toggle="modal"
                   data-target="#changepwdmodal"
                 >
@@ -367,25 +367,25 @@
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-warning bg-custome"
+                class="btn btn-primary  bg-custome"
                 @click="changepwd"
                 v-if="oldpwd200==false"
               >Next Step</button>
               <button
                 type="button"
-                class="btn btn-warning bg-custome"
+                class="btn btn-primary  bg-custome"
                 @click="savenewpwd"
                 v-if="oldpwd200==true"
               >Save</button>
               <button
                 type="button"
-                class="btn btn-warning bg-custome"
+                class="btn btn-primary  bg-custome"
                 @click="showpassword(method='show')"
                 v-if="showpwd==false"
               >Show password</button>
               <button
                 type="button"
-                class="btn btn-warning bg-custome"
+                class="btn btn-primary  bg-custome"
                 @click="showpassword(method='hide')"
                 v-if="showpwd==true"
               >hide password</button>

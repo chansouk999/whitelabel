@@ -136,7 +136,7 @@ export default {
       let yyyy = today.getFullYear();
 
       today =  yyyy + "-" + mm + "-" + dd ;
-      alert(today)
+      // alert(today)
       axios.get("getlog").then(res => {
         console.log(res.data);
         this.logdata = res.data.data.data;
