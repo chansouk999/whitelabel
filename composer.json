@@ -39,6 +39,7 @@
         "laravel/tinker": "^1.0",
         "nexmo/laravel": "^1.1",
         "realrashid/sweet-alert": "^1.1",
+        "torann/geoip": "^1.0",
         "uxweb/sweet-alert": "^2.0"
     },
     "directories": {

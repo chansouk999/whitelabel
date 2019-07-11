@@ -163,7 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-        
+
         /*
          * Package Service Providers...
          */
@@ -177,7 +177,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Ignited\LaravelOmnipay\LaravelOmnipayServiceProvider::class
+        Ignited\LaravelOmnipay\LaravelOmnipayServiceProvider::class,
+        \Torann\GeoIP\GeoIPServiceProvider::class,
 
     ],
 
@@ -232,8 +233,9 @@ return [
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
-        'Omnipay' => Ignited\LaravelOmnipay\Facades\OmnipayFacade::class
-        
+        'Omnipay' => Ignited\LaravelOmnipay\Facades\OmnipayFacade::class,
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
+
 
 
     ],
