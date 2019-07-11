@@ -717,18 +717,18 @@ class AdminController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function checkQuery($save){
-        try{
+    public function checkQuery($save)
+    {
+        try {
             DB::enableQueryLog();
             if ($save) {
                 return $this->returncode(200, $save, 'success');
             } else {
                 return $this->returncode(300, '', DB::getQueryLog());
             }
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
-
     }
     public function addnewadmin(Request $req)
     {
@@ -785,35 +785,35 @@ class AdminController extends Controller
     }
     public function insertadmin()
     { }
-    public function getannounce($m1,$m2){
-        try{
-            $data = Announcement::where([['method','=',$m1],['message','like','%"type":"'.$m2.'%']])->orderby('created_at','desc')->get();
+    public function getannounce($m1, $m2)
+    {
+        try {
+            $data = Announcement::where([['method', '=', $m1], ['message', 'like', '%"type":"' . $m2 . '%']])->orderby('created_at', 'desc')->get();
             return $this->checkQuery($data);
-
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
     public function saveannounce(Request $req)
     {
         try {
+            
             $id = Announcement::count() + 1;
             $msg = array(
-                'title'=>$req->title,
-                'msg'=>$req->message,
-                'type'=>$req->typeAN
+                'title' => $req->title,
+                'msg' => $req->message,
+                'type' => $req->typeAN
             );
             $message = array(
-                'AnouncementID'=>$req->method.$id,
-                'method'=>$req->method,
-                'message'=>json_encode($msg),
-                'addInDate'=>date('Y-m-d H:i:s'),
+                'AnouncementID' => $req->method . $id,
+                'method' => $req->method,
+                'message' => json_encode($msg),
+                'userID' => $userID,
             );
 
             $save = Announcement::create($message);
             $res = $this->checkQuery($save);
             return $res;
-
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
