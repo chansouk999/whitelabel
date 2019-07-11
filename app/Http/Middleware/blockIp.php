@@ -31,7 +31,7 @@ class blockIp
         // [currency] => HKD
         // [default] =>
         // [cached] => 1
-        // $ip =  \Request::getClientIp();
+        $ip =  \Request::getClientIp();
 
         $check = geoip()->getLocation($ip);
         if ($check['country'] == 'Laos' || $ip == '127.0.0.1') {
