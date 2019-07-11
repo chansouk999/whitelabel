@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use \Torann\GeoIP\Facades\GeoIP;
+use Torann\GeoIP\Facades\GeoIP;
 class blockIp
 {
     /**
@@ -30,14 +30,14 @@ class blockIp
         // [currency] => HKD
         // [default] =>
         // [cached] => 1
-        $ip =  \Request::getClientIp();
+        // $ip =  \Request::getClientIp();
 
-        $check = geoip()->getLocation($ip);
-        if($check['country'] == 'Laos' || $ip=='127.0.0.1'){
-            return $next($request);
-        }else{
-            return response()->json('Your Country ----> '.($check['country']).' <---- has been block , to access this site contact vongkeo@gmail.com  ,Thank you');
-        }
+        // $check = geoip()->getLocation('159.138.130.64');
+        // if($check['country'] == 'Laos' || $ip=='127.0.0.1'){
+        //     return $next($request);
+        // }else{
+        //     return response()->json('Your Country ----> '.($check['country']).' <---- has been block , to access this site contact vongkeo@gmail.com  ,Thank you');
+        // }
         return $next($request);
     }
 }
