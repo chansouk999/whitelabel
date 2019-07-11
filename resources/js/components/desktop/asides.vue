@@ -19,25 +19,25 @@
           <ul class="nav">
             <li class="nav-aside">
               <a href="#">
-                <img src="assets/img/us_flag.png" alt>
+                <img src="assets/img/us_flag.png" alt />
                 <p class="text-aside">{{us_stock}}</p>
               </a>
             </li>
             <li class="nav-aside">
               <a href="#">
-                <img src="assets/img/bitcoin.png" alt>
+                <img src="assets/img/bitcoin.png" alt />
                 <p class="text-aside">{{cryptocurrencies}}</p>
               </a>
             </li>
             <li class="nav-aside">
               <a href="#">
-                <img src="assets/img/china_flag.png" alt>
+                <img src="assets/img/china_flag.png" alt />
                 <p class="text-aside">{{chines_stock}}</p>
               </a>
             </li>
             <li class="nav-aside">
               <a href="#">
-                <img src="assets/img/Aragon-icon.png" alt>
+                <img src="assets/img/Aragon-icon.png" alt />
                 <p class="text-aside">{{lobby}}</p>
               </a>
             </li>
@@ -47,18 +47,18 @@
         <span v-if="checkuser == 'true'">
           <ul class="nav">
             <li class="nav-aside" id="SH0000015">
-              <popper  trigger="hover" :options="myPopper">
+              <popper trigger="hover" :options="myPopper">
                 <div class="popper">
-                  <livechart :key="0"  stockname="SH000001" loop="5" country="china" :isMenu="true"></livechart>
+                  <livechart :key="0" stockname="SH000001" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
                 <!-- <a href="/stocklist?stockname=SH000001&loop=5&country=china" slot="reference" target="_blank"> -->
+
                 <a
-                  :href="stocklist"
-                  @click="getstock('SH000001',5,'china')"
+                  href="fullscreengame?stockname=SH000001&loop=5&country=china"
                   slot="reference"
                   target="_blank"
                 >
-                  <img src="assets/img/Aeternity-icon.png" alt>
+                  <img src="assets/img/Aeternity-icon.png" alt />
                   <p class="text-aside" id="trigger">{{stock1}}</p>
                 </a>
               </popper>
@@ -70,12 +70,11 @@
                 </div>
                 <!-- <a href="/stocklist?stockname=SZ399001&loop=5&country=china" slot="reference" target="_blank"> -->
                 <a
-                  :href="stocklist"
-                  @click="getstock('SZ399001',5,'china')"
+                  href="fullscreengame?stockname=SZ399001&loop=5&country=china"
                   slot="reference"
                   target="_blank"
                 >
-                  <img src="assets/img/Canada-eCoin-icon.png" alt>
+                  <img src="assets/img/Canada-eCoin-icon.png" alt />
                   <p class="text-aside" id="trigger2">{{stock2}}</p>
                 </a>
               </popper>
@@ -86,13 +85,12 @@
                   <livechart :key="2" stockname="SH00300" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
                 <a
-                  :href="stocklist"
-                  @click="getstock('SH00300',5,'china')"
+                  href="fullscreengame?stockname=SH00300&loop=5&country=china"
                   slot="reference"
                   target="_blank"
                 >
                   <!-- <a href="/stocklist?stockname=SH00300&loop=5&country=china" slot="reference" target="_blank"> -->
-                  <img src="assets/img/china_flag.png" alt>
+                  <img src="assets/img/china_flag.png" alt />
                   <p class="text-aside">{{stock3}}</p>
                 </a>
               </popper>
@@ -103,13 +101,12 @@
                   <livechart :key="3" stockname="SZ399415" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
                 <a
-                  :href="stocklist"
-                  @click="getstock('SZ399415',5,'china')"
+                  href="fullscreengame?stockname=SZ399415&loop=5&country=china"
                   slot="reference"
                   target="_blank"
                 >
                   <!-- <a href="/stocklist?stockname=SZ399415&loop=5&country=china" slot="reference" target="_blank"> -->
-                  <img src="assets/img/china_flag.png" alt>
+                  <img src="assets/img/china_flag.png" alt />
                   <p class="text-aside">{{stock4}}</p>
                 </a>
               </popper>
@@ -117,18 +114,28 @@
             <li class="nav-aside" id="USdollarIndex5">
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">
-                  <livechart :key="4" stockname="USdollarIndex" loop="5" country="usa" :isMenu="true"></livechart>
+                  <livechart
+                    :key="4"
+                    stockname="USdollarIndex"
+                    loop="5"
+                    country="usa"
+                    :isMenu="true"
+                  ></livechart>
                 </div>
-                <a :href="stocklist" @click="getstock('US dollar Index',5,'usa')" slot="reference" target="_blank">
+                <a
+                  href="fullscreengame?stockname=US dollar Index&loop=5&country=usa"
+                  slot="reference"
+                  target="_blank"
+                >
                   <!-- <a href="/stocklist?stockname=USdollarIndex&loop=5&country=usa" slot="reference" target="_blank"> -->
-                  <img src="assets/img/us_flag.png" alt>
+                  <img src="assets/img/us_flag.png" alt />
                   <p class="text-aside">{{stock5}}</p>
                 </a>
               </popper>
             </li>
             <li class="img-btc">
               <a data-toggle="collapse" href="#pagesExamples">
-                <img src="assets/img/bitcoin.png" alt>
+                <img src="assets/img/bitcoin.png" alt />
                 <p>
                   {{stock6}}
                   <b class="caret"></b>
@@ -139,11 +146,16 @@
                   <li class="nav-aside" id="BTCUSDT1">
                     <popper trigger="hover" :options="myPopper">
                       <div class="popper">
-                        <livechart :key="5" stockname="BTCUSDT" loop="1" country="cypto" :isMenu="true"></livechart>
+                        <livechart
+                          :key="5"
+                          stockname="BTCUSDT"
+                          loop="1"
+                          country="cypto"
+                          :isMenu="true"
+                        ></livechart>
                       </div>
                       <a
-                        :href="stocklist"
-                        @click="getstock('BTC/USDT',1,'cypto')"
+                        href="fullscreengame?stockname=BTC/USDT&loop=1&country=cypto"
                         slot="reference"
                         target="_blank"
                       >
@@ -156,11 +168,16 @@
                   <li class="nav-aside" id="BTCUSDT5">
                     <popper trigger="hover" :options="myPopper">
                       <div class="popper">
-                        <livechart :key="6" stockname="BTCUSDT" loop="5" country="cypto" :isMenu="true"></livechart>
+                        <livechart
+                          :key="6"
+                          stockname="BTCUSDT"
+                          loop="5"
+                          country="cypto"
+                          :isMenu="true"
+                        ></livechart>
                       </div>
                       <a
-                        :href="stocklist"
-                        @click="getstock('BTC/USDT',5,'cypto')"
+                        href="fullscreengame?stockname=BTC/USDT&loop=5&country=cypto"
                         slot="reference"
                         target="_blank"
                       >
@@ -249,9 +266,9 @@ export default {
       // this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
       this.stocklist = `http://159.138.54.214/redirect?&name=${
         this.email
-      }&urlback=http://${filename.split("/")[2]}&stockname=${
-        stocknameder
-      }&loop=${loppstock}&country=${countrystock}`;
+      }&urlback=http://${
+        filename.split("/")[2]
+      }&stockname=${stocknameder}&loop=${loppstock}&country=${countrystock}`;
       // alert(stocknameder + loppstock + countrystock);
       window.open(this.stocklist, "_blank");
     },

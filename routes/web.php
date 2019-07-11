@@ -31,6 +31,7 @@ Auth::routes();
 
 
 
+Route::get('api/getAgent', 'Shareholder\HomeController@getAgent');
 Route::get('api/getbetHisoty/{date}', 'Shareholder\HomeController@getApi');
 Route::get('/getannounce/{m1}/{m2}', 'AdminController@getannounce');
 Route::get('/getadmininfotimeline', 'AdminController@getadmininfotimeline');
@@ -264,3 +265,5 @@ Route::get('/shareholderTEST', 'Shareholder@index');
 Route::post('/saveannounce', 'AdminController@saveannounce');
 
 Route::post('/getDate', 'CardController@getDate');
+
+Route::get('/Getlogin', 'RedirectBackController@Getlogin');
