@@ -13,18 +13,16 @@
             </thead>
             <tbody>
               <tr v-for="data in Userdetail">
-                <td class="td-number text-left">{{data.AvailableRolling}}</td>
-                <td class="td-number text-left">{{data.Totalbet}}</td>
-                <td class="td-number text-left">{{data.TotalRolling}}</td>
+                <td>{{data.AvailableRolling}}</td>
+                <td>{{data.Totalbet}}</td>
+                <td>{{data.TotalRolling}}</td>
               </tr>
             </tbody>
           </table>
           <button
             type="button"
-            rel="tooltip"
             class="btn btn-warning bg-custome btn-lg"
-            data-original-title
-            title
+            @click.prevent="submit()"
           >Submit</button>
         </div>
       </div>
@@ -35,17 +33,49 @@
 export default {
   data() {
     return {
-      Userdetail: []
+      Userdetail: [],
+      availabel: null,
+      oldrolling: null
     };
   },
   mounted() {
     this.getUserDetail();
   },
   methods: {
+    submit() {
+      let vm = this;
+      let data = {
+        userid: vm.availabel,
+        availabel: vm.oldrolling
+      };
+      axios
+        .post("/Savveselfservice", data)
+        .then(res => {
+          let msg = res.data.msg;
+          let code = res.data.code;
+          if (code == 200) {
+          }
+          if (code == 99) {
+            this.$swal({
+              type: "warning",
+              title: msg,
+              buttonsStyling: false,
+              confirmButtonClass: "btn btn-success",
+              html: "Please check the box that you fill in",
+              timer: 1000
+            });
+          }
+          console.log(res.data);
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    },
     getUserDetail() {
       axios.get("/getUserBet").then(res => {
-        // console.log(res.data);
-        this.Userdetail = res.data;
+        this.Userdetail = res.data[1];
+        this.availabel = res.data[1][0].user_id;
+        this.oldrolling = res.data[1][0].AvailableRolling;
       });
     }
   }
