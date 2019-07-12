@@ -2,9 +2,6 @@
   <div>
     <div class="u-content u-transaction">
       <ul class="nav nav-pills nav-pills-primary nav-pills-icons" role="tablist">
-        <!--
-        color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
-        -->
         <li class="nav-item">
           <a class="nav-link active" href="#withdrawalsrecord" role="tab" data-toggle="tab">
             <i class="tim-icons icon-atom"></i>
@@ -26,429 +23,287 @@
       </ul>
       <div class="tab-content tab-space">
         <div class="tab-pane active" id="withdrawalsrecord">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div id="withdraw_form" class="form-inline">
-                <!-- input with datetimepicker -->
-                <div class="form-group">
-                  <label class="label-control px-2">Date range</label>
-                  <input type="date" class="form-control" v-model="Firstdate" />
+          <div class="card">
+            <div class="card-body p-4">
+              <div class="row">
+                <label class="col-form-label">Date range</label>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <input type="date" class="form-control" v-model="Firstdate" />
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label class="label-control px-2">To</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    v-model="SecoundDate"
-                    @change="withdraw('withdraw')"
-                  />
+                <label class="col-form-label">To</label>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <input
+                      type="date"
+                      class="form-control"
+                      v-model="SecoundDate"
+                      @change="withdraw('withdraw')"
+                    />
+                  </div>
                 </div>
-                <label class="px-2">
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">status</font>
-                  </font>
-                </label>
-                <!-- Example single danger button -->
-                <div class="btn-group">
-                  <button type="button" class="btn bg-custome">All</button>
+                <div class="col-sm-1">
+                  <button type="button" class="btn bg-custome" @click="allData()">All</button>
                 </div>
-                <button
-                  class="btn bg-custome"
-                  id="search-button"
-                  data-toggle="modal"
-                  data-target="#searchModal"
-                >
-                  <i class="fa fa-search"></i> 查询\
-                </button>
-              </div>
-            </div>
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>User ID</th>
-                  <th>Event</th>
-                  <th>Serveby</th>
-                  <th>Amount</th>
-                  <th>Eventid</th>
-                  <th>DATA & TIME</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(data,index) in playerRecord">
-                  <td>{{index+1}}</td>
-                  <td>{{ JSON.parse(data.detail).user_id }}</td>
-                  <td>{{ JSON.parse(data.detail).event }}</td>
-                  <td>{{ JSON.parse(data.detail).serveby }}</td>
-                  <td>{{ JSON.parse(data.detail).amount }}</td>
-                  <td>{{ JSON.parse(data.detail).eventid }}</td>
-                  <td>{{ JSON.parse(data.detail).Time }}</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <table class="table table-striped col6">
-              <tbody>
-                <tr class="last">
-                  <td colspan="3" class="text-right">
-                    <div action class="pull-left form-inline">
-                      <div class="form-group">
-                        <button class="btn btn-default step-backward">
-                          <i class="fa fa-step-backward"></i>
-                        </button>
-                        <button class="btn btn-default backward">
-                          <i class="fa fa-backward"></i>
-                        </button>
-                      </div>
-                      <div class="form-group">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">First</font>
-                        </font>
-                        <input type="text" class="col-lg-2 form-control" placeholder value="0" />
-                        <span class="total_page_pl">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">Total 0 pages</font>
-                          </font>
-                        </span>
-                      </div>
-                      <div class="form-group">
-                        <button class="btn btn-default forward">
-                          <i class="fa fa-forward"></i>
-                        </button>
-                        <button class="btn btn-default step-forward">
-                          <i class="fa fa-step-forward"></i>
-                        </button>
+                <div class="col-sm-6">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-zoom-split"></i>
                       </div>
                     </div>
-                  </td>
-                  <td class="row2" style="width: 280px;">
-                    <b>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Subtotal:</font>
-                      </font>
-                    </b>
-                    <span class="subtotal-amount">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0</font>
-                      </font>
+                    <input
+                      type="text"
+                      v-model="search"
+                      class="form-control"
+                      placeholder="Search Mail TESTSETSE"
+                    />
+                  </div>
+                </div>
+              </div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>User ID</th>
+                    <th>Event</th>
+                    <th>Serveby</th>
+                    <th>Amount</th>
+                    <th>Eventid</th>
+                    <th>DATA & TIME</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="(data,index) in filteredResources"
+                    v-if="index >= gamehistorystart && index <= gamehistoryend"
+                  >
+                    <td>{{index+1}}</td>
+                    <td>{{ JSON.parse(data.detail).user_id }}</td>
+                    <td>{{ JSON.parse(data.detail).event }}</td>
+                    <td>{{ JSON.parse(data.detail).serveby }}</td>
+                    <td>{{ JSON.parse(data.detail).amount }}</td>
+                    <td>{{ JSON.parse(data.detail).eventid }}</td>
+                    <td>{{ JSON.parse(data.detail).Time }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <nav aria-label="..." class="d-flex justify-content-center">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <select
+                      class="selectpicker"
+                      data-style="select-with-transition"
+                      title="1"
+                      data-size="7"
+                    >
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                  </li>
+                  <li class="page-item">
+                    <span class="page-link" @click="gamehistorypage(methods='previous')">Previous</span>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">{{ gamehistorypagenum-1 }}</a>
+                  </li>
+                  <li class="page-item active">
+                    <span class="page-link">
+                      {{gamehistorypagenum}}
+                      <span class="sr-only">(current)</span>
                     </span>
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">yuan</font>
-                    </font>
-                    <br />
-                    <b>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">total:</font>
-                      </font>
-                    </b>
-                    <span class="total-amount">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0</font>
-                      </font>
-                    </span>
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">yuan</font>
-                    </font>
-                  </td>
-                  <td colspan="2" style="width: 160px;">
-                    <span class="page_angle">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Display 0 to 0, total 0 records</font>
-                      </font>
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">{{ gamehistorypagenum+1 }}</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" @click="gamehistorypage(methods='next')">Next</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
+
         <div class="tab-pane" id="rechargerecord">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div id="withdraw_form" class="form-inline">
-                <!-- input with datetimepicker -->
-                <div class="form-group">
-                  <label class="label-control px-2">Date range</label>
-                  <input type="date" class="form-control" v-model="Firstdate" />
+          <div class="card">
+            <div class="card-body p-4">
+              <div class="row">
+                <label class="col-form-label">Date range</label>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <input type="date" class="form-control" v-model="Firstdate" />
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label class="label-control px-2">To</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    v-model="SecoundDate"
-                    @change="withdraw('rechange')"
-                  />
+                <label class="col-form-label">To</label>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <input
+                      type="date"
+                      class="form-control"
+                      v-model="SecoundDate"
+                      @change="withdraw('rechange')"
+                    />
+                  </div>
                 </div>
-                <label class="px-2">
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">status</font>
-                  </font>
-                </label>
-                <!-- Example single danger button -->
-                <div class="btn-group">
-                  <button type="button" class="btn bg-custome" @click="resetData()">All</button>
+                <div class="col-sm-1">
+                  <button type="button" class="btn bg-custome" @click="allData()">All</button>
                 </div>
-                <button
-                  class="btn bg-custome"
-                  id="search-button"
-                  data-toggle="modal"
-                  data-target="#searchModal"
-                >
-                  <i class="fa fa-search"></i> 查询\
-                </button>
-              </div>
-            </div>
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>User ID</th>
-                  <th>Request Detail</th>
-                  <th>Amount</th>
-                  <th>Card No</th>
-                  <th>City</th>
-                  <th>Province</th>
-                  <th>Branch</th>
-                  <th>Request Time</th>
-                  <th>Request IP</th>
-                  <th>DATA & TIME</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(data,index) in loppdataRequets">
-                  <td>{{index+1}}</td>
-                  <td>{{ data.userId }}</td>
-                  <td>{{ data.requestDetail }}</td>
-                  <td>{{ data.amount }}</td>
-                  <td>{{ JSON.parse(data.detail).cardno }}</td>
-                  <td>{{ JSON.parse(data.detail).regcity }}</td>
-                  <td>{{ JSON.parse(data.detail).regprovince }}</td>
-                  <td>{{ JSON.parse(data.detail).branch }}</td>
-                  <td>{{ data.requestTime }}</td>
-                  <td>{{ data.ip }}</td>
-                  <td>{{ data.created_at }}</td>
-                </tr>
-              </tbody>
-            </table>
-            <table class="table table-striped col6">
-              <tbody>
-                <tr class="last">
-                  <td colspan="3" class="text-right">
-                    <div action class="pull-left form-inline">
-                      <div class="form-group">
-                        <button class="btn btn-default step-backward">
-                          <i class="fa fa-step-backward"></i>
-                        </button>
-                        <button class="btn btn-default backward">
-                          <i class="fa fa-backward"></i>
-                        </button>
-                      </div>
-                      <div class="form-group">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">First</font>
-                        </font>
-                        <input type="text" class="col-lg-2 form-control" placeholder value="0" />
-                        <span class="total_page_pl">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">Total 0 pages</font>
-                          </font>
-                        </span>
-                      </div>
-                      <div class="form-group">
-                        <button class="btn btn-default forward">
-                          <i class="fa fa-forward"></i>
-                        </button>
-                        <button class="btn btn-default step-forward">
-                          <i class="fa fa-step-forward"></i>
-                        </button>
+                <div class="col-sm-6">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-zoom-split"></i>
                       </div>
                     </div>
-                  </td>
-                  <td class="row2" style="width: 280px;">
-                    <b>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Subtotal:</font>
-                      </font>
-                    </b>
-                    <span class="subtotal-amount">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0</font>
-                      </font>
+                    <input
+                      type="text"
+                      v-model="search"
+                      class="form-control"
+                      placeholder="Search Mail TESTSETSE"
+                    />
+                  </div>
+                </div>
+              </div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>User ID</th>
+                    <th>Request Detail</th>
+                    <th>Amount</th>
+                    <th>Card No</th>
+                    <th>City</th>
+                    <th>Province</th>
+                    <th>Branch</th>
+                    <th>Request Time</th>
+                    <th>Request IP</th>
+                    <th>DATA & TIME</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="(data,index) in filteredResourcesloppdataRequets"
+                    v-if="index >= gamehistorystart && index <= gamehistoryend"
+                  >
+                    <td>{{index+1}}</td>
+                    <td>{{ data.userId }}</td>
+                    <td>{{ data.requestDetail }}</td>
+                    <td>{{ data.amount }}</td>
+                    <td>{{ JSON.parse(data.detail).cardno }}</td>
+                    <td>{{ JSON.parse(data.detail).regcity }}</td>
+                    <td>{{ JSON.parse(data.detail).regprovince }}</td>
+                    <td>{{ JSON.parse(data.detail).branch }}</td>
+                    <td>{{ data.requestTime }}</td>
+                    <td>{{ data.ip }}</td>
+                    <td>{{ data.created_at }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <nav aria-label="..." class="d-flex justify-content-center">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <select
+                      class="selectpicker"
+                      data-style="select-with-transition"
+                      title="1"
+                      data-size="7"
+                    >
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                  </li>
+                  <li class="page-item">
+                    <span class="page-link" @click="gamehistorypage(methods='previous')">Previous</span>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">{{ gamehistorypagenum-1 }}</a>
+                  </li>
+                  <li class="page-item active">
+                    <span class="page-link">
+                      {{gamehistorypagenum}}
+                      <span class="sr-only">(current)</span>
                     </span>
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">yuan</font>
-                    </font>
-                    <br />
-                    <b>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">total:</font>
-                      </font>
-                    </b>
-                    <span class="total-amount">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0</font>
-                      </font>
-                    </span>
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">yuan</font>
-                    </font>
-                  </td>
-                  <td colspan="2" style="width: 160px;">
-                    <span class="page_angle">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Display 0 to 0, total 0 records</font>
-                      </font>
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">{{ gamehistorypagenum+1 }}</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" @click="gamehistorypage(methods='next')">Next</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
         <div class="tab-pane" id="washingrecord">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div id="withdraw_form" class="form-inline">
-                <!-- input with datetimepicker -->
-                <div class="form-group">
-                  <label class="label-control px-2">Date range</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
-                </div>
-                <div class="form-group">
-                  <label class="label-control px-2">To</label>
-                  <input type="text" class="form-control datetimepicker" value="10/05/2018" />
-                </div>
-                <label class="px-2">
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">status</font>
-                  </font>
-                </label>
-                <!-- Example single danger button -->
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-primary dropdown-toggle"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >All</button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
+          <div class="card">
+            <div class="card-body p-4">
+              <div class="row">
+                <label class="col-form-label">Date range</label>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <input type="date" class="form-control" v-model="Firstdate" />
                   </div>
                 </div>
-                <button
-                  class="btn btn-primary"
-                  id="search-button"
-                  data-toggle="modal"
-                  data-target="#searchModal"
-                >
-                  <i class="fa fa-search"></i> 查询
-                </button>
-              </div>
-            </div>
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>申请时间</th>
-                  <th>提现单号</th>
-                  <th>提现银行卡</th>
-                  <th>申请时间</th>
-                  <th>提现单号</th>
-                  <th>提现银行卡</th>
-                  <th>提现银行卡</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <table class="table table-striped col6">
-              <tbody>
-                <tr class="last">
-                  <td colspan="3" class="text-right">
-                    <div action class="pull-left form-inline">
-                      <div class="form-group">
-                        <button class="btn btn-default step-backward">
-                          <i class="fa fa-step-backward"></i>
-                        </button>
-                        <button class="btn btn-default backward">
-                          <i class="fa fa-backward"></i>
-                        </button>
-                      </div>
-                      <div class="form-group">
-                        <font style="vertical-align: inherit;">
-                          <font style="vertical-align: inherit;">First test</font>
-                        </font>
-                        <input type="text" class="col-lg-2 form-control" placeholder value="0" />
-                        <span class="total_page_pl">
-                          <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">Total 0 pages</font>
-                          </font>
-                        </span>
-                      </div>
-                      <div class="form-group">
-                        <button class="btn btn-default forward">
-                          <i class="fa fa-forward"></i>
-                        </button>
-                        <button class="btn btn-default step-forward">
-                          <i class="fa fa-step-forward"></i>
-                        </button>
+                <label class="col-form-label">To</label>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <input
+                      type="date"
+                      class="form-control"
+                      v-model="SecoundDate"
+                      @change="withdraw('rechange')"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                  <button type="button" class="btn bg-custome" @click="allData()">All</button>
+                </div>
+                <div class="col-sm-6">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-zoom-split"></i>
                       </div>
                     </div>
-                  </td>
-                  <td class="row2" style="width: 280px;">
-                    <b>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Subtotal:</font>
-                      </font>
-                    </b>
-                    <span class="subtotal-amount">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0</font>
-                      </font>
-                    </span>
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">yuan</font>
-                    </font>
-                    <br />
-                    <b>
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">total:</font>
-                      </font>
-                    </b>
-                    <span class="total-amount">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">0</font>
-                      </font>
-                    </span>
-                    <font style="vertical-align: inherit;">
-                      <font style="vertical-align: inherit;">yuan</font>
-                    </font>
-                  </td>
-                  <td colspan="2" style="width: 160px;">
-                    <span class="page_angle">
-                      <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">Display 0 to 0, total 0 records</font>
-                      </font>
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                    <input
+                      type="text"
+                      v-model="search"
+                      class="form-control"
+                      placeholder="Search Mail TESTSETSE"
+                    />
+                  </div>
+                </div>
+              </div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>申请时间</th>
+                    <th>提现单号</th>
+                    <th>提现银行卡</th>
+                    <th>申请时间</th>
+                    <th>提现单号</th>
+                    <th>提现银行卡</th>
+                    <th>提现银行卡</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Mark</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -1004,13 +859,47 @@
 export default {
   data() {
     return {
+      gamehistorystart: 0,
+      gamehistoryend: 9,
+      gamehistorypagenum: 1,
       Firstdate: "",
       SecoundDate: "",
       playerRecord: [],
-      loppdataRequets: []
+      loppdataRequets: [],
+      search: ""
     };
   },
+  computed: {
+    filteredResources() {
+      if (this.search) {
+        return this.playerRecord.filter(item => {
+          let userIDJson = JSON.parse(item.detail).user_id;
+          let eventIDJson = JSON.parse(item.detail).event;
+          return (
+            userIDJson.toLowerCase().includes(this.search.toLowerCase()) ||
+            eventIDJson.toLowerCase().includes(this.search.toLowerCase())
+          );
+        });
+      } else {
+        return this.playerRecord;
+      }
+    },
+    filteredResourcesloppdataRequets() {
+      if (this.search) {
+        return this.loppdataRequets.filter(item => {
+          return (
+            item.userId.toLowerCase().includes(this.search.toLowerCase()) ||
+            item.requestDetail.toLowerCase().includes(this.search.toLowerCase())
+          );
+        });
+      } else {
+        return this.loppdataRequets;
+      }
+    }
+  },
+
   mounted() {
+    this.scrollLav();
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, "0");
     let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -1022,6 +911,46 @@ export default {
     this.getRequetUser();
   },
   methods: {
+    scrollLav() {
+      $(window).scroll(function() {
+        let vm = this;
+        if (
+          $(window).scrollTop() ==
+          $(document).height() - $(window).height()
+        ) {
+          vm.gamehistoryend += 20;
+          console.log(
+            "DSFDSGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
+          );
+        }
+      });
+    },
+    allData() {
+      this.gamehistorystart = 0;
+      this.gamehistoryend = this.playerRecord.length;
+      this.gamehistoryend = this.loppdataRequets.length;
+    },
+    // Paganation
+    gamehistorypage(methods) {
+      if (methods == "previous") {
+        if (this.gamehistorystart > 0) {
+          this.gamehistorystart -= 1;
+          this.gamehistoryend -= 1;
+          this.gamehistorypagenum -= 1;
+        }
+      } else {
+        if (this.gamehistoryend < this.playerRecord.length) {
+          this.gamehistorystart += 10;
+          this.gamehistoryend += 10;
+          this.gamehistorypagenum += 1;
+        }
+        if (this.gamehistoryend < this.loppdataRequets.length) {
+          this.gamehistorystart += 10;
+          this.gamehistoryend += 10;
+          this.gamehistorypagenum += 1;
+        }
+      }
+    },
     withdraw(rechange) {
       let data = {
         fristdate: this.Firstdate,

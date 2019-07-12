@@ -40,27 +40,27 @@
                       <li data-target="#myCarousel" data-slide-to="0" class="active">
                         <img
                           src="https://static-pc.swcqlz.com/cms/cms_pic/20190328cfa9d94907ba431db6505bb707b0c58c.jpg"
-                        >
+                        />
                       </li>
                       <li data-target="#myCarousel" data-slide-to="1" class>
                         <img
                           src="https://static-pc.swcqlz.com/cms/cms_pic/20190326961759629a51491e8f00c2ff2e753aff.jpg"
-                        >
+                        />
                       </li>
                       <li data-target="#myCarousel" data-slide-to="2" class>
                         <img
                           src="https://static-pc.swcqlz.com/cms/cms_pic/20190409d5dfebd2223a4eb58427dd4f3325d3f1.jpg"
-                        >
+                        />
                       </li>
                       <li data-target="#myCarousel" data-slide-to="3" class>
                         <img
                           src="https://static-pc.swcqlz.com/cms/cms_pic/20190418108f63a2f4454f9dba0199230447bcbf.jpg"
-                        >
+                        />
                       </li>
                       <li data-target="#myCarousel" data-slide-to="4" class>
                         <img
                           src="https://static-pc.swcqlz.com/cms/cms_pic/2019042247954d584b7547a59733bbc2c3a28880.jpg"
-                        >
+                        />
                       </li>
                     </ol>
 
@@ -71,7 +71,7 @@
                           src="https://static-pc.swcqlz.com/cms/cms_pic/201903287c512df06b914cefb2b3a96d20d3fdbd.jpg"
                           alt="First
               slide"
-                        >
+                        />
                         <div class="container">
                           <div class="slide-caption">
                             <h2 class="slide-caption__title">Mussum Ipsum</h2>
@@ -91,7 +91,7 @@
                           src="https://static-pc.swcqlz.com/cms/cms_pic/20190423b2ae4cfc35c14da4b2da530f147887c5.jpg"
                           alt="Second
               slide"
-                        >
+                        />
                         <div class="container">
                           <div class="slide-captiontwo">
                             <h2 class="slide-caption__title">Mussum Ipsum</h2>
@@ -111,7 +111,7 @@
                           src="https://static-pc.swcqlz.com/cms/cms_pic/20190409837ef9651b994dde86cbf299a2d5a599.jpg"
                           alt="Third
               slide"
-                        >
+                        />
                         <div class="container">
                           <div class="slide-captionthree">
                             <h2 class="slide-caption__title">Mussum Ipsum</h2>
@@ -131,7 +131,7 @@
                           src="https://static-pc.swcqlz.com/cms/cms_pic/201904188594c2980f2e4ffa8a7120ff2406d97a.jpg"
                           alt="Third
               slide"
-                        >
+                        />
                         <div class="container">
                           <div class="slide-captionfour">
                             <h2 class="slide-caption__title">Mussum Ipsum</h2>
@@ -151,7 +151,7 @@
                           src="https://static-pc.swcqlz.com/cms/cms_pic/2019042254cc8ec48bfe4d89b4b377df2fbbcc26.jpg"
                           alt="Five
               slide"
-                        >
+                        />
                         <div class="container">
                           <div class="slide-captionfive">
                             <h2 class="slide-caption__title">Mussum Ipsum</h2>
@@ -172,7 +172,7 @@
                       role="button"
                       data-slide="prev"
                     >
-                      <img src="assets/img/arrow-left.png">
+                      <img src="assets/img/arrow-left.png" />
                       <span class="sr-only">Previous</span>
                     </a>
                     <a
@@ -181,13 +181,13 @@
                       role="button"
                       data-slide="next"
                     >
-                      <img src="assets/img/arrow-right.png">
+                      <img src="assets/img/arrow-right.png" />
                       <span class="sr-only">Next</span>
                     </a>
                   </div>
                 </div>
                 <!-- Sidebar -->
-                <hr>
+                <hr />
               </div>
             </div>
           </div>
@@ -203,7 +203,7 @@
   </div>
 </template>
 <script>
-import alertsidebar from '../alertsidebar';
+import alertsidebar from "../alertsidebar";
 import navbars from "./navbar";
 import asides from "./asides";
 import footers from "./footers";
@@ -251,9 +251,21 @@ export default {
     "lobby",
     "checkpcormb"
   ],
-  mounted() {},
+  mounted() {
+    this.getAnnount();
+  },
 
   methods: {
+    getAnnount() {
+      axios
+        .get("/getaccountment")
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(e => {
+          console.log(e.respone);
+        });
+    },
     myaccount() {
       $("#myaccountlink")[0].click();
     },
