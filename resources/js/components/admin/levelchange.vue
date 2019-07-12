@@ -8,7 +8,7 @@
           </div>
           <div class="col-md-4">
             <button
-              class="btn btn-warning btn-round"
+              class="btn btn-primary  btn-round"
               data-toggle="modal"
               data-target="#editPrice"
               @click="medthod='insert'"
@@ -82,7 +82,7 @@
                         data-toggle="tooltip"
                         data-placement="bottom"
                         title="Edit"
-                        class="btn btn-warning btn-sm btn-icon"
+                        class="btn btn-primary  btn-sm btn-icon"
                         @click="edit(data.id)"
                       >
                         <i class="tim-icons icon-pencil"></i>
@@ -253,7 +253,7 @@ export default {
               title: "Cancelled",
               text: "Your card cancelled to delete)",
               type: "error",
-              confirmButtonClass: "btn btn-warning",
+              confirmButtonClass: "btn btn-primary ",
               timer: 1000,
               buttonsStyling: false
             }).catch(swal.noop);

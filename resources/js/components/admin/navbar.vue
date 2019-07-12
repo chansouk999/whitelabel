@@ -243,7 +243,7 @@ export default {
               title: "Cancelled",
               text: "Your keep going to play :)",
               type: "error",
-              confirmButtonClass: "btn btn-warning",
+              confirmButtonClass: "btn btn-primary ",
               buttonsStyling: false
             }).catch(swal.noop);
           } else {

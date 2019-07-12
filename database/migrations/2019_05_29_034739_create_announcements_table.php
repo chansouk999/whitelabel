@@ -13,11 +13,12 @@ class CreateAnnouncementsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('announcements');
         Schema::create('announcements', function (Blueprint $table) {
-            $table->string('AnouncementID',10);
-            $table->enum('method',['PA','NA']);
+            $table->string('AnouncementID', 10);
+            $table->enum('method', ['PA', 'NA']);
             $table->text('message');
-            $table->dateTime('addInDate');
+            $table->text('userID')->nullable();
             $table->primary('AnouncementID');
             $table->timestamps();
         });

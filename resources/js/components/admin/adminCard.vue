@@ -66,7 +66,7 @@
                           </div>
                         </div>
                         <div class="d-flex justify-content-lg-between ps-custome">
-                          <button type="button" class="btn btn-warning btn-sm btn-icon">
+                          <button type="button" class="btn btn-primary  btn-sm btn-icon">
                             <i class="tim-icons icon-pencil"></i>
                           </button>
                           <button type="button" class="btn btn-danger btn-sm btn-icon">
@@ -101,7 +101,7 @@
                       </div>
                       <div class="card-footer text-center mb-3 mt-3">
                         <button
-                          class="btn btn-round btn-just-icon btn-warning"
+                          class="btn btn-round btn-just-icon btn-primary "
                           data-toggle="modal"
                           data-target="#addcard"
                         >Add</button>
