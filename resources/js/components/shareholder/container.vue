@@ -312,7 +312,7 @@ import aside from "../admin/asides";
 import navbar from "../admin/navbar";
 import footer from "../admin/footers";
 import setting from "../admin/setting";
-
+import Echo from "laravel-echo"
 export default {
   components: {
     "app-aside": aside,

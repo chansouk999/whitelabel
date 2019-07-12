@@ -497,6 +497,16 @@
         </div>
       </div>
     </div>
+
+    <div class="popup-alert">
+        <div class="center-alter">
+            <h1 class="txt-alert">New Request</h1>
+            <button class="btn-close">close</button>
+        </div>
+    </div>
+
+
+
   </div>
 </template>
 <script>
@@ -527,9 +537,14 @@ export default {
       // }
     }
   },
+
   mounted() {
     this.getrequestdata();
-    alert(this.length)
+    setInterval(() => {
+      this.getrequestdata();
+    }, 5000);
+
+    alert(this.length);
   },
   methods: {
     actionmethod(method, id, userid) {
@@ -596,22 +611,67 @@ export default {
     getrequestdata(page, data, code) {
       let vm = this;
       axios.get("/getreuest").then(res => {
-        console.log(res.data.data);
+        console.log(res.data.data.data.length);
+        console.log(this.length)
         vm.requestdata = res.data.data.data;
-        let l = res.data.data.length;
+        let l = res.data.data.data.length;
         if (l != this.length) {
           console.log("TETSES Request");
-        } else {
-          l = this.length;
         }
-        l = this.length;
+        this.length = l;
         // let decode = JSON.parse(vm.requestdata).branch
-        // console.log(decode)
+        console.log(l)
+
       });
     }
   }
 };
 </script>
 <style scoped>
+.popup-alert{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
+.center-alter{
+width: 300px;
+    height: 200px;
+    color: #000;
+    position: relative;
+    top: 38%;
+    box-shadow: 0px 0px 8px #000;
+    border-radius: 5px;
+    background: white;
+    margin: 0 auto
+}
+.btn-close{
+    background: #222;
+    position: absolute;
+    border-radius: 5px;
+    color: #fff;
+    bottom: 16px;
+    left: 129px;
+}
+.txt-alert{
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
 </style>
 
