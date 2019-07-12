@@ -135,7 +135,6 @@ export default {
       pro_id: null,
       name: null,
       firstname: null,
-      lastname: null,
       email: null,
       csrf: document
         .querySelector('meta[name="csrf-token"]')
@@ -173,7 +172,6 @@ export default {
           this.name = res.data[0].name;
           this.email = res.data[0].email;
           this.firstname = res.data[0].id;
-          this.lastname = res.data[0].secret;
           let filename = window.location.href;
           // this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
           this.stocklist = `http://lec68.com/redirect?&name=${

@@ -519,7 +519,7 @@ export default {
           if (code == 200) {
             this.getagentinfo();
           }
-          alert(msg);
+        //   alert(msg);
         })
         .catch(e => {
           console.log(e.response);

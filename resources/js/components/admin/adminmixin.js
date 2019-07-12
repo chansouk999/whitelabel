@@ -88,7 +88,7 @@ export const adminmixin = {
                 .then(res => {
                     // console.log(res.data.userdata);
                     if (res.data.userdata == "") {
-                        alert("ok");
+                        // alert("ok");
                     }
                     this.userdetail = res.data.userdata.data;
                     this.userdetailpg = {
