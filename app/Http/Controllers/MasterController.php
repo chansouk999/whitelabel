@@ -503,10 +503,8 @@ class MasterController extends Controller
     {
         $id = Auth::user()->id;
         $date = date('Y-m-d');
-        return DB::table('users')
-            ->join('oauth_clients', 'users.id', '=', 'oauth_clients.user_id')
-            ->where('users.id', $id)
-            ->orderby('oauth_clients.created_at', 'desc')->limit(1)->get();
+        return DB::table('users')->where('id', $id)
+            ->orderby('created_at', 'desc')->limit(1)->get();
     }
     public function checklogin(Request $req)
     {

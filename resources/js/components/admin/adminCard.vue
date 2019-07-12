@@ -11,6 +11,9 @@
               <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#usagerule">Usage Rule Settiing</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#AnnounceMentImage">AnnounceMentImage</a>
+              </li>
               <!--  <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#link6">Options</a>
               </li>-->
@@ -66,7 +69,7 @@
                           </div>
                         </div>
                         <div class="d-flex justify-content-lg-between ps-custome">
-                          <button type="button" class="btn btn-warning btn-sm btn-icon">
+                          <button type="button" class="btn btn-primary btn-sm btn-icon">
                             <i class="tim-icons icon-pencil"></i>
                           </button>
                           <button type="button" class="btn btn-danger btn-sm btn-icon">
@@ -101,10 +104,40 @@
                       </div>
                       <div class="card-footer text-center mb-3 mt-3">
                         <button
-                          class="btn btn-round btn-just-icon btn-warning"
+                          class="btn btn-round btn-just-icon btn-primary"
                           data-toggle="modal"
                           data-target="#addcard"
                         >Add</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane" id="AnnounceMentImage">
+                <div class="row">
+                  <div class="col-md-2" v-for="data in imageCar">
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail">
+                        <img
+                          :src="data.url"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                      <div>
+                        <span class="btn btn-raised btn-round btn-dark btn-file">
+                          <span class="fileinput-new">Select image</span>
+                          <span class="fileinput-exists">Change</span>
+                          <input type="file" name="..." />
+                        </span>
+                        <a
+                          href="#pablo"
+                          class="btn btn-danger btn-round fileinput-exists"
+                          data-dismiss="fileinput"
+                        >
+                          <i class="fa fa-times"></i> Remove
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -284,9 +317,20 @@
   </div>
 </template>
  <script>
-export default {};
+export default {
+    data(){
+        return{
+            imageCar:[
+                {url:'assets/img/emptyimg.png'},
+                {url:'assets/img/emptyimg.png'},
+                {url:'assets/img/emptyimg.png'},
+                {url:'assets/img/emptyimg.png'},
+                {url:'assets/img/emptyimg.png'},
+            ]
+        }
+    }
+};
 </script>
- 
+
  <style scoped>
 </style>
- 

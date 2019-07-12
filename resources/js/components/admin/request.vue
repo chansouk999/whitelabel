@@ -1,6 +1,8 @@
 <template>
   <div>
     <!-- PLAYER INFO -->
+
+
     <div class="row">
       <div class="col-md-3 text-left">
         <p class="pl-5">Current Page : 1</p>
@@ -498,15 +500,12 @@
       </div>
     </div>
 
-    <div class="popup-alert">
-        <div class="center-alter">
-            <h1 class="txt-alert">New Request</h1>
-            <button class="btn-close">close</button>
-        </div>
+    <div class="popup-alert" v-if="alertwarning==true">
+      <div class="center-alter animt">
+        <h3 class="txt-alert">New Request</h3>
+        <button class="btn-close" @click="closewaning">close</button>
+      </div>
     </div>
-
-
-
   </div>
 </template>
 <script>
@@ -515,6 +514,8 @@ export default {
   mixins: [adminmixin],
   data() {
     return {
+      audioplay: new Audio('sound/alrmwaining.mp3'),
+      alertwarning: false,
       A: 0,
       B: 19,
       length: null,
@@ -539,14 +540,30 @@ export default {
   },
 
   mounted() {
+    let n = 0;
+    setInterval(() => {
+      n++;
+      if (n % 2 == 0) {
+        $(".center-alter").removeClass("animt");
+      } else {
+        $(".center-alter").addClass("animt");
+      }
+      if (n == 5) {
+        return (n = 0);
+      }
+    }, 1000);
     this.getrequestdata();
     setInterval(() => {
       this.getrequestdata();
     }, 5000);
 
-    alert(this.length);
+    // alert(this.length);
   },
   methods: {
+    closewaning() {
+        this.audioplay.pause();
+      this.alertwarning = false;
+    },
     actionmethod(method, id, userid) {
       let code = 0;
       if (method == "approve") {
@@ -567,7 +584,7 @@ export default {
         id: id,
         userid: userid
       };
-      axios
+      axios  
         .post("/actionprocess", data)
         .then(res => {
           let code = res.data.code;
@@ -611,67 +628,89 @@ export default {
     getrequestdata(page, data, code) {
       let vm = this;
       axios.get("/getreuest").then(res => {
-        console.log(res.data.data.data.length);
-        console.log(this.length)
         vm.requestdata = res.data.data.data;
         let l = res.data.data.data.length;
-        if (l != this.length) {
-          console.log("TETSES Request");
+        if (l > this.length) {
+          this.audioplay.play();
+          this.alertwarning = true;
         }
         this.length = l;
-        // let decode = JSON.parse(vm.requestdata).branch
-        console.log(l)
-
       });
     }
   }
 };
 </script>
 <style scoped>
-.popup-alert{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    left: 0;
+.popup-alert {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
 }
-.center-alter{
-width: 300px;
-    height: 200px;
-    color: #000;
-    position: relative;
-    top: 38%;
-    box-shadow: 0px 0px 8px #000;
-    border-radius: 5px;
-    background: white;
-    margin: 0 auto
+.center-alter {
+  width: 300px;
+  height: 200px;
+  color: #000;
+  position: relative;
+  top: 38%;
+  box-shadow: 0px 0px 8px #000;
+  border-radius: 5px;
+  background: white;
+  margin: 0 auto;
 }
-.btn-close{
-    background: #222;
-    position: absolute;
-    border-radius: 5px;
-    color: #fff;
-    bottom: 16px;
-    left: 129px;
+.btn-close {
+  background: #222;
+  position: absolute;
+  border-radius: 5px;
+  color: #fff;
+  bottom: 16px;
+  left: 129px;
 }
-.txt-alert{
+.animt {
   animation: shake 0.5s;
   animation-iteration-count: infinite;
 }
-
+.txt-alert {
+  color: #000;
+  /* margin-top: 9px; */
+  padding-top: 69px;
+}
 
 @keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
 }
 </style>
 

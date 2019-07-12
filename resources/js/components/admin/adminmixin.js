@@ -31,7 +31,7 @@ export const adminmixin = {
             this.A = 0
             this.B = 9
             this.gotuserhistory = []
-            alert(id)
+                // alert(id)
             axios.post('getgamehistory', { reqmethod: method, user_id: id, name: name }).then(res => {
                 console.log(res.data)
                 this.popup = true
@@ -88,7 +88,7 @@ export const adminmixin = {
                 .then(res => {
                     // console.log(res.data.userdata);
                     if (res.data.userdata == "") {
-                        alert("ok");
+                        // alert("ok");
                     }
                     this.userdetail = res.data.userdata.data;
                     this.userdetailpg = {

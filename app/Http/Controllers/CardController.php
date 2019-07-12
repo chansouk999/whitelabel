@@ -221,4 +221,9 @@ class CardController extends Controller
             return $ex->getMessage();
         }
     }
+    public function TaguserDetail()
+    {
+        $getTagUser = User::get();
+        return $getTagUser;
+    }
 }

@@ -212,7 +212,7 @@
                     <button
                       @click.prevent="payment"
                       type="submit"
-                      class="btn btn-warning bg-custome"
+                      class="btn btn-primary  bg-custome"
                       id="submit1"
                       lay-submit
                       lay-filter="submit1"
@@ -355,7 +355,7 @@
                       <button
                         @click.prevent="transfermoney"
                         type="submit"
-                        class="btn btn-warning bg-custome"
+                        class="btn btn-primary  bg-custome"
                         id="submit1"
                         lay-submit
                         lay-filter="submit1"
@@ -468,7 +468,7 @@
                       <button
                         data-toggle="modal"
                         data-target="#showtopup"
-                        class="btn btn-warning bg-custome"
+                        class="btn btn-primary  bg-custome"
                       >Reuqest top-up</button>
                     </div>
                   </div>

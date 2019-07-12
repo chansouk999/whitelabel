@@ -11,7 +11,6 @@ export const msgmixin = {
             name:null,
             email:null,
             firstname:null,
-            lastname:null,
         }
     },
     mounted(){
@@ -19,7 +18,7 @@ export const msgmixin = {
         this.userdatasecond()
     },
     methods: {
-      
+
         userdatasecond() {
             axios
               .get("/userdetaildata")
@@ -33,7 +32,6 @@ export const msgmixin = {
                 this.name = res.data[0].name;
                 this.email = res.data[0].email;
                 this.firstname = res.data[0].id;
-                this.lastname = res.data[0].secret;
                 // $('.id').val(this.id);
                 // $('.provider_name').val(this.provider_name);
                 // $('.balance').val(this.balance);
@@ -45,9 +43,9 @@ export const msgmixin = {
                 console.log(er.res);
               });
           },
-            
+
     transfermoney(){
-      
+
       this.loading=false
       let x = 0
         axios.post('/transfertoapi',{amount:this.transferamount}).then(res=>{
@@ -67,19 +65,19 @@ export const msgmixin = {
             x=1
             this.userdatasecond()
             alert(res.data.msg)
-          } 
+          }
           if(x==1){
               this.loading=true
           }
-         
+
         }).catch(e=>{console.log(e.response)})
       },
       payment(data){
-  
-        
-  
-  
-  
+
+
+
+
+
         this.loading=false
         let vm = this
           data ={
@@ -94,19 +92,19 @@ export const msgmixin = {
                 alert('YOU ARE NOT ALLOW')
             }else{
               if(res.data.code == 100){
-                
+
                 if(data.data_type == 'h5'){
-                  
+
                 }else if(data.data_type == 'json'){
                   vm.loading=true
                   vm.qr_pop=true;
                   vm.order_sn = res.data.data.order_sn
                   vm.remake = res.data.data.remark;
                   vm.qrcode = res.data.data.qrcode;
-                   
-  
+
+
                 }
-                
+
               }else{
                 vm.loading=true
                 vm.qr_pop=true;

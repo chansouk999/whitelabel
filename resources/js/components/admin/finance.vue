@@ -8,7 +8,7 @@
       <div class="col-md-2 text-center d-flex">
         <button
           type="button"
-          class="btn btn-warning"
+          class="btn btn-primary "
           data-toggle="modal"
           data-target=".balance-transfer"
         >Make a Balance Transfer</button>

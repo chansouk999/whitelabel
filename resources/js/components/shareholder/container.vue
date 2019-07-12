@@ -99,11 +99,11 @@
                             <th>Default percentage</th>
                             <th></th>
                           </tr>
-                          <tr v-for="a in 15">
-                            <td>AgentID</td>
-                            <td>123</td>
-                            <td>7</td>
-                            <td>$ 123450.23</td>
+                          <tr v-for="data in dataAgentPerformanceDetail">
+                            <td>{{data.agentId}}</td>
+                            <td>{{data.numberPlayer}}</td>
+                            <td>{{data.subAgent}}</td>
+                            <td>{{data.totalIncome}}</td>
                             <td>4%</td>
                             <td>
                               <button
@@ -246,18 +246,12 @@
             <div class="card card-nav-tabs">
               <table>
                 <tr>
-                  <th>PlayerID</th>
-                  <th>Bet amount</th>
-                  <th>Payout amount</th>
-                  <th>Net profit</th>
                   <th>Time</th>
+                  <th>Commission</th>
                 </tr>
                 <tr v-for="a in 35">
                   <td>playerID</td>
                   <td>120</td>
-                  <td>50</td>
-                  <td>$50145</td>
-                  <td>datetime</td>
                 </tr>
               </table>
             </div>
@@ -324,6 +318,7 @@ export default {
     return {
       dataGamePerformance:[],
       dataGamePerformanceDetail:[],
+      dataAgentPerformanceDetail:[],
       adminList:[],
       byDay: "day"
     };
@@ -331,8 +326,17 @@ export default {
   mounted(){
     this.getGamePerformance()
     this.getAdminList()
+    this.getAgentPerformance()
   },
   methods:{
+     getAgentPerformance(){
+      axios.get('api/getAgent').then(res=>{
+       this.dataAgentPerformanceDetail = res.data
+       console.log(res.data)
+      }).catch(err=>{
+        alert("error getAgentPerformancet "+ err)
+      })
+    },
   getAdminList(){
       this.dataGamePerformanceDetail =[]
       axios.get('adminList').then(res=>{

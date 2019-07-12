@@ -10,6 +10,6 @@ class Announcement extends Model
         'AnouncementID',
         'method',
         'message',
-        'addInDate'
+        'userID'
     ];
 }

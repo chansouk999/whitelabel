@@ -41,7 +41,7 @@
             </form>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-fill btn-warning bg-custome">修改</button>
+            <button type="submit" class="btn btn-fill btn-primary  bg-custome">修改</button>
           </div>
         </div>
       </div>

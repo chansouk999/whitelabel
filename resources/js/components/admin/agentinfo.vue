@@ -7,7 +7,7 @@
       </div>
       <div class="col-md-4">
         <button
-          class="btn btn-warning btn-round"
+          class="btn btn-primary  btn-round"
           data-toggle="modal"
           data-target="#MakenewAgent"
         >Make new Agent</button>
@@ -519,7 +519,7 @@ export default {
           if (code == 200) {
             this.getagentinfo();
           }
-          alert(msg);
+        //   alert(msg);
         })
         .catch(e => {
           console.log(e.response);
