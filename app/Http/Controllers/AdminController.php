@@ -22,6 +22,7 @@ use App\admin_access;
 use App\Agent;
 use App\AgenTransaction;
 use App\Shareholder;
+use App\Carousel;
 
 class AdminController extends Controller
 {
@@ -817,5 +818,47 @@ class AdminController extends Controller
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
+    }
+    public function getCarousel()
+    {
+        return Carousel::orderby('created_at', 'desc')->get();
+    }
+
+    public function postCarousel(Request $r)
+    {
+        try {
+            DB::enableQueryLog();
+            $path = "careousel/";
+            $dir = public_path("careousel/");
+            // $imgaeid = $UID . $adminid . $date;
+            if ($r->img) {
+                if (!\File::isDirectory($dir)) {
+                    mkdir($dir, 666, true);
+                }
+                $image = $r->img[0];
+                $name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+                $namecheck = explode('.', $name);
+                $filetype = $namecheck[1];
+                \Image::make($image)->save(public_path($path) . $name);
+            }
+
+            $save = Carousel::create(
+                [
+                    'carousel' => $name
+                ]
+            );
+
+            if ($save) {
+                return $this->returncode(200, '', 'success');
+            } else {
+                return $this->returncode(300, '', DB::getQueryLog());
+            }
+            return $r;
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function updatedCarousel(Request $r){
+        return $r;
     }
 }
