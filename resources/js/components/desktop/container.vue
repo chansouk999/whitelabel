@@ -46,32 +46,33 @@
                       >
                         <img :src="'/careousel/'+data.carousel" />
                       </li>
-                      <!-- <li data-target="#myCarousel" data-slide-to="1" class>
+                      <!-- <li data-target="#myCarousel" data-slide-to="0" class>
                         <img
                           src="https://static-pc.swcqlz.com/cms/cms_pic/20190326961759629a51491e8f00c2ff2e753aff.jpg"
                         />
                       </li>
-                      <li data-target="#myCarousel" data-slide-to="2" class>
+                      <li data-target="#myCarousel" data-slide-to="1" class>
                         <img
                           src="https://static-pc.swcqlz.com/cms/cms_pic/20190409d5dfebd2223a4eb58427dd4f3325d3f1.jpg"
                         />
                       </li>
-                      <li data-target="#myCarousel" data-slide-to="3" class>
+                      <li data-target="#myCarousel" data-slide-to="2" class>
                         <img
                           src="https://static-pc.swcqlz.com/cms/cms_pic/20190418108f63a2f4454f9dba0199230447bcbf.jpg"
                         />
                       </li>
-                      <li data-target="#myCarousel" data-slide-to="4" class>
+                      <li data-target="#myCarousel" data-slide-to="3" class>
                         <img
                           src="https://static-pc.swcqlz.com/cms/cms_pic/2019042247954d584b7547a59733bbc2c3a28880.jpg"
                         />
-                      </li>-->
+                      </li> -->
                     </ol>
 
                     <div class="carousel-inner">
                       <div
                         :class="'carousel-item ' + activeClass(index)"
                         v-for="(data,index) in imageSlide"
+                        :key="index"
                       >
                         <img
                           :class="slideClass(index)"
