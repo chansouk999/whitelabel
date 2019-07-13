@@ -67,7 +67,7 @@
                             <td>$ {{data.NetProfit}}</td>
                              <td>
                               <button
-                                class="btn btn-blue-grey"
+                                class="btn btn-blue-grey "
                                 style="right:0"
                                 data-toggle="modal"
                                 data-target=".daily-detail-record"
