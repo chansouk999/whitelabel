@@ -26,6 +26,8 @@ Route::get('/lobby', 'HomeController@lobby');
 Route::post('/updatemoney', 'MasterController@updatemoney');
 Auth::routes();
 
+
+
 // Route::get('/admins', 'HomeController@admin');
 // Route::get('administrator', 'AdminController@index')->middleware('admin');
 
@@ -36,7 +38,14 @@ Route::get('api/getbetHisoty/{date}', 'Shareholder\HomeController@getApi');
 Route::get('/getannounce/{m1}/{m2}', 'AdminController@getannounce');
 Route::get('/getadmininfotimeline', 'AdminController@getadmininfotimeline');
 Route::post('/addnewadmin', 'AdminController@addnewadmin');
+
+
+Route::put('/Carousel/{id}', 'AdminController@updatedCarousel');
+Route::get('/Carousel', 'AdminController@getCarousel');
+Route::post('/Carousel', 'AdminController@postCarousel');
 Route::get('/getadmininfo', 'AdminController@getadmininfo');
+
+
 Route::get('/delete_img/{id}', 'AdminController@delete_img');
 Route::get('/getimgtrans/{id}', 'AdminController@getimgtrans');
 Route::get('/getallresultadmin', 'AdminController@getallresultadmin');

@@ -113,30 +113,51 @@
                   </div>
                 </div>
               </div>
-
+              <!-- backherer -->
               <div class="tab-pane" id="AnnounceMentImage">
                 <div class="row">
-                  <div class="col-md-2" v-for="data in imageCar">
+                  <Button @click="refresh">Refresh</Button>
+                  <!-- v-for="data in carousel" -->
+                  <div class="col-md-2" v-for="data in carousel">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail">
-                        <img
-                          :src="data.url"
-                          alt="..."
-                        />
+                        <img height="230" :src="'careousel/'+data.carousel" alt="..." />
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail"></div>
                       <div>
                         <span class="btn btn-raised btn-round btn-dark btn-file">
-                          <span class="fileinput-new">Select image</span>
+                          <span class="fileinput-new">Change image</span>
                           <span class="fileinput-exists">Change</span>
-                          <input type="file" name="..." />
+                          <input type="file" name="..." @change="selectimg" />
                         </span>
                         <a
                           href="#pablo"
-                          class="btn btn-danger btn-round fileinput-exists"
-                          data-dismiss="fileinput"
+                          class="btn btn-success btn-round fileinput-exists sttaftersave"
+                          @click="saveimg(data.id)"
                         >
-                          <i class="fa fa-times"></i> Remove
+                          <i class="fa fa-times"></i> Save
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2" v-for="(data,index) in imageCar" v-if="index <= imgempty">
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail">
+                        <img height="230" :src="data.url" alt="..." />
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                      <div>
+                        <span class="btn btn-raised btn-round btn-dark btn-file">
+                          <span class="fileinput-new">Change image</span>
+                          <span class="fileinput-exists" data-dismiss="fileinput">Remove</span>
+                          <input type="file" @change="selectimg" />
+                        </span>
+                        <a
+                          href="#pablo"
+                          class="btn btn-success btn-round fileinput-exists sttaftersave"
+                          @click="saveimg(id)"
+                        >
+                          <i class="fa fa-times"></i> Save
                         </a>
                       </div>
                     </div>
@@ -318,17 +339,77 @@
 </template>
  <script>
 export default {
-    data(){
-        return{
-            imageCar:[
-                {url:'assets/img/emptyimg.png'},
-                {url:'assets/img/emptyimg.png'},
-                {url:'assets/img/emptyimg.png'},
-                {url:'assets/img/emptyimg.png'},
-                {url:'assets/img/emptyimg.png'},
-            ]
-        }
+  data() {
+    return {
+      transferimganme: null,
+      postioned: null,
+      transimg: [],
+      imgempty: 0,
+      carousel: [],
+      imageCar: [
+        { url: "assets/img/emptyimg.png" },
+        { url: "assets/img/emptyimg.png" },
+        { url: "assets/img/emptyimg.png" },
+        { url: "assets/img/emptyimg.png" },
+        { url: "assets/img/emptyimg.png" }
+      ]
+    };
+  },
+  mounted() {
+    this.Carousel();
+  },
+  methods: {
+    saveimg(id) {
+         alert(localStorage.getItem('name'))
+        let send = '';
+
+      if (id == "undefined") {
+          send = axios.post;
+
+      }else{
+          send = axios.put;
+      }
+      console.log(id);
+        send('Carousel/'+id,{img:this.transimg}).then(res=>{
+            console.log(res.data)
+            let code = res.data.code
+            if(code==200){
+                this.Carousel();
+                $('.sttaftersave').attr('data-dismiss','fileinput');
+            }
+        }).catch(e=>{console.log(e.response)})
+    },
+    selectimg(e, index) {
+      let vm = this;
+      vm.transimg = [];
+      const files = e.target.files[0];
+      const img = new Image(),
+        reader = new FileReader();
+      reader.onload = e => vm.transimg.push(e.target.result);
+      reader.readAsDataURL(files);
+      vm.transferimganme = files.name;
+    },
+    refresh() {
+      this.Carousel();
+    },
+    Carousel() {
+      axios
+        .get("Carousel")
+        .then(res => {
+          let data = res.data;
+          this.postioned = data.length + 1;
+          this.imgempty = 4 - data.length;
+          this.carousel = res.data;
+           if (isLocalStorage()) {
+      localStorage.setItem('name', 'Souksavanh')
     }
+
+        })
+        .catch(er => {
+          console.log(er.response);
+        });
+    }
+  }
 };
 </script>
 
