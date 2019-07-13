@@ -231,7 +231,7 @@ navItems.forEach(function(e, i) {
 });
 
 // Mouseover of Carousel in the welcome page
-$(".carousel-indicators  li").on("mouseover", function() {
+$("ol.carousel-indicators  li").on("mouseover", function() {
     $(this).trigger("click");
 });
 

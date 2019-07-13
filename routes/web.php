@@ -273,3 +273,4 @@ Route::get('/TaguserDetail', 'CardController@TaguserDetail');
 Route::post('/Savveselfservice', 'CardController@Savveselfservice');
 
 Route::get('/getaccountment', 'CardController@getaccountment');
+
