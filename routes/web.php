@@ -41,7 +41,7 @@ Route::post('/addnewadmin', 'AdminController@addnewadmin');
 
 
 Route::put('/Carousel/{id}', 'AdminController@updatedCarousel');
-Route::get('/Carousel', 'AdminController@getCarousel');
+Route::get('/Carousel', 'MasterController@getCarousel');
 Route::post('/Carousel', 'AdminController@postCarousel');
 Route::get('/getadmininfo', 'AdminController@getadmininfo');
 

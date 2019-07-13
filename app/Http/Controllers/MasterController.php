@@ -32,6 +32,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
 use League\Flysystem\Exception;
 use App\OauthClient;
+use App\Carousel;
 
 class MasterController extends Controller
 {
@@ -40,6 +41,10 @@ class MasterController extends Controller
     protected $urlforlocal8003 = 'http://localhost:8003'; //1 use this if you are running on localhost
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
     protected $data = [];
+    public function getCarousel()
+    {
+        return Carousel::orderby('created_at', 'desc')->get();
+    }
 
     public function adminList()
     {
