@@ -53,7 +53,7 @@
                   <li class="nav-item">
                     <a
                       class="nav-link active"
-                      data-toggle="tab"                      
+                      data-toggle="tab"
                       @click="getannounce('PA','PM')"
                     >Pop-up Promotion</a>
                   </li>
@@ -107,41 +107,36 @@
                         </ul>
                         <div class="tab-content tab-space">
                           <div class="tab-pane active" id="Current">
-
-
                             <div class="row">
-                  <div class="col-6 bg-card-admin">
-                    <div class="row">
-                    
-                      <div class="col-md-6"  v-for="data in announcementdata" >
-                        <div class="info-area info-horizontal">
-                          <div class="icon icon-light mt-0">
-                            <i class="tim-icons icon-wifi mt-3"></i>
-                          </div>
-                          <div class="description">
-                            <h3 class="info-title">{{JSON.parse(data.message).title}}</h3>
-                            <p class="description">Detail: {{ data.method}} ,{{JSON.parse(data.message).Promotion}}</p>
-                            <p>{{JSON.parse(data.message).msg}}</p>
-                            
-                          </div>
-                        </div>
-                        <div class="d-flex justify-content-lg-between ps-custome">
-                          <button type="button" class="btn btn-warning btn-sm btn-icon">
-                            <i class="tim-icons icon-pencil"></i>
-                          </button>
-                          <button type="button" class="btn btn-danger btn-sm btn-icon">
-                            <i class="tim-icons icon-trash-simple"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6"></div>
-                </div>
+                              <div class="col-6 bg-card-admin">
+                                <div class="row">
+                                  <div class="col-md-6" v-for="data in announcementdata">
+                                    <div class="info-area info-horizontal">
+                                      <div class="icon icon-light mt-0">
+                                        <i class="tim-icons icon-wifi mt-3"></i>
+                                      </div>
+                                      <div class="description">
+                                        <h3 class="info-title">{{JSON.parse(data.message).title}}</h3>
+                                        <p
+                                          class="description"
+                                        >Detail: {{ data.method}} ,{{JSON.parse(data.message).Promotion}}</p>
+                                        <p>{{JSON.parse(data.message).msg}}</p>
+                                      </div>
+                                    </div>
+                                    <div class="d-flex justify-content-lg-between ps-custome">
+                                      <button type="button" class="btn btn-primary btn-sm btn-icon">
+                                        <i class="tim-icons icon-pencil"></i>
+                                      </button>
+                                      <button type="button" class="btn btn-danger btn-sm btn-icon">
+                                        <i class="tim-icons icon-trash-simple"></i>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-6"></div>
+                            </div>
 
-
-
-                            
                             <ul class="timeline timeline-simple">
                               <li class="timeline-inverted">
                                 <div class="timeline-badge danger">
@@ -151,15 +146,11 @@
                                   <div class="timeline-heading">
                                     <span class="badge badge-danger"></span>
                                   </div>
-                                  <div class="timeline-body">
-                                    
-                                  </div>
-                                 
+                                  <div class="timeline-body"></div>
                                 </div>
                               </li>
                             </ul>
                           </div>
-                          
                         </div>
                       </div>
                     </div>
@@ -178,7 +169,7 @@
                     Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
                     <br />
                     <br />Dynamically innovate resource-leveling customer service for state of the art customer service.
-                  </div> -->
+                  </div>-->
                 </div>
               </div>
             </div>
@@ -533,12 +524,26 @@
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Title</label>
                     <input type="text" v-model="title" class="form-control bg-dark" />
-                    <select name class="form-control bg-dark" id v-model="typeAN">
+                    <select
+                      class="selectpicker"
+                      data-style="select-with-transition"
+                      title="Type Announcement"
+                      data-size="7"
+                      id
+                      v-model="typeAN"
+                    >
                       <option value="AN">Announcement</option>
                       <option value="PM">Promotion</option>
                     </select>
                     <label for="exampleFormControlTextarea1">Type Announcement</label>
-                    <select name class="form-control bg-dark" id v-model="method">
+                    <select
+                      class="selectpicker"
+                      data-style="select-with-transition"
+                      title="Mehod Announcement"
+                      data-size="7"
+                      id
+                      v-model="method"
+                    >
                       <option value="PA">Popup</option>
                       <option value="NA">Normal</option>
                     </select>
@@ -557,11 +562,179 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                @click.prevent="SaveAnnouncement"
-              >Save changes</button>
+              <button class="btn btn-primary" @click.prevent="postCheck">Post</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- UsaerTag -->
+    <div
+      class="modal fade"
+      id="usertag"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <form class="form-horizontal" method="post" action="SaveAnnouncement">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">PlayerID</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="card">
+                <div class="card-body">
+                  <div class="col-md-12">
+                    <div class="card card-primary card-outline">
+                      <div class="card m-0">
+                        <div class="card-body pb-0">
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <i class="tim-icons icon-zoom-split"></i>
+                              </div>
+                            </div>
+                            <input
+                              type="text"
+                              v-model="search"
+                              class="form-control"
+                              placeholder="Search Mail TESTSETSE"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body p-0">
+                        <div class="mailbox-controls">
+                          <div class="float-left pt-0 pb-2 pl-3">
+                            <!-- Check all button -->
+                            <button
+                              type="button"
+                              class="btn btn-default btn-sm checkbox-toggle"
+                              @click="Checkalluser()"
+                            >
+                              <i class="tim-icons icon-check-2"></i>
+                            </button>
+                            <div class="btn-group">
+                              <button
+                                type="button"
+                                class="btn btn-default btn-sm"
+                                @click="ClearUsertag()"
+                              >
+                                <i class="tim-icons icon-trash-simple"></i>
+                              </button>
+                              <!-- <button type="button" class="btn btn-default btn-sm">
+                                <i class="fa fa-reply"></i>
+                              </button>
+                              <button type="button" class="btn btn-default btn-sm">
+                                <i class="fa fa-share"></i>
+                              </button>-->
+                            </div>
+                            <!-- /.btn-group -->
+                            <!-- <button type="button" class="btn btn-default btn-sm">
+                              <i class="tim-icons icon-refresh-02"></i>
+                            </button>-->
+                          </div>
+                        </div>
+                        <div class="table-responsive mailbox-messages">
+                          <table class="table table-hover table-striped">
+                            <tbody>
+                              <tr
+                                v-for="(data,index) in filteredResources"
+                                v-if="index >= gamehistorystart && index <= gamehistoryend"
+                              >
+                                <td>
+                                  <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        id="clearCheck"
+                                        value="option2"
+                                        @click="UserTag(data.user_id)"
+                                      />
+                                      <span class="form-check-sign"></span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td class="mailbox-star">
+                                  <a href="#">
+                                    <i class="fa fa-star text-warning"></i>
+                                  </a>
+                                </td>
+
+                                <td class="mailbox-name">
+                                  <a
+                                    href="#"
+                                    data-toggle="modal"
+                                    data-target=".name_message"
+                                  >{{data.name}}</a>
+                                </td>
+                                <td class="mailbox-subject">
+                                  <a
+                                    href="#"
+                                    data-toggle="modal"
+                                    data-target=".name_message"
+                                  >{{data.email}}</a>
+                                </td>
+                                <td class="mailbox-attachment"></td>
+                                <td class="mailbox-date">{{data.registerTime}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <!-- /.table -->
+                        </div>
+                        <!-- /.mail-box-messages -->
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /. box -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <select
+                      class="selectpicker"
+                      data-style="select-with-transition"
+                      title="1"
+                      data-size="7"
+                    >
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                  </li>
+                  <li class="page-item">
+                    <span class="page-link" @click="gamehistorypage(methods='previous')">Previous</span>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">{{ gamehistorypagenum-1 }}</a>
+                  </li>
+                  <li class="page-item active">
+                    <span class="page-link">
+                      {{gamehistorypagenum}}
+                      <span class="sr-only">(current)</span>
+                    </span>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">{{ gamehistorypagenum+1 }}</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" @click="gamehistorypage(methods='next')">Next</a>
+                  </li>
+                </ul>
+              </nav>
+              <button type="button" @click.prevent="SaveAnnouncement" class="btn btn-primary">Done</button>
             </div>
           </form>
         </div>
@@ -573,6 +746,9 @@
 export default {
   data() {
     return {
+      gamehistorystart: 0,
+      gamehistoryend: 2,
+      gamehistorypagenum: 1,
       message: null,
       method: null,
       title: null,
@@ -580,14 +756,46 @@ export default {
       announcementdata: [],
       methodSelection: "PA",
       typeSelection: "AN",
-      typeAnnounce: null
+      typeAnnounce: null,
+      getUserdata: [],
+      userID: [],
+      search: ""
     };
   },
   watch: {},
   mounted() {
     this.getannounce("PA", "AN");
+    this.UserDetail();
+  },
+  computed: {
+    filteredResources() {
+      if (this.search) {
+        return this.getUserdata.filter(username => {
+          return username.name
+            .toLowerCase()
+            .includes(this.search.toLowerCase());
+        });
+      } else {
+        return this.getUserdata;
+      }
+    }
   },
   methods: {
+    gamehistorypage(methods) {
+      if (methods == "previous") {
+        if (this.gamehistorystart > 0) {
+          this.gamehistorystart -= 1;
+          this.gamehistoryend -= 1;
+          this.gamehistorypagenum -= 1;
+        }
+      } else {
+        if (this.gamehistoryend < this.getUserdata.length) {
+          this.gamehistorystart += 1;
+          this.gamehistoryend += 1;
+          this.gamehistorypagenum += 1;
+        }
+      }
+    },
     getannounce(m1, m2) {
       axios.get("getannounce/" + m1 + "/" + m2).then(res => {
         console.log(res.data);
@@ -600,9 +808,10 @@ export default {
         message: vm.message,
         method: vm.method,
         title: vm.title,
-        typeAN: vm.typeAN
+        typeAN: vm.typeAN,
+        userID: vm.userID
       };
-      console.log(data);
+      // console.log(data);
       if (data.message == null) {
         this.$swal({
           type: "warning",
@@ -629,6 +838,7 @@ export default {
                 html: "Please check the box that you fill in",
                 timer: 1000
               });
+              $("#usertag").modal("hide");
             }
             // if (res.data.code == 100) {
             //   this.$swal({
@@ -645,11 +855,67 @@ export default {
             console.log(er.res);
           });
       }
+    },
+    UserDetail() {
+      axios
+        .get("/TaguserDetail")
+        .then(res => {
+          console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+          console.log(res.data);
+          console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+          console.log(res.data);
+          this.getUserdata = res.data;
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    },
+    postCheck() {
+      let vm = this;
+      if (
+        vm.title === null ||
+        vm.typeAN === null ||
+        vm.method === null ||
+        vm.message === null
+      ) {
+        this.$swal({
+          type: "warning",
+          title: "Error",
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-success",
+          text: "Please Complete the form!"
+        });
+      } else {
+        $("#usertag").modal("show");
+      }
+    },
+    UserTag(IDuser) {
+      if (this.userID.includes(IDuser)) {
+        this.userID.splice(IDuser);
+        console.log(this.userID);
+      } else {
+        this.userID.push(IDuser);
+        console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTT");
+        console.log(this.userID);
+      }
+    },
+    Checkalluser() {
+      $(".form-check-input").prop("checked", true);
+      this.userID = "all";
+      console.log("User is Check All");
+    },
+    ClearUsertag() {
+      this.userID = [];
+      $(".form-check-input").prop("checked", false);
+      console.log(".prop('checked', false);");
     }
   }
 };
 </script>
 
-<style scoped>
+<style>
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+  color: rgb(217, 79, 212) !important;
+}
 </style>
 

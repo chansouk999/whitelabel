@@ -41,17 +41,15 @@ class MasterController extends Controller
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
     protected $data = [];
 
-    public function adminList(){
-        try{
+    public function adminList()
+    {
+        try {
 
             $data = DB::select("select admins.id,admins.created_at, (CASE WHEN admins.role_id = 0 THEN 'EveryThing' ELSE 'SomeContent' END ) as AdminType, admintypes.typeName FROM admins join admintypes on admins.role_id = admintypes.typeID ");
 
             $catch = new CatchEr;
             return $catch->CheckExption($data);
-
-        }catch(\Exception $ex){
-
-        }
+        } catch (\Exception $ex) { }
     }
 
     public function requestdata(Request $req)
@@ -64,16 +62,20 @@ class MasterController extends Controller
         $ClientID = $data->pluck('id')[0];
         $ClientSecret = $data->pluck('secret')[0];
         $Redirect = $data->pluck('redirect')[0];
-        return redirect('http://localhost:8003/redirect?clientid='.$ClientID.'&redirect='.\Request::root());
+<<<<<<< HEAD
+        return redirect('http://lec68.com/redirect?clientid='.$ClientID.'&redirect='.\Request::root());
+=======
+        return redirect('http://localhost:8003/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
+>>>>>>> a8ae923bc261ef6f584188c2606884a3959beeb9
     }
     public function fullscreengame(Request $req)
     {
         try {
             $getiduser = Auth::user()->id;
-            Cache::put('userid',$getiduser,1212);
-            Cache::put('name', $req->stockname,1212);
-            Cache::put('loop', $req->loop,1212);
-            Cache::put('country', $req->country,1212);
+            Cache::put('userid', $getiduser, 1212);
+            Cache::put('name', $req->stockname, 1212);
+            Cache::put('loop', $req->loop, 1212);
+            Cache::put('country', $req->country, 1212);
             // return [Session("name"),Session("loop"),Session("country"),Session("userid")];
             $check = OauthClient::where('name', '=', \Request::root())->get();
             if ($check->count() < 1) {
@@ -81,7 +83,7 @@ class MasterController extends Controller
                 $uc->user_id = substr(strtotime('now'), -8, 8);
                 $uc->name = \Request::root();
                 $uc->secret = str_random(43);;
-                $uc->redirect = 'http://localhost:8003/callback';
+                $uc->redirect = 'http://lec68.com/callback';
                 $uc->personal_access_client = 0;
                 $uc->password_client = 0;
                 $uc->revoked = 0;
@@ -503,10 +505,8 @@ class MasterController extends Controller
     {
         $id = Auth::user()->id;
         $date = date('Y-m-d');
-        return DB::table('users')
-            ->join('oauth_clients', 'users.id', '=', 'oauth_clients.user_id')
-            ->where('users.id', $id)
-            ->orderby('oauth_clients.created_at', 'desc')->limit(1)->get();
+        return DB::table('users')->where('id', $id)
+            ->orderby('created_at', 'desc')->limit(1)->get();
     }
     public function checklogin(Request $req)
     {
@@ -612,7 +612,7 @@ class MasterController extends Controller
             $res = ($Totalbet * $rl->percentage) / 100;
             $ud = userdetail::where('user_id', Auth::user()->user_id)->update(['TotalRolling' => $res, 'AvailableRolling' => $res]);
         }
-        return ['totalbet' => $Totalbet, $per];
+        return ['totalbet' => $Totalbet, $per, $update];
         // return $rolling;
         // foreach($per as $p){
         //     return DB::select('SELECT Amount,level,title,(percentage * '.$Totalbet.') / 100 as persc FROM selfservices ' );

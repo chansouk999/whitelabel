@@ -15,6 +15,7 @@ use App\access_token;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Http\Controllers\ActivityLogController as ActivityLogder;
 use App\withdraw_methods;
 use App\access_record;
 use App\userdetail;
@@ -23,6 +24,7 @@ use App\AcceessIP;
 use App\activityLog;
 use Exception;
 use App\Selfservice;
+use App\Announcement;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
 // use League\Flysystem\Exception;
@@ -220,5 +222,43 @@ class CardController extends Controller
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
+    }
+    public function TaguserDetail()
+    {
+        $getTagUser = User::get();
+        return $getTagUser;
+    }
+    public function Savveselfservice(Request $request)
+    {
+        try {
+            DB::enableQueryLog();
+            if ($request->availabel <= 0) {
+                return $this->returncode(99, $request->availabel, 'Not enough');
+            }
+            $updataSelf = userdetail::where('user_id', '=', $request->userid)->update(['AvailableRolling' => 0]);
+            if ($updataSelf) {
+                $method = 'Playerrecord';
+                $data = array(
+                    'user_id' => $request->userid,
+                    'event' => 'Withdraw Rolling',
+                    'serveby' => '',
+                    'amount' => $request->availabel,
+                    'eventid' => '',
+                    'Time' => date('Y-m-d'),
+                );
+                $Log = new ActivityLogder();
+                $Log->storeLog($method, $data);
+                return $this->returncode(200, $data, 'success');
+            } else {
+                return $this->returncode(300, $data, DB::getQueryLog());
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage()); //Internal erro
+        }
+    }
+    public function getaccountment()
+    {
+        $getdata = Announcement::get();
+        return $getdata;
     }
 }

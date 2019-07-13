@@ -65,6 +65,8 @@
     padding: 10px
 }
 
+
+/* 
 .nav-pills.nav-pills-primary .nav-item .nav-link.active,
 .nav-pills.nav-pills-primary .nav-item .nav-link.active:focus,
 .nav-pills.nav-pills-primary .nav-item .nav-link.active:hover {
@@ -88,7 +90,7 @@
 
 .bg-cutome-admin {
     background-color: #f4876d;
-}
+} */
 
 .ps-custome {
     bottom: 0 !important;
