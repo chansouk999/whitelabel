@@ -62,7 +62,7 @@ class MasterController extends Controller
         $ClientID = $data->pluck('id')[0];
         $ClientSecret = $data->pluck('secret')[0];
         $Redirect = $data->pluck('redirect')[0];
-        return redirect('http://localhost:8003/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
+        return redirect('http://localhost:8003/redirect?clientid='.$ClientID.'&redirect='.\Request::root());
     }
     public function fullscreengame(Request $req)
     {
