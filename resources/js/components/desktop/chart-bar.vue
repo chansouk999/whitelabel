@@ -53,7 +53,7 @@
             </li>
             <li>
               <font class="verticalalign">
-                <font class="verticalalign">{{Amount0}}</font>
+                <font class="verticalalign">{{formatNumber(Amount0)}}</font>
               </font>
             </li>
           </ul>
@@ -205,6 +205,7 @@ export default {
   data() {
     return {
       totalbet: "",
+
       Amount0: "",
       Amount1: "",
       Amount2: "",
