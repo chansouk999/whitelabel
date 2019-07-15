@@ -296,7 +296,15 @@ export default {
     "lobby",
     "checkpcormb"
   ],
+  updated() {
+    // Mouseover of Carousel in the welcome page
+    $("ol.carousel-indicators li").on("mouseover", function() {
+      console.log("test");
+      $(this).trigger("click");
+    });
+  },
   mounted() {
+    this.getImage();
     this.getAnnount();
     axios
       .get("/getaccountment")
@@ -324,7 +332,6 @@ export default {
         .pop()
         .split("?")[0];
       alert(url);
-      this.getImage();
     },
     slideClass(index) {
       let array = [
