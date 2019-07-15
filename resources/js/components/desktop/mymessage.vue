@@ -88,9 +88,9 @@
                         - {{JSON.parse(data.message).msg}}...
                       </td>
                       <td class="mailbox-attachment"></td>
-                      <td class="mailbox-date">{{data.created_at | dateFormat}}</td>
+                      <td class="mailbox-date">{{data.created_at}}</td>
                     </tr>
-                  </tbody> 
+                  </tbody>
                 </table>
                 <!-- /.table -->
               </div>
@@ -147,11 +147,10 @@ export default {
     axios
       .get("/getaccountment")
       .then(res => {
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         this.dataAnnoucement = res.data;
-        this.CountAcc = res.data[2];
-        this.getNews = res.data[3];
-        this.userName = res.data[4];
+        this.CountAcc = res.data[1];
+        this.getNews = res.data[2];
+        this.userName = res.data[3];
         console.log(res.data);
       })
       .catch(e => {

@@ -263,7 +263,6 @@ class CardController extends Controller
     {
         $userID = Auth::user()->user_id;
         $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
-        $count = Announcement::where('userID', 'like', '%' . $userID . '%')->get()->count();
         $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
         $getmore = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->get()->count();
         if ($getdata == '"all"') {
@@ -271,7 +270,6 @@ class CardController extends Controller
         } else {
             $getall = Announcement::where([['method', '=', "PA"], ['userID', 'like', '%' . $userID . '%']])->latest()->limit(1)->get();
         }
-        // $getdata = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
-        return [$getall, $getmore, $count, $getAll, Auth::user()->name];
+        return [$getall, $getmore, $getAll, Auth::user()->name];
     }
 }

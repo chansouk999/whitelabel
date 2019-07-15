@@ -43,25 +43,14 @@ Vue.use(VueSweetalert2);
 
 import Notifications from 'vue-notification'
 Vue.use(Notifications)
-import VueFilterDateFormat from 'vue-filter-date-format';
 import Vue from 'vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
-Vue.use(VueFilterDateFormat, {
-    monthNames: [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ],
-    monthNamesShort: [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    ]
-});
 // require styles
 import 'swiper/dist/css/swiper.css'
 
 
-Vue.use(VueAwesomeSwiper, /* { default global options } */ )
+Vue.use(VueAwesomeSwiper)
 
 const app = new Vue({
     el: '#app',
