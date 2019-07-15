@@ -155,7 +155,7 @@
                         <a
                           href="#pablo"
                           class="btn btn-success btn-round fileinput-exists sttaftersave"
-                          @click="saveimg(id)"
+                          @click="saveimg(id='save')"
                         >
                           <i class="fa fa-times"></i> Save
                         </a>
@@ -360,24 +360,25 @@ export default {
   },
   methods: {
     saveimg(id) {
-         alert(localStorage.getItem('name'))
-        let send = '';
-
-      if (id == "undefined") {
-          send = axios.post;
-
-      }else{
-          send = axios.put;
+      let send = "";
+      if (id == "save") {
+        send = 'save';
+      } else {
+        send = id;
       }
       console.log(id);
-        send('Carousel/'+id,{img:this.transimg}).then(res=>{
-            console.log(res.data)
-            let code = res.data.code
-            if(code==200){
-                this.Carousel();
-                $('.sttaftersave').attr('data-dismiss','fileinput');
-            }
-        }).catch(e=>{console.log(e.response)})
+      axios.post("Carousel", { img: this.transimg,method:send,name:this.transferimganme })
+        .then(res => {
+          console.log(res.data);
+          let code = res.data.code;
+          if (code == 200) {
+            this.Carousel();
+            $(".sttaftersave").attr("data-dismiss", "fileinput");
+          }
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
     },
     selectimg(e, index) {
       let vm = this;
@@ -400,10 +401,9 @@ export default {
           this.postioned = data.length + 1;
           this.imgempty = 4 - data.length;
           this.carousel = res.data;
-           if (isLocalStorage()) {
-      localStorage.setItem('name', 'Souksavanh')
-    }
-
+          if (isLocalStorage()) {
+            localStorage.setItem("name", "Souksavanh");
+          }
         })
         .catch(er => {
           console.log(er.response);

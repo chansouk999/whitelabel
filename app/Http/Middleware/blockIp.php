@@ -34,7 +34,7 @@ class blockIp
         $ip =  \Request::getClientIp();
 
         $check = geoip()->getLocation($ip);
-        if ($check['country'] == 'Laos' || $ip == '127.0.0.1') {
+        if ($check['iso_code'] == 'LA' || $ip == '127.0.0.1') {
             return $next($request);
         } else {
             return response()->json('Your Country ----> ' . ($check['country']) . ' <---- has been block , to access this site contact vongkeo@gmail.com  ,Thank you');

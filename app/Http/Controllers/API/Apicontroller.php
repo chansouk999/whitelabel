@@ -14,11 +14,19 @@ use App\Http\Controllers\ActivityLogController as ActivityLog;
 use App\Http\Controllers\AdminController as Admincontroller;
 use App\userdetail;
 use function GuzzleHttp\json_decode;
+// use Symfony\Component\HttpKernel\Client;
+use GuzzleHttp\Client;
 
 class Apicontroller extends Controller
 {
     public function testcode()
     {
+
+
+        $http = new Client;
+        $res = $http->get('https://hq.sinajs.cn/?rn=1552280540946&list=sh000001');
+        $res;
+        // return explode($res);
         // https://api.huobi.pro/market/trade?symbol=btcusdt
         $url = 'https://api.huobi.pro/market/trade?symbol=btcusdt';
         $data = file_get_contents($url);

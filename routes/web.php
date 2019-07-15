@@ -39,8 +39,6 @@ Route::get('/getannounce/{m1}/{m2}', 'AdminController@getannounce');
 Route::get('/getadmininfotimeline', 'AdminController@getadmininfotimeline');
 Route::post('/addnewadmin', 'AdminController@addnewadmin');
 
-
-Route::put('/Carousel/{id}', 'AdminController@updatedCarousel');
 Route::get('/Carousel', 'AdminController@getCarousel');
 Route::post('/Carousel', 'AdminController@postCarousel');
 Route::get('/getadmininfo', 'AdminController@getadmininfo');

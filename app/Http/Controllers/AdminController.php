@@ -827,10 +827,14 @@ class AdminController extends Controller
     public function postCarousel(Request $r)
     {
         try {
+            // return
             DB::enableQueryLog();
             $path = "careousel/";
             $dir = public_path("careousel/");
             // $imgaeid = $UID . $adminid . $date;
+            $count = Carousel::where('id',$r->method)->get();
+
+
             if ($r->img) {
                 if (!\File::isDirectory($dir)) {
                     mkdir($dir, 666, true);
@@ -839,14 +843,35 @@ class AdminController extends Controller
                 $name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
                 $namecheck = explode('.', $name);
                 $filetype = $namecheck[1];
+
+
+                if($count->count() > 0){
+                    unlink($path.$count->pluck('carousel')[0]);
+                }
+
+
                 \Image::make($image)->save(public_path($path) . $name);
+
+
+
             }
 
-            $save = Carousel::create(
-                [
-                    'carousel' => $name
-                ]
-            );
+
+
+            if($r->method=='save'){
+                $save = Carousel::create(
+                    [
+                        'carousel' => $name
+                    ]
+                );
+            }else{
+                $save = Carousel::where('id',$r->method)->update(
+                    [
+                        'carousel' => $name
+                    ]
+                );
+            }
+
 
             if ($save) {
                 return $this->returncode(200, '', 'success');
