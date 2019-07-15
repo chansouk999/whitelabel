@@ -33,7 +33,9 @@ class CardController extends Controller
     public function getcardinfo()
     {
         try {
-            $data = withdraw_methods::orderby('created_at', 'asc')->get();
+            $userID = Auth::user()->user_id;
+            // return $userID;
+            $data = withdraw_methods::where("user_id", "=", $userID)->orderby('created_at', 'asc')->get();
             if ($data) {
                 return $this->returncode(200, $data, 'success');
             } else {
@@ -48,6 +50,7 @@ class CardController extends Controller
     {
         try {
             $update = array(
+                'id' => Auth::user()->id,
                 'desc' => $request->desc,
                 'userName' => $request->name,
                 'bankAccount' => $request->cardnumber,
@@ -261,11 +264,6 @@ class CardController extends Controller
         $userID = Auth::user()->user_id;
         $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
         $count = Announcement::where('userID', 'like', '%' . $userID . '%')->get()->count();
-
-        $getAll = DB::table('announcements')
-            ->join('users', 'users.user_id', 'like', '%announcements.userID%')
-            ->get();
-        return $getAll;
         $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
         $getmore = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->get()->count();
         if ($getdata == '"all"') {
@@ -274,6 +272,6 @@ class CardController extends Controller
             $getall = Announcement::where([['method', '=', "PA"], ['userID', 'like', '%' . $userID . '%']])->latest()->limit(1)->get();
         }
         // $getdata = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
-        return [$getall, $getmore, $count, $getAll];
+        return [$getall, $getmore, $count, $getAll, Auth::user()->name];
     }
 }

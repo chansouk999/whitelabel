@@ -21,6 +21,7 @@ class CreateWithdrawMethodsTable extends Migration
             $table->string('registerProvince', 50);
             $table->string('registerCity', 50);
             $table->string('branch', 50);
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
             $table->enum('status', ['use', 'not use'])->default('not use');
             $table->timestamps();
         });

@@ -65,17 +65,7 @@
                     <button type="button" class="btn btn-default btn-sm">
                       <i class="tim-icons icon-trash-simple"></i>
                     </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                      <i class="fa fa-reply"></i>
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                      <i class="fa fa-share"></i>
-                    </button>
                   </div>
-                  <!-- /.btn-group -->
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="tim-icons icon-refresh-02"></i>
-                  </button>
                 </div>
               </div>
               <div class="table-responsive mailbox-messages">
@@ -91,15 +81,16 @@
                         </a>
                       </td>
                       <td class="mailbox-name">
-                        <a href="read-mail.html">Dear</a>
+                        <a href="read-mail.html">{{userName}}</a>
                       </td>
                       <td class="mailbox-subject">
-                        <b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
+                        <b>{{JSON.parse(data.message).title}}</b>
+                        - {{JSON.parse(data.message).msg}}...
                       </td>
                       <td class="mailbox-attachment"></td>
-                      <td class="mailbox-date">5 mins ago</td>
+                      <td class="mailbox-date">{{data.created_at | dateFormat}}</td>
                     </tr>
-                  </tbody>
+                  </tbody> 
                 </table>
                 <!-- /.table -->
               </div>
@@ -147,8 +138,9 @@ export default {
   data() {
     return {
       dataAnnoucement: [],
-      CountAcc: [],
-      getNews: []
+      CountAcc: "",
+      getNews: [],
+      userName: ""
     };
   },
   mounted() {
@@ -159,6 +151,7 @@ export default {
         this.dataAnnoucement = res.data;
         this.CountAcc = res.data[2];
         this.getNews = res.data[3];
+        this.userName = res.data[4];
         console.log(res.data);
       })
       .catch(e => {

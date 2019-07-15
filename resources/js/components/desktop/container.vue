@@ -326,55 +326,52 @@ export default {
       alert(url);
       this.getImage();
     },
-
-    methods: {
-      slideClass(index) {
-        let array = [
-          "first-slide",
-          "second-slide",
-          "third-slide",
-          "fourd-slide",
-          "fifth-slide"
-        ];
-        return array[index];
-      },
-      activeClass(index) {
-        if (index == 0) {
-          return "active";
-        } else {
-          return "";
-        }
-      },
-      getImage() {
-        axios
-          .get("/Carousel")
-          .then(res => {
-            console.log(res.data);
-            this.imageSlide = res.data;
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      },
-      getAnnount() {
-        axios
-          .get("/getaccountment")
-          .then(res => {
-            console.log(res.data);
-          })
-          .catch(e => {
-            console.log(e.respone);
-          });
-      },
-      myaccount() {
-        $("#myaccountlink")[0].click();
-      },
-      withDrawClick() {
-        $("#withDrawClick")[0].click();
-      },
-      rechargeClick() {
-        $("#recharge")[0].click();
+    slideClass(index) {
+      let array = [
+        "first-slide",
+        "second-slide",
+        "third-slide",
+        "fourd-slide",
+        "fifth-slide"
+      ];
+      return array[index];
+    },
+    activeClass(index) {
+      if (index == 0) {
+        return "active";
+      } else {
+        return "";
       }
+    },
+    getImage() {
+      axios
+        .get("/Carousel")
+        .then(res => {
+          console.log(res.data);
+          this.imageSlide = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getAnnount() {
+      axios
+        .get("/getaccountment")
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(e => {
+          console.log(e.respone);
+        });
+    },
+    myaccount() {
+      $("#myaccountlink")[0].click();
+    },
+    withDrawClick() {
+      $("#withDrawClick")[0].click();
+    },
+    rechargeClick() {
+      $("#recharge")[0].click();
     }
   }
 };
