@@ -230,11 +230,4 @@ navItems.forEach(function(e, i) {
     });
 });
 
-// Mouseover of Carousel in the welcome page
-$("ol.carousel-indicators li").on("mouseover", function() {
-    console.log("test")
-    $(this).trigger("click");
-});
-
-
 // Tabs for Mobile

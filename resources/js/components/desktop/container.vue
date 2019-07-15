@@ -65,7 +65,7 @@
                         <img
                           src="https://static-pc.swcqlz.com/cms/cms_pic/2019042247954d584b7547a59733bbc2c3a28880.jpg"
                         />
-                      </li> -->
+                      </li>-->
                     </ol>
 
                     <div class="carousel-inner">
@@ -258,6 +258,13 @@ export default {
   mounted() {
     this.getAnnount();
     this.getImage();
+  },
+  updated() {
+    // Mouseover of Carousel in the welcome page
+    $("ol.carousel-indicators li").on("mouseover", function() {
+      console.log("test");
+      $(this).trigger("click");
+    });
   },
 
   methods: {
