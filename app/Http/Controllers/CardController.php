@@ -258,7 +258,22 @@ class CardController extends Controller
     }
     public function getaccountment()
     {
-        $getdata = Announcement::get();
-        return $getdata;
+        $userID = Auth::user()->user_id;
+        $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
+        $count = Announcement::where('userID', 'like', '%' . $userID . '%')->get()->count();
+
+        $getAll = DB::table('announcements')
+            ->join('users', 'users.user_id', 'like', '%announcements.userID%')
+            ->get();
+        return $getAll;
+        $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
+        $getmore = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->get()->count();
+        if ($getdata == '"all"') {
+            $getall = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->latest()->limit(1)->get();
+        } else {
+            $getall = Announcement::where([['method', '=', "PA"], ['userID', 'like', '%' . $userID . '%']])->latest()->limit(1)->get();
+        }
+        // $getdata = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
+        return [$getall, $getmore, $count, $getAll];
     }
 }
