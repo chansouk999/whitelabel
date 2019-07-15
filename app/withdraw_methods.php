@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class withdraw_methods extends Model
 {
-     protected $fillable = [
+    protected $fillable = [
+        'id',
         'desc',
         'userName',
         'bankAccount',

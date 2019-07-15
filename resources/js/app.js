@@ -43,7 +43,6 @@ Vue.use(VueSweetalert2);
 
 import Notifications from 'vue-notification'
 Vue.use(Notifications)
-
 import Vue from 'vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
@@ -51,7 +50,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 
 
-Vue.use(VueAwesomeSwiper, /* { default global options } */ )
+Vue.use(VueAwesomeSwiper)
 
 const app = new Vue({
     el: '#app',

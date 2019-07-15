@@ -33,7 +33,15 @@ class CardController extends Controller
     public function getcardinfo()
     {
         try {
-            $data = withdraw_methods::orderby('created_at', 'asc')->get();
+            $userID = Auth::user()->user_id;
+            $data = DB::select('SELECT id,userName,
+            CONCAT("********", SUBSTRING(bankAccount,-3))
+            as bankAccount,registerProvince,
+            registerCity,branch,status,user_id,methodId
+            from withdraw_methods
+            where user_id ="'.$userID.'" ORDER BY created_at DESC ');
+
+
             if ($data) {
                 return $this->returncode(200, $data, 'success');
             } else {
@@ -48,6 +56,7 @@ class CardController extends Controller
     {
         try {
             $update = array(
+                'id' => Auth::user()->id,
                 'desc' => $request->desc,
                 'userName' => $request->name,
                 'bankAccount' => $request->cardnumber,
@@ -92,7 +101,7 @@ class CardController extends Controller
     public function returncode($code, $data, $msg)
     {
         //100 already exist
-        //200 success 
+        //200 success
         //500 internal erorr
         //300 query error
         //99 not enough
@@ -258,7 +267,15 @@ class CardController extends Controller
     }
     public function getaccountment()
     {
-        $getdata = Announcement::get();
-        return $getdata;
+        $userID = Auth::user()->user_id;
+        $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
+        $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
+        $getmore = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->get()->count();
+        if ($getdata == '"all"') {
+            $getall = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->latest()->limit(1)->get();
+        } else {
+            $getall = Announcement::where([['method', '=', "PA"], ['userID', 'like', '%' . $userID . '%']])->latest()->limit(1)->get();
+        }
+        return [$getall, $getmore, $getAll, Auth::user()->name];
     }
 }

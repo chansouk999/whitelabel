@@ -10,6 +10,7 @@
               <li class="list-group-item">
                 <a href>
                   <i class="fa fa-inbox"></i>Inbox
+                  <span class="badge badge-pill badge-custome float-right">{{CountAcc}}</span>
                 </a>
               </li>
               <li class="list-group-item">
@@ -48,7 +49,7 @@
                       <i class="tim-icons icon-zoom-split"></i>
                     </div>
                   </div>
-                  <input type="text" class="form-control" placeholder="Search Mail">
+                  <input type="text" class="form-control" placeholder="Search Mail" />
                 </div>
               </div>
             </div>
@@ -64,25 +65,15 @@
                     <button type="button" class="btn btn-default btn-sm">
                       <i class="tim-icons icon-trash-simple"></i>
                     </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                      <i class="fa fa-reply"></i>
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                      <i class="fa fa-share"></i>
-                    </button>
                   </div>
-                  <!-- /.btn-group -->
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="tim-icons icon-refresh-02"></i>
-                  </button>
                 </div>
               </div>
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
-                    <tr>
+                    <tr v-for="data in getNews">
                       <td>
-                        <input type="checkbox">
+                        <input type="checkbox" />
                       </td>
                       <td class="mailbox-star">
                         <a href="#">
@@ -90,13 +81,14 @@
                         </a>
                       </td>
                       <td class="mailbox-name">
-                        <a href="read-mail.html">Alexander Pierce</a>
+                        <a href="read-mail.html">{{userName}}</a>
                       </td>
                       <td class="mailbox-subject">
-                        <b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
+                        <b>{{JSON.parse(data.message).title}}</b>
+                        - {{JSON.parse(data.message).msg}}...
                       </td>
                       <td class="mailbox-attachment"></td>
-                      <td class="mailbox-date">5 mins ago</td>
+                      <td class="mailbox-date">{{data.created_at}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -142,7 +134,30 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      dataAnnoucement: [],
+      CountAcc: "",
+      getNews: [],
+      userName: ""
+    };
+  },
+  mounted() {
+    axios
+      .get("/getaccountment")
+      .then(res => {
+        this.dataAnnoucement = res.data;
+        this.CountAcc = res.data[1];
+        this.getNews = res.data[2];
+        this.userName = res.data[3];
+        console.log(res.data);
+      })
+      .catch(e => {
+        console.log(e.response);
+      });
+  }
+};
 </script>
 <style scoped>
 </style>

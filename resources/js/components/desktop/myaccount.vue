@@ -118,7 +118,7 @@
                                   </h6>
                                 </div>
                               </li>
-                              <li v-for="(data,index) in playerRecord" v-if="index % 2 !== 0 ">
+                              <li v-else>
                                 <div class="timeline-badge danger">
                                   <i class="tim-icons icon-planet"></i>
                                 </div>

@@ -2108,7 +2108,7 @@ ol {
 
 .badge-custome {
     color: #ffffff;
-    background-color: #ff6c00;
+    background-color: #362d2d;
 }
 
 .pagination .page-item.active>.page-link,
@@ -2818,6 +2818,27 @@ ul.list-group-navbar {
     background-repeat: no-repeat;
     background-size: cover;
     padding: 25px !important;
+}
+
+.modal-dialog .modal-content .modal-body.modal-custome {
+    height: 500px;
+}
+
+.modal-dialog .modal-content .modal-body .img-left {
+    position: fixed;
+    left: 0;
+}
+
+.modal-dialog .modal-content .modal-body .img-right {
+    position: fixed;
+    right: 0;
+}
+
+.modal-dialog .modal-content .modal-body p.modal-title {
+    margin-top: 20px;
+    text-align: center;
+    width: 80%;
+    line-height: 2;
 }
 
 @media (max-width: 767px) {

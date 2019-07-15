@@ -166,7 +166,9 @@ $(document).ready(function(pn) {
     if (pn.userName) {
         $.request({
             url: "/api/rebate/bet-amount",
-            data: { "cycleType": "WEEK" }
+            data: {
+                "cycleType": "WEEK"
+            }
         }).done(function(res) {
             if (!res.successful) {
                 if (res.data === "PROVIDER_ERROR") {
@@ -230,10 +232,7 @@ navItems.forEach(function(e, i) {
     });
 });
 
-// Mouseover of Carousel in the welcome page
-$(".carousel-indicators  li").on("mouseover", function() {
-    $(this).trigger("click");
-});
+
 
 
 // Tabs for Mobile
