@@ -183,7 +183,7 @@
                       class="carousel-control-next"
                       href="#myCarousel"
                       role="button"
-                      data-slide="."
+                      data-slide="next"
                     >
                       <img src="assets/img/arrow-right.png" />
                       <span class="sr-only">Next</span>
@@ -204,44 +204,6 @@
         </div>
       </div>
     </div>
-    <!-- Classic Modal -->
-    <div
-      class="modal fade"
-      id="popup"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content" v-for="data in dataAnnoucement">
-          <div class="modal-body modal-custome px-0">
-            <div class="modal-header justify-content-center px-0 mx-0">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                <i class="tim-icons icon-simple-remove"></i>
-              </button>
-              <div class="row">
-                <div class="col-2">
-                  <div class="img-left">
-                    <img src="/assets/img/modal-left.png" alt />
-                  </div>
-                </div>
-                <div class="col-8">
-                  <h3 class="title title-up">{{JSON.parse(data.message).title}}</h3>
-                  <p class="modal-title">{{JSON.parse(data.message).msg}}</p>
-                  <a :href="popup">Read More...</a>
-                </div>
-                <div class="col-2">
-                  <div class="img-right">
-                    <img src="/assets/img/modal-right.png" alt />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 <script>
@@ -258,9 +220,6 @@ export default {
   },
   data() {
     return {
-      lengthpopup: null,
-      popup: "./message",
-      dataAnnoucement: [],
       ismenu: false,
       messages: "./index",
       promote: "./promote",
@@ -298,23 +257,7 @@ export default {
   ],
   mounted() {
     this.getAnnount();
-    axios
-      .get("/getaccountment")
-      .then(res => {
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        this.dataAnnoucement = res.data[0];
-        let lengthpop = res.data[1];
-        if (lengthpop > localStorage.getItem("popState")) {
-          localStorage.clear();
-          $("#popup").modal("show");
-        }
-        localStorage.setItem("popState", lengthpop);
-        this.lengthpopup = lengthpop;
-        console.log(res.data);
-      })
-      .catch(e => {
-        console.log(e.response);
-      });
+    this.getImage();
   },
   updated() {
     // Mouseover of Carousel in the welcome page
@@ -323,65 +266,53 @@ export default {
       $(this).trigger("click");
     });
   },
-
   methods: {
-    readmore() {
-      let url = window.location.href
-        .split("/")
-        .pop()
-        .split("?")[0];
-      alert(url);
-      this.getImage();
+    slideClass(index) {
+      let array = [
+        "first-slide",
+        "second-slide",
+        "third-slide",
+        "fourd-slide",
+        "fifth-slide"
+      ];
+      return array[index];
     },
-
-    methods: {
-      slideClass(index) {
-        let array = [
-          "first-slide",
-          "second-slide",
-          "third-slide",
-          "fourd-slide",
-          "fifth-slide"
-        ];
-        return array[index];
-      },
-      activeClass(index) {
-        if (index == 0) {
-          return "active";
-        } else {
-          return "";
-        }
-      },
-      getImage() {
-        axios
-          .get("/Carousel")
-          .then(res => {
-            console.log(res.data);
-            this.imageSlide = res.data;
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      },
-      getAnnount() {
-        axios
-          .get("/getaccountment")
-          .then(res => {
-            console.log(res.data);
-          })
-          .catch(e => {
-            console.log(e.respone);
-          });
-      },
-      myaccount() {
-        $("#myaccountlink")[0].click();
-      },
-      withDrawClick() {
-        $("#withDrawClick")[0].click();
-      },
-      rechargeClick() {
-        $("#recharge")[0].click();
+    activeClass(index) {
+      if (index == 0) {
+        return "active";
+      } else {
+        return "";
       }
+    },
+    getImage() {
+      axios
+        .get("/Carousel")
+        .then(res => {
+          console.log(res.data);
+          this.imageSlide = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getAnnount() {
+      axios
+        .get("/getaccountment")
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(e => {
+          console.log(e.respone);
+        });
+    },
+    myaccount() {
+      $("#myaccountlink")[0].click();
+    },
+    withDrawClick() {
+      $("#withDrawClick")[0].click();
+    },
+    rechargeClick() {
+      $("#recharge")[0].click();
     }
   }
 };
