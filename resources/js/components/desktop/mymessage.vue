@@ -10,6 +10,7 @@
               <li class="list-group-item">
                 <a href>
                   <i class="fa fa-inbox"></i>Inbox
+                  <span class="badge badge-pill badge-custome float-right">{{CountAcc}}</span>
                 </a>
               </li>
               <li class="list-group-item">
@@ -48,7 +49,7 @@
                       <i class="tim-icons icon-zoom-split"></i>
                     </div>
                   </div>
-                  <input type="text" class="form-control" placeholder="Search Mail">
+                  <input type="text" class="form-control" placeholder="Search Mail" />
                 </div>
               </div>
             </div>
@@ -80,9 +81,9 @@
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
-                    <tr>
+                    <tr v-for="data in getNews">
                       <td>
-                        <input type="checkbox">
+                        <input type="checkbox" />
                       </td>
                       <td class="mailbox-star">
                         <a href="#">
@@ -90,7 +91,7 @@
                         </a>
                       </td>
                       <td class="mailbox-name">
-                        <a href="read-mail.html">Alexander Pierce</a>
+                        <a href="read-mail.html">Dear</a>
                       </td>
                       <td class="mailbox-subject">
                         <b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
@@ -142,7 +143,29 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      dataAnnoucement: [],
+      CountAcc: [],
+      getNews: []
+    };
+  },
+  mounted() {
+    axios
+      .get("/getaccountment")
+      .then(res => {
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        this.dataAnnoucement = res.data;
+        this.CountAcc = res.data[2];
+        this.getNews = res.data[3];
+        console.log(res.data);
+      })
+      .catch(e => {
+        console.log(e.response);
+      });
+  }
+};
 </script>
 <style scoped>
 </style>

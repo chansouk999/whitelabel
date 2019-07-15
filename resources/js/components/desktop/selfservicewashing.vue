@@ -62,7 +62,7 @@ export default {
               buttonsStyling: false,
               confirmButtonClass: "btn btn-success",
               html: "Please check the box that you fill in",
-              timer: 1000
+              timer: 3000
             });
           }
           console.log(res.data);
@@ -70,6 +70,7 @@ export default {
         .catch(e => {
           console.log(e.response);
         });
+      this.getUserDetail();
     },
     getUserDetail() {
       axios.get("/getUserBet").then(res => {

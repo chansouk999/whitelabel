@@ -674,7 +674,7 @@
                                     href="#"
                                     data-toggle="modal"
                                     data-target=".name_message"
-                                  >{{data.name}}</a>
+                                  >{{data.name}}{{data.user_id}}</a>
                                 </td>
                                 <td class="mailbox-subject">
                                   <a
@@ -747,7 +747,7 @@ export default {
   data() {
     return {
       gamehistorystart: 0,
-      gamehistoryend: 2,
+      gamehistoryend: 9,
       gamehistorypagenum: 1,
       message: null,
       method: null,
@@ -784,14 +784,14 @@ export default {
     gamehistorypage(methods) {
       if (methods == "previous") {
         if (this.gamehistorystart > 0) {
-          this.gamehistorystart -= 1;
-          this.gamehistoryend -= 1;
+          this.gamehistorystart -= 10;
+          this.gamehistoryend -= 10;
           this.gamehistorypagenum -= 1;
         }
       } else {
         if (this.gamehistoryend < this.getUserdata.length) {
-          this.gamehistorystart += 1;
-          this.gamehistoryend += 1;
+          this.gamehistorystart += 10;
+          this.gamehistoryend += 10;
           this.gamehistorypagenum += 1;
         }
       }
@@ -863,8 +863,9 @@ export default {
           console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
           console.log(res.data);
           console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-          console.log(res.data);
+
           this.getUserdata = res.data;
+          console.log(res.data);
         })
         .catch(e => {
           console.log(e.response);
