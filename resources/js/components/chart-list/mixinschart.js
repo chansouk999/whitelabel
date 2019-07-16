@@ -24,14 +24,7 @@ export const livechart = {
         };
     },
     mounted() {
-        //  console.log(this.stockname +"=>"+this.loop +"=>"+this.country)
-        this.chart();
-    },
-    watch: {
-        // stockname() {
-        //     this.chart();
-        // }
-
+        this.chart()
     },
     methods: {
         chart() {
@@ -503,6 +496,7 @@ export const livechart = {
                 }
             }).catch(err => {
                 console.error(err)
+                alert(err)
             });
         }
     }

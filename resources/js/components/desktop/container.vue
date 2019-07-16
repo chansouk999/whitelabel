@@ -183,7 +183,7 @@
                       class="carousel-control-next"
                       href="#myCarousel"
                       role="button"
-                      data-slide="."
+                      data-slide="next"
                     >
                       <img src="assets/img/arrow-right.png" />
                       <span class="sr-only">Next</span>
