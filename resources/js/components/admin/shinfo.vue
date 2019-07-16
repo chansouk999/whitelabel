@@ -132,6 +132,17 @@
                             v-model="shareholdername"
                           />
                         </div>
+                           <div class="form-group">
+                          <!-- shareholdername
+                          shareholderpermision-->
+                          <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            placeholder="Name..."
+                            v-model="shpassword"
+                          />
+                        </div>
                       </div>
                     </div>
                     <div class="row">
@@ -141,7 +152,7 @@
                           <!-- <input
                             type="email"
                             name="accesspermission"
-                            
+
                             placeholder="ACCESS PERMISSION..."
                           >-->
                           <select name class="form-control" v-model="shareholderpermision">
@@ -180,6 +191,7 @@ export default {
       shareholdername: null,
       shareholderpermision: null,
       shareinfo: [],
+      shpassword:null,
       A: 0,
       B: 19
     };
@@ -213,7 +225,8 @@ export default {
     saveshareholder(data) {
       data = {
         shareholdername: this.shareholdername,
-        shareholderpermision: this.shareholderpermision
+        shareholderpermision: this.shareholderpermision,
+        shpassword:this.shpassword
       };
       axios
         .post("saveshareholder", data)

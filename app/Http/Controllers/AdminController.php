@@ -17,6 +17,7 @@ use App\activityLog as modelog;
 use App\Request as Reqst;
 use App\Admin;
 use App\access_token;
+use App\Shareholder_login;
 use Illuminate\Support\Facades\DB;
 use App\admin_access;
 use App\Agent;
@@ -359,13 +360,21 @@ class AdminController extends Controller
     {
         try {
             DB::enableQueryLog();
+            $shid =  strtotime('now');
             $insertdata = array(
-                'share_id' => strtotime('now'),
+                'share_id' => $shid,
                 'name' => $req->shareholdername,
                 'accessPermission' => $req->shareholderpermision,
             );
+            $savelogin = Shareholder_login::create(
+                [
+                    'name'=>$req->shareholdername,
+                    'email'=>$req->shareholdername,
+                    'password'=>Hash::make($req->shpassword)
+                ]
+            );
             $save = Shareholder::create($insertdata);
-            if ($save) {
+            if ($save && $savelogin) {
                 return $this->returncode(200, $save, 'success');
             } else {
                 return $this->returncode(300, $save, DB::getQueryLog());
@@ -482,7 +491,7 @@ class AdminController extends Controller
     {
         try {
             DB::enableQueryLog();
-            $eventhisotry = Eventhistory::orderby('created_at', 'desc')->paginate(20);
+            $eventhisotry = Eventhistory::orderby('created_at', 'desc')->get();
             if ($eventhisotry) {
                 return $this->returncode(200, $eventhisotry, 'success');
             } else {

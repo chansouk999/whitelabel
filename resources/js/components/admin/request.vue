@@ -2,7 +2,6 @@
   <div>
     <!-- PLAYER INFO -->
 
-
     <div class="row">
       <div class="col-md-3 text-left">
         <p class="pl-5">Current Page : 1</p>
@@ -514,7 +513,7 @@ export default {
   mixins: [adminmixin],
   data() {
     return {
-      audioplay: new Audio('sound/alrmwaining.mp3'),
+      audioplay: new Audio("sound/alrmwaining.mp3"),
       alertwarning: false,
       A: 0,
       B: 19,
@@ -559,9 +558,23 @@ export default {
 
     // alert(this.length);
   },
+//   watch:{
+//       alertwarning(e){
+//           if(e==true){
+//               let n =0
+//               setInterval(()=>{
+//                   n++
+//                   if(n==5){
+//                       this.audioplay.play();
+//                       return n = 0
+//                   }
+//               },1000)
+//           }
+//       }
+//   },
   methods: {
     closewaning() {
-        this.audioplay.pause();
+      this.audioplay.pause();
       this.alertwarning = false;
     },
     actionmethod(method, id, userid) {
@@ -584,7 +597,7 @@ export default {
         id: id,
         userid: userid
       };
-      axios  
+      axios
         .post("/actionprocess", data)
         .then(res => {
           let code = res.data.code;

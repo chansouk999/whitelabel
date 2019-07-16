@@ -9,7 +9,7 @@ class LoginController extends Controller
 {
      /**
      * Show the login form.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
 
@@ -30,7 +30,7 @@ class LoginController extends Controller
     }
     /**
      * Login the admin.
-     * 
+     *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -47,7 +47,7 @@ class LoginController extends Controller
     }
     /**
      * Logout the admin.
-     * 
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logout()
@@ -57,9 +57,9 @@ class LoginController extends Controller
     }
     /**
      * Validate the form data.
-     * 
+     *
      * @param \Illuminate\Http\Request $request
-     * @return 
+     * @return
      */
 
 
@@ -80,7 +80,7 @@ class LoginController extends Controller
     }
     /**
      * Redirect back after a failed login.
-     * 
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     private function loginFailed()

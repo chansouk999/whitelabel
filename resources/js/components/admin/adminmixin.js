@@ -11,7 +11,7 @@ export const adminmixin = {
             config: {},
             gamehistory: [],
             gameresult: [],
-            getevnthistorydata: [],
+
             agentinfo: [],
             gotuserhistory: [],
             popup: false,
@@ -22,7 +22,6 @@ export const adminmixin = {
 
         this.gettoken()
         this.userdata();
-        this.getevnthistory()
         this.getagentinfo()
     },
     methods: {
@@ -45,12 +44,7 @@ export const adminmixin = {
                 this.agentinfo = res.data.data.data
             }).catch(e => { console.log(e.response) })
         },
-        getevnthistory() {
-            axios.get('/getevnthistory').then(res => {
-                this.getevnthistorydata = res.data.data.data
-                    // console.log(res.data)
-            })
-        },
+
         gettoken() {
             axios
                 .get('/getallresultadmin', this.config)

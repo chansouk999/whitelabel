@@ -9,7 +9,7 @@
             </div>
             <!-- input with datetimepicker -->
             <div class="form-group">
-              <input type="text" class="form-control datetimepicker" value="10/05/2018">
+              <input type="text" class="form-control datetimepicker" value="10/05/2018" />
             </div>
           </div>
           <div class="col-md-6 text-right">
@@ -32,12 +32,7 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <input
-                      type="text"
-                      class="form-control"
-                     
-                      placeholder="SEARCH"
-                    >
+                    <input type="text" class="form-control" placeholder="SEARCH" />
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <i class="tim-icons icon-simple-remove"></i>
                     </button>
@@ -50,7 +45,7 @@
         <div class="card card-timeline card-plain">
           <div class="card-body">
             <ul class="timeline timeline-simple">
-            <li class="timeline-inverted" v-for="(data,index) in alladmininfo">
+              <li class="timeline-inverted" v-for="(data,index) in alladmininfo">
                 <div class="timeline-badge danger">
                   <i class="tim-icons icon-bag-16"></i>
                 </div>
@@ -86,7 +81,7 @@
             </div>
             <!-- input with datetimepicker -->
             <div class="form-group">
-              <input type="text" class="form-control datetimepicker" value="10/05/2018">
+              <input type="text" class="form-control datetimepicker" value="10/05/2018" />
             </div>
           </div>
           <div class="col-md-6 text-right">
@@ -109,12 +104,7 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <input
-                      type="text"
-                      class="form-control"
-                      
-                      placeholder="SEARCH"
-                    >
+                    <input type="text" class="form-control" placeholder="SEARCH" />
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <i class="tim-icons icon-simple-remove"></i>
                     </button>
@@ -127,7 +117,7 @@
         <div class="card card-timeline card-plain">
           <div class="card-body">
             <ul class="timeline timeline-simple">
-              <li class="timeline-inverted" v-for="(data,index) in myadmininfo">
+              <li class="timeline-inverted" v-for="(data,index) in myadmininfo" :key="index">
                 <div class="timeline-badge danger">
                   <i class="tim-icons icon-bag-16"></i>
                 </div>
@@ -135,7 +125,7 @@
                   <div class="timeline-heading">
                     <span class="badge badge-pill badge-danger">{{data.created_at}}</span>
                   </div>
-                  <div class="timeline-body">
+                  <div class="timeline-body" >
                     <p class="text-primary">
                       <span class="text-info">Admin - {{JSON.parse(data.detail).serveby}}</span>
                       <!-- <span class="text-warning">17:42:33</span> -->
@@ -160,14 +150,14 @@
 </template>
 <script>
 export default {
-  data(){
-    return{
-      myadmininfo:[],
-      alladmininfo:[],
-    }
+  data() {
+    return {
+      myadmininfo: [],
+      alladmininfo: []
+    };
   },
   mounted() {
-    this.getadmininfo()
+    this.getadmininfo();
     $(document).ready(function() {
       // initialise Datetimepicker and Sliders
       blackDashboard.initDateTimePicker();
@@ -176,13 +166,13 @@ export default {
       }
     });
   },
-  methods:{
-    getadmininfo(){
-      axios.get('/getadmininfotimeline').then(res=>{
-          console.log(res.data)
-          this.alladmininfo = res.data.data.all
-          this.myadmininfo = res.data.data.my
-      })
+  methods: {
+    getadmininfo() {
+      axios.get("/getadmininfotimeline").then(res => {
+        console.log(res.data);
+        this.alladmininfo = res.data.data.all;
+        this.myadmininfo = res.data.data.my;
+      });
     }
   }
 };

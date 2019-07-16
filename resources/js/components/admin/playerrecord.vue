@@ -59,19 +59,19 @@
                     <span class="badge badge-pill badge-success">{{ JSON.parse(data.detail).Time }}</span>
                   </div> -->
                   <!-- "{"user_id":"090659ZK4Z8le","event":"Top up request Approved by","serveby":"090659ZK4Z8le","amount":5000,"eventid":"","Time":"2019-06-21 18:55:17"}" -->
-                  <div class="timeline-body" v-for="data in logdata" >
+                  <div class="timeline-body  mt-3" v-for="data in logdata" >
                     <p class="text-primary" >
                       {{ JSON.parse(data.detail).user_id }}
-                      <span class="text-info"> {{ JSON.parse(data.detail).event }}</span>
-                      <span class="text-info"> {{ JSON.parse(data.detail).eventid }}</span>
-                      <span class="text-info">  {{ JSON.parse(data.detail).amount }}</span>
-                      <span class="text-warning">{{ JSON.parse(data.detail).Time }}</span>
+                      <span class="text-info mx-2"> {{ JSON.parse(data.detail).event }}</span>
+                      <span class="text-info mx-2"> {{ JSON.parse(data.detail).eventid }}</span>
+                      <span class="text-info mx-2">  {{ JSON.parse(data.detail).amount }}</span>
+                      <span class="text-warning mx-2">{{ JSON.parse(data.detail).Time }}</span>
                     </p>
                   </div>
                 </div>
               </li>
               <!-- loop -->
-              
+
             </ul>
           </div>
         </div>
