@@ -22,7 +22,7 @@
           <button
             type="button"
             class="btn btn-warning bg-custome btn-lg"
-            @click.prevent="submit()"
+            @click.prevent="submitRolling()"
           >Submit</button>
         </div>
       </div>
@@ -43,15 +43,16 @@ export default {
     this.getUserDetail();
   },
   methods: {
-    submit() {
-      let vm = this;
-      let data = {
-        userid: vm.availabel,
-        availabel: vm.oldrolling
-      };
+    submitRolling() {
+      // let vm = this;
+      // let data = {
+      //   userid: vm.availabel,
+      //   availabel: vm.oldrolling
+      // };
       axios
-        .post("/Savveselfservice", data)
+        .get("/Savveselfservice")
         .then(res => {
+          console.log(res.data)
           let msg = res.data.msg;
           let code = res.data.code;
           if (code == 200) {

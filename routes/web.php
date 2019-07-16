@@ -280,7 +280,7 @@ Route::get('/Getlogin', 'RedirectBackController@Getlogin');
 
 Route::get('/TaguserDetail', 'CardController@TaguserDetail');
 
-Route::post('/Savveselfservice', 'CardController@Savveselfservice');
+Route::get('/Savveselfservice', 'CardController@Savveselfservice');
 
 Route::get('/getaccountment', 'CardController@getaccountment');
 

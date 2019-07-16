@@ -627,7 +627,7 @@ class MasterController extends Controller
     public function getRolling()
     {
         $roll_his = Rolling_history::where('user_id', Auth::user()->user_id)->latest()->limit(1)->get();
-        $all_rolling_history_value =Rolling_history::where('user_id', Auth::user()->user_id && 'status','paid')->get()->sum('amount');
+        $all_rolling_history_value =Rolling_history::where([['user_id', Auth::user()->user_id ],['status','not pay']])->get()->sum('amount');
          $last_total_bet = $roll_his->pluck('last_totalbet');
          if($last_total_bet->count() >0){
             $last_total_bet =   $last_total_bet[0];

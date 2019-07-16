@@ -27,6 +27,7 @@ use App\Selfservice;
 use App\Announcement;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
+use App\Rolling_history;
 // use League\Flysystem\Exception;
 class CardController extends Controller
 {
@@ -231,30 +232,52 @@ class CardController extends Controller
         $getTagUser = User::get();
         return $getTagUser;
     }
-    public function Savveselfservice(Request $request)
+    public function Savveselfservice()
     {
         try {
             DB::enableQueryLog();
-            if ($request->availabel <= 0) {
-                return $this->returncode(99, $request->availabel, 'Not enough');
+            $roll_his = Rolling_history::where('user_id', Auth::user()->user_id)->latest()->limit(1)->get();
+         $last_total_bet = $roll_his->pluck('last_totalbet');
+         if($last_total_bet->count() >0){
+            $last_total_bet =   $last_total_bet[0];
+         }else{
+            $last_total_bet = 0;
+         }
+         $user_detail = userdetail::where('user_id', Auth::user()->user_id)->get();
+         $total_bet   =  $user_detail->pluck('Totalbet')[0];
+         $avaiable_bet = $total_bet - $last_total_bet;
+
+         $percent= Selfservice::where('Amount', '<=', $total_bet)->limit(1)->get()->pluck('percentage')[0];
+         $avaiable_rolling =  ($avaiable_bet * $percent) /100;
+            if ($avaiable_rolling <= 0) {
+                return $this->returncode(99, $avaiable_rolling, 'Not enough');
             }
-            $updataSelf = userdetail::where('user_id', '=', $request->userid)->update(['AvailableRolling' => 0]);
-            if ($updataSelf) {
-                $method = 'Playerrecord';
-                $data = array(
-                    'user_id' => $request->userid,
-                    'event' => 'Withdraw Rolling',
-                    'serveby' => '',
-                    'amount' => $request->availabel,
-                    'eventid' => '',
-                    'Time' => date('Y-m-d'),
-                );
-                $Log = new ActivityLogder();
-                $Log->storeLog($method, $data);
-                return $this->returncode(200, $data, 'success');
-            } else {
-                return $this->returncode(300, $data, DB::getQueryLog());
-            }
+            $rolling_history =  new Rolling_history;
+            $rolling_history->user_id = Auth::user()->user_id;
+            $rolling_history->amount =  $avaiable_rolling;
+            $rolling_history->last_totalbet = $total_bet;
+            $rolling_history->status = "not pay";
+            $result = $rolling_history->save();
+            return  $result;
+
+
+            // $updataSelf = userdetail::where('user_id', '=', $request->userid)->update(['AvailableRolling' => 0]);
+            // if ($updataSelf) {
+            //     $method = 'Playerrecord';
+            //     $data = array(
+            //         'user_id' => $request->userid,
+            //         'event' => 'Withdraw Rolling',
+            //         'serveby' => '',
+            //         'amount' => $request->availabel,
+            //         'eventid' => '',
+            //         'Time' => date('Y-m-d'),
+            //     );
+            //     $Log = new ActivityLogder();
+            //     $Log->storeLog($method, $data);
+            //     return $this->returncode(200, $data, 'success');
+            // } else {
+            //     return $this->returncode(300, $data, DB::getQueryLog());
+            // }
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage()); //Internal erro
         }
