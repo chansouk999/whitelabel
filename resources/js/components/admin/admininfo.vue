@@ -102,7 +102,7 @@
                   href="#"
                   class="btn btn-rose btn-round"
                   data-toggle="modal"
-                  data-target="#addnewadmin"
+                  data-target="#addnewadminbtn"
                 >Create New Admin</a>
               </div>
               <!-- /.card-footer -->
@@ -181,6 +181,7 @@
                         data-toggle="tooltip"
                         data-placement="bottom"
                         title="Edit "
+                        @click="edtiadmin(data.admin_id)"
                         class="btn btn-info btn-sm btn-icon"
                       >
                         <i class="tim-icons icon-trophy"></i>
@@ -192,6 +193,7 @@
                         data-toggle="tooltip"
                         data-placement="bottom"
                         title="View Activity"
+                        @click="viewactivity(data.id)"
                         class="btn btn-success btn-sm btn-icon"
                       >
                         <i class="tim-icons icon-video-66"></i>
@@ -254,68 +256,43 @@
                   <div class="col-md-12">
                     <div class="card card-timeline card-plain">
                       <div class="card-body">
-                        <ul class="timeline timeline-simple">
-                          <li class="timeline-inverted">
+                        <ul class="timeline">
+                          <li
+                            class="timeline-inverted"
+                            v-for="(data,index) in datagetadminlog"
+                            v-if="index % 2 == 0 "
+                          >
                             <div class="timeline-badge danger">
-                              <i class="tim-icons icon-bag-16"></i>
+                              <i class="tim-icons icon-planet"></i>
                             </div>
-                            <div class="timeline-panel text-left">
+                            <div class="timeline-panel">
                               <div class="timeline-heading">
-                                <span class="badge badge-pill badge-danger">23/11/2019</span>
+                                <span class="badge badge-pill badge-danger">Some Title</span>
                               </div>
                               <div class="timeline-body">
-                                <p class="text-primary">
-                                  Admin-adminID
-                                  <span class="text-info">Change his password</span>
-                                  <span class="text-warning">17:42:33</span>
-                                </p>
-                                <p class="text-primary">
-                                  Admin-adminID
-                                  <span
-                                    class="text-info"
-                                  >Change his password of and admin</span>
-                                  <span class="text-primary">adminID</span>
-                                  <span class="text-warning">17:42:33</span>
-                                </p>
+                                <p>{{ JSON.parse(data.detail).event }}</p>
                               </div>
-                              <h6>
+                              <h6 class="text-white">
                                 <i class="ti-time"></i>
+                                {{data.created_at}}
                               </h6>
                             </div>
                           </li>
-                          <li class="timeline-inverted">
-                            <div class="timeline-badge success">
-                              <i class="tim-icons icon-gift-2"></i>
+                          <li v-else>
+                            <div class="timeline-badge danger">
+                              <i class="tim-icons icon-planet"></i>
                             </div>
-                            <div class="timeline-panel text-left">
+                            <div class="timeline-panel">
                               <div class="timeline-heading">
-                                <span class="badge badge-pill badge-success">22/11/2018</span>
+                                <span class="badge badge-pill badge-danger">Some Title</span>
                               </div>
                               <div class="timeline-body">
-                                <p class="text-primary">
-                                  Admin-adminID
-                                  <span class="text-info">Blocked a player</span>
-                                  <span class="text-primary">userApiID</span>
-                                  <span class="text-warning">17:42:33</span>
-                                </p>
-                                <p class="text-primary">
-                                  Admin-adminID
-                                  <span class="text-info">add a portal priovider</span>
-                                  <span class="text-primary">webID</span>
-                                  <span class="text-warning">17:42:33</span>
-                                </p>
-                                <p class="text-primary">
-                                  Admin-adminID
-                                  <span class="text-info">Logged in</span>
-                                  <span class="text-warning">17:42:33</span>
-                                </p>
-                                <p class="text-primary">
-                                  Admin-adminID
-                                  <span class="text-info">add $30000000 to a web</span>
-                                  <span class="text-primary">webID</span>
-                                  <span class="text-warning">17:42:33</span>
-                                </p>
+                                <p>{{ JSON.parse(data.detail).event }}</p>
                               </div>
+                              <h6>
+                                <i class="ti-time"></i>
+                                {{data.created_at}}
+                              </h6>
                             </div>
                           </li>
                         </ul>
@@ -326,9 +303,8 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer d-flex justify-content-end">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -338,14 +314,14 @@
     <!-- Modal -->
     <div
       class="modal fade"
-      id="addnewadmin"
+      id="addnewadminbtn"
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLongTitle"
       aria-hidden="true"
     >
       <div class="modal-dialog modal-lg">
-        <div class="modal-content bg-default">
+        <div class="modal-content bg-default" v-for="data in getadmindetail">
           <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">Create new admin</h4>
@@ -704,7 +680,9 @@
 export default {
   data() {
     return {
+      getadmindetail: [],
       admininfoall: [],
+      datagetadminlog: [],
       admininfo: [],
       r_player: null,
       gameble: null,
@@ -760,8 +738,32 @@ export default {
         }
       }
     },
+    edtiadmin(id) {
+      $("#addnewadminbtn").modal("show");
+      axios
+        .get("editadmindetail/" + id)
+        .then(res => {
+          this.getadmindetail = res.data;
+          console.log(res.data);
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    },
+    viewactivity(id) {
+      axios
+        .get("/getadminlog/" + id)
+        .then(res => {
+          this.datagetadminlog = res.data;
+          console.log(res.data);
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    },
     getadmininfo() {
       axios.get("getadmininfo").then(res => {
+        console.log(res.data);
         this.admininfoall = res.data.data.all.data;
         this.admininfo = res.data.data.auth;
       });
@@ -790,7 +792,17 @@ export default {
         .then(res => {
           console.log(res.data);
           if (res.data.code == 200) {
+            $("#addnewadminbtn").modal("hide");
             this.getadmininfo();
+            swal({
+              title: "Success!",
+              text: "We hope to see you as soon.",
+              type: "success",
+              confirmButtonClass: "btn btn-success",
+              timer: 1000,
+              buttonsStyling: false
+            }).catch(swal.noop);
+            this.getdataSelfservice();
           }
         })
         .catch(e => {

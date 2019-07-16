@@ -934,8 +934,8 @@ export default {
     gamehistorypage(methods) {
       if (methods == "previous") {
         if (this.gamehistorystart > 0) {
-          this.gamehistorystart -= 1;
-          this.gamehistoryend -= 1;
+          this.gamehistorystart -= 10;
+          this.gamehistoryend -= 10;
           this.gamehistorypagenum -= 1;
         }
       } else {

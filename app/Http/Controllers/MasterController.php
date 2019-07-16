@@ -34,6 +34,7 @@ use League\Flysystem\Exception;
 use App\OauthClient;
 use App\Carousel;
 use App\Http\Controllers\getHeaderController as header;
+use App\Rolling_history;
 
 class MasterController extends Controller
 {
@@ -651,5 +652,30 @@ class MasterController extends Controller
 
 
 
+    }
+    public function getRolling()
+    {
+        $roll_his = Rolling_history::where('user_id', Auth::user()->user_id)->latest()->limit(1)->get();
+        $all_rolling_history_value =Rolling_history::where([['user_id', Auth::user()->user_id ],['status','not pay']])->get()->sum('amount');
+         $last_total_bet = $roll_his->pluck('last_totalbet');
+         if($last_total_bet->count() >0){
+            $last_total_bet =   $last_total_bet[0];
+         }else{
+            $last_total_bet = 0;
+         }
+         $user_detail = userdetail::where('user_id', Auth::user()->user_id)->get();
+         $total_bet   =  $user_detail->pluck('Totalbet')[0];
+         $avaiable_bet = $total_bet - $last_total_bet;
+
+         $percent= Selfservice::where('Amount', '<=', $total_bet)->limit(1)->get()->pluck('percentage')[0];
+         $avaiable_rolling =  ($avaiable_bet * $percent) /100;
+         $all_rolling_history_value = $all_rolling_history_value + $avaiable_rolling;
+         return response()->json([
+             array(
+             'totalbet'=>$total_bet,
+             'available_rolling'=>$avaiable_rolling,
+             'total_rolling'=>$all_rolling_history_value
+             )
+             ]);
     }
 }

@@ -76,6 +76,7 @@ Route::get('adminList', 'MasterController@adminList');
 Route::post('requestdata', 'MasterController@requestdata');
 Route::get('fullscreengame', 'MasterController@fullscreengame');
 Route::get('getUserBet', 'MasterController@getUserBet');
+Route::get('getRolling', 'MasterController@getRolling');
 Route::get('/', 'MasterController@welcome')->name('home');
 Route::post('/topupbalance', 'MasterController@topupbalance');
 Route::post('/reqchangepwd', 'MasterController@reqchangepwd');
@@ -278,7 +279,15 @@ Route::get('/Getlogin', 'RedirectBackController@Getlogin');
 
 Route::get('/TaguserDetail', 'CardController@TaguserDetail');
 
-Route::post('/Savveselfservice', 'CardController@Savveselfservice');
+Route::get('/Savveselfservice', 'CardController@Savveselfservice');
 
 Route::get('/getaccountment', 'CardController@getaccountment');
+
+Route::get('/gettype', 'CardController@gettype');
+
+Route::get('/read_annocement/{id}', 'CardController@read_annocement');
+
+Route::get('/getadminlog/{id}', 'CardController@getadminlog');
+
+Route::get('/editadmindetail/{id}', 'CardController@editadmindetail');
 

@@ -725,7 +725,7 @@ export default {
       }
     }
   },
-  mounted() {},
+  mounted() {},  
   methods: {
     GetPlayerRecore(id) {
       axios
