@@ -77,6 +77,7 @@ Route::get('adminList', 'MasterController@adminList');
 Route::post('requestdata', 'MasterController@requestdata');
 Route::get('fullscreengame', 'MasterController@fullscreengame');
 Route::get('getUserBet', 'MasterController@getUserBet');
+Route::get('getRolling', 'MasterController@getRolling');
 Route::get('/', 'MasterController@welcome')->name('home');
 Route::post('/topupbalance', 'MasterController@topupbalance');
 Route::post('/reqchangepwd', 'MasterController@reqchangepwd');

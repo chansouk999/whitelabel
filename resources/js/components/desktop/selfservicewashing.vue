@@ -12,10 +12,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="data in Userdetail">
-                <td>{{data.AvailableRolling}}</td>
-                <td>{{data.Totalbet}}</td>
-                <td>{{data.TotalRolling}}</td>
+              <tr v-for="(data,index) in userRolling" :key="index">
+                <td>{{data.available_rolling}}</td>
+                <td>{{data.totalbet}}</td>
+                <td>{{data.total_rolling}}</td>
               </tr>
             </tbody>
           </table>
@@ -33,6 +33,7 @@
 export default {
   data() {
     return {
+      userRolling:[],
       Userdetail: [],
       availabel: null,
       oldrolling: null
@@ -73,10 +74,11 @@ export default {
       this.getUserDetail();
     },
     getUserDetail() {
-      axios.get("/getUserBet").then(res => {
-        this.Userdetail = res.data[1];
-        this.availabel = res.data[1][0].user_id;
-        this.oldrolling = res.data[1][0].AvailableRolling;
+      axios.get("/getRolling").then(res => {
+        this.userRolling = res.data
+        // this.Userdetail = res.data[1];
+        // this.availabel = res.data[1][0].user_id;
+        // this.oldrolling = res.data[1][0].AvailableRolling;
       });
     }
   }
