@@ -2841,6 +2841,10 @@ ul.list-group-navbar {
     line-height: 2;
 }
 
+.btn-annoucemnt {
+    cursor: pointer;
+}
+
 @media (max-width: 767px) {
     .cid-ro6uJJ0VM8 .media-container-row .social-list {
         -webkit-justify-content: center;

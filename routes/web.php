@@ -283,3 +283,11 @@ Route::post('/Savveselfservice', 'CardController@Savveselfservice');
 
 Route::get('/getaccountment', 'CardController@getaccountment');
 
+Route::get('/gettype', 'CardController@gettype');
+
+Route::get('/read_annocement/{id}', 'CardController@read_annocement');
+
+Route::get('/getadminlog/{id}', 'CardController@getadminlog');
+
+Route::get('/editadmindetail/{id}', 'CardController@editadmindetail');
+

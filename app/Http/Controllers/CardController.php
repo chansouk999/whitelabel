@@ -262,6 +262,9 @@ class CardController extends Controller
     public function getaccountment()
     {
         $userID = Auth::user()->user_id;
+        $annoucemen = Announcement::get();
+        $getTypePM = Announcement::where('message',  'like', '%"type":"PM"%')->get();
+        $getTypeAN = Announcement::where('message',  'like', '%"type":"AN"%')->get();
         $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
         $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
         $getmore = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->get()->count();
@@ -270,6 +273,44 @@ class CardController extends Controller
         } else {
             $getall = Announcement::where([['method', '=', "PA"], ['userID', 'like', '%' . $userID . '%']])->latest()->limit(1)->get();
         }
-        return [$getall, $getmore, $getAll, Auth::user()->name];
+        return [$getall, $getmore, $getAll, Auth::user()->name, $annoucemen, $getTypePM, $getTypeAN];
+    }
+    public function gettype()
+    {
+        try {
+            DB::enableQueryLog();
+            $getTypePM = Announcement::where('message',  'like', '%"type":"PM"%')->get();
+            $getTypeAN = Announcement::where('message',  'like', '%"type":"AN"%')->get();
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage()); //Internal erro
+        }
+        return [$getTypePM, $getTypeAN];
+    }
+    public function read_annocement($id)
+    {
+        try {
+            DB::enableQueryLog();
+            $getRead = Announcement::where('AnouncementID',  '=', $id)->get();
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage()); //Internal erro
+        }
+        return $getRead;
+    }
+    public function getadminlog($id)
+    {
+        $getadmindetail = activityLog::where([['detail', 'like', '%user_id":"' . $id . '%'], ['method', '=', 'Adminrecord']])->get();
+        return $getadmindetail;
+    }
+    public function editadmindetail($id)
+    {
+        try {
+            $data = DB::table('admins')
+                ->join('admin_accesses', 'admins.id', '=', 'admin_accesses.admin_id')
+                ->where('admins.id', '=', $id)
+                ->get();
+            return $data;
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
     }
 }

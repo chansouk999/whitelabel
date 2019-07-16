@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\authcheck::class,
             \App\Http\Middleware\lastactivity::class,
             \App\Http\Middleware\Cors::class,
+            \App\Http\Middleware\AutoDeleteAnnoucement::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Switchlang::class,
             \App\Http\Middleware\blockIp::class,
