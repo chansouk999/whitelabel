@@ -17,7 +17,7 @@
                     class="profile-user-img img-fluid img-circle"
                     src="/assets/img/emilyz.jpg"
                     alt="User profile picture"
-                  >
+                  />
                 </div>
 
                 <h3 class="profile-username text-center">{{ user_id }}</h3>
@@ -49,7 +49,7 @@
 
                 <a
                   href="#"
-                  class="btn btn-primary  bg-custome btn-block"
+                  class="btn btn-primary bg-custome btn-block"
                   data-toggle="modal"
                   data-target="#changepwdmodal"
                 >
@@ -102,7 +102,12 @@
                         <div class="card card-timeline card-plain">
                           <div class="card-body">
                             <ul class="timeline">
-                              <li class="timeline-inverted" v-for="(data,index) in playerRecord" v-if="index % 2 == 0 ">
+                              <li
+                                class="timeline-inverted"
+                                v-for="(data,index) in playerRecord"
+                                v-if="index % 2 == 0 "
+                                :key="index"
+                              >
                                 <div class="timeline-badge danger">
                                   <i class="tim-icons icon-planet"></i>
                                 </div>
@@ -114,7 +119,8 @@
                                     <p>{{ JSON.parse(data.detail).event }}</p>
                                   </div>
                                   <h6 class="text-dark">
-                                    <i class="ti-time"></i> {{data.created_at}}
+                                    <i class="ti-time"></i>
+                                    {{data.created_at}}
                                   </h6>
                                 </div>
                               </li>
@@ -130,7 +136,8 @@
                                     <p>{{ JSON.parse(data.detail).event }}</p>
                                   </div>
                                   <h6>
-                                    <i class="ti-time"></i> {{data.created_at}}
+                                    <i class="ti-time"></i>
+                                    {{data.created_at}}
                                   </h6>
                                 </div>
                               </li>
@@ -163,13 +170,13 @@
                                       class="form-control"
                                       disabled
                                       value="Creative Code Inc."
-                                    >
+                                    />
                                   </div>
                                 </div>
                                 <div class="col-md-3 px-md-1">
                                   <div class="form-group">
                                     <label>Username</label>
-                                    <input type="text" class="form-control" value="michael23">
+                                    <input type="text" class="form-control" value="michael23" />
                                   </div>
                                 </div>
                                 <div class="col-md-4 pl-md-1">
@@ -179,7 +186,7 @@
                                       type="email"
                                       class="form-control"
                                       placeholder="mike@email.com"
-                                    >
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -187,13 +194,13 @@
                                 <div class="col-md-6 pr-md-1">
                                   <div class="form-group">
                                     <label>First Name</label>
-                                    <input type="text" class="form-control" value="Mike">
+                                    <input type="text" class="form-control" value="Mike" />
                                   </div>
                                 </div>
                                 <div class="col-md-6 pl-md-1">
                                   <div class="form-group">
                                     <label>Last Name</label>
-                                    <input type="text" class="form-control" value="Andrew">
+                                    <input type="text" class="form-control" value="Andrew" />
                                   </div>
                                 </div>
                               </div>
@@ -206,7 +213,7 @@
                                       class="form-control"
                                       placeholder="Home Address"
                                       value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                                    >
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -214,13 +221,13 @@
                                 <div class="col-md-4 pr-md-1">
                                   <div class="form-group">
                                     <label>City</label>
-                                    <input type="text" class="form-control" value="Mike">
+                                    <input type="text" class="form-control" value="Mike" />
                                   </div>
                                 </div>
                                 <div class="col-md-4 px-md-1">
                                   <div class="form-group">
                                     <label>Country</label>
-                                    <input type="text" class="form-control" value="Andrew">
+                                    <input type="text" class="form-control" value="Andrew" />
                                   </div>
                                 </div>
                                 <div class="col-md-4 pl-md-1">
@@ -230,7 +237,7 @@
                                       type="number"
                                       class="form-control"
                                       placeholder="ZIP Code"
-                                    >
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -259,7 +266,7 @@
                               <div class="block block-three"></div>
                               <div class="block block-four"></div>
                               <a href="javascript:void(0)">
-                                <img class="avatar" src="/assets/img/emilyz.jpg" alt="...">
+                                <img class="avatar" src="/assets/img/emilyz.jpg" alt="..." />
                                 <h5 class="title">Mike Andrew</h5>
                               </a>
                               <p class="description">Ceo/Co-Founder</p>
@@ -340,7 +347,7 @@
                       v-model="currentpassword"
                       required
                       autofocus
-                    >
+                    />
                   </div>
                 </form>
                 <form action="#" v-if="currentpwdcode==200">
@@ -351,7 +358,7 @@
                       class="form-control chnagepwd"
                       placeholder="Password"
                       v-model="newpassword"
-                    >
+                    />
                   </div>
                   <div class="form-group">
                     <input
@@ -359,7 +366,7 @@
                       class="form-control chnagepwd"
                       placeholder="Confirm password"
                       v-model="cfnewpassword"
-                    >
+                    />
                   </div>
                 </form>
               </div>
@@ -367,25 +374,25 @@
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-primary  bg-custome"
+                class="btn btn-primary bg-custome"
                 @click="changepwd"
                 v-if="oldpwd200==false"
               >Next Step</button>
               <button
                 type="button"
-                class="btn btn-primary  bg-custome"
+                class="btn btn-primary bg-custome"
                 @click="savenewpwd"
                 v-if="oldpwd200==true"
               >Save</button>
               <button
                 type="button"
-                class="btn btn-primary  bg-custome"
+                class="btn btn-primary bg-custome"
                 @click="showpassword(method='show')"
                 v-if="showpwd==false"
               >Show password</button>
               <button
                 type="button"
-                class="btn btn-primary  bg-custome"
+                class="btn btn-primary bg-custome"
                 @click="showpassword(method='hide')"
                 v-if="showpwd==true"
               >hide password</button>
@@ -403,7 +410,7 @@ import chartJS from "./chart-bar";
 export default {
   data() {
     return {
-      playerRecord:[],
+      playerRecord: [],
       oldpwd200: false,
       showpwd: false,
       newpassword: null,

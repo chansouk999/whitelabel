@@ -188,15 +188,7 @@
           });
         });
     </script>
-    <script>
-        $(document).ready(function() {
-          // Javascript method's body can be found in assetsadmin/js/demos.js
-          demo.initDashboardPageCharts();
-
-          demo.initVectorMap();
-
-        });
-    </script>
+  
 </body>
 
 </html>

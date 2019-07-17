@@ -292,3 +292,5 @@ Route::get('/getadminlog/{id}', 'CardController@getadminlog');
 
 Route::get('/editadmindetail/{id}', 'CardController@editadmindetail');
 
+Route::post('/addcardmin', 'CardController@addcardmin');
+

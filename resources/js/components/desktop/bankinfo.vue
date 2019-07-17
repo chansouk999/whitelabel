@@ -106,7 +106,7 @@
               </div>
               <img src="assets/img/bitcoin.png" alt="Card image cap" />
               <div class="card-body p-bank">
-                <a
+                <a 
                   href="#"
                   class="btn btn-primary bg-custome"
                   data-toggle="modal"

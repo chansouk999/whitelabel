@@ -98,7 +98,7 @@
                           </li>
                           <li class="nav-item fr">
                             <a
-                              class="nav-link"
+                              class="nav-link active"
                               href="#"
                               data-toggle="modal"
                               data-target=".announcementpost"
@@ -106,51 +106,72 @@
                           </li>
                         </ul>
                         <div class="tab-content tab-space">
+                          <!-- /.tab-pane -->
                           <div class="tab-pane active" id="Current">
+                            <div class="header text-center">
+                              <h3 class="title">Timeline</h3>
+                            </div>
                             <div class="row">
-                              <div class="col-6 bg-card-admin">
-                                <div class="row">
-                                  <div class="col-md-6" v-for="data in announcementdata">
-                                    <div class="info-area info-horizontal">
-                                      <div class="icon icon-light mt-0">
-                                        <i class="tim-icons icon-wifi mt-3"></i>
-                                      </div>
-                                      <div class="description">
-                                        <h3 class="info-title">{{JSON.parse(data.message).title}}</h3>
-                                        <p
-                                          class="description"
-                                        >Detail: {{ data.method}} ,{{JSON.parse(data.message).Promotion}}</p>
-                                        <p>{{JSON.parse(data.message).msg}}</p>
-                                      </div>
-                                    </div>
-                                    <div class="d-flex justify-content-lg-between ps-custome">
-                                      <button type="button" class="btn btn-primary btn-sm btn-icon">
-                                        <i class="tim-icons icon-pencil"></i>
-                                      </button>
-                                      <button type="button" class="btn btn-danger btn-sm btn-icon">
-                                        <i class="tim-icons icon-trash-simple"></i>
-                                      </button>
-                                    </div>
+                              <div class="col-md-12">
+                                <div class="card card-timeline card-plain">
+                                  <div class="card-body">
+                                    <ul class="timeline">
+                                      <li
+                                        class="timeline-inverted"
+                                        v-for="(data,index) in announcementdata"
+                                        v-if="index % 2 == 0 "
+                                        :key="index"
+                                      >
+                                        <div class="timeline-badge danger">
+                                          <i class="tim-icons icon-planet"></i>
+                                        </div>
+                                        <div class="timeline-panel">
+                                          <div class="timeline-heading">
+                                            <span
+                                              class="badge badge-pill badge-danger"
+                                            >{{JSON.parse(data.message).title}}</span>
+                                          </div>
+                                          <div class="timeline-body">
+                                            <p
+                                              class="description"
+                                            >Detail: {{ data.method}} ,{{JSON.parse(data.message).Promotion}}</p>
+                                            <p>{{JSON.parse(data.message).msg}}</p>
+                                          </div>
+                                          <h6 class="text-dark">
+                                            <i class="ti-time"></i>
+                                            {{data.created_at}}
+                                          </h6>
+                                        </div>
+                                      </li>
+                                      <li v-else>
+                                        <div class="timeline-badge info">
+                                          <i class="tim-icons icon-notes"></i>
+                                        </div>
+                                        <div class="timeline-panel">
+                                          <div class="timeline-heading">
+                                            <span
+                                              class="badge badge-pill badge-danger"
+                                            >{{JSON.parse(data.message).title}}</span>
+                                          </div>
+                                          <div class="timeline-body">
+                                            <p
+                                              class="description"
+                                            >Detail: {{ data.method}} ,{{JSON.parse(data.message).Promotion}}</p>
+                                            <p>{{JSON.parse(data.message).msg}}</p>
+                                          </div>
+                                          <h6>
+                                            <i class="ti-time"></i>
+                                            {{data.created_at}}
+                                          </h6>
+                                        </div>
+                                      </li>
+                                    </ul>
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-6"></div>
                             </div>
-
-                            <ul class="timeline timeline-simple">
-                              <li class="timeline-inverted">
-                                <div class="timeline-badge danger">
-                                  <i class="tim-icons icon-bag-16"></i>
-                                </div>
-                                <div class="timeline-panel">
-                                  <div class="timeline-heading">
-                                    <span class="badge badge-danger"></span>
-                                  </div>
-                                  <div class="timeline-body"></div>
-                                </div>
-                              </li>
-                            </ul>
                           </div>
+                          <!-- /.tab-pane -->
                         </div>
                       </div>
                     </div>
@@ -529,7 +550,6 @@
                       data-style="select-with-transition"
                       title="Type Announcement"
                       data-size="7"
-                      id
                       v-model="typeAN"
                     >
                       <option value="AN">Announcement</option>
@@ -541,7 +561,6 @@
                       data-style="select-with-transition"
                       title="Mehod Announcement"
                       data-size="7"
-                      id
                       v-model="method"
                     >
                       <option value="PA">Popup</option>
@@ -919,4 +938,11 @@ export default {
   color: rgb(217, 79, 212) !important;
 }
 </style>
+
+
+
+
+
+
+
 

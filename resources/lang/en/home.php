@@ -33,7 +33,7 @@ return [
     "us_stock"=>"US Stock",
     "cryptocurrencies"=>"cryptocurrencies",
     "chines_stock"=>"Chines Stock",
-    "lobby"=>"Lobby",
+    "lobby_tra"=>"Lobby",
     "phoneverification"=>"Phone Verification",
     "mytask"=>"My task",
     "recommendfriends"=>"Recommend friends",

@@ -38,7 +38,7 @@
             <li class="nav-aside">
               <a href="#">
                 <img src="assets/img/Aragon-icon.png" alt />
-                <p class="text-aside">{{lobby}}</p>
+                <p class="text-aside">{{lobby_tra}}</p>
               </a>
             </li>
           </ul>
@@ -249,7 +249,7 @@ export default {
     "us_stock",
     "cryptocurrencies",
     "chines_stock",
-    "lobby",
+    "lobby_tra",
     "stockname",
     "loop",
     "country"

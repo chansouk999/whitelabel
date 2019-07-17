@@ -22,6 +22,20 @@
           <div class="col-md-10">
             <div class="tab-content">
               <div class="tab-pane active" id="bankinfo">
+                <div class="row mb-4">
+                  <div class="col-12">
+                    <ul class="nav nav-pills ml-auto nav-pills-primary">
+                      <li class="nav-item">
+                        <a
+                          class="nav-link active"
+                          href="#"
+                          data-toggle="modal"
+                          data-target="#addcardadmin"
+                        >Add Post</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-6 bg-card-admin">
                     <div class="row">
@@ -83,42 +97,37 @@
                 </div>
               </div>
               <div class="tab-pane" id="usagerule">
-                <div class="row">
-                  <div class="col-lg-3 col-md-6">
-                    <div class="card card-pricing card-warning card-raised card-white">
-                      <div class="card-body">
-                        <h1 class="card-title">mid</h1>
-                        <img class="card-img" src="/../assets/img/card-warning.png" alt="Image" />
-                        <ul class="list-group">
-                          <li class="list-group-item">200 messages</li>
-                          <li class="list-group-item">130 emails</li>
-                          <li class="list-group-item">24/7 Support</li>
-                        </ul>
-                        <div class="card-prices">
-                          <h3 class="text-on-front">
-                            <span>$</span>72
-                          </h3>
-                          <h5 class="text-on-back">72</h5>
-                          <p class="plan">Medium plan</p>
-                        </div>
-                      </div>
-                      <div class="card-footer text-center mb-3 mt-3">
-                        <button
-                          class="btn btn-round btn-just-icon btn-primary"
-                          data-toggle="modal"
-                          data-target="#addcard"
-                        >Add</button>
-                      </div>
+                <div class="row d-flex justify-content-center">
+                  <button
+                    class="btn font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6 px-4 mx-4"
+                  >
+                    <div class="font-icon-detail">
+                      <i class="tim-icons icon-minimal-up"></i>
+                      <p>above $1000</p>
                     </div>
-                  </div>
+                  </button>
+                  <button
+                    class="btn font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6 px-4 mx-4"
+                  >
+                    <div class="font-icon-detail">
+                      <i class="tim-icons icon-minimal-down"></i>
+                      <p>below $1000</p>
+                    </div>
+                  </button>
+                </div>
+                <div class="row">
+                  <button class="btn btn-dribbble" @click="addrule()">
+                    <i class="tim-icons icon-simple-add"></i>Add Rule
+                  </button>
                 </div>
               </div>
+
               <!-- backherer -->
               <div class="tab-pane" id="AnnounceMentImage">
                 <div class="row">
                   <Button @click="refresh">Refresh</Button>
                   <!-- v-for="data in carousel" -->
-                  <div class="col-md-2" v-for="data in carousel">
+                  <div class="col-md-2" v-for="(data,index) in carousel " :key="index">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail">
                         <img height="230" :src="'careousel/'+data.carousel" alt="..." />
@@ -140,7 +149,12 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-2" v-for="(data,index) in imageCar" v-if="index <= imgempty">
+                  <div
+                    class="col-md-2"
+                    v-for="(data,index) in imageCar"
+                    v-if="index <= imgempty"
+                    :key="index"
+                  >
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail">
                         <img height="230" :src="data.url" alt="..." />
@@ -188,24 +202,38 @@
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class="col-2">
-                <div class="btn-group bootstrap-select show-tick">
-                  <label for="exampleFormControlSelect2">Level</label>
-                  <select
-                    class="selectpicker"
-                    data-style="btn btn-info"
-                    multiple
-                    title="Level"
-                    data-size="7"
-                    tabindex="-98"
-                  >
-                    <option value="15">In</option>
-                    <option value="16">under</option>
-                    <option value="17">above</option>
-                    <option value="18">not in</option>
-                  </select>
-                </div>
+              <div class="col-md-2">
+                <label>Level</label>
+                <select
+                  class="selectpicker"
+                  data-style="select-with-transition"
+                  title="Level"
+                  data-size="7"
+                >
+                  <option value="15">In</option>
+                  <option value="16">under</option>
+                  <option value="17">above</option>
+                  <option value="18">not in</option>
+                </select>
               </div>
+              <div class="col-1">
+                <label></label>
+                <select
+                  class="selectpicker"
+                  data-style="btn btn-info"
+                  multiple
+                  title="1"
+                  data-size="7"
+                  tabindex="-98"
+                >
+                  <option value="15">1</option>
+                  <option value="16">2</option>
+                  <option value="17">3</option>
+                  <option value="18">4</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
               <div class="col-1">
                 <div class="btn-group bootstrap-select show-tick">
                   <label for="exampleFormControlSelect2"></label>
@@ -335,6 +363,139 @@
         </div>
       </div>
     </div>
+    <!-- msg -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addcardadmin"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <form class="form-horizontal" method="post" action="addcard">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add a new bank card</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Name on Card</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="bankname"
+                            type="text"
+                            name="namecard"
+                            class="form-control"
+                            placeholder="Name on Card..."
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Bank Account</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="bankAccount"
+                            type="text"
+                            name="cardNumber"
+                            class="form-control"
+                            placeholder="Card Number..."
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Owner</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="owner"
+                            type="text"
+                            name="owner"
+                            class="form-control"
+                            placeholder="Owner Card..."
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Registered Province</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="province"
+                            type="text"
+                            name="registerProvince"
+                            class="form-control"
+                            placeholder="Registered Province..."
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Registered City</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="city"
+                            type="text"
+                            name="registedCity"
+                            class="form-control"
+                            placeholder="Registered City..."
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Branch</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="branch"
+                            type="text"
+                            name="branch"
+                            class="form-control"
+                            placeholder="Branch..."
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- {{name}}
+            {{cardnumber}}
+            {{province}}
+            {{city}}
+            {{branch}}-->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button
+                type="submit"
+                class="btn btn-primary addcard"
+                @click.prevent="addcardadmin()"
+              >Add Card</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
  <script>
@@ -346,6 +507,12 @@ export default {
       transimg: [],
       imgempty: 0,
       carousel: [],
+      bankname: "",
+      bankAccount: "",
+      owner: "",
+      province: "",
+      city: "",
+      branch: "",
       imageCar: [
         { url: "assets/img/emptyimg.png" },
         { url: "assets/img/emptyimg.png" },
@@ -359,25 +526,91 @@ export default {
     this.Carousel();
   },
   methods: {
+    addrule() {
+      $("#addcard").modal("show");
+    },
+    addcardadmin() {
+      let vm = this;
+      let data = {
+        bankname: vm.bankname,
+        bankAccount: vm.bankAccount,
+        owner: vm.owner,
+        province: vm.province,
+        city: vm.city,
+        branch: vm.branch
+      };
+      if (
+        data.bankname == "" ||
+        data.bankAccount == "" ||
+        data.owner == "" ||
+        data.province == "" ||
+        data.city == "" ||
+        data.branch == ""
+      ) {
+        this.$swal({
+          type: "warning",
+          title: "Please Fill in it",
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-success",
+          html: "Please check the box that you fill in"
+        });
+      } else {
+        // alert("Your are right");
+        axios
+          .post("/addcardmin", data)
+          .then(res => {
+            console.log(res.data);
+            if (res.data.code == 200) {
+              // this.cardinfo();
+              // HIDE
+              $("#addcardadmin").modal("hide");
+              this.$swal({
+                type: "success",
+                title: res.data.msg,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                html: "Please check the box that you fill in",
+                timer: 1000
+              });
+            }
+            if (res.data.code == 100) {
+              this.$swal({
+                type: "warning",
+                title: res.data.msg,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                html: "Please check the box that you fill in",
+                timer: 1000
+              });
+            }
+          })
+          .catch(er => {
+            console.log(er.res);
+          });
+      }
+    },
     saveimg(id) {
-         alert(localStorage.getItem('name'))
-        let send = '';
+      alert(localStorage.getItem("name"));
+      let send = "";
 
       if (id == "undefined") {
-          send = axios.post;
-
-      }else{
-          send = axios.put;
+        send = axios.post;
+      } else {
+        send = axios.put;
       }
       console.log(id);
-        send('Carousel/'+id,{img:this.transimg}).then(res=>{
-            console.log(res.data)
-            let code = res.data.code
-            if(code==200){
-                this.Carousel();
-                $('.sttaftersave').attr('data-dismiss','fileinput');
-            }
-        }).catch(e=>{console.log(e.response)})
+      send("Carousel/" + id, { img: this.transimg })
+        .then(res => {
+          console.log(res.data);
+          let code = res.data.code;
+          if (code == 200) {
+            this.Carousel();
+            $(".sttaftersave").attr("data-dismiss", "fileinput");
+          }
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
     },
     selectimg(e, index) {
       let vm = this;
@@ -400,10 +633,9 @@ export default {
           this.postioned = data.length + 1;
           this.imgempty = 4 - data.length;
           this.carousel = res.data;
-           if (isLocalStorage()) {
-      localStorage.setItem('name', 'Souksavanh')
-    }
-
+          if (isLocalStorage()) {
+            localStorage.setItem("name", "Souksavanh");
+          }
         })
         .catch(er => {
           console.log(er.response);

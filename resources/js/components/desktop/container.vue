@@ -26,7 +26,7 @@
             :us_stock="us_stock"
             :cryptocurrencies="cryptocurrencies"
             :chines_stock="chines_stock"
-            :lobby="lobby"
+            :lobby_tra="lobby_tra"
           ></asides>
         </div>
         <div class="col-xl-10 col-sm-12">
@@ -293,7 +293,7 @@ export default {
     "us_stock",
     "cryptocurrencies",
     "chines_stock",
-    "lobby",
+    "lobby_tra",
     "checkpcormb"
   ],
   updated() {

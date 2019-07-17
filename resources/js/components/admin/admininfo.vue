@@ -157,7 +157,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(data,index) in admininfoall">
+                <tr v-for="(data,index) in admininfoall" :key="index">
                   <td class="text-center">{{index+1}}</td>
                   <td>{{data.name}}</td>
                   <td>{{data.id}}</td>

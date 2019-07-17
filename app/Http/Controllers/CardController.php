@@ -28,6 +28,8 @@ use App\Announcement;
 use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
 use App\Rolling_history;
+use App\Admincard;
+
 // use League\Flysystem\Exception;
 class CardController extends Controller
 {
@@ -237,18 +239,18 @@ class CardController extends Controller
         try {
             DB::enableQueryLog();
             $roll_his = Rolling_history::where('user_id', Auth::user()->user_id)->latest()->limit(1)->get();
-         $last_total_bet = $roll_his->pluck('last_totalbet');
-         if($last_total_bet->count() >0){
-            $last_total_bet =   $last_total_bet[0];
-         }else{
-            $last_total_bet = 0;
-         }
-         $user_detail = userdetail::where('user_id', Auth::user()->user_id)->get();
-         $total_bet   =  $user_detail->pluck('Totalbet')[0];
-         $avaiable_bet = $total_bet - $last_total_bet;
+            $last_total_bet = $roll_his->pluck('last_totalbet');
+            if ($last_total_bet->count() > 0) {
+                $last_total_bet =   $last_total_bet[0];
+            } else {
+                $last_total_bet = 0;
+            }
+            $user_detail = userdetail::where('user_id', Auth::user()->user_id)->get();
+            $total_bet   =  $user_detail->pluck('Totalbet')[0];
+            $avaiable_bet = $total_bet - $last_total_bet;
 
-         $percent= Selfservice::where('Amount', '<=', $total_bet)->limit(1)->get()->pluck('percentage')[0];
-         $avaiable_rolling =  ($avaiable_bet * $percent) /100;
+            $percent = Selfservice::where('Amount', '<=', $total_bet)->limit(1)->get()->pluck('percentage')[0];
+            $avaiable_rolling = ($avaiable_bet * $percent) / 100;
             if ($avaiable_rolling <= 0) {
                 return $this->returncode(99, $avaiable_rolling, 'Not enough');
             }
@@ -331,7 +333,35 @@ class CardController extends Controller
                 ->join('admin_accesses', 'admins.id', '=', 'admin_accesses.admin_id')
                 ->where('admins.id', '=', $id)
                 ->get();
-            return $data;
+            // return $data;
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function addcardmin(Request $request)
+    {
+        try {
+            $adminid = Auth::guard('administrator')->user()->id;
+            return $adminid;
+            DB::enableQueryLog();
+            $address = array(
+                'province' => $request->province,
+                'city' => $request->city,
+            );
+            $saveData = array(
+                'addedby' => $adminid,
+                'bankname' => $request->bankname,
+                'bankAccount' => $request->bankAccount,
+                'branch' => $request->branch,
+                'owner' => $request->owner,
+                'address' => json_encode($address),
+            );
+            $getData = Admincard::create($saveData);
+            if ($getData) {
+                return $this->returncode(200, 'No data', 'success');
+            } else {
+                return $this->returncode(300, '', DB::getQueryLog()); //query error
+            }
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }

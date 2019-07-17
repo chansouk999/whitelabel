@@ -38,7 +38,6 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="shinfo"
                       placeholder="userapiID/refernce/gameID"
                     >
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
