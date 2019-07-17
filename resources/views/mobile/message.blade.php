@@ -29,7 +29,7 @@
         @else
         <input type="hidden" class="checkuser" name="" value="false">
         @endif
-        <app-taps
+        <app-messagemb
         recommend_friends="@lang('home.recommend_friends')"
         message="@lang('home.message')"
         myaccount_tra="@lang('home.myaccount_tra')"
@@ -75,10 +75,7 @@
         smssubscription="@lang('home.smssubscription')"
         loginsettings="@lang('home.loginsettings')"
         nonactivated="@lang('home.nonactivated')"
-        availablerolling="@lang('home.availablerolling')"
-        totalbets="@lang('home.totalbets')"
-        totalrolling="@lang('home.totalrolling')"
-            ></app-taps>
+            ></app-messagemb>
     </div>
     @include('sweetalert::alert')
     <!--   Core JS Files   -->
@@ -102,7 +99,7 @@
     <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
     <script src="../assets/js/plugins/bootstrap-selectpicker.js"></script>
     <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-        <script src="../assets/js/plugins/bootstrap-datetimepicker.js"></script>
+    <script src="../assets/js/plugins/bootstrap-datetimepicker.js"></script>
     <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
     <script src="../assets/js/plugins/jquery.dataTables.min.js"></script>
     <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->

@@ -118,6 +118,7 @@ Route::get('/admins', 'HomeController@admin');
 Route::get('/wlmobile', 'HomeController@whitelabel_mobile');
 Route::get('/myaccount', 'HomeController@myaccount');
 Route::get('/profile', 'HomeController@tapsprofile');
+Route::get('/messagemb', 'HomeController@messagemb');
 
 //  Route::domain('{m}.localhost:8004')->group(function () {
 //     Route::get('/', function () {

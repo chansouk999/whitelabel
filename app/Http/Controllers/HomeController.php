@@ -80,4 +80,9 @@ class HomeController extends Controller
     {
         return view('mobile.tapsprofile');
     }
+
+    public function messagemb()
+    {
+        return view('mobile.message');
+    }
 }

@@ -420,7 +420,8 @@ export default {
     "modifyphone",
     "smssubscription",
     "loginsettings",
-    "nonactivated"
+    "nonactivated",
+
   ]
 };
 

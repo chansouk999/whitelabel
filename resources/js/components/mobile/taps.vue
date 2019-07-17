@@ -39,7 +39,11 @@
             <applyforwithdrawal />
           </div>
           <div class="u-content" v-else-if="page =='selfservicerolling'">
-            <selfservicewashing />
+            <selfservicewashing
+              :availablerolling="availablerolling"
+              :totalbets="totalbets"
+              :totalrolling="totalrolling"
+            />
           </div>
           <div class="u-content" v-else-if="page =='changepassword'">
             <changepassword />
@@ -146,7 +150,10 @@ export default {
     "modifyphone",
     "smssubscription",
     "loginsettings",
-    "nonactivated"
+    "nonactivated",
+    "availablerolling",
+    "totalbets",
+    "totalrolling"
   ]
 };
 </script>
