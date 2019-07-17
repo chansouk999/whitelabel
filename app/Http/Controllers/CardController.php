@@ -342,7 +342,7 @@ class CardController extends Controller
     {
         try {
             $adminid = Auth::guard('administrator')->user()->id;
-            return $adminid;
+            // return $adminid;
             DB::enableQueryLog();
             $address = array(
                 'province' => $request->province,
@@ -361,6 +361,25 @@ class CardController extends Controller
                 return $this->returncode(200, 'No data', 'success');
             } else {
                 return $this->returncode(300, '', DB::getQueryLog()); //query error
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function getadmincard()
+    {
+        $data = Admincard::get();
+        return $data;
+    }
+    public function deletecard($id)
+    {
+        try {
+            DB::enableQueryLog();
+            $delete = Admincard::where("id", "=", $id)->delete();
+            if ($delete) {
+                return $this->returncode(200, "No data", 'success');
+            } else {
+                return $this->returncode(300, "Can not delete", DB::getQueryLog());
             }
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());

@@ -295,3 +295,7 @@ Route::get('/editadmindetail/{id}', 'CardController@editadmindetail');
 
 Route::post('/addcardmin', 'CardController@addcardmin');
 
+Route::get('/getadmincard', 'CardController@getadmincard');
+
+Route::post('/deletecard/{id}', 'CardController@deletecard');
+

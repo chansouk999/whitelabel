@@ -8,7 +8,7 @@
           </div>
         </div>
         <div class="row ml-25">
-          <div class="col-md-6" v-for="(data,index) in getcCardinfo">
+          <div class="col-md-6" v-for="(data,index) in getcCardinfo" :key="index">
             <div class="card">
               <div
                 class="card-body bg-baninfo"
@@ -106,7 +106,7 @@
               </div>
               <img src="assets/img/bitcoin.png" alt="Card image cap" />
               <div class="card-body p-bank">
-                <a 
+                <a
                   href="#"
                   class="btn btn-primary bg-custome"
                   data-toggle="modal"
