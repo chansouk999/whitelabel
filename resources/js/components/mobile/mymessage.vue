@@ -4,7 +4,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="container">
       <div class="row mt-5">
-          <div class="col-2">
+        <div class="col-2">
           <asides
             :stock1="stock1"
             :stock2="stock2"
@@ -168,9 +168,10 @@ import asides from "./asides";
 export default {
   components: {
     navbars,
-    asides,
+    asides
   },
-  props:[ "home",
+  props: [
+    "home",
     "forum",
     "washcode",
     "mine",
@@ -179,7 +180,8 @@ export default {
     "stock3",
     "stock4",
     "stock5",
-    "stock6",],
+    "stock6"
+  ],
   data() {
     return {
       gamehistorystart: 0,

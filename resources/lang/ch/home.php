@@ -63,4 +63,8 @@ return [
     "loginsettings"=>"登录设定",
     "nonactivated"=>"未开通",
 
+    "availablerolling"=>"可用滚动",
+    "totalbets"=>"总投注",
+    "totalrolling"=>"总滚动"
+
 ];

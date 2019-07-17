@@ -44,7 +44,7 @@
                         />
                         <div class="container">
                           <div class="slide-caption">
-                            <h2 class="slide-caption__title">Mussum Ipsum</h2>
+                            <!-- <h2 class="slide-caption__title">Mussum Ipsum</h2> -->
                             <p
                               class="slide-caption__desc"
                             >Mé faiz elementum girarzis, nisi eros vermeio.</p>

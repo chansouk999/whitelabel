@@ -6,9 +6,9 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Available Rolling</th>
-                <th>Total Bets</th>
-                <th>Total Rolling</th>
+                <th>{{availablerolling}}</th>
+                <th>{{totalbets}}</th>
+                <th>{{totalrolling}}</th>
               </tr>
             </thead>
             <tbody>
@@ -31,6 +31,7 @@
 </template>
 <script>
 export default {
+    props:["availablerolling", "totalbets", "totalrolling"],
   data() {
     return {
       userRolling:[],

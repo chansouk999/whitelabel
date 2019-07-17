@@ -58,6 +58,9 @@ return [
     "smssubscription"=>"SMS Subscription",
     "loginsettings"=>"Login Settings",
     "nonactivated"=>"Nonactivated",
+    "availablerolling"=>"Available Rolling",
+    "totalbets"=>"Total Bets",
+    "totalrolling"=>"Total Rolling"
 
 
 ];

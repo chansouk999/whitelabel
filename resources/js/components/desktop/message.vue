@@ -46,12 +46,15 @@
               :my_message="my_message"
               :change_password="change_password"
               :customer_care="customer_care"
+              :availablerolling="availablerolling"
+              :totalbets="totalbets"
+              :totalrolling="totalrolling"
             ></app-navbarMessage>
           </div>
           <!-- /.row -->
           <div class="row mt-5">
             <app-footer></app-footer>
-              <app-alertsidebar></app-alertsidebar>
+            <app-alertsidebar></app-alertsidebar>
           </div>
         </div>
       </div>
@@ -112,9 +115,11 @@ export default {
     "stock4",
     "stock5",
     "stock6",
-    "checkpcormb"
-  ],
-
+    "checkpcormb",
+    "availablerolling",
+    "totalbets",
+    "totalrolling"
+  ]
 };
 </script>
 <style scoped>

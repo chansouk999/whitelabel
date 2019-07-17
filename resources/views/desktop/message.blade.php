@@ -64,6 +64,9 @@
         stock4="@lang('home.stock4')"
         stock5="@lang('home.stock5')"
         stock6="@lang('home.stock6')"
+        availablerolling="@lang('home.availablerolling')"
+        totalbets="@lang('home.totalbets')"
+        totalrolling="@lang('home.totalrolling')"
 
         ></app-message>
     </div>
