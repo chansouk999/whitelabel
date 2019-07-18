@@ -30,9 +30,9 @@
                         <div class="block block-four"></div>
                         <a href="javascript:void(0)">
                           <img class="avatar" src="assets/img/emilyz.jpg" alt="..." />
-                          <h5 class="title">{{id}}</h5>
+                          <h5 class="title">{{user_id}}</h5>
                         </a>
-                        <p class="description">Ceo/Co-Founder</p>
+                        <p class="description">{{name}}</p>
                       </div>
 
                       <div class="card-description p-0 m-0">
@@ -40,23 +40,22 @@
                           <div class="card-body h-0">
                             <h4 class="card-title">{{totalbalance}}({{yuan}})</h4>
                             <span class="bala-num">
-
                               <span id="tBalance">{{formatToPrice(balance)}}</span>
                             </span>
                             <div class="card-footer">
                               <a href="#" class="card-link">
                                 {{gamebalance}}
-                                <span class="bala-num-below">
-
-                                  <span id="gBalance">{{formatToPrice(0.00)}}</span>
-                                </span>
+                                <br />
+                                <!-- <span class="bala-num-below"> -->
+                                <span id="gBalance">{{formatToPrice(0)}}</span>
+                                <!-- </span> -->
                               </a>
                               <a href="#" class="card-link">
                                 {{localbalance}}
-                                <span class="bala-num-below">
-
-                                  <span id="lBalance">{{formatToPrice(0.00)}}</span>
-                                </span>
+                                <br />
+                                <!-- <span class="bala-num-below"> -->
+                                <span id="lBalance">{{formatToPrice(0)}}</span>
+                                <!-- </span> -->
                               </a>
                             </div>
                           </div>
@@ -312,8 +311,11 @@ export default {
         prevNextButtons: false,
         pageDots: false,
         wrapAround: true
+
         // any options from Flickity can be used
       },
+      user_id: "",
+      name:'',
       id: "",
       balance: "",
       ismenu: false,
@@ -335,7 +337,7 @@ export default {
     this.userdata();
   },
   methods: {
-      formatToPrice(value) {
+    formatToPrice(value) {
       return `$ ${Number(value)
         .toFixed(2)
         .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`;
@@ -344,7 +346,7 @@ export default {
       axios
         .get("/userdetaildata")
         .then(res => {
-        //   console.log(res.data[0]);
+          //   console.log(res.data[0]);
           this.id = res.data[0].id;
           this.user_id = res.data[0].user_id;
           this.provider_name = res.data[0].provider_name;
@@ -425,8 +427,7 @@ export default {
     "modifyphone",
     "smssubscription",
     "loginsettings",
-    "nonactivated",
-
+    "nonactivated"
   ]
 };
 
