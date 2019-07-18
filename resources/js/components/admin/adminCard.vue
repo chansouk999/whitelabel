@@ -192,6 +192,7 @@
       role="dialog"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
+     
     >
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-cutome-admin">
@@ -238,14 +239,13 @@
                 <select
                   class="selectpicker"
                   data-style="btn btn-info"
-                  multiple
-                  title="in or in"
                   data-size="7"
                   tabindex="-98"
+                  v-model="localted"
                 >
-                  <option value="15">in</option>
-                  <option value="16">in or in</option>
-                  <option value="17">in and not in</option>
+                  <option value="in">in</option>
+                  <option value="inorin">in or in</option>
+                  <option value="inAndNotin">in and not in</option>
                 </select>
               </div>
               <div class="col-3">
@@ -253,7 +253,6 @@
                 <select
                   class="selectpicker"
                   data-style="btn btn-info"
-                  multiple
                   title="Thailand"
                   data-size="7"
                   tabindex="-98"
@@ -263,12 +262,11 @@
                   <option value="17">Thailand</option>
                 </select>
               </div>
-              <div class="col-3">
+              <div class="col-3" v-show="localted !=='in'">
                 <label class="text-dark"></label>
                 <select
                   class="selectpicker"
                   data-style="btn btn-info"
-                  multiple
                   title="China"
                   data-size="7"
                   tabindex="-98"
@@ -495,6 +493,7 @@
 export default {
   data() {
     return {
+      localted: "inorin",
       rulename: "",
       loopgetadmincard: [],
       transferimganme: null,
@@ -520,6 +519,9 @@ export default {
   mounted() {
     this.Carousel();
     this.getadmincarddata();
+  },
+  watch: {
+  
   },
   methods: {
     Editcard(id) {
