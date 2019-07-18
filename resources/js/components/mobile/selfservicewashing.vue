@@ -13,9 +13,9 @@
             </thead>
             <tbody>
               <tr v-for="(data,index) in userRolling" :key="index">
-                <td>{{data.available_rolling}}</td>
-                <td>{{data.totalbet}}</td>
-                <td>{{data.total_rolling}}</td>
+                <td>{{formatToPrice(data.available_rolling)}}</td>
+                <td>{{formatToPrice(data.totalbet)}}</td>
+                <td>{{formatToPrice(data.total_rolling)}}</td>
               </tr>
             </tbody>
           </table>
@@ -44,6 +44,11 @@ export default {
     this.getUserDetail();
   },
   methods: {
+    formatToPrice(value) {
+      return `$ ${Number(value)
+        .toFixed(2)
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`;
+    },
     submitRolling() {
       // let vm = this;
       // let data = {

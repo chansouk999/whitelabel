@@ -40,22 +40,22 @@
                           <div class="card-body h-0">
                             <h4 class="card-title">{{totalbalance}}({{yuan}})</h4>
                             <span class="bala-num">
-                              ￥
-                              <span id="tBalance">{{balance}}</span>
+
+                              <span id="tBalance">{{formatToPrice(balance)}}</span>
                             </span>
                             <div class="card-footer">
                               <a href="#" class="card-link">
                                 {{gamebalance}}
                                 <span class="bala-num-below">
-                                  ￥
-                                  <span id="gBalance">0.00</span>
+
+                                  <span id="gBalance">{{formatToPrice(0.00)}}</span>
                                 </span>
                               </a>
                               <a href="#" class="card-link">
                                 {{localbalance}}
                                 <span class="bala-num-below">
-                                  ￥
-                                  <span id="lBalance">0.00</span>
+
+                                  <span id="lBalance">{{formatToPrice(0.00)}}</span>
                                 </span>
                               </a>
                             </div>
@@ -335,6 +335,11 @@ export default {
     this.userdata();
   },
   methods: {
+      formatToPrice(value) {
+      return `$ ${Number(value)
+        .toFixed(2)
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`;
+    },
     userdata() {
       axios
         .get("/userdetaildata")

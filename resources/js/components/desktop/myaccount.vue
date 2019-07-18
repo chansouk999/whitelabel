@@ -27,7 +27,7 @@
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item d-flex justify-content-between">
                     <b>总余额</b>
-                    <a class="float-right">${{balance}}</a>
+                    <a class="float-right">{{formatToPrice(balance)}}</a>
                   </li>
                   <li class="list-group-item d-flex justify-content-between">
                     <b>最近登录时间</b>
@@ -444,6 +444,11 @@ export default {
     this.GetPlayerRecore();
   },
   methods: {
+    formatToPrice(value) {
+      return `$ ${Number(value)
+        .toFixed(2)
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`;
+    },
     showNotification(from, align) {
       let color = Math.floor(Math.random() * 4 + 1);
       $.notify(
