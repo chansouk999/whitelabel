@@ -192,7 +192,6 @@
       role="dialog"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
-     
     >
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-cutome-admin">
@@ -283,19 +282,19 @@
                 <select
                   class="selectpicker"
                   data-style="btn btn-info"
-                  multiple
-                  title="ranges from to"
                   data-size="7"
                   tabindex="-98"
+                  v-model="amoute"
                 >
-                  <option value="15">Reach</option>
-                  <option value="16">Above</option>
-                  <option value="17">Equal to</option>
-                  <option value="17">Other than</option>
-                  <option value="17">ranges from to</option>
+                  <option value="reach">Reach</option>
+                  <option value="above">Above</option>
+                  <option value="eauel">Equal to</option>
+                  <option value="other">Other than</option>
+                  <option value="ranges">ranges from to</option>
                 </select>
               </div>
-              <div class="col-2">
+
+              <div class="col-2" v-show="amoute ==='ranges'">
                 <label class="text-dark"></label>
                 <select
                   class="selectpicker"
@@ -310,7 +309,7 @@
                   <option value="15">$ 300</option>
                 </select>
               </div>
-              <div class="col-2">
+              <div class="col-2" v-show="amoute ==='ranges'">
                 <label class="text-dark"></label>
                 <select
                   class="selectpicker"
@@ -324,6 +323,17 @@
                   <option value="15">$ 200</option>
                   <option value="15">$ 300</option>
                 </select>
+              </div>
+
+              <div class="col-4" v-show="amoute !=='ranges'">
+                 <label class="text-dark"></label>
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    :placeholder="amoute"
+                  />
+                </div>
               </div>
             </div>
             <div class="row mt-4">
@@ -494,6 +504,7 @@ export default {
   data() {
     return {
       localted: "inorin",
+      amoute: "ranges",
       rulename: "",
       loopgetadmincard: [],
       transferimganme: null,
@@ -520,9 +531,7 @@ export default {
     this.Carousel();
     this.getadmincarddata();
   },
-  watch: {
-  
-  },
+  watch: {},
   methods: {
     Editcard(id) {
       alert(id);
