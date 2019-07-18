@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\DB;
 use App\admin_access;
 use App\Agent;
 use App\AgenTransaction;
+use App\Agent_login;
 use App\Shareholder;
 use App\Carousel;
 
@@ -31,6 +32,9 @@ class AdminController extends Controller
     protected $url8003 = 'http://localhost:8003';
 
 
+    public static function helloword(){
+        return 'Hello World';
+    }
     public function __construct()
     {
         $this->middleware('auth:administrator');
@@ -359,26 +363,41 @@ class AdminController extends Controller
     public function saveshareholder(Request $req)
     {
         try {
-            DB::enableQueryLog();
-            $shid =  strtotime('now');
-            $insertdata = array(
-                'share_id' => $shid,
-                'name' => $req->shareholdername,
-                'accessPermission' => $req->shareholderpermision,
-            );
-            $savelogin = Shareholder_login::create(
-                [
-                    'name'=>$req->shareholdername,
-                    'email'=>$req->shareholdername,
-                    'password'=>Hash::make($req->shpassword)
-                ]
-            );
-            $save = Shareholder::create($insertdata);
-            if ($save && $savelogin) {
-                return $this->returncode(200, $save, 'success');
-            } else {
-                return $this->returncode(300, $save, DB::getQueryLog());
+            $shinfo = Shareholder_login::where('email', '=', $req->shareholdername)->limit(1)->get();
+            if ($shinfo->count() < 1) {
+                DB::enableQueryLog();
+                $shid =  strtotime('now');
+                $insertdata = array(
+                    'share_id' => $shid,
+                    'name' => $req->shareholdername,
+                    'accessPermission' => $req->shareholderpermision,
+                );
+                $savelogin = Shareholder_login::create(
+                    [
+                        'name' => $req->shareholdername,
+                        'email' => $req->shareholdername,
+                        'password' => Hash::make($req->shpassword)
+                    ]
+                );
+                $save = Shareholder::create($insertdata);
+                if ($save && $savelogin) {
+                    $method = 'Adminrecord';
+                    $data = array(
+                        'user_id' => $shid,
+                        'event' => 'Create new Shareholder',
+                        'serveby' => Auth::guard('administrator')->user()->id,
+                        'amount' => '',
+                        'eventid' => '',
+                        'Time' => date('Y-m-d'),
+                    );
+                    $Log = new ActivityLog();
+                    $Log->storeLog($method, $data);
+                    return $this->returncode(200, $save, 'success');
+                } else {
+                    return $this->returncode(300, $save, DB::getQueryLog());
+                }
             }
+            return $this->returncode(100, '', 'Name Already Exist');
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
@@ -407,38 +426,50 @@ class AdminController extends Controller
     {
         try {
             DB::enableQueryLog();
-            $insertdata = array(
-                'agentId' => $this->getagentid(),
-                'typeId' => 100,
-                'joinTime' => date('Y-m-d H:i:s'),
-                'numberPlayer' => 0,
-                'subAgent' => 0,
-                'balance' => 0,
-                'percentage' => $req->percentage,
-                'totalIncome' => 0,
-                'name' => $req->agentname,
-                'bankAccount' => $req->agentbankacc,
-                'province' => $req->agentprovince,
-                'city' => $req->agentcity,
-                'branch' => $req->agentbranch,
-            );
-            $save = Agent::create($insertdata);
-            if ($save) {
-                $method = 'Adminrecord';
-                $data = array(
-                    'user_id' => $this->getagentid(),
-                    'event' => 'Create new Agent',
-                    'serveby' => Auth::guard('administrator')->user()->id,
-                    'amount' => '',
-                    'eventid' => '',
-                    'Time' => date('Y-m-d'),
+
+            $shinfo = Agent_login::where('email', '=', $req->agentname)->limit(1)->get();
+            if ($shinfo->count() < 1) {
+                $insertdata = array(
+                    'agentId' => $this->getagentid(),
+                    'typeId' => 100,
+                    'joinTime' => date('Y-m-d H:i:s'),
+                    'numberPlayer' => 0,
+                    'subAgent' => 0,
+                    'balance' => 0,
+                    'percentage' => $req->percentage,
+                    'totalIncome' => 0,
+                    'name' => $req->agentname,
+                    'bankAccount' => $req->agentbankacc,
+                    'province' => $req->agentprovince,
+                    'city' => $req->agentcity,
+                    'branch' => $req->agentbranch,
                 );
-                $Log = new ActivityLog();
-                $Log->storeLog($method, $data);
-                return $this->returncode(200, $save, 'success');
-            } else {
-                return $this->returncode(300, $save, DB::getQueryLog());
+                $save = Agent::create($insertdata);
+                $saveadmin = Agent_login::create(
+                    [
+                        'name' => $req->agentname,
+                        'email' => $req->agentname,
+                        'password' => Hash::make($req->agentpwd),
+                    ]
+                );
+                if ($save) {
+                    $method = 'Adminrecord';
+                    $data = array(
+                        'user_id' => $this->getagentid(),
+                        'event' => 'Create new Agent',
+                        'serveby' => Auth::guard('administrator')->user()->id,
+                        'amount' => '',
+                        'eventid' => '',
+                        'Time' => date('Y-m-d'),
+                    );
+                    $Log = new ActivityLog();
+                    $Log->storeLog($method, $data);
+                    return $this->returncode(200, $save, 'success');
+                } else {
+                    return $this->returncode(300, $save, DB::getQueryLog());
+                }
             }
+            return $this->returncode(100, '', 'already exist');
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
@@ -746,49 +777,64 @@ class AdminController extends Controller
         try {
             DB::enableQueryLog();
             // $roleid = 0;
-            if ($req->admintype == 'Normal') {
-                $roleid = 1;
-            } else {
-                $roleid = 0;
+            $shinfo = Admin::where('email', '=', $req->addnewadminder)->limit(1)->get();
+            if ($shinfo->count() < 1) {
+                if ($req->admintype == 'Normal') {
+                    $roleid = 1;
+                } else {
+                    $roleid = 0;
+                }
+                $id = substr(strtotime('now'), -5, 5);
+                $resid = $id . Admin::count() + 1;
+
+                $insertdata0 = array(
+                    'id' => $resid,
+                    'name' => $req->addnewadminder,
+                    'email' => $req->addnewadminder,
+                    'password' => Hash::make($req->addnewpassword),
+                    'TotalOnline' => 0,
+                    'active' => 0,
+                    'role_id' => $roleid
+
+                );
+                $save = Admin::create($insertdata0);
+                $insertdata1 = array(
+                    'admin_id' => $resid,
+                    'Player' => $req->r_player,
+                    'Gameble' => $req->gamble,
+                    'Gameresult' => $req->r_gameresult,
+                    'Withdraw_topup' => $req->r_withtop,
+                    'Timeline' => $req->r_timeline,
+                    'playerrecord' => $req->r_playerrecord,
+                    'agentInfo' => $req->r_agentinfo,
+                    'SHinfo' => $req->r_shinfo,
+                    'agenttransaction' => $req->r_agenttstion,
+                    'Request' => $req->r_request,
+                    'Anouncement' => $req->r_announcement,
+                    'ManageRecord' => $req->r_managerecord,
+                    'SelfRolling' => $req->r_selfrolling
+                );
+                $save = admin_access::create($insertdata1);
+
+
+                if ($save) {
+                    $method = 'Adminrecord';
+                    $data = array(
+                        'user_id' => $resid,
+                        'event' => 'Create new Admin',
+                        'serveby' => Auth::guard('administrator')->user()->id,
+                        'amount' => '',
+                        'eventid' => '',
+                        'Time' => date('Y-m-d'),
+                    );
+                    $Log = new ActivityLog();
+                    $Log->storeLog($method, $data);
+                    return $this->returncode(200, $save, 'success');
+                } else {
+                    return $this->returncode(300, '', DB::getQueryLog());
+                }
             }
-            $id = substr(strtotime('now'), -5, 5);
-            $resid = $id . Admin::count() + 1;
-
-            $insertdata0 = array(
-                'id' => $resid,
-                'name' => $req->addnewadminder,
-                'email' => $req->addnewadminder,
-                'password' => Hash::make($req->addnewpassword),
-                'TotalOnline' => 0,
-                'active' => 0,
-                'role_id' => $roleid
-
-            );
-            $save = Admin::create($insertdata0);
-            $insertdata1 = array(
-                'admin_id' => $resid,
-                'Player' => $req->r_player,
-                'Gameble' => $req->gamble,
-                'Gameresult' => $req->r_gameresult,
-                'Withdraw_topup' => $req->r_withtop,
-                'Timeline' => $req->r_timeline,
-                'playerrecord' => $req->r_playerrecord,
-                'agentInfo' => $req->r_agentinfo,
-                'SHinfo' => $req->r_shinfo,
-                'agenttransaction' => $req->r_agenttstion,
-                'Request' => $req->r_request,
-                'Anouncement' => $req->r_announcement,
-                'ManageRecord' => $req->r_managerecord,
-                'SelfRolling' => $req->r_selfrolling
-            );
-            $save = admin_access::create($insertdata1);
-
-
-            if ($save) {
-                return $this->returncode(200, $save, 'success');
-            } else {
-                return $this->returncode(300, '', DB::getQueryLog());
-            }
+            return $this->returncode(100, '', 'Name Already Exist');
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
@@ -841,7 +887,7 @@ class AdminController extends Controller
             $path = "careousel/";
             $dir = public_path("careousel/");
             // $imgaeid = $UID . $adminid . $date;
-            $count = Carousel::where('id',$r->method)->get();
+            $count = Carousel::where('id', $r->method)->get();
 
 
             if ($r->img) {
@@ -854,27 +900,24 @@ class AdminController extends Controller
                 $filetype = $namecheck[1];
 
 
-                if($count->count() > 0){
-                    unlink($path.$count->pluck('carousel')[0]);
+                if ($count->count() > 0) {
+                    unlink($path . $count->pluck('carousel')[0]);
                 }
 
 
                 \Image::make($image)->save(public_path($path) . $name);
-
-
-
             }
 
 
 
-            if($r->method=='save'){
+            if ($r->method == 'save') {
                 $save = Carousel::create(
                     [
                         'carousel' => $name
                     ]
                 );
-            }else{
-                $save = Carousel::where('id',$r->method)->update(
+            } else {
+                $save = Carousel::where('id', $r->method)->update(
                     [
                         'carousel' => $name
                     ]
@@ -892,7 +935,8 @@ class AdminController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function updatedCarousel(Request $r){
+    public function updatedCarousel(Request $r)
+    {
         return $r;
     }
 }

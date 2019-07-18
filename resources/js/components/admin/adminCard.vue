@@ -86,29 +86,7 @@
                 <div class="row">
                   <div class="col-lg-3 col-md-6">
                     <div class="card card-pricing card-warning card-raised card-white">
-                      <div class="card-body">
-                        <h1 class="card-title">mid</h1>
-                        <img class="card-img" src="/../assets/img/card-warning.png" alt="Image" />
-                        <ul class="list-group">
-                          <li class="list-group-item">200 messages</li>
-                          <li class="list-group-item">130 emails</li>
-                          <li class="list-group-item">24/7 Support</li>
-                        </ul>
-                        <div class="card-prices">
-                          <h3 class="text-on-front">
-                            <span>$</span>72
-                          </h3>
-                          <h5 class="text-on-back">72</h5>
-                          <p class="plan">Medium plan</p>
-                        </div>
-                      </div>
-                      <div class="card-footer text-center mb-3 mt-3">
-                        <button
-                          class="btn btn-round btn-just-icon btn-primary"
-                          data-toggle="modal"
-                          data-target="#addcard"
-                        >Add</button>
-                      </div>
+                 <div class="form-controll"></div>
                     </div>
                   </div>
                 </div>

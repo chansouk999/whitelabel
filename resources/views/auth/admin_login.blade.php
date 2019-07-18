@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+
+<!-- !Auth::guard('shareholders')->check() -->
+<!-- !Auth::guard('agents')->check() -->
+<!-- !Auth::guard('administrator')->check() -->
+@if(!Auth::guard('administrator')->check())
 <div class="container">
     <div class="row mt-3">
         <div class="col-md-12">
@@ -75,4 +80,6 @@
         </div>
     </div>
 </div>
+
+@endif
 @endsection

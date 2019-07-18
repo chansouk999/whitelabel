@@ -352,7 +352,7 @@ export default {
     },
     getImage() {
       axios
-        .get("/Carousel")
+        .get("/userCarousel")
         .then(res => {
           console.log(res.data);
           this.imageSlide = res.data;

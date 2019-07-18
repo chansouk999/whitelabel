@@ -360,6 +360,20 @@
                         </div>
                       </div>
                     </div>
+                     <div class="row">
+                      <label class="col-md-3 col-form-label">Password</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="agentpwd"
+                            type="password"
+                            name="branch"
+                            class="form-control"
+                            placeholder="Percentage..."
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -479,6 +493,7 @@ export default {
       B: 19,
       Page: 1,
       agentinfo: [],
+      agentpwd:null
     };
   },
   mounted() {
@@ -530,17 +545,22 @@ export default {
         agentprovince: vm.agentprovince,
         agentcity: vm.agentcity,
         agentbranch: vm.agentbranch,
-        percentage: vm.percentage
+        percentage: vm.percentage,
+        agentpwd:vm.agentpwd
       };
       axios
         .post("/saveagent", data)
         .then(res => {
-          // console.log(res.data);
+          console.log(res.data);
           let code = res.data.code;
           let msg = res.data.msg;
           let data = res.data.data;
+        //   conso
           if (code == 200) {
             this.getagentinfo();
+          }
+          if (code == 100) {
+            alert('Already Exist Data')
           }
           //   alert(msg);
         })

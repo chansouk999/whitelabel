@@ -321,7 +321,9 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-lg">
-        <div class="modal-content bg-default" v-for="data in getadmindetail">
+
+        <!-- <div class="modal-content bg-default" v-if="editclicked == true"  v-for="data in getadmindetail"> -->
+        <div class="modal-content bg-default" >
           <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">Create new admin</h4>
@@ -680,8 +682,9 @@
 export default {
   data() {
     return {
-      getadmindetail: [],
+      editclicked:false,
       admininfoall: [],
+      getadmindetail: [],
       datagetadminlog: [],
       admininfo: [],
       r_player: null,

@@ -101,6 +101,14 @@
         </div>
       </div>
     </div>
+
+
+
+
+
+
+    @if(!Auth::guard('shareholders')->check())
+
     <div class="row">
       <div class="col-md-4">
         <div class="card card-testimonial">
@@ -124,6 +132,48 @@
           </div>
         </div>
       </div>
+      @else
+      <div class="row">
+            <div class="col-md-4">
+              <div class="card card-testimonial">
+                <div class="card-header card-header-avatar">
+                  <a href="{{url('/shareholder/login')}}">
+                    <img class="img img-raised" src="../assets/img/Shareholder.png" alt="Card image">
+                  </a>
+                </div>
+                <div class="card-body">
+                  <p class="card-description">
+                    Shareholder
+                  </p>
+                  <div class="icon icon-warning">
+                    <i class="fa fa-quote-right"></i>
+                  </div>
+                </div>
+                <div class="card-footer">
+                        <a onclick="linkTo('shareholder')" class="btn btn-success" style="color:aliceblue">
+                          <i class="tim-icons icon-lock-circle"></i>  {{Auth::guard('shareholders')->user()->name}} is Logged
+                        </a>
+                      </div>
+              </div>
+            </div>
+            @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            @if(!Auth::guard('agents')->check())
       <div class="col-md-4">
         <div class="card card-testimonial">
           <div class="card-header card-header-avatar">
@@ -146,6 +196,47 @@
           </div>
         </div>
       </div>
+      @else
+      <div class="col-md-4">
+            <div class="card card-testimonial">
+              <div class="card-header card-header-avatar">
+                <a href="/administrator/agent">
+                  <img class="img img-raised" src="../assets/img/agent.png" alt="Card image">
+                </a>
+              </div>
+              <div class="card-body">
+                <p class="card-description">
+                  Agent Account
+                </p>
+                <div class="icon icon-warning">
+                  <i class="fa fa-quote-right"></i>
+                </div>
+              </div>
+              <div class="card-footer">
+                    <a  class="btn btn-success " onclick="linkTo('agent')" style="color:aliceblue">
+                      <i class="tim-icons icon-lock-circle"></i>  {{Auth::guard('agents')->user()->name}} is Logged
+                    </a>
+                  </div>
+            </div>
+          </div>
+
+        @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      @if(!Auth::guard('administrator')->check())
       <div class="col-md-4">
         <div class="card card-testimonial">
           <div class="card-header card-header-avatar">
@@ -168,6 +259,32 @@
           </div>
         </div>
       </div>
+      @else
+      <div class="col-md-4">
+            <div class="card card-testimonial">
+              <div class="card-header card-header-avatar">
+                <a href="/administrator/login">
+                  <img class="img img-raised" src="../assets/img/admin.png" alt="Card image">
+                </a>
+              </div>
+              <div class="card-body">
+                <p class="card-description">
+                         Administrator
+                </p>
+                <div class="icon icon-warning">
+                  <i class="fa fa-quote-right"></i>
+                </div>
+              </div>
+              <div class="card-footer">
+                <a onclick="linkTo('administrator')" class="btn btn-success" style="color:aliceblue">
+                  <i class="tim-icons icon-lock-circle"></i>  {{Auth::guard('administrator')->user()->name}} is Logged
+                </a>
+              </div>
+            </div>
+          </div>
+      @endif
+
+
     </div>
   </div>
   <main>
@@ -218,7 +335,13 @@
   <!-- Black Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assetsadmin/demo/demo.js"></script>
   <script>
+      function linkTo(link){
+         window.history.replaceState({}, document.title, "/" + link);
+        location.reload()
+      }
     $(document).ready(function() {
+
+
       $().ready(function() {
         $sidebar = $('.sidebar');
         $navbar = $('.navbar');
@@ -330,6 +453,8 @@
   </script>
   <script>
     $(document).ready(function() {
+
+
       demo.checkFullPageBackgroundImage();
     });
   </script>

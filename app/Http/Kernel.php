@@ -42,6 +42,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\AutoDeleteAnnoucement::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Switchlang::class,
+            \Barryvdh\Cors\HandleCors::class,
             \App\Http\Middleware\blockIp::class,
             \App\Http\Middleware\RedirectifAdminAuthenticated::class,
             \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
@@ -50,6 +51,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+            \Barryvdh\Cors\HandleCors::class,
         ],
     ];
 

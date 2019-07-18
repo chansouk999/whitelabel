@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Shareholder\Auth;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Shareholder_login;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 class LoginController extends Controller
 {
      /**
@@ -24,7 +26,7 @@ class LoginController extends Controller
     {
         return view('auth.shareholder_login', [
             'title' => 'Admin Login',
-            'loginRoute' => 'admin.login',
+            'loginRoute' => 'shareholder/login',
             'forgotPasswordRoute' => 'admin.password.request',
         ]);
     }
@@ -66,17 +68,18 @@ class LoginController extends Controller
 
     private function validator(Request $request)
     {
-        //validation rules.
-        $rules = [
-            'email'    => 'required|exists:admins|min:5|max:191',
-            'password' => 'required|string|min:4|max:255',
-        ];
-        //custom validation error messages.
-        $messages = [
-            'email.exists' => 'These credentials do not match our records.',
-        ];
-        //validate the request.
-        $request->validate($rules, $messages);
+        //validation rules
+        $req = $request;
+        $shinfo = Shareholder_login::where('email','=',$req->email)->limit(1)->get();
+        if($shinfo->count() > 0){
+            $oldpwd = $shinfo->pluck('password')[0];
+            if(Hash::check($req->password, $oldpwd)){
+                Session(['code'=>200]);
+                return ['code'=>200];
+            }
+        }
+        Session(['code'=>300]);
+        // return $request;
     }
     /**
      * Redirect back after a failed login.

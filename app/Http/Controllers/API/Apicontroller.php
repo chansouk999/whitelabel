@@ -21,6 +21,10 @@ class Apicontroller extends Controller
 {
     public function testcode()
     {
+        return Admincontroller::helloword();
+
+        return \Request::query('name');
+
         $data = [
             array(
                 "id" => 1,
