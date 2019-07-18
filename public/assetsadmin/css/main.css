@@ -202,16 +202,40 @@
 
 p.card-userName {
     position: absolute;
-    top: 140px;
-    left: 31px;
+    bottom: 15px;
+    float: left;
+    left: 15px;
+    color: #fff;
+}
+
+h2.title-branch {
+    position: absolute;
+    top: 15px;
+    float: left;
+    left: 15px;
+    color: #fff;
+}
+
+.addreess {
+    position: absolute;
+    top: 15px;
+    float: right;
+    right: 15px;
     color: #fff;
 }
 
 p.card-bankAccount {
     position: absolute;
-    top: 140px;
-    right: 30px;
+    bottom: 15px;
+    float: right;
+    right: 15px;
     color: #fff;
+}
+
+.user_id.text-white {
+    position: absolute;
+    left: 40%;
+    top: 40%;
 }
 
 h2.crs {
@@ -241,10 +265,35 @@ h2.crs {
     background-repeat: no-repeat;
     background-size: cover;
     padding: 25px !important;
-    height: 200px;
+    height: 250px;
 }
 
 .modal-body {
     height: 500px !important;
     overflow-y: auto !important;
+}
+
+.card-body.bg-baninfo {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.w-75 {
+    width: 75%;
+}
+
+.edit-pencil {
+    position: absolute !important;
+    bottom: 0;
+    float: right;
+    left: 15px;
+}
+
+.edit-trash {
+    position: absolute !important;
+    bottom: 0;
+    float: right;
+    right: 25px;
 }

@@ -31,31 +31,31 @@
                           href="#"
                           data-toggle="modal"
                           data-target="#addcardadmin"
+                          @click.prevent="showdata = false"
                         >Add Card</a>
                       </li>
                     </ul>
                   </div>
                 </div>
-                <div class="row d-flex justify-content-center">
+                <div class="row d-flex justify-content-center w-75 ml-5">
                   <div
                     class="col-5 bg-card-admin p-0 mr-5"
                     v-for="(data,index) in loopgetadmincard"
                     :key="index"
                   >
                     <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-6 px-0">
                         <div class="card m-0 y-0">
                           <div
                             class="card-body bg-baninfo"
                             style="background-image: url(assets/img/visa-bg.jpg);"
                           >
-                            <div class="d-flex justify-content-between">
-                              <h2 class="text-white">{{data.branch}}</h2>
-                              <div class="addreess">
-                                <p class="text-white">{{JSON.parse(data.address).province}}</p>
-                                <p class="text-white">{{JSON.parse(data.address).city}}</p>
-                              </div>
+                            <h2 class="text-white title-branch">{{data.branch}}</h2>
+                            <div class="addreess">
+                              <p class="text-white">{{JSON.parse(data.address).province}}</p>
+                              <p class="text-white">{{JSON.parse(data.address).city}}</p>
                             </div>
+
                             <div class="user_id text-white">{{data.bankAccount}}</div>
                             <div class="d-flex justify-content-between">
                               <p class="card-userName text-white">{{data.owner}}.</p>
@@ -77,15 +77,15 @@
                             <p class="description">Usage ::</p>
                           </div>
                         </div>
-                        <div class="d-flex justify-content-lg-between ps-custome px-4">
+                        <div class="px-4">
                           <button
-                            class="btn btn-primary btn-sm btn-icon"
+                            class="btn btn-primary btn-sm btn-icon edit-pencil"
                             @click.prevent="Editcard(data.id)"
                           >
                             <i class="tim-icons icon-pencil"></i>
                           </button>
                           <button
-                            class="btn btn-danger btn-sm btn-icon"
+                            class="btn btn-danger btn-sm btn-icon edit-trash"
                             @click.prevent="DeleteCard(data.id)"
                           >
                             <i class="tim-icons icon-trash-simple"></i>
@@ -192,7 +192,6 @@
       role="dialog"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
-     
     >
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-cutome-admin">
@@ -369,7 +368,8 @@
         <div class="modal-content">
           <form class="form-horizontal" method="post" action="addcard">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add a new bank card</h5>
+              <h5 class="modal-title" v-if="showdata == false">Add a new bank card</h5>
+              <h5 class="modal-title" v-else>Card AdminID :{{showid}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                 <i class="tim-icons icon-simple-remove"></i>
               </button>
@@ -493,6 +493,9 @@
 export default {
   data() {
     return {
+      showdata: false,
+      showid: "",
+      getEdit: [],
       localted: "inorin",
       rulename: "",
       loopgetadmincard: [],
@@ -520,12 +523,27 @@ export default {
     this.Carousel();
     this.getadmincarddata();
   },
-  watch: {
-  
-  },
+  watch: {},
   methods: {
     Editcard(id) {
-      alert(id);
+      this.showdata = true;
+      $("#addcardadmin").modal("show");
+      axios
+        .get("sendeditcard/" + id)
+        .then(res => {
+          this.getEdit = res.data;
+          this.showid = this.getEdit[0].id;
+          this.bankname = this.getEdit[0].bankname;
+          this.bankAccount = this.getEdit[0].bankAccount;
+          this.owner = this.getEdit[0].owner;
+          this.province = JSON.parse(this.getEdit[0].address).province;
+          this.city = JSON.parse(this.getEdit[0].address).city;
+          this.branch = this.getEdit[0].branch;
+          console.log(res.data);
+        })
+        .catch(e => {
+          console.log9(e.response);
+        });
     },
     DeleteCard(id) {
       this.$swal({
@@ -587,6 +605,7 @@ export default {
       $("#addcard").modal("show");
     },
     addcardadmin() {
+      this.showdata = false;
       let vm = this;
       let data = {
         bankname: vm.bankname,

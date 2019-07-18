@@ -630,7 +630,7 @@ export default {
         vm.requestdata = res.data.data.data;
         let l = res.data.data.data.length;
         if (l > this.length) {
-          if (this.length != null) {
+          if (this.length !== null) {
             this.audioplay.play();
             this.alertwarning = true;
           }

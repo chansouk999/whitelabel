@@ -267,6 +267,7 @@ Route::prefix('/shareholder')->namespace('Shareholder')->group(function () {
 Route::get('/admins', 'HomeController@admin');
 //  Mobile
 Route::get('/wlmobile', 'HomeController@whitelabel_mobile');
+
 Route::get('/myaccount', 'HomeController@myaccount');
 
 Route::get('getRequets', 'CardController@getRequets');
@@ -299,3 +300,4 @@ Route::get('/getadmincard', 'CardController@getadmincard');
 
 Route::post('/deletecard/{id}', 'CardController@deletecard');
 
+Route::get('/sendeditcard/{id}', 'CardController@sendeditcard');

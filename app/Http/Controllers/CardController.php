@@ -385,4 +385,9 @@ class CardController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
+    public function sendeditcard($id)
+    {
+        $getData = Admincard::where('id', '=', $id)->get();
+        return $getData;
+    }
 }
