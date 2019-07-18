@@ -644,8 +644,10 @@ export default {
         vm.requestdata = res.data.data.data;
         let l = res.data.data.data.length;
         if (l > this.length) {
-          this.audioplay.play();
-          this.alertwarning = true;
+          if (this.length != null) {
+            this.audioplay.play();
+            this.alertwarning = true;
+          }
         }
         this.length = l;
       });

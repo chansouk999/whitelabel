@@ -6,16 +6,16 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Available Rolling</th>
-                <th>Total Bets</th>
-                <th>Total Rolling</th>
+                <th>{{availablerolling}}</th>
+                <th>{{totalbets}}</th>
+                <th>{{totalrolling}}</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(data,index) in userRolling" :key="index">
-                <td>{{data.available_rolling}}</td>
-                <td>{{data.totalbet}}</td>
-                <td>{{data.total_rolling}}</td>
+                <td>{{formatToPrice(data.available_rolling)}}</td>
+                <td>{{formatToPrice(data.totalbet)}}</td>
+                <td>{{formatToPrice(data.total_rolling)}}</td>
               </tr>
             </tbody>
           </table>
@@ -31,9 +31,10 @@
 </template>
 <script>
 export default {
+  props: ["availablerolling", "totalbets", "totalrolling"],
   data() {
     return {
-      userRolling:[],
+      userRolling: [],
       Userdetail: [],
       availabel: null,
       oldrolling: null
@@ -43,6 +44,11 @@ export default {
     this.getUserDetail();
   },
   methods: {
+    formatToPrice(value) {
+      return `$ ${Number(value)
+        .toFixed(2)
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`;
+    },
     submitRolling() {
       // let vm = this;
       // let data = {
@@ -52,7 +58,7 @@ export default {
       axios
         .get("/Savveselfservice")
         .then(res => {
-          console.log(res.data)
+          console.log(res.data);
           let msg = res.data.msg;
           let code = res.data.code;
           if (code == 200) {
@@ -76,7 +82,7 @@ export default {
     },
     getUserDetail() {
       axios.get("/getRolling").then(res => {
-        this.userRolling = res.data
+        this.userRolling = res.data;
         // this.Userdetail = res.data[1];
         // this.availabel = res.data[1][0].user_id;
         // this.oldrolling = res.data[1][0].AvailableRolling;

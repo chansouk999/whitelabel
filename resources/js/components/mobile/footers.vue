@@ -15,7 +15,7 @@
           </div>
           <div class="mobile-bottom-nav__item">
             <div class="mobile-bottom-nav__item-content">
-              <a href="#">
+              <a href="/messagemb">
                 <i class="tim-icons icon-chat-33 icon-default"></i>
                 <p>{{forum}}</p>
               </a>

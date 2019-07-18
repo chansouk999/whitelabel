@@ -66,104 +66,79 @@ class StaticController extends Controller
             'ແຂວງໄຊສົມບູນ',
         ];
 
+        $viilage = [
+            'ບ້ານ ໂພນໄຊ',
+            'ບ້ານ ຫັດສະດີ',
+            'ບ້ານ ຫັດສະດີ',
+            'ບ້ານ ໂພນທັນ',
+            'ບ້ານ ສາຍລົມ',
+            'ບ້ານ ສີໄຄ',
+            'ບ້ານ ຈອມມະນີ',
+            'ບ້ານ ຈອມເພັດ',
+            'ບ້ານ ຄຳຮຸ່ງ',
+            'ບ້ານ ທ່ານາແລ້ງ',
+            'ບ້ານ ດອນໜູນ',
+            'ບ້ານ ສີຖານີ',
+            'ບ້ານ ຊຽງຍືນ',
+            'ບ້ານ ຮ່ອງແກ',
+            'ບ້ານ ສະພັງເມິກ',
+            'ບ້ານ ສີຖານີ',
+            'ບ້ານ ວັດຈັນ',
+            'ບ້ານ ໂພນປ່າເປົ້າ',
+            'ໂຮງກາຍຍາສີນ',
+            'ບ້ານ ໂພນທັນ',
+            'ບ້ານ ໜອງແຮ້ວ',
+            'ບ້ານ ສາຍລົມ',
+            'ບ້ານ ໜອງທາ',
+            'ບ້ານ ຫາດຊາຍຂາວ',
+            'ບ້ານ ນາຄຳ',
+        ];
 
 
+        $imgFood = [
+            'http://www.tourismlaos.org/files/images/Laofood-Khaipen.JPG',
+            'http://www.tourismlaos.org/files/images/Laofood-Khaopiaksen.jpg',
+            'http://www.tourismlaos.org/files/images/Laofood-Khaopoon.JPG',
+            'http://www.tourismlaos.org/files/images/Laofood-Khaopoonnamjeow.jpg',
+            'http://www.tourismlaos.org/files/images/Laofood-Khaopoonnamsin.jpg',
+            'http://www.tourismlaos.org/files/images/Laofood-Laosausage.JPG',
+            'http://www.tourismlaos.org/files/images/Laofood-Noodlesoup.JPG',
+            'http://www.tourismlaos.org/files/images/Laofood-Orlam.JPG',
+            'http://www.tourismlaos.org/files/images/Laofood-Sinhsavanh.jpg',
+            'http://www.tourismlaos.org/files/images/Laofood-Sommoo.jpg',
+            'http://www.tourismlaos.org/files/images/Laofood-Khao%20Jee%20Sandwich.JPG',
+            'https://img.theculturetrip.com/1024x/wp-content/uploads/2018/01/tuna-salad-2098253_1280.jpg',
+            'https://cdn.vox-cdn.com/thumbor/aSgtriNKhNjjptpTz1Hm_BPJi-Y=/0x0:2976x2232/1200x0/filters:focal(0x0:2976x2232):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/13111127/Kop_Jai_Lai_Lao_Sausage.jpg',
+            'https://heyraahi.com/wp-content/uploads/2018/12/A2H-19.jpg',
+            'https://www.storynosh.com/wp-content/uploads/2018/11/IMG_0031_2-760x490.jpg',
+            'https://img.apmcdn.org/5c763969342a3bc590cb2ceb5ef6be89d38f6d61/uncropped/c74677-20170308-appetites.jpg',
+            'http://smilepolitely.com/?ACT=33&f=img-2619.jpg&fid=33&d=20815&',
+            'https://www.activetravel.asia/images/sien-savanh-lao-beef-jerky-laos-food.jpg',
+            'https://livingnomads.com/wp-content/uploads/2016/03/khao-jee-baguettes-lao-food.jpg',
+            'https://www.seriouseats.com/2018/05/20180503-Guide-to-Lao-Food-Tam-Muk-Muang-Jai-Williams.jpg',
+            'https://www.travellaosonline.com/wp-content/uploads/2014/09/The-pork-Larb-along.jpg',
+        ];
 
 
-
-
-
-
-
-
-
-
-
-        ປໍ້ານໍ້າມັນ ໂພນໄຊ
-        ບ້ານ : ໂພນໄຊ, ເມືອງ: ໄຊເສດຖາ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ຕະຫຼາດເຊົ້າ
-        ບ້ານ : ຫັດສະດີ, ເມືອງ: ຈັນທະບູລີ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ສຳນັກງານໃຫຍ່1
-        ບ້ານ : ຫັດສະດີ, ເມືອງ: ຈັນທະບູລີ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ສຳນັກງານໃຫຍ່ 2
-        ບ້ານ : ຫັດສະດີ, ເມືອງ: ຈັນທະບູລີ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-         ສູນການຄ້າລາວ-ໄອເຕັກ
-        ບ້ານ : ໂພນທັນ, ເມືອງ: ໄຊເສດຖາ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ບໍລິສັດລາວໂທລະຄົມ
-        ບ້ານ : ສາຍລົມ, ເມືອງ: ຈັນທະບູລີ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ໜ່ວຍບໍລິການສີໄຄ
-        ບ້ານ : ສີໄຄ, ເມືອງ: ສີໂຄດຕະບອງ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ໂຮງໝໍ 150 ຕຽງ
-        ບ້ານ : ຈອມມະນີ, ເມືອງ: ໄຊເສດຖາ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ບ້ານ ຈອມເພັດ
-        ບ້ານ : ຈອມເພັດ, ເມືອງ: ສີສັດຕະນາກ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ໜ່ວຍບໍລິການດົງໂດກ
-        ບ້ານ : ຄຳຮຸ່ງ, ເມືອງ: ໄຊທານີ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ຂົວມິດຕະພາບລາວ-ໄທ
-        ບ້ານ : ທ່ານາແລ້ງ, ເມືອງ: ຫາດຊາຍຟອງ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ໜ່ວຍບໍລິການດອນໜູນ
-        ບ້ານ : ດອນໜູນ, ເມືອງ: ໄຊທານີ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ປໍ້ານໍ້າມັນ PV Oil
-        ບ້ານ : ສີຖານີ, ເມືອງ: ສີໂຄດຕະບອງ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ບໍລິສັດລາວໂທລະຄົມ ນ້ໍາພຸ
-        ບ້ານ : ຊຽງຍືນ, ເມືອງ: ຈັນທະບູລີ, ແຂວງ: ນຫຼວງວຽງຈັນ
-        ເອຊຽນມໍ
-        ບ້ານ : ຮ່ອງແກ, ເມືອງ: ໄຊເສດຖາ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ຄີວລົດເມສາຍໄຕ້
-        ບ້ານ : ສະພັງເມິກ, ເມືອງ: ໄຊທານີ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        LaoVietBank - ສວນເຈົ້າຟ້າງຸ່ມ (ຊ້າງສາມຫົວ)
-        ບ້ານ : ສີຖານີ, ເມືອງ: ສີໂຄດຕະບອງ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ວັດຈັນ
-        ບ້ານ : ວັດຈັນ, ເມືອງ: ຈັນທະບູລີ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ໂພນປ່າເປົ້າ
-        ບ້ານ ໂພນປ່າເປົ້າ, ເມືອງ ສີສັດຕະນາກ, ນະຄອນຫຼວງວຽງຈັນ
-        ໂຮງກາຍຍາສີນ
-        ໂຮງກາຍຍາສີນ, ບ້ານ ສະຫ່ວາງ, ເມືອງ ຈັນທະບູລີ, ນະຄອນຫຼວງວຽງຈັນ
-        ໜ່ວຍບໍລິການລາວໄອເຕັກ
-        ບ້ານ ໂພນທັນ, ເມືອງໄຊເສດຖາ, ນະຄອນຫຼວງວຽງຈັນ
-        ບໍລິສັດ ທີເອສບີ
-        ບ້ານ : ໜອງແຮ້ວ, ເມືອງ: ຫາດຊາຍຟອງ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-        ບໍລິສັດລາວໂທລະຄົມສຳນັກງານໃຫ່ຍ
-        ບ້ານ: ສາຍລົມ, ເມືອງ: ຈັນທະບູລີ, ນະຄອນຫຼວງວຽງຈັນ
-        ໜອງທາ
-        ບ້ານ ໜອງທາ, ເມືອງ ຈັນທະບູລີ, ນະຄອນຫຼວງວຽງຈັນ
-        ຫາດຊາຍຂາວ
-        ບ້ານ: ຫາດຊາຍຂາວ, ເມືອງໄຊທານີ, ນະຄອນຫຼວງວຽງຈັນ
-        ໜ່ວຍບໍລິການ ວັດໄຕ
-        ບ້ານ : ນາຄຳ, ເມືອງ: ສີໂຄດຕະບອງ, ແຂວງ: ນະຄອນຫຼວງວຽງຈັນ
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        $userimg = [
+            'http://www.venmond.com/demo/vendroid/img/avatar/big.jpg',
+        ];
 
 
         $data = [];
         for ($i = 0; $i <= 35; $i++) {
             $data[] = [
                 'id' => $i,
+                'imgProfile'=>$userimg[array_rand($userimg, 1)],
                 'resName' => 'Soukjai',
                 'uploadTime' => strtotime('now'),
                 'uploadTimeStamp' => strtotime('now') - mt_rand(1000, 9000),
-                'img' => 'http://www.tourismlaos.org/files/images/Laofood-Khaipen.JPG',
+                'img' => $imgFood[array_rand($imgFood, 1)],
                 'lovePoint' => mt_rand(0, 1020),
                 'address' => [
                     'city' => $city[array_rand($city, 1)],
                     'province' => $province[array_rand($province, 1)],
-                    'village' => 'donkoi',
+                    'village' => $viilage[array_rand($viilage, 1)],
                 ],
 
             ];

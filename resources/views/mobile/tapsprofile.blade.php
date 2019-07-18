@@ -75,6 +75,9 @@
         smssubscription="@lang('home.smssubscription')"
         loginsettings="@lang('home.loginsettings')"
         nonactivated="@lang('home.nonactivated')"
+        availablerolling="@lang('home.availablerolling')"
+        totalbets="@lang('home.totalbets')"
+        totalrolling="@lang('home.totalrolling')"
             ></app-taps>
     </div>
     @include('sweetalert::alert')

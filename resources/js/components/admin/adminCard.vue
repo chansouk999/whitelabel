@@ -22,35 +22,44 @@
           <div class="col-md-10">
             <div class="tab-content">
               <div class="tab-pane active" id="bankinfo">
-                <div class="row">
-                  <div class="col-6 bg-card-admin">
+                <div class="row mb-4">
+                  <div class="col-12">
+                    <ul class="nav nav-pills ml-auto nav-pills-primary">
+                      <li class="nav-item">
+                        <a
+                          class="nav-link active"
+                          href="#"
+                          data-toggle="modal"
+                          data-target="#addcardadmin"
+                        >Add Card</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                  <div
+                    class="col-5 bg-card-admin p-0 mr-5"
+                    v-for="(data,index) in loopgetadmincard"
+                    :key="index"
+                  >
                     <div class="row">
                       <div class="col-md-6">
-                        <div class="card">
+                        <div class="card m-0 y-0">
                           <div
                             class="card-body bg-baninfo"
                             style="background-image: url(assets/img/visa-bg.jpg);"
                           >
                             <div class="d-flex justify-content-between">
-                              <h2 class="text-white">13213232</h2>
+                              <h2 class="text-white">{{data.branch}}</h2>
                               <div class="addreess">
-                                <p class="text-white">132654123</p>
-                                <p class="text-white">Vientainer</p>
+                                <p class="text-white">{{JSON.parse(data.address).province}}</p>
+                                <p class="text-white">{{JSON.parse(data.address).city}}</p>
                               </div>
                             </div>
-                            <div class="user_id text-white">13242146+</div>
+                            <div class="user_id text-white">{{data.bankAccount}}</div>
                             <div class="d-flex justify-content-between">
-                              <p class="card-userName text-white">Vongkeo.</p>
-                              <p class="card-bankAccount text-white">Bank</p>
-                            </div>
-                            <div class="form-check form-use float-right">
-                              <label class="form-check-label text-white">
-                                <input class="form-check-input checkuse" type="checkbox" name />
-
-                                <span class="form-check-sign">
-                                  <span class="check"></span>
-                                </span>
-                              </label>
+                              <p class="card-userName text-white">{{data.owner}}.</p>
+                              <p class="card-bankAccount text-white">{{data.bankname}}</p>
                             </div>
                           </div>
                         </div>
@@ -61,18 +70,24 @@
                             <i class="tim-icons icon-wifi mt-3"></i>
                           </div>
                           <div class="description">
-                            <h3 class="info-title">Details</h3>
-                            <p class="description">Added by ::</p>
-                            <p class="description">Last Edit ::</p>
+                            <h3 class="info-title my-0">Details</h3>
+                            <p class="description">Added by :: {{data.addedby}}</p>
+                            <p class="description">Last Edit ::{{data.updated_at}}</p>
                             <p class="description">Last Edit by ::</p>
                             <p class="description">Usage ::</p>
                           </div>
                         </div>
-                        <div class="d-flex justify-content-lg-between ps-custome">
-                          <button type="button" class="btn btn-primary btn-sm btn-icon">
+                        <div class="d-flex justify-content-lg-between ps-custome px-4">
+                          <button
+                            class="btn btn-primary btn-sm btn-icon"
+                            @click.prevent="Editcard(data.id)"
+                          >
                             <i class="tim-icons icon-pencil"></i>
                           </button>
-                          <button type="button" class="btn btn-danger btn-sm btn-icon">
+                          <button
+                            class="btn btn-danger btn-sm btn-icon"
+                            @click.prevent="DeleteCard(data.id)"
+                          >
                             <i class="tim-icons icon-trash-simple"></i>
                           </button>
                         </div>
@@ -83,20 +98,37 @@
                 </div>
               </div>
               <div class="tab-pane" id="usagerule">
-                <div class="row">
-                  <div class="col-lg-3 col-md-6">
-                    <div class="card card-pricing card-warning card-raised card-white">
-                 <div class="form-controll"></div>
+                <div class="row d-flex justify-content-center">
+                  <button
+                    class="btn font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6 px-4 mx-4"
+                  >
+                    <div class="font-icon-detail">
+                      <i class="tim-icons icon-minimal-up"></i>
+                      <p>above $1000</p>
                     </div>
-                  </div>
+                  </button>
+                  <button
+                    class="btn font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6 px-4 mx-4"
+                  >
+                    <div class="font-icon-detail">
+                      <i class="tim-icons icon-minimal-down"></i>
+                      <p>below $1000</p>
+                    </div>
+                  </button>
+                </div>
+                <div class="row">
+                  <button class="btn btn-dribbble" @click="addrule()">
+                    <i class="tim-icons icon-simple-add"></i>Add Rule
+                  </button>
                 </div>
               </div>
+
               <!-- backherer -->
               <div class="tab-pane" id="AnnounceMentImage">
                 <div class="row">
                   <Button @click="refresh">Refresh</Button>
                   <!-- v-for="data in carousel" -->
-                  <div class="col-md-2" v-for="data in carousel">
+                  <div class="col-md-2" v-for="(data,index) in carousel " :key="index">
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail">
                         <img height="230" :src="'careousel/'+data.carousel" alt="..." />
@@ -118,7 +150,12 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-2" v-for="(data,index) in imageCar" v-if="index <= imgempty">
+                  <div
+                    class="col-md-2"
+                    v-for="(data,index) in imageCar"
+                    v-if="index <= imgempty"
+                    :key="index"
+                  >
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                       <div class="fileinput-new thumbnail">
                         <img height="230" :src="data.url" alt="..." />
@@ -159,157 +196,296 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-cutome-admin">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Add Rule</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class="col-2">
-                <div class="btn-group bootstrap-select show-tick">
-                  <label for="exampleFormControlSelect2">Level</label>
-                  <select
-                    class="selectpicker"
-                    data-style="btn btn-info"
-                    multiple
-                    title="Level"
-                    data-size="7"
-                    tabindex="-98"
-                  >
-                    <option value="15">In</option>
-                    <option value="16">under</option>
-                    <option value="17">above</option>
-                    <option value="18">not in</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-1">
-                <div class="btn-group bootstrap-select show-tick">
-                  <label for="exampleFormControlSelect2"></label>
-                  <select
-                    class="selectpicker"
-                    data-style="btn btn-info"
-                    multiple
-                    title="1"
-                    data-size="7"
-                    tabindex="-98"
-                  >
-                    <option value="15">1</option>
-                    <option value="16">2</option>
-                    <option value="17">3</option>
-                    <option value="18">4</option>
-                  </select>
-                </div>
+              <div class="col-md-2">
+                <label class="text-dark">Level</label>
+                <select
+                  class="selectpicker"
+                  data-style="select-with-transition"
+                  title="Level"
+                  data-size="7"
+                >
+                  <option value="15">In</option>
+                  <option value="16">under</option>
+                  <option value="17">above</option>
+                  <option value="18">not in</option>
+                </select>
               </div>
               <div class="col-2">
-                <div class="btn-group bootstrap-select show-tick">
-                  <label for="exampleFormControlSelect2">Localted</label>
-                  <select
-                    class="selectpicker"
-                    data-style="btn btn-info"
-                    multiple
-                    title="in or in"
-                    data-size="7"
-                    tabindex="-98"
-                  >
-                    <option value="15">in</option>
-                    <option value="16">in or in</option>
-                    <option value="17">in and not in</option>
-                  </select>
-                </div>
+                <label class="text-dark"></label>
+                <select
+                  class="selectpicker"
+                  data-style="btn btn-info"
+                  multiple
+                  title="1"
+                  data-size="7"
+                  tabindex="-98"
+                >
+                  <option value="15">1</option>
+                  <option value="16">2</option>
+                  <option value="17">3</option>
+                  <option value="18">4</option>
+                </select>
               </div>
               <div class="col-2">
-                <div class="btn-group bootstrap-select show-tick">
-                  <label for="exampleFormControlSelect2"></label>
-                  <select
-                    class="selectpicker"
-                    data-style="btn btn-info"
-                    multiple
-                    title="Thailand"
-                    data-size="7"
-                    tabindex="-98"
-                  >
-                    <option value="15">China</option>
-                    <option value="16">USA</option>
-                    <option value="17">Thailand</option>
-                  </select>
-                </div>
+                <label class="text-dark">Localted</label>
+                <select
+                  class="selectpicker"
+                  data-style="btn btn-info"
+                  multiple
+                  title="in or in"
+                  data-size="7"
+                  tabindex="-98"
+                >
+                  <option value="15">in</option>
+                  <option value="16">in or in</option>
+                  <option value="17">in and not in</option>
+                </select>
               </div>
-              <div class="col-2">
-                <div class="btn-group bootstrap-select show-tick">
-                  <label for="exampleFormControlSelect2"></label>
-                  <select
-                    class="selectpicker"
-                    data-style="btn btn-info"
-                    multiple
-                    title="China"
-                    data-size="7"
-                    tabindex="-98"
-                  >
-                    <option value="15">China</option>
-                    <option value="16">USA</option>
-                    <option value="17">Thailand</option>
-                  </select>
-                </div>
+              <div class="col-3">
+                <label class="text-dark"></label>
+                <select
+                  class="selectpicker"
+                  data-style="btn btn-info"
+                  multiple
+                  title="Thailand"
+                  data-size="7"
+                  tabindex="-98"
+                >
+                  <option value="15">China</option>
+                  <option value="16">USA</option>
+                  <option value="17">Thailand</option>
+                </select>
+              </div>
+              <div class="col-3">
+                <label class="text-dark"></label>
+                <select
+                  class="selectpicker"
+                  data-style="btn btn-info"
+                  multiple
+                  title="China"
+                  data-size="7"
+                  tabindex="-98"
+                >
+                  <option value="15">China</option>
+                  <option value="16">USA</option>
+                  <option value="17">Thailand</option>
+                </select>
               </div>
             </div>
             <div class="row">
               <div class="col-2">
-                <div class="btn-group bootstrap-select show-tick">
-                  <label for="exampleFormControlSelect2">Amoute</label>
-                  <select
-                    class="selectpicker"
-                    data-style="btn btn-info"
-                    multiple
-                    title="ranges from to"
-                    data-size="7"
-                    tabindex="-98"
-                  >
-                    <option value="15">Reach</option>
-                    <option value="16">Above</option>
-                    <option value="17">Equal to</option>
-                    <option value="17">Other than</option>
-                    <option value="17">ranges from to</option>
-                  </select>
-                </div>
+                <label class="text-dark">Amoute</label>
+                <select
+                  class="selectpicker"
+                  data-style="btn btn-info"
+                  multiple
+                  title="ranges from to"
+                  data-size="7"
+                  tabindex="-98"
+                >
+                  <option value="15">Reach</option>
+                  <option value="16">Above</option>
+                  <option value="17">Equal to</option>
+                  <option value="17">Other than</option>
+                  <option value="17">ranges from to</option>
+                </select>
               </div>
               <div class="col-2">
-                <div class="btn-group bootstrap-select show-tick">
-                  <label for="exampleFormControlSelect2"></label>
-                  <select
-                    class="selectpicker"
-                    data-style="btn btn-info"
-                    multiple
-                    title="$ 100"
-                    data-size="7"
-                    tabindex="-98"
-                  >
-                    <option value="15">$ 100</option>
-                    <option value="15">$ 200</option>
-                    <option value="15">$ 300</option>
-                  </select>
-                </div>
+                <label class="text-dark"></label>
+                <select
+                  class="selectpicker"
+                  data-style="btn btn-info"
+                  multiple
+                  title="$ 100"
+                  data-size="7"
+                  tabindex="-98"
+                >
+                  <option value="15">$ 100</option>
+                  <option value="15">$ 200</option>
+                  <option value="15">$ 300</option>
+                </select>
               </div>
               <div class="col-2">
-                <div class="btn-group bootstrap-select show-tick">
-                  <label for="exampleFormControlSelect2"></label>
-                  <select
-                    class="selectpicker"
-                    data-style="btn btn-info"
-                    multiple
-                    title="$ 100"
-                    data-size="7"
-                    tabindex="-98"
-                  >
-                    <option value="15">$ 100</option>
-                    <option value="15">$ 200</option>
-                    <option value="15">$ 300</option>
-                  </select>
+                <label class="text-dark"></label>
+                <select
+                  class="selectpicker"
+                  data-style="btn btn-info"
+                  multiple
+                  title="$ 100"
+                  data-size="7"
+                  tabindex="-98"
+                >
+                  <option value="15">$ 100</option>
+                  <option value="15">$ 200</option>
+                  <option value="15">$ 300</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-3">
+                <label class="text-dark">Create rule name</label>
+              </div>
+              <div class="col-md-7">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    id="rulename"
+                    v-model="rulename"
+                    type="text"
+                    placeholder="Rule name"
+                  />
                 </div>
               </div>
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button
+              type="submit"
+              class="btn btn-primary addcard"
+              @click.prevent="confrim_addrule()"
+            >Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- msg -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addcardadmin"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <form class="form-horizontal" method="post" action="addcard">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add a new bank card</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Name on Card</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="bankname"
+                            type="text"
+                            name="namecard"
+                            class="form-control"
+                            placeholder="Name on Card..."
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Bank Account</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="bankAccount"
+                            type="text"
+                            name="cardNumber"
+                            class="form-control"
+                            placeholder="Card Number..."
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Owner</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="owner"
+                            type="text"
+                            name="owner"
+                            class="form-control"
+                            placeholder="Owner Card..."
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Registered Province</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="province"
+                            type="text"
+                            name="registerProvince"
+                            class="form-control"
+                            placeholder="Registered Province..."
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Registered City</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="city"
+                            type="text"
+                            name="registedCity"
+                            class="form-control"
+                            placeholder="Registered City..."
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Branch</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="branch"
+                            type="text"
+                            name="branch"
+                            class="form-control"
+                            placeholder="Branch..."
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- {{name}}
+            {{cardnumber}}
+            {{province}}
+            {{city}}
+            {{branch}}-->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button
+                type="submit"
+                class="btn btn-primary addcard"
+                @click.prevent="addcardadmin()"
+              >Add Card</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -319,11 +495,19 @@
 export default {
   data() {
     return {
+      rulename: "",
+      loopgetadmincard: [],
       transferimganme: null,
       postioned: null,
       transimg: [],
       imgempty: 0,
       carousel: [],
+      bankname: "",
+      bankAccount: "",
+      owner: "",
+      province: "",
+      city: "",
+      branch: "",
       imageCar: [
         { url: "assets/img/emptyimg.png" },
         { url: "assets/img/emptyimg.png" },
@@ -335,8 +519,131 @@ export default {
   },
   mounted() {
     this.Carousel();
+    this.getadmincarddata();
   },
   methods: {
+    Editcard(id) {
+      alert(id);
+    },
+    DeleteCard(id) {
+      this.$swal({
+        title: "Delete ?",
+        text: "Do you want to Delete",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Delete!",
+        cancelButtonText: "No, keep it",
+        confirmButtonClass: "btn btn-success",
+        cancelButtonClass: "btn btn-danger",
+        buttonsStyling: false,
+        allowOutsideClick: false
+      }).then(res => {
+        console.log(res);
+        if (res.dismiss === "cancel") {
+          swal({
+            title: "Cancelled",
+            text: "Your keep going to play :)",
+            type: "error",
+            confirmButtonClass: "btn btn-primary ",
+            buttonsStyling: false
+          }).catch(swal.noop);
+        } else {
+          axios
+            .post("deletecard/" + id)
+            .then(res => {
+              this.getadmincarddata();
+              console.log(res);
+            })
+            .catch(e => {
+              console.log(e.response);
+            });
+          // window.location.href = "deletecard/" + id;
+          swal({
+            title: "Success!",
+            text: "Delete the card is successfully",
+            type: "success",
+            confirmButtonClass: "btn btn-success",
+            buttonsStyling: false,
+            timer: 2000
+          });
+        }
+      });
+    },
+    getadmincarddata() {
+      axios
+        .get("/getadmincard")
+        .then(res => {
+          this.loopgetadmincard = res.data;
+          console.log("!!!!!!!!!!!!!!!!!!!!!!!");
+          console.log(res.data);
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    },
+    addrule() {
+      $("#addcard").modal("show");
+    },
+    addcardadmin() {
+      let vm = this;
+      let data = {
+        bankname: vm.bankname,
+        bankAccount: vm.bankAccount,
+        owner: vm.owner,
+        province: vm.province,
+        city: vm.city,
+        branch: vm.branch
+      };
+      if (
+        data.bankname == "" ||
+        data.bankAccount == "" ||
+        data.owner == "" ||
+        data.province == "" ||
+        data.city == "" ||
+        data.branch == ""
+      ) {
+        this.$swal({
+          type: "warning",
+          title: "Please Fill in it",
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-success",
+          html: "Please check the box that you fill in"
+        });
+      } else {
+        // alert("Your are right");
+        axios
+          .post("/addcardmin", data)
+          .then(res => {
+            console.log(res.data);
+            if (res.data.code == 200) {
+              this.getadmincarddata();
+              // HIDE
+              $("#addcardadmin").modal("hide");
+              this.$swal({
+                type: "success",
+                title: res.data.msg,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                html: "Please check the box that you fill in",
+                timer: 1000
+              });
+            }
+            if (res.data.code == 100) {
+              this.$swal({
+                type: "warning",
+                title: res.data.msg,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                html: "Please check the box that you fill in",
+                timer: 1000
+              });
+            }
+          })
+          .catch(er => {
+            console.log(er.res);
+          });
+      }
+    },
     saveimg(id) {
       let send = "";
       if (id == "save") {

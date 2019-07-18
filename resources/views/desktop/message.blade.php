@@ -64,6 +64,9 @@
         stock4="@lang('home.stock4')"
         stock5="@lang('home.stock5')"
         stock6="@lang('home.stock6')"
+        availablerolling="@lang('home.availablerolling')"
+        totalbets="@lang('home.totalbets')"
+        totalrolling="@lang('home.totalrolling')"
 
         ></app-message>
     </div>
@@ -103,7 +106,7 @@
   <script src="../assets/js/plugins/nouislider.min.js"></script>
   <!--  Google Maps Plugin    -->
   <!-- Place this tag in your head or just before your close body tag. -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
   <!-- Chart JS -->
   <script src="../assets/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->

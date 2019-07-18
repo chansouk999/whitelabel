@@ -132,9 +132,12 @@
             >
               {{ my_message }}
               <!--<shiro:hasAnyRoles name="customer:type:1">-->
-              <em class="badge letter" :data-names="customer_care"
-              :data-name="my_message"
-              @click.prevent="setNavShowName('message',$event)">2</em>
+              <em
+                class="badge letter"
+                :data-names="customer_care"
+                :data-name="my_message"
+                @click.prevent="setNavShowName('message',$event)"
+              >2</em>
               <!--</shiro:hasAnyRoles>-->
             </a>
           </li>
@@ -147,11 +150,13 @@
           <ol class="breadcrumb">
             <!-- <li class="breadcrumb-item">
               <a href="#">Home</a>
-            </li> -->
+            </li>-->
             <!-- <li class="breadcrumb-item" v-if="page!= null ">
               <a href="#">{{page}}</a>
-            </li> -->
-            <li class="breadcrumb-item" ><a href="#">{{navNames}}</a></li>
+            </li>-->
+            <li class="breadcrumb-item">
+              <a href="#">{{navNames}}</a>
+            </li>
             <li class="breadcrumb-item active text-capitalize" aria-current="page">{{navName}}</li>
           </ol>
         </nav>
@@ -171,7 +176,11 @@
           <applyforwithdrawal></applyforwithdrawal>
         </div>
         <div class="u-content" v-if="navShowName ==='selfservicewashing'">
-          <selfservicewashing></selfservicewashing>
+          <selfservicewashing
+            :availablerolling="availablerolling"
+            :totalbets="totalbets"
+            :totalrolling="totalrolling"
+          ></selfservicewashing>
         </div>
 
         <div class="u-content" v-if="navShowName ==='changepassword'">
@@ -280,7 +289,10 @@ export default {
     "msmsubscription",
     "my_message",
     "change_password",
-    "customer_care"
+    "customer_care",
+    "availablerolling",
+    "totalbets",
+    "totalrolling"
   ]
 };
 </script>

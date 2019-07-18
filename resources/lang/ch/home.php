@@ -33,7 +33,7 @@ return [
     "us_stock" => "美股",
     "cryptocurrencies" => "虚拟币价格",
     "chines_stock" => "中国股市",
-    "lobby" => "游戏大厅",
+    "lobby_tra" => "游戏大厅",
 
     "phoneverification"=>"手机验证",
     "mytask"=>"我的任务",
@@ -62,5 +62,9 @@ return [
     "smssubscription"=>"短信订阅",
     "loginsettings"=>"登录设定",
     "nonactivated"=>"未开通",
+
+    "availablerolling"=>"可用滚动",
+    "totalbets"=>"总投注",
+    "totalrolling"=>"总滚动"
 
 ];
