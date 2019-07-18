@@ -59,7 +59,7 @@
           </ul>
           <ul class="pull-left bars">
             <li class="new" style="display:none">
-              <span class="level">新会员</span>
+              <!-- <span class="level">新会员</span> -->
             </li>
             <li>
               <em>

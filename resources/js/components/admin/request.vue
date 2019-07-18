@@ -558,6 +558,20 @@ export default {
 
     // alert(this.length);
   },
+//   watch:{
+//       alertwarning(e){
+//           if(e==true){
+//               let n =0
+//               setInterval(()=>{
+//                   n++
+//                   if(n==5){
+//                       this.audioplay.play();
+//                       return n = 0
+//                   }
+//               },1000)
+//           }
+//       }
+//   },
   methods: {
     closewaning() {
       this.audioplay.pause();

@@ -3,7 +3,7 @@
     <!-- PLAYER INFO -->
     <div class="row">
       <div class="col-md-6 text-left">
-        <p class="pl-5">Current Page : Page</p>
+        <p class="pl-5">Current Page :  {{gamehistorypagenum}}</p>
       </div>
       <div class="col-md-6 text-right">
         <button class="btn btn-link" id="gameresult" data-toggle="modal" data-target=".gameresult">
@@ -89,14 +89,6 @@
     <nav aria-label="...">
       <ul class="pagination">
         <li class="page-item">
-          <select class="browser-default custom-select">
-            <option selected>1</option>
-            <option value="1">2</option>
-            <option value="2">3</option>
-            <option value="3">4</option>
-          </select>
-        </li>
-        <li class="page-item">
           <span
             class="page-link"
             @click="gamehistorypage(methods='previous')"
@@ -177,7 +169,7 @@
     </div>
   </div>
 </template>
-<script>  
+<script>
 import { adminmixin } from "./adminmixin.js";
 
 
@@ -218,7 +210,7 @@ methods:{
               this.gamehistoryend += 20
               this.gamehistorypagenum += 1
           }
-         
+
         }
     }
   },
@@ -239,7 +231,7 @@ methods:{
     },
   }
 
- 
+
 };
 
 </script>

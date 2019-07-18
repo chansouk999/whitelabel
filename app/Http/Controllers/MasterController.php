@@ -33,6 +33,7 @@ use SebastianBergmann\Environment\Console;
 use League\Flysystem\Exception;
 use App\OauthClient;
 use App\Carousel;
+use App\Http\Controllers\getHeaderController as header;
 use App\Rolling_history;
 
 class MasterController extends Controller
@@ -42,6 +43,32 @@ class MasterController extends Controller
     protected $urlforlocal8003 = 'http://localhost:8003'; //1 use this if you are running on localhost
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
     protected $data = [];
+
+    public function getheader()
+    {
+        $header = new header;
+        return $header->header();
+    }
+
+    public function getAlluserdata()
+    {
+        try {
+            $http = new Client;
+            $res = $http->get(
+                Cache::get('mainUrl') . '/api/getAlluserdata/'.Auth::user()->user_id,
+                ['headers' => $this->getheader()]
+            );
+            $accessdata = json_decode((string) $res->getBody(), true);
+            $totalonline = [];
+            foreach($accessdata['data'] as $tt){
+                $totalonline[] = $tt['time_online'];
+            }
+            $save = User::where('user_id',Auth::user()->user_id)->update(['totalOnlineHour'=>array_sum($totalonline)]);
+            return array_sum($totalonline);
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
+        }
+    }
     public function getCarousel()
     {
         return Carousel::orderby('created_at', 'desc')->get();
@@ -55,7 +82,9 @@ class MasterController extends Controller
 
             $catch = new CatchEr;
             return $catch->CheckExption($data);
-        } catch (\Exception $ex) { }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
+        }
     }
 
     public function requestdata(Request $req)
@@ -68,7 +97,7 @@ class MasterController extends Controller
         $ClientID = $data->pluck('id')[0];
         $ClientSecret = $data->pluck('secret')[0];
         $Redirect = $data->pluck('redirect')[0];
-        return redirect('http://localhost:8003/redirect?clientid='.$ClientID.'&redirect='.\Request::root());
+        return redirect('http://localhost:8003/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
     }
     public function fullscreengame(Request $req)
     {

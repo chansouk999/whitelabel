@@ -39,12 +39,13 @@ Route::get('/getannounce/{m1}/{m2}', 'AdminController@getannounce');
 Route::get('/getadmininfotimeline', 'AdminController@getadmininfotimeline');
 Route::post('/addnewadmin', 'AdminController@addnewadmin');
 
-
-Route::put('/Carousel/{id}', 'AdminController@updatedCarousel');
-Route::get('/Carousel', 'MasterController@getCarousel');
+Route::get('/Carousel', 'AdminController@getCarousel');
+Route::get('/userCarousel', 'MasterController@getCarousel');
 Route::post('/Carousel', 'AdminController@postCarousel');
 Route::get('/getadmininfo', 'AdminController@getadmininfo');
-
+Route::get('/login',function(){
+    return redirect('/');
+});
 
 Route::get('/delete_img/{id}', 'AdminController@delete_img');
 Route::get('/getimgtrans/{id}', 'AdminController@getimgtrans');
@@ -66,13 +67,14 @@ Route::get('/gettoken', 'AdminController@gettoken');
 
 
 Route::get('/home', function () {
-    return view('home');
+    return redirect('/');
 });
 Route::get('/stocklist', function () {
     return view('desktop.stocklist');
 });
 // Route::get('/',)
 
+Route::get('getAlluserdata', 'MasterController@getAlluserdata');
 Route::get('adminList', 'MasterController@adminList');
 Route::post('requestdata', 'MasterController@requestdata');
 Route::get('fullscreengame', 'MasterController@fullscreengame');
@@ -242,11 +244,13 @@ Route::post('/editlevel/{id}', 'CardController@editlevel');
 Route::post('/saveLavel', 'CardController@saveLavel');
 
 Route::post('/deleteLevel/{id}', 'CardController@deleteLevel');
-
+Route::get('loginasadmin',function(){
+    return redirect('administrator/login');
+});
 Route::prefix('/administrator')->namespace('Admins')->group(function () {
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('/login', 'Auth\LoginController@login');
-    Route::get('/', 'HomeController@index');
+     Route::get('/', 'HomeController@index');
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });
 
@@ -294,6 +298,15 @@ Route::get('/getadminlog/{id}', 'CardController@getadminlog');
 
 Route::get('/editadmindetail/{id}', 'CardController@editadmindetail');
 
+Route::get('fakeArrayData','StaticController@fakeArrayData');
+// Route::domain('app.'.\Request::route())->group(function ($router) {
+//     return "MAIN DO MAIN";
+// });
+
+// // Wildcard subdomain
+// Route::domain('{user}.'.\Request::route())->group(function ($router) {
+//     return $router." DO MAIN";
+// });
 Route::post('/addcardmin', 'CardController@addcardmin');
 
 Route::get('/getadmincard', 'CardController@getadmincard');

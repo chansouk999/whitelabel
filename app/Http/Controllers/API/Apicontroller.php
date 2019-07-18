@@ -14,11 +14,60 @@ use App\Http\Controllers\ActivityLogController as ActivityLog;
 use App\Http\Controllers\AdminController as Admincontroller;
 use App\userdetail;
 use function GuzzleHttp\json_decode;
+// use Symfony\Component\HttpKernel\Client;
+use GuzzleHttp\Client;
 
 class Apicontroller extends Controller
 {
     public function testcode()
     {
+        return Admincontroller::helloword();
+
+        return \Request::query('name');
+
+        $data = [
+            array(
+                "id" => 1,
+                "userName" => "fuck u vong",
+                "bankAccount" => "445522663355",
+                "registerProvince" => "1231",
+                "registerCity" => "123",
+                "branch" => "123123",
+                "status" => "not use",
+                "created_at" => "2019-06-26 09:51:47",
+                "updated_at" => "2019-06-27 11:33:40",
+                "user_id" => "173753DyvNaQk",
+                "methodId" => "AL",
+                "desc" => null
+            ),
+            array(
+                "id" => 1,
+                "userName" => "fuck u vong",
+                "bankAccount" => "445522663355",
+                "registerProvince" => "1231",
+                "registerCity" => "123",
+                "branch" => "123123",
+                "status" => "not use",
+                "created_at" => "2019-06-26 09:51:47",
+                "updated_at" => "2019-06-27 11:33:40",
+                "user_id" => "173753DyvNaQk",
+                "methodId" => "AL",
+                "desc" => null
+            ),
+        ];
+
+        $newdata = [];
+        foreach($data as $dt){
+            if($dt['bankAccount']){
+                $newdata[] = $dt['bankAccount'];
+            }
+        }
+        return $newdata;
+
+        $http = new Client;
+        $res = $http->get('https://hq.sinajs.cn/?rn=1552280540946&list=sh000001');
+        $res;
+        // return explode($res);
         // https://api.huobi.pro/market/trade?symbol=btcusdt
         $url = 'https://api.huobi.pro/market/trade?symbol=btcusdt';
         $data = file_get_contents($url);
@@ -59,16 +108,15 @@ class Apicontroller extends Controller
                 $method = 'Playerrecord';
                 $data = array(
                     'user_id' => $req->data[2],
-                    'event' => $req->data[4].' '.$bet['id'].' stock '.$req->data[1] ,
+                    'event' => $req->data[4] . ' ' . $bet['id'] . ' stock ' . $req->data[1],
                     'serveby' => '',
-                    'amount' => $bet['price'] ,
+                    'amount' => $bet['price'],
                     'eventid' => $req->data[3],
                     'Time' => date('Y-m-d'),
                 );
                 $Log = new ActivityLog();
                 $Log->storeLog($method, $data);
             }
-
         } catch (\Exception $ex) {
             return $return->returncode(500, '', $ex->getMessage());
         }
@@ -90,7 +138,7 @@ class Apicontroller extends Controller
         User::where('user_id', '=', '' . $gotid . '')->update(['last_activity' => $date]);
         if ($status == 'cutmoney') {
             DB::UPDATE('UPDATE users SET userBalance = userBalance - ' . $bl . ' WHERE user_id = "' . $gotid . '" ');
-            DB::update('UPDATE userdetails SET TotalBet = TotalBet + '.$bl.' WHERE user_id = "'.$gotid.'" ');
+            DB::update('UPDATE userdetails SET TotalBet = TotalBet + ' . $bl . ' WHERE user_id = "' . $gotid . '" ');
         } elseif ($status == 'userstatus') {
             User::where('user_id', '=', '' . $gotid . '')->update(['userStatus' => '' . $userstatus . '']);
         } elseif ($status == 'onlinehours') {

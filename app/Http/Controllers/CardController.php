@@ -37,8 +37,14 @@ class CardController extends Controller
     {
         try {
             $userID = Auth::user()->user_id;
-            // return $userID;
-            $data = withdraw_methods::where("user_id", "=", $userID)->orderby('created_at', 'asc')->get();
+            $data = DB::select('SELECT id,userName,
+            CONCAT("********", SUBSTRING(bankAccount,-3))
+            as bankAccount,registerProvince,
+            registerCity,branch,status,user_id,methodId
+            from withdraw_methods
+            where user_id ="'.$userID.'" ORDER BY created_at DESC ');
+
+
             if ($data) {
                 return $this->returncode(200, $data, 'success');
             } else {
@@ -98,7 +104,7 @@ class CardController extends Controller
     public function returncode($code, $data, $msg)
     {
         //100 already exist
-        //200 success 
+        //200 success
         //500 internal erorr
         //300 query error
         //99 not enough

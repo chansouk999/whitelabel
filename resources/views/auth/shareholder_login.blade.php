@@ -37,10 +37,14 @@
                                 <input id="password" type="password"
                                     class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                     name="password" required>
+                                    @if(session('code')==300)
 
-                                @if ($errors->has('password'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('password') }}</strong>
+                                <span class="form-control mt-3 bg-red"  role="alert">
+                                    <strong>
+
+                                            Email Or Password not match
+
+                                        </strong>
                                 </span>
                                 @endif
                             </div>

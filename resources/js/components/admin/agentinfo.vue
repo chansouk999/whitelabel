@@ -3,11 +3,11 @@
     <!-- PLAYER INFO -->
     <div class="row">
       <div class="col-md-4 text-left">
-        <p class="pl-5">Current Page : Page</p>
+        <p class="pl-5">Current Page : {{Page}}</p>
       </div>
       <div class="col-md-4">
         <button
-          class="btn btn-primary  btn-round"
+          class="btn btn-primary btn-round"
           data-toggle="modal"
           data-target="#MakenewAgent"
         >Make new Agent</button>
@@ -32,7 +32,8 @@
                   class="form-control"
                   id="agent-info"
                   placeholder="userapiID/refernce/gameID"
-                >
+                v-model="watchsearch"
+                />
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <i class="tim-icons icon-simple-remove"></i>
                 </button>
@@ -42,7 +43,7 @@
         </div>
       </div>
     </div>
-    <br>
+    <br />
     <div class="row">
       <div class="col-md-12 col-lg-12">
         <table class="table">
@@ -66,7 +67,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(data,index) in agentinfo" v-if="index >= A && index <= B">
+            <tr v-for="(data,index) in filterData" v-if="index >= A && index <= B">
               <td class="text-center">{{ index+1 }}</td>
               <td>{{data.agentId}}</td>
               <td>{{data.typeId}}</td>
@@ -133,37 +134,37 @@
         </table>
       </div>
     </div>
+
+
+
+
+
+
+
+
     <!-- PLAYER INFO -->
-    <nav aria-label="...">
-      <ul class="pagination">
-        <li class="page-item">
-          <select class="browser-default custom-select">
-            <option selected>1</option>
-            <option value="1">2</option>
-            <option value="2">3</option>
-            <option value="3">4</option>
-          </select>
-        </li>
-        <li class="page-item">
-          <span class="page-link" @click="paginate(method='previous')">Previous</span>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item active">
-          <span class="page-link">
-            2
-            <span class="sr-only">(current)</span>
-          </span>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#" @click="paginate(method='next')">Next</a>
-        </li>
-      </ul>
-    </nav>
+   <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item">
+                  <span class="page-link" @click="paginate(method='previous')">Previous</span>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">{{Page-1}}</a>
+                </li>
+                <li class="page-item active">
+                  <span class="page-link">
+                    {{Page}}
+                    <span class="sr-only">(current)</span>
+                  </span>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">{{Page+1}}</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#" @click="paginate(method='next')">Next</a>
+                </li>
+              </ul>
+            </nav>
 
     <!-- Modal view player-->
     <div
@@ -285,7 +286,7 @@
                             class="form-control"
                             v-model="agentname"
                             placeholder="Name..."
-                          >
+                          />
                         </div>
                       </div>
                     </div>
@@ -299,7 +300,7 @@
                             name="bankaccount"
                             class="form-control"
                             placeholder="Bank Account..."
-                          >
+                          />
                         </div>
                       </div>
                     </div>
@@ -313,7 +314,7 @@
                             name="Provice"
                             class="form-control"
                             placeholder="Provice..."
-                          >
+                          />
                         </div>
                       </div>
                     </div>
@@ -327,7 +328,7 @@
                             name="city"
                             class="form-control"
                             placeholder="City..."
-                          >
+                          />
                         </div>
                       </div>
                     </div>
@@ -341,7 +342,7 @@
                             name="branch"
                             class="form-control"
                             placeholder="Branch..."
-                          >
+                          />
                         </div>
                       </div>
                     </div>
@@ -355,7 +356,21 @@
                             name="branch"
                             class="form-control"
                             placeholder="Percentage..."
-                          >
+                          />
+                        </div>
+                      </div>
+                    </div>
+                     <div class="row">
+                      <label class="col-md-3 col-form-label">Password</label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input
+                            v-model="agentpwd"
+                            type="password"
+                            name="branch"
+                            class="form-control"
+                            placeholder="Percentage..."
+                          />
                         </div>
                       </div>
                     </div>
@@ -464,9 +479,7 @@
   </div>
 </template>
 <script>
-import { adminmixin } from "./adminmixin.js";
 export default {
-  mixins: [adminmixin],
   data() {
     return {
       agentname: null,
@@ -475,26 +488,51 @@ export default {
       agentcity: null,
       agentbranch: null,
       percentage: null,
-
+      watchsearch: null,
       A: 0,
-      B: 19
+      B: 19,
+      Page: 1,
+      agentinfo: [],
+      agentpwd:null
     };
   },
   mounted() {
-    this.getagentinfo();
+      this.getagentinfo()
+  },
+  computed: {
+    filterData() {
+      if (this.watchsearch) {
+        return this.agentinfo.filter(res => {
+          return res.agentId.toString().includes(this.watchsearch) || res.name.includes(this.watchsearch)
+          || res.province.includes(this.watchsearch)
+          || res.city.includes(this.watchsearch)
+          || res.branch.includes(this.watchsearch)
+        });
+      } else {
+        return this.agentinfo;
+      }
+    }
   },
   methods: {
+        getagentinfo() {
+            axios.get('/getagentinfo').then(res => {
+                this.agentinfo = res.data.data.data
+            }).catch(e => { console.log(e.response) })
+        },
     paginate(method) {
+      this.watchsearch = null;
       let vm = this;
       if (method == "previous") {
         if (vm.A > 0) {
           vm.A -= 20;
           vm.B -= 20;
+          vm.Page -= 1;
         }
       } else {
         if (vm.B < vm.agentinfo.length) {
           vm.A += 20;
           vm.B += 20;
+          vm.Page += 1;
         }
       }
     },
@@ -507,19 +545,24 @@ export default {
         agentprovince: vm.agentprovince,
         agentcity: vm.agentcity,
         agentbranch: vm.agentbranch,
-        percentage: vm.percentage
+        percentage: vm.percentage,
+        agentpwd:vm.agentpwd
       };
       axios
         .post("/saveagent", data)
         .then(res => {
-          // console.log(res.data);
+          console.log(res.data);
           let code = res.data.code;
           let msg = res.data.msg;
           let data = res.data.data;
+        //   conso
           if (code == 200) {
             this.getagentinfo();
           }
-        //   alert(msg);
+          if (code == 100) {
+            alert('Already Exist Data')
+          }
+          //   alert(msg);
         })
         .catch(e => {
           console.log(e.response);

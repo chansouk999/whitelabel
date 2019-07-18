@@ -26,6 +26,7 @@
     "author": "Creative Tim <hello@creative-tim.com> (https://www.creative-tim.com/)",
     "require": {
         "php": "^7.1.3",
+        "barryvdh/laravel-cors": "^0.11.3",
         "barryvdh/laravel-omnipay": "0.3.x",
         "beyondcode/laravel-websockets": "^1.1",
         "bitfumes/laravel-multiauth": "^1.0",

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Shareholder_login extends Authenticatable
 {
-    
+
     use Notifiable;
     /**
      * The attributes that are mass assignable.

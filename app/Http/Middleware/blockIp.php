@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use \Torann\GeoIP\Facades\GeoIP;
-
+use Auth;
 class blockIp
 {
     /**
@@ -12,7 +12,7 @@ class blockIp
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @return mixed
+     * @return mixed+
      */
     public function handle($request, Closure $next)
     {
@@ -31,14 +31,16 @@ class blockIp
         // [currency] => HKD
         // [default] =>
         // [cached] => 1
-        // $ip =  \Request::getClientIp();
 
-        // $check = geoip()->getLocation($ip);
-        // if ($check['country'] == 'Laos' || $ip == '127.0.0.1') {
-        //     return $next($request);
-        // } else {
-        //     return response()->json('Your Country ----> ' . ($check['country']) . ' <---- has been block , to access this site contact vongkeo@gmail.com  ,Thank you');
-        // }
+
+        $ip =  \Request::getClientIp();
+
+        $check = geoip()->getLocation($ip);
+        if ($check['iso_code'] == 'LA' || $ip == '127.0.0.1' || $ip = '192.168.1.134') {
+            return $next($request);
+        } else {
+            return response()->json('Your Country ----> ' . ($check['country']) . ' <---- has been block , to access this site contact vongkeo@gmail.com  ,Thank you');
+        }
         return $next($request);
     }
 }

@@ -40,12 +40,16 @@
             <div class="card">
               <!-- /.card-header -->
               <div class="card-body p-0">
-                <ul class="products-list product-list-in-card pl-2 pr-2">
+                <ul
+                  class="products-list product-list-in-card pl-2 pr-2"
+                  v-for="data in admininfo"
+                  :key="data.id"
+                >
                   <!-- /.item -->
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">ID :</p>
-                      <!-- <p class="text-rose">{{ admininfo[0].id }}</p> -->
+                      <p class="text-rose">{{ data.admin_id }}</p>
                     </div>
                   </li>
                   <!-- /.item -->
@@ -53,7 +57,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Name :</p>
-                      <!-- <p class="text-rose">{{ admininfo[0].name }}</p> -->
+                      <p class="text-rose">{{ data.name }}</p>
                     </div>
                   </li>
                   <!-- /.item -->
@@ -61,7 +65,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Type :</p>
-                      <!-- <p class="text-rose"> {{ admininfo[0].role_id }}</p> -->
+                      <p class="text-rose">{{ data.role_id }}</p>
                     </div>
                   </li>
                   <!-- /.item -->
@@ -69,7 +73,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Role :</p>
-                      <!-- <p class="text-rose">{{ admininfo[0].role_id }}</p> -->
+                      <p class="text-rose">{{ data.role_id }}</p>
                     </div>
                   </li>
                   <!-- /.item -->
@@ -77,7 +81,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Last logged in :</p>
-                      <!-- <p class="text-rose">{{ admininfo[0].updated_at }}</p> -->
+                      <p class="text-rose">{{ data.updated_at }}</p>
                     </div>
                   </li>
                   <!-- /.item -->
@@ -85,7 +89,7 @@
                   <li class="item">
                     <div class="product-info">
                       <p class="text-rose">Total Online :</p>
-                      <!-- <p class="text-rose">{{ admininfo[0].TotalOnline }}</p> -->
+                      <p class="text-rose">{{ data.TotalOnline }}</p>
                     </div>
                   </li>
                   <!-- /.item -->
@@ -106,6 +110,9 @@
           </div>
           <div class="col-md-10">
             <div class="row">
+              <div class="col-md-4 text-left">
+                <p class="pl-5">Current Page : {{Page}}</p>
+              </div>
               <div class="col-md-12 text-right">
                 <button
                   class="btn btn-link"
@@ -130,7 +137,8 @@
                           type="text"
                           class="form-control"
                           id="admininfo"
-                          placeholder="userapiID/refernce/gameID"
+                          placeholder="adminid"
+                          v-model="watchsearch"
                         />
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <i class="tim-icons icon-simple-remove"></i>
@@ -157,10 +165,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(data,index) in admininfoall" :key="index">
+                <tr v-for="(data,index) in filterData" v-if="index >= A && index <= B">
                   <td class="text-center">{{index+1}}</td>
                   <td>{{data.name}}</td>
-                  <td>{{data.id}}</td>
+                  <td>{{data.admin_id}}</td>
                   <td>{{data.role_id}}</td>
                   <td>{{data.role_id}}</td>
                   <td>{{data.updated_at}}</td>
@@ -195,6 +203,29 @@
                 </tr>
               </tbody>
             </table>
+
+            <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item">
+                  <span class="page-link" @click="paginate(method='previous')">Previous</span>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">{{Page-1}}</a>
+                </li>
+                <li class="page-item active">
+                  <span class="page-link">
+                    {{Page}}
+                    <span class="sr-only">(current)</span>
+                  </span>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">{{Page+1}}</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#" @click="paginate(method='next')">Next</a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
@@ -290,7 +321,9 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-lg">
-        <div class="modal-content bg-default" v-for="data in getadmindetail">
+
+        <!-- <div class="modal-content bg-default" v-if="editclicked == true"  v-for="data in getadmindetail"> -->
+        <div class="modal-content bg-default" >
           <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">Create new admin</h4>
@@ -649,8 +682,9 @@
 export default {
   data() {
     return {
-      getadmindetail: [],
+      editclicked:false,
       admininfoall: [],
+      getadmindetail: [],
       datagetadminlog: [],
       admininfo: [],
       r_player: null,
@@ -668,13 +702,45 @@ export default {
       r_selfrolling: null,
       addnewadminder: null,
       addnewpassword: null,
-      admintype: null
+      admintype: null,
+      watchsearch: null,
+      A: 0,
+      B: 19,
+      Page: 1
     };
+  },
+  computed: {
+    filterData() {
+      if (this.watchsearch) {
+        return this.admininfoall.filter(res => {
+          return res.admin_id.toString().includes(this.watchsearch);
+        });
+      } else {
+        return this.admininfoall;
+      }
+    }
   },
   mounted() {
     this.getadmininfo();
   },
   methods: {
+    paginate(method) {
+      this.watchsearch = null;
+      let vm = this;
+      if (method == "previous") {
+        if (vm.A > 0) {
+          vm.A -= 20;
+          vm.B -= 20;
+          vm.Page -= 1;
+        }
+      } else {
+        if (vm.B < vm.admininfoall.length) {
+          vm.A += 20;
+          vm.B += 20;
+          vm.Page += 1;
+        }
+      }
+    },
     edtiadmin(id) {
       $("#addnewadminbtn").modal("show");
       axios
@@ -724,7 +790,6 @@ export default {
         addnewpassword: this.addnewpassword,
         admintype: this.admintype.siti
       };
-      console.log(data);
       axios
         .post("addnewadmin", data)
         .then(res => {

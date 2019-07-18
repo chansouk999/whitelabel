@@ -170,7 +170,7 @@
                         <a
                           href="#pablo"
                           class="btn btn-success btn-round fileinput-exists sttaftersave"
-                          @click="saveimg(id)"
+                          @click="saveimg(id='save')"
                         >
                           <i class="fa fa-times"></i> Save
                         </a>
@@ -282,19 +282,19 @@
                 <select
                   class="selectpicker"
                   data-style="btn btn-info"
-                  multiple
-                  title="ranges from to"
                   data-size="7"
                   tabindex="-98"
+                  v-model="amoute"
                 >
-                  <option value="15">Reach</option>
-                  <option value="16">Above</option>
-                  <option value="17">Equal to</option>
-                  <option value="17">Other than</option>
-                  <option value="17">ranges from to</option>
+                  <option value="reach">Reach</option>
+                  <option value="above">Above</option>
+                  <option value="eauel">Equal to</option>
+                  <option value="other">Other than</option>
+                  <option value="ranges">ranges from to</option>
                 </select>
               </div>
-              <div class="col-2">
+
+              <div class="col-2" v-show="amoute ==='ranges'">
                 <label class="text-dark"></label>
                 <select
                   class="selectpicker"
@@ -309,7 +309,7 @@
                   <option value="15">$ 300</option>
                 </select>
               </div>
-              <div class="col-2">
+              <div class="col-2" v-show="amoute ==='ranges'">
                 <label class="text-dark"></label>
                 <select
                   class="selectpicker"
@@ -323,6 +323,17 @@
                   <option value="15">$ 200</option>
                   <option value="15">$ 300</option>
                 </select>
+              </div>
+
+              <div class="col-4" v-show="amoute !=='ranges'">
+                 <label class="text-dark"></label>
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    :placeholder="amoute"
+                  />
+                </div>
               </div>
             </div>
             <div class="row mt-4">
@@ -497,6 +508,7 @@ export default {
       showid: "",
       getEdit: [],
       localted: "inorin",
+      amoute: "ranges",
       rulename: "",
       loopgetadmincard: [],
       transferimganme: null,
@@ -666,16 +678,14 @@ export default {
       }
     },
     saveimg(id) {
-      alert(localStorage.getItem("name"));
       let send = "";
-
-      if (id == "undefined") {
-        send = axios.post;
+      if (id == "save") {
+        send = 'save';
       } else {
-        send = axios.put;
+        send = id;
       }
       console.log(id);
-      send("Carousel/" + id, { img: this.transimg })
+      axios.post("Carousel", { img: this.transimg,method:send,name:this.transferimganme })
         .then(res => {
           console.log(res.data);
           let code = res.data.code;
