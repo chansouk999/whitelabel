@@ -239,7 +239,7 @@
                                         data-toggle="tooltip"
                                         data-placement="bottom"
                                         title="action record"
-                                        class="btn btn-primary  btn-sm btn-icon"
+                                        class="btn btn-primary btn-sm btn-icon"
                                       >
                                         <i class="tim-icons icon-coins"></i>
                                       </button>
@@ -725,7 +725,7 @@ export default {
       }
     }
   },
-  mounted() {},  
+  mounted() {},
   methods: {
     GetPlayerRecore(id) {
       axios
@@ -769,6 +769,7 @@ export default {
 };
 </script>
 <style scoped>
+
 .tr-loader {
 }
 .tr-loader td {
@@ -811,4 +812,5 @@ export default {
     transform: rotate(360deg);
   }
 }
+
 </style>

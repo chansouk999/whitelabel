@@ -196,7 +196,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-cutome-admin">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Add Rule</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
@@ -217,7 +217,7 @@
                   <option value="18">not in</option>
                 </select>
               </div>
-              <div class="col-1">
+              <div class="col-2">
                 <label class="text-dark"></label>
                 <select
                   class="selectpicker"
@@ -248,7 +248,7 @@
                   <option value="17">in and not in</option>
                 </select>
               </div>
-              <div class="col-2">
+              <div class="col-3">
                 <label class="text-dark"></label>
                 <select
                   class="selectpicker"
@@ -263,7 +263,7 @@
                   <option value="17">Thailand</option>
                 </select>
               </div>
-              <div class="col-2">
+              <div class="col-3">
                 <label class="text-dark"></label>
                 <select
                   class="selectpicker"
@@ -328,6 +328,30 @@
                 </select>
               </div>
             </div>
+            <div class="row mt-4">
+              <div class="col-3">
+                <label class="text-dark">Create rule name</label>
+              </div>
+              <div class="col-md-7">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    id="rulename"
+                    v-model="rulename"
+                    type="text"
+                    placeholder="Rule name"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button
+              type="submit"
+              class="btn btn-primary addcard"
+              @click.prevent="confrim_addrule()"
+            >Confirm</button>
           </div>
         </div>
       </div>
@@ -471,6 +495,7 @@
 export default {
   data() {
     return {
+      rulename: "",
       loopgetadmincard: [],
       transferimganme: null,
       postioned: null,
