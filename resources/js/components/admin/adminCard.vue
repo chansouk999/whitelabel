@@ -31,7 +31,7 @@
                           href="#"
                           data-toggle="modal"
                           data-target="#addcardadmin"
-                          @click.prevent="showdata = false"
+                          @click.prevent="showdata = false, method = 0"
                         >Add Card</a>
                       </li>
                     </ul>
@@ -71,10 +71,10 @@
                           </div>
                           <div class="description">
                             <h3 class="info-title my-0">Details</h3>
-                            <p class="description">Added by :: {{data.addedby}}</p>
-                            <p class="description">Last Edit ::{{data.updated_at}}</p>
-                            <p class="description">Last Edit by ::</p>
-                            <p class="description">Usage ::</p>
+                            <p class="description">Added by : {{data.addedby}}</p>
+                            <p class="description">Last Edit :{{data.updated_at}}</p>
+                            <p class="description">Last Edit by : {{data.updated_at}}</p>
+                            <p class="description">Usage :{{data.rulename}}</p>
                           </div>
                         </div>
                         <div class="px-4">
@@ -98,23 +98,34 @@
                 </div>
               </div>
               <div class="tab-pane" id="usagerule">
-                <div class="row d-flex justify-content-center">
-                  <button
-                    class="btn font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6 px-4 mx-4"
-                  >
-                    <div class="font-icon-detail">
-                      <i class="tim-icons icon-minimal-up"></i>
-                      <p>above $1000</p>
+                <div class="row">
+                  <div class="col-lg-3 col-md-6" v-for="(data,index) in getadminrule" :key="index">
+                    <div class="card card-pricing card-primary card-white">
+                      <div class="card-body">
+                        <h1 class="card-title">{{data.id}}</h1>
+                        <img class="card-img" src="assetsadmin/img/card-primary.png" alt="Image" />
+                        <ul class="list-group">
+                          <li class="list-group-item">{{data.rulename}}</li>
+                        </ul>
+                        <div class="card-prices">
+                          <h3 class="text-on-front">
+                            <span>$</span>
+                            {{data.to}}
+                          </h3>
+                          <h5 class="text-on-back">${{data.from}}</h5>
+                          <p class="plan">{{data.ubAbd}} or {{data.Notin}}</p>
+                        </div>
+                      </div>
+                      <div class="card-footer text-center mb-3 mt-3">
+                        <button class="btn btn-danger" @click.prevent="Deleterule(data.id)">
+                          <i class="tim-icons icon-simple-remove"></i> Delete
+                        </button>
+                        <!-- <button class="btn btn-success" @click.prevent="editrule(data.id)">
+                          <i class="tim-icons icon-check-2"></i> Edit
+                        </button>-->
+                      </div>
                     </div>
-                  </button>
-                  <button
-                    class="btn font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6 px-4 mx-4"
-                  >
-                    <div class="font-icon-detail">
-                      <i class="tim-icons icon-minimal-down"></i>
-                      <p>below $1000</p>
-                    </div>
-                  </button>
+                  </div>
                 </div>
                 <div class="row">
                   <button class="btn btn-dribbble" @click="addrule()">
@@ -210,11 +221,12 @@
                   data-style="select-with-transition"
                   title="Level"
                   data-size="7"
+                  v-model="rule_level"
                 >
-                  <option value="15">In</option>
-                  <option value="16">under</option>
-                  <option value="17">above</option>
-                  <option value="18">not in</option>
+                  <option value="in">In</option>
+                  <option value="under">under</option>
+                  <option value="above">above</option>
+                  <option value="not in">not in</option>
                 </select>
               </div>
               <div class="col-2">
@@ -222,15 +234,17 @@
                 <select
                   class="selectpicker"
                   data-style="btn btn-info"
-                  multiple
                   title="1"
                   data-size="7"
                   tabindex="-98"
+                  v-model="level"
                 >
-                  <option value="15">1</option>
-                  <option value="16">2</option>
-                  <option value="17">3</option>
-                  <option value="18">4</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
                 </select>
               </div>
               <div class="col-2">
@@ -255,10 +269,11 @@
                   title="Thailand"
                   data-size="7"
                   tabindex="-98"
+                  v-model="inAnd"
                 >
-                  <option value="15">China</option>
-                  <option value="16">USA</option>
-                  <option value="17">Thailand</option>
+                  <option value="China">China</option>
+                  <option value="USA">USA</option>
+                  <option value="Thailand">Thailand</option>
                 </select>
               </div>
               <div class="col-3" v-show="localted !=='in'">
@@ -269,10 +284,11 @@
                   title="China"
                   data-size="7"
                   tabindex="-98"
+                  v-model="Notin"
                 >
-                  <option value="15">China</option>
-                  <option value="16">USA</option>
-                  <option value="17">Thailand</option>
+                  <option value="China">China</option>
+                  <option value="USA">USA</option>
+                  <option value="Thailand">Thailand</option>
                 </select>
               </div>
             </div>
@@ -299,14 +315,14 @@
                 <select
                   class="selectpicker"
                   data-style="btn btn-info"
-                  multiple
                   title="$ 100"
                   data-size="7"
                   tabindex="-98"
+                  v-model="from"
                 >
-                  <option value="15">$ 100</option>
-                  <option value="15">$ 200</option>
-                  <option value="15">$ 300</option>
+                  <option value="100">$ 100</option>
+                  <option value="200">$ 200</option>
+                  <option value="300">$ 300</option>
                 </select>
               </div>
               <div class="col-2" v-show="amoute ==='ranges'">
@@ -314,25 +330,21 @@
                 <select
                   class="selectpicker"
                   data-style="btn btn-info"
-                  multiple
                   title="$ 100"
                   data-size="7"
                   tabindex="-98"
+                  v-model="to"
                 >
-                  <option value="15">$ 100</option>
-                  <option value="15">$ 200</option>
-                  <option value="15">$ 300</option>
+                  <option value="100">$ 100</option>
+                  <option value="200">$ 200</option>
+                  <option value="300">$ 300</option>
                 </select>
               </div>
 
               <div class="col-4" v-show="amoute !=='ranges'">
-                 <label class="text-dark"></label>
+                <label class="text-dark"></label>
                 <div class="form-group">
-                  <input
-                    class="form-control"
-                    type="text"
-                    :placeholder="amoute"
-                  />
+                  <input class="form-control" type="text" :placeholder="amoute" />
                 </div>
               </div>
             </div>
@@ -343,7 +355,7 @@
               <div class="col-md-7">
                 <div class="form-group">
                   <input
-                    class="form-control"
+                    class="form-control text-dark"
                     id="rulename"
                     v-model="rulename"
                     type="text"
@@ -477,6 +489,24 @@
                         </div>
                       </div>
                     </div>
+                    <div class="row">
+                      <label class="col-md-3 col-form-label">Rule</label>
+                      <div class="col-md-9">
+                        <select
+                          class="form-control"
+                          data-style="select-with-transition"
+                          title="Rule Name"
+                          data-size="7"
+                          v-model="Rule"
+                        >
+                          <option
+                            v-for="(data,index) in getadminrule"
+                            :key="index"
+                            :value="data.id"
+                          >{{data.rulename}}</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -489,7 +519,12 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
               <button
-                type="submit"
+                v-if="method == 1"
+                class="btn btn-primary addcard"
+                @click.prevent="addcardadmin()"
+              >Edit Card</button>
+              <button
+                v-else
                 class="btn btn-primary addcard"
                 @click.prevent="addcardadmin()"
               >Add Card</button>
@@ -504,7 +539,10 @@
 export default {
   data() {
     return {
+      gotid: "",
+      getadminrule: [],
       showdata: false,
+      Rule: "",
       showid: "",
       getEdit: [],
       localted: "inorin",
@@ -522,6 +560,16 @@ export default {
       province: "",
       city: "",
       branch: "",
+      rule_level: "",
+      level: "",
+      localted: "",
+      amoute: "",
+      from: "",
+      to: "",
+      inAnd: "",
+      Notin: "",
+      method: 0,
+      rulename: "",
       imageCar: [
         { url: "assets/img/emptyimg.png" },
         { url: "assets/img/emptyimg.png" },
@@ -534,10 +582,110 @@ export default {
   mounted() {
     this.Carousel();
     this.getadmincarddata();
+    this.GetAdminRule();
   },
   watch: {},
   methods: {
+    Deleterule(id) {
+      this.$swal({
+        title: "Delete ?",
+        text: "Do you want to Delete",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Delete!",
+        cancelButtonText: "No, keep it",
+        confirmButtonClass: "btn btn-success",
+        cancelButtonClass: "btn btn-danger",
+        buttonsStyling: false,
+        allowOutsideClick: false
+      }).then(res => {
+        console.log(res);
+        if (res.dismiss === "cancel") {
+          swal({
+            title: "Cancelled",
+            text: "Your keep going to play :)",
+            type: "error",
+            confirmButtonClass: "btn btn-primary ",
+            buttonsStyling: false
+          }).catch(swal.noop);
+        } else {
+          axios
+            .post("deleteruld/" + id)
+            .then(res => {
+              this.GetAdminRule();
+              console.log(res);
+            })
+            .catch(e => {
+              console.log(e.response);
+            });
+          // window.location.href = "deletecard/" + id;
+          swal({
+            title: "Success!",
+            text: "Delete the card is successfully",
+            type: "success",
+            confirmButtonClass: "btn btn-success",
+            buttonsStyling: false,
+            timer: 2000
+          });
+        }
+      });
+    },
+    // editrule(id) {
+    //   alert(id);
+    // },
+    GetAdminRule() {
+      axios.get("/getadminrule").then(res => {
+        this.getadminrule = res.data;
+        console.log(res.data);
+      });
+    },
+    confrim_addrule() {
+      let vm = this;
+      let data = {
+        rule_level: vm.rule_level,
+        level: vm.level,
+        localted: vm.localted,
+        amoute: vm.amoute,
+        from: vm.from,
+        to: vm.to,
+        rulename: vm.rulename,
+        inAnd: vm.inAnd,
+        Notin: vm.Notin
+      };
+      axios
+        .post("/addrule", data)
+        .then(res => {
+          console.log(res.data);
+          if (res.data.code == 200) {
+            this.GetAdminRule();
+            $("#addcard").modal("hide");
+            this.$swal({
+              type: "success",
+              title: res.data.msg,
+              buttonsStyling: false,
+              confirmButtonClass: "btn btn-success",
+              text: "Adding the rule of card admin successfully",
+              timer: 2000
+            });
+          }
+          if (res.data.code == 100) {
+            this.$swal({
+              type: "warning",
+              title: res.data.msg,
+              buttonsStyling: false,
+              confirmButtonClass: "btn btn-success",
+              text: "Adding the rule of card admin unsuccessfully",
+              timer: 2000
+            });
+          }
+        })
+        .catch(er => {
+          console.log(er.res);
+        });
+    },
     Editcard(id) {
+      this.gotid = id;
+      this.method = 1;
       this.showdata = true;
       $("#addcardadmin").modal("show");
       axios
@@ -625,7 +773,10 @@ export default {
         owner: vm.owner,
         province: vm.province,
         city: vm.city,
-        branch: vm.branch
+        branch: vm.branch,
+        Rule: vm.Rule,
+        gotid: vm.gotid,
+        method: vm.method
       };
       if (
         data.bankname == "" ||
@@ -633,7 +784,8 @@ export default {
         data.owner == "" ||
         data.province == "" ||
         data.city == "" ||
-        data.branch == ""
+        data.branch == "" ||
+        data.Rule == ""
       ) {
         this.$swal({
           type: "warning",
@@ -673,19 +825,24 @@ export default {
             }
           })
           .catch(er => {
-            console.log(er.res);
+            console.log(er.response);
           });
       }
     },
     saveimg(id) {
       let send = "";
       if (id == "save") {
-        send = 'save';
+        send = "save";
       } else {
         send = id;
       }
       console.log(id);
-      axios.post("Carousel", { img: this.transimg,method:send,name:this.transferimganme })
+      axios
+        .post("Carousel", {
+          img: this.transimg,
+          method: send,
+          name: this.transferimganme
+        })
         .then(res => {
           console.log(res.data);
           let code = res.data.code;
