@@ -27,31 +27,18 @@
         </div>
       </div>
       <div class="col-md-5 text-right">
-        <button class="btn btn-link" id="request" data-toggle="modal" data-target=".request">
-          <i class="tim-icons icon-zoom-split"></i>
-          <span class="d-lg-none d-md-block">Search</span>
-        </button>
-        <div
-          class="modal modal-search fade request"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="request"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="WebID/currency/adminID/transferID"
-                />
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <i class="tim-icons icon-simple-remove"></i>
-                </button>
-              </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="tim-icons icon-zoom-split"></i>
             </div>
           </div>
+          <input
+            type="text"
+            class="form-control"
+            v-model="search"
+            placeholder="WebID/currency/adminID/transferID"
+          />
         </div>
       </div>
     </div>
@@ -73,7 +60,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(data,index) in requestdata" v-if="index >= A && index <= B">
+            <tr v-for="(data,index) in filtered" v-if="index >= A && index <= B">
               <td class="text-center">{{index+1}}</td>
               <td>{{ data.userId }}</td>
               <td>{{ data.requestDetail }}</td>
@@ -513,6 +500,7 @@ export default {
   mixins: [adminmixin],
   data() {
     return {
+      search: "",
       audioplay: new Audio("sound/alrmwaining.mp3"),
       alertwarning: false,
       A: 0,
@@ -523,18 +511,21 @@ export default {
     };
   },
   computed: {
-    filterrequest() {
-      // if (this.gamehistorysearch) {
-      //   return this.gamehistory.filter(post => {
-      //     return (
-      //       post.token.includes(this.gamehistorysearch) ||
-      //       post.betStatus.includes(this.gamehistorysearch) ||
-      //       post.betdetail.includes(this.gamehistorysearch)
-      //     );
-      //   });
-      // } else {
-      //   return this.gamehistory;
-      // }
+    filtered() {
+      if (this.search) {
+        return this.requestdata.filter(item => {
+          return (
+            item.userId.toLowerCase().includes(this.search.toLowerCase()) ||
+            item.requestDetail
+              .toLowerCase()
+              .includes(this.search.toLowerCase()) ||
+            item.amount.toString().includes(this.search) ||
+            item.method.toLowerCase().includes(this.search.toLowerCase())
+          );
+        });
+      } else {
+        return this.requestdata;
+      }
     }
   },
 
@@ -558,20 +549,20 @@ export default {
 
     // alert(this.length);
   },
-//   watch:{
-//       alertwarning(e){
-//           if(e==true){
-//               let n =0
-//               setInterval(()=>{
-//                   n++
-//                   if(n==5){
-//                       this.audioplay.play();
-//                       return n = 0
-//                   }
-//               },1000)
-//           }
-//       }
-//   },
+  //   watch:{
+  //       alertwarning(e){
+  //           if(e==true){
+  //               let n =0
+  //               setInterval(()=>{
+  //                   n++
+  //                   if(n==5){
+  //                       this.audioplay.play();
+  //                       return n = 0
+  //                   }
+  //               },1000)
+  //           }
+  //       }
+  //   },
   methods: {
     closewaning() {
       this.audioplay.pause();

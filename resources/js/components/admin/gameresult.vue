@@ -3,40 +3,26 @@
     <!-- PLAYER INFO -->
     <div class="row">
       <div class="col-md-6 text-left">
-        <p class="pl-5">Current Page :  {{gamehistorypagenum}}</p>
+        <p class="pl-5">Current Page : {{gamehistorypagenum}}</p>
       </div>
       <div class="col-md-6 text-right">
-        <button class="btn btn-link" id="gameresult" data-toggle="modal" data-target=".gameresult">
-          <i class="tim-icons icon-zoom-split"></i>
-          <span class="d-lg-none d-md-block">Search</span>
-        </button>
-        <div
-          class="modal modal-search fade gameresult"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="gameresult"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="gameresult"
-                  placeholder="userapiID/refernce/gameID"
-                  v-model="gamehistorysearch"
-                >
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <i class="tim-icons icon-simple-remove"></i>
-                </button>
-              </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="tim-icons icon-zoom-split"></i>
             </div>
           </div>
+          <input
+            type="text"
+            class="form-control"
+            id="gameresult"
+            placeholder="userapiID/refernce/gameID"
+            v-model="gamehistorysearch"
+          />
         </div>
       </div>
     </div>
-    <br>
+    <br />
     <div class="row">
       <div class="col-md-12 col-lg-12">
         <table class="table">
@@ -54,7 +40,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(data,index) in customFilter"
+            <tr
+              v-for="(data,index) in customFilter"
               v-if="index >= gamehistorystart && index <= gamehistoryend"
             >
               <td class="text-center">{{ index+1 }}</td>
@@ -74,7 +61,7 @@
                     data-placement="bottom"
                     title="View Details"
                     class="btn btn-info btn-sm btn-icon"
-                     @click="viewuserdata(method='viewgameuser',data.gameID,data.token)"
+                    @click="viewuserdata(method='viewgameuser',data.gameID,data.token)"
                   >
                     <i class="tim-icons icon-video-66"></i>
                   </button>
@@ -89,10 +76,7 @@
     <nav aria-label="...">
       <ul class="pagination">
         <li class="page-item">
-          <span
-            class="page-link"
-            @click="gamehistorypage(methods='previous')"
-          >Previous</span>
+          <span class="page-link" @click="gamehistorypage(methods='previous')">Previous</span>
         </li>
         <li class="page-item">
           <a class="page-link" href="#">{{ gamehistorypagenum-1 }}</a>
@@ -120,10 +104,15 @@
       aria-labelledby="mySmallModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg" v-if="reqmethod =='viewgameuser'" >
+      <div class="modal-dialog modal-lg" v-if="reqmethod =='viewgameuser'">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle"  v-for="(data,index) in gotuserhistory" v-if="index < 1">GameID: {{ data.gameID }}</h5>
+            <h5
+              class="modal-title"
+              id="exampleModalLongTitle"
+              v-for="(data,index) in gotuserhistory"
+              v-if="index < 1"
+            >GameID: {{ data.gameID }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
@@ -140,19 +129,19 @@
                       <th>betAmount</th>
                       <th>payoutAmount</th>
                       <th>rollingAmount</th>
-                      <th class="text-right">betStatus/th>
+                      <th class="text-right">betStatus/th></th>
                       <th class="text-right">betTime</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr  v-for="(data,index) in gotuserhistory">
-                     <td class="text-center">{{index+1}}</td>
+                    <tr v-for="(data,index) in gotuserhistory">
+                      <td class="text-center">{{index+1}}</td>
                       <td>{{data.token}}</td>
                       <td>{{data.betID}}</td>
                       <td>{{data.betAmount}}</td>
                       <td>{{data.payoutAmount}}</td>
                       <td>{{data.rollingAmount}}</td>
-                      <td class="text-right">{{data.betStatus}}/td>
+                      <td class="text-right">{{data.betStatus}}/td></td>
                       <td class="text-right">{{data.betTime}}</td>
                     </tr>
                   </tbody>
@@ -172,68 +161,66 @@
 <script>
 import { adminmixin } from "./adminmixin.js";
 
-
 export default {
- mixins: [adminmixin],
- data(){
-   return{
-     dataserached:null,
-     gamehistorystart:0,
-     gamehistoryend:20,
-     gamehistorypagenum:1,
-     gamehistorysearch:null,
-     getfiler:[]
-
-   }
- },
- watch:{
-    dataserached(e){
+  mixins: [adminmixin],
+  data() {
+    return {
+      dataserached: null,
+      gamehistorystart: 0,
+      gamehistoryend: 20,
+      gamehistorypagenum: 1,
+      gamehistorysearch: null,
+      getfiler: []
+    };
+  },
+  watch: {
+    dataserached(e) {
       // this.getfiler = this.filterByStock(e)
     }
- },
-methods:{
-  filterByStock(id) {
+  },
+  methods: {
+    filterByStock(id) {
       return this.gamehistory.filter(element => {
-         return element.gameID == id;
+        return element.gameID == id;
       });
     },
-  gamehistorypage(methods){
-        if(methods=='previous'){
-          if(this.gamehistorystart > 0){
-              this.gamehistorystart -= 20
-              this.gamehistoryend -= 20
-              this.gamehistorypagenum -= 1
-          }
-        }else{
-           if(this.gamehistoryend < this.gameresult.length){
-              this.gamehistorystart += 20
-              this.gamehistoryend += 20
-              this.gamehistorypagenum += 1
-          }
-
+    gamehistorypage(methods) {
+      if (methods == "previous") {
+        if (this.gamehistorystart > 0) {
+          this.gamehistorystart -= 20;
+          this.gamehistoryend -= 20;
+          this.gamehistorypagenum -= 1;
         }
+      } else {
+        if (this.gamehistoryend < this.gameresult.length) {
+          this.gamehistorystart += 20;
+          this.gamehistoryend += 20;
+          this.gamehistorypagenum += 1;
+        }
+      }
     }
   },
-  computed:{
-  //  dataserachedfilter(){
-  //     return this.gamehistory.filter(post => {
-  //         post.gameID=this.gameid
-  //     });
-  //  },
-    customFilter(){
-      if(this.gamehistorysearch){
+  computed: {
+    //  dataserachedfilter(){
+    //     return this.gamehistory.filter(post => {
+    //         post.gameID=this.gameid
+    //     });
+    //  },
+    customFilter() {
+      if (this.gamehistorysearch) {
         return this.gameresult.filter(post => {
-          return post.gameresult.includes(this.gamehistorysearch) || post.gameID.includes(this.gamehistorysearch) || post.created_at.includes(this.gamehistorysearch);
+          return (
+            post.gameresult.includes(this.gamehistorysearch) ||
+            post.gameID.includes(this.gamehistorysearch) ||
+            post.created_at.includes(this.gamehistorysearch)
+          );
         });
-      }else{
-        return this.gameresult
+      } else {
+        return this.gameresult;
       }
-    },
+    }
   }
-
-
 };
-
 </script>
 
 <style scoped>

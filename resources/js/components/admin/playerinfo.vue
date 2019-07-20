@@ -5,25 +5,17 @@
         <p class="pl-5">Current Page : Page {{ userdetailpg.currentpage }}</p>
       </div>
       <div class="col-md-6">
-        <form class="navbar-form navbar-right m-0 pr-5" role="search">
-          <div class="form-group form-search is-empty m-1">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search"
-              v-model="searchuserdetail"
-              @keyup.enter="userdata(userdetailpg.path+'?search='+searchuserdetail,method='search')"
-            >
-            <span class="material-input"></span>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="tim-icons icon-zoom-split"></i>
+            </div>
           </div>
-          <button type="submit" class="btn btn-white btn-round btn-just-icon">
-            <i class="material-icons">search</i>
-            <div class="ripple-container"></div>
-          </button>
-        </form>
+          <input type="text" class="form-control" v-model="search" placeholder="Search Mail" />
+        </div>
       </div>
     </div>
-    <br>
+    <br />
     <!-- PLAYER INFO -->
     <div class="row">
       <div class="col-md-12 col-lg-12">
@@ -68,7 +60,7 @@
               <td>{{data.user_id}}</td>
               <td>{{data.name}}</td>
               <td>{{data.userBalance}}</td>
-              
+
               <td>{{data.currency}}</td>
               <td>{{ Math.floor(data.totalOnlineHour / 3600)}}</td>
               <td>{{data.lang}}</td>

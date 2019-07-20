@@ -8,48 +8,14 @@
           </div>
           <div class="col-md-4">
             <button
-              class="btn btn-primary  btn-round"
+              class="btn btn-primary btn-round"
               data-toggle="modal"
               data-target="#editPrice"
               @click="medthod='insert'"
             >Create New Level</button>
           </div>
-          <div class="col-md-4 text-right">
-            
-            <button
-              class="btn btn-link"
-              id="levelchange"
-              data-toggle="modal"
-              data-target=".levelchange"
-            >
-              <i class="tim-icons icon-zoom-split"></i>
-              <span class="d-lg-none d-md-block">Search</span>
-            </button>
-            <div
-              class="modal modal-search fade levelchange"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="levelchange"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="userapiID/refernce/gameID"
-                    >
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <i class="tim-icons icon-simple-remove"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-        <br>
+        <br />
         <div class="row">
           <div class="col-md-12">
             <table class="table">
@@ -81,7 +47,7 @@
                         data-toggle="tooltip"
                         data-placement="bottom"
                         title="Edit"
-                        class="btn btn-primary  btn-sm btn-icon"
+                        class="btn btn-primary btn-sm btn-icon"
                         @click="edit(data.id)"
                       >
                         <i class="tim-icons icon-pencil"></i>
@@ -141,7 +107,7 @@
                             class="form-control"
                             placeholder="Title..."
                             v-model="title"
-                          >
+                          />
                         </div>
                       </div>
                     </div>
@@ -157,7 +123,7 @@
                             class="form-control"
                             placeholder="Level..."
                             v-model="level"
-                          >
+                          />
                         </div>
                       </div>
                     </div>
@@ -173,7 +139,7 @@
                             class="form-control"
                             placeholder="Amount..."
                             v-model="amount"
-                          >
+                          />
                         </div>
                       </div>
                     </div>
@@ -189,7 +155,7 @@
                             class="form-control"
                             placeholder="Percentage..."
                             v-model="percentage"
-                          >
+                          />
                         </div>
                       </div>
                     </div>
@@ -274,7 +240,7 @@ export default {
               timer: 1000,
               buttonsStyling: false
             }).catch(swal.noop);
-             this.getdataSelfservice();
+            this.getdataSelfservice();
           }
         })
         .catch(swal.noop);
