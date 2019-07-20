@@ -29,6 +29,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\Environment\Console;
 use App\Rolling_history;
 use App\Admincard;
+use App\admincard_rule;
 
 // use League\Flysystem\Exception;
 class CardController extends Controller
@@ -42,7 +43,7 @@ class CardController extends Controller
             as bankAccount,registerProvince,
             registerCity,branch,status,user_id,methodId
             from withdraw_methods
-            where user_id ="'.$userID.'" ORDER BY created_at DESC ');
+            where user_id ="' . $userID . '" ORDER BY created_at DESC ');
 
 
             if ($data) {
@@ -346,6 +347,7 @@ class CardController extends Controller
     }
     public function addcardmin(Request $request)
     {
+        // return $request;
         try {
             $adminid = Auth::guard('administrator')->user()->id;
             // return $adminid;
@@ -360,9 +362,14 @@ class CardController extends Controller
                 'bankAccount' => $request->bankAccount,
                 'branch' => $request->branch,
                 'owner' => $request->owner,
+                'rule_id' => $request->Rule,
                 'address' => json_encode($address),
             );
-            $getData = Admincard::create($saveData);
+            if ($request->method == 1) {
+                $getData = Admincard::where('id', $request->gotid)->update($saveData);
+            } else {
+                $getData = Admincard::create($saveData);
+            }
             if ($getData) {
                 return $this->returncode(200, 'No data', 'success');
             } else {
@@ -374,7 +381,10 @@ class CardController extends Controller
     }
     public function getadmincard()
     {
-        $data = Admincard::get();
+        // $data = Admincard::get();
+        $data = DB::table('admincard_rules')
+            ->join('admincards', 'admincard_rules.id', '=', 'admincards.rule_id')
+            ->get();
         return $data;
     }
     public function deletecard($id)
@@ -393,7 +403,52 @@ class CardController extends Controller
     }
     public function sendeditcard($id)
     {
-        $getData = Admincard::where('id', '=', $id)->get();
+        $getData = Admincard::find($id)->get();
         return $getData;
+    }
+    public function addrule(Request $request)
+    {
+        // return $request;
+        try {
+            DB::enableQueryLog();
+            $getdata = array(
+                'rulename' => $request->rulename,
+                'rule_level' => $request->rule_level,
+                'level' => $request->level,
+                'localted' => $request->localted,
+                'inAnd' => $request->inAnd,
+                'Notin' => $request->Notin,
+                'amoute' => $request->amoute,
+                'from' => $request->from,
+                'to' => $request->to,
+            );
+            $saveData = admincard_rule::create($getdata);
+            if ($saveData) {
+                return $this->returncode(200, "success", 'success');
+            } else {
+                return $this->returncode(300, "Can not success", DB::getQueryLog());
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function getadminrule()
+    {
+        $getdata = admincard_rule::get();
+        return $getdata;
+    }
+    public function deleteruld($id)
+    {
+        try {
+            DB::enableQueryLog();
+            $deleteRuld = admincard_rule::find($id)->delete();
+            if ($deleteRuld) {
+                return $this->returncode(200, "Delete", 'success');
+            } else {
+                return $this->returncode(300, "Can not Delete", DB::getQueryLog());
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
     }
 }
