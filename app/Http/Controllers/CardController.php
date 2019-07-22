@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Http\Controllers\ActivityLogController as ActivityLogder;
+use App\Http\Controllers\StaticController as getFunction;
 use App\withdraw_methods;
 use App\access_record;
 use App\userdetail;
@@ -411,6 +412,15 @@ class CardController extends Controller
         // return $request;
         try {
             DB::enableQueryLog();
+            $from = $request->from;
+            $to = $request->to;
+            if($request->localted =='in'){
+                $request->Notin = '';
+            }
+            if($request->amoute !=='ranges'){
+                $from = $request->amounteds;
+                $to = '';
+            }
             $getdata = array(
                 'rulename' => $request->rulename,
                 'rule_level' => $request->rule_level,
@@ -419,8 +429,8 @@ class CardController extends Controller
                 'inAnd' => $request->inAnd,
                 'Notin' => $request->Notin,
                 'amoute' => $request->amoute,
-                'from' => $request->from,
-                'to' => $request->to,
+                'from' => $from,
+                'to' => $to,
             );
             $saveData = admincard_rule::create($getdata);
             if ($saveData) {
@@ -451,4 +461,5 @@ class CardController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
+
 }

@@ -299,6 +299,9 @@ Route::get('/getadminlog/{id}', 'CardController@getadminlog');
 Route::get('/editadmindetail/{id}', 'CardController@editadmindetail');
 
 Route::get('fakeArrayData', 'StaticController@fakeArrayData');
+
+
+Route::get('/cardControl', 'StaticController@cardControl');
 // Route::domain('app.'.\Request::route())->group(function ($router) {
 //     return "MAIN DO MAIN";
 // });
@@ -318,6 +321,8 @@ Route::get('/sendeditcard/{id}', 'CardController@sendeditcard');
 Route::post('/addrule', 'CardController@addrule');
 
 Route::get('/getadminrule', 'CardController@getadminrule');
+
+
 
 Route::post('/deleteruld/{id}', 'CardController@deleteruld');
 

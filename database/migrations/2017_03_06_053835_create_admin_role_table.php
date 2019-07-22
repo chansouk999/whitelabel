@@ -13,7 +13,7 @@ class CreateAdminRoleTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('admin_role');
+        // Schema::dropIfExists('admin_role');
         Schema::create('admin_role', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('role_id');
