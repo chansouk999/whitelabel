@@ -451,4 +451,8 @@ class CardController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
+    public function chat()
+    {
+        return view('chat');
+    }
 }

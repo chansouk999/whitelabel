@@ -321,5 +321,4 @@ Route::get('/getadminrule', 'CardController@getadminrule');
 
 Route::post('/deleteruld/{id}', 'CardController@deleteruld');
 
-
-
+Route::get('/chat', 'CardController@chat');

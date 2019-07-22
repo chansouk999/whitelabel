@@ -142,6 +142,7 @@
           </div>
           <div class="modal-footer d-flex justify-content-end">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <a :href="chat" target="_blank">Chat room</a>
           </div>
         </div>
       </div>
@@ -153,6 +154,7 @@
 export default {
   data() {
     return {
+      chat: "/chat",
       gamehistorystart: 0,
       gamehistoryend: 9,
       gamehistorypagenum: 1,
