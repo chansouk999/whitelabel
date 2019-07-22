@@ -183,6 +183,9 @@
                     <th>DATA & TIME</th>
                   </tr>
                 </thead>
+
+           
+
                 <tbody>
                   <tr
                     v-for="(data,index) in filteredResourcesloppdataRequets"

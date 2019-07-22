@@ -6,43 +6,23 @@
         <p class="pl-5">Current Page : Page</p>
       </div>
       <div class="col-md-6 text-right">
-        <button
-          class="btn btn-link"
-          id="gamehistory"
-          data-toggle="modal"
-          data-target=".gamehistory"
-        >
-          <i class="tim-icons icon-zoom-split"></i>
-          <span class="d-lg-none d-md-block">Search</span>
-        </button>
-        <div
-          class="modal modal-search fade gamehistory"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="gamehistory"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="gamehistory"
-                  placeholder="userapiID/refernce/gameID"
-                  v-model="gamehistorysearch"
-                  @keyup.enter="customFilter"
-                >
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <i class="tim-icons icon-simple-remove"></i>
-                </button>
-              </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="tim-icons icon-zoom-split"></i>
             </div>
           </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="userapiID/refernce/gameID"
+            v-model="gamehistorysearch"
+            @keyup.enter="customFilter"
+          />
         </div>
       </div>
     </div>
-    <br>
+    <br />
     <div class="row">
       <div class="col-md-12 col-lg-12">
         <table class="table">
@@ -112,7 +92,7 @@
                     data-placement="bottom"
                     title="View Game Result"
                     class="btn btn-success btn-sm btn-icon"
-                     @click="viewuserdata(method='viewgameresult',data.token,data.gameID)"
+                    @click="viewuserdata(method='viewgameresult',data.token,data.gameID)"
                   >
                     <i class="tim-icons icon-video-66"></i>
                   </button>
@@ -135,10 +115,7 @@
           </select>
         </li>
         <li class="page-item">
-          <span
-            class="page-link"
-            @click="gamehistorypage(methods='previous')"
-          >Previous</span>
+          <span class="page-link" @click="gamehistorypage(methods='previous')">Previous</span>
         </li>
         <li class="page-item">
           <a class="page-link" href="#">{{ gamehistorypagenum-1 }}</a>
@@ -167,14 +144,14 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-sm" v-if="reqmethod=='viewuser'">
-        <div class="modal-content" v-for="data in gotuserhistory " >
+        <div class="modal-content" v-for="data in gotuserhistory ">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Player userID: {{data.user_id}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               <i class="tim-icons icon-simple-remove"></i>
             </button>
           </div>
-          <div class="modal-body"  >
+          <div class="modal-body">
             <div class="card card-nav-tabs">
               <div class="card-header">User name:{{data.name}}</div>
               <ul class="list-group list-group-flush">
@@ -247,53 +224,50 @@
 <script>
 import { adminmixin } from "./adminmixin.js";
 export default {
- mixins: [adminmixin],
- data(){
-   return{
-     gamehistorystart:0,
-     gamehistoryend:20,
-     gamehistorypagenum:1,
-     gamehistorysearch:null,
-
-   }
- },
-methods:{
-  
-  gamehistorypage(methods){
-        if(methods=='previous'){
-          if(this.gamehistorystart > 0){
-             this.gamehistorystart -= 20
-              this.gamehistoryend -= 20
-              this.gamehistorypagenum -= 1
-          }
-        }else{
-           if(this.gamehistoryend < this.gamehistory.length){
-              this.gamehistorystart += 20
-              this.gamehistoryend += 20
-              this.gamehistorypagenum += 1
-          }
-         
+  mixins: [adminmixin],
+  data() {
+    return {
+      gamehistorystart: 0,
+      gamehistoryend: 20,
+      gamehistorypagenum: 1,
+      gamehistorysearch: null
+    };
+  },
+  methods: {
+    gamehistorypage(methods) {
+      if (methods == "previous") {
+        if (this.gamehistorystart > 0) {
+          this.gamehistorystart -= 20;
+          this.gamehistoryend -= 20;
+          this.gamehistorypagenum -= 1;
         }
+      } else {
+        if (this.gamehistoryend < this.gamehistory.length) {
+          this.gamehistorystart += 20;
+          this.gamehistoryend += 20;
+          this.gamehistorypagenum += 1;
+        }
+      }
     }
   },
-  computed:{
-    customFilter(){
-    // return this.gamehistory.filter((item)=>{
-    //     return item.betAmount.includes(this.gamehistorysearch)
-    // })
-    if(this.gamehistorysearch){
-      return this.gamehistory.filter(post => {
-        return post.token.includes(this.gamehistorysearch) || post.betStatus.includes(this.gamehistorysearch) || post.betdetail.includes(this.gamehistorysearch)
-        ;
-    });
-    }else{
-      return this.gamehistory
+  computed: {
+    customFilter() {
+      // return this.gamehistory.filter((item)=>{
+      //     return item.betAmount.includes(this.gamehistorysearch)
+      // })
+      if (this.gamehistorysearch) {
+        return this.gamehistory.filter(post => {
+          return (
+            post.token.includes(this.gamehistorysearch) ||
+            post.betStatus.includes(this.gamehistorysearch) ||
+            post.betdetail.includes(this.gamehistorysearch)
+          );
+        });
+      } else {
+        return this.gamehistory;
+      }
     }
-     
-  },
   }
-
- 
 };
 </script>
 

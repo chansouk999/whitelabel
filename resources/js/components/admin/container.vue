@@ -91,38 +91,18 @@
                             <p class="pl-5">Current Page : Page {{ userdetailpg.currentpage }}</p>
                           </div>
                           <div class="col-md-6 text-right">
-                            <button
-                              class="btn btn-link"
-                              id="search-button"
-                              data-toggle="modal"
-                              data-target="#spearchilayerinfo"
-                            >
-                              <i class="tim-icons icon-zoom-split"></i>
-                              <span class="d-lg-none d-md-block">Search</span>
-                            </button>
-                            <div
-                              class="modal modal-search fade"
-                              id="spearchilayerinfo"
-                              tabindex="-1"
-                              role="dialog"
-                              aria-labelledby="spearchilayerinfo"
-                              aria-hidden="true"
-                            >
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <input type="text" class="form-control" placeholder="SEARCH" />
-                                    <button
-                                      type="button"
-                                      class="close"
-                                      data-dismiss="modal"
-                                      aria-label="Close"
-                                    >
-                                      <i class="tim-icons icon-simple-remove"></i>
-                                    </button>
-                                  </div>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                  <i class="tim-icons icon-zoom-split"></i>
                                 </div>
                               </div>
+                              <input
+                                type="text"
+                                class="form-control"
+                                v-model="search"
+                                placeholder="Search Mail"
+                              />
                             </div>
                           </div>
                         </div>
@@ -167,7 +147,7 @@
                                   </td>
                                 </tr>
                                 <tr
-                                  v-for="(data,index) in userdetail"
+                                  v-for="(data,index) in filtered"
                                   class="userdeteail"
                                   v-if="loading == false"
                                 >
@@ -676,6 +656,7 @@ export default {
   data() {
     return {
       trackuser: [],
+      search: "",
       playerRecord: [],
       A: 0,
       B: 9
@@ -726,6 +707,20 @@ export default {
     }
   },
   mounted() {},
+  computed: {
+    filtered() {
+      if (this.search) {
+        return this.userdetail.filter(item => {
+          return (
+            item.user_id.toLowerCase().includes(this.search.toLowerCase()) ||
+            item.name.toLowerCase().includes(this.search.toLowerCase())
+          );
+        });
+      } else {
+        return this.userdetail;
+      }
+    }
+  },
   methods: {
     GetPlayerRecore(id) {
       axios
@@ -769,7 +764,6 @@ export default {
 };
 </script>
 <style scoped>
-
 .tr-loader {
 }
 .tr-loader td {
@@ -812,5 +806,6 @@ export default {
     transform: rotate(360deg);
   }
 }
-
 </style>
+
+

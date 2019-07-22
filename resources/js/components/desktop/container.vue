@@ -191,7 +191,6 @@
                   </div>
                 </div>
                 <!-- Sidebar -->
-                <hr />
               </div>
             </div>
           </div>

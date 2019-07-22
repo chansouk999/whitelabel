@@ -13,33 +13,19 @@
         >Make new Agent</button>
       </div>
       <div class="col-md-4 text-right">
-        <button class="btn btn-link" id="agent-info" data-toggle="modal" data-target=".agent-info">
-          <i class="tim-icons icon-zoom-split"></i>
-          <span class="d-lg-none d-md-block">Search</span>
-        </button>
-        <div
-          class="modal modal-search fade agent-info"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="agent-info"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="agent-info"
-                  placeholder="userapiID/refernce/gameID"
-                v-model="watchsearch"
-                />
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <i class="tim-icons icon-simple-remove"></i>
-                </button>
-              </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="tim-icons icon-zoom-split"></i>
             </div>
           </div>
+          <input
+            type="text"
+            class="form-control"
+            id="agent-info"
+            placeholder="userapiID/refernce/gameID"
+            v-model="watchsearch"
+          />
         </div>
       </div>
     </div>
@@ -135,36 +121,29 @@
       </div>
     </div>
 
-
-
-
-
-
-
-
     <!-- PLAYER INFO -->
-   <nav aria-label="...">
-              <ul class="pagination">
-                <li class="page-item">
-                  <span class="page-link" @click="paginate(method='previous')">Previous</span>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">{{Page-1}}</a>
-                </li>
-                <li class="page-item active">
-                  <span class="page-link">
-                    {{Page}}
-                    <span class="sr-only">(current)</span>
-                  </span>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">{{Page+1}}</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#" @click="paginate(method='next')">Next</a>
-                </li>
-              </ul>
-            </nav>
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item">
+          <span class="page-link" @click="paginate(method='previous')">Previous</span>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">{{Page-1}}</a>
+        </li>
+        <li class="page-item active">
+          <span class="page-link">
+            {{Page}}
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">{{Page+1}}</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#" @click="paginate(method='next')">Next</a>
+        </li>
+      </ul>
+    </nav>
 
     <!-- Modal view player-->
     <div
@@ -360,7 +339,7 @@
                         </div>
                       </div>
                     </div>
-                     <div class="row">
+                    <div class="row">
                       <label class="col-md-3 col-form-label">Password</label>
                       <div class="col-md-9">
                         <div class="form-group">
@@ -493,20 +472,23 @@ export default {
       B: 19,
       Page: 1,
       agentinfo: [],
-      agentpwd:null
+      agentpwd: null
     };
   },
   mounted() {
-      this.getagentinfo()
+    this.getagentinfo();
   },
   computed: {
     filterData() {
       if (this.watchsearch) {
         return this.agentinfo.filter(res => {
-          return res.agentId.toString().includes(this.watchsearch) || res.name.includes(this.watchsearch)
-          || res.province.includes(this.watchsearch)
-          || res.city.includes(this.watchsearch)
-          || res.branch.includes(this.watchsearch)
+          return (
+            res.agentId.toString().includes(this.watchsearch) ||
+            res.name.includes(this.watchsearch) ||
+            res.province.includes(this.watchsearch) ||
+            res.city.includes(this.watchsearch) ||
+            res.branch.includes(this.watchsearch)
+          );
         });
       } else {
         return this.agentinfo;
@@ -514,11 +496,16 @@ export default {
     }
   },
   methods: {
-        getagentinfo() {
-            axios.get('/getagentinfo').then(res => {
-                this.agentinfo = res.data.data.data
-            }).catch(e => { console.log(e.response) })
-        },
+    getagentinfo() {
+      axios
+        .get("/getagentinfo")
+        .then(res => {
+          this.agentinfo = res.data.data.data;
+        })
+        .catch(e => {
+          console.log(e.response);
+        });
+    },
     paginate(method) {
       this.watchsearch = null;
       let vm = this;
@@ -546,7 +533,7 @@ export default {
         agentcity: vm.agentcity,
         agentbranch: vm.agentbranch,
         percentage: vm.percentage,
-        agentpwd:vm.agentpwd
+        agentpwd: vm.agentpwd
       };
       axios
         .post("/saveagent", data)
@@ -555,12 +542,12 @@ export default {
           let code = res.data.code;
           let msg = res.data.msg;
           let data = res.data.data;
-        //   conso
+          //   conso
           if (code == 200) {
             this.getagentinfo();
           }
           if (code == 100) {
-            alert('Already Exist Data')
+            alert("Already Exist Data");
           }
           //   alert(msg);
         })
