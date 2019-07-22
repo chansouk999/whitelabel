@@ -26,32 +26,18 @@
         </div>
       </div>
       <div class="col-md-4 text-right">
-        <button class="btn btn-link" data-toggle="modal" data-target=".withdraw">
-          <i class="tim-icons icon-zoom-split"></i>
-          <span class="d-lg-none d-md-block">Search</span>
-        </button>
-        <div
-          class="modal modal-search fade withdraw"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="withdraw"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="userid / topup / withdraw"
-                  v-model="watchsearch"
-                />
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <i class="tim-icons icon-simple-remove"></i>
-                </button>
-              </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="tim-icons icon-zoom-split"></i>
             </div>
           </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="userid / topup / withdraw"
+            v-model="watchsearch"
+          />
         </div>
       </div>
     </div>

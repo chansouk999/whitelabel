@@ -8,42 +8,28 @@
       <div class="col-md-2 text-center d-flex">
         <button
           type="button"
-          class="btn btn-primary "
+          class="btn btn-primary"
           data-toggle="modal"
           data-target=".balance-transfer"
         >Make a Balance Transfer</button>
       </div>
       <div class="col-md-5 text-right">
-        <button class="btn btn-link" id="finace" data-toggle="modal" data-target=".finace">
-          <i class="tim-icons icon-zoom-split"></i>
-          <span class="d-lg-none d-md-block">Search</span>
-        </button>
-        <div
-          class="modal modal-search fade finace"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="finace"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <input
-                  type="text"
-                  class="form-control"
-                  
-                  placeholder="WebID/currency/adminID/transferID"
-                >
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <i class="tim-icons icon-simple-remove"></i>
-                </button>
-              </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="tim-icons icon-zoom-split"></i>
             </div>
           </div>
+          <input
+            type="text"
+            class="form-control"
+            v-model="search"
+            placeholder="WebID/currency/adminID/transferID"
+          />
         </div>
       </div>
     </div>
-    <br>
+    <br />
     <div class="row">
       <div class="col-md-12 col-lg-12">
         <table class="table">
@@ -61,7 +47,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(data,index) in agenttranss" v-if="index >= A && index <= B">
+            <tr v-for="(data,index) in filtered" v-if="index >= A && index <= B">
               <td class="text-center">{{index+1}}</td>
               <td>{{data.Time}}</td>
               <td>{{data.agentId}}</td>
@@ -112,7 +98,7 @@
             <option value="3">4</option>
           </select>
         </li>
-        <li class="page-item ">
+        <li class="page-item">
           <span class="page-link" @click="paginate(method='previous')">Previous</span>
         </li>
         <li class="page-item">
@@ -128,7 +114,7 @@
           <a class="page-link" href="#">3</a>
         </li>
         <li class="page-item">
-          <a class="page-link" href="#"  @click="paginate(method='next')">Next</a>
+          <a class="page-link" href="#" @click="paginate(method='next')">Next</a>
         </li>
       </ul>
     </nav>
@@ -168,7 +154,7 @@
                         v-model="amounttransfer"
                         class="form-control"
                         placeholder="Transfer Amount"
-                      >
+                      />
                     </div>
                   </div>
                 </div>
@@ -188,7 +174,7 @@
                         type="text"
                         class="form-control"
                         placeholder="Type here..."
-                      >
+                      />
                     </div>
                   </div>
                   <div class="col-md-2">
@@ -213,8 +199,6 @@
                       <option v-for="data in agentinfo">{{data.agentId}}</option>
                     </select>
                   </div>
-
-
 
                   <div class="col-md-2">
                     <p class="text-white text-right">Currency id</p>
@@ -243,15 +227,8 @@
                       <option value="LAK">LAK</option>
                     </select>
                   </div>
-            
 
-
-
-
-
-
-
-                <div class="col-md-2">
+                  <div class="col-md-2">
                     <p class="text-white text-right">Method</p>
                   </div>
                   <div class="col-md-4">
@@ -276,17 +253,7 @@
                       <option value="PP">PAYPAL</option>
                     </select>
                   </div>
-                      </div>
-
-
-
-
-
-
-
-
-
-
+                </div>
 
                 <!-- <div class="row">
                    <div class="col-md-3">
@@ -318,7 +285,7 @@
                     </select>
                   </div>
                 </div>-->
-                <hr>
+                <hr />
               </div>
             </div>
           </div>
@@ -350,16 +317,13 @@
           </div>
           <div class="modal-body">
             <div class="card bg-dark text-white" v-for="data in gottransimg">
-              <img class="card-img" :src="'evidence/'+data.imgname" alt="Card image">
+              <img class="card-img" :src="'evidence/'+data.imgname" alt="Card image" />
               <div class="card-img-overlay">
                 <!-- <h4 class="card-title">Card title</h4> -->
-                <p
-                  class="card-text"
-                >{{data.imgdesc}}</p>
+                <p class="card-text">{{data.imgdesc}}</p>
                 <p class="card-text">{{data.created_at}}</p>
               </div>
             </div>
-          
           </div>
 
           <div class="modal-footer">
@@ -391,7 +355,7 @@
             <div class="row">
               <div class="col-md-6" v-for="data in gottransimg">
                 <div class="card bg-dark text-white">
-                  <img class="card-img" :src="'evidence/'+data.imgname" alt="Card image">
+                  <img class="card-img" :src="'evidence/'+data.imgname" alt="Card image" />
                 </div>
                 <div class="card-footer">
                   <button
@@ -399,9 +363,8 @@
                     data-placement="bottom"
                     title="Edit Evidence"
                     type="button"
-                     @click="imgtranfunc(data.id)"
+                    @click="imgtranfunc(data.id)"
                     class="btn btn-secondary btn-sm btn-icon"
-                    
                     data-dismiss="modal"
                   >
                     <i class="tim-icons icon-pencil"></i>
@@ -415,45 +378,42 @@
                     @click="imgtranfunc(data.id)"
                     title="Delete Evidence"
                   >
-                    <i class="tim-icons icon-trash-simple"  @click="delete_img(data.id,data.agent_id)"></i>
+                    <i
+                      class="tim-icons icon-trash-simple"
+                      @click="delete_img(data.id,data.agent_id)"
+                    ></i>
                   </button>
                 </div>
               </div>
-               <div class="col-md-6">
+              <div class="col-md-6">
                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                
                   <div class="fileinput-preview fileinput-exists thumbnail"></div>
                   <div>
                     <span class="btn btn-rose btn-round btn-file">
-                      <span class="fileinput-new" >Add Image</span>
-                      <input type="file" name="..." @change="addimg">
+                      <span class="fileinput-new">Add Image</span>
+                      <input type="file" name="..." @change="addimg" />
                     </span>
                     <a
                       href="#pablo"
                       class="btn btn-danger btn-round fileinput-exists"
                       data-dismiss="fileinput"
-                     
                     >
                       <i class="fa fa-times"></i> Remove
                     </a>
                   </div>
                 </div>
               </div>
-              
             </div>
-             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="saveevivend()">Save changes</button>
-          </div>
-            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" @click="saveevivend()">Save changes</button>
             </div>
           </div>
-         
         </div>
       </div>
     </div>
-    <!--/modal edit evidence -->
   </div>
+  <!--/modal edit evidence -->
 </template>
 <script>
 import { adminmixin } from "./adminmixin.js";
@@ -464,60 +424,82 @@ export default {
       amounttransfer: null,
       gotagentid: null,
       agenttranss: [],
-      methodid:null,
-      getcurrency:null,
-      A:0,
-      transferimganme:null,
-      B:19,
-      transimg:[],
-      gottransimg:[],
-      transfer_id:null,
-      agent_ids:null,
+      methodid: null,
+      getcurrency: null,
+      A: 0,
+      transferimganme: null,
+      B: 19,
+      transimg: [],
+      gottransimg: [],
+      transfer_id: null,
+      agent_ids: null,
+      search: ""
     };
   },
+  computed: {
+    filtered() {
+      if (this.search) {
+        return this.agenttranss.filter(item => {
+          return (
+            item.agentId.toLowerCase().includes(this.search.toLowerCase()) ||
+            item.amount.toString().includes(this.search) ||
+            item.currency.toLowerCase().includes(this.search.toLowerCase()) ||
+            item.methodId.toLowerCase().includes(this.search.toLowerCase())
+          );
+        });
+      } else {
+        return this.agenttranss;
+      }
+    }
+  },
   methods: {
-    delete_img(id){
-      axios.get('/delete_img/'+id).then(res=>{
-        console.log(res.data)
-          this.viewevidenece(this.agent_ids,this.transfer_id)
-      })
+    delete_img(id) {
+      axios.get("/delete_img/" + id).then(res => {
+        console.log(res.data);
+        this.viewevidenece(this.agent_ids, this.transfer_id);
+      });
     },
-    imgtranfunc(id){
-
-    },
-    addimg(e){
-       let vm = this
-       vm.transimg =[]
-      const files = e.target.files[0]
+    imgtranfunc(id) {},
+    addimg(e) {
+      let vm = this;
+      vm.transimg = [];
+      const files = e.target.files[0];
       const img = new Image(),
-            reader = new FileReader();
-            reader.onload = (e) => vm.transimg.push(e.target.result);
-            reader.readAsDataURL(files);
-            vm.transferimganme = files.name
+        reader = new FileReader();
+      reader.onload = e => vm.transimg.push(e.target.result);
+      reader.readAsDataURL(files);
+      vm.transferimganme = files.name;
     },
-    saveevivend(){
-      axios.post('uploadsave',{name:this.transferimganme,img:this.transimg,agentid:this.agent_ids,refer:this.transfer_id}).then(res=>{
-          console.log(res.data)
-           this.$swal("", "Complete!", "success", {
-              button: false,
-              showConfirmButton: false,
-              timer: 1500
-            });
-          this.viewevidenece(this.agent_ids,this.transfer_id)
-          this.transimg =[]
-      }).catch(er => {
+    saveevivend() {
+      axios
+        .post("uploadsave", {
+          name: this.transferimganme,
+          img: this.transimg,
+          agentid: this.agent_ids,
+          refer: this.transfer_id
+        })
+        .then(res => {
+          console.log(res.data);
+          this.$swal("", "Complete!", "success", {
+            button: false,
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this.viewevidenece(this.agent_ids, this.transfer_id);
+          this.transimg = [];
+        })
+        .catch(er => {
           console.log(er.response);
         });
     },
-    viewevidenece(id,refe){
-      this.transfer_id = refe
-      this.agent_ids = id
-      alert(id)
-        axios.get('/getimgtrans/'+refe).then(res=>{
-        this.gottransimg = res.data.data.data
-        console.log(this.gottransimg)
-        
-      })
+    viewevidenece(id, refe) {
+      this.transfer_id = refe;
+      this.agent_ids = id;
+      alert(id);
+      axios.get("/getimgtrans/" + refe).then(res => {
+        this.gottransimg = res.data.data.data;
+        console.log(this.gottransimg);
+      });
     },
     paginate(method) {
       let vm = this;
@@ -535,7 +517,7 @@ export default {
     },
     agenttransaction() {
       axios.get("/agenttransaction").then(res => {
-        console.log(res.data)
+        console.log(res.data);
         this.agenttranss = res.data.data.data;
       });
     },
@@ -543,8 +525,8 @@ export default {
       data = {
         amount: this.amounttransfer,
         agentid: this.gotagentid,
-        methodid:this.methodid,
-        currency:this.getcurrency,
+        methodid: this.methodid,
+        currency: this.getcurrency
       };
       axios
         .post("/savetransfer", data)
@@ -564,7 +546,7 @@ export default {
     }
   },
   mounted() {
-    this.agenttransaction()
+    this.agenttransaction();
   }
 };
 </script>

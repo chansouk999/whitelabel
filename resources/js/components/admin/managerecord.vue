@@ -8,7 +8,7 @@
       <div class="col-md-2 text-center d-flex">
         <div class="form-check mr-3">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value>
+            <input class="form-check-input" type="checkbox" value />
             Player
             <span class="form-check-sign">
               <span class="check"></span>
@@ -17,7 +17,7 @@
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value>
+            <input class="form-check-input" type="checkbox" value />
             To Agent
             <span class="form-check-sign">
               <span class="check"></span>
@@ -25,42 +25,8 @@
           </label>
         </div>
       </div>
-      <div class="col-md-5 text-right">
-        <button
-          class="btn btn-link"
-          id="manage_record"
-          data-toggle="modal"
-          data-target=".manage_record"
-        >
-          <i class="tim-icons icon-zoom-split"></i>
-          <span class="d-lg-none d-md-block">Search</span>
-        </button>
-        <div
-          class="modal modal-search fade manage_record"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="manage_record"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <input
-                  type="text"
-                  class="form-control"
-                  
-                  placeholder="WebID/currency/adminID/transferID"
-                >
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <i class="tim-icons icon-simple-remove"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-    <br>
+    <br />
     <div class="row">
       <div class="col-md-3">
         <div class="card card-nav-tabs">
@@ -107,7 +73,7 @@
                     <i class="tim-icons icon-zoom-split"></i>
                   </div>
                 </div>
-                <input type="text" class="form-control" placeholder="Search Mail">
+                <input type="text" class="form-control" placeholder="Search Mail" />
               </div>
             </div>
           </div>
@@ -148,7 +114,7 @@
                             type="checkbox"
                             id="inlineCheckbox2"
                             value="option2"
-                          >
+                          />
                           <span class="form-check-sign"></span>
                         </label>
                       </div>
@@ -249,7 +215,7 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Transfer Amount">
+                      <input type="text" class="form-control" placeholder="Transfer Amount" />
                     </div>
                   </div>
                 </div>
@@ -264,7 +230,7 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Type here...">
+                      <input type="text" class="form-control" placeholder="Type here..." />
                     </div>
                   </div>
                   <div class="col-md-2">
@@ -294,7 +260,7 @@
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Type here...">
+                      <input type="text" class="form-control" placeholder="Type here..." />
                     </div>
                   </div>
                   <div class="col-md-2">
@@ -313,7 +279,7 @@
                     </select>
                   </div>
                 </div>
-                <hr>
+                <hr />
               </div>
             </div>
           </div>
@@ -345,7 +311,7 @@
           </div>
           <div class="modal-body">
             <div class="card bg-dark text-white">
-              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
               <div class="card-img-overlay">
                 <h4 class="card-title">Card title</h4>
                 <p
@@ -354,9 +320,9 @@
                 <p class="card-text">Last updated 3 mins ago</p>
               </div>
             </div>
-            <hr>
+            <hr />
             <div class="card bg-dark text-white">
-              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+              <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
               <div class="card-img-overlay">
                 <h4 class="card-title">Card title</h4>
                 <p
@@ -396,7 +362,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="card bg-dark text-white">
-                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
                 </div>
                 <div class="card-footer">
                   <button
@@ -423,7 +389,7 @@
               </div>
               <div class="col-md-6">
                 <div class="card bg-dark text-white">
-                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
                 </div>
                 <div class="card-footer">
                   <button
@@ -452,7 +418,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="card bg-dark text-white">
-                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image">
+                  <img class="card-img" src="assetsadmin/img/img01.png" alt="Card image" />
                 </div>
                 <div class="card-footer">
                   <button
@@ -480,14 +446,14 @@
               <div class="col-md-6">
                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                   <div class="fileinput-new thumbnail">
-                    <img src="assetsadmin/img/img-opacity.png" alt="...">
+                    <img src="assetsadmin/img/img-opacity.png" alt="..." />
                   </div>
                   <div class="fileinput-preview fileinput-exists thumbnail"></div>
                   <div>
                     <span class="btn btn-rose btn-round btn-file">
                       <span class="fileinput-new">Select image</span>
                       <span class="fileinput-exists">Change</span>
-                      <input type="file" name="...">
+                      <input type="file" name="..." />
                     </span>
                     <a
                       href="#pablo"

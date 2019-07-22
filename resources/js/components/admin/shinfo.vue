@@ -7,38 +7,19 @@
       </div>
       <div class="col-md-4">
         <button
-          class="btn btn-primary  btn-round"
+          class="btn btn-primary btn-round"
           data-toggle="modal"
           data-target="#shareholder"
         >Make shareholder</button>
       </div>
       <div class="col-md-4 text-right">
-        <button class="btn btn-link" id="shinfo" data-toggle="modal" data-target=".shinfo">
-          <i class="tim-icons icon-zoom-split"></i>
-          <span class="d-lg-none d-md-block">Search</span>
-        </button>
-        <div
-          class="modal modal-search fade shinfo"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="shinfo"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="shinfo"
-                  placeholder="userapiID/refernce/gameID"
-                />
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <i class="tim-icons icon-simple-remove"></i>
-                </button>
-              </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="tim-icons icon-zoom-split"></i>
             </div>
           </div>
+          <input type="text" class="form-control" v-model="search" placeholder="Search Mail" />
         </div>
       </div>
     </div>
@@ -55,7 +36,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(data,index) in shareinfo" v-if="index >= A && index <= B">
+            <tr v-for="(data,index) in filtered" v-if="index >= A && index <= B">
               <td class="text-center">{{ index+1 }}</td>
               <td>{{data.share_id}}</td>
               <td>{{data.name}}</td>
@@ -132,7 +113,7 @@
                             v-model="shareholdername"
                           />
                         </div>
-                           <div class="form-group">
+                        <div class="form-group">
                           <!-- shareholdername
                           shareholderpermision-->
                           <input
@@ -191,10 +172,25 @@ export default {
       shareholdername: null,
       shareholderpermision: null,
       shareinfo: [],
-      shpassword:null,
+      shpassword: null,
       A: 0,
-      B: 19
+      B: 19,
+      search: ""
     };
+  },
+  computed: {
+    filtered() {
+      if (this.search) {
+        return this.shareinfo.filter(item => {
+          return (
+            item.share_id.toLowerCase().includes(this.search.toLowerCase()) ||
+            item.name.toLowerCase().includes(this.search.toLowerCase())
+          );
+        });
+      } else {
+        return this.shareinfo;
+      }
+    }
   },
   methods: {
     paginate(method) {
@@ -226,7 +222,7 @@ export default {
       data = {
         shareholdername: this.shareholdername,
         shareholderpermision: this.shareholderpermision,
-        shpassword:this.shpassword
+        shpassword: this.shpassword
       };
       axios
         .post("saveshareholder", data)

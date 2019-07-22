@@ -113,39 +113,20 @@
               <div class="col-md-4 text-left">
                 <p class="pl-5">Current Page : {{Page}}</p>
               </div>
-              <div class="col-md-12 text-right">
-                <button
-                  class="btn btn-link"
-                  id="admininfo"
-                  data-toggle="modal"
-                  data-target=".admininfo"
-                >
-                  <i class="tim-icons icon-zoom-split"></i>
-                  <span class="d-lg-none d-md-block">Search</span>
-                </button>
-                <div
-                  class="modal modal-search fade admininfo"
-                  tabindex="-1"
-                  role="dialog"
-                  aria-labelledby="admininfo"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="admininfo"
-                          placeholder="adminid"
-                          v-model="watchsearch"
-                        />
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <i class="tim-icons icon-simple-remove"></i>
-                        </button>
-                      </div>
+              <div class="col-md-8 text-right">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="tim-icons icon-zoom-split"></i>
                     </div>
                   </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="admininfo"
+                    placeholder="adminid"
+                    v-model="watchsearch"
+                  />
                 </div>
               </div>
             </div>
@@ -321,9 +302,8 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-lg">
-
         <!-- <div class="modal-content bg-default" v-if="editclicked == true"  v-for="data in getadmindetail"> -->
-        <div class="modal-content bg-default" >
+        <div class="modal-content bg-default">
           <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">Create new admin</h4>
@@ -682,7 +662,7 @@
 export default {
   data() {
     return {
-      editclicked:false,
+      editclicked: false,
       admininfoall: [],
       getadmindetail: [],
       datagetadminlog: [],

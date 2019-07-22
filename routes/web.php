@@ -43,7 +43,7 @@ Route::get('/Carousel', 'AdminController@getCarousel');
 Route::get('/userCarousel', 'MasterController@getCarousel');
 Route::post('/Carousel', 'AdminController@postCarousel');
 Route::get('/getadmininfo', 'AdminController@getadmininfo');
-Route::get('/login',function(){
+Route::get('/login', function () {
     return redirect('/');
 });
 
@@ -244,13 +244,13 @@ Route::post('/editlevel/{id}', 'CardController@editlevel');
 Route::post('/saveLavel', 'CardController@saveLavel');
 
 Route::post('/deleteLevel/{id}', 'CardController@deleteLevel');
-Route::get('loginasadmin',function(){
+Route::get('loginasadmin', function () {
     return redirect('administrator/login');
 });
 Route::prefix('/administrator')->namespace('Admins')->group(function () {
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('/login', 'Auth\LoginController@login');
-     Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@index');
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });
 
@@ -298,7 +298,7 @@ Route::get('/getadminlog/{id}', 'CardController@getadminlog');
 
 Route::get('/editadmindetail/{id}', 'CardController@editadmindetail');
 
-Route::get('fakeArrayData','StaticController@fakeArrayData');
+Route::get('fakeArrayData', 'StaticController@fakeArrayData');
 // Route::domain('app.'.\Request::route())->group(function ($router) {
 //     return "MAIN DO MAIN";
 // });
@@ -314,3 +314,12 @@ Route::get('/getadmincard', 'CardController@getadmincard');
 Route::post('/deletecard/{id}', 'CardController@deletecard');
 
 Route::get('/sendeditcard/{id}', 'CardController@sendeditcard');
+
+Route::post('/addrule', 'CardController@addrule');
+
+Route::get('/getadminrule', 'CardController@getadminrule');
+
+Route::post('/deleteruld/{id}', 'CardController@deleteruld');
+
+
+

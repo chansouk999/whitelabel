@@ -5,39 +5,6 @@
       <div class="col-md-3 text-left">
         <p class="pl-5">Current Page : 1</p>
       </div>
-      <div class="col-md-5 text-right">
-        <button
-          class="btn btn-link"
-          id="announcement"
-          data-toggle="modal"
-          data-target=".announcement"
-        >
-          <i class="tim-icons icon-zoom-split"></i>
-          <span class="d-lg-none d-md-block">Search</span>
-        </button>
-        <div
-          class="modal modal-search fade announcement"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="announcement"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="WebID/currency/adminID/transferID"
-                />
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <i class="tim-icons icon-simple-remove"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <br />
     <div class="row">

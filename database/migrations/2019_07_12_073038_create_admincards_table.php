@@ -23,7 +23,6 @@ class CreateAdmincardsTable extends Migration
             $table->string('branch', 50);
             $table->string('owner', 100);
             $table->text('address');
-            $table->text('level')->nullable();
             $table->timestamps();
         });
     }
