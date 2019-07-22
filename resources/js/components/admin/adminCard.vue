@@ -258,6 +258,7 @@
                 >
                   <option value="in">in</option>
                   <option value="inorin">in or in</option>
+                  <option value="notIn">not in</option>
                   <option value="inAndNotin">in and not in</option>
                 </select>
               </div>
@@ -274,9 +275,10 @@
                   <option value="China">China</option>
                   <option value="USA">USA</option>
                   <option value="Thailand">Thailand</option>
+                  <option value="Laos">Laos</option>
                 </select>
               </div>
-              <div class="col-3" v-show="localted !=='in'">
+              <div class="col-3" v-show="!(localted =='in' || localted =='notIn')">
                 <label class="text-dark"></label>
                 <select
                   class="selectpicker"
@@ -289,6 +291,7 @@
                   <option value="China">China</option>
                   <option value="USA">USA</option>
                   <option value="Thailand">Thailand</option>
+                  <option value="Laos">Laos</option>
                 </select>
               </div>
             </div>
@@ -344,7 +347,7 @@
               <div class="col-4" v-show="amoute !=='ranges'">
                 <label class="text-dark"></label>
                 <div class="form-group">
-                  <input class="form-control" type="text" :placeholder="amoute" />
+                  <input class="form-control" v-model="amounteds"  type="text" :placeholder="amoute" />
                 </div>
               </div>
             </div>
@@ -563,6 +566,7 @@ export default {
       rule_level: "",
       level: "",
       localted: "",
+      amounteds:null,
       amoute: "",
       from: "",
       to: "",
@@ -641,11 +645,14 @@ export default {
     },
     confrim_addrule() {
       let vm = this;
+      let checkData = [];
+
       let data = {
         rule_level: vm.rule_level,
         level: vm.level,
         localted: vm.localted,
         amoute: vm.amoute,
+        amounteds:vm.amounteds,
         from: vm.from,
         to: vm.to,
         rulename: vm.rulename,

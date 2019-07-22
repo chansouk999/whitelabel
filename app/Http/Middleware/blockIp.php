@@ -34,8 +34,9 @@ class blockIp
 
 
         $ip =  \Request::getClientIp();
-
         $check = geoip()->getLocation($ip);
+        // print_r($check);
+
         if ($check['iso_code'] == 'LA' || $ip == '127.0.0.1' || $ip = '192.168.1.134') {
             return $next($request);
         } else {
