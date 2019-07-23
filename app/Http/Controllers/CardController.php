@@ -31,6 +31,7 @@ use SebastianBergmann\Environment\Console;
 use App\Rolling_history;
 use App\Admincard;
 use App\admincard_rule;
+use App\reply_anouces;
 
 // use League\Flysystem\Exception;
 class CardController extends Controller
@@ -414,10 +415,10 @@ class CardController extends Controller
             DB::enableQueryLog();
             $from = $request->from;
             $to = $request->to;
-            if($request->localted =='in'){
+            if ($request->localted == 'in') {
                 $request->Notin = '';
             }
-            if($request->amoute !=='ranges'){
+            if ($request->amoute !== 'ranges') {
                 $from = $request->amounteds;
                 $to = '';
             }
@@ -464,5 +465,37 @@ class CardController extends Controller
     public function chat()
     {
         return view('chat');
+    }
+    public function getDataChat($id)
+    {
+        $data = DB::table('announcements')
+            ->join('reply_anouces', 'reply_anouces.anou_id', '=', 'announcements.AnouncementID')
+            ->where('announcements.AnouncementID', '=', $id)
+            ->get();
+        if ($data->count() < 1) {
+            $data = Announcement::where('AnouncementID', '=', $id)->get();
+        }
+        return  $data;
+    }
+    public function Senddata(Request $request)
+    {
+        try {
+            DB::enableQueryLog();
+            $getAuth = Auth::user()->user_id;
+            $insertdata = array(
+                'anou_id' => $request->GetdataID,
+                'chater_id' => $getAuth,
+                'msg' => $request->typemessage,
+                'owner' => 0
+            );
+            $Getdata = reply_anouces::create($insertdata);
+            if ($Getdata) {
+                return $this->returncode(200, "Delete", 'success');
+            } else {
+                return $this->returncode(300, "Can not Delete", DB::getQueryLog());
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
     }
 }

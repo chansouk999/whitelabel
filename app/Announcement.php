@@ -10,6 +10,7 @@ class Announcement extends Model
         'AnouncementID',
         'method',
         'message',
-        'userID'
+        'userID',
+        'post_by',
     ];
 }

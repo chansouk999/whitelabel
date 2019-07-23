@@ -32,7 +32,8 @@ class AdminController extends Controller
     protected $url8003 = 'http://localhost:8003';
 
 
-    public static function helloword(){
+    public static function helloword()
+    {
         return 'Hello World';
     }
     public function __construct()
@@ -853,7 +854,7 @@ class AdminController extends Controller
     public function saveannounce(Request $req)
     {
         try {
-
+            $getname = Auth::guard('administrator')->user()->id;
             $id = Announcement::count() + 1;
             $msg = array(
                 'title' => $req->title,
@@ -865,6 +866,7 @@ class AdminController extends Controller
                 'method' => $req->method,
                 'message' => json_encode($msg),
                 'userID' => json_encode($req->userID),
+                'post_by' => $getname,
             );
             // return  $message;
             $save = Announcement::create($message);

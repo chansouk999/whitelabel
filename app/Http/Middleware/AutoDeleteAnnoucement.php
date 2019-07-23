@@ -17,10 +17,10 @@ class AutoDeleteAnnoucement
      */
     public function handle($request, Closure $next)
     {
-        $date2 = new DateTime;
-        $date2->modify('-1 week');
-        $formatted_date = $date2->format('Y-m-d H:i:s');
-        $get = Announcement::where('created_at', '<=',  $formatted_date)->delete();
+        // $date2 = new DateTime;
+        // $date2->modify('-1 week');
+        // $formatted_date = $date2->format('Y-m-d H:i:s');
+        // $get = Announcement::where('created_at', '<=',  $formatted_date)->delete();
         // dd($get);
         return $next($request);
     }

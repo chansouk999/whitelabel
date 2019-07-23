@@ -16,8 +16,9 @@ class CreateReplyAnoucesTable extends Migration
         Schema::create('reply_anouces', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('anou_id', 10);
-            $table->integer('chater_id');
+            $table->string('chater_id',30);
             $table->text('msg');
+            $table->tinyInteger('owner')->nullable();
             $table->timestamps();
             $table->foreign('anou_id')->references('AnouncementID')->on('announcements')->onDelete('cascade');
         });

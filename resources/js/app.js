@@ -1,6 +1,6 @@
 import axios from 'axios';
 require('./bootstrap');
-
+Vue.use(require('vue-moment'));
 window.Vue = require('vue');
 // Desktop
 Vue.component('app-desktop', require('./components/desktop/container.vue').default);
@@ -50,7 +50,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 // require styles
 import 'swiper/dist/css/swiper.css'
-
+import VueMoment from 'vue-moment'
 
 Vue.use(VueAwesomeSwiper)
 
