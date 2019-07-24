@@ -8,8 +8,10 @@ class reply_anouces extends Model
 {
     protected $fillable = [
         'anou_id',
+        'user_id',
         'chater_id',
-        'msg',
+        'adminId',
+        'msgId',
         'owner',
     ];
 }

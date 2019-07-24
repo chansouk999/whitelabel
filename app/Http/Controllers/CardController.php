@@ -7,6 +7,7 @@ use App\Request as Reqst;
 use Auth;
 use GuzzleHttp\Client;
 use Jenssegers\Agent\Agent;
+use App\chat_history;
 use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Facades\Validator;
 use App\clientid;
@@ -476,11 +477,12 @@ class CardController extends Controller
     }
     public function getDataChat($id)
     {
+        // chat_history
         $data = DB::table('announcements')
             ->join('reply_anouces', 'reply_anouces.anou_id', '=', 'announcements.AnouncementID')
             ->where('announcements.AnouncementID', '=', $id)
             ->get();
-            
+
         if ($data->count() < 1) {
             $data = Announcement::where('AnouncementID', '=', $id)->get();
             $getpostby = $data->pluck('post_by');
@@ -519,4 +521,3 @@ class CardController extends Controller
         return $Join;
     }
 }
-  
