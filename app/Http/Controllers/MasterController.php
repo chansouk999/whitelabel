@@ -124,9 +124,11 @@ class MasterController extends Controller
             return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
         }
     }
+
     public function topupbalance(Request $req)
     {
         $amount = $req->amount;
+        return getfunction::cardControl($amount);
         try {
             DB::enableQueryLog();
             date_default_timezone_set("Asia/Shanghai");

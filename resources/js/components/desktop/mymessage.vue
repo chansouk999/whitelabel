@@ -51,6 +51,10 @@
                 </div>
               </div>
             </div>
+            <!-- <a href="chat" class="a-link"></a> -->
+            <form action="chat" target="_blank">
+              <button type="submit" class="d-none a-link"></button>
+            </form>
             <!-- /.card-header -->
             <div class="card-body">
               <div class="table-full-width table-responsive ps ps--active-y">
@@ -109,50 +113,13 @@
       </div>
     </div>
     <!-- start your code here! -->
-    <!-- Classic Modal -->
-    <div
-      class="modal fade"
-      id="read_inbox"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content" v-for="(data,index) in read_annocement" :key="index">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{data.AnouncementID}}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              <i class="tim-icons icon-simple-remove"></i>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="timeline-panel">
-              <div class="timeline-heading">
-                <span class="badge badge-danger">{{JSON.parse(data.message).title}}</span>
-              </div>
-              <div class="timeline-body">
-                <p>{{JSON.parse(data.message).msg}}</p>
-              </div>
-              <h6>
-                <i class="ti-time"></i>
-                {{data.created_at}}
-              </h6>
-            </div>
-          </div>
-          <div class="modal-footer d-flex justify-content-end">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--  End Modal -->
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      chat: "/chat",
       gamehistorystart: 0,
       gamehistoryend: 9,
       gamehistorypagenum: 1,
@@ -165,8 +132,7 @@ export default {
       countTypeAN: "",
       getpromotion: [],
       getannouncement: [],
-      inboxAnnoucement: [],
-      read_annocement: []
+      inboxAnnoucement: []
     };
   },
   mounted() {
@@ -247,16 +213,8 @@ export default {
       this.dataAnnoucement = this.getannouncement;
     },
     read_annocementgeT(id) {
-      $("#read_inbox").modal("show");
-      axios
-        .get("/read_annocement/" + id)
-        .then(res => {
-          this.read_annocement = res.data;
-          console.log(res.data);
-        })
-        .catch(e => {
-          console.log(e.response);
-        });
+      localStorage.setItem("chatdata", id);
+      $(".a-link").click();
     }
   }
 };

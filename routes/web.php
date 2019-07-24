@@ -23,6 +23,7 @@ Route::get('/message', 'HomeController@message');
 Route::get('/index', 'HomeController@indexpage');
 Route::get('/promote', 'HomeController@promote');
 Route::get('/lobby', 'HomeController@lobby');
+
 Route::post('/updatemoney', 'MasterController@updatemoney');
 Auth::routes();
 
@@ -31,6 +32,8 @@ Auth::routes();
 // Route::get('/admins', 'HomeController@admin');
 // Route::get('administrator', 'AdminController@index')->middleware('admin');
 
+
+Route::get('/chathere', 'ChatController@index');
 
 
 Route::get('api/getAgent', 'Shareholder\HomeController@getAgent');
@@ -322,9 +325,11 @@ Route::post('/addrule', 'CardController@addrule');
 
 Route::get('/getadminrule', 'CardController@getadminrule');
 
-
-
 Route::post('/deleteruld/{id}', 'CardController@deleteruld');
 
+Route::get('/chat', 'CardController@chat');
 
+Route::get('/getDataChat/{id}', 'CardController@getDataChat');
+
+Route::post('/Senddata', 'CardController@Senddata');
 

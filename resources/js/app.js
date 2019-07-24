@@ -1,6 +1,6 @@
 import axios from 'axios';
 require('./bootstrap');
-
+Vue.use(require('vue-moment'));
 window.Vue = require('vue');
 // Desktop
 Vue.component('app-desktop', require('./components/desktop/container.vue').default);
@@ -23,7 +23,9 @@ Vue.component('app-container', require('./components/welcome/containerwelcome.vu
 Vue.component('app-index', require('./components/index/index.vue').default);
 Vue.component('app-promte', require('./components/activity/promote.vue').default);
 Vue.component('app-lobby', require('./components/lobby.vue').default);
+Vue.component('app-chat', require('./components/desktop/chat.vue').default);
 Vue.component('app-stocklist', require('./components/stocklist.vue').default);
+Vue.component('chat-app', require('./components/chat.vue').default);
 Vue.component(
     'passport-clients',
     require('./components/passport/Clients.vue').default
@@ -49,7 +51,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 // require styles
 import 'swiper/dist/css/swiper.css'
-
+import VueMoment from 'vue-moment'
 
 Vue.use(VueAwesomeSwiper)
 

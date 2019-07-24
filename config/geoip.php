@@ -142,7 +142,7 @@ return [
     'default_location' => [
         'ip' => '127.0.0.0',
         'iso_code' => 'CH',
-        'country' => 'China',
+        'country' => 'Laos',
         'city' => 'New Haven',
         'state' => 'CT',
         'state_name' => 'Connecticut',
