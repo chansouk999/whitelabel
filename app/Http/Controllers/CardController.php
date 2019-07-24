@@ -32,6 +32,7 @@ use App\Rolling_history;
 use App\Admincard;
 use App\admincard_rule;
 use App\reply_anouces;
+use App\Admin;
 
 use App\Events\MessageSent;
 
@@ -474,10 +475,15 @@ class CardController extends Controller
             ->join('reply_anouces', 'reply_anouces.anou_id', '=', 'announcements.AnouncementID')
             ->where('announcements.AnouncementID', '=', $id)
             ->get();
+            
         if ($data->count() < 1) {
             $data = Announcement::where('AnouncementID', '=', $id)->get();
+            $getpostby = $data->pluck('post_by');
+        } else {
+            $getpostby = $data->pluck('post_by')[0];
         }
-        return  $data;
+        $getadmin = Admin::where('id', '=', $getpostby)->get();
+        return  [$data, $getadmin];
     }
     public function Senddata(Request $request)
     {
@@ -508,4 +514,11 @@ class CardController extends Controller
         //     return $this->returncode(500, '', $ex->getMessage());
         // }
     }
+    public function Getpostby()
+    {
+        $Join = DB::table('announcements')
+            ->join("admins", "admins.id", '=', 'announcements.post_by')->get();
+        return $Join;
+    }
 }
+  
