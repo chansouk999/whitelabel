@@ -134,7 +134,7 @@
               </popper>
             </li>
             <li class="img-btc">
-              <a data-toggle="collapse" href="#pagesExamples">
+              <a data-toggle="collapse" @mouseover="hover()" href="#pagesExamples">
                 <img src="assets/img/bitcoin.png" alt />
                 <p>
                   {{stock6}}
@@ -260,6 +260,13 @@ export default {
     this.userdata();
   },
   methods: {
+    hover() {
+      // alert("TEST");
+      $("a.collapsed").on("mouseover", function() {
+        console.log("test");
+        $(this).trigger("click");
+      });
+    },
     getstock(stocknameder, loppstock, countrystock) {
       let filename = window.location.href;
       // this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
@@ -331,6 +338,8 @@ div.pop-up {
   overflow: unset !important;
 }
 .active {
-  background-color: #a75a3f;
+  background-color: #ffffff;
+  color: #000;
+  box-shadow: none;
 }
 </style>

@@ -232,7 +232,9 @@ navItems.forEach(function(e, i) {
     });
 });
 
-
-
-
 // Tabs for Mobile
+
+$("ul li.nav-item .dropdown-toggle").on("mouseover", function() {
+    console.log("test");
+    $(this).trigger("click");
+});

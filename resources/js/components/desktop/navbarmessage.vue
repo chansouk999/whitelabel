@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row px-3">
-      <div class="col-md-3 pr-0 bg-navbar">
+      <div class="col-md-3 pr-0 bg-navbar border-msg">
         <ul>
           <li class="nav-title">
             <i class="tim-icons icon-notes"></i>
@@ -36,7 +36,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-3 px-0 bg-navbar">
+      <div class="col-md-3 px-0 bg-navbar border-msg">
         <ul class="p-0">
           <li class="nav-title">
             <i class="tim-icons icon-paper"></i>
@@ -72,7 +72,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-3 px-0 bg-navbar">
+      <div class="col-md-3 px-0 bg-navbar border-msg">
         <ul class="p-0">
           <li class="nav-title">
             <i class="tim-icons icon-wallet-43"></i>
@@ -145,7 +145,7 @@
       </div>
     </div>
     <div class="u-wrap">
-      <div class="bg-secondary pr-3 py-1">
+      <div class="bg-secondary py-1">
         <nav aria-label="breadcrumb" role="navigation">
           <ol class="breadcrumb">
             <!-- <li class="breadcrumb-item">
@@ -297,4 +297,7 @@ export default {
 };
 </script>
 <style scoped>
+.border-msg{
+  border-right: 2px solid #362d2d;
+}
 </style>
