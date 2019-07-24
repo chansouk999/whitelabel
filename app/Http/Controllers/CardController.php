@@ -34,6 +34,8 @@ use App\admincard_rule;
 use App\reply_anouces;
 use App\Admin;
 
+use App\Events\MessageSent;
+
 // use League\Flysystem\Exception;
 class CardController extends Controller
 {
@@ -485,8 +487,9 @@ class CardController extends Controller
     }
     public function Senddata(Request $request)
     {
-        // return $request;
-        try {
+       
+       
+        // try {
             DB::enableQueryLog();
             $getAuth = Auth::user()->user_id;
             $insertdata = array(
@@ -497,13 +500,19 @@ class CardController extends Controller
             );
             $Getdata = reply_anouces::create($insertdata);
             if ($Getdata) {
+                $user = Auth::user();
+
+  $message = "fuck...!";
+
+  broadcast(new MessageSent($user, $message))->toOthers();
                 return $this->returncode(200, "Delete", 'success');
             } else {
                 return $this->returncode(300, "Can not Delete", DB::getQueryLog());
             }
-        } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage());
-        }
+        // } 
+        // catch (\Exception $ex) {
+        //     return $this->returncode(500, '', $ex->getMessage());
+        // }
     }
     public function Getpostby()
     {

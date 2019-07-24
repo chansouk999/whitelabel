@@ -233,8 +233,17 @@ export default {
       return moment(String(value)).format("m/DD/YYYY hh:mm");
     }
   },
-  mounted() {
+  created() {
     this.GetdataChat();
+    Echo.private("chat").listen("MessageSent", e => {
+      alert("good")
+      this.read_annocement.push({
+        message: e.message.message,
+        created_at: e.user
+      });
+    });
+  },
+  mounted() {
     axios
       .get("/getaccountment")
       .then(res => {
