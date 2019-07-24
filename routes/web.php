@@ -40,7 +40,7 @@ Route::get('/getadmininfotimeline', 'AdminController@getadmininfotimeline');
 Route::post('/addnewadmin', 'AdminController@addnewadmin');
 
 Route::get('/Carousel', 'AdminController@getCarousel');
-Route::get('/userCarousel', 'MasterController@getCarousel');
+Route::get('/userCarousel', 'NoAuthController@getCarousel');
 Route::post('/Carousel', 'AdminController@postCarousel');
 Route::get('/getadmininfo', 'AdminController@getadmininfo');
 Route::get('/login', function () {
@@ -72,22 +72,22 @@ Route::get('/home', function () {
 Route::get('/stocklist', function () {
     return view('desktop.stocklist');
 });
-// Route::get('/',)
+// Route::get('/',)getaccountment:1 Failed to load resource: the server responded with a status of 401 (Unauthorized)
 
 Route::get('getAlluserdata', 'MasterController@getAlluserdata');
 Route::get('adminList', 'MasterController@adminList');
-Route::post('requestdata', 'MasterController@requestdata');
+Route::post('requestdata', 'RedirectBackController@requestdata');
 Route::get('fullscreengame', 'MasterController@fullscreengame');
 Route::get('getUserBet', 'MasterController@getUserBet');
 Route::get('getRolling', 'MasterController@getRolling');
-Route::get('/', 'MasterController@welcome')->name('home');
+Route::get('/', 'NoAuthController@welcome')->name('home');
 Route::post('/topupbalance', 'MasterController@topupbalance');
 Route::post('/reqchangepwd', 'MasterController@reqchangepwd');
 Route::get('/checkconnection', 'MasterController@checkconnection');
 Route::post('/savecarddetail', 'MasterController@savecarddetail');
 Route::post('/transfertoapi', 'MasterController@transfertoapi');
 
-Route::post('/checkreigster', 'MasterController@checkreigster');
+Route::post('/checkreigster', 'NoAuthController@checkreigster');
 Route::get('/userdetaildata', 'MasterController@userdetaildata');
 Route::get('/getuserdata', 'MasterController@getuserdata');
 Route::post('/sendsms', 'MasterController@sendsms');
@@ -149,7 +149,7 @@ Route::get('admin/check', function () {
 
 
 
-Route::post('/checklogin', 'MasterController@checklogin');
+Route::post('/checklogin', 'NoAuthController@checklogin');
 Route::get('/redirectback', function () {
     $query = http_build_query([
         'client_id' => 'client-id',

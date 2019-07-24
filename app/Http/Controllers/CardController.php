@@ -35,6 +35,10 @@ use App\admincard_rule;
 // use League\Flysystem\Exception;
 class CardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getcardinfo()
     {
         try {
@@ -134,11 +138,7 @@ class CardController extends Controller
             return $this->returncode(300, '', DB::getQueryLog()); //query error
         }
     }
-    public function trackuserLogin($id)
-    {
-        $getTrackUser = access_record::where('user_id', '=', '' . $id . '')->get();
-        return $getTrackUser;
-    }
+
     public function getuserdetail()
     {
         $user_id = Auth::user()->user_id;
@@ -294,19 +294,26 @@ class CardController extends Controller
     }
     public function getaccountment()
     {
+        if(Auth::check()){
         $userID = Auth::user()->user_id;
         $annoucemen = Announcement::get();
         $getTypePM = Announcement::where('message',  'like', '%"type":"PM"%')->get();
         $getTypeAN = Announcement::where('message',  'like', '%"type":"AN"%')->get();
-        $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
-        $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
-        $getmore = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->get()->count();
-        if ($getdata == '"all"') {
-            $getall = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->latest()->limit(1)->get();
-        } else {
-            $getall = Announcement::where([['method', '=', "PA"], ['userID', 'like', '%' . $userID . '%']])->latest()->limit(1)->get();
+
+
+        if ($annoucemen->count() > 0) {
+            $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
+            $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
+            $getmore = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->get()->count();
+            if ($getdata == '"all"') {
+                $getall = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->latest()->limit(1)->get();
+            } else {
+                $getall = Announcement::where([['method', '=', "PA"], ['userID', 'like', '%' . $userID . '%']])->latest()->limit(1)->get();
+            }
+            return [$getall, $getmore, $getAll, Auth::user()->name, $annoucemen, $getTypePM, $getTypeAN];
         }
-        return [$getall, $getmore, $getAll, Auth::user()->name, $annoucemen, $getTypePM, $getTypeAN];
+    }
+
     }
     public function gettype()
     {
@@ -414,10 +421,10 @@ class CardController extends Controller
             DB::enableQueryLog();
             $from = $request->from;
             $to = $request->to;
-            if($request->localted =='in'){
+            if ($request->localted == 'in') {
                 $request->Notin = '';
             }
-            if($request->amoute !=='ranges'){
+            if ($request->amoute !== 'ranges') {
                 $from = $request->amounteds;
                 $to = '';
             }
@@ -461,5 +468,4 @@ class CardController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-
 }

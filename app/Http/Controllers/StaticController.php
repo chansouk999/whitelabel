@@ -1,14 +1,37 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use \Torann\GeoIP\Facades\GeoIP;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\admincard_rule;
 use App\Admincard;
+use Auth;
+use Illuminate\Support\Facades\Cache;
+use App\User;
+use App\access_record;
+use App\Http\Controllers\MasterController as getfucntion;
 
 class StaticController extends Controller
 {
+
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public static function header()
+    {
+        $header = [
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . Cache::get('webToken')
+        ];
+        return $header;
+    }
 
     public static function returncode($code, $data, $msg)
     {
@@ -26,16 +49,35 @@ class StaticController extends Controller
     }
     public static function fakeArrayData()
     { }
+    public function res($index)
+    { }
     public static function cardControl()
     {
-        $data =[
-            'rule'=>admincard_rule::all(),
-            'card'=>Admincard::all(),
-            'join'=>DB::table('admincards')->join('admincard_rules','admincard_rules.id','=','admincards.rule_id')->get()
-        ];
 
-        return $data;
-        $ip =  \Request::getClientIp();
-        $check = geoip()->getLocation($ip);
+        function res($index)
+        {
+            $id = Auth::user()->id;
+            $user_id = Auth::user()->user_id;
+            $res = [
+                '_id' => Auth::user()->id,
+                'user_id' => Auth::user()->user_id,
+                'rule' => admincard_rule::all(),
+                'card' => Admincard::all(),
+                'join' => DB::table('admincards')->join('admincard_rules', 'admincard_rules.id', '=', 'admincards.rule_id')->get(),
+                'user' => User::where('id', $id)->get()[0],
+                'joinUser' => DB::table('users')->join('userdetails', 'userdetails.id', '=', 'users.id')->get()[0],
+                'lastAccess' => access_record::where('user_id', $user_id)->latest()->limit(1)->get(),
+                'userdetail' => getfucntion::getRolling()
+                // ->join('withdraw_methods','withdraw_methods.id','=','users.id')
+            ];
+            return $res[$index];
+        }
+        return res('userdetail');
+        $coutry =
+
+            $ip =  \Request::getClientIp();
+        $located = geoip()->getLocation($ip);
+
+        dd($located);
     }
 }
