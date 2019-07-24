@@ -113,7 +113,7 @@
                       <a href="#pablo">
                         <img class="img img-raised" src="assets/img/james.jpg" alt="Card image" />
                       </a>
-                      <p class="text-name">Bank</p>
+                      <p class="text-name">{{GetName}}</p>
                     </div>
                     <div class="mesgs">
                       <div class="msg_history">
@@ -121,7 +121,7 @@
                           class="w-100"
                           v-for="(data,index) in read_annocement"
                           :key="index"
-                          v-if="data.owner == 1"
+                          v-if="auth == 0 && data.owner == 1"
                         >
                           <div class="incoming_msg_img">
                             <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
@@ -134,7 +134,7 @@
 
                         <div class="reply" v-else>
                           <div class="replay-content">
-                            <div class="d-block">
+                            <div class="d-block text-right">
                               <p class="text-content">{{data.msg}}</p>
                               <p class="reply_time_date">{{data.created_at | moment("calendar")}}</p>
                             </div>
@@ -150,6 +150,7 @@
                       <div class="type_msg">
                         <div class="input_msg_write">
                           <input
+                            @keyup.enter="sendMessage()"
                             type="text"
                             class="write_msg"
                             v-model="typemessage"
@@ -187,6 +188,8 @@ export default {
     footers
   },
   props: [
+    "administrator",
+    "auth",
     "recommend_friends",
     "message",
     "myaccount_tra",
@@ -213,6 +216,7 @@ export default {
   data() {
     return {
       search: "",
+      GetName: "",
       GetdataID: "",
       typemessage: "",
       dataAnnoucement: [],
@@ -266,16 +270,8 @@ export default {
         })
         .then(res => {
           console.log(res.data);
-          if (res.data.code == 200) {
-            this.$swal({
-              type: "success",
-              title: "Sended",
-              buttonsStyling: false,
-              confirmButtonClass: "btn btn-success",
-              text: "The message sended",
-              timer: 2000
-            });
-          }
+          this.GetdataChat();
+          this.typemessage = "";
         })
         .catch(e => {
           console.log(e.response);
@@ -285,8 +281,9 @@ export default {
       axios
         .get("/getDataChat/" + localStorage.getItem("chatdata"))
         .then(res => {
-          this.read_annocement = res.data;
-          this.GetdataID = res.data[0].AnouncementID;
+          this.read_annocement = res.data[0];
+          this.GetName = res.data[1][0].name;
+          this.GetdataID = res.data[0][0].AnouncementID;
           console.log("!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!");
           console.log(res.data);
           console.log("!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!");

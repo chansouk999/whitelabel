@@ -78,58 +78,58 @@
                             <div class="header text-center">
                               <h3 class="title">Timeline</h3>
                             </div>
+
                             <div class="row">
-                              <div class="col-md-12">
+                              <div class="col-lg-12 col-sm-6">
                                 <div class="card card-timeline card-plain">
                                   <div class="card-body">
-                                    <ul class="timeline">
+                                    <ul class="timeline timeline-simple">
                                       <li
                                         class="timeline-inverted"
                                         v-for="(data,index) in announcementdata"
-                                        v-if="index % 2 == 0 "
                                         :key="index"
                                       >
                                         <div class="timeline-badge danger">
-                                          <i class="tim-icons icon-planet"></i>
+                                          <i class="tim-icons icon-bag-16"></i>
                                         </div>
-                                        <div class="timeline-panel">
+                                        <div class="timeline-panel text-left">
                                           <div class="timeline-heading">
                                             <span
-                                              class="badge badge-pill badge-danger"
+                                              class="badge badge-info"
                                             >{{JSON.parse(data.message).title}}</span>
                                           </div>
                                           <div class="timeline-body">
-                                            <p
-                                              class="description"
-                                            >Detail: {{ data.method}} ,{{JSON.parse(data.message).Promotion}}</p>
+                                            <p>Detail: {{ data.method}} ,{{JSON.parse(data.message).Promotion}}</p>
                                             <p>{{JSON.parse(data.message).msg}}</p>
+                                            <hr />
+                                            {{data.created_at | moment("calendar")}}
                                           </div>
-                                          <h6 class="text-dark">
-                                            <i class="ti-time"></i>
-                                            {{data.created_at}}
-                                          </h6>
-                                        </div>
-                                      </li>
-                                      <li v-else>
-                                        <div class="timeline-badge info">
-                                          <i class="tim-icons icon-notes"></i>
-                                        </div>
-                                        <div class="timeline-panel">
-                                          <div class="timeline-heading">
-                                            <span
-                                              class="badge badge-pill badge-danger"
-                                            >{{JSON.parse(data.message).title}}</span>
+                                          <div class="timeline-footer mr-5">
+                                            <div class="dropdown">
+                                              <button
+                                                type="button"
+                                                class="btn btn-round btn-info dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                aria-expanded="false"
+                                              >
+                                                <i class="tim-icons icon-bullet-list-67"></i>
+                                              </button>
+                                              <div
+                                                class="dropdown-menu"
+                                                x-placement="bottom-start"
+                                                style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;"
+                                              >
+                                                <a
+                                                  class="dropdown-item"
+                                                  :href="chat"
+                                                  target="_blank"
+                                                  @click="reply(data.AnouncementID)"
+                                                >Reply</a>
+                                                <a class="dropdown-item" href="#">Delete</a>
+                                                <a class="dropdown-item" href="#">More info</a>
+                                              </div>
+                                            </div>
                                           </div>
-                                          <div class="timeline-body">
-                                            <p
-                                              class="description"
-                                            >Detail: {{ data.method}} ,{{JSON.parse(data.message).Promotion}}</p>
-                                            <p>{{JSON.parse(data.message).msg}}</p>
-                                          </div>
-                                          <h6>
-                                            <i class="ti-time"></i>
-                                            {{data.created_at}}
-                                          </h6>
                                         </div>
                                       </li>
                                     </ul>
@@ -739,6 +739,7 @@ export default {
       method: null,
       title: null,
       typeAN: null,
+      chat: "/chat",
       announcementdata: [],
       methodSelection: "PA",
       typeSelection: "AN",
@@ -752,6 +753,13 @@ export default {
   mounted() {
     this.getannounce("PA", "AN");
     this.UserDetail();
+  },
+  filters: {
+    formatDate(value) {
+      let secound = new Date(value).getTime();
+      return secound;
+      return moment(String(value)).format("m/DD/YYYY hh:mm");
+    }
   },
   computed: {
     filteredResources() {
@@ -767,6 +775,9 @@ export default {
     }
   },
   methods: {
+    reply(id) {
+      localStorage.setItem("chatdata", id);
+    },
     gamehistorypage(methods) {
       if (methods == "previous") {
         if (this.gamehistorystart > 0) {
@@ -903,6 +914,10 @@ export default {
 <style>
 .bootstrap-select.btn-group .dropdown-toggle .filter-option {
   color: rgb(217, 79, 212) !important;
+}
+.timeline-footer {
+  display: flex;
+  justify-content: flex-end !important;
 }
 </style>
 
