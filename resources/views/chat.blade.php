@@ -52,6 +52,8 @@
             cryptocurrencies="@lang('home.cryptocurrencies')"
             chines_stock="@lang('home.chines_stock')"
             lobby="@lang('home.lobby')"
+    administrator="{{Auth::guard('administrator')->check()}}"
+    auth="{{Auth::check()}}"
         ></app-chat>
     </div>
    <!--   Core JS Files   -->

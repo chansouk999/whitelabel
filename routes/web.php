@@ -330,3 +330,4 @@ Route::get('/getDataChat/{id}', 'CardController@getDataChat');
 
 Route::post('/Senddata', 'CardController@Senddata');
 
+Route::get('/Getpostby', 'CardController@Getpostby');
