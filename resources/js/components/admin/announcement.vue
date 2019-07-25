@@ -739,7 +739,7 @@ export default {
       method: null,
       title: null,
       typeAN: null,
-      chat: "/chat",
+      chat: "/chatAdmin",
       announcementdata: [],
       methodSelection: "PA",
       typeSelection: "AN",

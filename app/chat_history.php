@@ -11,5 +11,6 @@ class chat_history extends Model
         'from',
         'to',
         'conversationMsg',
+        'owner'
     ];
 }

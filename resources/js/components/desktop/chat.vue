@@ -121,12 +121,12 @@
                           class="w-100"
                           v-for="(data,index) in read_annocement"
                           :key="index"
-                          v-if="auth !== 1 && data.owner == 1"
+                          v-if="auth !== 1 && data.owner == 1 || administrator !== 1 && data.owner == 1"
                         > <div class="incoming_msg_img">
                             <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
                           </div>
                           <div class="d-block mt-3">
-                            <p class="text-content">{{JSON.parse(data.message).msg}}</p>
+                            <p class="text-content">{{data.conversationMsg}}</p>
                             <p class="time_date">{{data.created_at | moment("calendar")}}</p>
                           </div>
                         </div>
@@ -134,7 +134,7 @@
                         <div class="reply" v-else>
                           <div class="replay-content">
                             <div class="d-block text-right">
-                              <p class="text-content2">{{data.msg}}</p>
+                              <p class="text-content2">{{data.conversationMsg}}</p>
                               <p class="reply_time_date">{{data.created_at | moment("calendar")}}</p>
                             </div>
                             <div class="img-chat">
@@ -215,12 +215,14 @@ export default {
   data() {
     return {
       search: "",
+      chatId:null,
       GetName: "",
       GetdataID: "",
       typemessage: "",
       dataAnnoucement: [],
       read_annocement: [],
       gamehistorystart: 0,
+      post_by:null,
       gamehistoryend: 9,
       gamehistorypagenum: 1
     };
@@ -232,8 +234,17 @@ export default {
       return moment(String(value)).format("m/DD/YYYY hh:mm");
     }
   },
-  mounted() {
+  created() {
     this.GetdataChat();
+    Echo.private("chat").listen("MessageSent", e => {
+      alert("good")
+      this.read_annocement.push({
+        message: e.message.message,
+        created_at: e.user
+      });
+    });
+  },
+  mounted() {
     axios
       .get("/getaccountment")
       .then(res => {
@@ -261,11 +272,13 @@ export default {
     }
   },
   methods: {
-    sendMessage() {
+    sendMessage(chat=null) {
+
       axios
         .post("/Senddata", {
           typemessage: this.typemessage,
-          GetdataID: this.GetdataID
+          GetdataID: localStorage.getItem("chatdata"),
+          chat:this.chatId
         })
         .then(res => {
           console.log(res.data);
@@ -283,6 +296,8 @@ export default {
           this.read_annocement = res.data[0];
           this.GetName = res.data[1][0].name;
           this.GetdataID = res.data[0][0].AnouncementID;
+          this.post_by = res.data[0][0].post_by;
+          this.chatId = res.data[0][0].chatId;
           console.log("!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!");
           console.log(res.data);
           console.log("!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!");

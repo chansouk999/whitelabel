@@ -35,12 +35,15 @@ use App\admincard_rule;
 use App\reply_anouces;
 use App\Admin;
 
+use App\Events\MessageSent;
+
 // use League\Flysystem\Exception;
 class CardController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+        // $this->middleware('auth:administrator');
     }
     public function getcardinfo()
     {
@@ -297,26 +300,25 @@ class CardController extends Controller
     }
     public function getaccountment()
     {
-        if(Auth::check()){
-        $userID = Auth::user()->user_id;
-        $annoucemen = Announcement::get();
-        $getTypePM = Announcement::where('message',  'like', '%"type":"PM"%')->get();
-        $getTypeAN = Announcement::where('message',  'like', '%"type":"AN"%')->get();
+        if (Auth::check()) {
+            $userID = Auth::user()->user_id;
+            $annoucemen = Announcement::get();
+            $getTypePM = Announcement::where('message',  'like', '%"type":"PM"%')->get();
+            $getTypeAN = Announcement::where('message',  'like', '%"type":"AN"%')->get();
 
 
-        if ($annoucemen->count() > 0) {
-            $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
-            $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
-            $getmore = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->get()->count();
-            if ($getdata == '"all"') {
-                $getall = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->latest()->limit(1)->get();
-            } else {
-                $getall = Announcement::where([['method', '=', "PA"], ['userID', 'like', '%' . $userID . '%']])->latest()->limit(1)->get();
+            if ($annoucemen->count() > 0) {
+                $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
+                $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
+                $getmore = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->get()->count();
+                if ($getdata == '"all"') {
+                    $getall = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->latest()->limit(1)->get();
+                } else {
+                    $getall = Announcement::where([['method', '=', "PA"], ['userID', 'like', '%' . $userID . '%']])->latest()->limit(1)->get();
+                }
+                return [$getall, $getmore, $getAll, Auth::user()->name, $annoucemen, $getTypePM, $getTypeAN];
             }
-            return [$getall, $getmore, $getAll, Auth::user()->name, $annoucemen, $getTypePM, $getTypeAN];
         }
-    }
-
     }
     public function gettype()
     {
@@ -464,6 +466,97 @@ class CardController extends Controller
             $deleteRuld = admincard_rule::find($id)->delete();
             if ($deleteRuld) {
                 return $this->returncode(200, "Delete", 'success');
+            }
+            return $this->returncode(300, "Can not Delete", DB::getQueryLog());
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function getAnnounceData($id)
+    {
+        try {
+            $res = Announcement::where('AnouncementID', $id)->get()[0];
+            return $res;
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function checkAnnounnce($id)
+    {
+        $data = reply_anouces::where('chatId', $id)->get()->count();
+        return $data;
+    }
+    public function queryDataChat($re)
+    {
+        try {
+            // chat
+            $checkAn = $this->checkAnnounnce($re->chat);
+
+            $res = $this->getAnnounceData($re->GetdataID);
+            $chatid = substr(strtotime('now'), -7, 7) . $res->post_by . $res->AnouncementID;
+            // return $chatid;
+
+            $getAuth = Auth::user()->user_id;
+            $Getdata =null;
+            if ($checkAn < 1) {
+
+                $insertdata = array(
+                    'anou_id' => $res->AnouncementID,
+                    'user_id' => $getAuth,
+                    'chater_id' => $getAuth,
+                    'adminId' => $res->post_by,
+                    'chatId' => $chatid
+
+                );
+                $Getdata = reply_anouces::create($insertdata);
+
+            }else{
+                $chatid = $re->chat;
+                // return $checkAn;
+            }
+
+            // return $re;
+
+            $insert_chat = array(
+                'chatId' => $chatid,
+                'from' => $getAuth,
+                'to' => $res->post_by,
+                'conversationMsg' => $re->typemessage,
+                'owner' => 0,
+            );
+
+            $saveChat = chat_history::create($insert_chat);
+            //     'anou_id',
+            // 'user_id',
+            // 'chater_id',
+            // 'adminId','chatId',
+            // 'owner',
+            $result = [
+                $Getdata,
+                $saveChat
+            ];
+            return $result;
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function Senddata(Request $request)
+    {
+
+        // chat_history
+        // return $request;
+        try {
+            return $Getdata = $this->queryDataChat($request);
+            DB::enableQueryLog();
+
+
+            if ($Getdata) {
+                $user = Auth::user();
+
+                $message = "fuck...!";
+
+                broadcast(new MessageSent($user, $message))->toOthers();
+                return $this->returncode(200, "Delete", 'success');
             } else {
                 return $this->returncode(300, "Can not Delete", DB::getQueryLog());
             }
@@ -478,42 +571,51 @@ class CardController extends Controller
     public function getDataChat($id)
     {
         // chat_history
+        $getAuth = Auth::user()->user_id;
         $data = DB::table('announcements')
             ->join('reply_anouces', 'reply_anouces.anou_id', '=', 'announcements.AnouncementID')
+            ->join('chat_histories', 'chat_histories.chatId', '=', 'reply_anouces.chatId')
             ->where('announcements.AnouncementID', '=', $id)
+            ->where('reply_anouces.user_id', '=', $getAuth)
             ->get();
-
+        $getpostby = null;
         if ($data->count() < 1) {
-            $data = Announcement::where('AnouncementID', '=', $id)->get();
-            $getpostby = $data->pluck('post_by');
+            $data = [];
         } else {
             $getpostby = $data->pluck('post_by')[0];
         }
         $getadmin = Admin::where('id', '=', $getpostby)->get();
         return  [$data, $getadmin];
     }
-    public function Senddata(Request $request)
-    {
-        // return $request;
-        try {
-            DB::enableQueryLog();
-            $getAuth = Auth::user()->user_id;
-            $insertdata = array(
-                'anou_id' => $request->GetdataID,
-                'chater_id' => $getAuth,
-                'msg' => $request->typemessage,
-                'owner' => 0
-            );
-            $Getdata = reply_anouces::create($insertdata);
-            if ($Getdata) {
-                return $this->returncode(200, "Delete", 'success');
-            } else {
-                return $this->returncode(300, "Can not Delete", DB::getQueryLog());
-            }
-        } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
+    //     public function Senddata(Request $request)
+    //     {
+
+
+    //         // try {
+    //             DB::enableQueryLog();
+    //             $getAuth = Auth::user()->user_id;
+    //             $insertdata = array(
+    //                 'anou_id' => $request->GetdataID,
+    //                 'chater_id' => $getAuth,
+    //                 'msg' => $request->typemessage,
+    //                 'owner' => 0
+    //             );
+    //             $Getdata = reply_anouces::create($insertdata);
+    //             if ($Getdata) {
+    //                 $user = Auth::user();
+
+    //   $message = "fuck...!";
+
+    //   broadcast(new MessageSent($user, $message))->toOthers();
+    //                 return $this->returncode(200, "Delete", 'success');
+    //             } else {
+    //                 return $this->returncode(300, "Can not Delete", DB::getQueryLog());
+    //             }
+    //         // }
+    //         // catch (\Exception $ex) {
+    //         //     return $this->returncode(500, '', $ex->getMessage());
+    //         // }
+    //     }
     public function Getpostby()
     {
         $Join = DB::table('announcements')

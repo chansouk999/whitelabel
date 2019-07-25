@@ -20,8 +20,6 @@ class CreateReplyAnoucesTable extends Migration
             $table->string('chater_id',30);
             $table->string('adminId',30);
             $table->string('chatId',30);
-            $table->string('msgId',20);
-            $table->tinyInteger('owner')->nullable();
             $table->timestamps();
             $table->primary('chatId');
             $table->foreign('anou_id')->references('AnouncementID')->on('announcements')->onDelete('cascade');

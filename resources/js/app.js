@@ -26,6 +26,7 @@ Vue.component('app-lobby', require('./components/lobby.vue').default);
 Vue.component('app-chat', require('./components/desktop/chat.vue').default);
 Vue.component('app-stocklist', require('./components/stocklist.vue').default);
 Vue.component('chat-app', require('./components/chat.vue').default);
+Vue.component('app-chatdmin', require('./components/desktop/chatAdmin.vue').default);
 Vue.component(
     'passport-clients',
     require('./components/passport/Clients.vue').default

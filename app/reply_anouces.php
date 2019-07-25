@@ -10,8 +10,6 @@ class reply_anouces extends Model
         'anou_id',
         'user_id',
         'chater_id',
-        'adminId',
-        'msgId',
-        'owner',
+        'adminId','chatId',
     ];
 }

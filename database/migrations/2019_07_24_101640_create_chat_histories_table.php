@@ -20,6 +20,7 @@ class CreateChatHistoriesTable extends Migration
             $table->string('from',30);
             $table->string('to',30);
             $table->text('conversationMsg');
+            $table->tinyInteger('owner');
             $table->foreign('chatId')->references('chatId')->on('reply_anouces')->onDelete('cascade');
             $table->timestamps();
         });

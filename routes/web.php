@@ -328,9 +328,14 @@ Route::get('/getadminrule', 'CardController@getadminrule');
 Route::post('/deleteruld/{id}', 'CardController@deleteruld');
 
 Route::get('/chat', 'CardController@chat');
+Route::get('/chatAdmin', 'ChatController@chat');
 
 Route::get('/getDataChat/{id}', 'CardController@getDataChat');
 
+Route::get('/getDataChatAdmin/{id}', 'ChatController@getDataChat');
+
 Route::post('/Senddata', 'CardController@Senddata');
+
+Route::post('/SenddataAdmin', 'ChatController@SenddataAdmin');
 
 Route::get('/Getpostby', 'CardController@Getpostby');
