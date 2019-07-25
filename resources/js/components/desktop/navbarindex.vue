@@ -28,11 +28,7 @@
             >Instant recharge</a>
           </dd>
           <dd data-sidebar="u_withdraw">
-            <a
-              href="#"
-              
-              @click="setNavShowName('applyforwithdrawal',$event)"
-            >Apply for withdrawal</a>
+            <a href="#" @click="setNavShowName('applyforwithdrawal',$event)">Apply for withdrawal</a>
           </dd>
           <dd data-sidebar="u_self_rebate">
             <a href="#" @click="setNavShowName('selfservicewashing',$event)">Self-service washing</a>
@@ -54,7 +50,7 @@
         </dl>
         <dl class="border-0">
           <dt class="active">
-             <i class="tim-icons icon-bulb-63"></i>Customer Care
+            <i class="tim-icons icon-bulb-63"></i>Customer Care
           </dt>
           <dd data-sidebar="u_sms_subscribeIndex">
             <a href="#" @click="setNavShowName('subscription',$event)">SMS subscription</a>
@@ -134,7 +130,7 @@ export default {
       navShowName: "message"
     };
   },
- 
+
   components: {
     myaccount,
     recommedndedfriends,
