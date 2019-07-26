@@ -39,65 +39,60 @@
                     </div>
                   </div>
                   <div class="card card-primary card-outline">
-                    <div class="card m-0"
-                    style="border: 1px solid #eaeaec;"
-                    >
+                    <div class="card m-0" style="border: 1px solid #eaeaec;">
                       <div class="card-body pb-0">
                         <div class="inbox_chat scrollbar" id="style-3">
-                            <div
+                          <div
                             v-for="(data,index) in filteredResources"
                             v-if="index >= gamehistorystart && index <= gamehistoryend"
-                            :key="index">
-                          <div
-                            class="chat_list active_chat"
-                            v-if="data.AnouncementID == announeidder"
+                            :key="index"
                           >
-                            <div class="chat_people" >
-                              <div class="chat_img">
-                                <img
-                                  src="https://ptetutorials.com/images/user-profile.png"
-                                  alt="sunil"
-                                />
-                              </div>
-                              <div
-                                class="chat_ib"
-                                @click.prevent="chatandAswer(data.AnouncementID)"
-                              >
-                                <h5>
-                                  {{JSON.parse(data.message).title}}
-                                  <span
-                                    class="chat_date"
-                                  >{{data.created_at | moment("calendar")}}</span>
-                                </h5>
-                                <p>{{JSON.parse(data.message).msg}}</p>
-                              </div>
-                            </div>
-                            </div>
-                               <div
-                            class="chat_list active_chat"
-                            style="background-color:#fff"
-                            v-else
-                          >
-                            <div class="chat_people">
-                              <div class="chat_img">
-                                <img
-                                  src="https://ptetutorials.com/images/user-profile.png"
-                                  alt="sunil"
-                                />
-                              </div>
-                              <div
-                                class="chat_ib"
-                                @click.prevent="chatandAswer(data.AnouncementID)"
-                              >
-                                <h5>
-                                  {{JSON.parse(data.message).title}}
-                                  <span
-                                    class="chat_date"
-                                  >{{data.created_at | moment("calendar")}}</span>
-                                </h5>
-                                <p>{{JSON.parse(data.message).msg}}</p>
+                            <div
+                              class="chat_list active_chat"
+                              v-if="data.AnouncementID == announeidder"
+                            >
+                              <div class="chat_people">
+                                <div class="chat_img">
+                                  <img
+                                    src="https://ptetutorials.com/images/user-profile.png"
+                                    alt="sunil"
+                                  />
+                                </div>
+                                <div
+                                  class="chat_ib"
+                                  @click.prevent="chatandAswer(data.AnouncementID)"
+                                >
+                                  <h5>
+                                    {{JSON.parse(data.message).title}}
+                                    <span
+                                      class="chat_date"
+                                    >{{data.created_at | moment("calendar")}}</span>
+                                  </h5>
+                                  <p>{{JSON.parse(data.message).msg}}</p>
+                                </div>
                               </div>
                             </div>
+                            <div class="chat_list active_chat" style="background-color:#fff" v-else>
+                              <div class="chat_people">
+                                <div class="chat_img">
+                                  <img
+                                    src="https://ptetutorials.com/images/user-profile.png"
+                                    alt="sunil"
+                                  />
+                                </div>
+                                <div
+                                  class="chat_ib"
+                                  @click.prevent="chatandAswer(data.AnouncementID)"
+                                >
+                                  <h5>
+                                    {{JSON.parse(data.message).title}}
+                                    <span
+                                      class="chat_date"
+                                    >{{data.created_at | moment("calendar")}}</span>
+                                  </h5>
+                                  <p>{{JSON.parse(data.message).msg}}</p>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -181,19 +176,23 @@
                         <div class="scrollbottom"></div>
                       </div>
                       <div class="cover-typemsg">
-                      <div class="type_msg">
-                        <div class="input_msg_write">
-                          <input
-                            @keyup.enter="sendMessage()"
-                            type="text"
-                            class="write_msg"
-                            v-model="typemessage"
-                            placeholder="Type a message"
-                          />
-                          <button class="msg_send_btn" type="button" @click.prevent="sendMessage()">
-                            <i class="tim-icons icon-send"></i>
-                          </button>
-                        </div>
+                        <div class="type_msg">
+                          <div class="input_msg_write">
+                            <input
+                              @keyup.enter="sendMessage()"
+                              type="text"
+                              class="write_msg"
+                              v-model="typemessage"
+                              placeholder="Type a message"
+                            />
+                            <button
+                              class="msg_send_btn"
+                              type="button"
+                              @click.prevent="sendMessage()"
+                            >
+                              <i class="tim-icons icon-send"></i>
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -250,7 +249,7 @@ export default {
   ],
   data() {
     return {
-        announeidder:localStorage.getItem("chatdata"),
+      announeidder: localStorage.getItem("chatdata"),
       search: "",
       chatId: null,
       GetName: "",
@@ -262,7 +261,7 @@ export default {
       post_by: null,
       gamehistoryend: 9,
       gamehistorypagenum: 1,
-      checkernew:true,
+      checkernew: true,
       lengMsg: null
     };
   },
@@ -328,8 +327,8 @@ export default {
         .then(res => {
           console.log(res.data);
           this.GetdataChat();
-          if( this.checkernew == false){
-                $(".msg_history").scrollTop(70000000000000);
+          if (this.checkernew == false) {
+            $(".msg_history").scrollTop(70000000000000);
           }
 
           this.typemessage = "";
@@ -348,31 +347,31 @@ export default {
           this.GetdataID = res.data[0][0].AnouncementID;
           this.post_by = res.data[0][0].post_by;
           this.chatId = res.data[0][0].chatId;
-        //   if(this.chatId==undefined){
-        //       this.chatId ='NO';
-        //   }
-        //   alert(this.chatId)
+          //   if(this.chatId==undefined){
+          //       this.chatId ='NO';
+          //   }
+          //   alert(this.chatId)
 
           if (this.read_annocement.length !== this.lengMsg) {
             $(".msg_history").scrollTop(70000000000000);
 
-              this.checkernew = false
+            this.checkernew = false;
           }
-          this.checkernew = true
-        //   $(".msg_history").scrollTop(70000000000000);
+          this.checkernew = true;
+          //   $(".msg_history").scrollTop(70000000000000);
           this.lengMsg = this.read_annocement.length;
-        //   console.log("!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!");
-        //   console.log(res.data);
-        //   console.log("!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!");
+          //   console.log("!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!");
+          //   console.log(res.data);
+          //   console.log("!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!");
         })
         .catch(e => {
           console.log(e.response);
         });
     },
     chatandAswer(id) {
-        alert(id);
+      alert(id);
       localStorage.setItem("chatdata", id);
-      this.announeidder =id
+      this.announeidder = id;
       this.GetdataChat();
       //   axios
       //     .get("/read_annocement/" + id)
@@ -406,26 +405,26 @@ export default {
 };
 </script>
 <style scoped>
-.cover-typemsg{
-    width: 100%;
-    height: 82px;
-    position: absolute;
-    background: red;
-    left: 0;
+.cover-typemsg {
+  width: 100%;
+  height: 82px;
+  position: absolute;
+  background: red;
+  left: 0;
 }
 .inbox_chat {
-    top: -12px;
-    height: calc(100vh - 234px);
-    overflow-y: scroll;
-    width: 607px;
-    position: relative;
-    padding: -14px;
-    left: -15px;
+  top: -12px;
+  height: calc(100vh - 234px);
+  overflow-y: scroll;
+  width: 607px;
+  position: relative;
+  padding: -14px;
+  left: -15px;
 }
 .chat_list {
-    border-bottom: 1px solid #eaeaec;
-    margin: 0;
-    padding: 18px 16px 10px;
+  border-bottom: 1px solid #eaeaec;
+  margin: 0;
+  padding: 18px 16px 10px;
 }
 .content {
   margin: 90px 0px 0px 0px !important;
@@ -522,38 +521,35 @@ p.text-content2 {
   border-radius: 10px;
   margin: 0px 10px;
 }
-#style-3::-webkit-scrollbar-track
-{
-    /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
-    background-color: #f1f1f1;
+#style-3::-webkit-scrollbar-track {
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+  background-color: #f1f1f1;
 }
 
-#style-3::-webkit-scrollbar
-{
-    width: 6px;
-    background-color: #999;
+#style-3::-webkit-scrollbar {
+  width: 6px;
+  background-color: #999;
 }
 
-#style-3::-webkit-scrollbar-thumb
-{
-    background-color: #999;
+#style-3::-webkit-scrollbar-thumb {
+  background-color: #999;
 }
-.type_msg{
-      border: 1px solid #c4c4c433;
-    position: relative;
-    top: 6px;
-    height: 69px;
-    width: 98%;
-    border-radius: 7px;
-    padding: 10px 15px;
-    background: #ffffff;
-    outline: none;
+.type_msg {
+  border: 1px solid #c4c4c433;
+  position: relative;
+  top: 6px;
+  height: 69px;
+  width: 98%;
+  border-radius: 7px;
+  padding: 10px 15px;
+  background: #ffffff;
+  outline: none;
 }
-.cover-typemsg{
-    width: 100%;
-    height: 82px;
-    position: absolute;
-    background: #dcdbdb;
-    left: 0;
+.cover-typemsg {
+  width: 100%;
+  height: 82px;
+  position: absolute;
+  background: #dcdbdb;
+  left: 0;
 }
 </style>

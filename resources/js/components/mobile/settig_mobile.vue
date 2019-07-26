@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="fixed-plugin navbar-toggle">
+    <div class="fixed-plugin">
       <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
           <i class="fa fa-cog fa-2x"></i>
@@ -99,37 +99,6 @@ export default {
     }
   }
 };
-$(document).on('click', '.navbar-toggle', function() {
-    var $toggle = $(this);
-
-    if (blackDashboard.misc.navbar_menu_visible == 1) {
-        $html.removeClass('nav-open');
-        blackDashboard.misc.navbar_menu_visible = 0;
-        setTimeout(function() {
-            $toggle.removeClass('toggled');
-            $('.bodyClick').remove();
-        }, 550);
-
-    } else {
-        setTimeout(function() {
-            $toggle.addClass('toggled');
-        }, 580);
-
-        var div = '<div class="bodyClick"></div>';
-        $(div).appendTo('body').click(function() {
-            $html.removeClass('nav-open');
-            blackDashboard.misc.navbar_menu_visible = 0;
-            setTimeout(function() {
-                $toggle.removeClass('toggled');
-                $('.bodyClick').remove();
-            }, 550);
-        });
-
-        $html.addClass('nav-open');
-        blackDashboard.misc.navbar_menu_visible = 1;
-    }
-});
-
 </script>
 <style scoped>
 </style>
