@@ -7,6 +7,7 @@ use App\Request as Reqst;
 use Auth;
 use GuzzleHttp\Client;
 use Jenssegers\Agent\Agent;
+use App\chatAnnounce;
 use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Facades\Validator;
 use App\clientid;
@@ -31,7 +32,7 @@ use SebastianBergmann\Environment\Console;
 use App\Rolling_history;
 use App\Admincard;
 use App\admincard_rule;
-use App\reply_anouces;
+use App\replyAnnounce;
 use App\Admin;
 
 use App\Events\MessageSent;
@@ -39,6 +40,11 @@ use App\Events\MessageSent;
 // use League\Flysystem\Exception;
 class CardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        // $this->middleware('auth:administrator');
+    }
     public function getcardinfo()
     {
         try {
@@ -138,11 +144,7 @@ class CardController extends Controller
             return $this->returncode(300, '', DB::getQueryLog()); //query error
         }
     }
-    public function trackuserLogin($id)
-    {
-        $getTrackUser = access_record::where('user_id', '=', '' . $id . '')->get();
-        return $getTrackUser;
-    }
+
     public function getuserdetail()
     {
         $user_id = Auth::user()->user_id;
@@ -161,11 +163,7 @@ class CardController extends Controller
         $actionRecordDetail = activityLog::where('detail', 'like', '%user_id":"' . $id . '%')->get();
         return $actionRecordDetail;
     }
-    public function Selfservice()
-    {
-        $getSelfservice = Selfservice::all();
-        return $getSelfservice;
-    }
+
 
 
     public function editlevel($id)
@@ -241,11 +239,7 @@ class CardController extends Controller
             return $ex->getMessage();
         }
     }
-    public function TaguserDetail()
-    {
-        $getTagUser = User::get();
-        return $getTagUser;
-    }
+
     public function Savveselfservice()
     {
         try {
@@ -298,19 +292,36 @@ class CardController extends Controller
     }
     public function getaccountment()
     {
-        $userID = Auth::user()->user_id;
-        $annoucemen = Announcement::get();
-        $getTypePM = Announcement::where('message',  'like', '%"type":"PM"%')->get();
-        $getTypeAN = Announcement::where('message',  'like', '%"type":"AN"%')->get();
-        $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
-        $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
-        $getmore = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->get()->count();
-        if ($getdata == '"all"') {
-            $getall = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->latest()->limit(1)->get();
-        } else {
-            $getall = Announcement::where([['method', '=', "PA"], ['userID', 'like', '%' . $userID . '%']])->latest()->limit(1)->get();
+        if (Auth::check()) {
+            $userID = Auth::user()->user_id;
+            $annoucemen = Announcement::get();
+            $getTypePM = Announcement::where('message',  'like', '%"type":"PM"%')->get();
+            $getTypeAN = Announcement::where('message',  'like', '%"type":"AN"%')->get();
+
+            $dataAnnounce = [];
+            foreach ($annoucemen as $an) {
+                $userId = json_decode($an->userID);
+                if ($an->userID == '"all"') {
+                    $dataAnnounce[] = $an;
+                } else {
+                    $userId = json_decode($an->userID)[0];
+                    if ($userId == $userID) {
+                        $dataAnnounce[] = $an;
+                    }
+                }
+            }
+            if ($annoucemen->count() > 0) {
+                $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
+                $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
+                $getmore = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->get()->count();
+                if ($getdata == '"all"') {
+                    $getall = Announcement::where([['method', '=', "PA"], ['userID', '=', $getdata]])->latest()->limit(1)->get();
+                } else {
+                    $getall = Announcement::where([['method', '=', "PA"], ['userID', 'like', '%' . $userID . '%']])->latest()->limit(1)->get();
+                }
+                return [$getall, $getmore, $getAll, Auth::user()->name, $dataAnnounce, $getTypePM, $getTypeAN];
+            }
         }
-        return [$getall, $getmore, $getAll, Auth::user()->name, $annoucemen, $getTypePM, $getTypeAN];
     }
     public function gettype()
     {
@@ -384,14 +395,7 @@ class CardController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function getadmincard()
-    {
-        // $data = Admincard::get();
-        $data = DB::table('admincard_rules')
-            ->join('admincards', 'admincard_rules.id', '=', 'admincards.rule_id')
-            ->get();
-        return $data;
-    }
+
     public function deletecard($id)
     {
         try {
@@ -446,17 +450,104 @@ class CardController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function getadminrule()
-    {
-        $getdata = admincard_rule::get();
-        return $getdata;
-    }
+
     public function deleteruld($id)
     {
         try {
             DB::enableQueryLog();
             $deleteRuld = admincard_rule::find($id)->delete();
             if ($deleteRuld) {
+                return $this->returncode(200, "Delete", 'success');
+            }
+            return $this->returncode(300, "Can not Delete", DB::getQueryLog());
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function getAnnounceData($id)
+    {
+        try {
+            $res = Announcement::where('AnouncementID', $id)->get()[0];
+            return $res;
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function checkAnnounnce($id)
+    {
+        $data =  replyAnnounce::where('chatId', $id)->get()->count();
+        return $data;
+    }
+    public function queryDataChat($re)
+    {
+        try {
+            $subchatID = substr($re->chat,0,8);
+            $chatIDCheck = $subchatID.$re->GetdataID;
+            // return $chatIDCheck;
+            $res = $this->getAnnounceData($re->GetdataID);
+
+            $checkAn = $this->checkAnnounnce($chatIDCheck);
+
+
+            $chatid = substr(strtotime('now'), -7, 7) . $res->post_by . $res->AnouncementID;
+            // return $chatid;
+
+            $getAuth = Auth::user()->user_id;
+            $Getdata = null;
+            if ($checkAn < 1) {
+
+                $insertdata = array(
+                    'anou_id' => $res->AnouncementID,
+                    'user_id' => $getAuth,
+                    'chater_id' => $getAuth,
+                    'adminId' => $res->post_by,
+                    'chatId' => $chatid
+
+                );
+                $Getdata =  replyAnnounce::create($insertdata);
+            } else {
+                $chatid = $re->chat;
+            }
+
+            $insert_chat = array(
+                'chatId' => $chatid,
+                'from' => $getAuth,
+                'to' => $res->post_by,
+                'conversationMsg' => $re->typemessage,
+                'owner' => 0,
+            );
+
+            $saveChat = chatAnnounce::create($insert_chat);
+            //     'anou_id',
+            // 'user_id',
+            // 'chater_id',
+            // 'adminId','chatId',
+            // 'owner',
+            $result = [
+                $Getdata,
+                $saveChat
+            ];
+            return $result;
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function Senddata(Request $request)
+    {
+
+        // chat_history
+        // return $request;
+        try {
+            return $Getdata = $this->queryDataChat($request);
+            DB::enableQueryLog();
+
+
+            if ($Getdata) {
+                $user = Auth::user();
+
+                $message = "fuck...!";
+
+                broadcast(new MessageSent($user, $message))->toOthers();
                 return $this->returncode(200, "Delete", 'success');
             } else {
                 return $this->returncode(300, "Can not Delete", DB::getQueryLog());
@@ -471,49 +562,53 @@ class CardController extends Controller
     }
     public function getDataChat($id)
     {
+        // chat_history
+        Cache::put('anid',$id,3412000);
+        $getAuth = Auth::user()->user_id;
         $data = DB::table('announcements')
-            ->join('reply_anouces', 'reply_anouces.anou_id', '=', 'announcements.AnouncementID')
+            ->join('reply_announces', 'reply_announces.anou_id', '=', 'announcements.AnouncementID')
+            ->join('chat_announces', 'chat_announces.chatId', '=', 'reply_announces.chatId')
             ->where('announcements.AnouncementID', '=', $id)
+            ->orderBy('chat_announces.created_at', 'ASC')
             ->get();
-            
+        $getpostby = null;
         if ($data->count() < 1) {
-            $data = Announcement::where('AnouncementID', '=', $id)->get();
-            $getpostby = $data->pluck('post_by');
+            $data = [];
         } else {
             $getpostby = $data->pluck('post_by')[0];
         }
         $getadmin = Admin::where('id', '=', $getpostby)->get();
         return  [$data, $getadmin];
     }
-    public function Senddata(Request $request)
-    {
-       
-       
-        // try {
-            DB::enableQueryLog();
-            $getAuth = Auth::user()->user_id;
-            $insertdata = array(
-                'anou_id' => $request->GetdataID,
-                'chater_id' => $getAuth,
-                'msg' => $request->typemessage,
-                'owner' => 0
-            );
-            $Getdata = reply_anouces::create($insertdata);
-            if ($Getdata) {
-                $user = Auth::user();
+    //     public function Senddata(Request $request)
+    //     {
 
-  $message = "fuck...!";
 
-  broadcast(new MessageSent($user, $message))->toOthers();
-                return $this->returncode(200, "Delete", 'success');
-            } else {
-                return $this->returncode(300, "Can not Delete", DB::getQueryLog());
-            }
-        // } 
-        // catch (\Exception $ex) {
-        //     return $this->returncode(500, '', $ex->getMessage());
-        // }
-    }
+    //         // try {
+    //             DB::enableQueryLog();
+    //             $getAuth = Auth::user()->user_id;
+    //             $insertdata = array(
+    //                 'anou_id' => $request->GetdataID,
+    //                 'chater_id' => $getAuth,
+    //                 'msg' => $request->typemessage,
+    //                 'owner' => 0
+    //             );
+    //             $Getdata =  replyAnnounce::create($insertdata);
+    //             if ($Getdata) {
+    //                 $user = Auth::user();
+
+    //   $message = "fuck...!";
+
+    //   broadcast(new MessageSent($user, $message))->toOthers();
+    //                 return $this->returncode(200, "Delete", 'success');
+    //             } else {
+    //                 return $this->returncode(300, "Can not Delete", DB::getQueryLog());
+    //             }
+    //         // }
+    //         // catch (\Exception $ex) {
+    //         //     return $this->returncode(500, '', $ex->getMessage());
+    //         // }
+    //     }
     public function Getpostby()
     {
         $Join = DB::table('announcements')
@@ -521,4 +616,3 @@ class CardController extends Controller
         return $Join;
     }
 }
-  

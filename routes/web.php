@@ -23,6 +23,7 @@ Route::get('/message', 'HomeController@message');
 Route::get('/index', 'HomeController@indexpage');
 Route::get('/promote', 'HomeController@promote');
 Route::get('/lobby', 'HomeController@lobby');
+
 Route::post('/updatemoney', 'MasterController@updatemoney');
 Auth::routes();
 
@@ -32,6 +33,8 @@ Auth::routes();
 // Route::get('administrator', 'AdminController@index')->middleware('admin');
 
 
+Route::get('/chathere', 'ChatController@index');
+
 
 Route::get('api/getAgent', 'Shareholder\HomeController@getAgent');
 Route::get('api/getbetHisoty/{date}', 'Shareholder\HomeController@getApi');
@@ -40,13 +43,15 @@ Route::get('/getadmininfotimeline', 'AdminController@getadmininfotimeline');
 Route::post('/addnewadmin', 'AdminController@addnewadmin');
 
 Route::get('/Carousel', 'AdminController@getCarousel');
-Route::get('/userCarousel', 'MasterController@getCarousel');
+Route::get('/userCarousel', 'NoAuthController@getCarousel');
 Route::post('/Carousel', 'AdminController@postCarousel');
 Route::get('/getadmininfo', 'AdminController@getadmininfo');
 Route::get('/login', function () {
     return redirect('/');
 });
-
+Route::get('/TaguserDetail', 'AdminController@TaguserDetail');
+Route::get('/getadmincard', 'AdminController@getadmincard');
+Route::get('/Selfservice', 'AdminController@Selfservice');
 Route::get('/delete_img/{id}', 'AdminController@delete_img');
 Route::get('/getimgtrans/{id}', 'AdminController@getimgtrans');
 Route::get('/getallresultadmin', 'AdminController@getallresultadmin');
@@ -64,7 +69,7 @@ Route::post('/saveagent', 'AdminController@saveagent');
 Route::get('/getreuest', 'AdminController@getreuest');
 Route::get('/getdata', 'AdminController@getuserdata');
 Route::get('/gettoken', 'AdminController@gettoken');
-
+Route::get('/getadminrule', 'AdminController@getadminrule');
 
 Route::get('/home', function () {
     return redirect('/');
@@ -72,22 +77,22 @@ Route::get('/home', function () {
 Route::get('/stocklist', function () {
     return view('desktop.stocklist');
 });
-// Route::get('/',)
+// Route::get('/',)getaccountment:1 Failed to load resource: the server responded with a status of 401 (Unauthorized)
 
 Route::get('getAlluserdata', 'MasterController@getAlluserdata');
 Route::get('adminList', 'MasterController@adminList');
-Route::post('requestdata', 'MasterController@requestdata');
+Route::post('requestdata', 'RedirectBackController@requestdata');
 Route::get('fullscreengame', 'MasterController@fullscreengame');
 Route::get('getUserBet', 'MasterController@getUserBet');
 Route::get('getRolling', 'MasterController@getRolling');
-Route::get('/', 'MasterController@welcome')->name('home');
+Route::get('/', 'NoAuthController@welcome')->name('home');
 Route::post('/topupbalance', 'MasterController@topupbalance');
 Route::post('/reqchangepwd', 'MasterController@reqchangepwd');
 Route::get('/checkconnection', 'MasterController@checkconnection');
 Route::post('/savecarddetail', 'MasterController@savecarddetail');
 Route::post('/transfertoapi', 'MasterController@transfertoapi');
 
-Route::post('/checkreigster', 'MasterController@checkreigster');
+Route::post('/checkreigster', 'NoAuthController@checkreigster');
 Route::get('/userdetaildata', 'MasterController@userdetaildata');
 Route::get('/getuserdata', 'MasterController@getuserdata');
 Route::post('/sendsms', 'MasterController@sendsms');
@@ -149,7 +154,7 @@ Route::get('admin/check', function () {
 
 
 
-Route::post('/checklogin', 'MasterController@checklogin');
+Route::post('/checklogin', 'NoAuthController@checklogin');
 Route::get('/redirectback', function () {
     $query = http_build_query([
         'client_id' => 'client-id',
@@ -237,7 +242,7 @@ Route::post('/useCard', 'CardController@useCard');
 
 Route::get('/ActionRecord/{id}', 'CardController@ActionRecord');
 
-Route::get('/Selfservice', 'CardController@Selfservice');
+
 
 Route::post('/editlevel/{id}', 'CardController@editlevel');
 
@@ -284,11 +289,14 @@ Route::post('/getDate', 'CardController@getDate');
 
 Route::get('/Getlogin', 'RedirectBackController@Getlogin');
 
-Route::get('/TaguserDetail', 'CardController@TaguserDetail');
+
 
 Route::get('/Savveselfservice', 'CardController@Savveselfservice');
 
 Route::get('/getaccountment', 'CardController@getaccountment');
+
+
+Route::get('/getaccountmentAdmin', 'ChatController@getaccountment');
 
 Route::get('/gettype', 'CardController@gettype');
 
@@ -312,7 +320,7 @@ Route::get('/cardControl', 'StaticController@cardControl');
 // });
 Route::post('/addcardmin', 'CardController@addcardmin');
 
-Route::get('/getadmincard', 'CardController@getadmincard');
+
 
 Route::post('/deletecard/{id}', 'CardController@deletecard');
 
@@ -320,14 +328,19 @@ Route::get('/sendeditcard/{id}', 'CardController@sendeditcard');
 
 Route::post('/addrule', 'CardController@addrule');
 
-Route::get('/getadminrule', 'CardController@getadminrule');
+
 
 Route::post('/deleteruld/{id}', 'CardController@deleteruld');
 
 Route::get('/chat', 'CardController@chat');
+Route::get('/chatAdmin', 'ChatController@chat');
 
 Route::get('/getDataChat/{id}', 'CardController@getDataChat');
 
+Route::get('/getDataChatAdmin/{id}', 'ChatController@getDataChat');
+
 Route::post('/Senddata', 'CardController@Senddata');
+
+Route::post('/SenddataAdmin', 'ChatController@SenddataAdmin');
 
 Route::get('/Getpostby', 'CardController@Getpostby');

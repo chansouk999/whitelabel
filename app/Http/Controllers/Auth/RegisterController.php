@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Users;
 use App\userdetail;
+use \Torann\GeoIP\Facades\GeoIP;
+
 class RegisterController extends Controller
 {
     /*
@@ -64,7 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
+
         function generateRandomString($length = 7) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
@@ -74,7 +76,7 @@ class RegisterController extends Controller
             }
             return $randomString;
         }
-        
+
         $pwduser = $data['password'];
         $password = $pwduser;
         $hashpassword = str_split($password);
@@ -85,10 +87,12 @@ class RegisterController extends Controller
         }
         $datas = implode('-',$hash);
         $insertpwd = $datas;
-        
+
         $userid = substr(strtotime('now'),-6,6).generateRandomString();
         $date = date('y-m-d H:i:s');
         $ip = \Request::getClientIp();
+        // return $ip;
+        $located = geoip()->getLocation($ip);
         $user = User::create([
             'user_id'=>$userid,
             'name' => $data['name'],
@@ -110,8 +114,8 @@ class RegisterController extends Controller
         userdetail::create([
             'id' => $id,
             'user_id' => $userid,
-            'currency' => 'USD',
-            'lang' => 'CH',
+            'currency' => $located['currency'],
+            'lang' => $located['iso_code'],
             'TotalRolling' => 0,
             'AvailableRolling' => 0,
         ]);

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Cache;
 use App\access_token;
 use App\Admin;
 use App\admin_access;
+use App\Http\Controllers\StaticController as getfunction;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\User;
@@ -44,6 +45,10 @@ class MasterController extends Controller
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
     protected $data = [];
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getheader()
     {
         $header = new header;
@@ -55,24 +60,21 @@ class MasterController extends Controller
         try {
             $http = new Client;
             $res = $http->get(
-                Cache::get('mainUrl') . '/api/getAlluserdata/'.Auth::user()->user_id,
+                Cache::get('mainUrl') . '/api/getAlluserdata/' . Auth::user()->user_id,
                 ['headers' => $this->getheader()]
             );
             $accessdata = json_decode((string) $res->getBody(), true);
             $totalonline = [];
-            foreach($accessdata['data'] as $tt){
+            foreach ($accessdata['data'] as $tt) {
                 $totalonline[] = $tt['time_online'];
             }
-            $save = User::where('user_id',Auth::user()->user_id)->update(['totalOnlineHour'=>array_sum($totalonline)]);
+            $save = User::where('user_id', Auth::user()->user_id)->update(['totalOnlineHour' => array_sum($totalonline)]);
             return array_sum($totalonline);
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
         }
     }
-    public function getCarousel()
-    {
-        return Carousel::orderby('created_at', 'desc')->get();
-    }
+
 
     public function adminList()
     {
@@ -87,11 +89,7 @@ class MasterController extends Controller
         }
     }
 
-    public function requestdata(Request $req)
-    {
 
-        return OauthClient::where('id', '=', $req->ClientID)->get()[0];
-    }
     public function connectTogame($data)
     {
         $ClientID = $data->pluck('id')[0];
@@ -126,9 +124,11 @@ class MasterController extends Controller
             return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
         }
     }
+
     public function topupbalance(Request $req)
     {
         $amount = $req->amount;
+        return getfunction::cardControl($amount);
         try {
             DB::enableQueryLog();
             date_default_timezone_set("Asia/Shanghai");
@@ -427,36 +427,21 @@ class MasterController extends Controller
         try {
             $userid = Auth::user()->pro_id . '_' . Auth::user()->user_id;
             $http = new Client;
-            $accesstoken = access_token::where('user_id', '=', '' . $userid . '')->limit(1)->get();
-            $countcheck = $accesstoken->count();
-            $resulttoekn = $this->getfreshtoken();
-            if ($resulttoekn['code'] == 0) {
-                return $this->returncode(0, '', 'empty'); //empty
-            }
-            if ($countcheck < 1 || $resulttoekn['code'] == 200) {
-                $token = $this->getfreshtoken()['data']['access_token'];
-            }
 
-            if ($countcheck > 0) {
-                $token =   $accesstoken->pluck('access_token')[0];
-            }
 
             $userbl = Auth::user()->userBalance;
             if ($req->amount > $userbl || $req->amount == 0) {
                 return $this->returncode(99, '', 'not enough money minimum at 100'); //not enough
             } else {
-                $header = [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Bearer ' . $token
-                ];
+
+                $header = getfunction::header();
+
                 $formdata = [
                     'amount' => $req->amount,
                     'user_id' => $userid,
                 ];
-                // checkkcckk
-                // return $header;
-                $response = $http->get('http://lec68.com/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
+
+                $response = $http->get(Cache::get('mainUrl').'/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
                     'headers' => $header,
                 ]);
                 $accessdata = json_decode((string) $response->getBody(), true);
@@ -485,21 +470,7 @@ class MasterController extends Controller
         }
     }
 
-    public function checkreigster(Request $req)
-    {
 
-        $email = $req->email;
-        $name = $req->name;
-        $countm = User::where('email', '=', $email)->get()->count();
-        $countn = User::where('name', '=', $name)->get()->count();
-        if ($countn > 0) {
-            return ['success' => 'nameexist'];
-        } elseif ($countm) {
-            return ['success' => 'emailexist'];
-        } else {
-            return ['success' => 'success'];
-        }
-    }
 
 
 
@@ -508,24 +479,6 @@ class MasterController extends Controller
         return "HELLO THIS PAYMENT FUNCTION";
     }
 
-    public function welcome()
-    {
-
-        // GET TOKEN ADMIN
-        // GET TOKEN ADMIN
-        $agent = new Agent();
-        if ($agent->isMobile()) {
-            // Alert::success('Mobile', 'Mobile Mode');
-            $checkpcormb = "mb";
-            return view('mobile.welcome', compact('checkpcormb'));
-            // return view('mobile.message', compact('checkpcormb'));
-        } else {
-            //  Alert::success('Desktop', 'Desktop Mode');
-            $checkpcormb = "pc";
-            return view('desktop.welcome', compact('checkpcormb'));
-            // return view('desktop.message', compact('checkpcormb'));
-        }
-    }
     public function updatemoney(Request $req)
     {
         // $balnce = 900000;
@@ -534,51 +487,21 @@ class MasterController extends Controller
     }
     public function userdetaildata()
     {
-        $id = Auth::user()->id;
-        $date = date('Y-m-d');
-        return DB::table('users')->where('id', $id)
-            ->orderby('created_at', 'desc')->limit(1)->get();
-    }
-    public function checklogin(Request $req)
-    {
-        $email = $req->email;
-        $password = $req->pwd;
-        $check = User::where('email', '=', '' . $email . '')->get();
-        $user_id = $check->pluck('user_id')[0];
-        $id = $check->pluck('id')[0];
-        $hashpasswordLogin = $check->pluck('pwdhashed')[0];
-        $count = $check->count();
-        // return $check;
-        if ($count < 1) {
-            // Alert::error('Error Message', 'Optional Title');
-            return ['success' => 'notfound'];
-        } else {
-            $checkpwd = $check->pluck('password')[0];
-            if (!Hash::check($password, $checkpwd)) {
-                $this->trackuserLogin($password, 'Failure', $user_id, $id, $hashpasswordLogin);
-                return ['success' => 'passwordnotmatch'];
-            } else {
-                $this->trackuserLogin($password, 'Success', $user_id, $id, $hashpasswordLogin);
-                $getIpController = new CardController;
-                return $getIpController->GetuserAccessip();
-                return ['success' => 'success'];
-            }
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            $date = date('Y-m-d');
+            return DB::table('users')->where('id', $id)
+                ->orderby('created_at', 'desc')->limit(1)->get();
         }
     }
-    public function trackuserLogin($pwd, $status, $user_id, $id, $hashpasswordLogin)
-    {
 
-        $trackuser = array(
-            'id' => $id,
-            'time' => date('y-m-d H:i:s'),
-            'login_IP' => \Request::getClientIp(),
-            'password' => $pwd,
-            'login_status' => $status,
-            'online_period' => 0,
-            'user_id' => $user_id,
-        );
-        $save = access_record::create($trackuser);
+    public function trackuserLogin($id)
+    {
+        $getTrackUser = access_record::where('user_id', '=', '' . $id . '')->get();
+        return $getTrackUser;
     }
+
+
     public function sendsms(Request $req)
     {
         $basic  = new \Nexmo\Client\Credentials\Basic('222a363b', 'Krn82zRNs6ZE9GmT');
@@ -653,29 +576,29 @@ class MasterController extends Controller
 
 
     }
-    public function getRolling()
+    public static function getRolling()
     {
         $roll_his = Rolling_history::where('user_id', Auth::user()->user_id)->latest()->limit(1)->get();
-        $all_rolling_history_value =Rolling_history::where([['user_id', Auth::user()->user_id ],['status','not pay']])->get()->sum('amount');
-         $last_total_bet = $roll_his->pluck('last_totalbet');
-         if($last_total_bet->count() >0){
+        $all_rolling_history_value = Rolling_history::where([['user_id', Auth::user()->user_id], ['status', 'not pay']])->get()->sum('amount');
+        $last_total_bet = $roll_his->pluck('last_totalbet');
+        if ($last_total_bet->count() > 0) {
             $last_total_bet =   $last_total_bet[0];
-         }else{
+        } else {
             $last_total_bet = 0;
-         }
-         $user_detail = userdetail::where('user_id', Auth::user()->user_id)->get();
-         $total_bet   =  $user_detail->pluck('Totalbet')[0];
-         $avaiable_bet = $total_bet - $last_total_bet;
+        }
+        $user_detail = userdetail::where('user_id', Auth::user()->user_id)->get();
+        $total_bet   =  $user_detail->pluck('Totalbet')[0];
+        $avaiable_bet = $total_bet - $last_total_bet;
 
-         $percent= Selfservice::where('Amount', '<=', $total_bet)->limit(1)->get()->pluck('percentage')[0];
-         $avaiable_rolling =  ($avaiable_bet * $percent) /100;
-         $all_rolling_history_value = $all_rolling_history_value + $avaiable_rolling;
-         return response()->json([
-             array(
-             'totalbet'=>$total_bet,
-             'available_rolling'=>$avaiable_rolling,
-             'total_rolling'=>$all_rolling_history_value
-             )
-             ]);
+        $percent = Selfservice::where('Amount', '<=', $total_bet)->limit(1)->get()->pluck('percentage')[0];
+        $avaiable_rolling = ($avaiable_bet * $percent) / 100;
+        $all_rolling_history_value = $all_rolling_history_value + $avaiable_rolling;
+        return response()->json([
+            array(
+                'totalbet' => $total_bet,
+                'available_rolling' => $avaiable_rolling,
+                'total_rolling' => $all_rolling_history_value
+            )
+        ]);
     }
 }

@@ -53,16 +53,13 @@ export const msgmixin = {
           // this.loading=true
           x=1
           if(res.data.code==99){
-            x=1
             alert(res.data.msg)
           }
           if(res.data.code==0){
-             x=1
              alert(res.data.msg)
              location.href = '/lobby'
           }
           if(res.data.code==200){
-            x=1
             this.userdatasecond()
             alert(res.data.msg)
           }

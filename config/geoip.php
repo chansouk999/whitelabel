@@ -141,8 +141,8 @@ return [
 
     'default_location' => [
         'ip' => '127.0.0.0',
-        'iso_code' => 'US',
-        'country' => 'United States',
+        'iso_code' => 'CH',
+        'country' => 'Laos',
         'city' => 'New Haven',
         'state' => 'CT',
         'state_name' => 'Connecticut',
@@ -152,7 +152,7 @@ return [
         'timezone' => 'America/New_York',
         'continent' => 'NA',
         'default' => true,
-        'currency' => 'USD',
+        'currency' => 'RMB',
     ],
 
 ];
