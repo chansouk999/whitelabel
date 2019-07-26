@@ -7,7 +7,7 @@ use App\Request as Reqst;
 use Auth;
 use GuzzleHttp\Client;
 use Jenssegers\Agent\Agent;
-use App\chat_history;
+use App\chatAnnounce;
 use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Facades\Validator;
 use App\clientid;
@@ -32,7 +32,7 @@ use SebastianBergmann\Environment\Console;
 use App\Rolling_history;
 use App\Admincard;
 use App\admincard_rule;
-use App\reply_anouces;
+use App\replyAnnounce;
 use App\Admin;
 
 use App\Events\MessageSent;
@@ -163,11 +163,7 @@ class CardController extends Controller
         $actionRecordDetail = activityLog::where('detail', 'like', '%user_id":"' . $id . '%')->get();
         return $actionRecordDetail;
     }
-    public function Selfservice()
-    {
-        $getSelfservice = Selfservice::all();
-        return $getSelfservice;
-    }
+
 
 
     public function editlevel($id)
@@ -243,11 +239,7 @@ class CardController extends Controller
             return $ex->getMessage();
         }
     }
-    public function TaguserDetail()
-    {
-        $getTagUser = User::get();
-        return $getTagUser;
-    }
+
     public function Savveselfservice()
     {
         try {
@@ -306,7 +298,18 @@ class CardController extends Controller
             $getTypePM = Announcement::where('message',  'like', '%"type":"PM"%')->get();
             $getTypeAN = Announcement::where('message',  'like', '%"type":"AN"%')->get();
 
-
+            $dataAnnounce = [];
+            foreach ($annoucemen as $an) {
+                $userId = json_decode($an->userID);
+                if ($an->userID == '"all"') {
+                    $dataAnnounce[] = $an;
+                } else {
+                    $userId = json_decode($an->userID)[0];
+                    if ($userId == $userID) {
+                        $dataAnnounce[] = $an;
+                    }
+                }
+            }
             if ($annoucemen->count() > 0) {
                 $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
                 $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
@@ -316,7 +319,7 @@ class CardController extends Controller
                 } else {
                     $getall = Announcement::where([['method', '=', "PA"], ['userID', 'like', '%' . $userID . '%']])->latest()->limit(1)->get();
                 }
-                return [$getall, $getmore, $getAll, Auth::user()->name, $annoucemen, $getTypePM, $getTypeAN];
+                return [$getall, $getmore, $getAll, Auth::user()->name, $dataAnnounce, $getTypePM, $getTypeAN];
             }
         }
     }
@@ -392,14 +395,7 @@ class CardController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function getadmincard()
-    {
-        // $data = Admincard::get();
-        $data = DB::table('admincard_rules')
-            ->join('admincards', 'admincard_rules.id', '=', 'admincards.rule_id')
-            ->get();
-        return $data;
-    }
+
     public function deletecard($id)
     {
         try {
@@ -454,11 +450,7 @@ class CardController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function getadminrule()
-    {
-        $getdata = admincard_rule::get();
-        return $getdata;
-    }
+
     public function deleteruld($id)
     {
         try {
@@ -483,21 +475,25 @@ class CardController extends Controller
     }
     public function checkAnnounnce($id)
     {
-        $data = reply_anouces::where('chatId', $id)->get()->count();
+        $data =  replyAnnounce::where('chatId', $id)->get()->count();
         return $data;
     }
     public function queryDataChat($re)
     {
         try {
-            // chat
-            $checkAn = $this->checkAnnounnce($re->chat);
-
+            $subchatID = substr($re->chat,0,8);
+            $chatIDCheck = $subchatID.$re->GetdataID;
+            // return $chatIDCheck;
             $res = $this->getAnnounceData($re->GetdataID);
+
+            $checkAn = $this->checkAnnounnce($chatIDCheck);
+
+
             $chatid = substr(strtotime('now'), -7, 7) . $res->post_by . $res->AnouncementID;
             // return $chatid;
 
             $getAuth = Auth::user()->user_id;
-            $Getdata =null;
+            $Getdata = null;
             if ($checkAn < 1) {
 
                 $insertdata = array(
@@ -508,14 +504,10 @@ class CardController extends Controller
                     'chatId' => $chatid
 
                 );
-                $Getdata = reply_anouces::create($insertdata);
-
-            }else{
+                $Getdata =  replyAnnounce::create($insertdata);
+            } else {
                 $chatid = $re->chat;
-                // return $checkAn;
             }
-
-            // return $re;
 
             $insert_chat = array(
                 'chatId' => $chatid,
@@ -525,7 +517,7 @@ class CardController extends Controller
                 'owner' => 0,
             );
 
-            $saveChat = chat_history::create($insert_chat);
+            $saveChat = chatAnnounce::create($insert_chat);
             //     'anou_id',
             // 'user_id',
             // 'chater_id',
@@ -571,12 +563,13 @@ class CardController extends Controller
     public function getDataChat($id)
     {
         // chat_history
+        Cache::put('anid',$id,3412000);
         $getAuth = Auth::user()->user_id;
         $data = DB::table('announcements')
-            ->join('reply_anouces', 'reply_anouces.anou_id', '=', 'announcements.AnouncementID')
-            ->join('chat_histories', 'chat_histories.chatId', '=', 'reply_anouces.chatId')
+            ->join('reply_announces', 'reply_announces.anou_id', '=', 'announcements.AnouncementID')
+            ->join('chat_announces', 'chat_announces.chatId', '=', 'reply_announces.chatId')
             ->where('announcements.AnouncementID', '=', $id)
-            ->where('reply_anouces.user_id', '=', $getAuth)
+            ->orderBy('chat_announces.created_at', 'ASC')
             ->get();
         $getpostby = null;
         if ($data->count() < 1) {
@@ -600,7 +593,7 @@ class CardController extends Controller
     //                 'msg' => $request->typemessage,
     //                 'owner' => 0
     //             );
-    //             $Getdata = reply_anouces::create($insertdata);
+    //             $Getdata =  replyAnnounce::create($insertdata);
     //             if ($Getdata) {
     //                 $user = Auth::user();
 

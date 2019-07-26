@@ -13,6 +13,7 @@ use App\ImageTransfer;
 use App\Http\Controllers\ActivityLogController as ActivityLog;
 use App\Eventhistory;
 use Exception;
+use App\Selfservice;
 use App\activityLog as modelog;
 use App\Request as Reqst;
 use App\Admin;
@@ -20,6 +21,7 @@ use App\access_token;
 use App\Shareholder_login;
 use Illuminate\Support\Facades\DB;
 use App\admin_access;
+use App\admincard_rule;
 use App\Agent;
 use App\AgenTransaction;
 use App\Agent_login;
@@ -40,7 +42,30 @@ class AdminController extends Controller
     {
         $this->middleware('auth:administrator');
     }
+    public function getadminrule()
+    {
+        $getdata = admincard_rule::get();
+        return $getdata;
+    }
+    public function TaguserDetail()
+    {
+        $getTagUser = User::get();
+        return $getTagUser;
+    }
 
+    public function Selfservice()
+    {
+        $getSelfservice = Selfservice::all();
+        return $getSelfservice;
+    }
+    public function getadmincard()
+    {
+        // $data = Admincard::get();
+        $data = DB::table('admincard_rules')
+            ->join('admincards', 'admincard_rules.id', '=', 'admincards.rule_id')
+            ->get();
+        return $data;
+    }
 
 
     public function getadmininfotimeline()

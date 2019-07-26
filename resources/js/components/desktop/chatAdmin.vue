@@ -244,9 +244,11 @@ export default {
     });
   },
   mounted() {
-
+      setInterval(()=>{
+          this.GetdataChat();
+      },5000);
     axios
-      .get("/getaccountment")
+      .get("/getaccountmentAdmin")
       .then(res => {
         this.dataAnnoucement = res.data[4];
         console.log(res.data);
@@ -308,17 +310,19 @@ export default {
         });
     },
     chatandAswer(id) {
-      axios
-        .get("/read_annocement/" + id)
-        .then(res => {
-          this.read_annocement = res.data;
-          console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-          console.log(res.data);
-          console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        })
-        .catch(e => {
-          console.log(e.response);
-        });
+        localStorage.setItem('chatdata',id)
+        this.GetdataChat();
+    //   axios
+    //     .get("/read_annocement/" + id)
+    //     .then(res => {
+    //       this.read_annocement = res.data;
+    //       console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    //       console.log(res.data);
+    //       console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    //     })
+    //     .catch(e => {
+    //       console.log(e.response);
+    //     });
     },
     // Paganation
     gamehistorypage(methods) {

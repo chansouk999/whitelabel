@@ -49,7 +49,9 @@ Route::get('/getadmininfo', 'AdminController@getadmininfo');
 Route::get('/login', function () {
     return redirect('/');
 });
-
+Route::get('/TaguserDetail', 'AdminController@TaguserDetail');
+Route::get('/getadmincard', 'AdminController@getadmincard');
+Route::get('/Selfservice', 'AdminController@Selfservice');
 Route::get('/delete_img/{id}', 'AdminController@delete_img');
 Route::get('/getimgtrans/{id}', 'AdminController@getimgtrans');
 Route::get('/getallresultadmin', 'AdminController@getallresultadmin');
@@ -67,7 +69,7 @@ Route::post('/saveagent', 'AdminController@saveagent');
 Route::get('/getreuest', 'AdminController@getreuest');
 Route::get('/getdata', 'AdminController@getuserdata');
 Route::get('/gettoken', 'AdminController@gettoken');
-
+Route::get('/getadminrule', 'AdminController@getadminrule');
 
 Route::get('/home', function () {
     return redirect('/');
@@ -240,7 +242,7 @@ Route::post('/useCard', 'CardController@useCard');
 
 Route::get('/ActionRecord/{id}', 'CardController@ActionRecord');
 
-Route::get('/Selfservice', 'CardController@Selfservice');
+
 
 Route::post('/editlevel/{id}', 'CardController@editlevel');
 
@@ -287,11 +289,14 @@ Route::post('/getDate', 'CardController@getDate');
 
 Route::get('/Getlogin', 'RedirectBackController@Getlogin');
 
-Route::get('/TaguserDetail', 'CardController@TaguserDetail');
+
 
 Route::get('/Savveselfservice', 'CardController@Savveselfservice');
 
 Route::get('/getaccountment', 'CardController@getaccountment');
+
+
+Route::get('/getaccountmentAdmin', 'ChatController@getaccountment');
 
 Route::get('/gettype', 'CardController@gettype');
 
@@ -315,7 +320,7 @@ Route::get('/cardControl', 'StaticController@cardControl');
 // });
 Route::post('/addcardmin', 'CardController@addcardmin');
 
-Route::get('/getadmincard', 'CardController@getadmincard');
+
 
 Route::post('/deletecard/{id}', 'CardController@deletecard');
 
@@ -323,7 +328,7 @@ Route::get('/sendeditcard/{id}', 'CardController@sendeditcard');
 
 Route::post('/addrule', 'CardController@addrule');
 
-Route::get('/getadminrule', 'CardController@getadminrule');
+
 
 Route::post('/deleteruld/{id}', 'CardController@deleteruld');
 

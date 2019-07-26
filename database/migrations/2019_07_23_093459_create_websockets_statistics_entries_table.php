@@ -11,6 +11,7 @@ class CreateWebSocketsStatisticsEntriesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('websockets_statistics_entries');
         Schema::create('websockets_statistics_entries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('app_id');

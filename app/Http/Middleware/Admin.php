@@ -16,11 +16,11 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        
+
         // if (Auth::check() && Auth::user()->is_admin == 1) {
-        //     return $next($request);
+            return $next($request);
         // }
         // return new Response(view('welcome'));
-        
+
     }
 }

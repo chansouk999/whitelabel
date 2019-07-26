@@ -7,7 +7,7 @@ use App\Request as Reqst;
 use Auth;
 use GuzzleHttp\Client;
 use Jenssegers\Agent\Agent;
-use App\chat_history;
+use App\chatAnnounce;
 use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Facades\Validator;
 use App\clientid;
@@ -32,7 +32,7 @@ use SebastianBergmann\Environment\Console;
 use App\Rolling_history;
 use App\Admincard;
 use App\admincard_rule;
-use App\reply_anouces;
+use App\replyAnnounce;
 use App\Admin;
 
 class ChatController extends Controller
@@ -41,27 +41,42 @@ class ChatController extends Controller
     {
         $this->middleware('auth:administrator');
     }
+    public function getaccountment()
+    {
+        if (Auth::check()) {
+            $userID = Auth::guard('administrator')->user()->id;
+            $annoucemen = Announcement::where('post_by',$userID)->get();
+            $getTypePM = Announcement::where('message',  'like', '%"type":"PM"%')->get();
+            $getTypeAN = Announcement::where('message',  'like', '%"type":"AN"%')->get();
+
+            if ($annoucemen->count() > 0) {
+                return [0, 0, 0, 0, $annoucemen, 0, 0];
+            }
+        }
+    }
     public function getAnnounceData($id)
     {
         try {
             $res = Announcement::where('AnouncementID', $id)->get()[0];
             return $res;
         } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage());
+            return getFunction::returncode(500, '', $ex->getMessage());
         }
     }
     public function checkAnnounnce($id)
     {
-        $data = reply_anouces::where('chatId', $id)->get()->count();
+        $data = replyAnnounce::where('chatId', $id)->get()->count();
         return $data;
     }
     public function queryDataChat($re)
     {
         try {
-            // chat
-            $checkAn = $this->checkAnnounnce($re->chat);
-
+            $subchatID = substr($re->chat,0,8);
+            $chatIDCheck = $subchatID.$re->GetdataID;
+            // return $chatIDCheck;
             $res = $this->getAnnounceData($re->GetdataID);
+
+            $checkAn = $this->checkAnnounnce($chatIDCheck);
             $chatid = substr(strtotime('now'), -7, 7) . $res->post_by . $res->AnouncementID;
             // return $chatid;
 
@@ -77,7 +92,7 @@ class ChatController extends Controller
                     'chatId' => $chatid
 
                 );
-                $Getdata = reply_anouces::create($insertdata);
+                $Getdata = replyAnnounce::create($insertdata);
             } else {
                 $chatid = $re->chat;
                 // return $checkAn;
@@ -93,7 +108,7 @@ class ChatController extends Controller
                 'owner' => 1,
             );
 
-            $saveChat = chat_history::create($insert_chat);
+            $saveChat = chatAnnounce::create($insert_chat);
             //     'anou_id',
             // 'user_id',
             // 'chater_id',
@@ -105,7 +120,7 @@ class ChatController extends Controller
             ];
             return $result;
         } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage());
+            return getFunction::returncode(500, '', $ex->getMessage());
         }
     }
     public function SenddataAdmin(Request $request)
@@ -124,12 +139,12 @@ class ChatController extends Controller
                 $message = "fuck...!";
 
                 broadcast(new MessageSent($user, $message))->toOthers();
-                return $this->returncode(200, "Delete", 'success');
+                return getFunction::returncode(200, "Delete", 'success');
             } else {
-                return $this->returncode(300, "Can not Delete", DB::getQueryLog());
+                return getFunction::returncode(300, "Can not Delete", DB::getQueryLog());
             }
         } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage());
+            return getFunction::returncode(500, '', $ex->getMessage());
         }
     }
     public function chat()
@@ -141,9 +156,10 @@ class ChatController extends Controller
         // chat_history
         $getAuth = Auth::guard('administrator')->user()->id;
         $data = DB::table('announcements')
-            ->join('reply_anouces', 'reply_anouces.anou_id', '=', 'announcements.AnouncementID')
-            ->join('chat_histories', 'chat_histories.chatId', '=', 'reply_anouces.chatId')
+            ->join('reply_announces', 'reply_announces.anou_id', '=', 'announcements.AnouncementID')
+            ->join('chat_announces', 'chat_announces.chatId', '=', 'reply_announces.chatId')
             ->where('announcements.AnouncementID', '=', $id)
+            ->orderBy('chat_announces.created_at','ASC')
             ->get();
         $getpostby = null;
         if ($data->count() < 1) {
