@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../assetsadmin/img/favicon.png">
     <title>Admin</title>
     <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+   <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <!-- Nucleo Icons -->
     <link href="assets/css/nucleo-icons.css" rel="stylesheet" /> <!-- CSS Files -->
     <link href="../assetsadmin/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />

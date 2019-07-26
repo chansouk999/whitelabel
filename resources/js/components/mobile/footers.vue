@@ -4,7 +4,7 @@
       <!-- user Login -->
       <span v-if="checkuser == 'true'">
         <nav class="mobile-bottom-nav">
-          <div class="mobile-bottom-nav__item ">
+          <div class="mobile-bottom-nav__item">
             <div class="mobile-bottom-nav__item-content">
               <a :href="welcome">
                 <i class="tim-icons icon-bank"></i>
@@ -280,9 +280,9 @@ export default {
     "register",
     "free_trial",
     "home",
-"forum",
-"washcode",
-"mine",
+    "forum",
+    "washcode",
+    "mine"
   ]
 };
 </script>

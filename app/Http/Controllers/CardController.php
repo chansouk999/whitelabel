@@ -65,7 +65,7 @@ class CardController extends Controller
     {
         try {
             $update = array(
-                'id' => Auth::user()->id,
+                'ids' => Auth::user()->id,
                 'desc' => $request->desc,
                 'userName' => $request->name,
                 'bankAccount' => $request->cardnumber,

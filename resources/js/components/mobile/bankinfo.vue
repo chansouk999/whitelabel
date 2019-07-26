@@ -1,125 +1,119 @@
 <template>
   <div>
     <div class="container" v-if="isLoadCardDone">
-      <div class="row">
-        <div class="col-md-10"></div>
-        <div class="row ml-10">
-          <div class="col-md-6 pb-3 card_info" v-for="(data,index) in getcCardinfo">
-            <div class="cover atvImg">
-              <div class="atvImg-layer">
-                <img src="assets/img/visa-bg.jpg" alt />
+      <div class="row mt-2">
+        <div class="card card-stats mb-2" v-for="(data,index) in getcCardinfo" :key="index">
+          <div class="col-lg-3 col-md-6 px-0">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <h2>{{data.methodId}}</h2>
+                <div class="addreess">
+                  <p>{{data.registerProvince}}</p>
+                  <p>{{data.registerCity}}</p>
+                </div>
               </div>
-              <div class="atvImg-layer">
-                <img src="assets/img/visa.png" alt />
-                <div class="d-flex justify-content-between">
-                  <h2>{{data.methodId}}</h2>
-                  <div class="addreess">
-                    <button class="btn badge badge-warning" @click="CardDelete(data.id)">
-                      <i class="tim-icons icon-trash-simple"></i>
-                    </button>
-                    <p class="text-white">{{data.registerProvince}}</p>
-                    <p class="text-white">{{data.registerCity}}</p>
-                  </div>
-                  <div class="user_id">{{data.user_id}}</div>
-                  <!-- <p>{{data.user_id}}</p> -->
-                  <br />
-                  <div class="d-flex justify-content-between">
-                    <p class="card-userName">{{ data.userName | userName}}.</p>
-                    <p class="card-bankAccount">{{ data.bankAccount | bankAccount}}</p>
-                  </div>
-                  <div class="form-check form-use">
-                    <label class="form-check-label text-white">
-                      <input
-                        class="form-check-input checkuse"
-                        type="checkbox"
-                        :name="'usecard'+data.id"
-                        @click="useCard(data.id)"
-                        :disabled="data.status=='use'"
-                        :checked="data.status=='use'"
-                      />
-                      {{data.branch}}
-                      <span class="form-check-sign">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                  </div>
+              <p class="d-flex justify-content-center">{{data.user_id}}</p>
+              <div class="d-flex justify-content-between">
+                <p class="card-userName">{{ data.userName | userName}}.</p>
+                <p class="card-bankAccount">{{ data.bankAccount | bankAccount}}</p>
+              </div>
+            </div>
+            <div class="card-footer">
+              <hr />
+              <button class="btn btn-icon btn-dribbble float-left" @click="CardDelete(data.id)">
+                <i class="tim-icons icon-trash-simple"></i>
+              </button>
+              <div class="form-check form-use float-right">
+                <label class="form-check-label">
+                  <input
+                    class="form-check-input checkuse"
+                    type="checkbox"
+                    :name="'usecard'+data.id"
+                    @click="useCard(data.id)"
+                    :disabled="data.status=='use'"
+                    :checked="data.status=='use'"
+                  />
+                  {{data.branch}}
+                  <span class="form-check-sign">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 px-0">
+          <div class="card card-stats mb-2" v-if="getcCardinfo.length <= 0">
+            <div class="card-body">
+              <div class="row py-1 d-flex justify-content-center">
+                <div class="info-icon text-center icon-warning">
+                  <i class="tim-icons icon-credit-card"></i>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-6 pb-3 pr-3" v-if="getcCardinfo.length <= 0">
-            <div class="card border-bankinfo">
-              <div class="atvImg-layer">
-                <img src="assets/img/visa-bg.jpg" alt />
-              </div>
-              <div class="card-body m-ss p-bank">
-                <a
-                  href="#"
-                  class="btn btn-primary bg-custome"
-                  data-toggle="modal"
-                  data-target="#addnewcard"
-                >
-                  <i class="tim-icons icon-simple-add"></i> 添加银行卡
-                </a>
+            <div class="card-footer">
+              <hr />
+              <div class="stats">
+                <button class="btn btn-warning" data-toggle="modal" data-target="#addnewcard">
+                  <i class="tim-icons icon-simple-add"></i> Add Card
+                </button>
               </div>
             </div>
           </div>
-          <div class="col-md-6 pb-3 pl-3" v-if="getcCardinfo.length <= 1">
-            <div class="card border-bankinfo">
-              <div class="atvImg-layer">
-                <img src="assets/img/visa-bg.jpg" alt />
+          <div class="card card-stats mb-2" v-if="getcCardinfo.length <= 1">
+            <div class="card-body">
+              <div class="row py-1 d-flex justify-content-center">
+                <div class="info-icon text-center icon-warning">
+                  <i class="tim-icons icon-credit-card"></i>
+                </div>
               </div>
-              <div class="card-body m-ss p-bank">
-                <a
-                  href="#"
-                  class="btn btn-primary bg-custome"
-                  data-toggle="modal"
-                  data-target="#addnewcard"
-                >
-                  <i class="tim-icons icon-simple-add"></i> 添加银行卡
-                </a>
+            </div>
+            <div class="card-footer">
+              <hr />
+              <div class="stats">
+                <button class="btn btn-warning" data-toggle="modal" data-target="#addnewcard">
+                  <i class="tim-icons icon-simple-add"></i> Add Card
+                </button>
               </div>
             </div>
           </div>
-          <div class="col-md-6 pb-3 pr-3" v-if="getcCardinfo.length <= 2">
-            <div class="card border-bankinfo">
-              <div class="atvImg-layer">
-                <img src="assets/img/visa-bg.jpg" alt />
+          <div class="card card-stats mb-2" v-if="getcCardinfo.length <= 2">
+            <div class="card-body">
+              <div class="row py-1 d-flex justify-content-center">
+                <div class="info-icon text-center icon-warning">
+                  <i class="tim-icons icon-credit-card"></i>
+                </div>
               </div>
-              <div class="card-body m-ss p-bank">
-                <a
-                  href="#"
-                  class="btn btn-primary bg-custome"
-                  data-toggle="modal"
-                  data-target="#addnewcard"
-                >
-                  <i class="tim-icons icon-simple-add"></i> 添加银行卡
-                </a>
+            </div>
+            <div class="card-footer">
+              <hr />
+              <div class="stats">
+                <button class="btn btn-warning" data-toggle="modal" data-target="#addnewcard">
+                  <i class="tim-icons icon-simple-add"></i> Add Card
+                </button>
               </div>
             </div>
           </div>
-          <div class="col-md-6 pb-3 pl-3" v-if="getcCardinfo.length <= 3">
-            <div class="card border-bankinfo">
-              <div class="atvImg-layer">
-                <img src="assets/img/visa-bg.jpg" alt />
+          <div class="card card-stats mb-2" v-if="getcCardinfo.length <= 3">
+            <div class="card-body">
+              <div class="row py-1 d-flex justify-content-center">
+                <div class="info-icon text-center icon-warning">
+                  <i class="tim-icons icon-credit-card"></i>
+                </div>
               </div>
-              <img src="assets/img/bitcoin.png" alt="Card image cap" />
-              <div class="card-body m-ss p-bank">
-                <a
-                  href="#"
-                  class="btn btn-primary bg-custome"
-                  data-toggle="modal"
-                  data-target="#addnewcard"
-                >
-                  <i class="tim-icons icon-simple-add"></i> 添加银行卡
-                </a>
+            </div>
+            <div class="card-footer">
+              <hr />
+              <div class="stats">
+                <button class="btn btn-warning" data-toggle="modal" data-target="#addnewcard">
+                  <i class="tim-icons icon-simple-add"></i> Add Card
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <!-- Modal -->
     <div
       class="modal fade"
@@ -459,56 +453,58 @@ export default {
   margin-top: -31%;
   padding: 24px;
 } */
-.card_info{
-    margin-bottom: 65px;
-    max-width: 360px;
+.card_info {
+  margin-bottom: 65px;
+  max-width: 360px;
 }
 .atvImg-layer {
-    position: absolute;
-    top: 0;
+  position: absolute;
+  top: 0;
 }
 .u-wrap .bg-secondary .u-content .container .p-bank {
-    text-align: center;
-    justify-content: center;
-    top: 32%;
-    padding: 20%;
+  text-align: center;
+  justify-content: center;
+  top: 32%;
+  padding: 20%;
 }
-.u-content .container .card .atvImg-layer img, .u-content .collapse .card .atvImg-layer img {
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    content: "";
-    height: 100%;
-    position: relative;
-    border-radius: 10px;
-    box-shadow: 0px 4px 11px 0px #000;
+.u-content .container .card .atvImg-layer img,
+.u-content .collapse .card .atvImg-layer img {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  content: "";
+  height: 100%;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0px 4px 11px 0px #000;
 }
 .container .card.border-bankinfo img {
-    width: 10%;
-    border-top-left-radius: calc(0.2857rem - 0.0625rem);
-    border-top-right-radius: calc(0.2857rem - 0.0625rem);
-    left: 0;
-    position: absolute;
+  width: 10%;
+  border-top-left-radius: calc(0.2857rem - 0.0625rem);
+  border-top-right-radius: calc(0.2857rem - 0.0625rem);
+  left: 0;
+  position: absolute;
 }
 img {
-    vertical-align: middle;
-    border-style: none;
+  vertical-align: middle;
+  border-style: none;
 }
 .ml-25 {
-    width: 44%;
-    margin-left: 25% !important;
+  width: 44%;
+  margin-left: 25% !important;
 }
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
 }
-.pb-3, .py-3 {
-    padding-bottom: 9rem !important;
-    padding-top: 14px;
+.pb-3,
+.py-3 {
+  padding-bottom: 9rem !important;
+  padding-top: 14px;
 }
-.m-ss{
+.m-ss {
   margin: 78px 0px -79px 0px;
 }
 </style>

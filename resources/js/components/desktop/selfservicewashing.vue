@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="col-md-12">
+    <div class="col-md-12 px-0">
       <div class="card">
-        <div class="card-body">
+        <div class="card-body px-0">
           <table class="table">
             <thead>
               <tr>

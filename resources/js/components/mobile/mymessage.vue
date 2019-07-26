@@ -1,51 +1,9 @@
 <template>
   <div>
-    <navbars :home="home" :forum="forum" :washcode="washcode" :recharge="recharge" :mine="mine"></navbars>
-    <!-- Content Wrapper. Contains page content -->
     <div class="container">
-      <div class="row mt-5">
-        <div class="col-2">
-          <asides
-            :stock1="stock1"
-            :stock2="stock2"
-            :stock3="stock3"
-            :stock4="stock4"
-            :stock5="stock5"
-            :stock6="stock6"
-          ></asides>
-        </div>
-      </div>
-      <div class="row mt-2">
-        <div class="col-md-3 pr-0">
-          <div class="card card-nav-tabs">
-            <div class="card-header bg-custome p-2 text-white">Featured</div>
-            <ul class="list-group list-group-flush text-left">
-              <li class="list-group-item">
-                <a href @click.prevent="inbox()">
-                  <i class="fa fa-inbox mr-2"></i>Inbox
-                  <span class="badge badge-pill badge-custome float-right">{{CountAcc}}</span>
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href @click.prevent="promotion()">
-                  <i class="tim-icons icon-badge mr-2"></i>Promotion
-                  <span class="badge badge-pill badge-custome float-right">{{countTypePM}}</span>
-                </a>
-              </li>
-
-              <li class="list-group-item">
-                <a href @click.prevent="announcement()">
-                  <i class="tim-icons icon-bell-55 mr-2"></i> Announcement
-                  <span
-                    class="badge badge-pill badge-custome float-right"
-                  >{{countTypeAN}}</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div class="row">
         <!-- /.col -->
-        <div class="col-md-12">
+        <div class="col-md-12 px-0">
           <div class="card card-primary card-outline">
             <div class="card m-0">
               <div class="card-body pb-0">
@@ -74,7 +32,11 @@
                       v-if="index >= gamehistorystart && index <= gamehistoryend"
                       :key="index"
                     >
-                      <td>{{index+1}}</td>
+                      <td>
+                        <div class="info-icon text-center icon-success">
+                          <i class="tim-icons icon-single-02"></i>
+                        </div>
+                      </td>
                       <td
                         class="btn-annoucemnt"
                         @click.prevent="read_annocementgeT(data.AnouncementID)"
@@ -86,33 +48,6 @@
                     </tr>
                   </tbody>
                 </table>
-              </div>
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer p-0">
-              <div class="mailbox-controls">
-                <nav aria-label="..." class="d-flex justify-content-center">
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <span class="page-link" @click="gamehistorypage(methods='previous')">Previous</span>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">{{ gamehistorypagenum-1 }}</a>
-                    </li>
-                    <li class="page-item active">
-                      <span class="page-link">
-                        {{gamehistorypagenum}}
-                        <span class="sr-only">(current)</span>
-                      </span>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">{{ gamehistorypagenum+1 }}</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" @click="gamehistorypage(methods='next')">Next</a>
-                    </li>
-                  </ul>
-                </nav>
               </div>
             </div>
           </div>

@@ -9,14 +9,14 @@
         <i class="fa fa-unlock"></i>
       </div>
     </div>
-    <canvas :key="key" ref="myChart" height="130" width="400"></canvas>
+    <canvas ref="myChart" height="130" width="400"></canvas>
   </div>
 </template>
 <script>
 import { livechart } from "./mixinschart.js";
 export default {
   mixins: [livechart],
-  props: ["stockname", "loop", "country","isMenu","key"]
+  props: ["stockname", "loop", "country", "isMenu"]
 };
 </script>
 

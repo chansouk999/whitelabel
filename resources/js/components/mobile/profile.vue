@@ -155,7 +155,7 @@
                       <a href="/profile?page=bankinfo">
                         <div class="row d-flex justify-content-between py-3">
                           <div class="d-flex">
-                            <i class="tim-icons icon-email-85"></i>
+                            <i class="tim-icons icon-credit-card"></i>
                             <span class="game_rBox">
                               <p>{{bankinfo}}</p>
                             </span>
@@ -215,12 +215,12 @@
                             role="tabpanel"
                             aria-labelledby="headingOne"
                           >
-                            <div class="card-body">
+                            <div class="card-body px-0">
                               <hr class="hr-mobile" />
                               <a href="/profile?page=changepassword">
                                 <div class="row d-flex justify-content-between py-2">
                                   <div class="d-flex">
-                                    <span class="game_rBox ml-5">
+                                    <span class="game_rBox">
                                       <p>{{changepassword}}</p>
                                     </span>
                                   </div>
@@ -233,7 +233,7 @@
                               <a href="/profile?page=modifyphone">
                                 <div class="row d-flex justify-content-between py-2">
                                   <div class="d-flex">
-                                    <span class="game_rBox ml-5">
+                                    <span class="game_rBox">
                                       <p>{{modifyphone}}</p>
                                     </span>
                                   </div>
@@ -247,7 +247,7 @@
                               <a href="/profile?page=smssubscription">
                                 <div class="row d-flex justify-content-between py-2">
                                   <div class="d-flex">
-                                    <span class="game_rBox ml-5">
+                                    <span class="game_rBox">
                                       <p>{{smssubscription}}</p>
                                     </span>
                                   </div>
@@ -261,7 +261,7 @@
                               <a href="/profile?page=loginsettings">
                                 <div class="row d-flex justify-content-between py-2 ok">
                                   <div class="d-flex">
-                                    <span class="game_rBox ml-5">
+                                    <span class="game_rBox">
                                       <p>{{loginsettings}}</p>
                                     </span>
                                   </div>
@@ -315,7 +315,7 @@ export default {
         // any options from Flickity can be used
       },
       user_id: "",
-      name:'',
+      name: "",
       id: "",
       balance: "",
       ismenu: false,

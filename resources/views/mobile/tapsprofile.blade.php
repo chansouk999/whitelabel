@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
-    <title>我的 | 亚游 </title>
+    <title>我的 | 亚游</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
     <!-- Nucleo Icons -->
     <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
     <!-- CSS Files -->
@@ -120,7 +119,6 @@
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
     <script src="../assets/js/core/bootstrap.min.js"></script>
     <link href=" https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.css" rel="stylesheet">
-
     <!-- Chart JS -->
     <script src="../assets/js/plugins/chartjs.min.js"></script>
     <!--  Notifications Plugin    -->

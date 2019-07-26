@@ -56,7 +56,6 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="inputZip"
                       @click="paymentamount = 1"
                       value="1"
                       readonly="readonly"
@@ -66,7 +65,6 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="inputZip"
                       @click="paymentamount = 100"
                       value="100"
                       readonly="readonly"
@@ -76,7 +74,6 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="inputZip"
                       @click="paymentamount = 200"
                       value="200"
                       readonly="readonly"
@@ -86,7 +83,6 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="inputZip"
                       @click="paymentamount = 500"
                       value="500"
                       readonly="readonly"
@@ -96,7 +92,6 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="inputZip"
                       @click="paymentamount = 1000"
                       value="1,000"
                       readonly="readonly"
@@ -106,7 +101,6 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="inputZip"
                       @click="paymentamount = 2000"
                       value="2,000"
                       readonly="readonly"
@@ -116,7 +110,6 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="inputZip"
                       @click="paymentamount = 5000"
                       value="5,000"
                       readonly="readonly"
@@ -124,7 +117,7 @@
                   </div>
                 </div>
               </div>
-              <form class="layui-form layui-field-box" id="form1">
+              <form class="layui-form layui-field-box">
                 <div class="row py-3">
                   <div class="col-lg-4 text-right">
                     <!-- <label class="text-dark p-2">充值方式：</label> -->
@@ -134,7 +127,6 @@
                   <div class="col-lg-3">
                     <input
                       type="text"
-                      id="money"
                       name="money"
                       required
                       readonly="readonly"
@@ -212,8 +204,7 @@
                     <button
                       @click.prevent="payment"
                       type="submit"
-                      class="btn btn-primary  bg-custome"
-                      id="submit1"
+                      class="btn btn-primary bg-custome"
                       lay-submit
                       lay-filter="submit1"
                     >Next Step</button>
@@ -242,7 +233,7 @@
                         <button
                           type="submit"
                           class="btn btn-custome"
-                          id="submit1"
+                          
                           lay-submit
                           lay-filter="submit1"
                         >确认</button>
@@ -273,7 +264,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputZip"
                         @click="transferamount = 100"
                         value="100"
                         readonly="readonly"
@@ -283,7 +273,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputZip"
                         @click="transferamount = 200"
                         value="200"
                         readonly="readonly"
@@ -293,7 +282,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputZip"
                         @click="transferamount = 500"
                         value="500"
                         readonly="readonly"
@@ -303,7 +291,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputZip"
                         @click="transferamount = 1000"
                         value="1,000"
                         readonly="readonly"
@@ -313,7 +300,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputZip"
                         @click="transferamount = 2000"
                         value="2,000"
                         readonly="readonly"
@@ -323,7 +309,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputZip"
                         @click="transferamount = 5000"
                         value="5,000"
                         readonly="readonly"
@@ -331,7 +316,7 @@
                     </div>
                   </div>
                 </div>
-                <form class="layui-form layui-field-box" id="form1">
+                <form class="layui-form layui-field-box">
                   <div class="row py-3">
                     <div class="col-lg-4 text-right">
                       <!-- <label class="text-dark p-2">充值方式：</label> -->
@@ -341,7 +326,6 @@
                     <div class="col-lg-3">
                       <input
                         type="text"
-                        id="money"
                         name="money"
                         required
                         readonly="readonly"
@@ -355,8 +339,7 @@
                       <button
                         @click.prevent="transfermoney"
                         type="submit"
-                        class="btn btn-primary  bg-custome"
-                        id="submit1"
+                        class="btn btn-primary bg-custome"
                         lay-submit
                         lay-filter="submit1"
                       >Send to lec68.com</button>
@@ -386,7 +369,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputZip"
                         @click="topupbalannceamount = 100"
                         value="100"
                         readonly="readonly"
@@ -396,7 +378,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputZip"
                         @click="topupbalannceamount = 200"
                         value="200"
                         readonly="readonly"
@@ -406,7 +387,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputZip"
                         @click="topupbalannceamount = 500"
                         value="500"
                         readonly="readonly"
@@ -416,7 +396,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputZip"
                         @click="topupbalannceamount = 1000"
                         value="1,000"
                         readonly="readonly"
@@ -426,7 +405,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputZip"
                         @click="topupbalannceamount = 2000"
                         value="2,000"
                         readonly="readonly"
@@ -436,7 +414,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="inputZip"
                         @click="topupbalannceamount = 5000"
                         value="5,000"
                         readonly="readonly"
@@ -444,7 +421,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="layui-form layui-field-box" id="form1">
+                <div class="layui-form layui-field-box">
                   <div class="row py-3">
                     <div class="col-lg-4 text-right">
                       <!-- <label class="text-dark p-2">充值方式：</label> -->
@@ -454,7 +431,6 @@
                     <div class="col-lg-3">
                       <input
                         type="text"
-                        id="money"
                         name="money"
                         required
                         readonly="readonly"
@@ -468,7 +444,7 @@
                       <button
                         data-toggle="modal"
                         data-target="#showtopup"
-                        class="btn btn-primary  bg-custome"
+                        class="btn btn-primary bg-custome"
                       >Reuqest top-up</button>
                     </div>
                   </div>
@@ -559,22 +535,22 @@
                     </div>
                     <div class="col-lg-8 form-row text-left">
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="100" />
+                        <input type="text" class="form-control" value="100" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="200" />
+                        <input type="text" class="form-control" value="200" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="500" />
+                        <input type="text" class="form-control" value="500" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="1,000" />
+                        <input type="text" class="form-control" value="1,000" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="2,000" />
+                        <input type="text" class="form-control" value="2,000" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="5,000" />
+                        <input type="text" class="form-control" value="5,000" />
                       </div>
                     </div>
                   </div>
@@ -584,12 +560,7 @@
                     </div>
                     <div class="col-lg-8 form-row text-left">
                       <div class="d-flex">
-                        <input
-                          type="text"
-                          class="form-control mt-2"
-                          id="inputZip"
-                          placeholder="请输入6位数验证码"
-                        />
+                        <input type="text" class="form-control mt-2" placeholder="请输入6位数验证码" />
                         <button type="submit" class="btn btn-custome">发送验证码</button>
                       </div>
                     </div>
@@ -633,22 +604,22 @@
                     </div>
                     <div class="col-lg-8 form-row text-left">
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="100" />
+                        <input type="text" class="form-control" value="100" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="200" />
+                        <input type="text" class="form-control" value="200" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="500" />
+                        <input type="text" class="form-control" value="500" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="1,000" />
+                        <input type="text" class="form-control" value="1,000" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="2,000" />
+                        <input type="text" class="form-control" value="2,000" />
                       </div>
                       <div class="form-group col-lg-1">
-                        <input type="text" class="form-control" id="inputZip" value="5,000" />
+                        <input type="text" class="form-control" value="5,000" />
                       </div>
                     </div>
                   </div>
@@ -658,12 +629,7 @@
                     </div>
                     <div class="col-lg-8 form-row text-left">
                       <div class="d-flex">
-                        <input
-                          type="text"
-                          class="form-control mt-2"
-                          id="inputZip"
-                          placeholder="请输入6位数验证码"
-                        />
+                        <input type="text" class="form-control mt-2" placeholder="请输入6位数验证码" />
                         <button type="submit" class="btn btn-custome">发送验证码</button>
                       </div>
                     </div>

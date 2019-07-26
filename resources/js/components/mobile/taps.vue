@@ -2,23 +2,23 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col-xl-10 col-sm-12 px-3 color-bg p-2 flex-top">
+        <div class="col-xl-10 col-sm-12 pt-2">
           <a href="/myaccount">
-            <i class="tim-icons icon-minimal-left float-left m-2"></i>
+            <i class="tim-icons icon-minimal-left text-dark float-left m-2"></i>
           </a>
-          <p v-if="page =='bankinfo'">{{bankinfo}}</p>
-          <p v-else-if=" page =='transactionrecord'">{{transactionrecord}}</p>
-          <p v-else-if="page =='recommendfriends'">{{recommendfriends}}</p>
-          <!-- <p v-else-if="page =='accountsettings'">{{accountsettings}}</p> -->
-          <p v-else-if="page =='fastrecharge'">{{fastrecharge}}</p>
-          <p v-else-if="page =='applyforwithdrawal'">{{applyforwithdrawal}}</p>
-          <p v-else-if="page =='selfservicerolling'">{{selfservicerolling}}</p>
-          <p v-else-if="page =='changepassword'">{{changepassword}}</p>
-          <p v-else-if="page =='modifyphone'">{{modifyphone}}</p>
-          <p v-else-if="page =='smssubscription'">{{smssubscription}}</p>
-          <p v-else-if="page =='loginsettings'">{{loginsettings}}</p>
+          <p class="text-capitalize" v-if="page =='bankinfo'">{{bankinfo}}</p>
+          <p class="text-capitalize" v-else-if=" page =='transactionrecord'">{{transactionrecord}}</p>
+          <p class="text-capitalize" v-else-if="page =='recommendfriends'">{{recommendfriends}}</p>
+          <!-- <p class="text-capitalize" v-else-if="page =='accountsettings'">{{accountsettings}}</p> -->
+          <p class="text-capitalize" v-else-if="page =='fastrecharge'">{{fastrecharge}}</p>
+          <p class="text-capitalize" v-else-if="page =='applyforwithdrawal'">{{applyforwithdrawal}}</p>
+          <p class="text-capitalize" v-else-if="page =='selfservicerolling'">{{selfservicerolling}}</p>
+          <p class="text-capitalize" v-else-if="page =='changepassword'">{{changepassword}}</p>
+          <p class="text-capitalize" v-else-if="page =='modifyphone'">{{modifyphone}}</p>
+          <p class="text-capitalize" v-else-if="page =='smssubscription'">{{smssubscription}}</p>
+          <p class="text-capitalize" v-else-if="page =='loginsettings'">{{loginsettings}}</p>
         </div>
-        <div class="col-xl-10 col-sm-12 pt-5 pb-5">
+        <div class="col-xl-10 col-sm-12">
           <div class="u-content" v-if="page =='bankinfo'">
             <bankinfo />
           </div>
