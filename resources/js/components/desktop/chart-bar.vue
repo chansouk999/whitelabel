@@ -703,7 +703,7 @@ export default {
 }
 
 .u-account .section-2 .chart-wrap {
-  background: url("https://ag124.com/assets/images/user/chart_bg.jpg") no-repeat
+  background: url("/../../images-chart/chart_bg.jpg") no-repeat
     162px top;
   position: relative;
   height: 315px;
