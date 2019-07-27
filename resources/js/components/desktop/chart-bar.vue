@@ -776,7 +776,8 @@ export default {
 }
 
 .u-account .section-2 .chart-wrap ul.bars:before {
-  content: "新会员";
+  /* content: "新会员"; */
+  content: "";
   font-size: 14px;
   color: #333;
   position: absolute;

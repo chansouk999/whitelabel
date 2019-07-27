@@ -1,5 +1,5 @@
 <template>
-  <canvas id="chart" class="mbile-chart"></canvas>
+  <canvas id="chart" width="100" :height="setheight"></canvas>
 </template>
 <script>
 import { Bar, Line } from "vue-chartjs";
@@ -31,9 +31,26 @@ export default {
     return {
       stockname: [1, 2, 3, 4, 5, 6],
       betlose: [],
-      betwon: [200, 300, 500, 1000, 3000, 6000]
+      betwon: [200, 300, 500, 1000, 3000, 6000],
       //   gettimeshow:""
+      setheight: 60
     };
+  },
+  created() {
+
+    let h = window.innerWidth;
+    if (h == 812) {
+      this.setheight = 32;
+    } else if (h == 768) {
+      this.setheight = 42;
+    } else if (h == 1024) {
+      this.setheight = 35;
+     } else if (h == 1366) {
+      this.setheight = 28;
+    } else {
+      this.setheight = 60;
+    }
+    console.log(h);
   },
   mounted() {
     let _this = this;
@@ -104,17 +121,17 @@ export default {
     var data = jsonfile.data.map(function(e) {
       return e.PT;
     });
-let step = 1;
+    let step = 1;
     if (step == 1) {
-         var datas = jsonfile.data.map(function(e) {
-      return e.PTS;
-    });
+      var datas = jsonfile.data.map(function(e) {
+        return e.PTS;
+        50;
+      });
     } else {
-        var datas = jsonfile.data.map(function(e) {
-      return e.PTS2;
-    });
+      var datas = jsonfile.data.map(function(e) {
+        return e.PTS2;
+      });
     }
-
 
     if (this.checkpcormb == "mb") {
       this.datacolor = this.backgroundcolor;
@@ -170,7 +187,7 @@ let step = 1;
           // text: "online time minutes"
         },
         pan: {
-          enabled: true,
+          enabled: false,
           mode: "x"
           // speed: 10,
           // threshold: 10,
@@ -180,7 +197,7 @@ let step = 1;
           // }
         },
         zoom: {
-          enabled: true,
+          enabled: false,
           mode: "x",
           drag: false,
           sensitivity: 0.5,
