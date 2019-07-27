@@ -343,7 +343,7 @@
                                           <th class="text-center">#</th>
                                           <th>Time</th>
                                           <th>Reference</th>
-                                          <th>Amout<mm::/th></th>
+                                          <th>Amout</th>
                                           <th class="text-right">Method</th>
                                         </tr>
                                       </thead>
