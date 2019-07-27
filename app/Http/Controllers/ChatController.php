@@ -41,14 +41,21 @@ class ChatController extends Controller
     {
         $this->middleware('auth:administrator');
     }
+    public function TaguserDetail()
+    {
+        $getTagUser = User::get();
+        return $getTagUser;
+    }
+
     public function getaccountment()
     {
         if (Auth::check()) {
             $userID = Auth::guard('administrator')->user()->id;
-            $annoucemen = Announcement::where('post_by',$userID)->get();
+            // return $userID;
+            $annoucemen = Announcement::where('post_by','=',$userID)->get();
             $getTypePM = Announcement::where('message',  'like', '%"type":"PM"%')->get();
             $getTypeAN = Announcement::where('message',  'like', '%"type":"AN"%')->get();
-
+            // return $annoucemen;
             if ($annoucemen->count() > 0) {
                 return [0, 0, 0, 0, $annoucemen, 0, 0];
             }
@@ -71,14 +78,15 @@ class ChatController extends Controller
     public function queryDataChat($re)
     {
         try {
+             $re;
             $subchatID = substr($re->chat,0,8);
             $chatIDCheck = $subchatID.$re->GetdataID;
-            // return $chatIDCheck;
-            $res = $this->getAnnounceData($re->GetdataID);
 
-            $checkAn = $this->checkAnnounnce($chatIDCheck);
+             $res = $this->getAnnounceData($re->GetdataID);
+
+             $checkAn = $this->checkAnnounnce($chatIDCheck);
             $chatid = substr(strtotime('now'), -7, 7) . $res->post_by . $res->AnouncementID;
-            // return $chatid;
+
 
             $getAuth = Auth::guard('administrator')->user()->id;
             $Getdata = null;

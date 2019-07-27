@@ -876,8 +876,22 @@ class AdminController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
+    public function checkChatExist($res){
+        try{
+            $data = Announcement::where('userID','like','%'.$res->userID.'%')->get();
+            if($data->count() > 0){
+                Cache::put('code',100,20000);
+                return $data;
+            }
+            Cache::put('code',200,20000);
+
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
     public function saveannounce(Request $req)
     {
+        // return $req;
         try {
             $getname = Auth::guard('administrator')->user()->id;
             $id = Announcement::count() + 1;
@@ -886,14 +900,27 @@ class AdminController extends Controller
                 'msg' => $req->message,
                 'type' => $req->typeAN
             );
+            $insertIt= json_encode($req->userID);
+            if($req->message=='PersonNalChat'){
+                $insertIt = json_encode(array($req->userID));
+            }
             $message = array(
                 'AnouncementID' => $req->method . $id,
                 'method' => $req->method,
                 'message' => json_encode($msg),
-                'userID' => json_encode($req->userID),
+                'userID' => $insertIt,
                 'post_by' => $getname,
             );
-            // return  $message;
+            if($req->message=='PersonNalChat'){
+                $gotData = $this->checkChatExist($req);
+                if(Cache::get('code')==200){
+                    $save = Announcement::create($message);
+                    $res = $this->checkQuery($save);
+                    return  $req->method . $id;
+                }
+                return $this->returncode(100, $gotData, 'success');
+
+            }
             $save = Announcement::create($message);
             $res = $this->checkQuery($save);
             return $res;

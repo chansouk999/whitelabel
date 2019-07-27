@@ -300,16 +300,20 @@ class CardController extends Controller
 
             $dataAnnounce = [];
             foreach ($annoucemen as $an) {
-                $userId = json_decode($an->userID);
+
+                $userIdLoop = json_decode($an->userID);
                 if ($an->userID == '"all"') {
                     $dataAnnounce[] = $an;
                 } else {
-                    $userId = json_decode($an->userID)[0];
-                    if ($userId == $userID) {
-                        $dataAnnounce[] = $an;
+                    $userIdLoop = json_decode($an->userID);
+                    foreach ($userIdLoop as $userLooped) {
+                        if ($userLooped == $userID) {
+                            $dataAnnounce[] = $an;
+                        }
                     }
                 }
             }
+            //    /
             if ($annoucemen->count() > 0) {
                 $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
                 $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
@@ -481,8 +485,9 @@ class CardController extends Controller
     public function queryDataChat($re)
     {
         try {
-            $subchatID = substr($re->chat,0,8);
-            $chatIDCheck = $subchatID.$re->GetdataID;
+            $getAuth = Auth::user()->user_id;
+            $subchatID = substr($re->chat, 0, 8);
+            $chatIDCheck = $subchatID . $re->GetdataID;
             // return $chatIDCheck;
             $res = $this->getAnnounceData($re->GetdataID);
 
@@ -492,7 +497,7 @@ class CardController extends Controller
             $chatid = substr(strtotime('now'), -7, 7) . $res->post_by . $res->AnouncementID;
             // return $chatid;
 
-            $getAuth = Auth::user()->user_id;
+
             $Getdata = null;
             if ($checkAn < 1) {
 
@@ -506,7 +511,7 @@ class CardController extends Controller
                 );
                 $Getdata =  replyAnnounce::create($insertdata);
             } else {
-                $chatid = $re->chat;
+                $chatid = $chatIDCheck;
             }
 
             $insert_chat = array(
@@ -563,12 +568,21 @@ class CardController extends Controller
     public function getDataChat($id)
     {
         // chat_history
-        Cache::put('anid',$id,3412000);
+        Cache::put('anid', $id, 3412000);
         $getAuth = Auth::user()->user_id;
+
         $data = DB::table('announcements')
             ->join('reply_announces', 'reply_announces.anou_id', '=', 'announcements.AnouncementID')
             ->join('chat_announces', 'chat_announces.chatId', '=', 'reply_announces.chatId')
-            ->where('announcements.AnouncementID', '=', $id)
+            // ->join('users', 'chat_announces.from', '=', 'users.user_id')
+            ->where([
+                ['announcements.AnouncementID', '=', $id],
+                // ['chat_announces.from', '=', $getAuth],
+            ])
+            // ->orwhere([
+            //     ['chat_announces.from', '=', 1],
+            //     ['chat_announces.to', '=', $getAuth],
+            // ])
             ->orderBy('chat_announces.created_at', 'ASC')
             ->get();
         $getpostby = null;

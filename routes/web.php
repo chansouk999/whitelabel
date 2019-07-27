@@ -296,6 +296,8 @@ Route::get('/Savveselfservice', 'CardController@Savveselfservice');
 Route::get('/getaccountment', 'CardController@getaccountment');
 
 
+Route::get('/TaguserDetailAdmin', 'ChatController@TaguserDetail');
+
 Route::get('/getaccountmentAdmin', 'ChatController@getaccountment');
 
 Route::get('/gettype', 'CardController@gettype');
