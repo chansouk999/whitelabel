@@ -1,7 +1,7 @@
 <template>
   <div>
-    <navbars :home="home" :forum="forum" :washcode="washcode" :recharge="recharge" :mine="mine"></navbars>
-    <div class="container">
+    <!-- <navbars :home="home" :forum="forum" :washcode="washcode" :recharge="recharge" :mine="mine"></navbars> -->
+    <div class="container hide-profile">
       <div class="row">
         <div class="col-2">
           <asides
@@ -36,7 +36,7 @@
                       </div>
 
                       <div class="card-description p-0 m-0">
-                        <div class="card color-bg py-0 my-0">
+                        <div class="card bg-warning py-0 my-0">
                           <div class="card-body h-0">
                             <h4 class="card-title">{{totalbalance}}({{yuan}})</h4>
                             <span class="bala-num">
@@ -97,45 +97,9 @@
                   </div>
                 </div>
                 <div class="col-md-8 mb-5 bg-light px-1">
-                  <!-- <div class="card py-0 my-2">
-                    <div class="card-header mb-2">
-                      <h5 class="title">{{myaccount_tra}}</h5>
-                      <i class="tim-icons icon-align-left-2"></i>
-                    </div>
-                    <div class="card-body px-4 py-0">
-                      <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-notes"></i>
-
-                          <span class="game_rBox">
-                            <p>{{phoneverification}}</p>
-                          </span>
-                        </div>
-                        <p class="mycolor-icon">
-                          {{unverified}}
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </p>
-                      </div>
-                    </div>
-                  </div>-->
                   <div class="card py-0 my-2">
                     <div class="card-body px-4 py-0">
-                      <!-- <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-badge"></i>
-                          <span class="game_rBox">
-                            <p>
-                              {{mytask}}
-                              <span class="badge badge-warning">8</span>
-                            </p>
-                          </span>
-                        </div>
-                        <p class="mycolor-icon">
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </p>
-                      </div>-->
-                      <hr class="hr-mobile" />
-                      <a href="/profile?page=recommendfriends">
+                      <a @click.prevent="recommedFriends()">
                         <div class="row d-flex justify-content-between py-3">
                           <div class="d-flex">
                             <i class="tim-icons icon-single-02"></i>
@@ -152,7 +116,7 @@
                   </div>
                   <div class="card py-0 my-2">
                     <div class="card-body px-4 py-0">
-                      <a href="/profile?page=bankinfo">
+                      <a @click.prevent="Openbankinfo()">
                         <div class="row d-flex justify-content-between py-3">
                           <div class="d-flex">
                             <i class="tim-icons icon-credit-card"></i>
@@ -166,7 +130,7 @@
                         </div>
                       </a>
                       <hr class="hr-mobile" />
-                      <a href="/profile?page=transactionrecord">
+                      <a @click.prevent="Opentransactionrecord()">
                         <div class="row d-flex justify-content-between py-3">
                           <div class="d-flex">
                             <i class="tim-icons icon-coins"></i>
@@ -284,8 +248,10 @@
         </div>
       </div>
     </div>
-
     <setting />
+    <div class="Openbankinfo" ref="Openbankinfo">
+      <bankinfor :bankinfo="bankinfo" />
+    </div>
   </div>
 </template>
 <script>
@@ -295,6 +261,7 @@ import navbars from "./navbar";
 import asides from "./asides";
 import footers from "./footers";
 import chartjs from "../desktop/chartjs";
+import bankinfor from "./bankinfo";
 export default {
   components: {
     setting,
@@ -302,10 +269,15 @@ export default {
     asides,
     footers,
     chartjs,
-    Flickity
+    Flickity,
+    bankinfor
   },
   data() {
     return {
+      window: {
+        width: 0,
+        height: 0
+      },
       flickityOptions: {
         initialIndex: 3,
         prevNextButtons: false,
@@ -336,7 +308,31 @@ export default {
   mounted() {
     this.userdata();
   },
+  created() {
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
+  },
   methods: {
+    handleResize() {
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight;
+    },
+    Offbankinfo() {
+      this.$refs.Openbankinfo.style.width = "0%";
+    },
+    recommedFriends() {
+      this.$refs.openchat.style.width = "100%";
+    },
+    Openbankinfo() {
+      $(".hide-profile").hide();
+      this.$refs.Openbankinfo.style.width = "100%";
+    },
+    Opentransactionrecord() {
+      this.$refs.openchat.style.width = "100%";
+    },
     formatToPrice(value) {
       return `$ ${Number(value)
         .toFixed(2)
@@ -445,5 +441,14 @@ $(function() {
 .text-smaller {
   color: darkgray;
   font-size: smaller;
+}
+.Openbankinfo {
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  overflow-x: hidden;
+  transition: 0.1s;
 }
 </style>
