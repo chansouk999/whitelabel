@@ -14,8 +14,11 @@ use App\Broadcasting\OrderChannel;
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+// Broadcast::channel('App.User.{id}', function ($user, $id) {
+//     return (int) $user->id === (int) $id;
+// });
+// Broadcast::channel('chat', OrderChannel::class);
+Broadcast::channel('chat', function ($user) {
+	return $user;
 });
-Broadcast::channel('chat', OrderChannel::class);
 
