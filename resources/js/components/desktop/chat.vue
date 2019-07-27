@@ -42,7 +42,6 @@
                     <div class="card m-0" style="border: 1px solid #eaeaec;">
                       <div class="card-body pb-0">
                         <div class="inbox_chat scrollbar" id="style-3">
-<<<<<<< HEAD
                               <!-- v-if="index >= gamehistorystart && index <= gamehistoryend" -->
                             <div
                             v-for="(data,index) in filteredResources"
@@ -122,58 +121,6 @@
                                   >{{data.created_at | moment("calendar")}}</span>
                                 </h5>
                                 <p>{{JSON.parse(data.message).msg}}</p>
-=======
-                          <div
-                            v-for="(data,index) in filteredResources"
-                            v-if="index >= gamehistorystart && index <= gamehistoryend"
-                            :key="index"
-                          >
-                            <div
-                              class="chat_list active_chat"
-                              v-if="data.AnouncementID == announeidder"
-                            >
-                              <div class="chat_people">
-                                <div class="chat_img">
-                                  <img
-                                    src="https://ptetutorials.com/images/user-profile.png"
-                                    alt="sunil"
-                                  />
-                                </div>
-                                <div
-                                  class="chat_ib"
-                                  @click.prevent="chatandAswer(data.AnouncementID)"
-                                >
-                                  <h5>
-                                    {{JSON.parse(data.message).title}}
-                                    <span
-                                      class="chat_date"
-                                    >{{data.created_at | moment("calendar")}}</span>
-                                  </h5>
-                                  <p>{{JSON.parse(data.message).msg}}</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="chat_list active_chat" style="background-color:#fff" v-else>
-                              <div class="chat_people">
-                                <div class="chat_img">
-                                  <img
-                                    src="https://ptetutorials.com/images/user-profile.png"
-                                    alt="sunil"
-                                  />
-                                </div>
-                                <div
-                                  class="chat_ib"
-                                  @click.prevent="chatandAswer(data.AnouncementID)"
-                                >
-                                  <h5>
-                                    {{JSON.parse(data.message).title}}
-                                    <span
-                                      class="chat_date"
-                                    >{{data.created_at | moment("calendar")}}</span>
-                                  </h5>
-                                  <p>{{JSON.parse(data.message).msg}}</p>
-                                </div>
->>>>>>> 658e905819e10efbb523a7cf6fc6016a6fff72bb
                               </div>
                             </div>
                           </div>
@@ -289,6 +236,7 @@
                             </button>
                           </div>
                         </div>
+                      </div>
                       </div>
                     </div>
                   </div>
@@ -449,41 +397,26 @@ export default {
 
           if (this.read_annocement.length !== this.lengMsg) {
             $(".msg_history").scrollTop(70000000000000);
-<<<<<<< HEAD
               this.checkernew = false
-=======
-
-            this.checkernew = false;
->>>>>>> 658e905819e10efbb523a7cf6fc6016a6fff72bb
           }
           this.checkernew = true;
           //   $(".msg_history").scrollTop(70000000000000);
           this.lengMsg = this.read_annocement.length;
-<<<<<<< HEAD
         //   console.log("!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!");
         //   console.log(res.data);
         //   console.log("!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!");
          $('.loader-chater').fadeOut(500);
-=======
-          //   console.log("!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!");
-          //   console.log(res.data);
-          //   console.log("!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!");
->>>>>>> 658e905819e10efbb523a7cf6fc6016a6fff72bb
         })
         .catch(e => {
           console.log(e.response);
         });
     },
     chatandAswer(id) {
-<<<<<<< HEAD
 
         if(this.legngcheck!==0){
             this.legngcheck = 0
         }
       $('.loader-chater').fadeIn(200);
-=======
-      alert(id);
->>>>>>> 658e905819e10efbb523a7cf6fc6016a6fff72bb
       localStorage.setItem("chatdata", id);
       this.announeidder = id;
       this.GetdataChat();
@@ -519,7 +452,6 @@ export default {
 };
 </script>
 <style scoped>
-<<<<<<< HEAD
 .mdf-content{
         margin: 200px 0px 0px 0px !important;
 }
@@ -548,14 +480,6 @@ top: 15px;
     position: absolute;
     background: red;
     left: 0;
-=======
-.cover-typemsg {
-  width: 100%;
-  height: 82px;
-  position: absolute;
-  background: red;
-  left: 0;
->>>>>>> 658e905819e10efbb523a7cf6fc6016a6fff72bb
 }
 .inbox_chat {
   top: -12px;
@@ -567,14 +491,8 @@ top: 15px;
   left: -15px;
 }
 .chat_list {
-<<<<<<< HEAD
     border-bottom: 1px solid #eaeaec;
 
-=======
-  border-bottom: 1px solid #eaeaec;
-  margin: 0;
-  padding: 18px 16px 10px;
->>>>>>> 658e905819e10efbb523a7cf6fc6016a6fff72bb
 }
 .content {
   margin: 90px 0px 0px 0px !important;
@@ -675,7 +593,6 @@ p.text-content2 {
     border-radius: 10px;
     margin: 0px 10px;
 }
-<<<<<<< HEAD
 #style-3::-webkit-scrollbar-track
 {
     /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
@@ -691,20 +608,6 @@ p.text-content2 {
 #style-3::-webkit-scrollbar-thumb
 {
     background-color: #f9f9f9;
-=======
-#style-3::-webkit-scrollbar-track {
-  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
-  background-color: #f1f1f1;
-}
-
-#style-3::-webkit-scrollbar {
-  width: 6px;
-  background-color: #999;
-}
-
-#style-3::-webkit-scrollbar-thumb {
-  background-color: #999;
->>>>>>> 658e905819e10efbb523a7cf6fc6016a6fff72bb
 }
 .type_msg {
   border: 1px solid #c4c4c433;
