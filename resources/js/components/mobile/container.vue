@@ -42,98 +42,9 @@
                           :src="'/careousel/'+data.carousel"
                           alt="First slide"
                         />
-                        <div class="container">
-                          <div class="slide-caption">
-                            <!-- <h2 class="slide-caption__title">Mussum Ipsum</h2> -->
-                            <p
-                              class="slide-caption__desc"
-                            >Mé faiz elementum girarzis, nisi eros vermeio.</p>
-                            <div class="d-flex">
-                              <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                              <a href="#" class="btn btn-danger btn-simple">Learn More</a>
-                            </div>
-                          </div>
-                        </div>
                       </div>
-
-                      <!-- <div class="carousel-item active">
-                        <img
-                          class="second-slide"
-                          src="http://127.0.0.1:8000/careousel/1562994084.png"
-                          alt="Second slide"
-                        />
-                        <div class="container">
-                          <div class="slide-captiontwo">
-                            <h2 class="slide-caption__title">Mussum Ipsum</h2>
-                            <p
-                              class="slide-caption__desc"
-                            >Mé faiz elementum girarzis, nisi eros vermeio.</p>
-                            <div class="d-flex">
-                              <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                              <a href="#" class="btn btn-danger btn-simple">Learn More</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img
-                          class="third-slide"
-                          src="https://static-pc.swcqlz.com/cms/cms_pic/20190409837ef9651b994dde86cbf299a2d5a599.jpg"
-                          alt="Third slide"
-                        />
-                        <div class="container">
-                          <div class="slide-captionthree">
-                            <h2 class="slide-caption__title">Mussum Ipsum</h2>
-                            <p
-                              class="slide-caption__desc"
-                            >Mé faiz elementum girarzis, nisi eros vermeio.</p>
-                            <div class="d-flex">
-                              <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                              <a href="#" class="btn btn-danger btn-simple">Learn More</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img
-                          class="fourd-slide"
-                          src="https://static-pc.swcqlz.com/cms/cms_pic/201904188594c2980f2e4ffa8a7120ff2406d97a.jpg"
-                          alt="Third slide"
-                        />
-                        <div class="container">
-                          <div class="slide-captionfour">
-                            <h2 class="slide-caption__title">Mussum Ipsum</h2>
-                            <p
-                              class="slide-caption__desc"
-                            >Mé faiz elementum girarzis, nisi eros vermeio.</p>
-                            <div class="d-flex">
-                              <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                              <a href="#" class="btn btn-danger btn-simple">Learn More</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img
-                          class="five-slide"
-                          src="https://static-pc.swcqlz.com/cms/cms_pic/2019042254cc8ec48bfe4d89b4b377df2fbbcc26.jpg"
-                          alt="Five slide"
-                        />
-                        <div class="container">
-                          <div class="slide-captionfive">
-                            <h2 class="slide-caption__title">Mussum Ipsum</h2>
-                            <p
-                              class="slide-caption__desc"
-                            >Mé faiz elementum girarzis, nisi eros vermeio.</p>
-                            <div class="d-flex">
-                              <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                              <a href="#" class="btn btn-danger btn-simple">Learn More</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>-->
                     </div>
-                    <a
+                    <!-- <a
                       class="carousel-control-prev"
                       href="#myCarousel"
                       role="button"
@@ -150,7 +61,7 @@
                     >
                       <img src="assets/img/arrow-right.png" />
                       <span class="sr-only">Next</span>
-                    </a>
+                    </a>-->
                   </div>
                 </div>
                 <!-- Sidebar -->
@@ -316,10 +227,7 @@
                     country="cypto"
                   />
                 </div>
-                <button
-                  class="btn btn-warning animation-on-hover"
-                  v-on:click="setNumber += 1"
-                >load more...</button>
+                <button class="btn btn-warning btn-sm" v-on:click="setNumber += 1">load more...</button>
                 <div class="row d-flex justify-content-between py-2">
                   <div class="d-flex">
                     <span class="game_rBox">
@@ -725,7 +633,7 @@ export default {
     },
     getImage() {
       axios
-        .get("/Carousel")
+        .get("/userCarousel")
         .then(res => {
           console.log(res.data);
           this.imageSlide = res.data;

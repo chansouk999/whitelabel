@@ -74,7 +74,7 @@
                     <img src="assets/img/card-primary.png" alt />
                     <h1 class="card-title">Log in</h1>
                   </div>
-                  <div class="card-body">
+                  <div class="card-body px-2 py-0">
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -166,7 +166,7 @@
                         <img class="card-img" src="assets/img/card-primary.png" alt="Card image" />
                         <h4 class="card-title text-capitalize">Register</h4>
                       </div>
-                      <div class="card-body">
+                      <div class="card-body px-2 py-0">
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -286,7 +286,7 @@
                       <img class="card-img" src="assets/img/card-primary.png" alt="Card image" />
                       <h4 class="card-title text-title">12150</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body px-2 py-0">
                       <form class="form">
                         <div class="input-group">
                           <div class="input-group-prepend">
