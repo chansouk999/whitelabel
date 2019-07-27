@@ -262,7 +262,11 @@ export default {
       gamehistoryend: 9,
       gamehistorypagenum: 1,
       checkernew: true,
-      lengMsg: null
+      lengMsg: null,
+      
+
+      messages: [],
+        users: [],
     };
   },
   filters: {
@@ -273,14 +277,49 @@ export default {
     }
   },
   created() {
+    this.fetchMessages();
+
+                Echo.join('chat')
+                    .here(users => {
+                        this.users = users;
+                    })
+                    .joining(user => {
+                        this.users.push(user);
+                    })
+                    .leaving(user => {
+                        this.users = this.users.filter(u => u.id !== user.id);
+                    })
+                    .listenForWhisper('typing', ({ id, name }) => {
+                        this.users.forEach((user, index) => {
+                            if (user.id === id) {
+                                user.typing = true;
+                                this.$set(this.users, index, user);
+                            }
+                        });
+                    })
+                    .listen('MessageSent', (event) => {
+                        alert("good");
+                        this.messages.push({
+                            message: event.message.message,
+                            user: event.user
+                        });
+
+                        this.users.forEach((user, index) => {
+                            if (user.id === event.user.id) {
+                                user.typing = false;
+                                this.$set(this.users, index, user);
+                            }
+                        });
+                    });
+
     this.GetdataChat();
-    Echo.private("chat").listen("MessageSent", e => {
-      alert("good");
-      this.read_annocement.push({
-        message: e.message.message,
-        created_at: e.user
-      });
-    });
+    // Echo.private("chat").listen("MessageSent", e => {
+    //   alert("good");
+    //   this.read_annocement.push({
+    //     message: e.message.message,
+    //     created_at: e.user
+    //   });
+    // });
   },
   mounted() {
     axios
@@ -313,6 +352,19 @@ export default {
     }
   },
   methods: {
+      fetchMessages() {
+            axios.get('/messages').then(response => {
+                this.messages = response.data;
+            });
+        },
+
+        addMessage(message) {
+            this.messages.push(message);
+
+            axios.post('/messages', message).then(response => {
+                console.log(response.data);
+            });
+        },
     scrollTop() {
       //   $(".msg_history").animate( {scrollTop: $(".scrollbottom").offset().top});
       $(".msg_history").scrollTop(70000000000000);
