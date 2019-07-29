@@ -1,14 +1,6 @@
 <template>
   <div>
     <div class="container Openbankinfo" ref="Openbankinfo">
-      <div class="row">
-        <div class="col-xl-10 col-sm-12 pt-2 color-bg fixed-top">
-          <a @click.prevent="Offbankinfo()">
-            <i class="tim-icons icon-minimal-left text-dark float-left m-2"></i>
-          </a>
-          <p class="text-capitalize">{{bankinfo}}</p>
-        </div>
-      </div>
       <div class="row mt-5">
         <div class="col-lg-3 col-md-6" v-for="(data,index) in getcCardinfo" :key="index">
           <div class="card card-stats">
@@ -320,8 +312,8 @@ export default {
     }
   },
   methods: {
-    Offbankinfo(){
-      
+    Offbankinfo() {
+      this.$refs.Openbankinfo.style.width = "0%";
     },
     useCard(data) {
       let name = $(".checkuse").attr("name");
