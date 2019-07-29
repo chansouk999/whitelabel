@@ -3121,43 +3121,20 @@ div.radio.switcher label input:checked+span small {
     flex: 0 0 33.333%;
 }
 
-.white-content .nav-pills .nav-item .nav-link:not(.active) {
-    background-color: transparent;
-}
-
-.nav-pills.nav-pills-primary .nav-item .nav-link.active,
-.nav-pills.nav-pills-primary .nav-item .nav-link.active:focus,
-.nav-pills.nav-pills-primary .nav-item .nav-link.active:hover {
-    background-size: 210% 210%;
-    background-position: top right;
-    border-bottom: 2px solid#ff3100;
-    background: transparent !important;
-    color: #ff3100;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-radius: 0;
-    margin: 0px 2px;
-    font-weight: 600;
-    font-size: .5rem;
-}
-
-.white-content .nav-pills .nav-item .nav-link:not(.active) {
-    color: #1d253b;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-radius: 0;
-    margin: 0px 2px;
-    font-weight: 600;
-    font-size: .5rem;
-    background-size: 210% 210%;
-    background-position: top right;
-}
-
 .fixed-plugin .dropdown .dropdown-menu:after {
     border-bottom: 0.4em solid rgba(0, 0, 0, 0);
     border-left: 0.4em solid #f5f6fa;
     border-top: 0.4em solid rgba(0, 0, 0, 0);
     right: -16px;
+}
+
+.nav-pills .nav-item .nav-link {
+    font-size: 10px;
+}
+
+.table>thead>tr>th {
+    font-size: 10px;
+    padding: 6px 1px !important;
 }
 
 .fixed-plugin .dropdown-menu {

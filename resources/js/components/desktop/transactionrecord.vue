@@ -29,18 +29,26 @@
                 <label class="col-form-label">Date range</label>
                 <div class="col-sm-2">
                   <div class="form-group">
-                    <input type="date" class="form-control" v-model="Firstdate" />
+                    <date-picker
+                      v-model="Firstdate"
+                      valuetype="format"
+                      format="YYYY-MM-DD"
+                      lang="en"
+                      confirm
+                    ></date-picker>
                   </div>
                 </div>
                 <label class="col-form-label">To</label>
                 <div class="col-sm-2">
                   <div class="form-group">
-                    <input
-                      type="date"
-                      class="form-control"
+                    <date-picker
                       v-model="SecoundDate"
+                      valuetype="format"
+                      format="YYYY-MM-DD"
+                      lang="en"
+                      confirm
                       @change="withdraw('withdraw')"
-                    />
+                    ></date-picker>
                   </div>
                 </div>
                 <div class="col-sm-1">
@@ -183,8 +191,6 @@
                     <th>DATA & TIME</th>
                   </tr>
                 </thead>
-
-           
 
                 <tbody>
                   <tr

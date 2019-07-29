@@ -461,7 +461,7 @@ export default {
   }
 };
 </script>
-<style scope>
+<style scoped>
 .dropdown-menu:before {
   border-bottom: none;
   border-right: none;
