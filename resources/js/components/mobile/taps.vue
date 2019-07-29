@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col-xl-10 col-sm-12 pt-2">
+        <div class="col-xl-10 col-sm-12 pt-2 color-bg fixed-top">
           <a href="/myaccount">
             <i class="tim-icons icon-minimal-left text-dark float-left m-2"></i>
           </a>

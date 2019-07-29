@@ -40,6 +40,7 @@
           </div>
         </div>
       </div>
+      
       <div class="col-md-12 px-0 hide-chat">
         <nav class="mobile-bottom-nav">
           <div
@@ -429,7 +430,7 @@ export default {
 .white-content .input-group-focus .input-group-prepend .input-group-text,
 .white-content .input-group-focus .input-group-append .input-group-text,
 .white-content .input-group-focus .form-control {
-  border-color: #009688;
+  border-color: #F44336;
 }
 </style>
 
