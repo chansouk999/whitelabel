@@ -101,7 +101,7 @@
                   </a>
                 </div>
                 <div class="w-25">
-                  <a href="javascript:void()" @click="runwindow()">
+                  <a href="fullscreengame">
                     <div class="info-icon text-center icon-success shadow-danger">
                       <img src="assets/img/Aragon-icon.png" alt />
                       <!-- <i class="tim-icons icon-palette"></i> -->
