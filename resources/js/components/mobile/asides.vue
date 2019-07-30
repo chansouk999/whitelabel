@@ -81,6 +81,9 @@
                     href="fullscreengame?stockname=BTC/USDT&loop=1&country=cypto"
                     slot="reference"
                     target="_blank"
+                    style="
+    background: #f8837b;
+"
                   >
                     <span class="sidebar-mini-icon">1</span>
                     <span class="sidebar-normal">1 Minutes</span>
@@ -91,6 +94,9 @@
                     href="fullscreengame?stockname=BTC/USDT&loop=5&country=cypto"
                     slot="reference"
                     target="_blank"
+                    style="
+    background: #f8837b;
+"
                   >
                     <span class="sidebar-mini-icon">5</span>
                     <span class="sidebar-normal">5 Minutes</span>
