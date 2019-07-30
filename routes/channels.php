@@ -19,6 +19,6 @@ use App\Broadcasting\OrderChannel;
 // });
 // Broadcast::channel('chat', OrderChannel::class);
 Broadcast::channel('chat', function ($user) {
-	return $user;
+	return true;
 });
 
