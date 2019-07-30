@@ -101,7 +101,7 @@
                   </a>
                 </div>
                 <div class="w-25">
-                  <a href="fullscreengame">
+                  <a href="fullscreengame?stockname=SH000001&loop=5&country=china">
                     <div class="info-icon text-center icon-success shadow-danger">
                       <img src="assets/img/Aragon-icon.png" alt />
                       <!-- <i class="tim-icons icon-palette"></i> -->
