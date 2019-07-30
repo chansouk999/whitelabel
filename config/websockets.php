@@ -12,15 +12,6 @@ return [
      * messages to each other via the webSockets.
      */
     'apps' => [
-        // [
-        //     'id' => env('829288'),
-        //     'name' => env('APP_NAME'),
-        //     'key' => env('386d88bbb8eb5a42db7c'),
-        //     'secret' => env('7fc8315c158d50504670'),
-        //     'enable_client_messages' => false,
-        //     'enable_statistics' => true,
-
-        // ],
         [
             'id' => env('PUSHER_APP_ID'),
             'name' => env('APP_NAME'),
@@ -45,7 +36,7 @@ return [
      * Leave this empty if you want to accept requests from all hosts.
      */
     'allowed_origins' => [
-        '*'
+        //
     ],
 
     /*
@@ -56,7 +47,7 @@ return [
     /*
      * This path will be used to register the necessary routes for the package.
      */
-    'path' => 'websockets',
+    'path' => 'laravel-websockets',
 
     /*
      * Dashboard Routes Middleware

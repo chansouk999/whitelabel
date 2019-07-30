@@ -53,6 +53,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 // require styles
 import 'swiper/dist/css/swiper.css'
 import VueMoment from 'vue-moment'
+import Echo from 'laravel-echo';
 
 Vue.use(VueAwesomeSwiper)
 
@@ -64,7 +65,12 @@ const app = new Vue({
     },
 
     created() {
-        // this.fetchMessages();
+        // alert("good")
+        Echo.channel('chat')
+            .listen('MessageSent', (e) => {
+                alert("good")
+            })
+            // this.fetchMessages();
 
         // Echo.join('chat')
         //     .here(users => {
