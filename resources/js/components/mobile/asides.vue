@@ -87,6 +87,9 @@
                     @click="getstock('BTC/USDT',1,'cypto')"
                     slot="reference"
                     target="_blank"
+                    style="
+    background: #f8837b;
+"
                   >
                     <span class="sidebar-mini-icon">1</span>
                     <span class="sidebar-normal">1 Minutes</span>
@@ -98,6 +101,9 @@
                     @click="getstock('BTC/USDT',5,'cypto')"
                     slot="reference"
                     target="_blank"
+                    style="
+    background: #f8837b;
+"
                   >
                     <span class="sidebar-mini-icon">5</span>
                     <span class="sidebar-normal">5 Minutes</span>

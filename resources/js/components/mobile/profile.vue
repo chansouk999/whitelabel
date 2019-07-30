@@ -37,7 +37,7 @@
 
                       <div class="card-description p-0 m-0">
                         <div class="card color-bg py-0 my-0">
-                          <div class="card-body h-0">
+                          <div class="card-body h-0" style="background: #ff7486; border-radius: 5px;">
                             <h4 class="card-title">{{totalbalance}}({{yuan}})</h4>
                             <span class="bala-num">
                               <span id="tBalance">{{formatToPrice(balance)}}</span>
