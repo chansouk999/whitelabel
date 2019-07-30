@@ -18,7 +18,7 @@
           <p class="text-capitalize" v-else-if="page =='smssubscription'">{{smssubscription}}</p>
           <p class="text-capitalize" v-else-if="page =='loginsettings'">{{loginsettings}}</p>
         </div>
-        <div class="col-xl-10 col-sm-12">
+        <div class="col-xl-10 col-sm-12 px-0">
           <div class="u-content" v-if="page =='bankinfo'">
             <bankinfo />
           </div>

@@ -137,7 +137,9 @@
                 :data-names="customer_care"
                 :data-name="my_message"
                 @click.prevent="setNavShowName('message',$event)"
-              >2</em>
+              >
+                <span class="badge badge-default">4</span>
+              </em>
               <!--</shiro:hasAnyRoles>-->
             </a>
           </li>
@@ -297,7 +299,7 @@ export default {
 };
 </script>
 <style scoped>
-.border-msg{
+.border-msg {
   border-right: 2px solid #362d2d;
 }
 </style>

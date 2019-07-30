@@ -3759,3 +3759,7 @@ p.reply_time_date {
 .off-canvas-sidebar .logo:after {
     background: #795548;
 }
+
+.white-content .main-panel {
+    background: none !important;
+}
