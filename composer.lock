@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "90b3347726c80b2984aa542b0fcdb187",
+    "content-hash": "5e867460e57b86b1f6f49f3acace28c4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -176,16 +176,16 @@
         },
         {
             "name": "beyondcode/laravel-websockets",
-            "version": "1.1.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/beyondcode/laravel-websockets.git",
-                "reference": "1c2b89b54d8d9d1c796b8391e41207da2a2f2423"
+                "reference": "0ffc19a5f55d7db22b7a68ad743da38ae660b5bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beyondcode/laravel-websockets/zipball/1c2b89b54d8d9d1c796b8391e41207da2a2f2423",
-                "reference": "1c2b89b54d8d9d1c796b8391e41207da2a2f2423",
+                "url": "https://api.github.com/repos/beyondcode/laravel-websockets/zipball/0ffc19a5f55d7db22b7a68ad743da38ae660b5bc",
+                "reference": "0ffc19a5f55d7db22b7a68ad743da38ae660b5bc",
                 "shasum": ""
             },
             "require": {
@@ -199,7 +199,8 @@
                 "illuminate/routing": "5.7.* || 5.8.*",
                 "illuminate/support": "5.7.* || 5.8.*",
                 "php": "^7.1",
-                "pusher/pusher-php-server": "~3.0",
+                "pusher/pusher-php-server": "~3.0 || ~4.0",
+                "react/dns": "^1.1",
                 "symfony/http-kernel": "~4.0",
                 "symfony/psr-http-message-bridge": "^1.1"
             },
@@ -230,16 +231,16 @@
             ],
             "authors": [
                 {
-                    "name": "Freek Van der Herten",
-                    "role": "Developer",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be"
-                },
-                {
                     "name": "Marcel Pociot",
                     "role": "Developer",
                     "email": "marcel@beyondco.de",
                     "homepage": "https://beyondcode.de"
+                },
+                {
+                    "name": "Freek Van der Herten",
+                    "role": "Developer",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be"
                 }
             ],
             "description": "An easy to use WebSocket server",
@@ -248,7 +249,7 @@
                 "beyondcode",
                 "laravel-websockets"
             ],
-            "time": "2019-02-27T14:44:42+00:00"
+            "time": "2019-07-28T19:29:56+00:00"
         },
         {
             "name": "cboden/ratchet",
@@ -4172,26 +4173,26 @@
         },
         {
             "name": "pusher/pusher-php-server",
-            "version": "v3.4.1",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pusher/pusher-http-php.git",
-                "reference": "a5fcdc65efd8d9a8291efbe01d326ec7ef5d5cee"
+                "reference": "43540be9536469f8eaec95a347d3f7532bac852c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/a5fcdc65efd8d9a8291efbe01d326ec7ef5d5cee",
-                "reference": "a5fcdc65efd8d9a8291efbe01d326ec7ef5d5cee",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/43540be9536469f8eaec95a347d3f7532bac852c",
+                "reference": "43540be9536469f8eaec95a347d3f7532bac852c",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "paragonie/sodium_compat": "^1.6",
-                "php": ">=5.4 <7.4",
+                "php": ">=7.1 <7.4",
                 "psr/log": "^1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7"
+                "phpunit/phpunit": "^7.2"
             },
             "type": "library",
             "extra": {
@@ -4222,7 +4223,7 @@
                 "rest",
                 "trigger"
             ],
-            "time": "2019-03-19T11:19:11+00:00"
+            "time": "2019-06-25T09:22:44+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -8441,7 +8442,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "beyondcode/laravel-websockets": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

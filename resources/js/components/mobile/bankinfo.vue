@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="container" v-if="isLoadCardDone">
-      <div class="row mt-2">
-        <div class="card card-stats mb-2" v-for="(data,index) in getcCardinfo" :key="index">
-          <div class="col-lg-3 col-md-6 px-0">
+    <div class="container Openbankinfo" ref="Openbankinfo">
+      <div class="row mt-5">
+        <div class="col-lg-3 col-md-6" v-for="(data,index) in getcCardinfo" :key="index">
+          <div class="card card-stats">
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <h2>{{data.methodId}}</h2>
@@ -23,8 +23,8 @@
               <button class="btn btn-icon btn-dribbble float-left" @click="CardDelete(data.id)">
                 <i class="tim-icons icon-trash-simple"></i>
               </button>
-              <div class="form-check form-use float-right">
-                <label class="form-check-label">
+              <div class="form-check form-use float-right bg-check">
+                <label class="form-check-label text-white">
                   <input
                     class="form-check-input checkuse"
                     type="checkbox"
@@ -42,12 +42,14 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 px-0">
-          <div class="card card-stats mb-2" v-if="getcCardinfo.length <= 0">
+        <div class="col-lg-3 col-md-6" v-if="getcCardinfo.length <= 0">
+          <div class="card card-stats">
             <div class="card-body">
-              <div class="row py-1 d-flex justify-content-center">
-                <div class="info-icon text-center icon-warning">
-                  <i class="tim-icons icon-credit-card"></i>
+              <div class="row">
+                <div class="col-12">
+                  <div class="info-icon text-center icon-warning">
+                    <i class="tim-icons icon-credit-card"></i>
+                  </div>
                 </div>
               </div>
             </div>
@@ -60,11 +62,15 @@
               </div>
             </div>
           </div>
-          <div class="card card-stats mb-2" v-if="getcCardinfo.length <= 1">
+        </div>
+        <div class="col-lg-3 col-md-6" v-if="getcCardinfo.length <= 1">
+          <div class="card card-stats">
             <div class="card-body">
-              <div class="row py-1 d-flex justify-content-center">
-                <div class="info-icon text-center icon-warning">
-                  <i class="tim-icons icon-credit-card"></i>
+              <div class="row">
+                <div class="col-12">
+                  <div class="info-icon text-center icon-warning">
+                    <i class="tim-icons icon-credit-card"></i>
+                  </div>
                 </div>
               </div>
             </div>
@@ -77,11 +83,15 @@
               </div>
             </div>
           </div>
-          <div class="card card-stats mb-2" v-if="getcCardinfo.length <= 2">
+        </div>
+        <div class="col-lg-3 col-md-6" v-if="getcCardinfo.length <= 2">
+          <div class="card card-stats">
             <div class="card-body">
-              <div class="row py-1 d-flex justify-content-center">
-                <div class="info-icon text-center icon-warning">
-                  <i class="tim-icons icon-credit-card"></i>
+              <div class="row">
+                <div class="col-12">
+                  <div class="info-icon text-center icon-warning">
+                    <i class="tim-icons icon-credit-card"></i>
+                  </div>
                 </div>
               </div>
             </div>
@@ -94,11 +104,15 @@
               </div>
             </div>
           </div>
-          <div class="card card-stats mb-2" v-if="getcCardinfo.length <= 3">
+        </div>
+        <div class="col-lg-3 col-md-6 mb-sm-5" v-if="getcCardinfo.length <= 3">
+          <div class="card card-stats">
             <div class="card-body">
-              <div class="row py-1 d-flex justify-content-center">
-                <div class="info-icon text-center icon-warning">
-                  <i class="tim-icons icon-credit-card"></i>
+              <div class="row">
+                <div class="col-12">
+                  <div class="info-icon text-center icon-warning">
+                    <i class="tim-icons icon-credit-card"></i>
+                  </div>
                 </div>
               </div>
             </div>
@@ -132,10 +146,10 @@
                 <i class="tim-icons icon-simple-remove"></i>
               </button>
             </div>
-            <div class="modal-body">
-              <div class="col-md-10">
+            <div class="modal-body p-0">
+              <div class="col-md-12 p-0">
                 <div class="card">
-                  <div class="card-body">
+                  <div class="card-body p-0">
                     <div class="row">
                       <label class="col-md-3 col-form-label">Name on Card</label>
                       <div class="col-md-9">
@@ -171,10 +185,11 @@
                       <div class="col-md-9">
                         <div class="form-group">
                           <select
-                            id="inputState"
+                            class="selectpicker"
+                            data-style="select-with-transition"
+                            title="Bank Account"
+                            data-size="7"
                             v-model="bankAccount"
-                            name="bankAccount"
-                            class="form-control"
                           >
                             <option value="AL">ALipay</option>
                             <option value="BC">BCELOne</option>
@@ -235,12 +250,12 @@
             {{city}}
             {{branch}}-->
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button
-                type="submit"
-                class="btn btn-primary addcard"
-                @click.prevent="addcard()"
-              >Save & Continue</button>
+              <button class="btn btn-danger" data-dismiss="modal">
+                <i class="tim-icons icon-simple-remove"></i> Cancel
+              </button>
+              <button class="btn btn-success" @click.prevent="addcard()">
+                <i class="tim-icons icon-check-2"></i> Save
+              </button>
             </div>
           </form>
         </div>
@@ -253,7 +268,6 @@ export default {
   data() {
     return {
       checked: true,
-      isLoadCardDone: false,
       name: "",
       cardnumber: "",
       province: "",
@@ -265,6 +279,7 @@ export default {
       getcCardinfo: []
     };
   },
+  props: ["bankinfo"],
   mounted() {
     this.getcardinfo();
     this.cardinfo();
@@ -297,6 +312,9 @@ export default {
     }
   },
   methods: {
+    Offbankinfo() {
+      this.$refs.Openbankinfo.style.width = "0%";
+    },
     useCard(data) {
       let name = $(".checkuse").attr("name");
       // alert(name);
@@ -435,7 +453,6 @@ export default {
         .get("/getcardinfo")
         .then(res => {
           this.getcCardinfo = res.data.data;
-          this.isLoadCardDone = true;
         })
         .catch(e => {
           console.log(e.response);
@@ -444,68 +461,22 @@ export default {
   }
 };
 </script>
-<style scoped>
-/* img {
-  max-width: 77% !important ;
-  border-radius: 0.2857rem;
+<style scope>
+.dropdown-menu:before {
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
 }
-.m-ss {
-  margin-top: -31%;
-  padding: 24px;
-} */
-.card_info {
-  margin-bottom: 65px;
-  max-width: 360px;
+.form-control {
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-radius: 0;
 }
-.atvImg-layer {
-  position: absolute;
-  top: 0;
-}
-.u-wrap .bg-secondary .u-content .container .p-bank {
-  text-align: center;
-  justify-content: center;
-  top: 32%;
-  padding: 20%;
-}
-.u-content .container .card .atvImg-layer img,
-.u-content .collapse .card .atvImg-layer img {
-  width: 100%;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  content: "";
-  height: 100%;
-  position: relative;
-  border-radius: 10px;
-  box-shadow: 0px 4px 11px 0px #000;
-}
-.container .card.border-bankinfo img {
-  width: 10%;
-  border-top-left-radius: calc(0.2857rem - 0.0625rem);
-  border-top-right-radius: calc(0.2857rem - 0.0625rem);
-  left: 0;
-  position: absolute;
-}
-img {
-  vertical-align: middle;
-  border-style: none;
-}
-.ml-25 {
-  width: 44%;
-  margin-left: 25% !important;
-}
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-}
-.pb-3,
-.py-3 {
-  padding-bottom: 9rem !important;
-  padding-top: 14px;
-}
-.m-ss {
-  margin: 78px 0px -79px 0px;
+.white-content .input-group-focus .input-group-prepend .input-group-text,
+.white-content .input-group-focus .input-group-append .input-group-text,
+.white-content .input-group-focus .form-control {
+  border-color: #f44336;
 }
 </style>
 
