@@ -365,40 +365,7 @@ class CardController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function addcardmin(Request $request)
-    {
-        // return $request;
-        try {
-            $adminid = Auth::guard('administrator')->user()->id;
-            // return $adminid;
-            DB::enableQueryLog();
-            $address = array(
-                'province' => $request->province,
-                'city' => $request->city,
-            );
-            $saveData = array(
-                'addedby' => $adminid,
-                'bankname' => $request->bankname,
-                'bankAccount' => $request->bankAccount,
-                'branch' => $request->branch,
-                'owner' => $request->owner,
-                'rule_id' => $request->Rule,
-                'address' => json_encode($address),
-            );
-            if ($request->method == 1) {
-                $getData = Admincard::where('id', $request->gotid)->update($saveData);
-            } else {
-                $getData = Admincard::create($saveData);
-            }
-            if ($getData) {
-                return $this->returncode(200, 'No data', 'success');
-            } else {
-                return $this->returncode(300, '', DB::getQueryLog()); //query error
-            }
-        } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
+
 
     public function deletecard($id)
     {
@@ -419,55 +386,8 @@ class CardController extends Controller
         $getData = Admincard::find($id)->get();
         return $getData;
     }
-    public function addrule(Request $request)
-    {
-        // return $request;
-        try {
-            DB::enableQueryLog();
-            $from = $request->from;
-            $to = $request->to;
-            if ($request->localted == 'in') {
-                $request->Notin = '';
-            }
-            if ($request->amoute !== 'ranges') {
-                $from = $request->amounteds;
-                $to = '';
-            }
-            $getdata = array(
-                'rulename' => $request->rulename,
-                'rule_level' => $request->rule_level,
-                'level' => $request->level,
-                'localted' => $request->localted,
-                'inAnd' => $request->inAnd,
-                'Notin' => $request->Notin,
-                'amoute' => $request->amoute,
-                'from' => $from,
-                'to' => $to,
-            );
-            $saveData = admincard_rule::create($getdata);
-            if ($saveData) {
-                return $this->returncode(200, "success", 'success');
-            } else {
-                return $this->returncode(300, "Can not success", DB::getQueryLog());
-            }
-        } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
 
-    public function deleteruld($id)
-    {
-        try {
-            DB::enableQueryLog();
-            $deleteRuld = admincard_rule::find($id)->delete();
-            if ($deleteRuld) {
-                return $this->returncode(200, "Delete", 'success');
-            }
-            return $this->returncode(300, "Can not Delete", DB::getQueryLog());
-        } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
+
     public function getAnnounceData($id)
     {
         try {

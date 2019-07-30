@@ -320,7 +320,7 @@ Route::get('/cardControl', 'StaticController@cardControl');
 // Route::domain('{user}.'.\Request::route())->group(function ($router) {
 //     return $router." DO MAIN";
 // });
-Route::post('/addcardmin', 'CardController@addcardmin');
+Route::post('/addcardmin', 'AdminController@addcardmin');
 
 
 
@@ -328,11 +328,11 @@ Route::post('/deletecard/{id}', 'CardController@deletecard');
 
 Route::get('/sendeditcard/{id}', 'CardController@sendeditcard');
 
-Route::post('/addrule', 'CardController@addrule');
+Route::post('/addrule', 'AdminController@addrule');
 
 
 
-Route::post('/deleteruld/{id}', 'CardController@deleteruld');
+Route::post('/deleteruld/{id}', 'AdminController@deleteruld');
 
 Route::get('/chat', 'CardController@chat');
 Route::get('/chatAdmin', 'ChatController@chat');
