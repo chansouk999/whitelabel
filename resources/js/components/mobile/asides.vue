@@ -18,8 +18,7 @@
         <ul class="nav">
           <li class="nav-aside">
             <a
-              :href="stocklist"
-              @click="getstock('SH000001',5,'china')"
+              href="fullscreengame?stockname=SH000001&loop=5&country=china"
               slot="reference"
               target="_blank"
             >
@@ -29,8 +28,7 @@
           </li>
           <li class="nav-aside">
             <a
-              :href="stocklist"
-              @click="getstock('SZ399001',5,'china')"
+              href="fullscreengame?stockname=SZ399001&loop=5&country=china"
               slot="reference"
               target="_blank"
             >
@@ -40,8 +38,7 @@
           </li>
           <li class="nav-aside">
             <a
-              :href="stocklist"
-              @click="getstock('SH00300',5,'china')"
+              href="fullscreengame?stockname=SH00300&loop=5&country=china"
               slot="reference"
               target="_blank"
             >
@@ -51,8 +48,7 @@
           </li>
           <li class="nav-aside">
             <a
-              :href="stocklist"
-              @click="getstock('SZ399415',5,'china')"
+              href="fullscreengame?stockname=SZ399415&loop=5&country=china"
               slot="reference"
               target="_blank"
             >
@@ -62,8 +58,7 @@
           </li>
           <li class="nav-aside">
             <a
-              :href="stocklist"
-              @click="getstock('US dollar Index',5,'usa')"
+              href="fullscreengame?stockname=US dollar Index&loop=5&country=usa"
               slot="reference"
               target="_blank"
             >
@@ -83,10 +78,12 @@
               <ul class="nav">
                 <li>
                   <a
-                    :href="stocklist"
-                    @click="getstock('BTC/USDT',1,'cypto')"
+                    href="fullscreengame?stockname=BTC/USDT&loop=1&country=cypto"
                     slot="reference"
                     target="_blank"
+                    style="
+    background: #f8837b;
+"
                   >
                     <span class="sidebar-mini-icon">1</span>
                     <span class="sidebar-normal">1 Minutes</span>
@@ -94,10 +91,12 @@
                 </li>
                 <li>
                   <a
-                    :href="stocklist"
-                    @click="getstock('BTC/USDT',5,'cypto')"
+                    href="fullscreengame?stockname=BTC/USDT&loop=5&country=cypto"
                     slot="reference"
                     target="_blank"
+                    style="
+    background: #f8837b;
+"
                   >
                     <span class="sidebar-mini-icon">5</span>
                     <span class="sidebar-normal">5 Minutes</span>

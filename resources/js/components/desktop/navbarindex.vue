@@ -59,7 +59,7 @@
             <a href="#" @click="setNavShowName('message',$event)">
               My message
               <!--<shiro:hasAnyRoles name="customer:type:1">-->
-              <em class="badge letter" style>2</em>
+              <span class="badge badge-default">4</span>
               <!--</shiro:hasAnyRoles>-->
             </a>
           </dd>

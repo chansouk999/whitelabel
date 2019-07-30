@@ -36,7 +36,7 @@
                       </div>
 
                       <div class="card-description p-0 m-0">
-                        <div class="card color-bg py-0 my-0">
+                        <div class="card bg-warning py-0 my-0">
                           <div class="card-body h-0">
                             <h4 class="card-title">{{totalbalance}}({{yuan}})</h4>
                             <span class="bala-num">
@@ -97,44 +97,8 @@
                   </div>
                 </div>
                 <div class="col-md-8 mb-5 bg-light px-1">
-                  <!-- <div class="card py-0 my-2">
-                    <div class="card-header mb-2">
-                      <h5 class="title">{{myaccount_tra}}</h5>
-                      <i class="tim-icons icon-align-left-2"></i>
-                    </div>
-                    <div class="card-body px-4 py-0">
-                      <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-notes"></i>
-
-                          <span class="game_rBox">
-                            <p>{{phoneverification}}</p>
-                          </span>
-                        </div>
-                        <p class="mycolor-icon">
-                          {{unverified}}
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </p>
-                      </div>
-                    </div>
-                  </div>-->
                   <div class="card py-0 my-2">
                     <div class="card-body px-4 py-0">
-                      <!-- <div class="row d-flex justify-content-between py-3">
-                        <div class="d-flex">
-                          <i class="tim-icons icon-badge"></i>
-                          <span class="game_rBox">
-                            <p>
-                              {{mytask}}
-                              <span class="badge badge-warning">8</span>
-                            </p>
-                          </span>
-                        </div>
-                        <p class="mycolor-icon">
-                          <i class="tim-icons icon-minimal-right"></i>
-                        </p>
-                      </div>-->
-                      <hr class="hr-mobile" />
                       <a href="/profile?page=recommendfriends">
                         <div class="row d-flex justify-content-between py-3">
                           <div class="d-flex">
@@ -289,6 +253,7 @@
   </div>
 </template>
 <script>
+import DatePicker from "vue2-datepicker";
 import setting from "./settig_mobile";
 import Flickity from "vue-flickity";
 import navbars from "./navbar";
@@ -302,7 +267,8 @@ export default {
     asides,
     footers,
     chartjs,
-    Flickity
+    Flickity,
+    DatePicker
   },
   data() {
     return {
