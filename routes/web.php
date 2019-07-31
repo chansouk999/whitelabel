@@ -17,6 +17,8 @@ use App\access_token;
 |
 
 */
+Route::get('checkAuthenticate','NoAuthController@checkautthenticate');
+
 
 // Route::get('/',);
 Route::get('/message', 'HomeController@message');
@@ -296,6 +298,8 @@ Route::get('/Savveselfservice', 'CardController@Savveselfservice');
 Route::get('/getaccountment', 'CardController@getaccountment');
 
 
+Route::get('/TaguserDetailAdmin', 'ChatController@TaguserDetail');
+
 Route::get('/getaccountmentAdmin', 'ChatController@getaccountment');
 
 Route::get('/gettype', 'CardController@gettype');
@@ -318,7 +322,7 @@ Route::get('/cardControl', 'StaticController@cardControl');
 // Route::domain('{user}.'.\Request::route())->group(function ($router) {
 //     return $router." DO MAIN";
 // });
-Route::post('/addcardmin', 'CardController@addcardmin');
+Route::post('/addcardmin', 'AdminController@addcardmin');
 
 
 
@@ -326,11 +330,11 @@ Route::post('/deletecard/{id}', 'CardController@deletecard');
 
 Route::get('/sendeditcard/{id}', 'CardController@sendeditcard');
 
-Route::post('/addrule', 'CardController@addrule');
+Route::post('/addrule', 'AdminController@addrule');
 
 
 
-Route::post('/deleteruld/{id}', 'CardController@deleteruld');
+Route::post('/deleteruld/{id}', 'AdminController@deleteruld');
 
 Route::get('/chat', 'CardController@chat');
 Route::get('/chatAdmin', 'ChatController@chat');

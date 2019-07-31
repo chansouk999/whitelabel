@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\DB;
 use App\admin_access;
 use App\admincard_rule;
 use App\Agent;
+use App\Admincard;
 use App\AgenTransaction;
 use App\Agent_login;
 use App\Shareholder;
@@ -38,6 +39,89 @@ class AdminController extends Controller
     {
         return 'Hello World';
     }
+    public function addcardmin(Request $request)
+    {
+        // return $request;
+        try {
+            $adminid = Auth::guard('administrator')->user()->id;
+            // return $adminid;
+            DB::enableQueryLog();
+            $address = array(
+                'province' => $request->province,
+                'city' => $request->city,
+            );
+            $saveData = array(
+                'addedby' => $adminid,
+                'bankname' => $request->bankname,
+                'bankAccount' => $request->bankAccount,
+                'branch' => $request->branch,
+                'owner' => $request->owner,
+                'rule_id' => $request->Rule,
+                'address' => json_encode($address),
+            );
+            if ($request->method == 1) {
+                $getData = Admincard::where('id', $request->gotid)->update($saveData);
+            } else {
+                $getData = Admincard::create($saveData);
+            }
+            if ($getData) {
+                return $this->returncode(200, 'No data', 'success');
+            } else {
+                return $this->returncode(300, '', DB::getQueryLog()); //query error
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function deleteruld($id)
+    {
+        try {
+            DB::enableQueryLog();
+            $deleteRuld = admincard_rule::find($id)->delete();
+            if ($deleteRuld) {
+                return $this->returncode(200, "Delete", 'success');
+            }
+            return $this->returncode(300, "Can not Delete", DB::getQueryLog());
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function addrule(Request $request)
+    {
+        // return $request;
+        try {
+            DB::enableQueryLog();
+            $from = $request->from;
+            $to = $request->to;
+            if ($request->localted == 'in') {
+                $request->Notin = '';
+            }
+            if ($request->amoute !== 'ranges') {
+                $from = $request->amounteds;
+                $to = '';
+            }
+            $getdata = array(
+                'rulename' => $request->rulename,
+                'rule_level' => $request->rule_level,
+                'level' => $request->level,
+                'localted' => $request->localted,
+                'inAnd' => $request->inAnd,
+                'Notin' => $request->Notin,
+                'amoute' => $request->amoute,
+                'from' => $from,
+                'to' => $to,
+            );
+            $saveData = admincard_rule::create($getdata);
+            if ($saveData) {
+                return $this->returncode(200, "success", 'success');
+            } else {
+                return $this->returncode(300, "Can not success", DB::getQueryLog());
+            }
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+
     public function __construct()
     {
         $this->middleware('auth:administrator');
@@ -876,8 +960,22 @@ class AdminController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
+    public function checkChatExist($res){
+        try{
+            $data = Announcement::where('userID','like','%'.$res->userID.'%')->get();
+            if($data->count() > 0){
+                Cache::put('code',100,20000);
+                return $data;
+            }
+            Cache::put('code',200,20000);
+
+        }catch(\Exception $ex){
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
     public function saveannounce(Request $req)
     {
+        // return $req;
         try {
             $getname = Auth::guard('administrator')->user()->id;
             $id = Announcement::count() + 1;
@@ -886,14 +984,27 @@ class AdminController extends Controller
                 'msg' => $req->message,
                 'type' => $req->typeAN
             );
+            $insertIt= json_encode($req->userID);
+            if($req->message=='PersonNalChat'){
+                $insertIt = json_encode(array($req->userID));
+            }
             $message = array(
                 'AnouncementID' => $req->method . $id,
                 'method' => $req->method,
                 'message' => json_encode($msg),
-                'userID' => json_encode($req->userID),
+                'userID' => $insertIt,
                 'post_by' => $getname,
             );
-            // return  $message;
+            if($req->message=='PersonNalChat'){
+                $gotData = $this->checkChatExist($req);
+                if(Cache::get('code')==200){
+                    $save = Announcement::create($message);
+                    $res = $this->checkQuery($save);
+                    return  $req->method . $id;
+                }
+                return $this->returncode(100, $gotData, 'success');
+
+            }
             $save = Announcement::create($message);
             $res = $this->checkQuery($save);
             return $res;

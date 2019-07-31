@@ -300,16 +300,20 @@ class CardController extends Controller
 
             $dataAnnounce = [];
             foreach ($annoucemen as $an) {
-                $userId = json_decode($an->userID);
+
+                $userIdLoop = json_decode($an->userID);
                 if ($an->userID == '"all"') {
                     $dataAnnounce[] = $an;
                 } else {
-                    $userId = json_decode($an->userID)[0];
-                    if ($userId == $userID) {
-                        $dataAnnounce[] = $an;
+                    $userIdLoop = json_decode($an->userID);
+                    foreach ($userIdLoop as $userLooped) {
+                        if ($userLooped == $userID) {
+                            $dataAnnounce[] = $an;
+                        }
                     }
                 }
             }
+            //    /
             if ($annoucemen->count() > 0) {
                 $getdata = Announcement::latest()->limit(1)->get()->pluck('userID')[0];
                 $getAll = Announcement::where('userID', 'like', '%' . $userID . '%')->get();
@@ -361,40 +365,7 @@ class CardController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function addcardmin(Request $request)
-    {
-        // return $request;
-        try {
-            $adminid = Auth::guard('administrator')->user()->id;
-            // return $adminid;
-            DB::enableQueryLog();
-            $address = array(
-                'province' => $request->province,
-                'city' => $request->city,
-            );
-            $saveData = array(
-                'addedby' => $adminid,
-                'bankname' => $request->bankname,
-                'bankAccount' => $request->bankAccount,
-                'branch' => $request->branch,
-                'owner' => $request->owner,
-                'rule_id' => $request->Rule,
-                'address' => json_encode($address),
-            );
-            if ($request->method == 1) {
-                $getData = Admincard::where('id', $request->gotid)->update($saveData);
-            } else {
-                $getData = Admincard::create($saveData);
-            }
-            if ($getData) {
-                return $this->returncode(200, 'No data', 'success');
-            } else {
-                return $this->returncode(300, '', DB::getQueryLog()); //query error
-            }
-        } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
+
 
     public function deletecard($id)
     {
@@ -415,55 +386,8 @@ class CardController extends Controller
         $getData = Admincard::find($id)->get();
         return $getData;
     }
-    public function addrule(Request $request)
-    {
-        // return $request;
-        try {
-            DB::enableQueryLog();
-            $from = $request->from;
-            $to = $request->to;
-            if ($request->localted == 'in') {
-                $request->Notin = '';
-            }
-            if ($request->amoute !== 'ranges') {
-                $from = $request->amounteds;
-                $to = '';
-            }
-            $getdata = array(
-                'rulename' => $request->rulename,
-                'rule_level' => $request->rule_level,
-                'level' => $request->level,
-                'localted' => $request->localted,
-                'inAnd' => $request->inAnd,
-                'Notin' => $request->Notin,
-                'amoute' => $request->amoute,
-                'from' => $from,
-                'to' => $to,
-            );
-            $saveData = admincard_rule::create($getdata);
-            if ($saveData) {
-                return $this->returncode(200, "success", 'success');
-            } else {
-                return $this->returncode(300, "Can not success", DB::getQueryLog());
-            }
-        } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
 
-    public function deleteruld($id)
-    {
-        try {
-            DB::enableQueryLog();
-            $deleteRuld = admincard_rule::find($id)->delete();
-            if ($deleteRuld) {
-                return $this->returncode(200, "Delete", 'success');
-            }
-            return $this->returncode(300, "Can not Delete", DB::getQueryLog());
-        } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage());
-        }
-    }
+
     public function getAnnounceData($id)
     {
         try {
@@ -481,8 +405,9 @@ class CardController extends Controller
     public function queryDataChat($re)
     {
         try {
-            $subchatID = substr($re->chat,0,8);
-            $chatIDCheck = $subchatID.$re->GetdataID;
+            $getAuth = Auth::user()->user_id;
+            $subchatID = substr($re->chat, 0, 8);
+            $chatIDCheck = $subchatID . $re->GetdataID;
             // return $chatIDCheck;
             $res = $this->getAnnounceData($re->GetdataID);
 
@@ -492,7 +417,7 @@ class CardController extends Controller
             $chatid = substr(strtotime('now'), -7, 7) . $res->post_by . $res->AnouncementID;
             // return $chatid;
 
-            $getAuth = Auth::user()->user_id;
+
             $Getdata = null;
             if ($checkAn < 1) {
 
@@ -506,7 +431,7 @@ class CardController extends Controller
                 );
                 $Getdata =  replyAnnounce::create($insertdata);
             } else {
-                $chatid = $re->chat;
+                $chatid = $chatIDCheck;
             }
 
             $insert_chat = array(
@@ -543,11 +468,12 @@ class CardController extends Controller
 
 
             if ($Getdata) {
-                $user = Auth::user();
+                // $user = Auth::user();
 
                 $message = "fuck...!";
 
-                broadcast(new MessageSent(Auth::user(), $message))->toOthers();
+                // broadcast(new MessageSent(Auth::user(), $message))->toOthers();
+                broadcast(new MessageSent(auth()->user(), $message))->toOthers();
                 return $this->returncode(200, "Delete", 'success');
             } else {
                 return $this->returncode(300, "Can not Delete", DB::getQueryLog());
@@ -563,12 +489,21 @@ class CardController extends Controller
     public function getDataChat($id)
     {
         // chat_history
-        Cache::put('anid',$id,3412000);
+        Cache::put('anid', $id, 3412000);
         $getAuth = Auth::user()->user_id;
+
         $data = DB::table('announcements')
             ->join('reply_announces', 'reply_announces.anou_id', '=', 'announcements.AnouncementID')
             ->join('chat_announces', 'chat_announces.chatId', '=', 'reply_announces.chatId')
-            ->where('announcements.AnouncementID', '=', $id)
+            // ->join('users', 'chat_announces.from', '=', 'users.user_id')
+            ->where([
+                ['announcements.AnouncementID', '=', $id],
+                // ['chat_announces.from', '=', $getAuth],
+            ])
+            // ->orwhere([
+            //     ['chat_announces.from', '=', 1],
+            //     ['chat_announces.to', '=', $getAuth],
+            // ])
             ->orderBy('chat_announces.created_at', 'ASC')
             ->get();
         $getpostby = null;
