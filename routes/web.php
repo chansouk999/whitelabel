@@ -17,6 +17,8 @@ use App\access_token;
 |
 
 */
+Route::get('checkAuthenticate','NoAuthController@checkautthenticate');
+
 
 // Route::get('/',);
 Route::get('/message', 'HomeController@message');

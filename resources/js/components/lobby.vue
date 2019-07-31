@@ -173,7 +173,7 @@
                         <div class="one-third">
                           <div class="stat">20</div>
                         </div>
-                        <a href="fullscreengame" class="lobby-link" target="_blank">Full Screen</a>
+                        <a href="fullscreengame?stockname=SH000001&loop=5&country=china" class="lobby-link" target="_blank">Full Screen</a>
                       </div>
                     </div>
                     <!-- end clash-card giant-->
