@@ -348,37 +348,61 @@
               </div>
             </div>
             <div class="tab-pane" id="link3" aria-expanded="false">
-              <div class="col-12 px-1">
-                <img
-                  alt
-                  src="https://static-h5.swcqlz.com/cms/cms_pic/20190116f71077c971884321bb7bdac1bd52a83b.jpg"
+              <div>
+                <livechartmb
+                  :checkpcormb="checkpcormb"
+                  stockname="SH000001"
+                  loop="5"
+                  country="china"
                 />
               </div>
-              <div class="col-12 row px-0 mt-1">
-                <div class="col-6 px-2">
-                  <div class="card shadow-wl">
-                    <img
-                      class="card-img-top"
-                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190116f0f6339f888147628ee46134e29bef67.png"
-                      alt="Card image cap"
-                    />
-                    <div class="card-body">
-                      <h4 class="card-title">飞禽走兽多人版</h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6 px-2">
-                  <div class="card shadow-wl">
-                    <img
-                      class="card-img-top"
-                      src="https://static-h5.swcqlz.com/cms/cms_pic/20190116d2c5f5f3a9924dd4ad82138d589d4646.png"
-                      alt="Card image cap"
-                    />
-                    <div class="card-body">
-                      <h4 class="card-title">金拉霸</h4>
-                    </div>
-                  </div>
-                </div>
+              <div>
+                <livechartmb
+                  :checkpcormb="checkpcormb"
+                  stockname="SZ399001"
+                  loop="5"
+                  country="china"
+                />
+              </div>
+              <div>
+                <livechartmb
+                  :checkpcormb="checkpcormb"
+                  stockname="SH00300"
+                  loop="5"
+                  country="china"
+                />
+              </div>
+              <div>
+                <livechartmb
+                  :checkpcormb="checkpcormb"
+                  stockname="SZ399415"
+                  loop="5"
+                  country="china"
+                />
+              </div>
+              <div>
+                <livechartmb
+                  :checkpcormb="checkpcormb"
+                  stockname="USdollarIndex"
+                  loop="5"
+                  country="usa"
+                />
+              </div>
+              <div>
+                <livechartmb
+                  :checkpcormb="checkpcormb"
+                  stockname="BTCUSDT"
+                  loop="1"
+                  country="cypto"
+                />
+              </div>
+              <div>
+                <livechartmb
+                  :checkpcormb="checkpcormb"
+                  stockname="BTCUSDT"
+                  loop="5"
+                  country="cypto"
+                />
               </div>
             </div>
 

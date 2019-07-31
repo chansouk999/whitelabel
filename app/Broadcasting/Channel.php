@@ -25,5 +25,6 @@ class OrderChannel
     public function join(User $user)
     {
         return Auth::user();
+        // return 123;
     }
 }

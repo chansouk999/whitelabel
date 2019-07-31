@@ -369,38 +369,38 @@ export default {
   created() {
     this.fetchMessages();
 
-    Echo.join("chat")
-      .here(users => {
-        this.users = users;
-      })
-      .joining(user => {
-        this.users.push(user);
-      })
-      .leaving(user => {
-        this.users = this.users.filter(u => u.id !== user.id);
-      })
-      .listenForWhisper("typing", ({ id, name }) => {
-        this.users.forEach((user, index) => {
-          if (user.id === id) {
-            user.typing = true;
-            this.$set(this.users, index, user);
-          }
-        });
-      })
-      .listen("MessageSent", event => {
-        alert("good");
-        this.messages.push({
-          message: event.message.message,
-          user: event.user
-        });
+    // Echo.join("chat")
+    //   .here(users => {
+    //     this.users = users;
+    //   })
+    //   .joining(user => {
+    //     this.users.push(user);
+    //   })
+    //   .leaving(user => {
+    //     this.users = this.users.filter(u => u.id !== user.id);
+    //   })
+    //   .listenForWhisper("typing", ({ id, name }) => {
+    //     this.users.forEach((user, index) => {
+    //       if (user.id === id) {
+    //         user.typing = true;
+    //         this.$set(this.users, index, user);
+    //       }
+    //     });
+    //   })
+    //   .listen("MessageSent", event => {
+    //     alert("good");
+    //     this.messages.push({
+    //       message: event.message.message,
+    //       user: event.user
+    //     });
 
-        this.users.forEach((user, index) => {
-          if (user.id === event.user.id) {
-            user.typing = false;
-            this.$set(this.users, index, user);
-          }
-        });
-      });
+    //     this.users.forEach((user, index) => {
+    //       if (user.id === event.user.id) {
+    //         user.typing = false;
+    //         this.$set(this.users, index, user);
+    //       }
+    //     });
+    //   });
 
     this.GetdataChat();
     Echo.private("chat").listen("MessageSent", e => {
@@ -416,6 +416,18 @@ export default {
     setInterval(() => {
       this.GetdataChat();
     }, 5000);
+    axios
+      .get("/getaccountment")
+      .then(res => {
+        this.dataAnnoucement = res.data[4];
+        console.log(res.data);
+      })
+      .catch(e => {
+        console.log(e.response);
+      });
+    // setInterval(() => {
+    //   this.GetdataChat();
+    // }, 5000);
   },
   computed: {
     filterUserlist() {
