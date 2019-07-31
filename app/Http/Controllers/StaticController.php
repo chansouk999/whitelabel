@@ -72,20 +72,19 @@ class StaticController extends Controller
             ];
             return $res[$index];
         }
-        function getCard($ruleLevel, $levelUser, $located, $inAnd, $Notin='', $amoute, $from, $to='',$oparetor)
+        function getCard($ruleLevel, $levelUser, $located, $inAnd, $Notin = '', $amoute, $from, $to = '', $oparetor)
         {
             return DB::table('admincards')->join('admincard_rules', 'admincard_rules.id', '=', 'admincards.rule_id')
-            ->where([
-                ['rule_level','=',$ruleLevel],
-                ['level','=',$levelUser],
-                ['localted','=',$located],
-                ['inAnd','=',$inAnd],
-                ['Notin','=',$Notin],
-                ['amoute','=',$amoute],
-                ['from',''.$oparetor.'',$from],
-                ['to','=',$to]
-            ])
-            ->get();
+                ->where([
+                    ['rule_level', '=', $ruleLevel],
+                    ['level', '=', $levelUser],
+                    ['localted', '=', $located],
+                    ['inAnd', '=', $inAnd],
+                    ['Notin', '=', $Notin],
+                    ['amoute', '=', $amoute],
+                    ['from', '' . $oparetor . '', $from],
+                    ['to', '=', $to]
+                ])->get();
         }
         return getCard(
             'under',

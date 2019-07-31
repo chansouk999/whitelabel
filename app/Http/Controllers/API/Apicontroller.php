@@ -123,7 +123,7 @@ class Apicontroller extends Controller
     }
     public function updatemn(Request $req)
     {
-
+        // return $req;
         date_default_timezone_set("Asia/Shanghai");
 
         $bl = $req->balance;

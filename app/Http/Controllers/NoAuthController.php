@@ -88,5 +88,11 @@ class NoAuthController extends Controller
             }
         }
     }
+    public function checkautthenticate(){
+        if(\Auth::check()){
+            return ['code'=>200];
+        }
+        return ['code'=>419];
+    }
 
 }
