@@ -543,11 +543,12 @@ class CardController extends Controller
 
 
             if ($Getdata) {
-                $user = Auth::user();
+                // $user = Auth::user();
 
                 $message = "fuck...!";
 
-                broadcast(new MessageSent(Auth::user(), $message))->toOthers();
+                // broadcast(new MessageSent(Auth::user(), $message))->toOthers();
+                broadcast(new MessageSent(auth()->user(), $message))->toOthers();
                 return $this->returncode(200, "Delete", 'success');
             } else {
                 return $this->returncode(300, "Can not Delete", DB::getQueryLog());

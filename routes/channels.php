@@ -1,6 +1,7 @@
 <?php
 
-use App\Broadcasting\OrderChannel;
+use App\Broadcasting\Channel;
+// use Auth;
 
 
 /*
@@ -18,7 +19,7 @@ use App\Broadcasting\OrderChannel;
 //     return (int) $user->id === (int) $id;
 // });
 // Broadcast::channel('chat', OrderChannel::class);
-Broadcast::channel('chat', function ($user) {
-	return true;
+Broadcast::channel('chat', function () {
+	return \Auth::user();
 });
 

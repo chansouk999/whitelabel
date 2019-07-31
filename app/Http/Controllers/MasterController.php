@@ -95,7 +95,7 @@ class MasterController extends Controller
         $ClientID = $data->pluck('id')[0];
         $ClientSecret = $data->pluck('secret')[0];
         $Redirect = $data->pluck('redirect')[0];
-        return redirect('http://lec68.com/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
+        return redirect('http://localhost:8003/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
     }
     public function fullscreengame(Request $req)
     {
@@ -112,7 +112,7 @@ class MasterController extends Controller
                 $uc->user_id = substr(strtotime('now'), -8, 8);
                 $uc->name = \Request::root();
                 $uc->secret = str_random(43);;
-                $uc->redirect = 'http://lec68.com/callback';
+                $uc->redirect = 'http://localhost:8003/callback';
                 $uc->personal_access_client = 0;
                 $uc->password_client = 0;
                 $uc->revoked = 0;
