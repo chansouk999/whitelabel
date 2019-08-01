@@ -123,7 +123,7 @@
                   data-target="#searchModal"
                   class="btn-warning"
                 >
-                  <i class="tim-icons icon-zoom-split"></i>
+                  <i class="tim-icons icon-zoom-split icon-color"></i>
                 </button>
                 <a href="#" class="item-link" placeholder>【热点新闻】中美贸易战事件</a>
                 <a href="#" class="more_txt">更多</a>
@@ -132,7 +132,7 @@
           </div>
         </div>
         <div class="col-12 px-1">
-          <ul class="nav nav-pills nav-pills-primary" role="tablist">
+          <ul class="nav nav-pills nav-pills-warning mb-2" role="tablist">
             <li class="nav-item w-33">
               <a
                 class="nav-link active"
