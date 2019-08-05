@@ -51,6 +51,8 @@ Route::get('/getadmininfo', 'AdminController@getadmininfo');
 Route::get('/login', function () {
     return redirect('/');
 });
+Route::get('/editadmindetail/{id}', 'AdminController@editadmindetail');
+Route::get('/getadminlog/{id}', 'AdminController@getadminlog');
 Route::get('/TaguserDetail', 'AdminController@TaguserDetail');
 Route::get('/getadmincard', 'AdminController@getadmincard');
 Route::get('/Selfservice', 'AdminController@Selfservice');
@@ -306,9 +308,9 @@ Route::get('/gettype', 'CardController@gettype');
 
 Route::get('/read_annocement/{id}', 'CardController@read_annocement');
 
-Route::get('/getadminlog/{id}', 'CardController@getadminlog');
 
-Route::get('/editadmindetail/{id}', 'CardController@editadmindetail');
+
+
 
 Route::get('fakeArrayData', 'StaticController@fakeArrayData');
 

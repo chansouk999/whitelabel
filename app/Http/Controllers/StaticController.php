@@ -53,7 +53,7 @@ class StaticController extends Controller
     { }
     public static function cardControl($amount = 0)
     {
-        // return $amount;
+        $amount = 5000;
         function res($index)
         {
             $id = Auth::user()->id;
@@ -88,14 +88,14 @@ class StaticController extends Controller
         }
         return getCard(
             'under',
-            '6',
+            '4',
             'in',
             'Laos',
             '',
-            'reach',
-            '50000',
+            'above',
+            '200',
             '',
-            '<='
+            '='
         );
         $coutry =
 

@@ -431,8 +431,6 @@ export default {
   },
   computed: {
     filterUserlist() {
-      //   searchPeople
-
       if (this.searchPeople) {
         return this.userList.filter(res => {
           if (

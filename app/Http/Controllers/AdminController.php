@@ -39,6 +39,23 @@ class AdminController extends Controller
     {
         return 'Hello World';
     }
+    public function editadmindetail($id)
+    {
+        try {
+            $data = DB::table('admins')
+                ->join('admin_accesses', 'admins.id', '=', 'admin_accesses.admin_id')
+                ->where('admins.id', '=', $id)
+                ->get();
+            // return $data;
+        } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function getadminlog($id)
+    {
+        $getadmindetail = modelog::where([['detail', 'like', '%user_id":"' . $id . '%'], ['method', '=', 'Adminrecord']])->get();
+        return $getadmindetail;
+    }
     public function addcardmin(Request $request)
     {
         // return $request;
