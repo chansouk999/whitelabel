@@ -94,6 +94,7 @@
                 </div>
                 <div class="w-25">
                   <a href="#">
+                    
                     <div class="info-icon text-center icon-danger shadow-success">
                       <img src="assets/img/china_flag.png" alt />
                       <p>{{chines_stock}}</p>
@@ -105,7 +106,7 @@
                     <div class="info-icon text-center icon-success shadow-danger">
                       <img src="assets/img/Aragon-icon.png" alt />
                       <!-- <i class="tim-icons icon-palette"></i> -->
-                      <p>{{lobby}}</p>
+                      <p>{{lobby_tra}}</p>
                     </div>
                   </a>
                 </div>
@@ -500,7 +501,7 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-lg">
-        <div class="modal-content" v-for="data in dataAnnoucement">
+        <div class="modal-content" v-for="data in dataAnnoucement" :key="data">
           <div class="modal-body modal-custome px-0">
             <div class="modal-header justify-content-center px-0 mx-0">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -709,6 +710,7 @@ export default {
     "cryptocurrencies",
     "chines_stock",
     "lobby",
+    "lobby_tra",
     "stock1",
     "stock2",
     "stock3",

@@ -9,7 +9,9 @@
     <title>Whitlabel </title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <!-- Fonts -->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+    {{-- <link rel="stylesheet" href="assets/css/font-awesome.min.css"> --}}
     <!-- Nucleo Icons -->
     <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
     <!-- CSS Files -->
@@ -56,6 +58,8 @@
         washcode="@lang('home.washcode')"
         mine="@lang('home.mine')"
         logout="@lang('home.logout')"
+        lobby_tra="@lang('home.lobby_tra')"
+
             ></app-mobile>
     </div>
     @include('sweetalert::alert')

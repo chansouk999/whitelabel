@@ -33,10 +33,10 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item d-flex">
               <button class="btn btn-login" data-toggle="modal" data-target="#loginModal">
-                <i class="tim-icons icon-single-02 icon-default"></i>
+                <i class="tim-icons icon-single-02 icon-default text-warning"></i>
               </button>
               <button class="btn btn-register" data-toggle="modal" data-target="#register">
-                <i class="fas fa-user-plus icon-default"></i>
+                <i class="fas fa-user-plus icon-default text-warning"></i>
               </button>
             </li>
           </ul>
