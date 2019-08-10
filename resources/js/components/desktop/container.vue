@@ -86,8 +86,12 @@
                               class="slide-caption__desc"
                             >Mé faiz elementum girarzis, nisi eros vermeio.</p>
                             <div class="d-flex">
-                              <a href="#" class="btn btn-danger animation-on-hover">Learn More</a>
-                              <a href="#" class="btn btn-danger btn-simple">Learn More</a>
+                              <button class="btn btn-warning">
+                                <i class="tim-icons icon-time-alarm"></i>Learn More
+                              </button>
+                              <button class="btn btn-simple btn-github">
+                                <i class="fab fa-github"></i>SIGN UP
+                              </button>
                             </div>
                           </div>
                         </div>
