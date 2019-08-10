@@ -300,6 +300,6 @@ export default {
 </script>
 <style scoped>
 .border-msg {
-  border-right: 2px solid #362d2d;
+  border-right: 2px solid #362d2d5e;
 }
 </style>

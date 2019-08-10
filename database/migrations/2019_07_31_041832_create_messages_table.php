@@ -13,9 +13,10 @@ class CreateMessagesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('messages');
         Schema::create('messages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->bigincrements('id')->unsigned();
+            $table->string('user_id',20);
             $table->text('message');
             $table->timestamps();
         });
@@ -30,5 +31,4 @@ class CreateMessagesTable extends Migration
     {
         Schema::dropIfExists('messages');
     }
- 
 }

@@ -65,8 +65,7 @@
                           <li class="nav-item w-8">
                             <a class="nav-link" href="#request" data-toggle="tab">Request</a>
                           </li>
-                          <li class="nav-item w-8" v-if="userdetailpg.next_page_url == null">
-                            <!-- <li class="page-item" v-if="userdetailpg.next_page_url !== null"> -->
+                          <li class="nav-item w-8">
                             <a class="nav-link" href="#announcement" data-toggle="tab">Announcement</a>
                           </li>
                           <li class="nav-item w-8">

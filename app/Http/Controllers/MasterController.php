@@ -36,6 +36,7 @@ use App\OauthClient;
 use App\Carousel;
 use App\Http\Controllers\getHeaderController as header;
 use App\Rolling_history;
+use function GuzzleHttp\json_decode;
 
 class MasterController extends Controller
 {
@@ -79,9 +80,7 @@ class MasterController extends Controller
     public function adminList()
     {
         try {
-
             $data = DB::select("select admins.id,admins.created_at, (CASE WHEN admins.role_id = 0 THEN 'EveryThing' ELSE 'SomeContent' END ) as AdminType, admintypes.typeName FROM admins join admintypes on admins.role_id = admintypes.typeID ");
-
             $catch = new CatchEr;
             return $catch->CheckExption($data);
         } catch (\Exception $ex) {
@@ -97,29 +96,60 @@ class MasterController extends Controller
         $Redirect = $data->pluck('redirect')[0];
         return redirect('http://localhost:8003/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
     }
+
     public function fullscreengame(Request $req)
     {
+
+
+         //     $getiduser = Auth::user()->id;
+        //     Cache::put('userid', $getiduser, 1212);
+        //     Cache::put('name', $req->stockname, 1212);
+        //     Cache::put('loop', $req->loop, 1212);
+        //     Cache::put('country', $req->country, 1212);
+        //     // return [Session("name"),Session("loop"),Session("country"),Session("userid")];
+        //     $check = OauthClient::where('name', '=', \Request::root())->get();
+        //     if ($check->count() < 1) {
+        //         $uc = new OauthClient;
+        //         $uc->user_id = substr(strtotime('now'), -8, 8);
+        //         $uc->name = \Request::root();
+        //         $uc->secret = str_random(43);;
+        //         $uc->redirect = 'http://localhost:8003/callback';
+        //         $uc->personal_access_client = 0;
+        //         $uc->password_client = 0;
+        //         $uc->revoked = 0;
+        //         $uc->save();
+        //     }
+        //     $check = OauthClient::where('name', '=', \Request::root())->get();
+            // return $this->connectTogame($check);
+
+
+
+
+
+
+
+
         try {
-            $getiduser = Auth::user()->id;
-            Cache::put('userid', $getiduser, 1212);
-            Cache::put('name', $req->stockname, 1212);
-            Cache::put('loop', $req->loop, 1212);
-            Cache::put('country', $req->country, 1212);
-            // return [Session("name"),Session("loop"),Session("country"),Session("userid")];
-            $check = OauthClient::where('name', '=', \Request::root())->get();
-            if ($check->count() < 1) {
-                $uc = new OauthClient;
-                $uc->user_id = substr(strtotime('now'), -8, 8);
-                $uc->name = \Request::root();
-                $uc->secret = str_random(43);;
-                $uc->redirect = 'http://localhost:8003/callback';
-                $uc->personal_access_client = 0;
-                $uc->password_client = 0;
-                $uc->revoked = 0;
-                $uc->save();
-            }
-            $check = OauthClient::where('name', '=', \Request::root())->get();
-            return $this->connectTogame($check);
+            // required data
+            $data = [
+                'client_id' => '9', //client replace with -> 9
+                'client_secret' => '7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9', //client replace with -> client secret -> 7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9
+                'name' => Auth::user()->name, //client replace with -> UserName
+                'redirect_uri'=>\Request::root().'/callback', // your callback url ->http://yourapp/callback,
+                'userId'=>Auth::user()->user_id, // UserID
+                'webId'=>'0001'
+            ];
+
+            $http = new Client;
+
+            $send = $http->post('http://localhost:8003/api/redirect',[
+                'form_params'=>$data
+            ]);
+            // return $send;
+
+            $reqdata = json_decode((string) $send->getBody(), true);
+            return $reqdata['code'] == 200 ? redirect('http://localhost:8003/api/login?stockname='.$req->stockname.'&loop='.$req->loop.'&country='.$req->country) : 'error';
+
         } catch (\Eception $ex) {
             return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
         }
@@ -441,7 +471,7 @@ class MasterController extends Controller
                     'user_id' => $userid,
                 ];
 
-                $response = $http->get(Cache::get('mainUrl').'/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
+                $response = $http->get(Cache::get('mainUrl') . '/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
                     'headers' => $header,
                 ]);
                 $accessdata = json_decode((string) $response->getBody(), true);

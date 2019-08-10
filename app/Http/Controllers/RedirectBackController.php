@@ -14,7 +14,6 @@ class RedirectBackController extends Controller
 {
     public function requestdata(Request $req)
     {
-
         return OauthClient::where('id', '=', $req->ClientID)->get()[0];
     }
     public function getsecret($id, $url)
@@ -68,12 +67,14 @@ class RedirectBackController extends Controller
                 'code' => $request->code,
             ],
         ]);
+
         $accessdata = json_decode((string) $response->getBody(), true);
         $header = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
             'Authorization' => 'Bearer ' . $accessdata['access_token']
         ];
+
         Cache::put('webToken', $accessdata['access_token'], 3714526);
 
         $resuser = $http->get(Cache::get('mainUrl') . '/api/users', ['headers' => $header]);

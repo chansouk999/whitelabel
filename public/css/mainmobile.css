@@ -3914,3 +3914,7 @@ p.text-content2::after {
 .mb-sm-5 {
     margin-bottom: 3rem !important;
 }
+
+i.tim-icons.icon-zoom-split.icon-color {
+    color: #f66b84;
+}
