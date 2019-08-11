@@ -10,7 +10,7 @@ class getHeaderController extends Controller
         return $header = $this->getcleanheader(Cache::get('webToken'));
     }
 
-    public function getcleanheader($token)
+    public static function getcleanheader($token)
     {
         $header = [
             'Content-Type' => 'application/json',

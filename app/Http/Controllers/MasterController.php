@@ -150,7 +150,10 @@ class MasterController extends Controller
 
 
 
+
             $reqdata = json_decode((string) $send->getBody(), true);
+            return header::getcleanheader($reqdata['data']['token']);
+
 
             Cookie::queue('accessToken', $reqdata['data']['token'],90000);
             // return Cookie::get('accessToken');
