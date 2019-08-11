@@ -350,3 +350,6 @@ Route::post('/Senddata', 'CardController@Senddata');
 Route::post('/SenddataAdmin', 'ChatController@SenddataAdmin');
 
 Route::get('/Getpostby', 'CardController@Getpostby');
+
+Route::get('/Getconnect', 'Apiconnect@Getconnect');
+
