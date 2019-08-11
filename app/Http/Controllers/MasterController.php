@@ -157,8 +157,6 @@ class MasterController extends Controller
 
 
             Cookie::queue('accessToken', $reqdata['data']['token'],90000);
-            // return Cookie::get('accessToken');
-
 
             return $reqdata['code'] == 200 ? redirect('http://localhost:8003/api/login?stockname='.$req->stockname.'&loop='.$req->loop.'&country='.$req->country) : 'error';
 
