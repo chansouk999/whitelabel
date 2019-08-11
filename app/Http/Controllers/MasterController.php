@@ -133,8 +133,8 @@ class MasterController extends Controller
         try {
             // required data
             $data = [
-                'client_id' => '9', //client replace with -> 9
-                'client_secret' => '7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9', //client replace with -> client secret -> 7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9
+                'client_id' => '4', //client replace with -> 9
+                'client_secret' => 'fpBngePThOMeuPOSoZlo33LGrTgDWP5C1UrLY5Nx', //client replace with -> client secret -> 7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9
                 'name' => Auth::user()->name, //client replace with -> UserName
                 'redirect_uri'=>\Request::root().'/callback', // your callback url ->http://yourapp/callback,
                 'userId'=>Auth::user()->user_id, // UserID
@@ -152,7 +152,8 @@ class MasterController extends Controller
 
 
             $reqdata = json_decode((string) $send->getBody(), true);
-            return header::getcleanheader($reqdata['data']['token']);
+            return $reqdata;
+            // return header::getcleanheader($reqdata['data']['token']);
 
 
             Cookie::queue('accessToken', $reqdata['data']['token'],90000);
