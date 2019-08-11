@@ -57,6 +57,9 @@ class MasterController extends Controller
         return $header->header();
     }
 
+
+
+
     public function getAlluserdata()
     {
         try {
@@ -65,7 +68,9 @@ class MasterController extends Controller
                 Cache::get('mainUrl') . '/api/getAlluserdata/' . Auth::user()->user_id,
                 ['headers' => $this->getheader()]
             );
+
             $accessdata = json_decode((string) $res->getBody(), true);
+
             $totalonline = [];
             foreach ($accessdata['data'] as $tt) {
                 $totalonline[] = $tt['time_online'];
@@ -133,8 +138,8 @@ class MasterController extends Controller
         try {
             // required data
             $data = [
-                'client_id' => '4', //client replace with -> 9
-                'client_secret' => 'fpBngePThOMeuPOSoZlo33LGrTgDWP5C1UrLY5Nx', //client replace with -> client secret -> 7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9
+                'client_id' => '9', //client replace with -> 9
+                'client_secret' => '7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9', //client replace with -> client secret -> 7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9
                 'name' => Auth::user()->name, //client replace with -> UserName
                 'redirect_uri'=>\Request::root().'/callback', // your callback url ->http://yourapp/callback,
                 'userId'=>Auth::user()->user_id, // UserID
@@ -152,7 +157,7 @@ class MasterController extends Controller
 
 
             $reqdata = json_decode((string) $send->getBody(), true);
-            return $reqdata;
+            // return $reqdata;
             // return header::getcleanheader($reqdata['data']['token']);
 
 
@@ -168,7 +173,7 @@ class MasterController extends Controller
     public function topupbalance(Request $req)
     {
         $amount = $req->amount;
-        return getfunction::cardControl($amount);
+        // return getfunction::cardControl($amount);
         try {
             DB::enableQueryLog();
             date_default_timezone_set("Asia/Shanghai");

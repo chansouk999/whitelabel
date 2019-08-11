@@ -695,10 +695,15 @@ class AdminController extends Controller
                 $wtid = $this->getwithdrwaid($reqdata['amount'])['data'];
             }
             if ($req->code == 200) {
+
                 // $data\
+
                 // return $evnt;
+
                 $cc = ',"method":"' . $reqdata['method'] . '"}';
+
                 $datacc = str_replace('}', $cc, $reqdata['detail']);
+
                 $insertdata = array(
                     'Time' => date('Y-m-d H:i:s'),
                     'user_id' => $reqdata['userId'],
@@ -710,10 +715,15 @@ class AdminController extends Controller
                     'deatil' => $datacc,
                     'served_by' => Auth::guard('administrator')->user()->id,
                 );
-                $save = Eventhistory::create($insertdata); //DB::getQueryLog()
+
+                $save = Eventhistory::create($insertdata); // DB::getQueryLog()
+
                 if ($save) {
+
                     $del = Reqst::where('id', '=', $req->id)->delete();
+
                     $userupdate = User::where('user_id', '=', '' . $reqdata['userId'] . '')->update(['userBalance' => $evnt]);
+
                     if ($del && $userupdate) {
 
 
@@ -978,16 +988,16 @@ class AdminController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function checkChatExist($res){
-        try{
-            $data = Announcement::where('userID','like','%'.$res->userID.'%')->get();
-            if($data->count() > 0){
-                Cache::put('code',100,20000);
+    public function checkChatExist($res)
+    {
+        try {
+            $data = Announcement::where('userID', 'like', '%' . $res->userID . '%')->get();
+            if ($data->count() > 0) {
+                Cache::put('code', 100, 20000);
                 return $data;
             }
-            Cache::put('code',200,20000);
-
-        }catch(\Exception $ex){
+            Cache::put('code', 200, 20000);
+        } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
@@ -1002,8 +1012,8 @@ class AdminController extends Controller
                 'msg' => $req->message,
                 'type' => $req->typeAN
             );
-            $insertIt= json_encode($req->userID);
-            if($req->message=='PersonNalChat'){
+            $insertIt = json_encode($req->userID);
+            if ($req->message == 'PersonNalChat') {
                 $insertIt = json_encode(array($req->userID));
             }
             $message = array(
@@ -1013,15 +1023,14 @@ class AdminController extends Controller
                 'userID' => $insertIt,
                 'post_by' => $getname,
             );
-            if($req->message=='PersonNalChat'){
+            if ($req->message == 'PersonNalChat') {
                 $gotData = $this->checkChatExist($req);
-                if(Cache::get('code')==200){
+                if (Cache::get('code') == 200) {
                     $save = Announcement::create($message);
                     $res = $this->checkQuery($save);
                     return  $req->method . $id;
                 }
                 return $this->returncode(100, $gotData, 'success');
-
             }
             $save = Announcement::create($message);
             $res = $this->checkQuery($save);
