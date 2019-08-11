@@ -37,6 +37,7 @@ use App\Carousel;
 use App\Http\Controllers\getHeaderController as header;
 use App\Rolling_history;
 use function GuzzleHttp\json_decode;
+use Illuminate\Support\Facades\Cookie;
 
 class MasterController extends Controller
 {
@@ -147,7 +148,14 @@ class MasterController extends Controller
             ]);
             // return $send;
 
+
+
             $reqdata = json_decode((string) $send->getBody(), true);
+
+            Cookie::queue('accessToken', $reqdata['data']['token'],90000);
+            // return Cookie::get('accessToken');
+
+
             return $reqdata['code'] == 200 ? redirect('http://localhost:8003/api/login?stockname='.$req->stockname.'&loop='.$req->loop.'&country='.$req->country) : 'error';
 
         } catch (\Eception $ex) {
