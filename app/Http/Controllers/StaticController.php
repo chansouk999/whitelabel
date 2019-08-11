@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Cache;
 use App\User;
 use App\access_record;
 use App\Http\Controllers\MasterController as getfucntion;
-
+use Illuminate\Support\Facades\Cookie;
 class StaticController extends Controller
 {
 
@@ -28,7 +28,7 @@ class StaticController extends Controller
         $header = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-            'Authorization' => 'Bearer ' . Cache::get('webToken')
+            'Authorization' => 'Bearer ' . Cookie::get('accessToken')
         ];
         return $header;
     }

@@ -17,6 +17,7 @@ use App\Selfservice;
 use App\activityLog as modelog;
 use App\Request as Reqst;
 use App\Admin;
+use Illuminate\Support\Facades\Cookie;
 use App\access_token;
 use App\Shareholder_login;
 use Illuminate\Support\Facades\DB;
@@ -190,7 +191,7 @@ class AdminController extends Controller
     public function getallresultadmin()
     {
         try {
-            $header = $this->getcleanheader(Cache::get('webToken'));
+            $header = $this->getcleanheader(Cookie::get('accessToken'));
             $http = new Client;
             $response = $http->get(Cache::get('mainUrl') . '/api/getallresultadmin', ['headers' => $header]);
             $accessdata = json_decode((string) $response->getBody(), true);
@@ -218,7 +219,7 @@ class AdminController extends Controller
         $header = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-            'Authorization' => 'Bearer ' . Cache::get('webToken')
+            'Authorization' => 'Bearer ' . Cookie::get('accessToken')
         ];
         return $header;
     }
@@ -349,7 +350,7 @@ class AdminController extends Controller
             $user_id = $req->user_id;
             $header = [
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer ' . Cache::get('webToken')
+                'Authorization' => 'Bearer ' . Cookie::get('accessToken')
             ];
 
             // return $req;
@@ -752,8 +753,8 @@ class AdminController extends Controller
     }
     public function gettoken()
     {
-        session(['access_token' => Cache::get('webToken')]);
-        return ['token' => Cache::get('webToken')];
+        session(['access_token' => Cookie::get('accessToken')]);
+        return ['token' => Cookie::get('accessToken')];
     }
     public function getuserdata(Request $req)
     {
