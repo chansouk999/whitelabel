@@ -83,6 +83,7 @@ Route::get('/stocklist', function () {
 });
 // Route::get('/',)getaccountment:1 Failed to load resource: the server responded with a status of 401 (Unauthorized)
 
+Route::get('api/callback', 'MasterController@fullscreengame');
 Route::get('getAlluserdata', 'MasterController@getAlluserdata');
 Route::get('adminList', 'MasterController@adminList');
 Route::post('requestdata', 'RedirectBackController@requestdata');

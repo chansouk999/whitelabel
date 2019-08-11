@@ -726,8 +726,8 @@ class AdminController extends Controller
 
                     if ($del && $userupdate) {
 
-
                         $method = 'Adminrecord';
+
                         $data = array(
                             'user_id' => $reqdata['userId'],
                             'event' => $msgreqlog,
@@ -736,7 +736,9 @@ class AdminController extends Controller
                             'eventid' => '',
                             'Time' => date('Y-m-d'),
                         );
+
                         $Log = new ActivityLog();
+
                         $Log->storeLog($method, $data);
 
 

@@ -102,47 +102,28 @@ class MasterController extends Controller
         $Redirect = $data->pluck('redirect')[0];
         return redirect('http://localhost:8003/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
     }
+    public function gotogame(){
+
+        $query = http_build_query([
+            'client_id' => '9',
+            'redirect_uri' => 'http://localhost:8003/api/callback',
+            'response_type' => 'code',
+            'scope' => '',
+        ]);
+
+        return redirect('http://localhost:8003/api/redirect?' . $query);
+    }
 
     public function fullscreengame(Request $req)
     {
 
-
-         //     $getiduser = Auth::user()->id;
-        //     Cache::put('userid', $getiduser, 1212);
-        //     Cache::put('name', $req->stockname, 1212);
-        //     Cache::put('loop', $req->loop, 1212);
-        //     Cache::put('country', $req->country, 1212);
-        //     // return [Session("name"),Session("loop"),Session("country"),Session("userid")];
-        //     $check = OauthClient::where('name', '=', \Request::root())->get();
-        //     if ($check->count() < 1) {
-        //         $uc = new OauthClient;
-        //         $uc->user_id = substr(strtotime('now'), -8, 8);
-        //         $uc->name = \Request::root();
-        //         $uc->secret = str_random(43);;
-        //         $uc->redirect = 'http://localhost:8003/callback';
-        //         $uc->personal_access_client = 0;
-        //         $uc->password_client = 0;
-        //         $uc->revoked = 0;
-        //         $uc->save();
-        //     }
-        //     $check = OauthClient::where('name', '=', \Request::root())->get();
-            // return $this->connectTogame($check);
-
-
-
-
-
-
-
-
         try {
-            // required data
             $data = [
-                'client_id' => '9', //client replace with -> 9
-                'client_secret' => '7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9', //client replace with -> client secret -> 7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9
-                'name' => Auth::user()->name, //client replace with -> UserName
-                'redirect_uri'=>\Request::root().'/callback', // your callback url ->http://yourapp/callback,
-                'userId'=>Auth::user()->user_id, // UserID
+                'client_id' => '9',
+                'client_secret' => '7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9',
+                'name' => Auth::user()->name,
+                'redirect_uri'=>\Request::root().'/callback',
+                'userId'=>Auth::user()->user_id,
                 'webId'=>'0001'
             ];
 
@@ -151,15 +132,8 @@ class MasterController extends Controller
             $send = $http->post('http://localhost:8003/api/redirect',[
                 'form_params'=>$data
             ]);
-            // return $send;
-
-
-
-
+                // return $send;
             $reqdata = json_decode((string) $send->getBody(), true);
-            // return $reqdata;
-            // return header::getcleanheader($reqdata['data']['token']);
-
 
             Cookie::queue('accessToken', $reqdata['data']['token'],90000);
 
