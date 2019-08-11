@@ -152,7 +152,7 @@ class MasterController extends Controller
 
 
             $reqdata = json_decode((string) $send->getBody(), true);
-            return $reqdata;
+            // return $reqdata;
             // return header::getcleanheader($reqdata['data']['token']);
 
 
