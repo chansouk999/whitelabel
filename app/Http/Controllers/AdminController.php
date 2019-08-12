@@ -32,7 +32,7 @@ use App\Carousel;
 
 class AdminController extends Controller
 {
-    protected $urlserver = 'http://lec68.com';
+    protected $urlserver = 'http://localhost:8003';
     protected $url8003 = 'http://localhost:8003';
 
 
