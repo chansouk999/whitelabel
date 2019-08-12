@@ -137,8 +137,11 @@ class MasterController extends Controller
             $reqdata = json_decode((string) $send->getBody(), true);
 
             if (!isset($reqdata['code']) == 200) {
+
                 return $reqdata;
+
             }
+
 
             if ($reqdata['code'] == 200) {
                 Cookie::queue('accessToken', $reqdata['data']['token'], 90000);
