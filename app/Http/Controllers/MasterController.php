@@ -120,8 +120,8 @@ class MasterController extends Controller
 
         try {
             $data = [
-                'client_id' => '14',
-                'client_secret' => '6QtgpRQpy7Suc4wVdlPx2cpBJubi10O8GXlOxnDA',
+                'client_id' => '4',
+                'client_secret' => 'fpBngePThOMeuPOSoZlo33LGrTgDWP5C1UrLY5Nx',
                 'name' => Auth::user()->name,
                 'redirect_uri' => \Request::root() . '/callback',
                 'userId' => Auth::user()->user_id,

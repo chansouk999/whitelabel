@@ -17,7 +17,8 @@ use App\access_token;
 |
 
 */
-Route::get('checkAuthenticate','NoAuthController@checkautthenticate');
+
+Route::get('checkAuthenticate', 'NoAuthController@checkautthenticate');
 
 
 // Route::get('/',);
@@ -354,3 +355,4 @@ Route::get('/Getpostby', 'CardController@Getpostby');
 
 Route::get('/Getconnect', 'Apiconnect@Getconnect');
 
+Route::get('/GetBetting', 'Apiconnect@GetBetHistory');

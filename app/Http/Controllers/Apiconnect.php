@@ -41,7 +41,30 @@ use Illuminate\Support\Facades\Cookie;
 
 class Apiconnect extends Controller
 {
-    private $url = "http://localhost:8003/api";
+    private $url = "localhost:8003/api";
+
+    // GET
+    public function ApiConnectGet($url)
+    {
+        $http = new Client;
+        $send = $http->get($this->url . $url, [
+            'headers' => header::header()
+        ]);
+        // $accessdata = json_decode((string) $send->getBody(), true);
+        return $send;
+    }
+    // POST
+    public function ApiConnectPost($url)
+    {
+        $http = new Client;
+        $send = $http->get($this->url . $url, [
+            'headers' => header::header()
+        ]);
+        $accessdata = json_decode((string) $send->getBody(), true);
+        return $accessdata;
+    }
+
+
     public function Getconnect()
     {
         $http = new Client;
@@ -51,4 +74,12 @@ class Apiconnect extends Controller
         $accessdata = json_decode((string) $send->getBody(), true);
         return $accessdata;
     }
+
+    // Get Betting History
+    public function GetBetHistory()
+    {
+        $data = $this->ApiConnectGet("/GetBetting");
+        return $data;
+    }
 }
+    
