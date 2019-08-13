@@ -6,6 +6,8 @@ use App\Http\Controllers\ActivityLogController as ActivityLog;
 
 use Illuminate\Http\Request;
 use App\Request as Reqst;
+// use Cache
+
 use App\Selfservice;
 use Auth;
 use GuzzleHttp\Client;
@@ -132,13 +134,16 @@ class MasterController extends Controller
         try {
             // required data
             $data = [
-                'client_id' => '9', //client replace with -> 9
-                'client_secret' => '7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9', //client replace with -> client secret -> 7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9
+                'client_id' => '6', //client replace with -> 9
+                'client_secret' => 'CFbh06fLK9RbNQfMvr32DUREsewycbKEdr9tpa60', //client replace with -> client secret -> 7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9
                 'name' => Auth::user()->name, //client replace with -> UserName
                 'redirect_uri'=>\Request::root().'/callback', // your callback url ->http://yourapp/callback,
                 'userId'=>Auth::user()->user_id, // UserID
                 'webId'=>'0001'
             ];
+
+            Cache::put('userid',Auth::user()->id,89999);
+
 
             $http = new Client;
 
@@ -146,6 +151,8 @@ class MasterController extends Controller
                 'form_params'=>$data
             ]);
             // return $send;
+
+            Auth::loginUsingId(Cache::get('userid'));
 
             $reqdata = json_decode((string) $send->getBody(), true);
             return $reqdata['code'] == 200 ? redirect('http://localhost:8003/api/login?stockname='.$req->stockname.'&loop='.$req->loop.'&country='.$req->country) : 'error';
