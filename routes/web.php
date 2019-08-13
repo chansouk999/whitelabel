@@ -17,7 +17,8 @@ use App\access_token;
 |
 
 */
-Route::get('checkAuthenticate','NoAuthController@checkautthenticate');
+
+Route::get('checkAuthenticate', 'NoAuthController@checkautthenticate');
 
 
 // Route::get('/',);
@@ -83,6 +84,7 @@ Route::get('/stocklist', function () {
 });
 // Route::get('/',)getaccountment:1 Failed to load resource: the server responded with a status of 401 (Unauthorized)
 
+Route::get('api/callback', 'MasterController@fullscreengame');
 Route::get('getAlluserdata', 'MasterController@getAlluserdata');
 Route::get('adminList', 'MasterController@adminList');
 Route::post('requestdata', 'RedirectBackController@requestdata');
@@ -350,3 +352,7 @@ Route::post('/Senddata', 'CardController@Senddata');
 Route::post('/SenddataAdmin', 'ChatController@SenddataAdmin');
 
 Route::get('/Getpostby', 'CardController@Getpostby');
+
+Route::get('/Getconnect', 'Apiconnect@Getconnect');
+
+Route::get('/GetBetting', 'Apiconnect@GetBetHistory');

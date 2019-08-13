@@ -52,15 +52,6 @@
         <span v-if="checkuser == 'true'">
           <ul class="nav">
             <li class="nav-aside" id="SH0000015">
-                <form action="http://localhost:8003/api/redirect" method="post">
-                    <input type="text" name="client_id" value="9">
-                    <input type="text" name="client_secret" value="7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9">
-                    <input type="text" name="name" value="bankonly33">
-                    <input type="text" name="redirect_uri" value="http://localhost:8000/callback">
-                    <input type="text" name="userId" value="0228439xkfJnY">
-                    <input type="text" name="webId" value="0001">
-                    <input type="submit" value="GOOGOGO">
-                </form>
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">
                   <livechart :key="0" stockname="SH000001" loop="5" country="china" :isMenu="true"></livechart>

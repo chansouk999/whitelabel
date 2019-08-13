@@ -39,11 +39,12 @@ use App\Carousel;
 use App\Http\Controllers\getHeaderController as header;
 use App\Rolling_history;
 use function GuzzleHttp\json_decode;
+use Illuminate\Support\Facades\Cookie;
 
 class MasterController extends Controller
 {
     protected $urlforserver = 'http://159.138.130.64'; // 1 use this if you are running on server
-    protected $urlforserverapi = 'http://lec68.com'; // 2 use this if you are running on server
+    protected $urlforserverapi = 'http://localhost:8003'; // 2 use this if you are running on server
     protected $urlforlocal8003 = 'http://localhost:8003'; //1 use this if you are running on localhost
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
     protected $data = [];
@@ -58,6 +59,9 @@ class MasterController extends Controller
         return $header->header();
     }
 
+
+
+
     public function getAlluserdata()
     {
         try {
@@ -66,7 +70,9 @@ class MasterController extends Controller
                 Cache::get('mainUrl') . '/api/getAlluserdata/' . Auth::user()->user_id,
                 ['headers' => $this->getheader()]
             );
+
             $accessdata = json_decode((string) $res->getBody(), true);
+
             $totalonline = [];
             foreach ($accessdata['data'] as $tt) {
                 $totalonline[] = $tt['time_online'];
@@ -98,41 +104,23 @@ class MasterController extends Controller
         $Redirect = $data->pluck('redirect')[0];
         return redirect('http://localhost:8003/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
     }
+    public function gotogame()
+    {
+
+        $query = http_build_query([
+            'client_id' => '9',
+            'redirect_uri' => 'http://localhost:8003/api/callback',
+            'response_type' => 'code',
+            'scope' => '',
+        ]);
+
+        return redirect('http://localhost:8003/api/redirect?' . $query);
+    }
 
     public function fullscreengame(Request $req)
     {
 
-
-         //     $getiduser = Auth::user()->id;
-        //     Cache::put('userid', $getiduser, 1212);
-        //     Cache::put('name', $req->stockname, 1212);
-        //     Cache::put('loop', $req->loop, 1212);
-        //     Cache::put('country', $req->country, 1212);
-        //     // return [Session("name"),Session("loop"),Session("country"),Session("userid")];
-        //     $check = OauthClient::where('name', '=', \Request::root())->get();
-        //     if ($check->count() < 1) {
-        //         $uc = new OauthClient;
-        //         $uc->user_id = substr(strtotime('now'), -8, 8);
-        //         $uc->name = \Request::root();
-        //         $uc->secret = str_random(43);;
-        //         $uc->redirect = 'http://localhost:8003/callback';
-        //         $uc->personal_access_client = 0;
-        //         $uc->password_client = 0;
-        //         $uc->revoked = 0;
-        //         $uc->save();
-        //     }
-        //     $check = OauthClient::where('name', '=', \Request::root())->get();
-            // return $this->connectTogame($check);
-
-
-
-
-
-
-
-
         try {
-            // required data
             $data = [
                 'client_id' => '6', //client replace with -> 9
                 'client_secret' => 'CFbh06fLK9RbNQfMvr32DUREsewycbKEdr9tpa60', //client replace with -> client secret -> 7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9
@@ -142,21 +130,28 @@ class MasterController extends Controller
                 'webId'=>'0001'
             ];
 
-            Cache::put('userid',Auth::user()->id,89999);
-
-
             $http = new Client;
 
-            $send = $http->post('http://localhost:8003/api/redirect',[
-                'form_params'=>$data
+            $send = $http->post('http://localhost:8003/api/redirect', [
+                'form_params' => $data
             ]);
-            // return $send;
-
-            Auth::loginUsingId(Cache::get('userid'));
 
             $reqdata = json_decode((string) $send->getBody(), true);
-            return $reqdata['code'] == 200 ? redirect('http://localhost:8003/api/login?stockname='.$req->stockname.'&loop='.$req->loop.'&country='.$req->country) : 'error';
 
+            if (!isset($reqdata['code']) == 200) {
+
+                return $reqdata;
+
+            }
+
+
+            if ($reqdata['code'] == 200) {
+                
+                Cookie::queue('accessToken', $reqdata['data']['token'], 90000);
+
+                return redirect('http://localhost:8003/api/login?stockname=' . $req->stockname . '&loop=' . $req->loop . '&country=' . $req->country);
+            }
+            return $reqdata;
         } catch (\Eception $ex) {
             return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
         }
@@ -165,7 +160,7 @@ class MasterController extends Controller
     public function topupbalance(Request $req)
     {
         $amount = $req->amount;
-        return getfunction::cardControl($amount);
+        // return getfunction::cardControl($amount);
         try {
             DB::enableQueryLog();
             date_default_timezone_set("Asia/Shanghai");

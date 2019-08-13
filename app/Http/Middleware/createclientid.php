@@ -18,7 +18,7 @@ class createclientid
     public function handle($request, Closure $next)
     {
         $token = str_random(40);
-       
+
         $date = date('Y-m-d');
         if(Auth::check()){
             $id = Auth::user()->id;
@@ -28,7 +28,7 @@ class createclientid
                 $clid->user_id = Auth::user()->id;
                 $clid->name = 'www.lec68.com';
                 $clid->secret = $token;
-                $clid->redirect ='http://lec68.com/callback';
+                $clid->redirect ='http://localhost:8003/callback';
                 $clid->personal_access_client = 0;
                 $clid->password_client = 0;
                 $clid->revoked = 0;

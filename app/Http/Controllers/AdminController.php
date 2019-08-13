@@ -17,6 +17,7 @@ use App\Selfservice;
 use App\activityLog as modelog;
 use App\Request as Reqst;
 use App\Admin;
+use Illuminate\Support\Facades\Cookie;
 use App\access_token;
 use App\Shareholder_login;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +32,7 @@ use App\Carousel;
 
 class AdminController extends Controller
 {
-    protected $urlserver = 'http://lec68.com';
+    protected $urlserver = 'http://localhost:8003';
     protected $url8003 = 'http://localhost:8003';
 
 
@@ -190,7 +191,7 @@ class AdminController extends Controller
     public function getallresultadmin()
     {
         try {
-            $header = $this->getcleanheader(Cache::get('webToken'));
+            $header = $this->getcleanheader(Cookie::get('accessToken'));
             $http = new Client;
             $response = $http->get(Cache::get('mainUrl') . '/api/getallresultadmin', ['headers' => $header]);
             $accessdata = json_decode((string) $response->getBody(), true);
@@ -218,7 +219,7 @@ class AdminController extends Controller
         $header = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-            'Authorization' => 'Bearer ' . Cache::get('webToken')
+            'Authorization' => 'Bearer ' . Cookie::get('accessToken')
         ];
         return $header;
     }
@@ -349,7 +350,7 @@ class AdminController extends Controller
             $user_id = $req->user_id;
             $header = [
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer ' . Cache::get('webToken')
+                'Authorization' => 'Bearer ' . Cookie::get('accessToken')
             ];
 
             // return $req;
@@ -694,10 +695,15 @@ class AdminController extends Controller
                 $wtid = $this->getwithdrwaid($reqdata['amount'])['data'];
             }
             if ($req->code == 200) {
+
                 // $data\
+
                 // return $evnt;
+
                 $cc = ',"method":"' . $reqdata['method'] . '"}';
+
                 $datacc = str_replace('}', $cc, $reqdata['detail']);
+
                 $insertdata = array(
                     'Time' => date('Y-m-d H:i:s'),
                     'user_id' => $reqdata['userId'],
@@ -709,14 +715,19 @@ class AdminController extends Controller
                     'deatil' => $datacc,
                     'served_by' => Auth::guard('administrator')->user()->id,
                 );
-                $save = Eventhistory::create($insertdata); //DB::getQueryLog()
+
+                $save = Eventhistory::create($insertdata); // DB::getQueryLog()
+
                 if ($save) {
+
                     $del = Reqst::where('id', '=', $req->id)->delete();
+
                     $userupdate = User::where('user_id', '=', '' . $reqdata['userId'] . '')->update(['userBalance' => $evnt]);
+
                     if ($del && $userupdate) {
 
-
                         $method = 'Adminrecord';
+
                         $data = array(
                             'user_id' => $reqdata['userId'],
                             'event' => $msgreqlog,
@@ -725,7 +736,9 @@ class AdminController extends Controller
                             'eventid' => '',
                             'Time' => date('Y-m-d'),
                         );
+
                         $Log = new ActivityLog();
+
                         $Log->storeLog($method, $data);
 
 
@@ -752,8 +765,8 @@ class AdminController extends Controller
     }
     public function gettoken()
     {
-        session(['access_token' => Cache::get('webToken')]);
-        return ['token' => Cache::get('webToken')];
+        session(['access_token' => Cookie::get('accessToken')]);
+        return ['token' => Cookie::get('accessToken')];
     }
     public function getuserdata(Request $req)
     {
@@ -977,16 +990,16 @@ class AdminController extends Controller
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
-    public function checkChatExist($res){
-        try{
-            $data = Announcement::where('userID','like','%'.$res->userID.'%')->get();
-            if($data->count() > 0){
-                Cache::put('code',100,20000);
+    public function checkChatExist($res)
+    {
+        try {
+            $data = Announcement::where('userID', 'like', '%' . $res->userID . '%')->get();
+            if ($data->count() > 0) {
+                Cache::put('code', 100, 20000);
                 return $data;
             }
-            Cache::put('code',200,20000);
-
-        }catch(\Exception $ex){
+            Cache::put('code', 200, 20000);
+        } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
     }
@@ -1001,8 +1014,8 @@ class AdminController extends Controller
                 'msg' => $req->message,
                 'type' => $req->typeAN
             );
-            $insertIt= json_encode($req->userID);
-            if($req->message=='PersonNalChat'){
+            $insertIt = json_encode($req->userID);
+            if ($req->message == 'PersonNalChat') {
                 $insertIt = json_encode(array($req->userID));
             }
             $message = array(
@@ -1012,15 +1025,14 @@ class AdminController extends Controller
                 'userID' => $insertIt,
                 'post_by' => $getname,
             );
-            if($req->message=='PersonNalChat'){
+            if ($req->message == 'PersonNalChat') {
                 $gotData = $this->checkChatExist($req);
-                if(Cache::get('code')==200){
+                if (Cache::get('code') == 200) {
                     $save = Announcement::create($message);
                     $res = $this->checkQuery($save);
                     return  $req->method . $id;
                 }
                 return $this->returncode(100, $gotData, 'success');
-
             }
             $save = Announcement::create($message);
             $res = $this->checkQuery($save);

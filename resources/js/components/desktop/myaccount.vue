@@ -26,8 +26,8 @@
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item d-flex justify-content-between">
-                    <b>总余额</b>
-                    <a class="float-right">{{formatToPrice(balance)}}</a>
+                    <b>userBalance</b>
+                    <a class="float-right">{{formatToPrice(userBalanceAPi)}}</a>
                   </li>
                   <li class="list-group-item d-flex justify-content-between">
                     <b>最近登录时间</b>
@@ -433,7 +433,8 @@ export default {
       pro_id: null,
       login_at: null,
       name: null,
-      email: null
+      email: null,
+      userBalanceAPi: ""
     };
   },
   components: {
@@ -442,6 +443,7 @@ export default {
   mounted() {
     this.userdata();
     this.GetPlayerRecore();
+    this.getDataApi();
   },
   methods: {
     formatToPrice(value) {
@@ -565,6 +567,14 @@ export default {
     },
     refresh() {
       this.userdata();
+    },
+    getDataApi() {
+      axios.get("/Getconnect").then(res => {
+        this.userBalanceAPi = res.data[0].userBalance;
+        console.log(res.data).catch(error => {
+          console.log(error.response);
+        });
+      });
     },
     userdata() {
       axios
