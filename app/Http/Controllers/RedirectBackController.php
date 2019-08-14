@@ -50,11 +50,7 @@ class RedirectBackController extends Controller
         // Cache::get('mainUrl');
         return redirect(Cache::get('mainUrl') . '/oauth/authorize?' . $query);
     }
-    public function Getlogin()
-    {
-        Auth::loginUsingId(Cache::get('userid'));
-        return redirect(Cache::get('mainUrl') . '/getlogin?stockname=' . Cache::get("name") . '&loop=' . Cache::get("loop") . '&country=' . Cache::get("country"));
-    }
+  
     public function callback(Request $request)
     {
         $http = new Client;
