@@ -120,31 +120,31 @@ class MasterController extends Controller
 
         try {
             $data = [
-                'client_id' => '14',
+                'client_id' => '14',//replace with
                 'client_secret' => '6QtgpRQpy7Suc4wVdlPx2cpBJubi10O8GXlOxnDA',
                 'name' => Auth::user()->name,
                 'redirect_uri' => \Request::root() . '/callback',
                 'userId' => Auth::user()->user_id,
+                'balance'=>Auth::user()->userBalance,
                 'webId' => '0001'
             ];
 
             $http = new Client;
 
-            $send = $http->post('http://localhost:8003/api/redirect', [
+           $send = $http->post('http://localhost:8003/api/redirect', [
                 'form_params' => $data
             ]);
 
             $reqdata = json_decode((string) $send->getBody(), true);
 
-            if (!isset($reqdata['code']) == 200) {
-
+            if (!$reqdata['code'] == 200) {
                 return $reqdata;
-
             }
 
-
             if ($reqdata['code'] == 200) {
-                Cookie::queue('accessToken', $reqdata['data']['token'], 90000);
+
+                Cookie::queue('accessTokenDer', $reqdata['data']['token'], 90000);
+                // return $reqdata;
                 return redirect('http://localhost:8003/api/login?stockname=' . $req->stockname . '&loop=' . $req->loop . '&country=' . $req->country);
             }
             return $reqdata;
