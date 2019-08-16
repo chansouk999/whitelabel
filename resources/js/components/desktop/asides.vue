@@ -51,13 +51,11 @@
                 'webId'=>'0001' -->
         <span v-if="checkuser == 'true'">
           <ul class="nav">
-            <li class="nav-aside" id="SH0000015">
+            <!-- <li class="nav-aside" id="SH0000015">
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">
                   <livechart :key="0" stockname="SH000001" loop="5" country="china" :isMenu="true"></livechart>
                 </div>
-                <!-- <a href="/stocklist?stockname=SH000001&loop=5&country=china" slot="reference" target="_blank"> -->
-
                 <a
                   href="fullscreengame?stockname=SH000001&loop=5&country=china"
                   slot="reference"
@@ -72,9 +70,7 @@
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">
                   <livechart :key="1" stockname="SZ3990015" loop="5" country="china" :isMenu="true"></livechart>
-                </div>
-                <!-- <a href="/stocklist?stockname=SZ399001&loop=5&country=china" slot="reference" target="_blank"> -->
-                <a
+                </div><a
                   href="fullscreengame?stockname=SZ399001&loop=5&country=china"
                   slot="reference"
                   target="_blank"
@@ -93,9 +89,7 @@
                   href="fullscreengame?stockname=SH00300&loop=5&country=china"
                   slot="reference"
                   target="_blank"
-                >
-                  <!-- <a href="/stocklist?stockname=SH00300&loop=5&country=china" slot="reference" target="_blank"> -->
-                  <img src="assets/img/china_flag.png" alt />
+                > <img src="assets/img/china_flag.png" alt />
                   <p class="text-aside">{{stock3}}</p>
                 </a>
               </popper>
@@ -109,13 +103,11 @@
                   href="fullscreengame?stockname=SZ399415&loop=5&country=china"
                   slot="reference"
                   target="_blank"
-                >
-                  <!-- <a href="/stocklist?stockname=SZ399415&loop=5&country=china" slot="reference" target="_blank"> -->
-                  <img src="assets/img/china_flag.png" alt />
+                ><img src="assets/img/china_flag.png" alt />
                   <p class="text-aside">{{stock4}}</p>
                 </a>
               </popper>
-            </li>
+            </li> -->
             <li class="nav-aside" id="USdollarIndex5">
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">

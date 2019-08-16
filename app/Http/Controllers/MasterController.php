@@ -102,14 +102,13 @@ class MasterController extends Controller
         $Redirect = $data->pluck('redirect')[0];
         return redirect('http://localhost:8003/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
     }
-    public function gotogame()
+    public function redirect()
     {
 
         $query = http_build_query([
-            'client_id' => '9',
+            'client_id' => '14',
             'redirect_uri' => 'http://localhost:8003/api/callback',
             'response_type' => 'code',
-            'scope' => '',
         ]);
 
         return redirect('http://localhost:8003/api/redirect?' . $query);
@@ -144,8 +143,10 @@ class MasterController extends Controller
             if ($reqdata['code'] == 200) {
 
                 Cookie::queue('accessTokenDer', $reqdata['data']['token'], 90000);
+
+                return redirect($reqdata['data']['game_type_url'][0]);
                 // return $reqdata;
-                return redirect('http://localhost:8003/api/login?stockname=' . $req->stockname . '&loop=' . $req->loop . '&country=' . $req->country);
+                // return redirect('http://localhost:8003/api/login?stockname=' . $req->stockname . '&loop=' . $req->loop . '&country=' . $req->country);
             }
             return $reqdata;
         } catch (\Eception $ex) {
