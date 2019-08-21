@@ -696,10 +696,6 @@ class AdminController extends Controller
             }
             if ($req->code == 200) {
 
-                // $data\
-
-                // return $evnt;
-
                 $cc = ',"method":"' . $reqdata['method'] . '"}';
 
                 $datacc = str_replace('}', $cc, $reqdata['detail']);
@@ -723,6 +719,8 @@ class AdminController extends Controller
                     $del = Reqst::where('id', '=', $req->id)->delete();
 
                     $userupdate = User::where('user_id', '=', '' . $reqdata['userId'] . '')->update(['userBalance' => $evnt]);
+
+                    
 
                     if ($del && $userupdate) {
 

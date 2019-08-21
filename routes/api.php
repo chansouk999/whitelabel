@@ -22,7 +22,6 @@ Route::middleware('auth:api')->group( function () {
 	Route::post('delete', 'API\Apicontroller@delete');
     Route::get('/userdetail', 'API\Apicontroller@userdetail');
     Route::post('/sendlog', 'API\Apicontroller@Logdata');
-
     // transfertoapi
 });
 

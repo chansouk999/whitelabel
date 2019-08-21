@@ -102,14 +102,13 @@ class MasterController extends Controller
         $Redirect = $data->pluck('redirect')[0];
         return redirect('http://localhost:8003/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
     }
-    public function gotogame()
+    public function redirect()
     {
 
         $query = http_build_query([
-            'client_id' => '9',
+            'client_id' => '14',
             'redirect_uri' => 'http://localhost:8003/api/callback',
             'response_type' => 'code',
-            'scope' => '',
         ]);
 
         return redirect('http://localhost:8003/api/redirect?' . $query);
@@ -125,27 +124,29 @@ class MasterController extends Controller
                 'name' => Auth::user()->name,
                 'redirect_uri' => \Request::root() . '/callback',
                 'userId' => Auth::user()->user_id,
+                'balance'=>Auth::user()->userBalance,
                 'webId' => '0001'
             ];
 
             $http = new Client;
 
-            $send = $http->post('http://localhost:8003/api/redirect', [
+           $send = $http->post('http://localhost:8003/api/redirect', [
                 'form_params' => $data
             ]);
 
             $reqdata = json_decode((string) $send->getBody(), true);
 
-            if (!isset($reqdata['code']) == 200) {
-
+            if (!$reqdata['code'] == 200) {
                 return $reqdata;
-
             }
 
-
             if ($reqdata['code'] == 200) {
-                Cookie::queue('accessToken', $reqdata['data']['token'], 90000);
-                return redirect('http://localhost:8003/api/login?stockname=' . $req->stockname . '&loop=' . $req->loop . '&country=' . $req->country);
+
+                Cookie::queue('accessTokenDer', $reqdata['data']['token'], 90000);
+
+                return redirect($reqdata['data']['game_type_url'][0]);
+                // return $reqdata;
+                // return redirect('http://localhost:8003/api/login?stockname=' . $req->stockname . '&loop=' . $req->loop . '&country=' . $req->country);
             }
             return $reqdata;
         } catch (\Eception $ex) {
