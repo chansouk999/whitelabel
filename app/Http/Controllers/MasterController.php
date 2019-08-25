@@ -127,6 +127,7 @@ class MasterController extends Controller
                 'name' => Auth::user()->name, //client replace with -> UserName
                 'redirect_uri'=>\Request::root().'/callback', // your callback url ->http://yourapp/callback,
                 'userId'=>Auth::user()->user_id, // UserID
+                'userBalance'=>5000.09,
                 'webId'=>'0001'
             ];
 
