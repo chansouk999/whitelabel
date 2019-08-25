@@ -43,7 +43,7 @@ use Illuminate\Support\Facades\Cookie;
 
 class MasterController extends Controller
 {
-    protected $urlforserver = 'http://159.138.130.64'; // 1 use this if you are running on server
+    protected $urlforserver = 'http://159.138.54.214'; // 1 use this if you are running on server
     protected $urlforserverapi = 'http://localhost:8003'; // 2 use this if you are running on server
     protected $urlforlocal8003 = 'http://localhost:8003'; //1 use this if you are running on localhost
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
@@ -67,7 +67,7 @@ class MasterController extends Controller
         try {
             $http = new Client;
             $res = $http->get(
-                Cache::get('mainUrl') . '/api/getAlluserdata/' . Auth::user()->user_id,
+                $this->urlforserver.'/api/getAlluserdata/' . Auth::user()->user_id,
                 ['headers' => $this->getheader()]
             );
 
@@ -104,14 +104,13 @@ class MasterController extends Controller
         $Redirect = $data->pluck('redirect')[0];
         return redirect('http://localhost:8003/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
     }
-    public function gotogame()
+    public function redirect()
     {
 
         $query = http_build_query([
-            'client_id' => '9',
+            'client_id' => '14',
             'redirect_uri' => 'http://localhost:8003/api/callback',
             'response_type' => 'code',
-            'scope' => '',
         ]);
 
         return redirect('http://localhost:8003/api/redirect?' . $query);
@@ -119,7 +118,6 @@ class MasterController extends Controller
 
     public function fullscreengame(Request $req)
     {
-
         try {
             $data = [
                 'client_id' => '6', //client replace with -> 9
@@ -133,23 +131,22 @@ class MasterController extends Controller
 
             $http = new Client;
 
-            $send = $http->post('http://localhost:8003/api/redirect', [
+           $send = $http->post('http://localhost:8003/api/redirect', [
                 'form_params' => $data
             ]);
 
             $reqdata = json_decode((string) $send->getBody(), true);
 
-            if (!isset($reqdata['code']) == 200) {
-
+            if (!$reqdata['code'] == 200) {
                 return $reqdata;
-
             }
 
-
             if ($reqdata['code'] == 200) {
-                
+
                 Cookie::queue('accessToken', $reqdata['data']['token'], 90000);
 
+                // return redirect($reqdata['data']['game_type_url'][0]);
+                // return $reqdata;
                 return redirect('http://localhost:8003/api/login?stockname=' . $req->stockname . '&loop=' . $req->loop . '&country=' . $req->country);
             }
             return $reqdata;
@@ -474,7 +471,7 @@ class MasterController extends Controller
                     'user_id' => $userid,
                 ];
 
-                $response = $http->get(Cache::get('mainUrl') . '/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
+                $response = $http->get($this->urlforserver.'/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
                     'headers' => $header,
                 ]);
                 $accessdata = json_decode((string) $response->getBody(), true);
@@ -528,11 +525,7 @@ class MasterController extends Controller
         }
     }
 
-    public function trackuserLogin($id)
-    {
-        $getTrackUser = access_record::where('user_id', '=', '' . $id . '')->get();
-        return $getTrackUser;
-    }
+   
 
 
     public function sendsms(Request $req)

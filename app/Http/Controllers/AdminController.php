@@ -29,10 +29,11 @@ use App\AgenTransaction;
 use App\Agent_login;
 use App\Shareholder;
 use App\Carousel;
+use App\access_record;
 
 class AdminController extends Controller
 {
-    protected $urlserver = 'http://localhost:8003';
+    protected $urlserver = 'http://159.138.54.214';
     protected $url8003 = 'http://localhost:8003';
 
 
@@ -40,6 +41,13 @@ class AdminController extends Controller
     {
         return 'Hello World';
     }
+
+    public function ActionRecord($id)
+    {
+        $actionRecordDetail = modelog::where('detail', 'like', '%user_id":"' . $id . '%')->get();
+        return $actionRecordDetail;
+    }
+
     public function editadmindetail($id)
     {
         try {
@@ -186,6 +194,12 @@ class AdminController extends Controller
         }
     }
 
+    public function trackuserLogin($id)
+    {
+        $getTrackUser = access_record::where('user_id', '=', '' . $id . '')->get();
+        return $getTrackUser;
+    }
+
 
 
     public function getallresultadmin()
@@ -193,7 +207,7 @@ class AdminController extends Controller
         try {
             $header = $this->getcleanheader(Cookie::get('accessToken'));
             $http = new Client;
-            $response = $http->get(Cache::get('mainUrl') . '/api/getallresultadmin', ['headers' => $header]);
+            $response = $http->get($this->urlserver.'/api/getallresultadmin', ['headers' => $header]);
             $accessdata = json_decode((string) $response->getBody(), true);
             return $accessdata;
         } catch (\Exception $ex) {
@@ -252,7 +266,7 @@ class AdminController extends Controller
     public function getfreshtoken()
     {
         $http = new Client;
-        $response = $http->post(Cache::get('mainUrl') . '/oauth/token', [
+        $response = $http->post($this->urlserver.'/oauth/token', [
             'form_params' => [
                 'grant_type' => 'password',
                 'client_id' => '2',
@@ -357,7 +371,7 @@ class AdminController extends Controller
 
             $http = new Client;
             if ($method == 'game') {
-                $response = $http->post(Cache::get('mainUrl') . '/api/requestuserdata', [
+                $response = $http->post($this->urlserver.'/api/requestuserdata', [
                     'form_params' => [
                         'method' => $req->reqmethod,
                         'user_id' => $user_id,
@@ -395,7 +409,7 @@ class AdminController extends Controller
     {
         try {
             $http = new Client;
-            $response = $http->post(Cache::get('mainUrl') . '/api/requestuserdata', [
+            $response = $http->post($this->urlserver.'/api/requestuserdata', [
                 'form_params' => [
                     'method' => $method,
                     'gameid' => $gmaeid,
@@ -411,7 +425,7 @@ class AdminController extends Controller
     {
         try {
             $http = new Client;
-            $response = $http->post(Cache::get('mainUrl') . '/api/requestuserdata', [
+            $response = $http->post($this->urlserver.'/api/requestuserdata', [
                 'form_params' => [
                     'method' => $method,
                     'gameid' => $gmaeid,
@@ -696,10 +710,6 @@ class AdminController extends Controller
             }
             if ($req->code == 200) {
 
-                // $data\
-
-                // return $evnt;
-
                 $cc = ',"method":"' . $reqdata['method'] . '"}';
 
                 $datacc = str_replace('}', $cc, $reqdata['detail']);
@@ -723,6 +733,8 @@ class AdminController extends Controller
                     $del = Reqst::where('id', '=', $req->id)->delete();
 
                     $userupdate = User::where('user_id', '=', '' . $reqdata['userId'] . '')->update(['userBalance' => $evnt]);
+
+                    
 
                     if ($del && $userupdate) {
 

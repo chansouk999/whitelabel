@@ -75,6 +75,8 @@ Route::get('/getreuest', 'AdminController@getreuest');
 Route::get('/getdata', 'AdminController@getuserdata');
 Route::get('/gettoken', 'AdminController@gettoken');
 Route::get('/getadminrule', 'AdminController@getadminrule');
+Route::get('/trackuserLogin/{id}', 'AdminController@trackuserLogin');
+Route::get('/ActionRecord/{id}', 'AdminController@ActionRecord');
 
 Route::get('/home', function () {
     return redirect('/');
@@ -236,7 +238,7 @@ Route::get('/getcardinfo', 'CardController@getcardinfo');
 
 Route::get('/ShowCardUse', 'CardController@ShowCardUse');
 
-Route::get('/trackuserLogin/{id}', 'CardController@trackuserLogin');
+
 
 Route::post('/CardDelete/{id}', 'CardController@CardDelete');
 
@@ -246,7 +248,6 @@ Route::get('/getuserdetail', 'CardController@getuserdetail');
 
 Route::post('/useCard', 'CardController@useCard');
 
-Route::get('/ActionRecord/{id}', 'CardController@ActionRecord');
 
 
 

@@ -48,17 +48,17 @@ class RedirectBackController extends Controller
             'scope' => '',
         ]);
         // Cache::get('mainUrl');
-        return redirect(Cache::get('mainUrl') . '/oauth/authorize?' . $query);
+        return redirect($this->url8003.'/oauth/authorize?' . $query);
     }
     public function Getlogin()
     {
         Auth::loginUsingId(Cache::get('userid'));
-        return redirect(Cache::get('mainUrl') . '/getlogin?stockname=' . Cache::get("name") . '&loop=' . Cache::get("loop") . '&country=' . Cache::get("country"));
+        return redirect($this->url8003.'/getlogin?stockname=' . Cache::get("name") . '&loop=' . Cache::get("loop") . '&country=' . Cache::get("country"));
     }
     public function callback(Request $request)
     {
         $http = new Client;
-        $response = $http->post(Cache::get('mainUrl') . '/oauth/token', [
+        $response = $http->post($this->url8003.'/oauth/token', [
             'form_params' => [
                 'grant_type' => 'authorization_code',
                 'client_id' => Cache::get('MainClientID'),
@@ -77,7 +77,7 @@ class RedirectBackController extends Controller
 
         Cache::put('webToken', $accessdata['access_token'], 3714526);
 
-        $resuser = $http->get(Cache::get('mainUrl') . '/api/users', ['headers' => $header]);
+        $resuser = $http->get($this->url8003.'/api/users', ['headers' => $header]);
         $data =  json_decode((string) $resuser->getBody(), true);
         $date = date('Y-m-d');
         $check = access_token::where([['created_at', 'like', '%' . $date . '%'], ['user_id', '=', '' . $data['user_id'] . '']])->get()->count();
@@ -89,7 +89,7 @@ class RedirectBackController extends Controller
         }
         // Auth::loginUsingId(Cache::get('userid'));
         // return Cache::get('userid');
-        return redirect(Cache::get('mainUrl') . '/getlogin?stockname=' . Cache::get("name") . '&loop=' . Cache::get("loop") . '&country=' . Cache::get("country"));
+        return redirect($this->url8003.'/getlogin?stockname=' . Cache::get("name") . '&loop=' . Cache::get("loop") . '&country=' . Cache::get("country"));
         //     // return [$accessdata,$data];
 
     }
