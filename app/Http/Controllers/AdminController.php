@@ -207,7 +207,7 @@ class AdminController extends Controller
         try {
             $header = $this->getcleanheader(Cookie::get('accessToken'));
             $http = new Client;
-            $response = $http->get($this->urlhost.'/api/getallresultadmin', ['headers' => $header]);
+            $response = $http->get($this->urlserver.'/api/getallresultadmin', ['headers' => $header]);
             $accessdata = json_decode((string) $response->getBody(), true);
             return $accessdata;
         } catch (\Exception $ex) {
@@ -266,7 +266,7 @@ class AdminController extends Controller
     public function getfreshtoken()
     {
         $http = new Client;
-        $response = $http->post($this->urlhost.'/oauth/token', [
+        $response = $http->post($this->urlserver.'/oauth/token', [
             'form_params' => [
                 'grant_type' => 'password',
                 'client_id' => '2',
@@ -371,7 +371,7 @@ class AdminController extends Controller
 
             $http = new Client;
             if ($method == 'game') {
-                $response = $http->post($this->urlhost.'/api/requestuserdata', [
+                $response = $http->post($this->urlserver.'/api/requestuserdata', [
                     'form_params' => [
                         'method' => $method,
                     ], 'headers' => $header
@@ -428,7 +428,7 @@ class AdminController extends Controller
     {
         try {
             $http = new Client;
-            $response = $http->post($this->urlhost.'/api/requestuserdata', [
+            $response = $http->post($this->urlserver.'/api/requestuserdata', [
                 'form_params' => [
                     'method' => $method,
                     'gameid' => $gmaeid,
@@ -444,7 +444,7 @@ class AdminController extends Controller
     {
         try {
             $http = new Client;
-            $response = $http->post($this->urlhost.'/api/requestuserdata', [
+            $response = $http->post($this->urlserver.'/api/requestuserdata', [
                 'form_params' => [
                     'method' => $method,
                     'gameid' => $gmaeid,
