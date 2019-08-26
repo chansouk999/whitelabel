@@ -46,7 +46,7 @@ class MasterController extends Controller
     protected $urlforlocal8003 = 'http://localhost:8003'; //1 use this if you are running on localhost
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
     protected $data = [];
-
+ 
     public function __construct()
     {
         $this->middleware('auth');
@@ -78,7 +78,7 @@ class MasterController extends Controller
             $save = User::where('user_id', Auth::user()->user_id)->update(['totalOnlineHour' => array_sum($totalonline)]);
             return array_sum($totalonline);
         } catch (\Exception $ex) {
-            return $this->returncode(500, '', $ex->getMessage()); //internal server eeror
+            return $this->returncode(500, '', $ex->getMessage()); //internal server error
         }
     }
 
@@ -116,11 +116,11 @@ class MasterController extends Controller
 
     public function fullscreengame(Request $req)
     {
-
         try {
+
             $data = [
-                'client_id' => '5',
-                'client_secret' => 'XOVSvt0KL9tR8SrEdAc5CwOCQvaB1rJb7alOMTSH',
+                'client_id' => '3',
+                'client_secret' => 'gJJBQUdcz3Xu69m7RmRUcNieOcVyqRSeDtrdBxHs',
                 'name' => Auth::user()->name,
                 'redirect_uri' => \Request::root() . '/callback',
                 'userId' => Auth::user()->user_id,
@@ -142,11 +142,11 @@ class MasterController extends Controller
 
             if ($reqdata['code'] == 200) {
 
-                Cookie::queue('accessTokenDer', $reqdata['data']['token'], 90000);
+                Cookie::queue('accessToken', $reqdata['data']['token'], 90000);
 
-                return redirect($reqdata['data']['game_type_url'][0]);
+                // return redirect($reqdata['data']['game_type_url'][0]);
                 // return $reqdata;
-                // return redirect('http://localhost:8003/api/login?stockname=' . $req->stockname . '&loop=' . $req->loop . '&country=' . $req->country);
+                return redirect('http://localhost:8003/api/login?stockname=' . $req->stockname . '&loop=' . $req->loop . '&country=' . $req->country);
             }
             return $reqdata;
         } catch (\Eception $ex) {

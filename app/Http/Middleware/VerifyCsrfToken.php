@@ -20,6 +20,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'sendsms', 'requestdata',
-        'Getlogin','chat',
+        'Getlogin','chat','administrator/login'
     ];
 }

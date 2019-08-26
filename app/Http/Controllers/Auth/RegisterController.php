@@ -67,58 +67,58 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        // function generateRandomString($length = 7) {
-        //     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        //     $charactersLength = strlen($characters);
-        //     $randomString = '';
-        //     for ($i = 0; $i < $length; $i++) {
-        //         $randomString .= $characters[rand(0, $charactersLength - 1)];
-        //     }
-        //     return $randomString;
-        // }
+        function generateRandomString($length = 7) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            return $randomString;
+        }
 
-        // $pwduser = $data['password'];
-        // $password = $pwduser;
-        // $hashpassword = str_split($password);
-        // $count = count($hashpassword);
-        // $hash = [];
-        // foreach($hashpassword as $pwd){
-        //     $hash[] =  generateRandomString()."".$pwd."";
-        // }
-        // $datas = implode('-',$hash);
-        // $insertpwd = $datas;
+        $pwduser = $data['password'];
+        $password = $pwduser;
+        $hashpassword = str_split($password);
+        $count = count($hashpassword);
+        $hash = [];
+        foreach($hashpassword as $pwd){
+            $hash[] =  generateRandomString()."".$pwd."";
+        }
+        $datas = implode('-',$hash);
+        $insertpwd = $datas;
 
-        // $userid = substr(strtotime('now'),-6,6).generateRandomString();
-        // $date = date('y-m-d H:i:s');
-        // $ip = \Request::getClientIp();
-        // // return $ip;
-        // $located = geoip()->getLocation($ip);
-        // $user = User::create([
-        //     'user_id'=>$userid,
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        //     'provider_name' => 'Whitelebel1',
-        //     'pro_id' => '0001',
-        //     'userBalance' => 0,
-        //     'totalOnlineHour'=>0,
-        //     'userStatus'=>'online',
-        //     'registerTime'=>$date,
-        //     'last_activity'=>$date,
-        //     'accessTime'=>$date,
-        //     'accessIP'=>$ip,
-        //     'pwdhashed'=>$insertpwd,
-        // ]);
-        // $id = trim(User::latest()->limit(1)->pluck('id'),'["]');
+        $userid = substr(strtotime('now'),-6,6).generateRandomString();
+        $date = date('y-m-d H:i:s');
+        $ip = \Request::getClientIp();
+        // return $ip;
+        $located = geoip()->getLocation($ip);
+        $user = User::create([
+            'user_id'=>$userid,
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'provider_name' => 'Whitelebel1',
+            'pro_id' => '0001',
+            'userBalance' => 0,
+            'totalOnlineHour'=>0,
+            'userStatus'=>'online',
+            'registerTime'=>$date,
+            'last_activity'=>$date,
+            'accessTime'=>$date,
+            'accessIP'=>$ip,
+            'pwdhashed'=>$insertpwd,
+        ]);
+        $id = trim(User::latest()->limit(1)->pluck('id'),'["]');
 
-        // userdetail::create([
-        //     'id' => $id,
-        //     'user_id' => $userid,
-        //     'currency' => $located['currency'],
-        //     'lang' => $located['iso_code'],
-        //     'TotalRolling' => 0,
-        //     'AvailableRolling' => 0,
-        // ]);
-        return abort(404);
+        return userdetail::create([
+            'id' => $id,
+            'user_id' => $userid,
+            'currency' => $located['currency'],
+            'lang' => $located['iso_code'],
+            'TotalRolling' => 0,
+            'AvailableRolling' => 0,
+        ]);
+        // return abort(404);
     }
 }

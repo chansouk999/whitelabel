@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use Closure;
 use App\User;
 use Illuminate\Support\Facades\Cookie;
-
 use Illuminate\Support\Facades\DB;
 use Auth;
 class authcheck
@@ -26,7 +25,7 @@ class authcheck
         //     echo "NO ONE LOGIN";
         // }
         // echo User::count()+1;
-        // echo Cookie::get('accessTokenDer');
+        // var_dump(Cookie::get('accessToken'));
 
         return $next($request);
     }

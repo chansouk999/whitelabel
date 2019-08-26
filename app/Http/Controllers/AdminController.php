@@ -33,7 +33,7 @@ use App\Carousel;
 class AdminController extends Controller
 {
     protected $urlserver = 'http://localhost:8003';
-    protected $url8003 = 'http://localhost:8003';
+    protected $urlhost = 'http://localhost:8003';
 
 
     public static function helloword()
@@ -193,7 +193,7 @@ class AdminController extends Controller
         try {
             $header = $this->getcleanheader(Cookie::get('accessToken'));
             $http = new Client;
-            $response = $http->get(Cache::get('mainUrl') . '/api/getallresultadmin', ['headers' => $header]);
+            $response = $http->get($this->urlhost.'/api/getallresultadmin', ['headers' => $header]);
             $accessdata = json_decode((string) $response->getBody(), true);
             return $accessdata;
         } catch (\Exception $ex) {
@@ -252,7 +252,7 @@ class AdminController extends Controller
     public function getfreshtoken()
     {
         $http = new Client;
-        $response = $http->post(Cache::get('mainUrl') . '/oauth/token', [
+        $response = $http->post($this->urlhost.'/oauth/token', [
             'form_params' => [
                 'grant_type' => 'password',
                 'client_id' => '2',
@@ -357,11 +357,9 @@ class AdminController extends Controller
 
             $http = new Client;
             if ($method == 'game') {
-                $response = $http->post(Cache::get('mainUrl') . '/api/requestuserdata', [
+                $response = $http->post('http://localhost:8003/api/requestuserdata', [
                     'form_params' => [
-                        'method' => $req->reqmethod,
-                        'user_id' => $user_id,
-                        'name' => $req->name,
+                        'method' => $method,
                     ], 'headers' => $header
                 ]);
                 $accessdata = json_decode((string) $response->getBody(), true);
@@ -395,7 +393,7 @@ class AdminController extends Controller
     {
         try {
             $http = new Client;
-            $response = $http->post(Cache::get('mainUrl') . '/api/requestuserdata', [
+            $response = $http->post($this->urlhost.'/api/requestuserdata', [
                 'form_params' => [
                     'method' => $method,
                     'gameid' => $gmaeid,
@@ -411,7 +409,7 @@ class AdminController extends Controller
     {
         try {
             $http = new Client;
-            $response = $http->post(Cache::get('mainUrl') . '/api/requestuserdata', [
+            $response = $http->post($this->urlhost.'/api/requestuserdata', [
                 'form_params' => [
                     'method' => $method,
                     'gameid' => $gmaeid,
