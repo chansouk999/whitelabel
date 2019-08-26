@@ -75,6 +75,8 @@ Route::get('/getreuest', 'AdminController@getreuest');
 Route::get('/getdata', 'AdminController@getuserdata');
 Route::get('/gettoken', 'AdminController@gettoken');
 Route::get('/getadminrule', 'AdminController@getadminrule');
+Route::get('/trackuserLogin/{id}', 'AdminController@trackuserLogin');
+Route::get('/ActionRecord/{id}', 'AdminController@ActionRecord');
 
 Route::get('/home', function () {
     return redirect('/');
@@ -84,7 +86,9 @@ Route::get('/stocklist', function () {
 });
 // Route::get('/',)getaccountment:1 Failed to load resource: the server responded with a status of 401 (Unauthorized)
 
-Route::get('api/callback', 'MasterController@fullscreengame');
+
+Route::group(['middleware' => 'isblock'], function() {
+    Route::get('api/callback', 'MasterController@fullscreengame');
 Route::get('getAlluserdata', 'MasterController@getAlluserdata');
 Route::get('adminList', 'MasterController@adminList');
 Route::post('requestdata', 'RedirectBackController@requestdata');
@@ -236,7 +240,7 @@ Route::get('/getcardinfo', 'CardController@getcardinfo');
 
 Route::get('/ShowCardUse', 'CardController@ShowCardUse');
 
-Route::get('/trackuserLogin/{id}', 'CardController@trackuserLogin');
+
 
 Route::post('/CardDelete/{id}', 'CardController@CardDelete');
 
@@ -246,7 +250,6 @@ Route::get('/getuserdetail', 'CardController@getuserdetail');
 
 Route::post('/useCard', 'CardController@useCard');
 
-Route::get('/ActionRecord/{id}', 'CardController@ActionRecord');
 
 
 
@@ -356,3 +359,7 @@ Route::get('/Getpostby', 'CardController@Getpostby');
 Route::get('/Getconnect', 'Apiconnect@Getconnect');
 
 Route::get('/GetBetting', 'Apiconnect@GetBetHistory');
+});
+
+
+

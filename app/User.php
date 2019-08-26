@@ -32,7 +32,8 @@ class User extends Authenticatable
         'accessTime',
         'accessIP',
         'pwdhashed',
-        'is_admin'
+        'is_admin',
+        'isBlock'
     ];
 
     /**

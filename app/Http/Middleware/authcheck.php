@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Auth;
+
 class authcheck
 {
     /**
@@ -18,14 +19,11 @@ class authcheck
      */
     public function handle($request, Closure $next)
     {
-        // if(Auth::check()){
-        //     echo Auth::user();
-
-        // }else{
-        //     echo "NO ONE LOGIN";
-        // }
-        // echo User::count()+1;
-        // var_dump(Cookie::get('accessToken'));
+        if(Auth::check()){
+            if(Auth::guard()->user()->isBlock){
+                return abort(401, 'Something wrong');
+            }
+        }
 
         return $next($request);
     }

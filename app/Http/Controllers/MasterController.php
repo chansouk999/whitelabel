@@ -6,6 +6,8 @@ use App\Http\Controllers\ActivityLogController as ActivityLog;
 
 use Illuminate\Http\Request;
 use App\Request as Reqst;
+// use Cache
+
 use App\Selfservice;
 use Auth;
 use GuzzleHttp\Client;
@@ -41,7 +43,7 @@ use Illuminate\Support\Facades\Cookie;
 
 class MasterController extends Controller
 {
-    protected $urlforserver = 'http://159.138.130.64'; // 1 use this if you are running on server
+    protected $urlforserver = 'http://159.138.54.214'; // 1 use this if you are running on server
     protected $urlforserverapi = 'http://localhost:8003'; // 2 use this if you are running on server
     protected $urlforlocal8003 = 'http://localhost:8003'; //1 use this if you are running on localhost
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
@@ -65,7 +67,7 @@ class MasterController extends Controller
         try {
             $http = new Client;
             $res = $http->get(
-                Cache::get('mainUrl') . '/api/getAlluserdata/' . Auth::user()->user_id,
+                $this->urlforserver.'/api/getAlluserdata/' . Auth::user()->user_id,
                 ['headers' => $this->getheader()]
             );
 
@@ -470,7 +472,7 @@ class MasterController extends Controller
                     'user_id' => $userid,
                 ];
 
-                $response = $http->get(Cache::get('mainUrl') . '/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
+                $response = $http->get($this->urlforserver.'/api/transfermoney/' . $userid . '/' . $req->amount, [ //replace url with $this->urlforserver
                     'headers' => $header,
                 ]);
                 $accessdata = json_decode((string) $response->getBody(), true);
@@ -524,11 +526,7 @@ class MasterController extends Controller
         }
     }
 
-    public function trackuserLogin($id)
-    {
-        $getTrackUser = access_record::where('user_id', '=', '' . $id . '')->get();
-        return $getTrackUser;
-    }
+   
 
 
     public function sendsms(Request $req)

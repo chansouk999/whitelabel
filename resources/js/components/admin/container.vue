@@ -223,6 +223,20 @@
                                         <i class="tim-icons icon-coins"></i>
                                       </button>
                                     </span>
+                                     <span data-toggle="modal" data-target=".action-record">
+                                      <button
+                                       @click="viewuserdata(data.isBlock == 0 ? method='blockusr' : method='unblock',data.user_id)"
+                                        type="button"
+                                        data-toggle="tooltip"
+                                        data-placement="bottom"
+                                        title="action record"
+                                        class="btn btn-primary btn-sm btn-icon"
+                                      >
+                                        <span v-if="data.isBlock==1">unlock user</span>
+                                        <span v-if="data.isBlock==0">block user</span>
+                                      </button>
+                                    </span>
+
 
                                     <!-- <button type="button" rel="tooltip" class="btn btn-primary" @click="viewuserdata(method='game',data.user_id,data.name)">Game History</button>
               <button type="button" rel="tooltip" class="btn btn-primary"  @click="viewuserdata(method='topup',data.user_id,data.name)">Top-up History</button>

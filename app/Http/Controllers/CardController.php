@@ -157,13 +157,7 @@ class CardController extends Controller
         $getuserdetail = activityLog::where('detail', 'like', '%user_id":"' . $playerRecoard . '%')->get();
         return $getuserdetail;
     }
-    public function ActionRecord($id)
-    {
-        $actionRecord  = Auth::user()->user_id;
-        $actionRecordDetail = activityLog::where('detail', 'like', '%user_id":"' . $id . '%')->get();
-        return $actionRecordDetail;
-    }
-
+    
 
 
     public function editlevel($id)

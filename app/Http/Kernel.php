@@ -36,7 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \App\Http\Middleware\createclientid::class,
-            \App\Http\Middleware\authcheck::class,
+           
             \App\Http\Middleware\lastactivity::class,
             \App\Http\Middleware\Cors::class,
             \App\Http\Middleware\AutoDeleteAnnoucement::class,
@@ -76,6 +76,7 @@ class Kernel extends HttpKernel
         'cors' => \App\Http\Middleware\Cors::class,
         'admin' => \App\Http\Middleware\Admin::class,
         'guest' => \App\Http\Middleware\RedirectifAdminAuthenticated::class,
+        'isblock'=> \App\Http\Middleware\authcheck::class,
     ];
 
     /**

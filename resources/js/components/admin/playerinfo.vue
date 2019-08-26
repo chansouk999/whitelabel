@@ -105,6 +105,12 @@
                 class="btn btn-primary"
                 @click="viewuserdata(method='action',data.user_id)"
               >Action Record</button>
+              <button
+                type="button"
+                rel="tooltip"
+                class="btn btn-primary"
+                @click="viewuserdata(method='blockusr',data.user_id)"
+              >Block User</button>
               <!-- </div> -->
             </tr>
           </tbody>

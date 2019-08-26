@@ -29,10 +29,11 @@ use App\AgenTransaction;
 use App\Agent_login;
 use App\Shareholder;
 use App\Carousel;
+use App\access_record;
 
 class AdminController extends Controller
 {
-    protected $urlserver = 'http://localhost:8003';
+    protected $urlserver = 'http://159.138.54.214';
     protected $urlhost = 'http://localhost:8003';
 
 
@@ -40,6 +41,13 @@ class AdminController extends Controller
     {
         return 'Hello World';
     }
+
+    public function ActionRecord($id)
+    {
+        $actionRecordDetail = modelog::where('detail', 'like', '%user_id":"' . $id . '%')->get();
+        return $actionRecordDetail;
+    }
+
     public function editadmindetail($id)
     {
         try {
@@ -184,6 +192,12 @@ class AdminController extends Controller
         } catch (\Exception $ex) {
             return $this->returncode(500, '', $ex->getMessage());
         }
+    }
+
+    public function trackuserLogin($id)
+    {
+        $getTrackUser = access_record::where('user_id', '=', '' . $id . '')->get();
+        return $getTrackUser;
     }
 
 
@@ -357,7 +371,7 @@ class AdminController extends Controller
 
             $http = new Client;
             if ($method == 'game') {
-                $response = $http->post('http://localhost:8003/api/requestuserdata', [
+                $response = $http->post($this->urlhost.'/api/requestuserdata', [
                     'form_params' => [
                         'method' => $method,
                     ], 'headers' => $header
@@ -385,7 +399,28 @@ class AdminController extends Controller
             if ($method == 'viewgameresult') {
                 return $this->getgameresult($method, $req->name, $header);
             }
+            if($method == 'blockusr' || $method =='unblock'){
+                return $this->blockUser($method,$user_id);
+            }
         } catch (\Exception $ex) {
+            return $this->returncode(500, '', $ex->getMessage());
+        }
+    }
+    public function blockUser($method,$user_id){
+        try{
+            DB::enableQueryLog();
+            if($method=='blockusr'){
+                $savemdf = [
+                    'isBlock'=>1
+                ];
+            }else{
+                $savemdf = [
+                    'isBlock'=>0
+                ];
+            }
+            $save = User::where('user_id',$user_id)->update($savemdf);
+            return $save ? $this->returncode(200, $save, 'success') : $this->returncode(301, $save, DB::getQueryLog());
+        }catch(\Exception $ex){
             return $this->returncode(500, '', $ex->getMessage());
         }
     }

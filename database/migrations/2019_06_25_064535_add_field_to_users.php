@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+use Illuminate\Support\Facades\DB;
 class AddFieldToUsers extends Migration
 {
     /**
@@ -13,8 +13,10 @@ class AddFieldToUsers extends Migration
      */
     public function up()
     {
+        // DB::statement('ALTER TABLE `users` DROP `is_admin`');
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('is_admin')->nullable();
+            $table->boolean('isBlock')->default(0);
         });
     }
 
