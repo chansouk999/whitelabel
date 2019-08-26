@@ -33,6 +33,7 @@ export const adminmixin = {
                 // alert(id)
             axios.post('getgamehistory', { reqmethod: method, user_id: id, name: name }).then(res => {
                 console.log(res.data)
+                this.userdata()
                 this.popup = true
                 if (res.data.code == 200) {
                     this.gotuserhistory = res.data.data

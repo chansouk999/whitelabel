@@ -77,7 +77,10 @@ Route::get('/gettoken', 'AdminController@gettoken');
 Route::get('/getadminrule', 'AdminController@getadminrule');
 Route::get('/trackuserLogin/{id}', 'AdminController@trackuserLogin');
 Route::get('/ActionRecord/{id}', 'AdminController@ActionRecord');
-
+Route::post('/addcardmin', 'AdminController@addcardmin');
+Route::post('/addrule', 'AdminController@addrule');
+Route::post('/deleteruld/{id}', 'AdminController@deleteruld');
+Route::post('/saveannounce', 'AdminController@saveannounce');
 Route::get('/home', function () {
     return redirect('/');
 });
@@ -165,58 +168,6 @@ Route::get('admin/check', function () {
 
 
 Route::post('/checklogin', 'NoAuthController@checklogin');
-Route::get('/redirectback', function () {
-    $query = http_build_query([
-        'client_id' => 'client-id',
-        'redirect_uri' => 'http://localhost:8004/callback',
-        'response_type' => 'code',
-        'scope' => '',
-    ]);
-    return redirect('http://localhost:8003/oauth/authorize?' . $query);
-    // // asdasd
-    // $id = \Auth::user()->pro_id . '_' . \Auth::user()->user_id;
-    // $http = new GuzzleHttp\Client();
-    // // function dehash(){
-    // $data = \Auth::user()->pwdhashed;
-    // $pwd = explode('-', $data);
-    // $gotpwd = [];
-    // foreach ($pwd as $p) {
-    //     $gotpwd[] = substr($p, -1, 1);
-    // }
-    // $realpwd = implode('', $gotpwd);
-    // $dehashed =  $realpwd; //GOTED PASSWORD
-
-    // // }
-    // // return $dehashed;
-
-    // $response = $http->post('http://localhost:8003/oauth/token', [
-    //     'form_params' => [
-    //         'grant_type' => 'password',
-    //         'client_id' => '2',
-    //         'client_secret' => 'n7ZrJ7VGv4b6QuQjZ1AKWZ4w4AuvX88JuxzlPjGu',
-    //         'username' => \Auth::user()->email,
-    //         'password' => $dehashed,
-    //         'scope' => '',
-    //     ],
-    // ]);
-    // $accessdata = json_decode((string)$response->getBody(), true);
-    // $header = [
-    //     'Content-Type' => 'application/json',
-    //     'Accept' => 'application/json',
-    //     'Authorization' => 'Bearer ' . $accessdata['access_token']
-    // ];
-    // $resuser = $http->get('http://localhost:8003/api/users', ['headers' => $header]);
-    // $data =  json_decode((string)$resuser->getBody(), true);
-    // $date = date('Y-m-d');
-    // $check = access_token::where([['created_at', 'like', '%' . $date . '%'], ['user_id', '=', '' . $data['user_id'] . '']])->get()->count();
-    // if ($check < 1) {
-    //     access_token::create([
-    //         'user_id' => $data['user_id'],
-    //         'access_token' => $accessdata['access_token']
-    //     ]);
-    // }
-    // return redirect('http://localhost:8003/igotologin');
-});
 Route::get('/redirect', 'RedirectBackController@redirect');
 Route::get('/callback', 'RedirectBackController@callback');
 
@@ -292,7 +243,7 @@ Route::get('getRequets', 'CardController@getRequets');
 
 Route::get('/shareholderTEST', 'Shareholder@index');
 
-Route::post('/saveannounce', 'AdminController@saveannounce');
+
 
 Route::post('/getDate', 'CardController@getDate');
 
@@ -329,7 +280,7 @@ Route::get('/cardControl', 'StaticController@cardControl');
 // Route::domain('{user}.'.\Request::route())->group(function ($router) {
 //     return $router." DO MAIN";
 // });
-Route::post('/addcardmin', 'AdminController@addcardmin');
+
 
 
 
@@ -337,11 +288,11 @@ Route::post('/deletecard/{id}', 'CardController@deletecard');
 
 Route::get('/sendeditcard/{id}', 'CardController@sendeditcard');
 
-Route::post('/addrule', 'AdminController@addrule');
 
 
 
-Route::post('/deleteruld/{id}', 'AdminController@deleteruld');
+
+
 
 Route::get('/chat', 'CardController@chat');
 Route::get('/chatAdmin', 'ChatController@chat');
