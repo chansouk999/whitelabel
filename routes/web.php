@@ -38,7 +38,7 @@ Auth::routes();
 
 Route::get('/chathere', 'ChatController@index');
 
-
+ 
 Route::get('api/getAgent', 'Shareholder\HomeController@getAgent');
 Route::get('api/getbetHisoty/{date}', 'Shareholder\HomeController@getApi');
 Route::get('/getannounce/{m1}/{m2}', 'AdminController@getannounce');

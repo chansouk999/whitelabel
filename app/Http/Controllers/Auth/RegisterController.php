@@ -111,7 +111,7 @@ class RegisterController extends Controller
         ]);
         $id = trim(User::latest()->limit(1)->pluck('id'),'["]');
 
-        return userdetail::create([
+       userdetail::create([
             'id' => $id,
             'user_id' => $userid,
             'currency' => $located['currency'],
@@ -119,6 +119,6 @@ class RegisterController extends Controller
             'TotalRolling' => 0,
             'AvailableRolling' => 0,
         ]);
-        // return abort(404);
+        return $user;
     }
 }
