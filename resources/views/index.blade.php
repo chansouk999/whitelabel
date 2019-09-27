@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
-    <title>Whitlabel </title>
+    <title>Whitlabel</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <!-- Fonts -->
    

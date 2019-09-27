@@ -124,7 +124,6 @@ export default {
             navShowName: "message",
             ismenu: false,
             messages: "./message",
-            promote: "./promote",
             welcome: "/",
             lobby: "./lobby",
             csrf: document

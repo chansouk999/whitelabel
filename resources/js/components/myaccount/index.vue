@@ -38,7 +38,7 @@ import navbarMoile from "../welcome/navbarMobile";
 import navbarDekstop from "../welcome/navbarDekstop";
 import asides from "../welcome/asides";
 import footers from "../welcome/footers";
-import navbarindex from "../index/navbarindex";
+import navbarindex from "../myaccount/navbarindex";
 import alertsidebar from "../alertsidebar";
 export default {
   data() {

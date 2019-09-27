@@ -216,7 +216,6 @@ export default {
       loading: true,
       page: "",
       messages: "./message",
-      promote: "./promote",
       welcome: "/",
       lobby: "./lobby",
       dataAnnoucement: [],

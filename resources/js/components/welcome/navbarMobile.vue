@@ -235,14 +235,7 @@
                   </div>My Account
                 </a>
               </li>
-              <li class="nav-item">
-                <a :href="promote" class="button nav-link d-flex float-left">
-                  <div class="icons">
-                    <i class="tim-icons icon-trophy icon-default"></i>
-                    <i class="tim-icons icon-trophy icon-hover"></i>
-                  </div>My Privilege
-                </a>
-              </li>
+             
               <li class="nav-item">
                 <a :href="lobby" class="button nav-link d-flex float-left">
                   <div class="icons">
@@ -756,7 +749,6 @@ export default {
       navShowName: "message",
       ismenu: false,
       messages: "./index",
-      promote: "./promote",
       welcome: "/",
       lobby: "./lobby",
       csrf: document

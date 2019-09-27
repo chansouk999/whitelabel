@@ -20,8 +20,7 @@ Vue.component('app-taps', require('./components/mobile/taps.vue').default);
 Vue.component('app-messagemb', require('./components/mobile/mymessage.vue').default);
 
 Vue.component('app-container', require('./components/welcome/containerwelcome.vue').default);
-Vue.component('app-index', require('./components/index/index.vue').default);
-Vue.component('app-promte', require('./components/activity/promote.vue').default);
+Vue.component('app-index', require('./components/myaccount/index.vue').default);
 Vue.component('app-lobby', require('./components/lobby.vue').default);
 Vue.component('app-chat', require('./components/desktop/chat.vue').default);
 Vue.component('app-stocklist', require('./components/stocklist.vue').default);
