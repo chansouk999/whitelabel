@@ -29,40 +29,6 @@
             :country="country"
           ></app-aside>
         </div>
-
-        <div class="col-xl-10 col-sm-12">
-          <div class="content">
-
-            <!-- <h1>Stockname: {{stockname}} => Loop: {{loop}} => Country: {{country}}</h1> -->
-            <livechart :stockname="stockname" :loop="loop" :country="country"/>
-            <div class="row">
-              <div class="col-md-12">
-                <app-tabletren
-                  :lastGameID="lastGameID"
-                  :isFullScreen="true"
-                  :timeGame="timeGame"
-                  :countTable="1"
-                  firstdigit="firstdigit"
-                  lastdigit="lastdigit"
-                  bothdigit="bothdigit"
-                  twodigit="twodigit"
-                  :stockname="stockname"
-                  :loop="loop"
-                  name="first"
-                  :tbdatachart="lastdraw"
-                  :isFirstTime="isFirstTime"
-                  b="b"
-                  s="s"
-                  o="o"
-                  e="e"
-                  u="u"
-                  m="m"
-                  l="l"
-                ></app-tabletren>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <!-- Sidebar -->
 
@@ -75,20 +41,14 @@
   </div>
 </template>
 <script>
-import tabletren from "./table_trend_map/container_table_trend";
 import navbar from "./desktop/navbar";
 import aside from "./desktop/asides";
-// import alertsidebar from "./alertsidebar";
-// import footers from "./desktop/footers";
 import livechart from "./chart-list/livechart";
 
 export default {
   components: {
     "app-navbar": navbar,
     "app-aside": aside,
-    "app-tabletren": tabletren,
-    // "app-footer": footers,
-    // "app-alertsidebar": alertsidebar,
     livechart
   },
   data() {
@@ -115,7 +75,7 @@ export default {
     // console.log(this.stockname +"=>"+this.loop +"=>"+this.country)
   },
   methods: {
-     sleep(milliseconds) {
+    sleep(milliseconds) {
       return new Promise(resolve => setTimeout(resolve, milliseconds));
     },
     getLastDraw() {
@@ -150,9 +110,9 @@ export default {
               .toFixed(2)
               .toString();
           }
-          console.log(this.lastdraw)
-          console.log(this.lastGameID)
-          console.log(this.timeGame)
+          console.log(this.lastdraw);
+          console.log(this.lastGameID);
+          console.log(this.timeGame);
         });
       // this.getOutCome();
     }
