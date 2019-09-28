@@ -557,17 +557,17 @@
   </div>
 </template>
 <script>
-import myaccount from "../index/myaccount.vue";
-import recommedndedfriends from "../index/recommedndedfriends.vue";
-import transactionrecord from "../index/transactionrecord.vue";
-import instantrecharge from "../index/instantrecharge.vue";
-import applyforwithdrawal from "../index/applyforwithdrawal.vue";
-import selfservicewashing from "../index/selfservicewashing.vue";
-import changepassword from "../index/changepassword.vue";
-import bankinfo from "../index/bankinfo.vue";
-import modifyphone from "../index/modifyphone.vue";
-import subscription from "../index/subscription.vue";
-import message from "../index/message.vue";
+import myaccount from "../myaccount/myaccount.vue";
+import recommedndedfriends from "../myaccount/recommedndedfriends.vue";
+import transactionrecord from "../myaccount/transactionrecord.vue";
+import instantrecharge from "../myaccount/instantrecharge.vue";
+import applyforwithdrawal from "../myaccount/applyforwithdrawal.vue";
+import selfservicewashing from "../myaccount/selfservicewashing.vue";
+import changepassword from "../myaccount/changepassword.vue";
+import bankinfo from "../myaccount/bankinfo.vue";
+import modifyphone from "../myaccount/modifyphone.vue";
+import subscription from "../myaccount/subscription.vue";
+import message from "../myaccount/message.vue";
 export default {
   data() {
     return {
