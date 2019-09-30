@@ -19,7 +19,6 @@ Vue.component('app-myaccount', require('./components/mobile/profile.vue').defaul
 Vue.component('app-taps', require('./components/mobile/taps.vue').default);
 Vue.component('app-messagemb', require('./components/mobile/mymessage.vue').default);
 
-Vue.component('app-container', require('./components/welcome/containerwelcome.vue').default);
 Vue.component('app-index', require('./components/myaccount/index.vue').default);
 Vue.component('app-lobby', require('./components/lobby.vue').default);
 Vue.component('app-chat', require('./components/desktop/chat.vue').default);

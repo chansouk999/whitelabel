@@ -1,19 +1,9 @@
 <template>
   <div>
-    <span class="d-none d-xl-block">
-      <navbarDekstop></navbarDekstop>
-    </span>
-    <navbarMoile></navbarMoile>
-    <span class="d-block d-xl-none">
-      <asides></asides>
-      <footers></footers>
-    </span>
     <div class="d-none d-xl-block">
       <div class="wrapper container-whitelabel">
         <div class="row">
-          <div class="col-2">
-            <asides></asides>
-          </div>
+
           <div class="col-xl-10 col-sm-12">
             <div class="main-panel">
               <div class="content">
@@ -29,15 +19,11 @@
         </div>
       </div>
       <alertsidebar></alertsidebar>
-      <footers></footers>
+    
     </div>
   </div>
 </template>
 <script>
-import navbarMoile from "../welcome/navbarMobile";
-import navbarDekstop from "../welcome/navbarDekstop";
-import asides from "../welcome/asides";
-import footers from "../welcome/footers";
 import navbarindex from "../myaccount/navbarindex";
 import alertsidebar from "../alertsidebar";
 export default {
@@ -47,12 +33,9 @@ export default {
     };
   },
   components: {
-    navbarDekstop,
-    asides,
-    footers,
     navbarindex,
     alertsidebar,
-    navbarMoile
+
   },
   mounted() {}
 };
