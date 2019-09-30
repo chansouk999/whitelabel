@@ -18,8 +18,6 @@ Vue.component('app-mobile', require('./components/mobile/container.vue').default
 Vue.component('app-myaccount', require('./components/mobile/profile.vue').default);
 Vue.component('app-taps', require('./components/mobile/taps.vue').default);
 Vue.component('app-messagemb', require('./components/mobile/mymessage.vue').default);
-
-Vue.component('app-index', require('./components/myaccount/index.vue').default);
 Vue.component('app-lobby', require('./components/lobby.vue').default);
 Vue.component('app-chat', require('./components/desktop/chat.vue').default);
 Vue.component('app-stocklist', require('./components/stocklist.vue').default);
