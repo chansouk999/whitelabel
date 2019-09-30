@@ -37,7 +37,7 @@
           </div>
 
           <div
-            v-for="(res,index) in selectUserlist"
+            v-for="(res,index) in selectUserlist" :key="index"
             @click="setroomchat(res)"
             style="cursor:pointer"
           >
