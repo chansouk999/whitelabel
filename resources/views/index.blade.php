@@ -26,7 +26,7 @@
 <body class="white-content">
     <div id="app">
         @if(auth()->check())
-        <input type="hidden" class="checkuser" name="" value="true">
+        <input type="hidden" class="checkuser" name="" value="true">   
         @else
         <input type="hidden" class="checkuser" name="" value="false">
         @endif

@@ -3,7 +3,6 @@
     <div class="d-none d-xl-block">
       <div class="wrapper container-whitelabel">
         <div class="row">
-
           <div class="col-xl-10 col-sm-12">
             <div class="main-panel">
               <div class="content">
@@ -19,7 +18,6 @@
         </div>
       </div>
       <alertsidebar></alertsidebar>
-    
     </div>
   </div>
 </template>
