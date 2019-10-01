@@ -44,24 +44,6 @@
                         />
                       </div>
                     </div>
-                    <!-- <a
-                      class="carousel-control-prev"
-                      href="#myCarousel"
-                      role="button"
-                      data-slide="prev"
-                    >
-                      <img src="assets/img/arrow-left.png" />
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a
-                      class="carousel-control-next"
-                      href="#myCarousel"
-                      role="button"
-                      data-slide="next"
-                    >
-                      <img src="assets/img/arrow-right.png" />
-                      <span class="sr-only">Next</span>
-                    </a>-->
                   </div>
                 </div>
                 <!-- Sidebar -->
@@ -94,7 +76,6 @@
                 </div>
                 <div class="w-25">
                   <a href="#">
-                    
                     <div class="info-icon text-center icon-danger shadow-success">
                       <img src="assets/img/china_flag.png" alt />
                       <p>{{chines_stock}}</p>
