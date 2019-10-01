@@ -124,15 +124,7 @@
                   {{myaccount_tra}}
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a ref="promote" :href="promote" class="button nav-link d-flex float-left">
-                  <div class="icons">
-                    <i class="tim-icons icon-trophy icon-default"></i>
-                    <i class="tim-icons icon-trophy icon-hover"></i>
-                  </div>
-                  {{myprivilege}}
-                </a>
-              </li>-->
+           
               <li class="nav-item">
                 <a ref="lobby" :href="lobby" class="button nav-link d-flex float-left">
                   <div class="icons">
@@ -708,7 +700,6 @@ export default {
       navShowName: "message",
       ismenu: false,
       messages: "./message",
-      promote: "./promote",
       welcome: "/",
       lobby: "./lobby",
       csrf: document
@@ -739,9 +730,6 @@ export default {
         break;
       case "myaccount":
         this.$refs.myaccount.classList.add("active");
-        break;
-      case "promote":
-        this.$refs.promote.classList.add("active");
         break;
       case "lobby":
         this.$refs.lobby.classList.add("active");

@@ -47,10 +47,6 @@ class HomeController extends Controller
     {
         return view('index');
     }
-    public function promote()
-    {
-        return view('promote.promote');
-    }
     public function lobby()
     {
         return view('lobby');

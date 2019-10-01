@@ -544,7 +544,6 @@ export default {
       ismenu: false,
       setNumber: 0,
       messages: "./index",
-      promote: "./promote",
       popup: "./messagemb",
       welcome: "/",
       //   lobby: "./lobby",

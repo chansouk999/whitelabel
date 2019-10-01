@@ -43,12 +43,12 @@
             </li>
           </ul>
         </span>
-<!-- 'client_id' => '9', //client replace with -> 9
+        <!-- 'client_id' => '9', //client replace with -> 9
                 'client_secret' => '7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9', //client replace with -> client secret -> 7gs34oR30I7BbC67W5srBT8ke9lwT5Bkv67QFFP9
                 'name' => Auth::user()->name, //client replace with -> UserName
                 'redirect_uri'=>\Request::root(), // your callback url ->http://yourapp/callback,
                 'userId'=>Auth::user()->user_id, // UserID
-                'webId'=>'0001' -->
+        'webId'=>'0001'-->
         <span v-if="checkuser == 'true'">
           <ul class="nav">
             <!-- <li class="nav-aside" id="SH0000015">
@@ -107,7 +107,7 @@
                   <p class="text-aside">{{stock4}}</p>
                 </a>
               </popper>
-            </li> -->
+            </li>-->
             <li class="nav-aside" id="USdollarIndex5">
               <popper trigger="hover" :options="myPopper">
                 <div class="popper">
@@ -130,7 +130,7 @@
                 </a>
               </popper>
             </li>
-            <li class="img-btc">
+            <li class="img-btc nav-aside">
               <a data-toggle="collapse" @mouseover="hover()" href="#pagesExamples">
                 <img src="assets/img/bitcoin.png" alt />
                 <p>

@@ -2388,7 +2388,7 @@ section.cid-ro6uJJ0VM8 {
 }
 
 .sidebar .sidebar-wrapper ul.nav li.nav-aside {
-    margin: 10px 15px 0;
+    margin:0;
     border-radius: 30px;
     color: #ffffff;
     display: block;
