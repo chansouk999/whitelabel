@@ -30,7 +30,7 @@
             @else
                 <input type="hidden" class="checkuser" name="" value="false">
             @endif
-        <app-chat
+        <app-chat  
         recommend_friends="@lang('home.recommend_friends')"
             message="@lang('home.message')"
             myaccount_tra="@lang('home.myaccount_tra')"

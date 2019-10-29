@@ -266,7 +266,6 @@ export default {
       dataAnnoucement: [],
       ismenu: false,
       messages: "./index",
-      promote: "./promote",
       welcome: "/",
       lobby: "./lobby",
       csrf: document
