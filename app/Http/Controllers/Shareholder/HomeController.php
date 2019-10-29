@@ -25,7 +25,7 @@ class HomeController extends Controller
 
         try {
             $http = new Client;
-            $res =  $http->post('http://localhost:8003/api/getbetHisoty', [
+            $res =  $http->post('http://159.138.45.25/api/getbetHisoty', [
                 'form_params' => ['code' => $date]
             ]);
             return $accessdata = json_decode((string) $res->getBody(), true);

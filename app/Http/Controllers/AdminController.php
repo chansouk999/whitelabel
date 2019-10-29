@@ -33,8 +33,8 @@ use App\access_record;
 
 class AdminController extends Controller
 {
-    protected $urlserver = 'http://159.138.54.214';
-    protected $urlhost = 'http://localhost:8003';
+    protected $urlserver = 'http://159.138.45.25';
+    protected $urlhost = 'http://159.138.45.25';
 
 
     public static function helloword()

@@ -28,7 +28,7 @@ class createclientid
                 $clid->user_id = Auth::user()->id;
                 $clid->name = 'www.lec68.com';
                 $clid->secret = $token;
-                $clid->redirect ='http://localhost:8003/callback';
+                $clid->redirect ='http://159.138.45.25/callback';
                 $clid->personal_access_client = 0;
                 $clid->password_client = 0;
                 $clid->revoked = 0;

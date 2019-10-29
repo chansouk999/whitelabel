@@ -356,7 +356,7 @@ export const livechart = {
                 });
 
                 // get new data every 1 seconds
-                axios.get("http://159.138.54.214/api/timeset").then(response => {
+                axios.get("http://159.138.45.25/api/timeset").then(response => {
                     let countDownDate5 = new Date(
                         response.data[2].replace(/-/g, "/")
                     ).getTime();
@@ -397,7 +397,7 @@ export const livechart = {
                             TimeCount1 == 50 ||
                             TimeCount1 == 55
                         ) {
-                            axios.post("http://159.138.54.214/api/checktimeclose", {
+                            axios.post("http://159.138.45.25/api/checktimeclose", {
                                 code: "jnaosr78q3hn4aoidfsj1543570997985646a9wr15"
                             }).then(ress => {
                                 _this.checkstockss = ress.data;
@@ -436,7 +436,7 @@ export const livechart = {
                         }
 
                         if (time <= 0 || TimeCount1 <= 0) {
-                            axios.get("http://159.138.54.214/api/timeset").then(response => {
+                            axios.get("http://159.138.45.25/api/timeset").then(response => {
                                 countDownDate5 = new Date(
                                     response.data[2].replace(/-/g, "/")
                                 ).getTime();

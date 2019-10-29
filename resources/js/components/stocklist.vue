@@ -128,7 +128,7 @@ export default {
       //   name += this.loop;
       // }
       axios
-        .get(`http://159.138.54.214/api/datahistory/BTCUSDT`)
+        .get(`http://159.138.45.25/api/datahistory/BTCUSDT`)
         .then(responses => {
           //do not add new data to table trent chart when first run
           this.isFirstTime = this.isFirstTime + 1;

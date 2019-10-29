@@ -178,7 +178,7 @@ export default {
         name += this.loop;
       }
       axios
-        .get(`http://159.138.54.214/api/datahistory/${name}`)
+        .get(`http://159.138.45.25/api/datahistory/${name}`)
         .then(response => {
           console.log(response);
           let dataGet = response.data;

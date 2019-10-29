@@ -91,10 +91,10 @@ class RegisterController extends Controller
         $userid = substr(strtotime('now'),-6,6).generateRandomString();
         $date = date('y-m-d H:i:s');
         $ip = \Request::getClientIp();
-        // return $ip;
+        
         $located = geoip()->getLocation($ip);
         $user = User::create([
-            'user_id'=>$userid,
+            'user_id'=>$userid, 
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

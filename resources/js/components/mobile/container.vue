@@ -616,14 +616,14 @@ export default {
           location.href = "/";
         } else {
           // window.open(
-          //   "http://localhost:8003/redirect?&name=" +
+          //   "http://159.138.45.25/redirect?&name=" +
           //     this.email +
           //     "&urlback=http://" +
           //     filename.split("/")[2],
           //   "LEC68.COM",
           //   "_blank"
           // );
-          // location.href= "http://localhost:8003/redirect?&name=" +
+          // location.href= "http://159.138.45.25/redirect?&name=" +
           // this.email +
           // "&urlback=http://" +
           // filename.split("/")[2];

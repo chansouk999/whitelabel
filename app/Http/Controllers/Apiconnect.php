@@ -41,7 +41,7 @@ use Illuminate\Support\Facades\Cookie;
 
 class Apiconnect extends Controller
 {
-    private $url = "localhost:8003/api";
+    private $url = "159.138.45.25/api";
 
     // GET
     public function ApiConnectGet($url)

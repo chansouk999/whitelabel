@@ -43,9 +43,9 @@ use Illuminate\Support\Facades\Cookie;
 
 class MasterController extends Controller
 {
-    protected $urlforserver = 'http://159.138.54.214'; // 1 use this if you are running on server
-    protected $urlforserverapi = 'http://localhost:8003'; // 2 use this if you are running on server
-    protected $urlforlocal8003 = 'http://localhost:8003'; //1 use this if you are running on localhost
+    protected $urlforserver = 'http://159.138.45.25'; // 1 use this if you are running on server
+    protected $urlforserverapi = 'http://159.138.45.25'; // 2 use this if you are running on server
+    protected $urlforlocal8003 = 'http://159.138.45.25'; //1 use this if you are running on localhost
     protected $urlforlocal8004 = 'http://localhost:8004'; //2 use this if you are running on localhost
     protected $data = [];
  
@@ -102,18 +102,16 @@ class MasterController extends Controller
         $ClientID = $data->pluck('id')[0];
         $ClientSecret = $data->pluck('secret')[0];
         $Redirect = $data->pluck('redirect')[0];
-        return redirect('http://localhost:8003/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
+        return redirect('http://159.138.45.25/redirect?clientid=' . $ClientID . '&redirect=' . \Request::root());
     }
     public function redirect()
     {
-
         $query = http_build_query([
             'client_id' => '14',
-            'redirect_uri' => 'http://localhost:8003/api/callback',
+            'redirect_uri' => 'http://159.138.45.25/api/callback',
             'response_type' => 'code',
         ]);
-
-        return redirect('http://localhost:8003/api/redirect?' . $query);
+        return redirect('http://159.138.45.25/api/redirect?' . $query);
     }
 
     public function fullscreengame(Request $req)
@@ -132,7 +130,7 @@ class MasterController extends Controller
 
             $http = new Client;
 
-           $send = $http->post('http://localhost:8003/api/redirect', [
+           $send = $http->post('http://159.138.45.25/api/redirect', [
                 'form_params' => $data
             ]);
 
@@ -148,7 +146,7 @@ class MasterController extends Controller
 
                 // return redirect($reqdata['data']['game_type_url'][0]);
                 // return $reqdata;
-                return redirect('http://localhost:8003/api/login?stockname=' . $req->stockname . '&loop=' . $req->loop . '&country=' . $req->country);
+                return redirect('http://159.138.45.25/api/login?stockname=' . $req->stockname . '&loop=' . $req->loop . '&country=' . $req->country);
             }
             return $reqdata;
         } catch (\Eception $ex) {

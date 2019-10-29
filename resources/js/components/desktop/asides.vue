@@ -267,7 +267,7 @@ export default {
     getstock(stocknameder, loppstock, countrystock) {
       let filename = window.location.href;
       // this.gamelink = `http://lec68.com/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
-      this.stocklist = `http://159.138.54.214/redirect?&name=${
+      this.stocklist = `http://159.138.45.25/redirect?&name=${
         this.email
       }&urlback=http://${
         filename.split("/")[2]
@@ -290,7 +290,7 @@ export default {
           this.firstname = res.data[0].id;
           let filename = window.location.href;
           // this.gamelink = `http://159/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
-          this.stocklist = `http://159.138.54.214/redirect?&name=${
+          this.stocklist = `http://159.138.45.25/redirect?&name=${
             this.email
           }&urlback=http://${filename.split("/")[2]}&stockname=${
             this.stocknameder

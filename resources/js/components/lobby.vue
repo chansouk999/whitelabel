@@ -251,7 +251,7 @@ export default {
           alert('Your session timeout refresh your browser')
           location.href = "/"
         }else{
-            //  window.open('http://localhost:8003/redirect?&name='+this.email+'&urlback=http://'+filename.split('/')[2],"_blank");
+            //  window.open('http://159.138.45.25/redirect?&name='+this.email+'&urlback=http://'+filename.split('/')[2],"_blank");
 
         }
       });
@@ -265,7 +265,7 @@ export default {
       };
       axios
         .post(
-          // "http://localhost:8003/checkapiuser",
+          // "http://159.138.45.25/checkapiuser",
           {
             id: this.id,
             user_id: this.user_id,
@@ -279,7 +279,7 @@ export default {
         )
         .then(res => {
           console.log(res.data);
-          window.open("http://localhost:8003/redirect", "_blank");
+          window.open("http://159.138.45.25/redirect", "_blank");
         })
         .catch(er => {
           console.log(er.res);
@@ -300,8 +300,8 @@ export default {
           this.email = res.data[0].email;
           this.firstname = res.data[0].id;
           let filename = window.location.href
-            // this.gamelink = `http://159.138.54.214/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
-            this.gamelink = `http://localhost:8003/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
+            // this.gamelink = `http://159.138.45.25/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
+            this.gamelink = `http://159.138.45.25/redirect?&name=${this.email}&urlback=http://${filename.split('/')[2]}`
           // $('.id').val(this.id);
           // $('.provider_name').val(this.provider_name);
           // $('.balance').val(this.balance);
